@@ -12,6 +12,7 @@
 
 - 初学者へ広く案内する前に、導入・観察・復旧の体験を揃える。
 - 開発者・学習支援者・OSS contributor へは、判断理由と build-in-public を先行して開く。
+- `stable` / `beta` を上下関係にせず、現状の公式提供は観察・検証・学習・貢献の主活動面である `beta` を優先する（`2026-07-22-01`）。
 - 生成物の量より、利用者が観察し、自分で正しさを判断できることを gate にする。
 - 公開 server package / runbook は `mc-remote-stack`、private ops は `mc-remote-backstage` に分ける。
 
