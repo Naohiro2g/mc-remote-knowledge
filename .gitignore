@@ -1,0 +1,8 @@
+/dist/
+*.log
+__pycache__/
+*.py[cod]
+
+# evidence raw may contain secrets and is never public
+/14-evidence/raw/*
+!/14-evidence/raw/.gitignore
