@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""DECISIONS の ID と未決ダッシュボードを検査する。"""
+"""DECISIONS の ID・日付見出し・未決ダッシュボードを検査する。"""
 
 from __future__ import annotations
 
@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_DECISIONS = ROOT / "00-hub" / "DECISIONS_ja.md"
 DASHBOARD_HEADING = "## 未確定（起案・保留）"
 DECISION_ROW_RE = re.compile(r"^\|\s*(\d{4}-\d{2}-\d{2}-\d{2})\s*\|")
+DATE_HEADING_RE = re.compile(r"^## (\d{4}-\d{2}-\d{2})$")
 UNRESOLVED_STATE_RE = re.compile(
     r"\|\s*(起案|保留)(?:（[^|\n]*）)?[^|\n]*\|"
 )
@@ -26,6 +27,23 @@ def check_decisions(text: str) -> tuple[list[str], dict[str, int]]:
     """文書を検査し、エラー一覧と集計を返す。"""
     lines = text.splitlines()
     errors: list[str] = []
+
+    date_headings = [
+        (match.group(1), line_number)
+        for line_number, line in enumerate(lines, start=1)
+        if (match := DATE_HEADING_RE.match(line))
+    ]
+    date_heading_counts = Counter(date for date, _ in date_headings)
+    for date, count in sorted(date_heading_counts.items()):
+        if count > 1:
+            line_numbers = [
+                str(line_number)
+                for heading_date, line_number in date_headings
+                if heading_date == date
+            ]
+            errors.append(
+                f"日付見出し重複: {date} ({count}件、行 {', '.join(line_numbers)})"
+            )
 
     heading_lines = [
         index for index, line in enumerate(lines) if line.strip() == DASHBOARD_HEADING
@@ -99,7 +117,7 @@ def check_decisions(text: str) -> tuple[list[str], dict[str, int]]:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="DECISIONS の ID・改訂先・未決ダッシュボードを検査する"
+        description="DECISIONS の ID・日付見出し・改訂先・未決ダッシュボードを検査する"
     )
     parser.add_argument(
         "path",

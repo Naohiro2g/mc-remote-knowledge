@@ -78,6 +78,28 @@ class CheckDecisionsTest(unittest.TestCase):
         self.assertIn("ID重複", result.stderr)
         self.assertIn("改訂先が存在しません", result.stderr)
 
+    def test_duplicate_date_heading_fails(self) -> None:
+        result = run_checker(
+            """# decisions
+## 未確定（起案・保留）
+| ID | 決定 | 状態 |
+| --- | --- | --- |
+
+## 2026-07-20
+| ID | 決定 | 状態 |
+| --- | --- | --- |
+| 2026-07-20-01 | 一つ目 | 確定 |
+
+## 2026-07-20
+| ID | 決定 | 状態 |
+| --- | --- | --- |
+| 2026-07-20-02 | 二つ目 | 確定 |
+"""
+        )
+
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("日付見出し重複: 2026-07-20", result.stderr)
+
     def test_park_without_resume_trigger_fails(self) -> None:
         result = run_checker(
             """# decisions
