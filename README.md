@@ -1,6 +1,10 @@
 # mc-remote-knowledge
 
+Knowledge base of Minecraft Remote Project for learning/working along with LLM
+
 マイクラリモコン（mc-remote / Code2CreateClub）の設計記録、横断決定、現行 contract を公開する knowledge repository です。実装は各 dev repository に置き、このリポは「何を、なぜ、どの境界で決めたか」の SSOT を担います。
+
+マイクラリモコンは、人間とLLMが「学びながら開発し、共創する」ための **LLM支援ナレッジベース型開発システム** の適用インスタンスです。ここでいう「システム」は単一のリポジトリやソフトウェアではなく、人間、LLMサーフェス、ナレッジリポ、開発リポ、教材・運用成果物を、判断履歴・証跡・投影によって接続する開発の仕組み全体を指します。
 
 ## 最上位の動作原理
 
