@@ -100,6 +100,60 @@ class CheckDecisionsTest(unittest.TestCase):
         self.assertEqual(result.returncode, 1)
         self.assertIn("日付見出し重複: 2026-07-20", result.stderr)
 
+    def test_revision_target_without_back_reference_fails(self) -> None:
+        result = run_checker(
+            """# decisions
+## 未確定（起案・保留）
+| ID | 決定 | 状態 |
+| --- | --- | --- |
+
+## 2026-07-20
+| ID | 決定 | 状態 |
+| --- | --- | --- |
+| 2026-07-20-01 | 旧決定 | 改訂→2026-07-20-02 |
+| 2026-07-20-02 | 旧IDを参照しない新決定 | 確定 |
+"""
+        )
+
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("改訂先から旧IDを参照していません", result.stderr)
+
+    def test_unregistered_decision_reference_fails(self) -> None:
+        result = run_checker(
+            """# decisions
+## 未確定（起案・保留）
+| ID | 決定 | 状態 |
+| --- | --- | --- |
+
+## 2026-07-20
+| ID | 決定 | 状態 |
+| --- | --- | --- |
+| 2026-07-20-01 | `2026-07-20-99`を参照 | 確定 |
+"""
+        )
+
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("決定参照先が存在せずNOTESにも登録されていません", result.stderr)
+
+    def test_new_shorthand_reference_fails(self) -> None:
+        result = run_checker(
+            """# decisions
+## 未確定（起案・保留）
+| ID | 決定 | 状態 |
+| --- | --- | --- |
+
+## 2026-07-20
+| ID | 決定 | 状態 |
+| --- | --- | --- |
+| 2026-07-20-01 | `2026-07-20-02/03`を参照 | 確定 |
+| 2026-07-20-02 | 二つ目 | 確定 |
+| 2026-07-20-03 | 三つ目 | 確定 |
+"""
+        )
+
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("新規の短縮ID参照は禁止です", result.stderr)
+
     def test_park_without_resume_trigger_fails(self) -> None:
         result = run_checker(
             """# decisions

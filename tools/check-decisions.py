@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""DECISIONS の ID・日付見出し・未決ダッシュボードを検査する。"""
+"""DECISIONS の ID・参照・日付見出し・未決ダッシュボードを検査する。"""
 
 from __future__ import annotations
 
@@ -12,8 +12,14 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_DECISIONS = ROOT / "00-hub" / "DECISIONS_ja.md"
+DEFAULT_NOTES = ROOT / "00-hub" / "NOTES_ja.md"
 DASHBOARD_HEADING = "## 未確定（起案・保留）"
 DECISION_ROW_RE = re.compile(r"^\|\s*(\d{4}-\d{2}-\d{2}-\d{2})\s*\|")
+DECISION_REF_RE = re.compile(r"\b\d{4}-\d{2}-\d{2}-\d{2}\b")
+SHORTHAND_REF_RE = re.compile(
+    r"(?P<base>\b\d{4}-\d{2}-\d{2}-\d{2})`?\s*/\s*`?-?"
+    r"(?P<short>\d{2})(?!\d)"
+)
 DATE_HEADING_RE = re.compile(r"^## (\d{4}-\d{2}-\d{2})$")
 UNRESOLVED_STATE_RE = re.compile(
     r"\|\s*(起案|保留)(?:（[^|\n]*）)?[^|\n]*\|"
@@ -21,9 +27,22 @@ UNRESOLVED_STATE_RE = re.compile(
 REVISION_STATE_RE = re.compile(
     r"\|\s*改訂→`?(\d{4}-\d{2}-\d{2}-\d{2})`?(?:（[^|\n]*）)?\s*\|"
 )
+LEGACY_SHORTHAND_REFERENCES = frozenset(
+    {
+        ("2026-06-20-05", "2026-06-20-02"),
+        ("2026-06-23-01", "2026-06-19-06"),
+        ("2026-07-04-03", "2026-07-04-02"),
+        ("2026-07-10-03", "2026-07-03-04"),
+        ("2026-07-13-01", "2026-07-12-04"),
+        ("2026-07-19-05", "2026-07-10-05"),
+    }
+)
 
 
-def check_decisions(text: str) -> tuple[list[str], dict[str, int]]:
+def check_decisions(
+    text: str,
+    registered_gap_ids: frozenset[str] = frozenset(),
+) -> tuple[list[str], dict[str, int]]:
     """文書を検査し、エラー一覧と集計を返す。"""
     lines = text.splitlines()
     errors: list[str] = []
@@ -84,7 +103,10 @@ def check_decisions(text: str) -> tuple[list[str], dict[str, int]]:
 
     unresolved_count = 0
     revision_count = 0
+    reference_count = 0
+    registered_gap_count = 0
     known_ids = set(id_counts)
+    rows_by_id = {decision_id: line for decision_id, _, line in rows}
     for decision_id, line_number, line in rows:
         unresolved_match = UNRESOLVED_STATE_RE.search(line)
         if unresolved_match:
@@ -107,17 +129,51 @@ def check_decisions(text: str) -> tuple[list[str], dict[str, int]]:
                 errors.append(
                     f"改訂先が存在しません: {decision_id} -> {target_id} (行 {line_number})"
                 )
+            elif decision_id not in rows_by_id[target_id]:
+                errors.append(
+                    "改訂先から旧IDを参照していません: "
+                    f"{decision_id} -> {target_id} (行 {line_number})"
+                )
+
+        references = set(DECISION_REF_RE.findall(line))
+        for shorthand_match in SHORTHAND_REF_RE.finditer(line):
+            expanded_id = (
+                shorthand_match.group("base").rsplit("-", 1)[0]
+                + "-"
+                + shorthand_match.group("short")
+            )
+            references.add(expanded_id)
+            if (decision_id, expanded_id) not in LEGACY_SHORTHAND_REFERENCES:
+                errors.append(
+                    "新規の短縮ID参照は禁止です: "
+                    f"{decision_id} -> {shorthand_match.group(0)} (行 {line_number})"
+                )
+
+        references.discard(decision_id)
+        reference_count += len(references)
+        for reference_id in sorted(references):
+            if reference_id in known_ids:
+                continue
+            if reference_id in registered_gap_ids:
+                registered_gap_count += 1
+                continue
+            errors.append(
+                "決定参照先が存在せずNOTESにも登録されていません: "
+                f"{decision_id} -> {reference_id} (行 {line_number})"
+            )
 
     return errors, {
         "ids": len(rows),
         "unresolved": unresolved_count,
         "revision_links": revision_count,
+        "references": reference_count,
+        "registered_gaps": registered_gap_count,
     }
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="DECISIONS の ID・日付見出し・改訂先・未決ダッシュボードを検査する"
+        description="DECISIONS の ID・参照・日付見出し・改訂先・未決ダッシュボードを検査する"
     )
     parser.add_argument(
         "path",
@@ -137,7 +193,16 @@ def main() -> int:
         print(f"FAIL: {args.path}: {error}", file=sys.stderr)
         return 2
 
-    errors, counts = check_decisions(text)
+    registered_gap_ids: frozenset[str] = frozenset()
+    if args.path.resolve() == DEFAULT_DECISIONS.resolve():
+        try:
+            notes_text = DEFAULT_NOTES.read_text(encoding="utf-8")
+        except OSError as error:
+            print(f"FAIL: {DEFAULT_NOTES}: {error}", file=sys.stderr)
+            return 2
+        registered_gap_ids = frozenset(DECISION_REF_RE.findall(notes_text))
+
+    errors, counts = check_decisions(text, registered_gap_ids)
     if errors:
         for error in errors:
             print(f"FAIL: {error}", file=sys.stderr)
@@ -147,7 +212,9 @@ def main() -> int:
         "OK decisions "
         f"ids={counts['ids']} "
         f"unresolved={counts['unresolved']} "
-        f"revision-links={counts['revision_links']}"
+        f"revision-links={counts['revision_links']} "
+        f"references={counts['references']} "
+        f"registered-gaps={counts['registered_gaps']}"
     )
     return 0
 

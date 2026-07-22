@@ -419,7 +419,7 @@ b3後の最優先は、公開betaを安全に運用するためのavailability s
 
 接続時PoPはb4 / rc / public betaの必須要件にしない。token文字列だけを別端末で再利用する攻撃へのhardeningとして、token漏洩実績、長期credentialの普及、高価値world等のtriggerが立った時に再評価する。全command署名、独自secure channel、native TLS、mTLS、WebAuthnも現在のbeta gateへ含めない。採用を決めるまでexact algorithm、公開鍵encoding、canonical signature input、challenge wire shapeを批准しない。
 
-上記のavailabilityとcredential lifecycleを一つの大きな`b4`へ固定せず、公開previewにできるsliceごとに次の`bN`を切る。PoPを外したことを理由に長期bearer tokenを先行公開せず、lifecycle gateは独立に維持する（DECISIONS `2026-07-16-01` / `-03`）。
+上記のavailabilityとcredential lifecycleを一つの大きな`b4`へ固定せず、公開previewにできるsliceごとに次の`bN`を切る。PoPを外したことを理由に長期bearer tokenを先行公開せず、lifecycle gateは独立に維持する（DECISIONS `2026-07-16-01` / `2026-07-16-03`）。
 
 ### 10.12 pre-release 状態は明示操作（自動認識は PyPI のみ）
 
