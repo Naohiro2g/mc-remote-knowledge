@@ -74,6 +74,26 @@ class IndexSummaryTests(unittest.TestCase):
 
 
 class CommitProjectionTests(unittest.TestCase):
+    def test_active_projection_runtime_is_tracked(self) -> None:
+        commit = BUNDLE.resolve_commit("HEAD")
+        tracked = set(
+            BUNDLE.git_output(
+                "-c",
+                "core.quotePath=false",
+                "ls-tree",
+                "-r",
+                "--name-only",
+                commit,
+            ).splitlines()
+        )
+        required = {
+            "tools/build-notebooklm-bundle.py",
+            "tools/test_build_notebooklm_bundle.py",
+            BUNDLE.INDEX_PATH,
+            BUNDLE.ROADMAP_PATH,
+        }
+        self.assertEqual(required - tracked, set())
+
     def test_capsule_contains_public_sections_verbatim(self) -> None:
         commit = BUNDLE.resolve_commit("HEAD")
         sections = BUNDLE.read_current_state_sources(commit)
