@@ -8,21 +8,23 @@
 
 ## Deployment 構成 / 食事語彙
 
-食事語は認知入口に限らず、判断履歴・比較・言語化に用いる系術語である。各語を技術的実体へ明示的に写像し、いつでも実体を確認できるようにする。`apply` / `restore` / `stop` / `delete` / `resolve` / `render` 等の状態変更操作は、意味の曖昧化を避けるため技術語を正準とする（`2026-07-23-01` / `2026-07-23-03`）。
+食事語は認知入口に限らず、判断履歴・比較・言語化に用いる系術語である。各語を技術的実体へ明示的に写像し、いつでも実体を確認できるようにする。`apply` / `restore` / `stop` / `delete` / `resolve` / `render` 等の状態変更操作は、意味の曖昧化を避けるため技術語を正準とする（`2026-07-23-01` / `2026-07-23-03` / `2026-07-23-06`）。
 
 | 正典表記 | 技術的な意味 | ドリフト注意 |
 | --- | --- | --- |
 | 献立（preset） | 名前と immutable な revision を持つ、検証済み component 構成の宣言。revision は moving selector を含まない | お品書き（一覧）や、exact deployment 全体を固定する lock と混同しない |
-| お品書き（catalog） | registry から作る現在提供中の投影。deprecation / EOL、supported profile、deployment requirements / constraints 等を含む | immutable な全識別空間ではない |
-| registry（献立帳） | immutable な base preset revision 群の identity 源 | 現在提供中だけを示す catalog、artifact を置く冷凍庫と混同しない |
+| お品書き（preset catalog） | preset registry から作る現在提供中の投影。machine keyは`preset_catalog`。deprecation / EOL、supported profile、deployment requirements / constraints 等を含む | Minecraft resource catalogや、immutableな全識別空間と混同しない |
+| preset registry（献立帳） | immutable な base preset revision 群の identity 源。machine keyは`preset_registry` | Minecraft server registry、package registry、現在提供中だけを示すpreset catalog、artifactを置く冷凍庫と混同しない |
 | 注文票（order） | 一つの environment に対する human-owned な論理的 desired state | 物理ファイル粒度を含意しない |
 | lock（固定結果） | profile / preset / override / resolver・rendering tool / source order を解決した、特定 deployment の secret 値と runtime-owned state を除く exact artifact resolution および non-secret render plan の rerun 源。secret 依存生成物は参照 identity までを固定し、実値注入後の bytes は lock 単独の再現保証に含めない | order、secret store、runtime backup の代わりにしない |
 | おまかせ（recommendation） | 目的から preset を推薦する開始方法。説明・判断履歴では日本語系術語を使い、機械 token は英語とする | 具体的な CLI / API surface を用語定義へ焼き込まない |
-| 冷凍庫（artifact store） | content-addressed な artifact 保管 | 過去 preset の identity 空間は registry（献立帳）であり、冷凍庫へ二重写像しない |
+| 冷凍庫（artifact store） | content-addressed な artifact 保管 | 過去 preset の identity 空間は preset registry（献立帳）であり、冷凍庫へ二重写像しない |
 | venue | 外部管轄の作業現地。Scratch upstream contribution 等で、こちらが正本や運用を所有しない場所 | deployment instance の schema 名へ流用しない |
+| Minecraft resource catalog | server registryから生成・配送・cacheするblock / entity / particle等の版依存リソース。wire fieldは`catalogHash` | deploymentのpreset catalogではない。protocol文脈の歴史的な無修飾`catalog`はこの意味で存続できるが、横断文書ではresource / presetを修飾する |
 
 - `course` は curriculum / カリキュラム側の予約語とし、component 構成には使わない。
 - `menu` は日本語と英語で指す対象が反転し得るため、schema / DECISIONS の正典語にしない。日常語としては使ってよい。
+- deployment の schema / file / API / CLI に無修飾の `catalog` / `registry` を新設しない。CLI は `mcrctl preset list` / `mcrctl preset show` の preset namespace に置く。
 - `サーバー` は computing / server-system 文脈（VPS、家サーバー、Games サーバー、Minecraft サーバー等）に予約し、飲食隠喩の役割に無修飾で使わない。給仕・ホール等の具体語と技術的実体の写像は、判断履歴で実際に使う段で確定する。
 
 ## セッション・ループ（`claude-ai-guide_ja.md` §7）

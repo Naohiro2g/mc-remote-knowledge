@@ -11,7 +11,7 @@
 - 2026-07-23 [park] recommendation（おまかせ） / 実装要否、実装する場合の英語CLI/API surface、推薦入力、versioned preset revisionへの解決規則を設計し、日本語メタファーを機械tokenにしない / 依存＝`2026-07-23-01` / 再開＝stack CLIの日常運用安定後、または運用者要求時 / 閉じる＝stack側SSOTで確定し必要な語彙判断をknowledgeへ着地 / 出典＝`2026-07-23-01`・`2026-07-23-03`
 - 2026-07-23 [park] `mc-remote.toml`の物理ファイル粒度 / 1 deployment 1fileと1 environment 1file、owner分離、profile重複/include、schema全体との相互作用を比較する / 依存＝`2026-07-23-01`・`2026-07-23-02`（ownership設計とは並行可） / 再開＝TOML schema実装着手前 / 閉じる＝stack側SSOTで確定しschemaへ反映 / 出典＝`2026-07-23-01`・`2026-07-23-02`
 - 2026-07-23 [park] dev/alphaのdeployment運用差 / dev＝tinkering状態、alpha＝tag前のexact source commitを統合する状態、exposure＝別軸という意味論を、別instance要件・区別条件・命名運用へ投影する / 依存＝`2026-07-23-01` / 再開＝実運用で区別要件が具体化 / 閉じる＝区別方法または「区別しない」をstack側SSOTで確定 / 出典＝`2026-07-23-01`
-- 2026-07-23 [park] preset registry / catalog / lock解決仕様 / registry配置、revision、immutability enforcement、catalog生成、deprecation/EOL、preset-lock identity境界、compatibility evidence、custom/unverified order gate、profile/tool revision pinを設計する（最優先後続） / 依存＝`2026-07-23-01`、ownership・backup・restoreとは独立 / 再開＝`2026-07-23-01`着地直後 / 閉じる＝stack側SSOTで確定し必要な横断判断をknowledgeへ着地 / 出典＝`2026-07-23-01`
+- 2026-07-23 [park] preset registry / preset catalog / lock解決仕様 / `2026-07-23-06`のqualified termとmachine keyを使い、preset registry配置、revision、immutability enforcement、preset catalog生成、deprecation/EOL、preset-lock identity境界、compatibility evidence、custom/unverified order gate、profile/tool revision pinを設計する（最優先後続） / 依存＝`2026-07-23-01`・`2026-07-23-06`、ownership・backup・restoreとは独立 / 再開＝両決定着地直後 / 閉じる＝stack側SSOTで確定し必要な横断判断をknowledgeへ着地 / 出典＝`2026-07-23-01`・`2026-07-23-06`
 
 ## Archive carry-forward gaps
 
