@@ -4,7 +4,14 @@
 
 ## Inbox
 
-- なし。
+- 2026-07-23 [park] plugin config ownership / pathまたはschema fieldの一管理単位一ownerを不変条件に、stack-managed・operator-owned・runtime-owned、adapter API、effective config、drift、restart/reload宣言を設計する。secretは第四ownerと先取りせず直交するmaterial/lifecycle分類との関係を扱う / 依存＝なし / 再開＝`2026-07-23-01`・`2026-07-23-02`着地後、またはbackup lifecycle着手時 / 閉じる＝stack側SSOTで確定し必要な横断判断をknowledgeへ着地 / 出典＝`2026-07-23-01`
+- 2026-07-23 [park] world lineage / `2026-07-23-04`のMinecraft world downgrade非対応を実装するworld identity、last-opened version、checkpoint、parent、branch、forward migration、downgrade検出を設計する / 依存＝`2026-07-23-01`のenvironmentモデル＋`2026-07-23-04` / 再開＝追加deploymentでlineage課題が具体化、またはbackup lifecycle着手時 / 閉じる＝stack側SSOTで確定し必要な横断判断をknowledgeへ着地 / 出典＝`2026-07-23-01`・`2026-07-23-04`
+- 2026-07-23 [park] backup lifecycle / world snapshot・environment recovery・credential recoveryのscope分離、整合snapshot、filesystem snapshot有無の正準経路、restore verificationを設計する / 依存＝ownership/lifecycleの最小contract＋world lineage / 再開＝最小contract着地後、またはVPS・追加deploymentで運用要求が具体化 / 閉じる＝stack側SSOTで確定し必要な横断判断をknowledgeへ着地 / 出典＝`2026-07-23-01`
+- 2026-07-23 [park] restore contract / plan/apply境界、新規isolated environment既定案とin-place restore、credential除外、promotion、failure rollback、transaction境界を白紙設計する（stack SHA `379e09d5fa2e0e4d7a14fb12ef24161a9b90beb3`にはrestore subcommandなし） / 依存＝world lineage＋backup lifecycle / 再開＝両者が閉じるか実運用要求が具体化 / 閉じる＝stack側SSOTで確定し必要な横断判断をknowledgeへ着地 / 出典＝`2026-07-23-01`
+- 2026-07-23 [park] recommendation（おまかせ） / 実装要否、実装する場合の英語CLI/API surface、推薦入力、versioned preset revisionへの解決規則を設計し、日本語メタファーを機械tokenにしない / 依存＝`2026-07-23-01` / 再開＝stack CLIの日常運用安定後、または運用者要求時 / 閉じる＝stack側SSOTで確定し必要な語彙判断をknowledgeへ着地 / 出典＝`2026-07-23-01`・`2026-07-23-03`
+- 2026-07-23 [park] `mc-remote.toml`の物理ファイル粒度 / 1 deployment 1fileと1 environment 1file、owner分離、profile重複/include、schema全体との相互作用を比較する / 依存＝`2026-07-23-01`・`2026-07-23-02`（ownership設計とは並行可） / 再開＝TOML schema実装着手前 / 閉じる＝stack側SSOTで確定しschemaへ反映 / 出典＝`2026-07-23-01`・`2026-07-23-02`
+- 2026-07-23 [park] dev/alphaのdeployment運用差 / dev＝tinkering状態、alpha＝tag前のexact source commitを統合する状態、exposure＝別軸という意味論を、別instance要件・区別条件・命名運用へ投影する / 依存＝`2026-07-23-01` / 再開＝実運用で区別要件が具体化 / 閉じる＝区別方法または「区別しない」をstack側SSOTで確定 / 出典＝`2026-07-23-01`
+- 2026-07-23 [park] preset registry / catalog / lock解決仕様 / registry配置、revision、immutability enforcement、catalog生成、deprecation/EOL、preset-lock identity境界、compatibility evidence、custom/unverified order gate、profile/tool revision pinを設計する（最優先後続） / 依存＝`2026-07-23-01`、ownership・backup・restoreとは独立 / 再開＝`2026-07-23-01`着地直後 / 閉じる＝stack側SSOTで確定し必要な横断判断をknowledgeへ着地 / 出典＝`2026-07-23-01`
 
 ## Archive carry-forward gaps
 

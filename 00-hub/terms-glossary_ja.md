@@ -6,6 +6,25 @@
 - **発散を見つけたら直す**：別の語が使われていたらここの正典語に寄せる。新概念を鋳造したらここに足す。
 - 種まき出典＝セッション・ループ再設計（`2026-06-23-01`）。SSOT 機構としての本格運用は NOTES の起案（用語集 SSOT 化）で継続検討。
 
+## Deployment 構成 / 食事語彙
+
+食事語は認知入口に限らず、判断履歴・比較・言語化に用いる系術語である。各語を技術的実体へ明示的に写像し、いつでも実体を確認できるようにする。`apply` / `restore` / `stop` / `delete` / `resolve` / `render` 等の状態変更操作は、意味の曖昧化を避けるため技術語を正準とする（`2026-07-23-01` / `2026-07-23-03`）。
+
+| 正典表記 | 技術的な意味 | ドリフト注意 |
+| --- | --- | --- |
+| 献立（preset） | 名前と immutable な revision を持つ、検証済み component 構成の宣言。revision は moving selector を含まない | お品書き（一覧）や、exact deployment 全体を固定する lock と混同しない |
+| お品書き（catalog） | registry から作る現在提供中の投影。deprecation / EOL、supported profile、deployment requirements / constraints 等を含む | immutable な全識別空間ではない |
+| registry（献立帳） | immutable な base preset revision 群の identity 源 | 現在提供中だけを示す catalog、artifact を置く冷凍庫と混同しない |
+| 注文票（order） | 一つの environment に対する human-owned な論理的 desired state | 物理ファイル粒度を含意しない |
+| lock（固定結果） | profile / preset / override / resolver・rendering tool / source order を解決した、特定 deployment の secret 値と runtime-owned state を除く exact artifact resolution および non-secret render plan の rerun 源。secret 依存生成物は参照 identity までを固定し、実値注入後の bytes は lock 単独の再現保証に含めない | order、secret store、runtime backup の代わりにしない |
+| おまかせ（recommendation） | 目的から preset を推薦する開始方法。説明・判断履歴では日本語系術語を使い、機械 token は英語とする | 具体的な CLI / API surface を用語定義へ焼き込まない |
+| 冷凍庫（artifact store） | content-addressed な artifact 保管 | 過去 preset の identity 空間は registry（献立帳）であり、冷凍庫へ二重写像しない |
+| venue | 外部管轄の作業現地。Scratch upstream contribution 等で、こちらが正本や運用を所有しない場所 | deployment instance の schema 名へ流用しない |
+
+- `course` は curriculum / カリキュラム側の予約語とし、component 構成には使わない。
+- `menu` は日本語と英語で指す対象が反転し得るため、schema / DECISIONS の正典語にしない。日常語としては使ってよい。
+- `サーバー` は computing / server-system 文脈（VPS、家サーバー、Games サーバー、Minecraft サーバー等）に予約し、飲食隠喩の役割に無修飾で使わない。給仕・ホール等の具体語と技術的実体の写像は、判断履歴で実際に使う段で確定する。
+
 ## セッション・ループ（`claude-ai-guide_ja.md` §7）
 
 | 正典語 | 意味 | 避けたい揺れ |
@@ -31,7 +50,7 @@
 | --- | --- | --- |
 | 確約 | 判断した。確定の home（横断＝DECISIONS 1行／局所＝スポーク §）への有効着地 | 旧称 Sink 1／「確約面」（面は使わない）。英語投影は decided（surface にしない。committed も不可＝Git の commit と衝突し、Git では push まで行って着地＝commit は未着地なので意味論もズレる） |
 | 捕捉 | いつか判断する。未確定・今やらない芽の park 先（hub / per-repo NOTES） | 旧称 Sink 2／「捕捉面」（面は使わない）。英語投影は captured（surface にしない） |
-| 工房 | 判断しない。独立公開リポ `mc-remote-tinker`。ID 無し・「なぜ」無し・Gate 無し・履歴保証無し・捨ててよい。sink ではない（着地せず湧く）。義務は発見の hub NOTES への1行 sweep のみ（一方向弁） | 砂場/Sandbox（箱庭サーバー sb.mc-remote.com と衝突）。実行環境名 `dev`（非公開 tinkering・`2026-07-16-01`）と混同しない。英語投影は tinker |
+| 工房 | 判断しない。独立公開リポ `mc-remote-tinker`。ID 無し・「なぜ」無し・Gate 無し・履歴保証無し・捨ててよい。sink ではない（着地せず湧く）。義務は発見の hub NOTES への1行 sweep のみ（一方向弁） | 砂場/Sandbox（箱庭サーバー sb.mc-remote.com と衝突）。environment channel `dev`（tinkering状態。exposureは別軸・`2026-07-23-01`）と混同しない。英語投影は tinker |
 | サーフェス | 「作業する場所」（LLM が動く面＝claude.ai / Claude Code 等）**専用に予約** | 確約・捕捉・工房を「〜面」と呼ばない（英訳で surface に潰れ軸衝突）。詳細は §サーフェス |
 
 ### セッションループ状態名
