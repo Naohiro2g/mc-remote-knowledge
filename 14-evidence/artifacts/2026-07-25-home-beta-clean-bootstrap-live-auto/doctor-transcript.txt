@@ -1,0 +1,18 @@
+test_id=2026-07-25-home-beta-clean-bootstrap-live-auto
+test_class=live-auto
+observed_at_utc=2026-07-24T22:26:04Z
+os=Ubuntu 24.04.4 LTS
+architecture=amd64
+checkout_commit=e63f27dd2d68e2ffc86d47c154e07db18a9d2e26
+uv=uv 0.11.31 (x86_64-unknown-linux-gnu)
+python=Python 3.12.3
+docker=29.1.3
+compose=2.40.3+ds1-0ubuntu1~24.04.1
+command=mcrctl doctor --project <redacted-project-path>
+OK doctor runtime=healthy deployment=home environment=home-beta
+OK doctor lock=sha256:3b6b86c7fb7cc451aff68d56666711cf720780ac4c106bb484d2ffe466f5ea69 render=current context=default
+OK doctor network=loopback bind=127.0.0.1 java-port=25565 mcremote-port=25575
+OK doctor protocol=21.0.0 mc-version=1.21.11 auth=not-required
+WARN doctor compatibility=unverified
+container_status=healthy published_ports=127.0.0.1:25565->25565/tcp,127.0.0.1:25575->25575/tcp image=itzg/minecraft-server:2026.7.2-java21
+volume_owner=mcrctl volume_deployment=home volume_environment=home-beta volume_world=home-beta-world volume_created_by_lock=sha256:3b6b86c7fb7cc451aff68d56666711cf720780ac4c106bb484d2ffe466f5ea69

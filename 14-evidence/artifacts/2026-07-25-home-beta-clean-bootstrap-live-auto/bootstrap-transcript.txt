@@ -1,0 +1,21 @@
+test_id=2026-07-25-home-beta-clean-bootstrap-live-auto
+test_class=live-auto
+source_commit=3589d3537c234addaa3f709662d78828f5866f50
+target_os=Ubuntu 24.04.4 LTS
+target_architecture=amd64
+preflight_containers=0
+preflight_volumes=0
+preflight_images=0
+preflight_ports_25565_25575=free
+PASS target_tests=205
+PASS target_ruff=all-checks-passed
+OK resolve status=created lock=sha256:3b6b86c7fb7cc451aff68d56666711cf720780ac4c106bb484d2ffe466f5ea69
+WARN compatibility evidence does not cover all required claims
+OK validate format=toml order=valid lock=valid identity=sha256:3b6b86c7fb7cc451aff68d56666711cf720780ac4c106bb484d2ffe466f5ea69
+OK artifact status=fetched id=paper-jar sha256=5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba
+OK artifact status=fetched id=mcremote-jar sha256=ad2674fa93645cc3c4c0d2b6aa5b37f11a8f9519162f61ac00b8be7122b023c7
+OK render status=created adapter=compose@1 lock=sha256:3b6b86c7fb7cc451aff68d56666711cf720780ac4c106bb484d2ffe466f5ea69
+OK render status=unchanged adapter=compose@1 lock=sha256:3b6b86c7fb7cc451aff68d56666711cf720780ac4c106bb484d2ffe466f5ea69
+render_tree_sha256=fdda0423948a6386c16e1d79fab896aa4e00224028bda0c3e3305b4dae08d77b
+OK apply status=created bootstrap=true lock=sha256:3b6b86c7fb7cc451aff68d56666711cf720780ac4c106bb484d2ffe466f5ea69 compose-project=home service=minecraft volume=home-beta-minecraft-data
+WARN live bootstrap used the one-shot unverified acknowledgement

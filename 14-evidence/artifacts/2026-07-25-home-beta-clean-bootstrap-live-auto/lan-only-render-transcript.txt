@@ -1,0 +1,27 @@
+test_id=2026-07-25-home-beta-clean-bootstrap-live-auto
+subtest=lan-only-render-only
+test_class=live-auto
+observed_at_utc=2026-07-24T22:35:33Z
+checkout_commit=e63f27dd2d68e2ffc86d47c154e07db18a9d2e26
+profile=home-server@2
+profile_sha256=a59b8ac2bf4148256ee6f45884a6a47b11d8c890043603f180149e873722e63c
+preset=mcremote-paper@1
+preset_sha256=ac6716635424dd1a13d99e4250e51969b3a7d34db4f9d17466a1db102db87c27
+topology=beta/lan-only/integration
+bind_address=<rfc1918-address>
+OK validate format=toml order=valid lock=missing
+OK resolve status=created lock=sha256:7dd9a2944ba9d4684004c9f8f001a31064b9876b8b3cc511a43c9e12e991c2fc
+WARN compatibility evidence does not cover all required claims
+PLAN selection=preset compatibility=unverified lifecycle=active
+PLAN security-controls=online-mode,rcon-disabled
+OK artifact status=present id=paper-jar sha256=5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba
+OK artifact status=present id=mcremote-jar sha256=ad2674fa93645cc3c4c0d2b6aa5b37f11a8f9519162f61ac00b8be7122b023c7
+OK render status=created adapter=compose@1 lock=sha256:7dd9a2944ba9d4684004c9f8f001a31064b9876b8b3cc511a43c9e12e991c2fc
+OK validate format=toml order=valid lock=valid identity=sha256:7dd9a2944ba9d4684004c9f8f001a31064b9876b8b3cc511a43c9e12e991c2fc
+rendered_ports=<rfc1918-address>:<test-java-port>:25565/tcp,<rfc1918-address>:<test-mcremote-port>:25575/tcp
+lock_file_sha256=5fa377872c39fd74f18c1a70256c53846aea8cb0a6ad49db9d25b57ff21e41bb
+compose_file_sha256=2c0ffb6c7b1d6db269131f08eed3421cf0b5488983e0937fe092a16d4ae83f71
+server_properties_sha256=b6bad808afa476eafc3a6ff75471a24b37e70a8d3ed172e1722250ae2ef2645e
+render_manifest_sha256=c6239f3ea63fe05705d7736ce4443bb10761e5940639141f8fb985b97bac62aa
+docker_operation=none
+apply_operation=none
