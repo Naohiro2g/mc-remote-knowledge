@@ -16,6 +16,7 @@ public 正本世代の入口です。ここに載る path は、このリポ内�
 | `00-hub/llm-agent-boundary-guide_ja.md` | agent の権限・実行・検証境界 |
 | `00-hub/release-gate-notes_ja.md` | 新世代で使う空の release gate template |
 | `00-hub/terms-glossary_ja.md` | 横断語彙 |
+| `00-hub/external-facts_ja.md` | 決定が `F-<topic>` で参照する外部事実の生きた台帳（調査日・状態・次回確認を更新する） |
 
 ## 現行 contract / client design
 
