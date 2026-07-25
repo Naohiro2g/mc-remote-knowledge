@@ -22,6 +22,20 @@
 | venue | 外部管轄の作業現地。Scratch upstream contribution 等で、こちらが正本や運用を所有しない場所 | deployment instance の schema 名へ流用しない |
 | Minecraft resource catalog | server registryから生成・配送・cacheするblock / entity / particle等の版依存リソース。wire fieldは`catalogHash` | deploymentのpreset catalogではない。protocol文脈の歴史的な無修飾`catalog`はこの意味で存続できるが、横断文書ではresource / presetを修飾する |
 
+### ケータリング系（構築方式と持ち運ぶもの）
+
+構築方式・論理状態・可搬 bytes・構築済み機器・物理一式を、一語で束ねずに5段へ切り分ける（`2026-07-25-04`）。教室に限らずレンタル VPS サーバー・home サーバーへ適用する。
+
+| 正典表記 | 推奨英語投影 | 技術的な意味 | ドリフト注意 |
+| --- | --- | --- | --- |
+| ケータリング型 | catering-type deployment | preset ・ order ・ lock ・ artifact を使う構築方式 | 教室限定の意味で使わない。`2026-07-16-04` の「ケータリング作戦」は教室向けの導入戦略名で、本語は host を問わない方式 |
+| 準備済み deployment | prepared deployment | resolve ・ fetch ・ render 済みの論理状態 | 起動中の runtime、backup、lock そのものと同一視しない |
+| 配備バンドル | deployment bundle | tool、order / lock、artifact、manifest 等の可搬 bytes。ケータリング概念に属するが、方式に依らず配備一般へ使えるため catering を冠さない | 準備済み deployment（論理状態）やケータリングキット（物理一式）と同一視しない |
+| ケータリング PC | catering PC | 教室で server 役になる構築済み PC | 論理状態（準備済み deployment）や物理一式（ケータリングキット）と同一視しない |
+| ケータリングキット | catering kit | 教室へ持ち込んで設営する物理一式。PC、AP、接続（USB または Ethernet ケーブル）、電源を含む | ケータリング PC 単体を指さない。AP topology を含むため AP を持たない home 構成には当てはまらない |
+
+- 無修飾の `バンドル` / `bundle` は**配備バンドル**を指す既定とする。Gemini Notebook 取り込み用の生成投影（`2026-07-23-05`）は `Gemini Notebook 用ソースバンドル`（Gemini Notebook source bundle）と修飾し、Notebook 側の概念語である source に寄せる（`2026-07-25-04`）。
+
 - `course` は curriculum / カリキュラム側の予約語とし、component 構成には使わない。
 - `menu` は日本語と英語で指す対象が反転し得るため、schema / DECISIONS の正典語にしない。日常語としては使ってよい。
 - deployment の schema / file / API / CLI に無修飾の `catalog` / `registry` を新設しない。CLI は `mcrctl preset list` / `mcrctl preset show` の preset namespace に置く。

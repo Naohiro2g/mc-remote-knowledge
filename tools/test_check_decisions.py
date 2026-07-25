@@ -40,7 +40,7 @@ class CheckDecisionsTest(unittest.TestCase):
         result = run_checker()
 
         self.assertEqual(result.returncode, 0, result.stderr)
-        self.assertIn("unresolved=5", result.stdout)
+        self.assertIn("unresolved=6", result.stdout)
 
     def test_unresolved_row_outside_dashboard_fails(self) -> None:
         result = run_checker(

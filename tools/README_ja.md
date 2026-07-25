@@ -20,11 +20,15 @@ python3 -m unittest tools/test_check_decisions.py
 - `起案` / `保留` が未確定 dashboard 外に残ること
 - 再開 trigger のない `保留`
 
-## Gemini Notebook bundle generator
+## Gemini Notebook 用ソースバンドル generator
 
 `build-notebooklm-bundle.py` は、指定した Git commit tree の Markdown を
-Gemini Notebook（旧 NotebookLM）取り込み用に束ねます。working tree の未commit
-ファイルは読みません。
+Gemini Notebook（旧 NotebookLM）取り込み用のソースバンドルへ束ねます。working tree
+の未commitファイルは読みません。
+
+無修飾の「バンドル」は配備バンドル（deployment bundle）を指します。本 generator の
+出力は `Gemini Notebook 用ソースバンドル` と修飾して呼びます（`2026-07-25-04`）。
+script 名と test 名は `2026-07-23-05` で固めた生成経路の参照を動かさないため変更しません。
 
 ```bash
 # 全体を dist/notebooklm/ へ生成
@@ -52,7 +56,7 @@ python3 -m unittest tools/test_build_notebooklm_bundle.py
 Notebookへアップロードするときは、cleanなsource commitから一時生成して検証し、
 そのcommitへannotated tag `notebooklm/YYYY-MM-DD[-NN]` を作成します。tagから本生成し、
 事前生成と同一であることを確認してからtagをpushします。通常の文書更新では
-バンドルを生成・追跡しません。
+ソースバンドルを生成・追跡しません。
 
 `dist/` は使い捨て生成物でありGit管理しません。根拠は
 `2026-07-01-07`、現在のpublic投影経路は`2026-07-23-05`です。
