@@ -15,6 +15,19 @@
 `e63f27d`はテスト済み実装`3589d35`へ公開NOTESだけを追加したcommitであり、runtime code、
 profile、preset、artifact identityは同一である。
 
+## 用語上の位置づけ
+
+本 record は**ケータリング型**（`2026-07-25-03` / `2026-07-25-04`）による構築の実証である。
+対象 host 上に**準備済み deployment**（resolve ・ fetch ・ render 済みの論理状態）が成立し、
+isolated で apply ・ doctor まで到達したことを示す。
+
+**ケータリングキットの実証ではない**。本 subject は home 構成であり、AP ・ DHCP ・ DNS ・ NAT を
+含む `classroom-all-in-one` ではなく `home-server@2` profile を使っている。AP topology を含む
+キット構成の検証は教室構成で別途行う。
+
+本節は語の対応を明示するだけで、以下の Subject ・ Scope items ・ 未検証の境界が主張する範囲を
+広げも狭めもしない。
+
 ## Subject
 
 - profile: `home-server@2`
