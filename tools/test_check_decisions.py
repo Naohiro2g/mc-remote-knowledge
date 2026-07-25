@@ -13,10 +13,12 @@ ROOT = Path(__file__).resolve().parent.parent
 CHECKER = ROOT / "tools" / "check-decisions.py"
 
 
-def run_checker(text: str | None = None) -> subprocess.CompletedProcess[str]:
+def run_checker(
+    text: str | None = None, *extra: str
+) -> subprocess.CompletedProcess[str]:
     if text is None:
         return subprocess.run(
-            [sys.executable, str(CHECKER)],
+            [sys.executable, str(CHECKER), *extra],
             cwd=ROOT,
             check=False,
             capture_output=True,
@@ -27,7 +29,7 @@ def run_checker(text: str | None = None) -> subprocess.CompletedProcess[str]:
         decisions = Path(directory) / "DECISIONS_ja.md"
         decisions.write_text(text, encoding="utf-8")
         return subprocess.run(
-            [sys.executable, str(CHECKER), str(decisions)],
+            [sys.executable, str(CHECKER), str(decisions), *extra],
             cwd=ROOT,
             check=False,
             capture_output=True,
@@ -183,6 +185,48 @@ class CheckDecisionsTest(unittest.TestCase):
 
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertIn("unresolved=1", result.stdout)
+
+
+    def test_meta_lists_broad_rows_without_phase(self) -> None:
+        result = run_checker(
+            """# decisions
+## 未確定（起案・保留）
+| ID | 決定 | 状態 | なぜ | 影響 |
+| --- | --- | --- | --- | --- |
+
+## 2026-07-26
+| ID | 決定 | 状態 | なぜ | 影響 |
+| --- | --- | --- | --- | --- |
+| 2026-07-26-01 | 広いが局面なし | 確定 | 理由 | a / b / c / d / e / f |
+| 2026-07-26-02 | 広くて局面あり | 確定（局面＝当面） | 理由 | a / b / c / d / e / f |
+| 2026-07-26-03 | 狭い | 確定 | 理由 | a / b |
+""",
+            "--meta",
+        )
+
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn("2026-07-26-01", result.stdout)
+        self.assertNotIn("2026-07-26-02", result.stdout)
+        self.assertNotIn("2026-07-26-03", result.stdout)
+        self.assertIn("meta candidates=1", result.stdout)
+
+    def test_meta_ignores_rows_before_scope(self) -> None:
+        result = run_checker(
+            """# decisions
+## 未確定（起案・保留）
+| ID | 決定 | 状態 | なぜ | 影響 |
+| --- | --- | --- | --- | --- |
+
+## 2026-07-24
+| ID | 決定 | 状態 | なぜ | 影響 |
+| --- | --- | --- | --- | --- |
+| 2026-07-24-01 | 広いが対象期間より前 | 確定 | 理由 | a / b / c / d / e / f |
+""",
+            "--meta",
+        )
+
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn("meta candidates=0", result.stdout)
 
 
 if __name__ == "__main__":

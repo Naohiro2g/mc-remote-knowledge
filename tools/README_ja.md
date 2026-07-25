@@ -20,6 +20,21 @@ python3 -m unittest tools/test_check_decisions.py
 - `起案` / `保留` が未確定 dashboard 外に残ること
 - 再開 trigger のない `保留`
 
+### `--meta`（局面の宣言候補）
+
+```bash
+python3 tools/check-decisions.py --meta
+```
+
+影響欄の領域数が 6 以上で、状態セルに `局面` の記載が無い決定を列挙します。**判定はせず候補を
+出すだけ**で、exit code は常に 0 です。横断度は機械的に測れますが、重要度と時間軸は人間との
+対話で決めるためです（`2026-07-25-05`）。範囲を示して編集する流れの中で「今回は影響範囲が
+広い」と気づくための補助として使います。
+
+`2026-07-25` より前の行は対象外です。過去の決定へ重みの札を貼らないという同決定の方針に
+従い、遡って埋めません。FAIL にしないのは、FAIL にすると「局面＝当面」と書いて通す最短経路が
+でき、同決定の却下③が警告した形骸化になるためです。
+
 ## Gemini Notebook 用ソースバンドル generator
 
 `build-notebooklm-bundle.py` は、指定した Git commit tree の Markdown を

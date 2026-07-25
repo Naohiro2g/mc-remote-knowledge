@@ -171,6 +171,36 @@ def check_decisions(
     }
 
 
+BREADTH_THRESHOLD = 6
+META_SCOPE_FROM = "2026-07-25"
+PHASE_MARKER = "局面"
+
+
+def list_meta_candidates(text: str) -> list[tuple[str, int]]:
+    """局面の宣言が要りそうな決定を列挙する。
+
+    横断度（影響欄の領域数）だけを機械的に見る。重要度と時間軸は対話で決めるため
+    ここでは判定しない（`2026-07-25-05`）。`META_SCOPE_FROM` より前の行は、過去へ
+    重みの札を貼らないという同決定の方針に従い対象外とする。
+    """
+    candidates: list[tuple[str, int]] = []
+    for line in text.splitlines():
+        match = DECISION_ROW_RE.match(line)
+        if not match:
+            continue
+        decision_id = match.group(1)
+        if decision_id < META_SCOPE_FROM:
+            continue
+        cells = line.split(" | ")
+        if len(cells) < 5:
+            continue
+        state, impact = cells[2], cells[4].rstrip(" |")
+        breadth = len([part for part in re.split(r"[/／]", impact) if part.strip()])
+        if breadth >= BREADTH_THRESHOLD and PHASE_MARKER not in state:
+            candidates.append((decision_id, breadth))
+    return candidates
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="DECISIONS の ID・参照・日付見出し・改訂先・未決ダッシュボードを検査する"
@@ -182,6 +212,11 @@ def parse_args() -> argparse.Namespace:
         default=DEFAULT_DECISIONS,
         help="検査対象（既定: 00-hub/DECISIONS_ja.md）",
     )
+    parser.add_argument(
+        "--meta",
+        action="store_true",
+        help="影響範囲が広く局面の宣言が無い決定を列挙する（判定せず対話へ渡す）",
+    )
     return parser.parse_args()
 
 
@@ -192,6 +227,13 @@ def main() -> int:
     except OSError as error:
         print(f"FAIL: {args.path}: {error}", file=sys.stderr)
         return 2
+
+    if args.meta:
+        candidates = list_meta_candidates(text)
+        for decision_id, breadth in candidates:
+            print(f"影響範囲が広く局面の宣言がありません: {decision_id}（{breadth} 領域）")
+        print(f"OK meta candidates={len(candidates)}")
+        return 0
 
     registered_gap_ids: frozenset[str] = frozenset()
     if args.path.resolve() == DEFAULT_DECISIONS.resolve():
