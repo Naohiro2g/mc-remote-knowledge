@@ -17,6 +17,7 @@ public 正本世代の入口です。ここに載る path は、このリポ内�
 | `00-hub/release-gate-notes_ja.md` | 新世代で使う空の release gate template |
 | `00-hub/terms-glossary_ja.md` | 横断語彙 |
 | `00-hub/external-facts_ja.md` | 決定が `F-<topic>` で参照する外部事実の生きた台帳（調査日・状態・次回確認を更新する） |
+| `00-hub/domain-knowledge-modules-design_ja.md` | 起案。領域知識を domain knowledge module として分離する方式（`2026-07-02-01` の起案正本） |
 
 ## 現行 contract / client design
 
