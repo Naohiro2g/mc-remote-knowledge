@@ -1,0 +1,5 @@
+{
+  // このリポを VS Code で開いたとき推奨される拡張。
+  // markdownlint: .markdownlint.jsonc に従って Markdown をエディタ上で警告表示する。
+  "recommendations": ["DavidAnson.vscode-markdownlint"]
+}

@@ -1,0 +1,19 @@
+{
+  // markdownlint 設定（適度な強さ）。VS Code 拡張 DavidAnson.vscode-markdownlint と
+  // `npx markdownlint-cli2 "**/*.md"` の両方がこのファイルを読む。
+  // 方針: 構造系のルール（コードフェンス言語・表の体裁等）は残し、
+  //       日本語長文ドキュメントで誤検知/邪魔になる体裁系（行長・inline HTML 等）は無効。
+
+  "default": true,
+
+  "MD013": false, // 行長制限なし（日本語の長い決定行・表を許容）
+  "MD033": false, // inline HTML を許可
+  "MD041": false, // 先頭行が H1 でなくてもよい
+  "MD024": { "siblings_only": true }, // 同名見出しは兄弟階層でのみ禁止（別節での再利用は許容）
+
+  "MD052": false, // [20][22] 等（Jupyter のセル番号）を参照リンクと誤検知するため無効
+  "MD029": false, // 順序リスト番号の自動振り直しは、フロー記述（1→…→8 等）の意味を壊すため無効
+
+  "MD040": true,  // フェンスドコードブロックに言語指定を必須（```text 等）
+  "MD034": true   // 裸 URL を禁止（リンク記法を使う）
+}
