@@ -31,6 +31,7 @@ public 正本世代の入口です。ここに載る path は、このリポ内�
 | `13-scratch-client/debug-session-design_ja.md` | debug / observation session の設計 |
 | `13-scratch-client/scratch-execution-model-design_ja.md` | Scratch 実行モデルと stream の前提 |
 | `13-scratch-client/scratch-upstream-design_ja.md` | upstream 追従と contribution の一方向弁 |
+| `13-scratch-client/scratch-roadmap_ja.md` | Scratch の現行 release scope、検収基線、R3 作業束 |
 | `13-scratch-client/scratch-plan_ja.md` | **原点文書（完全保存・改訂しない）**。再始動の起点。現行 contract の正本ではなく、食い違う場合は 10-protocol が優先（`2026-07-26-01`） |
 
 ## 耐久層

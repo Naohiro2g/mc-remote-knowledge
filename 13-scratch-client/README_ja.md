@@ -5,3 +5,7 @@
 このディレクトリは mc-remote-knowledge のスポーク。`00-hub/` の方針（全体計画・理念・全体アーキテクチャ）に従う。
 
 横断的な影響を持つ決定（複数ワークストリームに波及するもの）は、ここに書くと同時に `00-hub/DECISIONS_ja.md` に1行追記する。
+
+現行の Scratch release scope と R3 作業束は
+[scratch-roadmap_ja.md](scratch-roadmap_ja.md) を正本とする。
+[scratch-plan_ja.md](scratch-plan_ja.md) は原点文書であり、現行 scope の根拠には使わない。
