@@ -52,9 +52,12 @@ runtime config を適用する `index.html` だけとする。分類にない en
 workflow を失敗させ、黙って除外も公開もしない。既知の非公開 entry は document と対応 bundle を
 Pages artifact から除く。通常の開発用 build は変えず、VM 既定の `connectionEnabled: true` も変更しない。
 
-scratch-editor working tree には `pages-artifact.mjs`、CLI wrapper、unit test、Pages workflow step が
-実装済みで、unit 5件と scratch-gui lint が PASS、実 build 複製への手動 CLI smoke も PASS している。
-ただし source commit は未取得のため、knowledge 側で「実装完了」と判定するのは commit SHA の確認後とする。
+scratch-editor の b3 candidate commit `649df943ef7c3d36c38cd6136f603d595430d049` には
+`pages-artifact.mjs`、CLI wrapper、unit test、Pages workflow step の4 pathだけが実装されている。
+unit 5件と scratch-gui lint が PASSし、実 build 複製への手動 CLI smoke も PASSした。
+knowledge 側でも remote branch の commit と4 pathの同一差分を確認済みである。
+ただし `origin/develop` へ未 merge・未 deploy なので、現行公開面が修正済みとは扱わない。
+merge 後の build artifact inventory と全公開 URL の `live-auto` evidence を Pages 配布前に取得する。
 
 この変更で runtime capability guard は全公開 entry に届く。一方、`2026-07-12-06` が要求するもう一方の
 build 時の接続コード無効化は未実装であり、b3 showcase 完了条件として残る。
@@ -81,7 +84,9 @@ consumer と同時に配線する。`PERIPHERAL_*` 流用や独自 `postMessage`
 scope 別の品質基準を別正本として持たない。
 
 - 全体 lint: exit code 0、error なし。upstream 既存 warning と今回変更起因 warning を分けて報告する。
-- McRemote scope lint: warning なし。
+- McRemote scope lint: `2026-07-27-04` の core `arrow-parens` warning だけを除き warning なし。
+  `{src,test}/**` の単一引数 arrow は `@stylistic/arrow-parens` の error に従って括弧を付けず、
+  不可避な `arrow-parens` warning の件数を他規則と分けて報告する。`scripts/**` は例外対象外。
 - deterministic: 生成 HTML inventory、全公開 entry の fail-close、runtime config の正常・欠落・HTTP・schema
   failure、token 非読出し、WebSocket 非生成、展示版説明、`.sb3` serialization regression を確認する。
 - live-human: 通常版で pair / token reconnect、接続先別 token、`permission_denied` 時の token 温存、
