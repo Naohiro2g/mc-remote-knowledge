@@ -46,12 +46,20 @@ GUI・VM・McRemote 拡張の既定は `connectionEnabled: true` で、拡張は
 設計済みの `deploymentProfile`、capabilities の `minecraftConnection`、`notices` は未実装。
 拡張内部の `_open()` guard は WebSocket 生成と token 読出しより前にあり、迂回経路は確認されていない。
 
-fail-open を塞ぐ方法は未確定で、実装前に次のどちらかを選ぶ。
+公開 entry が runtime guard を迂回する fail-open は `2026-07-27-03` の Pages 配布境界で塞ぐ。
+全 entry document と bundle 名の分類表、公開可能 entry の allowlist を分け、公開可能なのは
+runtime config を適用する `index.html` だけとする。分類にない entry document が build に現れた場合は
+workflow を失敗させ、黙って除外も公開もしない。既知の非公開 entry は document と対応 bundle を
+Pages artifact から除く。通常の開発用 build は変えず、VM 既定の `connectionEnabled: true` も変更しない。
 
-- Pages 配布物から runtime config を適用しない 4 entry を除く。
-- VM 既定を disabled に倒し、consumer に明示的な有効化を要求する。
+scratch-editor working tree には `pages-artifact.mjs`、CLI wrapper、unit test、Pages workflow step が
+実装済みで、unit 5件と scratch-gui lint が PASS、実 build 複製への手動 CLI smoke も PASS している。
+ただし source commit は未取得のため、knowledge 側で「実装完了」と判定するのは commit SHA の確認後とする。
 
-前者は Pages 配布境界、後者は VM 単体 consumer を含む公開 API 契約へ影響する。
+この変更で runtime capability guard は全公開 entry に届く。一方、`2026-07-12-06` が要求するもう一方の
+build 時の接続コード無効化は未実装であり、b3 showcase 完了条件として残る。
+VM 既定を disabled にする案は scratch-vm の public consumer 契約を変えるため b3 から park し、
+consumer inventory を伴う専用の契約変更として起案された場合だけ再検討する。
 「runtime config があるから成立済み」「4 entry は使われないから無害」は採らない。
 
 ### 2.2 UI スライス
