@@ -60,8 +60,20 @@ knowledge 側でも remote branch の commit と4 pathの同一差分を確認�
 ただし `origin/develop` へ未 merge・未 deploy なので、現行公開面が修正済みとは扱わない。
 merge 後の build artifact inventory と全公開 URL の `live-auto` evidence を Pages 配布前に取得する。
 
-この変更で runtime capability guard は全公開 entry に届く。一方、`2026-07-12-06` が要求するもう一方の
-build 時の接続コード無効化は未実装であり、b3 showcase 完了条件として残る。
+この変更で runtime capability guard は全公開 entry に届く。
+
+`2026-07-28-01` で `2026-07-12-06` が要求するもう一方の build 時の接続コード無効化も実装済みとなった。
+`MCREMOTE_SHOWCASE` を scratch-gui の DefinePlugin で定数に畳み、`render-gui.jsx` が
+`vm.disableMcRemoteConnection()` を呼ぶ一方向ラッチを追加し、後から読み込む runtime config では
+解除できない。あわせて接続無効時の拒否理由を全経路で `connection_disabled` に統一した。
+実装は `Naohiro2g/scratch-editor` commit `b4647e1b77978273e4f5204d126e53c76d51116b`
+（branch `agent/b3-pages-showcase-failclose`）で、unit・lint は PASS、showcase build +
+`2026-07-27-03` prune 適用成果物への live-auto（公開想定外 URL は全て 404）と live-human
+（runtime config を敵対的に `connection_enabled: true` にしても接続拒否）を確認した。
+`2026-07-27-02` matrix の showcase 項（公開される全 URL で接続不能）はこの二重 guard で満たす。
+ただし配信物は `build:dev` であり、CI Pages が使う `NODE_ENV=production` 成果物そのものでの
+再確認は Pages 配布前の残タスクとする。詳細と根拠は `14-evidence/records/2026-07-28-scratch-showcase-failclose_ja.md` を参照する。
+
 VM 既定を disabled にする案は scratch-vm の public consumer 契約を変えるため b3 から park し、
 consumer inventory を伴う専用の契約変更として起案された場合だけ再検討する。
 「runtime config があるから成立済み」「4 entry は使われないから無害」は採らない。
