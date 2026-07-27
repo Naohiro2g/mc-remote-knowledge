@@ -29,7 +29,7 @@ guard（Pages artifact allowlist）に加え、build 時の接続コード無効
 
 | Scope item / claim | Constraint | Observation | Result |
 | --- | --- | --- | --- |
-| VM unit | `extension_mcremote.js` | 45 tests / 131 assertions（新規 5 件は先に失敗を確認） | PASS |
+| VM unit | `extension_mcremote.js` | 45 tests / 131 assertions。新規 5 件のうち 4 件（`disableMcRemoteConnection turns the connection off for the life of the runtime` / `runtime config cannot re-enable a connection disabled at build time` / `connect on a disabled deployment opens no socket and reads no token` / `a disabled deployment is reported as disabled rather than as not connected`）は実装前に失敗することを確認。残り 1 件（`a disabled deployment still shows every block`）は無効化がブロック表示に影響しないことを確認する既存挙動の回帰テストで、実装前から PASS | PASS |
 | scratch-gui unit | `npm run test:unit --workspace=@scratch/scratch-gui` | 54 suites / 346 passed・1 skipped | PASS |
 | lint | 両 package、変更行範囲 | exit 0・error 0、新規 warning ゼロ（`eslint -f json` で行番号照合） | PASS |
 | bundle 比較 | showcase build vs 通常 build の `gui.js` | showcase 側のみ `vm.disableMcRemoteConnection()` 呼び出しを含む。両方とも `MCREMOTE_SHOWCASE` 文字列は残らない | PASS |
@@ -43,6 +43,12 @@ guard（Pages artifact allowlist）に加え、build 時の接続コード無効
 DefinePlugin による定数畳み込みと `disableMcRemoteConnection()` 呼び出しはビルド設定に依存する
 経路のため、production ビルドでも同じ経路を通ることを再確認する評価は Pages 配布前の残タスクとして
 `13-scratch-client/scratch-roadmap_ja.md` §2.1 に残す。
+
+## Corrigendum（2026-07-28）
+
+初版の VM unit 行は「新規 5 件は先に失敗を確認」と書いていたが不正確だった。着地確認の照合で、
+新規 5 件のうち実装前に失敗していたのは 4 件のみで、残り 1 件（ブロック表示への非影響を確認する
+既存挙動の回帰テスト）は実装前から PASS していたことが判明した。上表を訂正した。
 
 ## Claim boundary
 
