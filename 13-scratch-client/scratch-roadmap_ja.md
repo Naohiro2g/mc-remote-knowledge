@@ -71,8 +71,18 @@ merge 後の build artifact inventory と全公開 URL の `live-auto` evidence 
 `2026-07-27-03` prune 適用成果物への live-auto（公開想定外 URL は全て 404）と live-human
 （runtime config を敵対的に `connection_enabled: true` にしても接続拒否）を確認した。
 `2026-07-27-02` matrix の showcase 項（公開される全 URL で接続不能）はこの二重 guard で満たす。
-ただし配信物は `build:dev` であり、CI Pages が使う `NODE_ENV=production` 成果物そのものでの
-再確認は Pages 配布前の残タスクとする。詳細と根拠は `14-evidence/records/2026-07-28-scratch-showcase-failclose_ja.md` を参照する。
+
+`2026-07-29-01` で production 成果物そのものでの再確認も完了した。showcase の runtime config を
+追跡ファイルではなく Pages workflow が導出して配信する構成に変え、`connection_enabled: false` と
+`release_identity`（公開対象 source の SHA）をビルド成果物側で確定させた。追跡ファイル
+`packages/scratch-gui/static/mc-remote-runtime-config.json` はローカル開発既定のまま変更していない。
+実装は `Naohiro2g/scratch-editor` PR #10 merge `18e061f344`・PR #11 merge
+`c7087d7badd906f6bd5eb93776ec8fab0934d5ee` で `origin/develop` へ反映済み、Pages 公開済み。
+`NODE_ENV=production` ローカルビルドと、pages.yml run `30387472889` による実際の公開面
+（`https://naohiro2g.github.io/scratch-editor/`）の両方で、config が `connection_enabled: false`・
+SHA stamp 済み、公開想定外の全 URL が 404 であることを確認した。
+`2026-07-27-02` matrix の showcase 項は限定なしの PASS とする。
+詳細と根拠は `14-evidence/records/2026-07-28-scratch-showcase-failclose_ja.md` を参照する。
 
 VM 既定を disabled にする案は scratch-vm の public consumer 契約を変えるため b3 から park し、
 consumer inventory を伴う専用の契約変更として起案された場合だけ再検討する。
