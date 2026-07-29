@@ -95,6 +95,8 @@ JSON-RPC 2.0 を採用する（採用判断と却下案は §8）。
 | `world.getBlock` | `[x, y, z]` | あり | ブロック取得 |
 | `player.getPos` | `[]` | あり | paired player の現在 world と現在位置を stream origin 相対で返す（b2 準核） |
 | `player.setPos` | `[world, x, y, z]` | あり | paired player を指定 world の stream origin 相対位置へ teleport する（b2 準核） |
+| `player.getPose` | `[]` | あり | paired player の現在 world・位置・向き（yaw/pitch）を stream origin 相対で返す（b4 実装予定、§5.3） |
+| `player.setPose` | `[world, x, y, z, yaw, pitch]` | あり | paired player を指定 world の stream origin 相対位置・向きへ1回の teleport で一体反映する（b4 実装予定、§5.3） |
 
 - `chat.post` の message は `params[0]` の1値だけを正とする（DECISIONS `2026-07-01-01`）。
   旧テキストコマンド実装には分割された args を join して複数トークンを1メッセージ化する暗黙挙動があったが、
@@ -103,6 +105,7 @@ JSON-RPC 2.0 を採用する（採用判断と却下案は §8）。
 - `build.setWorld` / `build.setOrigin` は protocol 21.0.0 系の b1 配布物における build model 収容条件に含める（DECISIONS `2026-07-01-10`）。API 層名は `setWorld` / `setBuildOrigin`、wire method は `build.*`。
 - `world.getBlock` は **result をそのまま返す**（取得値が `undefined` / error のときは**空文字**）。戻り型の確定（int ↔ 文字列）は §7 ②。
 - `player.getPos` / `player.setPos` は protocol 21.0.0 系 b2 の準核に含める（DECISIONS `2026-07-07-02`）。API 層名は `getPos` / `setPos`、wire method は `player.*`。
+- `player.getPose` / `player.setPose` は protocol 21.0.0 系 b4 の実装予定に含める（DECISIONS `2026-07-29-03`、§5.3）。API 層名は `getPose` / `setPose`、wire method は `player.*`。既存 `getPos` / `setPos` は廃止せず維持する。
 - `setPlayer` は**廃止**（protocol 21.0.0 系の b1 配布物でクリーン除去、DECISIONS `2026-06-15-02`/`2026-06-25-05`）。identity は `hello` が担い、サーバが token ↔ player を束縛するため**なりすまし不可**。
 
 ---
@@ -144,6 +147,19 @@ build state を変更する `setWorld(dimension)` / `setBuildOrigin(x,y,z)` は�
 - **基本 reason**：`permission_denied` / `player_offline` / `unknown_world` / `invalid_params`。エラー形は §7.3 の JSON-RPC 標準 error object と二層 reason に従う。
 
 > 却下＝`player.getPos` を `stream.world` 不一致時 error にする案：result に現在 world を明示すれば不一致は状態でありエラーではない。却下＝`player.setPos` が暗黙に `stream.world` を使う案：world を引数で明示する方が、次元跨ぎ teleport と origin 相対の関係を説明しやすく、`getPos` の `{world,pos}` と対になる。却下＝McRemote 独自の teleport 権限を新設する案：認可体系を protocol に増やさず LuckPerms に一本化する。
+
+### 5.3 player.getPose / player.setPose（b4 実装予定）
+
+`player.getPose` / `player.setPose` は §5.2 の `getPos`/`setPos` に**向き（yaw/pitch）を加えた版**で、b4 の実装予定に含める（DECISIONS `2026-07-29-03`）。API 層名は `getPose`/`setPose`、wire method は `player.*`。既存 `getPos`/`setPos` は廃止せず維持する（用途に応じて位置のみ／位置＋向きを使い分ける）。
+
+- **`player.getPose`**：params は `[]`。paired player の現在 world・位置・向きを返す。result は `{ "world": "...", "pos": [x, y, z], "yaw": ..., "pitch": ... }`（`pos` は §5.2 と同じ stream origin 相対）。
+- **`player.setPose`**：params は `[world, x, y, z, yaw, pitch]`。§5.2 の `setPos` と同じく `absolute = stream.origin + [x,y,z]` を計算し、**位置と向きを1回の teleport で一体反映**する（位置だけ・角度だけの部分更新はしない）。成功 result は `getPose` と同形。
+- **値域**：`x`/`y`/`z`/`yaw`/`pitch` は有限値必須（NaN/Infinity は `invalid_params`）。`yaw` は任意の有限値を受け入れ、result では Minecraft の通常表現へ正規化する。`pitch` は `-90..90` の範囲外だと `invalid_params`。
+- **teleport 失敗**：teleport の呼び出し自体が失敗した場合（Paper `Entity.teleport(Location)` が `permission_denied`/`player_offline`/`unknown_world`/`invalid_params` のいずれにも当たらない要因で失敗を返す等）を成功扱いにしない。この場合は新設 reason `teleport_failed`（player-state family、§7.3）で返す。
+- **範囲**：b4 の対象は paired player までとし、任意 entity への pose 操作は将来拡張とする。
+- **高水準 walkThrough（構想・未確定）**：`player.walkThrough` は軌道・速度・補間・注視方向をクライアント側で組み立て、`getPose`/`setPose` を基礎命令として使う構想。正確な API 形と収容版は別途決定する。
+
+> 却下＝旧 `camera.setNormal`/`setFixed`/`setFollow`/`setPos`（RemoteControllerMod のクライアント mod 側カメラ操作）を Paper 側 API として再現する案：対応する汎用 camera API が Paper に無い。却下＝`setSpectatorTarget` を walkthrough の基盤にする案：spectator mode 必須で entity 追従以外の pose を直接指定できない。却下＝位置と角度変更を別 request にする案：途中状態が見え1フレーム内で位置と視線がずれ得る。却下＝walkThrough 全体を server 側の長時間 job として先に固定する案：円弧・Y 補間・look-at 等はクライアント側の高水準処理として組み合わせやすい。
 
 ---
 
@@ -281,6 +297,7 @@ token の入手＝ペアリング。**hello の前段の独立メソッド `auth
 | world-state | `-32000`番台（実装定義域） | `build_denied` | build policy / 範囲 / 認可により操作拒否。返せる場合は `data.bounds` / `data.violating` 等で理由を補足 | ○ |
 | player-state | `-32000`番台（実装定義域） | `permission_denied` | LuckPerms 等の認可により操作拒否。token は温存 | b2 |
 | | | `player_offline` | token は有効だが paired player がオンラインでない | b2 |
+| | | `teleport_failed` | `player.setPose` 等の teleport 呼び出し自体が `permission_denied`/`player_offline`/`unknown_world`/`invalid_params` 以外の要因で失敗（Paper `Entity.teleport` が false を返す等） | b4 |
 
 - **`missing_namespace` は廃止**（無印は有効＝`2026-06-27-02`、`minecraft:` 補完される）。
 - **reason 分割の理由**：生徒のミスが別物（付け忘れ/構文破壊/prop 無い/値不正）で、ライブ画面が別メッセージを出せると切り分け教育になる。`allowed` を返せるのは `invalid_property_value` だけ＝非対称が綺麗に出る。

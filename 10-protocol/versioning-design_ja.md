@@ -421,6 +421,15 @@ b3後の最優先は、公開betaを安全に運用するためのavailability s
 
 上記のavailabilityとcredential lifecycleを一つの大きな`b4`へ固定せず、公開previewにできるsliceごとに次の`bN`を切る。PoPを外したことを理由に長期bearer tokenを先行公開せず、lifecycle gateは独立に維持する（DECISIONS `2026-07-16-01` / `2026-07-16-03`）。
 
+### 10.11.3 b4 のスコープ（起案・player.getPose/setPose）
+
+b4 全体スコープの確定は `2026-07-21-07` の stream identity 設計ゲート（scope freeze 前に main/substream 写像を固定する判断）に律速され、本節はそれとは独立に確定した実装予定単独項目を記録する。正本決定は DECISIONS `2026-07-29-03`（出典: `Naohiro2g/McRemote` Codex dev session 確定搬送票、branch `release-close/2100.0.0b2`）。
+
+- **`player.getPose` / `player.setPose` を b4 の実装予定に追加**：paired player の位置と向き（yaw/pitch）を1回の teleport で一体反映する。wire 契約の正本は wire-format-design §5.3（error reason は同 §7.3）。既存 `player.getPos`/`setPos`（§10.11.1 項8）は維持し廃止しない。
+- **範囲**：b4 の対象は paired player までとし、任意 entity への pose 操作は将来の bN へ送る。
+- **高水準 `player.walkThrough` は構想のみ**：軌道・速度・補間・注視方向をクライアント側で組み立て `getPose`/`setPose` を基礎命令として使う構想を記録するが、API 形と収容版は別途決定する。
+- **scope freeze との関係**：本項目は `2026-07-21-07` の stream identity 判断（main/substream 写像・Scratch 側実現可能性）とは独立な準核候補であり、その確定を待たず先に追加してよい起案として扱う。b4 全体の核/準核の切り分け・mc-target 等の確定は別途行う。
+
 ### 10.12 pre-release 状態は明示操作（自動認識は PyPI のみ）
 
 版文字列から pre-release 状態が**自動認識される面**と、**明示操作が要る面**を分ける（DECISIONS `2026-06-25-06`）。§10.5／`2026-06-25-02` が core 番号＋接尾辞（PEP 440 `b1`）を揃える方針を選んだ帰結。
