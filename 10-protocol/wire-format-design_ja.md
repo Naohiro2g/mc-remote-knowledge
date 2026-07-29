@@ -189,7 +189,7 @@ build state を変更する `setWorld(dimension)` / `setBuildOrigin(x,y,z)` は�
   "mc_version": "1.21.11",
   "supported_mc_versions": ["1.21.11"],
   "catalogHash": null,
-  "world_constants": { "y_sea": 63 },
+  "world_constants": { "y_sea": 62 },
   "session": "...",
   "player": "...",
   "world": "overworld",
@@ -202,7 +202,7 @@ build state を変更する `setWorld(dimension)` / `setBuildOrigin(x,y,z)` は�
 - **安定形（確定 `2026-06-27-05` / `2026-07-02-02`）**：hello 応答は `{protocol, mc_version, supported_mc_versions, catalogHash}`（＋session/player/world/origin/permissions）を基礎に、world/profile 情報定数だけを `world_constants` bucket に束ねる。**b1 は無認証ゆえ `catalogHash: null`**（フィールドは常在）、認証＋catalog が来る bN で実値が埋まる＝クライアントは「フィールド有無」でなく「`catalogHash` が埋まってるか」だけ見る（封筒の破壊的変更ゼロ・b2 で何が育ったか目で見える）。**入れ子リッチマニフェスト（`catalogs.block.{format,namespaces,inline,url,size}`）は再棄却**＝§7.2/§8.1 の単一 `catalogHash` 畳み込み・一名一義を維持。
 - **§8 整合**：versioning-design §8.1 が要求する `mc_version` / `supported_mc_versions`（踊り場リスト）を応答に含める（§8.1 必須ゆえ省けない）。互換判定は §8 のメジャー一致則に従う。
 - **`catalogHash`**（確定 `2026-06-26-03`・§7.2）：ブロック等カタログのキャッシュ識別子＝`mc_version`/`supported_mc_versions` 広告に**紐づくレジストリ指紋**（重複フィールドにしない）。クライアントは未キャッシュ時のみ本体取得（b1 は null ゆえ常に同梱既定版 fallback）。
-- **`world_constants`**（確定 `2026-07-02-02`）：world/profile 依存の情報定数を束ねる object。b1 では object と `y_sea` key の存在だけを確認対象にする。wire key は `y_sea`、値は `number | null`。Python 生成定数名として `Y_SEA` を使うのは可。`y_sea` は座標式には使わず、完全な意味論、superflat 判定、full `world_constants.json` 配送、multi-version switching は bN / domain knowledge 側へ送る。
+- **`world_constants`**（確定 `2026-07-02-02`）：world/profile 依存の情報定数を束ねる object。b1 では object と `y_sea` key の存在だけを確認対象にする。wire key は `y_sea`、値は `number | null`。Python 生成定数名として `Y_SEA` を使うのは可。`y_sea` は座標式には使わず、完全な意味論、superflat 判定、full `world_constants.json` 配送、multi-version switching は bN / domain knowledge 側へ送る。**値は `world.getSeaLevel() - 1`（最上段の水ブロックの標高）**とする（`2026-07-30-01`）。`getSeaLevel()` 自体は `00-hub/world-constants-facts_ja.md` の `y_ground`（水面直上・地表の配置基準）に当たり、`y_sea` とは1ブロック異なる。
 
 ### 6.3 失敗
 
