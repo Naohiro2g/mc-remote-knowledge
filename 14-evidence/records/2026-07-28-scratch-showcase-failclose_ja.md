@@ -87,7 +87,7 @@ config 導出は `2026-07-27-03` の prune step とは別 step にし、CI 失�
 | --- | --- | --- | --- |
 | unit | `prune-pages-artifact.test.js` | 9 tests PASS（新規4件は実装前に失敗を確認） | PASS |
 | lint | `scripts/` / `test/unit/scripts/` | eslint 指摘ゼロ | PASS |
-| CI | PR #11 | Build / Test scratch-gui / Test scratch-vm / Test Results / commitlint すべて pass | PASS |
+| CI | PR #11 | Build / Test scratch-gui / Test Results / commitlint / info が pass。`Test scratch-vm` は PR #11 の変更対象外（`pages.yml` と scratch-gui のみ）のため未実行で、scratch-vm 側の CI 証跡は PR #10 にあり pass | PASS |
 | live-auto（ローカル production） | `NODE_ENV=production MCREMOTE_SHOWCASE=true` ビルド＋両 step 適用 | config が `connection_enabled: false`＋SHA stamp。minified バンドルで `disableMcRemoteConnection()` が無条件呼び出し（分岐ごと畳まれた） | PASS |
 | live-auto（公開面） | pages.yml run `30387472889`（`develop` @ `c7087d7bad`、2026-07-28T18:26:58Z 起動、Build Editor / Deploy to GitHub Pages とも success） | `https://naohiro2g.github.io/scratch-editor/` の公開 config が `connection_enabled: false` / `release_identity: c7087d7badd906f6bd5eb93776ec8fab0934d5ee`。`/` と `/index.html` が 200。`player.html` / `standalone.html` / `blocks-only.html` / `compatibility-testing.html` / `player.js` / `guistandalone.js` が全て 404。公開バンドルの呼び出し箇所はローカル production ビルドと同一並び（`Nz=e=>{e.disableMcRemoteConnection(),e.setMcRemoteRuntimeConfig(...)}`）。`MCREMOTE_SHOWCASE` 文字列は残らず、展示版メッセージはバンドル内に存在 | PASS |
 | live-human | 公開 URL をブラウザで確認 | OK | PASS |
