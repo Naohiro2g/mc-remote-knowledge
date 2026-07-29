@@ -93,6 +93,7 @@ JSON-RPC 2.0 を採用する（採用判断と却下案は §8）。
 | `world.setBlock` | `[x, y, z, block]` | あり（b1 は id 付き同期 request） / notification 時なし | 1ブロック設置 |
 | `world.setBlocks` | `[x1, y1, z1, x2, y2, z2, block]` | あり（b1 は id 付き同期 request） / notification 時なし | 直方体充填 |
 | `world.getBlock` | `[x, y, z]` | あり | ブロック取得 |
+| `catalog.get` | `[]` | あり | 稼働中 registry から block/entity/particle catalog を取得（b3 実装予定、§7.2.1） |
 | `player.getPos` | `[]` | あり | paired player の現在 world と現在位置を stream origin 相対で返す（b2 準核） |
 | `player.setPos` | `[world, x, y, z]` | あり | paired player を指定 world の stream origin 相対位置へ teleport する（b2 準核） |
 | `player.getPose` | `[]` | あり | paired player の現在 world・位置・向き（yaw/pitch）を stream origin 相対で返す（b4 実装予定、§5.3） |
@@ -104,6 +105,7 @@ JSON-RPC 2.0 を採用する（採用判断と却下案は §8）。
 - b1 の `chat.post` / `world.setBlock` / `world.setBlocks` は `id` 付き request として送って同期 result/error を返す（DECISIONS `2026-07-01-08`）。notification / send-only 既定化は b1 から外し、bN / debug 統合側で扱う。
 - `build.setWorld` / `build.setOrigin` は protocol 21.0.0 系の b1 配布物における build model 収容条件に含める（DECISIONS `2026-07-01-10`）。API 層名は `setWorld` / `setBuildOrigin`、wire method は `build.*`。
 - `world.getBlock` は **result をそのまま返す**（取得値が `undefined` / error のときは**空文字**）。戻り型の確定（int ↔ 文字列）は §7 ②。
+- `catalog.get` は protocol 21.0.0 系 b3 の実装予定に含める（DECISIONS `2026-07-29-04`、§7.2.1）。API 層名・wire method とも `catalog.get`。認証後のみ有効で、稼働中 registry から block/entity/particle を単一 response で返す。
 - `player.getPos` / `player.setPos` は protocol 21.0.0 系 b2 の準核に含める（DECISIONS `2026-07-07-02`）。API 層名は `getPos` / `setPos`、wire method は `player.*`。
 - `player.getPose` / `player.setPose` は protocol 21.0.0 系 b4 の実装予定に含める（DECISIONS `2026-07-29-03`、§5.3）。API 層名は `getPose` / `setPose`、wire method は `player.*`。既存 `getPos` / `setPos` は廃止せず維持する。
 - `setPlayer` は**廃止**（protocol 21.0.0 系の b1 配布物でクリーン除去、DECISIONS `2026-06-15-02`/`2026-06-25-05`）。identity は `hello` が担い、サーバが token ↔ player を束縛するため**なりすまし不可**。
@@ -264,7 +266,7 @@ token の入手＝ペアリング。**hello の前段の独立メソッド `auth
 - **値の表記**：bool は小文字 `true`/`false`、整数 state（`level`/`age` 等）は裸の数字。
 - **変換責務＝pass-through**：文字列名を client→bridge→plugin で素通し。**数値変換は導入しない**（mcpi 統合時に別設計）。
 - **round-trip**：正準（完全修飾＋full＋ソート）形で**文字列等価**が成立。例 `setBlock(...,"oak_stairs[facing=north]")`（部分・無印）→ `getBlock(...) → "minecraft:oak_stairs[facing=north,half=bottom,shape=straight,waterlogged=false]"`（完全修飾・full・ソート済み）。テストは full 形を assert（意味的 round-trip）。
-- **層の分離**：短縮名・state 省略・kwargs などの書きやすさ/見やすさは **UI・教材・Python 定数の入力側**で吸収（`2026-06-27-02`）。catalog の `default_state` が「短い表示↔full 復元」の前提＝§7.2 と連動（catalog 本体は b2）。
+- **層の分離**：短縮名・state 省略・kwargs などの書きやすさ/見やすさは **UI・教材・Python 定数の入力側**で吸収（`2026-06-27-02`）。catalog の `default_state` が「短い表示↔full 復元」の前提＝§7.2 と連動（catalog 本体は b3、`2026-07-07-02`/`2026-07-29-04` で b2→b3 に再配置済み）。
 
 ### 7.2 カタログ配送・キャッシュ（確定 `2026-06-26-03`）
 
@@ -277,6 +279,31 @@ token の入手＝ペアリング。**hello の前段の独立メソッド `auth
 - **クラウド（Scratch）＝IndexedDB**（オリジン単位・catalogHash キー）＋同梱既定版フォールバック（FS 不可のため）。
 - **§8 整合**：hello のカタログ版識別子は §8.1 がサーバに要求する `mc_version`/`supported_mc_versions` 広告と**一名一義に統合**（重複フィールドを作らない）。`catalogHash` はそれに紐づくレジストリ指紋（§6.2）。
 - 前提：「未接続で任意版オフライン切替」は要件から落とす。
+
+### 7.2.1 catalog.get（b3 実装予定・確定 `2026-07-29-04`）
+
+§7.2 の配送方針を実現する具体 wire 契約。出典＝McRemote Codex dev session 確定搬送票（未確定の昇格、`release-close/2100.0.0b2`）。**枠組みを確定し、実際のファイル生成・実測サイズ・Paper API 確認は Python client / plugin dev 側でプロトタイプしてから最終 rc 前に再確認する**（下記の要検証項目）。
+
+- **method**：`catalog.get`。認証後のみ有効（§7.2「配送＝認証後」）。未認証は他 method 同様 `auth_required`。
+- **params**：`[]`。稼働中サーバの現在 registry を返すのみとし、稼働中と異なる対応バージョンを明示指定して取得する「環境スイッチング」（旧 `world_constants_provision.md` §4、`00-hub/world-constants-provision-notes_ja.md` に carry 済み）は**v1（b3）の対象外**とし、需要が具体化した bN で別途設計する。
+- **result**：
+  ```json
+  {
+    "catalogHash": "...",
+    "block": { "minecraft:oak_log": { "states": { "axis": ["x","y","z"], "waterlogged": [true,false] }, "default_state": { "axis": "y", "waterlogged": false } }, "...": {} },
+    "entity": { "<namespace:path>": {}, "...": {} },
+    "particle": { "<namespace:path>": {}, "...": {} }
+  }
+  ```
+  - block entry の `states`/`default_state` は §7.1 の canonical 出力（完全修飾・full state・プロパティ名アルファベット順）と対応させる。値は JSON ネイティブ型（bool/number/string）を使い、`block_state_ref` 文字列表現（§7.1）とは client 側で相互変換する（catalog schema 自体を ref 文字列のパーサにしない）。
+  - entity/particle の内部 schema は block ほど複雑な state を持たないため、最小限の識別子集合として扱い、詳細は実装時に catalog validator（`20-教材/ai-learning-design_ja.md` §7 が前提とする states schema・許容値照合）と合わせて詰める。
+- **hash algorithm**：`catalogHash` は catalog 本体（`block`/`entity`/`particle` の3キー、`catalogHash` フィールド自体は除く）を**再帰的キーソート・区切り文字最小化（コンパクト）で直列化した UTF-8 バイト列の SHA-256 hex digest**とする。内容（mod レジストリ構成含む）が変われば必ず hash も変わることを保証し、§6.2/§7.2 の「版＋mod レジストリ指紋」を満たす。
+- **配送形**：v1 は**単一 response**。分割・ページングは導入しない（未実測のサイズ問題を先回りしない・YAGNI）。実装時の実測サイズが問題化したら bN で別途拡張する。
+- **world_constants は catalog.get に含めない**：`y_ground`/`y_lava`/`y_cloud`/`steve_min_y`/`steve_max_y` 等の次元×世代表（`00-hub/world-constants-facts_ja.md` に carry 済み）は mod レジストリに非依存の静的 domain fact であり、catalog.get の「稼働中 registry から生成」という単一ソース原則の対象外。稼働中 world/dimension/world_type にどの行が該当するかだけを、既存 hello の `world_constants` bucket（現行 `y_sea` のみ、§6.2）を bN で拡張して伝える。これは既存フィールドの拡張であり封筒の破壊的変更ではない。
+- **要検証（plugin dev 側）**：`world_constants_provision.md`（旧世代・`00-hub/world-constants-provision-notes_ja.md` に carry 済み）は「スーパーフラットはサーバー自身で認識できないため、クライアント側からの通知が必要」と記すが、この制約が現行 Paper API（`World` の generator 設定取得等）でも成立するかは未確認。自己判定できるなら client 通知は不要になる可能性があり、hello `world_constants` 拡張の設計に先行して確認する。
+- **要検証（python client 側）**：catalog.get の result を `12-python-client/mc-constants-design_ja.md` の再 export アーキテクチャ（カテゴリ別 fallback・`sys.path.insert`・デフォルト版同梱）へどう流し込むかは未実装。方向性としては、PC グローバルキャッシュ（`~/.cache/mc-remote/` 配下、§7.2）へ生JSONを `catalogHash` キーで保存し、そこから `mc_constants/<category>/v<mc_version>.py` を生成する。生成ファイル名は既存どおり `mc_version` ベースを維持しつつ、同一 `mc_version` でも mod registry が変われば `catalogHash` が変わるため、生成物のヘッダーに `catalogHash` を記録し**再生成トリガは catalogHash 比較で判定**する。実装・実測は Python client dev session でプロトタイプし、結果を確定搬送票で戻す。
+
+> 却下＝カテゴリ別に `catalog.getBlocks`/`getEntities`/`getParticles` を分ける案：往復が増えるだけで、3カテゴリを束ねるコストは低い。却下＝チャンク配送を先に設計する案：未実測のサイズ問題を先回りして複雑化する。却下＝`catalogHash` を素の version 文字列にする案：同一 MC バージョンで mod 構成が異なる場合を区別できない。却下＝world_constants の全表を catalog.get へ折り込む案：mod 非依存の静的 domain fact を毎接続で運ぶ理由がなく、既存 hello 拡張の枠組みと二重管理になる。
 
 ### 7.3 エラー設計（確定 `2026-06-27-03`、`2026-07-01-08` で改訂、`2026-07-07-02` で b2 player reason を追加）
 

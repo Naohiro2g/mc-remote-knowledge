@@ -18,6 +18,8 @@ public 正本世代の入口です。ここに載る path は、このリポ内�
 | `00-hub/terms-glossary_ja.md` | 横断語彙 |
 | `00-hub/external-facts_ja.md` | 決定が `F-<topic>` で参照する外部事実の生きた台帳（調査日・状態・次回確認を更新する） |
 | `00-hub/domain-knowledge-modules-design_ja.md` | 起案。領域知識を domain knowledge module として分離する方式（`2026-07-02-01` の起案正本） |
+| `00-hub/world-constants-facts_ja.md` | 旧世代 archive から carry。次元×世代別の世界定数実値表（`y_ground`/`y_sea`/`y_lava`/`y_cloud`/`steve_min_y`/`steve_max_y`）。domain knowledge の最初の実体候補 |
+| `00-hub/world-constants-provision-notes_ja.md` | 旧世代 archive から carry。世界定数・catalog をサーバーからクライアントへ配る動機（VS Code 自動補完のための実ファイル化・環境スイッチング構想）を記した設計メモ |
 
 ## 現行 contract / client design
 
