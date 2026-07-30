@@ -46,6 +46,13 @@ GUI・VM・McRemote 拡張の既定は `connectionEnabled: true` で、拡張は
 設計済みの `deploymentProfile`、capabilities の `minecraftConnection`、`notices` は未実装。
 拡張内部の `_open()` guard は WebSocket 生成と token 読出しより前にあり、迂回経路は確認されていない。
 
+`connection_targets` の schema と Bridge 共有の単位は `2026-07-30-03` で確定した。
+`connection_targets` は `{id, label, sandbox}` の配列で、`label` は mc-remote-stack 側の
+operator input（`role="connection-targets"`）が用意する表示用完成品であり、Scratch 側は
+`label`/`sandbox` をそのまま表示・接続するだけで翻訳・解釈ロジックを持たない。同一配列内の
+全 entry は単一の `bridge_url` を共有し、per-entry `bridge_url` は持たせない（Bridge を跨ぐ
+比較・切替が要る場合だけ複数 entry を使う。それ以外は各環境が独立した Bridge・単一接続先を持つ）。
+
 公開 entry が runtime guard を迂回する fail-open は `2026-07-27-03` の Pages 配布境界で塞ぐ。
 全 entry document と bundle 名の分類表、公開可能 entry の allowlist を分け、公開可能なのは
 runtime config を適用する `index.html` だけとする。分類にない entry document が build に現れた場合は
@@ -100,6 +107,13 @@ consumer inventory を伴う専用の契約変更として起案された場合�
 
 状態の VM→GUI 経路は `2026-07-06-01` / `2026-07-06-02` の runtime EventEmitter を使い、
 consumer と同時に配線する。`PERIPHERAL_*` 流用や独自 `postMessage` / `CustomEvent` 経路は増やさない。
+
+Settings → Minecraft Remote の接続先選択は `connection_targets` の `label` をそのまま一覧表示し、
+選択すると対応する `sandbox` へ接続する（§2.1、`2026-07-30-03`）。起動時 URL から接続先を制御する
+実装を入れる場合は `connection_targets` 内の `id` 選択に限定し（例：`?connect=<id>`）、
+`bridge_url` / `sandbox` を URL から自由に上書きする経路は公開 Scratch に作らない
+（pairing/token 奪取の phishing リスク）。開発者個人用途の切替は既存の container 起動時
+`mc-remote-runtime-config.json` 差し替えで足り、この用途に URL 上書きを追加しない。
 
 ### 2.3 b3 検収
 
