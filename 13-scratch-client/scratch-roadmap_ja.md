@@ -125,7 +125,14 @@ unit 31件 PASS・lint error ゼロ・live-auto でお知らせ2件のスタッ�
 consumer と同時に配線する。`PERIPHERAL_*` 流用や独自 `postMessage` / `CustomEvent` 経路は増やさない。
 
 Settings → Minecraft Remote の接続先選択は `connection_targets` の `label` をそのまま一覧表示し、
-選択すると対応する `sandbox` へ接続する（§2.1、`2026-07-30-03`）。起動時 URL から接続先を制御する
+選択すると対応する `sandbox` へ接続する（§2.1、`2026-07-30-03`）。scratch-editor 側はこの schema を
+実装済みである（`2026-07-31-02`）：`mcremote-runtime-config.js` の `normalizeConnectionTargets` が
+`label` を必須フィールドとして fail-close 検証し、旧固定5種（stable/beta/alpha/dev/sandbox）の
+react-intl 翻訳テーブルを削除して JSON 側の `label` をそのまま pass-through する。実装は
+`Naohiro2g/scratch-editor` branch `agent/b3-mcremote-player-pos-and-ui-slice` commit
+`4866448e25`。unit 55 suites/369件 PASS、lint error ゼロ、実機ブラウザで表示・選択・接続動作を
+確認済み。mc-remote-stack 側（`render.py` の `_runtime_config()` への `connection_targets` 出力）は
+引き続き未着手で独立。起動時 URL から接続先を制御する
 実装を入れる場合は `connection_targets` 内の `id` 選択に限定し（例：`?connect=<id>`）、
 `bridge_url` / `sandbox` を URL から自由に上書きする経路は公開 Scratch に作らない
 （pairing/token 奪取の phishing リスク）。開発者個人用途の切替は既存の container 起動時
