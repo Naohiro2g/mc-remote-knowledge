@@ -42,8 +42,10 @@ GUI・VM・McRemote 拡張の既定は `connectionEnabled: true` で、拡張は
 現行 build は残る 4 entry から production Bridge へ接続し得る。showcase profile は未成立である。
 
 現行 runtime config schema は `bridge_url`、`default_sandbox`、`connection_targets`、
-`connection_enabled`、`release_identity` の 5 項目である。
-設計済みの `deploymentProfile`、capabilities の `minecraftConnection`、`notices` は未実装。
+`connection_enabled`、`release_identity`、`notices` の 6 項目である。`notices` の wire schema
+（`{heading, body, link?: {href, label}}` の配列）と showcase/container の挙動分岐は
+`2026-07-31-01` で確定・実装済み（§2.2）。設計済みの `deploymentProfile`、capabilities の
+`minecraftConnection` は未実装。
 拡張内部の `_open()` guard は WebSocket 生成と token 読出しより前にあり、迂回経路は確認されていない。
 
 `connection_targets` の schema と Bridge 共有の単位は `2026-07-30-03` で確定した。
@@ -104,6 +106,20 @@ consumer inventory を伴う専用の契約変更として起案された場合�
 - Scratch の Color Mode `original` / `high-contrast` へ追従し、状態を色だけで示さない。
 - Scratch ロゴ左上の黒枠付き `▶` から開く、workspace を reflow しないお知らせ overlay を置く。
 - overlay は reload 時に必ず開き、閉状態を `localStorage` や cookie へ保存しない。
+
+お知らせ overlay は実装済みである（`2026-07-31-01`）。notices の wire schema は
+`{heading, body, link?: {href, label}}` の配列（`link` 任意）で確定し、`src/lib/mcremote-runtime-config.js`
+が正規化する。showcase（GitHub Pages）と container で挙動を分け、Pages 専用の変換 hook
+`showcaseRuntimeConfig()`（`scripts/pages-artifact.mjs`）が設定済み `notices` の先頭に固定の
+展示版免責 notice（`{heading: "Showcase build", body: "This page is a showcase with the
+Minecraft connection turned off."}`）を追加する。container 配布はこの関数を経由しないため、
+設定された notices がそのまま出る。実装は `Naohiro2g/scratch-editor` branch
+`agent/b3-mcremote-player-pos-and-ui-slice` commit `f639a7283e`（新規
+`packages/scratch-gui/src/components/notice-overlay/*`、`menu-bar.jsx`/`menu-bar.css`、
+`mcremote-runtime-config.js`、`mcremote-l10n.js`、`scripts/pages-artifact.mjs`）。
+unit 31件 PASS・lint error ゼロ・live-auto でお知らせ2件のスタック表示を確認したが、
+実機（container）検証は未実施。container 側の notices 注入機構（operator input 経由の設計）は
+`connection_targets`（`2026-07-30-03`）と異なりまだ無く、範囲外として明確に分離している。
 
 状態の VM→GUI 経路は `2026-07-06-01` / `2026-07-06-02` の runtime EventEmitter を使い、
 consumer と同時に配線する。`PERIPHERAL_*` 流用や独自 `postMessage` / `CustomEvent` 経路は増やさない。
