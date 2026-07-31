@@ -164,9 +164,15 @@ Issue 番号は外部管轄の生き物。着手前に現況を必ず再確認�
 - 低リスクの入口: scratch-editor #649（sprite duplication の code loss 解消確認）／#650（spork 期旧 project の load-time repair 後動作確認）
 - 次の候補: #643（block input 内 Ctrl+A/C/V）／#547（angle picker 後に block が pointer へ張り付く）／#648（New Broadcast の表示順）
 - 初回には重い: #601（local variable rename / data loss）／#633（backpack import 後の blank variable input）
-- l10n は二経路を混同しない（2026-07-18 確認）:
-  - **翻訳コンテンツ**: Scratch Foundation は翻訳を直接 PR で受け付けず、**Transifex 経由・言語ごとのチーム制・Scratch 側からの招待制**で受ける。運用者（Naohiro2g）は Transifex アカウント既保有で、2026-07-18 に Scratch チームへ参加済み＝翻訳貢献が可能な状態。contrib 環境でできるのはレポート収集と翻訳候補のローカル検証まで、提出は Transifex 側で行う。
-  - **基盤ツーリング**: scratch-l10n #792 の follow-up（daily pull timeout・Transifex 並列数制限・translation key の ID 化）。認証情報・定期運用に関わるため、**実装前に maintainer へ外部 PR 可否を確認**。
+- l10n は二経路を混同しない（`2026-07-18` 確認、`2026-07-31-03` で具体化）:
+  - **背景**：公式 Scratch の日本語 UI でも英語表示が残るケースがある（`Settings/Theme`・`Settings/Color Mode`・`File/Load from your computer` 等）。翻訳チームの遅延だけでなく、Transifex へ渡す **source catalog 自体の生成・同期不備を第一候補**として扱う。message ID が source catalog に現れなければ、どの言語チームも翻訳・レビューを開始できない。
+  - **翻訳コンテンツ経路**: Scratch Foundation は翻訳を直接 PR で受け付けず、**Transifex 経由・言語ごとのチーム制・Scratch 側からの招待制**で受ける。運用者（Naohiro2g）は Transifex アカウント既保有で、2026-07-18 に Scratch 日本語チームへ参加済み。source catalog へ ID が現れた後、日本語訳は同チームで翻訳・レビュー・確定する。必要に応じて欠落 ID 一覧・source revision・再現結果を添えてチームリーダーへ継続的に働きかけるが、個人連絡先・私信内容は公開リポジトリへ記録しない。contrib 環境でできるのはレポート収集と翻訳候補のローカル検証までで、提出は Transifex 側で行う。
+  - **基盤ツーリング経路**: 公式 scratch-editor の message 定義（TypeScript ファイル・`defineMessage`/`defineMessages`/`FormattedMessage`・props へ渡す message descriptor）から Transifex 投入用英語 source catalog までの抽出経路を検証し、ソース上の message ID と生成カタログの差分を機械検査して抽出漏れと意図的な例外を明示する。抽出漏れを再現する failing test／検証スクリプトを先に追加してから抽出設定・メッセージ宣言を最小修正する。revision・生成日時・生成元 commit を識別できる最新 source catalog と欠落 ID レポートを公式 venue（Issue/PR）で提供し、**新しい抽出漏れを CI で検出できる状態を完了形**とする。scratch-l10n #792 の follow-up（daily pull timeout・Transifex 並列数制限・translation key の ID 化）も同経路に含み、認証情報・定期運用に関わるため実装前に maintainer へ外部 PR 可否を確認する。
+  - **正本の分離**：基盤修正の正本は Scratch Foundation の Issue/PR、翻訳内容の正本は Transifex。McRemote knowledge には方針と成果物 URL だけを戻し、upstream 内部資料は複製しない。
+  - **cherry-pick しない**：upstream 貢献の変更は公式マージ前に McRemote fork へ自動 cherry-pick せず、公式マージ後に通常の upstream 追従として検知・採用する。
+  - **fork のローカル翻訳管理**：McRemote fork では McRemote 固有 message だけをローカル管理する。公式 Scratch 一般 message の日本語訳を恒久的に fork へ抱え込まず、`MISSING_TRANSLATION` の抑制だけを解決とは扱わない。
+  - **初期対象 ID と受入条件**：`gui.sharedMessages.loadFromComputerTitle` / `gui.menuBar.theme` / `gui.menuBar.colorMode` / `gui.aria.fileMenu`。受入条件＝(1) 公式 develop から生成した source catalog に含まれる (2) Transifex 側で翻訳対象として確認できる (3) 日本語レビュー後の `scratch-l10n` に収録される (4) 公式 Scratch の日本語 UI で対象項目が日本語表示される (5) 対象 ID について `MISSING_TRANSLATION` が発生しない (6) 新規抽出漏れを機械的に検出できる。
+  - **b3 との関係**：本件は正常な mcremote `.sb3` save/load の合格判定とは分離し、b3 へ自動的に追加しない。b3 採用の要否は準備状態を報告した後、既存のリリース判断で決める。
 
 ## 8. 実装バックログ（dev 側へ戻す候補）
 
