@@ -109,6 +109,7 @@ JSON-RPC 2.0 を採用する（採用判断と却下案は §8）。
 - `catalog.get` は protocol 21.0.0 系 b3 の実装予定に含める（DECISIONS `2026-07-29-04`、§7.2.1）。API 層名・wire method とも `catalog.get`。認証後のみ有効で、稼働中 registry から block/entity/particle を単一 response で返す。
 - `player.getPos` / `player.setPos` は protocol 21.0.0 系 b2 の準核に含める（DECISIONS `2026-07-07-02`）。API 層名は `getPos` / `setPos`、wire method は `player.*`。
 - `player.getPose` / `player.setPose` は protocol 21.0.0 系 b4 の実装予定に含める（DECISIONS `2026-07-29-03`、§5.3）。API 層名は `getPose` / `setPose`、wire method は `player.*`。既存 `getPos` / `setPos` は廃止せず維持する。
+- `auth.*`（`auth.pairBegin` / `auth.pairPoll` / `auth.listCredentials` / `auth.revoke` / `auth.logout`）は hello の前段に位置する認証・credential 管理の名前空間で、**本表ではなく §6.5 / §6.6 が正本**。ペアリングは §6.5、credential の一覧と失効は §6.6（`2026-08-02-01`）。
 - `setPlayer` は**廃止**（protocol 21.0.0 系の b1 配布物でクリーン除去、DECISIONS `2026-06-15-02`/`2026-06-25-05`）。identity は `hello` が担い、サーバが token ↔ player を束縛するため**なりすまし不可**。
 
 ---
@@ -215,7 +216,7 @@ pair→token の入手フロー（§6.5）／origin 基準の相対座標／`pro
 
 ### 6.5 認証：ペアリングフロー（確定 `2026-07-04-06`）
 
-token の入手＝ペアリング。**hello の前段の独立メソッド `auth.*`**（hello は §6.1 の `auth:{token}` 1モードのみ）。トポロジは **poll**。完了 push は b2 では持たず（`2026-07-01-08`＝async push は bN）、bN で `auth.pairPoll` を server→client notification に差し替える＝begin 応答・`pairing_id` 相関・token payload をそのまま保存する push 形の部分集合。名前空間 `auth.*` は将来の `auth.refresh` / `auth.revoke` / `auth.logout` も同居させる。
+token の入手＝ペアリング。**hello の前段の独立メソッド `auth.*`**（hello は §6.1 の `auth:{token}` 1モードのみ）。トポロジは **poll**。完了 push は b2 では持たず（`2026-07-01-08`＝async push は bN）、bN で `auth.pairPoll` を server→client notification に差し替える＝begin 応答・`pairing_id` 相関・token payload をそのまま保存する push 形の部分集合。名前空間 `auth.*` は将来の `auth.refresh` / `auth.revoke` / `auth.logout` も同居させる。**`auth.listCredentials` / `auth.revoke` / `auth.logout` は `2026-08-02-01` で確定し §6.6 に置く**（`auth.refresh` は自動期限を設けないため予約のまま）。
 
 ```text
 → auth.pairBegin { token_type:"session", client:{name,version,locale}, device?:"教室PC-3" }
@@ -229,17 +230,27 @@ token の入手＝ペアリング。**hello の前段の独立メソッド `auth
 ← { protocol, mc_version, …, session, player, permissions }
 ```
 
-- **`auth.pairBegin`** `params`＝`token_type`（`"session"`\|`"player"`・既定 `"session"`）／`client`（`{name,version,locale}`）／`device?`（`player_token` のデバイス別発行・`last_used_at` 用ラベル）。**`protocol` は載せない**（版交渉は hello の責務・identity は版非依存で不一致は hello が弾く）。`result`＝`{ pairing_id, pair_code, expires_in }`（`pair_code`＝6桁数字・約120秒・1回限り）。
+- **`auth.pairBegin`** `params`＝`token_type`（`"session"`\|`"long_lived"`・既定 `"session"`。**`2026-08-02-01` で `"player"` から改名**＝`"player"` は新規発行で受理せず、未知値は `session` へ黙って丸めずに `invalid_params` を返す）／`client`（`{name,version,locale}`）／`device?`（long-lived credential のデバイス別発行・`last_used_at` と併せた表示用ラベル。trim 後 1〜64 文字・重複可・**認証要素ではない**）。**`protocol` は載せない**（版交渉は hello の責務・identity は版非依存で不一致は hello が弾く）。`result`＝`{ pairing_id, pair_code, expires_in }`（`pair_code`＝6桁数字・約120秒・1回限り）。
 - **pair code 表示**（DECISIONS `2026-07-07-01`）：wire の `pair_code` は素6桁 ASCII のまま不変。人間向け UI は `NNN-NNN`（例 `333-333`）で表示し、コピー対象はコマンド全体 `/mcremote pair NNN-NNN` を既定にする。plugin の `/mcremote pair` 入力は区切りとして入り得る非数字（`-`・空白等）を除去し、残りが ASCII 数字 `0-9` の6桁である場合だけ bind する（全角数字は変換しない）。これは表示・人間入力の規約であり、`auth.pairPoll` は引き続き `pairing_id` 相関で wire に `pair_code` を戻さない。
 - **相関の分離**：`pair_code` は**人間が `/mcremote pair <code>` で打つ秘密**、`pairing_id` は**wire 相関子**。plugin が `pair_code → pending(pairing_id)` を保持し、`/mcremote pair` 実行者の UUID を pending に束縛する（正本＝plugin・bridge は透明中継）。
-- **`auth.pairPoll`** `params`＝`{ pairing_id }`。`result`＝`{ status:"pending" }` または **`{ status:"ok", token }`（最小）**。**`pending` は error でなく `result.status`**（待機は失敗でない）。失敗は error＝`pair_expired`（code TTL 経過）／`pair_not_found`（不正な `pairing_id`）。token は**要求した1種のみ**発行（`session_token`/`player_token` を同時発行しない）。
-- **単一ソース原則**：`pairPoll` の `ok` は **token だけ**返す。`player`(UUID)・`permissions`・`world`・`origin` は**続く hello の `result` が単一ソース**（§6.2）＝pairPoll に冗長フィールドを持たせない。`token_type` も prefix（`mcrs_`/`mcrp_`）と要求から自明ゆえ返さない。WireScope（#13）は権限・world を hello から読む。
+- **`auth.pairPoll`** `params`＝`{ pairing_id }`。`result`＝`{ status:"pending" }` または **`{ status:"ok", token }`（最小）**。**`pending` は error でなく `result.status`**（待機は失敗でない）。失敗は error＝`pair_expired`（code TTL 経過）／`pair_not_found`（不正な `pairing_id`）。token は**要求した1種のみ**発行（`session_token`/`long-lived credential` を同時発行しない）。
+- **単一ソース原則**：`pairPoll` の `ok` は **token だけ**返す。`player`(UUID)・`permissions`・`world`・`origin` は**続く hello の `result` が単一ソース**（§6.2）＝pairPoll に冗長フィールドを持たせない。`token_type` も prefix（`mcrs_`/`mcrl_`）と要求から自明ゆえ返さない。WireScope（#13）は権限・world を hello から読む。
 - **bridge 透明性**：poll は `pairing_id` で相関するため、`pairBegin`↔`pairPoll` で同一 TCP 接続を保持する必要がない（sticky TCP 不要・bridge は各 request を素通しできる）。ただし Sandbox route は WSS 接続メタとして bridge 側が保持する（§2）。plugin 側 TCP が `auth_required` / 認証系 reason の後で閉じても、同一 browser-side session の `auth.*` と再 `hello` は同じ Sandbox へ送る。
-- **token 種別**（scratch-plan §2.5）：`session_token`（`mcrs_`・約2h・Scratch/一時利用）／`player_token`（`mcrp_`・長期・デバイス別・CLI `login`）。Scratchの標準導線はsessionのみ、Pythonは永続store / list / revoke完成後にplayerを既定とする。サーバはhashのみ保存し、認可は常にUUID→LuckPerms。
+- **token 種別**（`2026-08-02-01` で改名・旧記述は scratch-plan §2.5）：`session_token`（`mcrs_`・約2h・Scratch/一時利用）／**`long-lived credential`（`mcrl_`・`token_type: "long_lived"`・サーバ再起動を越えて有効・明示 revoke まで有効・`expires_at = null`・デバイス別・CLI `login`）**。旧称 `player_token` / `mcrp_` は使わない（`player_token` は「player に属する」意味に読めるが session token も player UUID に束縛されるため区別にならない。実際の区別は寿命と失効経路）。Scratch の標準導線は session のみ。**Python の既定 credential を long-lived へ切り替える公開導線は開いていない**＝gate は versioning-design §10.11.2 が正本で、開放条件は `2026-08-02-03` に置く。サーバは生 token を保存せず SHA-256 hash のみを持ち、認可は常に UUID→LuckPerms。
 - **credential scope**：tokenはopaqueなままとし、channel / Sandbox名をwire tokenへencodeしない。serverごとのcredential storeが未知tokenを拒否し、client storeはcredentialを接続先profile / targetへ紐づけて別channel・別Sandboxへ黙って送らない。将来複数serverがcredential storeを共有する場合だけ、明示的なaudience / scopeをprotocol ratifyする。
 - **PoPは未批准**：公開鍵付きpairing、challenge / nonce、proof、signature errorは現protocolへ追加しない。接続時Proof of Possessionはtoken文字列だけの別端末再利用を抑えるhardening候補だが、b4 / rc / public betaのgateから外した（DECISIONS `2026-07-16-03`）。採用判断までalgorithm、key encoding、canonical bytes、challenge wire shapeを推測で固定しない。Bridgeは採用後もpayload-transparentであるべきだが、これは現時点のwire契約追加ではない。
 - **クライアント契約（reason 駆動・OFF/ON 統一）**：クライアントは**まず `hello`（token を持てば載せる）を試み、`auth_required` が返ったときだけ**本フロー（`pairBegin`→`pairPoll`→再 `hello`）に入る。この1経路が OFF/ON/token 失効を統一する＝**enforcement OFF（開発既定）では token 無し hello が成功し `auth_required` が返らない＝ペアリングは自動的にスキップ**（dev 動線に別コードパス不要・§6.1・item5）。ON では token 欠落時に `auth_required`、token 検証失敗時に §6.3 の認証系 reason が返る。認証系 reason で token を破棄したら同じく先頭（hello 試行）へ戻る。
 - **非規範（クライアント実装の目安・ratify 対象外）**：poll 間隔 ≈1–2s、poll の timeout は `pairBegin` が返す `expires_in`（`pair_code` TTL・≈120s）で、超過は `pair_expired` として扱う。`pairing_id` はクライアント in-memory 保持でよい（リロードで破棄＝ユーザーは接続ブロックを再実行）。
+
+### 6.6 credential 管理（確定 `2026-08-02-01`）
+
+long-lived credential の一覧と失効。認証後のみ有効で、常に**認証中の player UUID に属する credential だけ**を対象にする。method 名は §6.5 が予約していた `auth.*` 名前空間に一致させる（`auth.revokeCredential` のような別名は使わない）。
+
+- **`auth.listCredentials`** `params`＝`[]`。`result`＝`{ credentials: [{ credential_id, type, device, issued_at, last_used_at, expires_at, current }] }`。raw token・token hash・他 player の情報は返さない。`current` は要求元がいま使っている credential を指す＝`pairPoll` が token だけを返す（§6.5 単一ソース原則）ため、**client が自分の `credential_id` を知る唯一の経路**。revoke 済みは返さない。
+- **`auth.revoke`** `params`＝`[credential_id]`。`result`＝`{ credential_id, revoked: true }`。同一 UUID の credential だけを対象にし、他 player の ID と存在しない ID は**同じ `credential_not_found`** を返す（存在の隠蔽）。同一 UUID の revoke 済み record への再要求は idempotent success。**success response は対象 credential の durable な失効完了を意味する**。応答後、その credential で認証された active session を終了して socket を閉じる。
+- **`auth.logout`** `params`＝`[]`。現在の credential を revoke し、成功応答後に現在の session を終了する。client は成功後にローカル credential を削除する。
+- **上限**：UUID ごとの active long-lived credential 数に設定可能な上限を持つ（初期既定 16）。到達時に古い credential を自動失効させず `credential_limit_reached` を返し、ユーザーが list / revoke する。**`2026-07-04-03` 項7 の並行セッション上限 16 とは別の制約**（同じ数字だが別概念）。
+- **実装契約は wire ではない**：永続 backend の分離（`CredentialStore` snapshot と `RevocationAuthority`）、revoke の線形化点、domain 整合、create-only tombstone、fail-close の条件は plugin architecture 側（`11-plugin/platform-design_ja.md`）が正本。wire 上は観測可能な意味だけを定義する＝`credential_store_unavailable` の意味（§7.3）と、success response が durable な失効完了を指すこと。
 
 ---
 
@@ -306,12 +317,12 @@ token の入手＝ペアリング。**hello の前段の独立メソッド `auth
 
 > 却下＝カテゴリ別に `catalog.getBlocks`/`getEntities`/`getParticles` を分ける案：往復が増えるだけで、3カテゴリを束ねるコストは低い。却下＝チャンク配送を先に設計する案：未実測のサイズ問題を先回りして複雑化する。却下＝`catalogHash` を素の version 文字列にする案：同一 MC バージョンで mod 構成が異なる場合を区別できない。却下＝world_constants の全表を catalog.get へ折り込む案：mod 非依存の静的 domain fact を毎接続で運ぶ理由がなく、既存 hello 拡張の枠組みと二重管理になる。
 
-### 7.3 エラー設計（確定 `2026-06-27-03`、`2026-07-01-08` で改訂、`2026-07-07-02` で b2 player reason を追加）
+### 7.3 エラー設計（確定 `2026-06-27-03`、`2026-07-01-08` で改訂、`2026-07-07-02` で b2 player reason を追加、`2026-08-02-01` で credential reason を追加、`2026-08-02-02` で `data.ref` 規則を改訂）
 
 §7③ の b1 部分を画定。**JSON-RPC 標準 error オブジェクトに一本化**（独自封筒を作らない＝`2026-06-26-01` の標準枠原則に忠実）。`code` は JSON-RPC 標準に従い、**意味は `data.reason`（安定 enum）が運ぶ二層**。UI/AI/test は `reason` を分岐 key にし family（code）を意識しなくてよい。
 
 - **`message`**＝英語短文（ja は client が `reason` から投影）。
-- **`data.ref`**＝問題の入力をエコー（**必須**）。
+- **`data.ref`**＝問題の入力をエコー。**ref 検証、および特定の要求入力を原因とする params 検証で必須**とし、state / service / permission 等、対応する入力値が存在しない reason では**省略する**（`2026-08-02-02` で「一律必須」から改訂）。意味のない sentinel・空文字・`null` を捏造しない＝client は「`ref` があるか」で分岐できる。改訂の理由＝`2026-07-07-02` の `permission_denied` / `player_offline` と `2026-07-29-03` の `teleport_failed` にはエコーすべき入力が無く、一律必須は既に満たせていなかった。
 - **`data.allowed`**＝`invalid_property_value` で許容値を返せれば返す（**b1 任意 / b2 必須**・catalog 連動）。
 
 | family | code | reason | 意味 | b1 |
@@ -326,8 +337,12 @@ token の入手＝ペアリング。**hello の前段の独立メソッド `auth
 | player-state | `-32000`番台（実装定義域） | `permission_denied` | LuckPerms 等の認可により操作拒否。token は温存 | b2 |
 | | | `player_offline` | token は有効だが paired player がオンラインでない | b2 |
 | | | `teleport_failed` | `player.setPose` 等の teleport 呼び出し自体が `permission_denied`/`player_offline`/`unknown_world`/`invalid_params` 以外の要因で失敗（Paper `Entity.teleport` が false を返す等） | b4 |
+| params 検証 | `-32602`（Invalid params） | `credential_not_found` | `auth.revoke` で指定した `credential_id` が要求元 UUID の active credential に無い（他 player の ID と存在しない ID を同値へ畳んで存在を隠す）。**caller の token は温存**し、`ref` に `credential_id` を返す | bN |
+| credential-state | `-32000`番台（実装定義域） | `credential_limit_reached` | UUID ごとの active long-lived credential 上限に到達。`data.type` / `data.limit` / `data.active` を返す。古い credential を自動失効させず、ユーザーが list / revoke する | bN |
+| auth-service | `-32000`番台（実装定義域） | `credential_store_unavailable` | server が credential 状態を現在検証できない、または credential 管理操作の durable な結果を確定できない。`data.operation`（`resolve`/`issue`/`list`/`revoke`/`touch`）を返す。**単独では token を invalid と分類せず、client は token を削除せず自動再ペアリングもしない**（token 温存・再試行） | bN |
 
 - **`missing_namespace` は廃止**（無印は有効＝`2026-06-27-02`、`minecraft:` 補完される）。
+- **`credential_not_found` と `token_not_found` は別物**（`2026-08-02-01`）：`token_not_found` は hello で提示した bearer token 自体が無効＝`2026-07-04-03` 項3 の**破棄・再ペアリング**側。`credential_not_found` は `auth.revoke` で指定した管理対象 ID が見つからないだけで、**caller の token は有効なまま**。`credential_store_unavailable` も温存側で、サーバー側の一時的な store 障害で全 client が有効な credential を捨てて再ペアリングへ雪崩れ込むことを防ぐ。プラグイン内部の線形化（authority commit の前後で何を返すか）は wire に出さず `11-plugin/platform-design_ja.md` が持つ。
 - **reason 分割の理由**：生徒のミスが別物（付け忘れ/構文破壊/prop 無い/値不正）で、ライブ画面が別メッセージを出せると切り分け教育になる。`allowed` を返せるのは `invalid_property_value` だけ＝非対称が綺麗に出る。
 - **`unloaded_chunk` は b1 reason から廃止**（DECISIONS `2026-07-01-08`）。未生成 chunk に対してロード/生成せず有意味な block 操作や query を行う実体はなく、許可された操作ならロード/生成して処理する。禁止すべき操作は chunk ロード状態ではなく build policy / 範囲 / 認可の問題なので、ユーザーに返す安定 reason は `build_denied` とする。chunk generation policy が必要になった場合は bN で別 reason として設計する。
 - **後送り（名前予約のみ）**：`catalog_cache_stale`・`unknown_namespace`・`out_of_bounds`(world-state/y 範囲外・即判定で混乱しないため後送り)。

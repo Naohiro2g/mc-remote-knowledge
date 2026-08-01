@@ -377,7 +377,7 @@ b2（package `2100.0.0b2` / protocol 21.0.0 積み上げ・凍結前）のスコ
 
 **【核（b2 完了ゲート直結）】**
 
-1. 認証実装: pair フロー（pair_begin → 6桁 pair_code → /mcremote pair → UUID 確定 → session_token / player_token 発行）。正本は plugin、bridge は透明中継。**wire 形の正本＝wire §6.5**（poll トポロジ・`auth.*` 名前空間・reason enum を確定 `2026-07-04-06`）。
+1. 認証実装: pair フロー（pair_begin → 6桁 pair_code → /mcremote pair → UUID 確定 → session_token / player_token 発行。**b2 当時の呼称で、`player_token` は `2026-08-02-01` で long-lived credential＝`mcrl_` へ改名**）。正本は plugin、bridge は透明中継。**wire 形の正本＝wire §6.5**（poll トポロジ・`auth.*` 名前空間・reason enum を確定 `2026-07-04-06`）。
 2. hello の auth フィールド具体化 → hello ペイロード全体を ratify（wire §6 の残起案解消）。named object への非破壊フィールド追加であり封筒変更なし。
 3. エラーコードの認証/認可分離（TOKEN_EXPIRED/REVOKED/NOT_FOUND/INVALID → token 破棄・再ペアリング / PERMISSION_DENIED → token 温存・操作拒否）。
 4. LuckPerms 連携（mcr.online / mcr.offline / mcr.build.range、認可は常に UUID → LuckPerms、不在時フォールバック分岐を保持）。
@@ -415,7 +415,7 @@ b3の責務は§10.11.1項14のcatalog一式と項15のScratch `.sb3` save/load�
 
 b3後の最優先は、公開betaを安全に運用するためのavailability sliceである。認証前connection / frame / timeout / pairing rateと、認証後session / inflight / queue / tick workload / backpressureを別々に実装・検証し、Cockpit、Paper同梱spark / spark API、McRemote metricで観測する。正規の大量建築やTNTを禁止せず、budget、tick分割、fairness、cancelでbounded degradationと回復を確認する。
 
-長期`player_token`の公開導線は、hash-only永続store、device label、last-used、list / revoke、world rollbackからの分離、safe restoreが揃うsliceまで待つ。Pythonの明示CLI loginと非対話`Minecraft.create()`はこのlifecycleへ含める。Scratchは引き続きsession tokenのみを使う。
+長期credential（`2026-08-02-01` で `player_token` から `token_type: "long_lived"` / prefix `mcrl_` へ改名）の公開導線は、hash-only永続store、device label、last-used、list / revoke、world rollbackからの分離、safe restoreが揃うsliceまで待つ。このうち **wire と server lifecycle の contract は `2026-08-02-01` で確定済み**＝永続状態を `CredentialStore` snapshot と `RevocationAuthority` へ分け、revoke の線形化点を authority の durable commit に置き、plugin が保証する範囲（domain 整合・authority overlay・revoke 線形化・fail closed）と deployment が保証する範囲（authority を保護対象 rollback の write set から外すこと）を層として分けた。正本は `11-plugin/platform-design_ja.md` §9。**gate 自体はここで維持する**＝Python の既定 credential を long-lived へ切り替えない。開放条件（plugin 実装と実測、stack の profile / mount topology / backup 非包含 / doctor / live restore）は `2026-08-02-03` が持つ。Pythonの明示CLI loginと非対話`Minecraft.create()`はこのlifecycleへ含める。Scratchは引き続きsession tokenのみを使う。
 
 接続時PoPはb4 / rc / public betaの必須要件にしない。token文字列だけを別端末で再利用する攻撃へのhardeningとして、token漏洩実績、長期credentialの普及、高価値world等のtriggerが立った時に再評価する。全command署名、独自secure channel、native TLS、mTLS、WebAuthnも現在のbeta gateへ含めない。採用を決めるまでexact algorithm、公開鍵encoding、canonical signature input、challenge wire shapeを批准しない。
 
