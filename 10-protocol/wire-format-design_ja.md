@@ -289,8 +289,8 @@ long-lived credential の一覧と失効。認証後のみ有効で、常に**�
 - **単一ソース**＝サーバ稼働中レジストリ（ロード済み mod 含む）から block/entity/particle を生成。Python 定数／Scratch プルダウン／実配置先を一致させる。
 - **配送＝認証後**：hello 応答が `catalogHash` を返し、クライアントは**未キャッシュ時のみ**本体取得。
 - **キャッシュキー＝`catalogHash`**（版＋mod レジストリ指紋）。
-- **ローカル（Python）＝PC グローバルキャッシュ**（`~/.cache/mc-remote/` 等・言語/プロジェクト横断共有）。project-root の定数ファイルはその生成物。**モジュールは既定版のみ同梱**（全版 pack 取りやめ・他版は接続時にグローバルキャッシュへ充填）。
-- **クラウド（Scratch）＝IndexedDB**（オリジン単位・catalogHash キー）＋同梱既定版フォールバック（FS 不可のため）。
+- **ローカル（Python）＝PC グローバルキャッシュ**（`~/.cache/mc-remote/` 等・言語/プロジェクト横断共有）。project-root の定数ファイルはその生成物。**モジュールは projection を同梱しない**（`2026-08-02-05` で「既定版のみ同梱」から改訂＝catalog が稼働中サーバー由来になり、同梱版が実サーバーを代表しなくなったため。補完が効かない状態そのものを接続への入口にする教材設計）。全版 pack はそれ以前に取りやめ済みで、catalog は接続時にグローバルキャッシュへ充填する。
+- **クラウド（Scratch）＝IndexedDB**（オリジン単位・catalogHash キー）＋同梱既定版フォールバック（FS 不可のため）。**Scratch 側は `2026-08-02-05` の対象外**で本記述を維持する。ただし Scratch は接続を全ての前提とし、接続前にブロックを組むことを設計対象にしないため、同梱既定版フォールバックが要るかは再検討の余地がある＝契機は 13-scratch-client の catalog picker / state UX スライス。
 - **§8 整合**：hello のカタログ版識別子は §8.1 がサーバに要求する `mc_version`/`supported_mc_versions` 広告と**一名一義に統合**（重複フィールドを作らない）。`catalogHash` はそれに紐づくレジストリ指紋（§6.2）。
 - 前提：「未接続で任意版オフライン切替」は要件から落とす。
 
@@ -304,18 +304,24 @@ long-lived credential の一覧と失効。認証後のみ有効で、常に**�
   ```json
   {
     "catalogHash": "...",
-    "block": { "minecraft:oak_log": { "states": { "axis": ["x","y","z"], "waterlogged": [true,false] }, "default_state": { "axis": "y", "waterlogged": false } }, "...": {} },
+    "block": {
+      "minecraft:oak_log": { "states": { "axis": ["x","y","z"] }, "default_state": { "axis": "y" } },
+      "minecraft:oak_slab": { "states": { "type": ["bottom","double","top"], "waterlogged": [false,true] }, "default_state": { "type": "bottom", "waterlogged": false } },
+      "...": {}
+    },
     "entity": { "<namespace:path>": {}, "...": {} },
     "particle": { "<namespace:path>": {}, "...": {} }
   }
   ```
   - block entry の `states`/`default_state` は §7.1 の canonical 出力（完全修飾・full state・プロパティ名アルファベット順）と対応させる。値は JSON ネイティブ型（bool/number/string）を使い、`block_state_ref` 文字列表現（§7.1）とは client 側で相互変換する（catalog schema 自体を ref 文字列のパーサにしない）。
+  - **block entry の完全 schema と validator 規則は `2026-08-02-04` で確定**＝`states` は property 名 → 許容値の配列、`default_state` は property 名 → 値で、両者の property 集合は一致。各 `states[property]` は空でない配列、値は JSON scalar、1 property 内は同一 JSON 型、重複値は禁止、`default_state[property]` は許容値に含まれる。未知の追加フィールドは将来拡張のため無視可能。catalog validator は schema と個別許容値を検証するが、**最終的な `block_state_ref` 受理は server が正本**（§7.1）。
+  - **state signature は wire へ追加しない**（`2026-08-02-04`）。client が `states` から導出する＝property 名の昇順 × JSON 型 × canonical な許容値集合（型順 boolean → number → string、boolean は `false` → `true`、number は昇順、string は辞書順）。`default_state` は含めない。上の例では `oak_log` と他の `axis` だけを持つ丸太類が同一 signature に束なる。
   - entity/particle の内部 schema は block ほど複雑な state を持たないため、最小限の識別子集合として扱い、詳細は実装時に catalog validator（`20-教材/ai-learning-design_ja.md` §7 が前提とする states schema・許容値照合）と合わせて詰める。
 - **hash algorithm**：`catalogHash` は catalog 本体（`block`/`entity`/`particle` の3キー、`catalogHash` フィールド自体は除く）を**再帰的キーソート・区切り文字最小化（コンパクト）で直列化した UTF-8 バイト列の SHA-256 hex digest**とする。内容（mod レジストリ構成含む）が変われば必ず hash も変わることを保証し、§6.2/§7.2 の「版＋mod レジストリ指紋」を満たす。
 - **配送形**：v1 は**単一 response**。分割・ページングは導入しない（未実測のサイズ問題を先回りしない・YAGNI）。実装時の実測サイズが問題化したら bN で別途拡張する。
 - **world_constants は catalog.get に含めない**：`y_ground`/`y_lava`/`y_cloud`/`steve_min_y`/`steve_max_y` 等の次元×世代表（`00-hub/world-constants-facts_ja.md` に carry 済み）は mod レジストリに非依存の静的 domain fact であり、catalog.get の「稼働中 registry から生成」という単一ソース原則の対象外。稼働中 world/dimension/world_type にどの行が該当するかだけを、既存 hello の `world_constants` bucket（現行 `y_sea` のみ、§6.2）を bN で拡張して伝える。これは既存フィールドの拡張であり封筒の破壊的変更ではない。
 - **要検証（plugin dev 側）**：`world_constants_provision.md`（旧世代・`00-hub/world-constants-provision-notes_ja.md` に carry 済み）は「スーパーフラットはサーバー自身で認識できないため、クライアント側からの通知が必要」と記すが、この制約が現行 Paper API（`World` の generator 設定取得等）でも成立するかは未確認。自己判定できるなら client 通知は不要になる可能性があり、hello `world_constants` 拡張の設計に先行して確認する。
-- **要検証（python client 側）**：catalog.get の result を `12-python-client/mc-constants-design_ja.md` の再 export アーキテクチャ（カテゴリ別 fallback・`sys.path.insert`・デフォルト版同梱）へどう流し込むかは未実装。方向性としては、PC グローバルキャッシュ（`~/.cache/mc-remote/` 配下、§7.2）へ生JSONを `catalogHash` キーで保存し、そこから `mc_constants/<category>/v<mc_version>.py` を生成する。生成ファイル名は既存どおり `mc_version` ベースを維持しつつ、同一 `mc_version` でも mod registry が変われば `catalogHash` が変わるため、生成物のヘッダーに `catalogHash` を記録し**再生成トリガは catalogHash 比較で判定**する。実装・実測は Python client dev session でプロトタイプし、結果を確定搬送票で戻す。
+- **python client 側の projection（確定 `2026-08-02-05`・上の要検証欄への回答）**：PC グローバルキャッシュ（`~/.cache/mc-remote/` 配下、§7.2）へ生 JSON を `catalogHash` キーで保存し、そこから project-local に `mc_constants.py` と projection manifest を生成する。**projection は package へ同梱せず Git 管理もしない**（§7.2 の改訂）。再生成の判定は `catalogHash` 単独ではなく **`catalogHash` / generator version / projection schema version の3値一致**で行う＝catalog が同じでも generator を改善すれば再生成される。生成トリガは hello 成功後で、`catalog.get` の失敗は接続や建築を止めず actionable warning に留める。`.pyi` による state 補完は「実現可能だが Pylance 実測前」として b3 の対象外。詳細は `12-python-client/mc-constants-design_ja.md`。
 
 > 却下＝カテゴリ別に `catalog.getBlocks`/`getEntities`/`getParticles` を分ける案：往復が増えるだけで、3カテゴリを束ねるコストは低い。却下＝チャンク配送を先に設計する案：未実測のサイズ問題を先回りして複雑化する。却下＝`catalogHash` を素の version 文字列にする案：同一 MC バージョンで mod 構成が異なる場合を区別できない。却下＝world_constants の全表を catalog.get へ折り込む案：mod 非依存の静的 domain fact を毎接続で運ぶ理由がなく、既存 hello 拡張の枠組みと二重管理になる。
 

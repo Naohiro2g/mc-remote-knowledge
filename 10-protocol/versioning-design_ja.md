@@ -399,7 +399,7 @@ b2（package `2100.0.0b2` / protocol 21.0.0 積み上げ・凍結前）のスコ
 
 **【b3 送り】**
 
-14. catalog 一式（catalogHash 実値化・plugin レジストリ書き出し・PC グローバルキャッシュ・catalog validator・Python kwargs 砂糖）。hub NOTES の「入力 API 形＝b2」マークは「catalog が来る段」の意味であり b3 に読み替える。**wire 契約（`catalog.get` の method/schema/hash algorithm）の正本は wire-format-design §7.2.1（DECISIONS `2026-07-29-04`）**。ファイル生成の実装・実測サイズ・plugin 側 Paper API 確認（superflat 自己判定可否）は Python client / plugin dev 側でのプロトタイプ待ち。
+14. catalog 一式（catalogHash 実値化・plugin レジストリ書き出し・PC グローバルキャッシュ・catalog validator・Python kwargs 砂糖）。hub NOTES の「入力 API 形＝b2」マークは「catalog が来る段」の意味であり b3 に読み替える。**wire 契約（`catalog.get` の method/schema/hash algorithm）の正本は wire-format-design §7.2.1（DECISIONS `2026-07-29-04`）**。ファイル生成の実装・実測サイズ・plugin 側 Paper API 確認（superflat 自己判定可否）は Python client / plugin dev 側でのプロトタイプ待ちだったが、**いずれも決着済み**＝Paper API は `2026-07-30-02`（superflat 非対応）、`states` schema と signature 導出は `2026-08-02-04`、Python 側のファイル生成は `2026-08-02-05`。**b3 の横断的完了に含める Python 側成果物は `mc_constants.py` ＋ projection manifest ＋ ignore 供給（starter template または project init）まで**。`.pyi` と state-aware な Pylance 補完は b3 に含めず後続スライスへ送る。
 15. Scratch 旧 `.sb3` 読み込み不可 / 保存後 load 不可の GUI 互換修正。b2 では接続先 / token が `.sb3` に保存されないことを serialization smoke で確認し、旧ファイル互換・保存後再ロード互換は b3 の save/load 互換テストで扱う。
 
 **【bN のまま】**
