@@ -245,10 +245,10 @@ authority は manifest を持つ。
 2. authority と同じ directory の create-only temporary file へ tombstone を書き切る。
 3. temporary file の `fsync` を完了する。
 4. final へ非上書き publish し、authority directory の `fsync` を完了する。**ここを revoke の線形化点とする。**
-5. 対象 credential の active `RemoteSession` を終了対象として mark する。
+5. 対象 credential で認証された**全ての** active `RemoteSession` を終了対象として mark する（同一 UUID は最大 16 の並行セッションを持てる＝`2026-07-04-03` 項7。一つでも残すと revoke 済み credential が既存接続を通じて動き続ける）。
 6. 管理用 projection である snapshot の `revoked_at` 更新を試みる。
 7. revoke 成功 response を返す。
-8. 対象 socket を close する。
+8. step 5 で mark した**全 session** の socket を close する。
 
 step 4 以降は credential が失効済みであり、**step 6 が失敗しても revoke 成功を失敗へ戻さない**。authority overlay により認証拒否・`list` からの除外・active limit からの除外・`current` からの除外を維持し、server health を degraded にして snapshot reconcile 対象へ送る。
 
