@@ -22,6 +22,15 @@
 
 WindowsでPython本体、virtual environment、dependency、lock、実行を一つの導線へまとめるため、pyenv + Poetryから`uv`へ移行する。初回授業はtemplateと`uv run`で制作へ到達させ、`pyproject.toml`やpackage管理はAPIを作る段階で開示する。設定を省略するのでなく、学ぶ意味が生じる順へ後ろ倒しする。
 
+### starter template に課される条件（`2026-08-02-05`）
+
+Python の定数（`mc_constants.py`）は**同梱されず、初回の接続成功で獲得する**。補完が効かない状態そのものを「まず接続せよ」という入口として使う設計なので、教材側に二つの条件が掛かる。
+
+- **初回 Hello World は `mc_constants` を import せずに成立させる**。補完が無い状態で書けるプログラムを最初に置く。ここで定数を使う教材にすると、初日に「補完が効かない・import が失敗する」という形で設計が破綻する。
+- **starter template に生成物の ignore 規則を同梱する**。`mc_constants.py` と `mc_constants.manifest.json` が commit されると、それを clone した生徒が接続せずに補完を得てしまい、しかも中身は別サーバー由来になり得る。template 側で ignore 済みにしておけば、生徒の最初の操作を `init` ではなく Hello World のまま維持できる。
+
+任意の空ディレクトリから始める一般利用者向けには別途 project init を用意する（`12-python-client/mc-constants-design_ja.md` §2.5）。教材導線は `Hello World → hello 成功 → catalog 取得 → projection 生成 → 補完が現れる` を保つ。
+
 ## 教室runtimeの二つの基準構成
 
 - **VPS**: 学校と家庭から同じ公開HTTPS/WSS・Minecraftへ継続接続する構成。
