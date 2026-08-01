@@ -183,11 +183,27 @@ Jupyter は一度読み込んだ `mc_constants` を**記憶（キャッシュ）
 
 ## 8. 新プロトコル安定版の認証導線
 
-> **⚠ 一部失効**：①`player_token` は `2026-08-02-01` で **long-lived credential**（`mcrl_`）へ改名されました。
-> ②「hash-only 永続 store、last-used、device 別 list / revoke が完成してから既定にする」は
-> 条件を3つしか挙げていません。正本は versioning-design §10.11.2 の6条件で、
-> 開放条件は `2026-08-02-03` が持ちます。**現時点で gate は閉じており、Python の既定は session のままです。**
-> ③`Minecraft.create()` を非対話にする点は、票3（Python 接続 UX）で再検討中です。
+> ## ⚠ この節は「将来の導線」です。現行の手順ではありません
+>
+> **`mcremote` CLI は実装されていません**（2026-08-02 の実装監査で確認＝`[project.scripts]` が無く、
+> installed entry point は空）。以下のコマンドはいずれも現時点では実行できません。
+>
+> **現行の正面入口は引数なしの `Minecraft.create()` です**（`2026-08-02-06`）。
+> Scratch の［接続］に相当し、初回は pair code を表示して Minecraft 内での承認を待ちます。
+> ログイン操作が別にあるのではなく、接続フローの中に認証体験が入っています。
+> 非対話環境（CI・batch）では `pair=False` を明示し、pairing が必要なら即座にエラーを受け取ります。
+> **TTY による自動判定は行いません**（Jupyter や IDE は TTY でなくても対話環境のため）。
+>
+> 本節のうち失効しているのは次の3点です。
+>
+> 1. `player_token` は `2026-08-02-01` で **long-lived credential**（`mcrl_`）へ改名されました。
+> 2. 「hash-only 永続 store、last-used、device 別 list / revoke が完成してから既定にする」は
+>    条件を3つしか挙げていません。正本は versioning-design §10.11.2 の6条件で、開放条件は
+>    `2026-08-02-03` が持ちます。**現時点で gate は閉じており、Python の既定は `session` のままです。**
+> 3. 「`Minecraft.create()` を非対話にする」は `2026-08-02-06` で改訂され、対話が既定になりました。
+>
+> 将来 CLI が実装された場合も、通常教材の前提ではなく補助導線（事前設定・CI への credential 供給・
+> 認証障害の復旧・credential 一覧 / logout / revoke）に位置づけます。
 
 Pythonの建築コードとログイン操作を分ける。installed CLIの正面名は`mcremote`とし、公式betaへ初めて接続する例は次の形にする。
 
