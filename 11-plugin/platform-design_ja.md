@@ -300,6 +300,18 @@ rollback domain は物理 volume の個数ではなく、**ある rollback 操�
 
 **二 volume は plugin の起動不変条件にしない。** stack profile の推奨構成として扱う。
 
-### 9.8 検証と gate
+### 9.8 旧 `mcrp_` からの移行
+
+`2026-08-02-01` が `player_token` / `mcrp_` を long-lived credential / `mcrl_` へ改名した際の移行規則。
+
+- 現行実装の `mcrp_` は server 側が in-memory で、**再起動を越える移行対象 record が存在しない**。したがって server-side migration は行わない。
+- 新実装は `mcrp_` を**新規発行しない**。
+- 保存済み `mcrp_` は `token_not_found` 等の**既存**認証 reason で無効化する（移行専用の新 reason を足さない）。
+- client は破棄して一度だけ `mcrl_` を再取得する＝`2026-07-04-03` 項3 の破棄・再ペアリング側のフローにそのまま乗る。
+- **一時的な二重 prefix 発行期間は設けない。**
+- plugin / Python / Scratch の wire 変更は**同一互換単位で着地させる**。
+- **改名は §9.1〜§9.6 の実装と同時に行う**（2026-08-02 の McRemote 着地確認で明確化）。`mcrp_` / `player_token` は config・`TokenStore`・pairing 試験など現行実装そのものに残っており、**名称だけ先に変えると実装と wire 契約が不整合になる**。`CredentialStore` と `RevocationAuthority` の導入に合わせて一括で移行する。
+
+### 9.9 検証と gate
 
 実装の検証項目と、公開導線を開く gate の開放条件は `2026-08-02-03`（DECISIONS 未確定節）が持つ。stack 側の world restore と recovery archive import が credential を書き戻さない deterministic write-set 試験は実施済みで、`RevocationAuthority` 本体・二 backend profile・plugin live test は未実装。
