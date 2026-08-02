@@ -159,6 +159,18 @@ archive の b2 record、artifact、test plan は正式根拠として参照し�
 
 ## 3. b3 後の R3 作業束
 
+### R3-A — catalog picker と state UX（設計確定・scope 未割当）
+
+設計は `2026-08-02-07` で確定済み。**b3 scope へ自動追加しない**（§2 は `2026-07-27-01` のまま）。実装をどの段へ置くかは別途判断する。
+
+- picker は入力支援であり、結果は編集可能な文字列として既存入力欄へ入る。自由入力・変数・reporter を維持し、reporter を黙って取り外さない。
+- vanilla block は短縮形（`oak_log`）、それ以外は完全修飾（`examplemod:ruby_block`）を入力する。Python 定数（`2026-08-02-05`）と同じ綴りにして、Scratch → Python 移行で二表記にしない。
+- catalog は **hello の `catalogHash` と一致した後だけ** picker で使う。同梱既定版フォールバックは持たない。IndexedDB cache は再取得を省く保存であって、オフライン catalog ではない。
+- 状態表示は `NOT ACQUIRED` / `CURRENT` / `UNAVAILABLE` の3つ。適合未確認の catalog を使わないので中間状態が生じない。
+- 未接続時の通知は「最初の command 実行時だけ」。`connection_disabled` では接続を促さず展示版の説明を出す（`2026-07-28-01`）。
+- `.sb3` へ保存するのは block 入力欄の文字列だけ（`2026-07-08-01`）。
+- observation grant と display alias は別票。
+
 ### R3-B — 保存・学習・beta 体験
 
 - 「ブラウザ保存作品」、匿名クラウド、`/project/<id>` を実装する（`2026-07-12-07`）。
