@@ -395,7 +395,7 @@ b2（package `2100.0.0b2` / protocol 21.0.0 積み上げ・凍結前）のスコ
 
 **【並行・軽量（protocol 非接触）】**
 
-13. WireScope v0 = Scratch 接続パネルとして実装: 6桁ペアコード表示・接続状態インジケータ（未接続→pair待ち→接続→切断）・現在の接続先（表示名と sandbox route）・hello 応答情報（protocol / mc_version / world_constants / permissions）・自クライアントの送受信フレームログ。サーバ→クライアント async push には触れない（bN/debug 統合のまま）。「wire を覗く」教育アングルの最初の実物。**【2026-07-05 扉②（post-b2 種・DECISIONS `2026-07-05-02` / `2026-07-20-08` / `2026-07-21-07`）】フレームログ表示モデルにストリーム識別子欄を最初から持たせる（N=1 でも破綻せず main / substream へ前方互換）。接続状態は色だけに依存せず、アイコン・テキストを併用する。**
+13. WireScope v0 = Scratch 接続パネルとして実装: 6桁ペアコード表示・接続状態インジケータ（未接続→pair待ち→接続→切断）・現在の接続先（表示名と sandbox route）・hello 応答情報（protocol / mc_version / world_constants / permissions）・自クライアントの送受信フレームログ。サーバ→クライアント async push には触れない（bN/debug 統合のまま）。「wire を覗く」教育アングルの最初の実物。**【2026-07-05 扉②（post-b2 種・DECISIONS `2026-07-05-02` / `2026-07-20-08` / `2026-07-21-07`）】フレームログ表示モデルにストリーム識別子欄を最初から持たせる（N=1 でも破綻せず main / substream へ前方互換）。接続状態は色だけに依存せず、アイコン・テキストを併用する。**　**【2026-08-02-09 による現行形】b2 で実装した inline WireScope は、独立 WireScope の prototype として位置づける。現在の Scratch 内面は WireScope mini へ縮小し、hello 詳細・permissions・world constants・frame / payload は別 origin の独立 WireScope へ移す。stream 識別欄の前方互換要件は独立側へ継承する。本項の記述は b2 当時の実装内容として履歴に残す。**
 
 **【b3 送り】**
 
