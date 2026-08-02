@@ -44,7 +44,24 @@
 
 ---
 
-## 0.1 `param_mc_remote.py` を分離する理由（テンプレ＋gitignore）
+## 0.1 `param_mc_remote.py` を分離する理由（environment adapter）
+
+> **役割の明示（`2026-08-03-01`）**：これは「古い設定ファイル」ではなく **environment adapter** である。
+> プログラム本体を環境を越えて共有可能にし、同じコードをディレクトリごとに異なる接続先・建築原点で使え、
+> 接続先という環境固有値を共有コードへ直接書かず、private な接続先を Git へ収容しない。
+> `Minecraft.create(address="server.example", ...)` のように環境値をプログラム中へ直書きする形は教材例にしない。
+>
+> **現行 template の内容**＝`ADRS_MCR`（既定は公式 sandbox `sb.mc-remote.com`・公開値なので template に収容）／
+> `PORT_MCR`／`BUILD_ORIGIN`。**`PLAYER_NAME` と `PLATFORM` は削除**（前者は identity が pairing で確定＝`2026-06-15-02`、
+> 後者は版と registry が hello と catalog で確定＝`2026-08-02-05`）。**旧 `PLAYER_ORIGIN` は `BUILD_ORIGIN` へ改名**
+> ＝build model は `setBuildOrigin` / `build.setOrigin` に確定済みで（`2026-06-25-01` / `2026-06-26-04`）、
+> `setBuildOrigin(PO.x, ...)` の `PO` が `PLAYER_ORIGIN` だと1行に同じ概念の2つの呼び名が出る。
+>
+> **現物の所在**＝`param_mc_remote.template.py` は dev repo `minecraft-remote-api`（commit `99adef5d` 時点）に存在しない。
+> historical reference は `mc-remote-knowledge-archive/12-python-client/reference/param_mc_remote.template.py` にあるが
+> `PLAYER_NAME` と `PLATFORM` を含み失効している。archive 版をそのまま復活させず、役割を維持して内容を現代化する。
+
+
 
 `param_mc_remote.py`（gitignore・個人コピー）と `param_mc_remote.template.py`
 （Git管理・追従可）を分ける根拠は次の2点。**プレイヤー名の保護ではない**
@@ -157,8 +174,15 @@ token の保存先は credential policy の一部であり、constants artifact 
 
 - **公式カリキュラム経路**＝starter template に ignore 規則を同梱する。
   生徒の最初の操作は init ではなく Hello World のままにできる。
+  starter が持つのは `param_mc_remote.template.py`・ignore 規則・**定数 import をコメントアウトした `hello.py`**・
+  接続後に補完を使う次段階のサンプル。`mc_constants.py` と manifest は含めない（`2026-08-03-01` ⑤）。
+  **starter の存在自体が b3 完了条件**（`2026-08-02-05` ⑨）。
+  なお `mc_remote_samples` は入口として近いが `setPlayer` / `PLAYER_NAME` / 静的 `block_id` / 旧 sandbox 説明を含むため、
+  現状のまま公式 starter として案内しない。
 - **一般経路**＝任意の空ディレクトリから始める利用者向けに、
   明示的で冪等な project init を提供する。既存 `.gitignore` を上書きせず、必要な規則だけを追加・検証する。
+  `mcremote init` は commit `99adef5d` 時点で実在し、ignore 規則の冪等追加を行う。
+  **`init` が template まで生成するかは任意の拡張**で、b3 の条件ではない（`2026-08-03-01` ⑤）。
 
 **generator が実行時に `.gitignore` を無断編集してはならない。**
 Git 管理下なのに ignore 設定が無い場合は、接続自体は成功させたうえで

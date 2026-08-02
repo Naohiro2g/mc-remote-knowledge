@@ -26,8 +26,14 @@
 
 ## 1. はじめてのセットアップ
 
-> **⚠ 失効**：`PLAYER_NAME` は書きません（`2026-06-15-02`＝identity は pair で確定）。
+> **⚠ 一部失効**：`PLAYER_NAME` は書きません（`2026-06-15-02`＝identity は pair で確定）。
 > `PLATFORM` も、同梱された版から選ぶ設定ではなくなりました（`2026-08-02-05`）。
+> **template をコピーする手順そのものは残ります**（`2026-08-03-01`）＝`param_mc_remote` は
+> 「プログラム本体を環境を越えて共有可能にする」ための environment adapter で、
+> ディレクトリごとに接続先と建築原点を持ち、private なアドレスを Git へ入れない役割を担います。
+> 現行 template が持つのは `ADRS_MCR`（既定は公式 sandbox）・`PORT_MCR`・**`BUILD_ORIGIN`**（旧 `PLAYER_ORIGIN`）。
+> 公式 sandbox を使うならコピー後の変更は不要です。
+> 本文の手順の書き直しは、starter に template が実在してから行います。
 
 ### 手順
 
@@ -185,8 +191,10 @@ Jupyter は一度読み込んだ `mc_constants` を**記憶（キャッシュ）
 
 > ## ⚠ この節は「将来の導線」です。現行の手順ではありません
 >
-> **`mcremote` CLI は実装されていません**（2026-08-02 の実装監査で確認＝`[project.scripts]` が無く、
-> installed entry point は空）。以下のコマンドはいずれも現時点では実行できません。
+> **`mcremote login` は実装されていません。** 以下のコマンドはいずれも現時点では実行できません。
+> （2026-08-02 の監査時点では CLI 自体が存在しませんでしたが、commit `99adef5d` で
+> `[project.scripts]` の `mcremote` が実装されました。ただし subcommand は **`init` のみ**で、
+> `login` / `status` / `logout` / `devices` / `revoke` はまだありません。）
 >
 > **現行の正面入口は引数なしの `Minecraft.create()` です**（`2026-08-02-06`）。
 > Scratch の［接続］に相当し、初回は pair code を表示して Minecraft 内での承認を待ちます。

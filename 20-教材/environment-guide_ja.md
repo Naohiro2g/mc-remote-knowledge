@@ -31,6 +31,26 @@ Python の定数（`mc_constants.py`）は**同梱されず、初回の接続成
 
 任意の空ディレクトリから始める一般利用者向けには別途 project init を用意する（`12-python-client/mc-constants-design_ja.md` §2.5）。教材導線は `Hello World → hello 成功 → catalog 取得 → projection 生成 → 補完が現れる` を保つ。
 
+### Hello World の定義と before / after の観察（`2026-08-03-01`）
+
+**McRemote の Hello World は chat だけではない。** chat へ Hello を送ることと、ブロックを1個置くことの2つを最小成果とする。chat だけでは世界が変わらず、remote control を体験しない。
+
+初回コードは `mc_constants` を import せずに成立させ、ブロック名は namespace を省略した文字列（`"sea_lantern"`）で書く。server が `minecraft:` を補完する入力 tolerate 規則（`2026-06-27-02`）を、説明せずに体験できる。Y 座標も抽象定数を先に与えず `62 + 5` のように計算して置く。
+
+**補完の獲得は、説明ではなく操作で観察させる。** 「Hello World の後に補完が増えます」と書くだけでは、学習者は接続前の状態を見ていないので差分にならない。定数 import をコメントアウトした状態で配布し、次の順で進める。
+
+1. **接続前**：一度コメントを外す。unresolved import の警告が出て、`block.` を打っても候補が出ず、実行すると `ModuleNotFoundError` で止まることを観察する。確認したらコメントへ戻す。
+2. **実行**：Hello World を走らせる。pairing、chat、ブロック1個、projection 生成（`mc_constants.py` と manifest）が起きる。
+3. **接続後**：エディタを必要に応じて reload し、再びコメントを外す。import が解決し、`block.` の候補が出て、`world_info.Y_SEA` が使えることを観察する。
+
+接続後に置くブロックは**初回とは別の X 座標**にして、2つを並べる。before / after がエディタの中だけでなく、**マイクラの世界に2つのブロックとして並んで見える**。
+
+この一連で、次の3つを同じ導線の中で扱える。
+
+- コメントは実行対象ではない（外すと警告やエラーの対象になる）
+- editor の warning と runtime の error は別のもの
+- projection の actionable warning は補完更新だけが失敗し、接続と建築は継続する（`2026-08-02-06` ⑦）
+
 ## 教室runtimeの二つの基準構成
 
 - **VPS**: 学校と家庭から同じ公開HTTPS/WSS・Minecraftへ継続接続する構成。
