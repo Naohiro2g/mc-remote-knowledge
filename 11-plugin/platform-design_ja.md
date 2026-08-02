@@ -196,6 +196,8 @@ spark APIはsoft dependencyにし、利用不能時は固定capで動作を継�
 
 **snapshot の `revoked_at` を revoke の security 正本にしない。** snapshot は管理用 projection であり、失効の真偽は authority が持つ。この非対称が、snapshot だけを巻き戻す rollback から revoke を守る。
 
+**session token（`mcrs_`）も同じ snapshot へ収容する**（`2026-08-02-08`）。ただし `RevocationAuthority` の overlay 対象にはしない＝session token は revoke を持たず、無効化が `expires_at` という絶対時刻の評価と credential domain reset（§9.5）だけで決まるため、**snapshot を巻き戻しても「期限切れが期限内へ戻る」ことが起きず rollback 安全**である。したがって tombstone 機構は long-lived credential にのみ必要。session record は §6.6 の管理 wire（`auth.listCredentials` / `auth.revoke`）の対象にせず、long-lived の active 上限（§9 冒頭の 16）にも数えない。
+
 record が 0 件でも domain を検証できるよう、snapshot は header を持つ。
 
 ```json

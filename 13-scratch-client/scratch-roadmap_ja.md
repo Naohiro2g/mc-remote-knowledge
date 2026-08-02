@@ -181,8 +181,11 @@ archive の b2 record、artifact、test plan は正式根拠として参照し�
 
 - backup 紹介、外部 transfer、restore 手順を同じ運用 package へ追加し、world と credential を分離する。
 - 認証前後の availability guard、運用 metric、正規 bulk build / TNT の load test を beta gate へ追加する。
-- Scratch 内 WireScope をパレット状態＋折り畳み drawer＋payload 時だけ広幅の構成へ育てる。
-- standalone WireScope は runtime config の URL から秘密なしで開く。token を URL へ入れない。
+- **Scratch 内 WireScope は接続・pairing の薄い面（mini）に絞る**（`2026-08-02-09` で `2026-07-12-07` を部分改訂）。McRemote block palette の状態領域へ置き、workspace を reflow せず、script 編集面や sprite 表示を覆わない。残すのは接続状態・pairing 進行（pair code・実行コマンド・待機・期限切れ・再試行案内）・設定先と実接続先・actionable error・display alias・独立 WireScope の起動導線。
+- **詳細観察面は別 origin の独立 WireScope へ移す**。hello 詳細・permissions・world constants・frame / payload・検索・比較・長時間観察はそちら。独立側は観察専用で、command 送信・切断・pairing・credential 操作・private target の列挙はできない。Scratch と Python が同じ app を使う。
+- **grant の受け渡しは URL を使わない**。ユーザー操作で許可済み URL を開き、`postMessage` の準備完了通知を `event.origin` と `event.source` で検証し、exact `targetOrigin` で `MessageChannel` を渡し、grant を `MessagePort` 経由で一度だけ渡す。`targetOrigin: "*"` は禁止。COOP 設定を配信前に確認する。
+- **display alias と observation grant を分離する**。alias は connection epoch 単位の非秘密の表示物で、検索・接続・認可に使わない。grant は不透明・短命・一回限りで、URL・ログ・referrer・`.sb3`・localStorage へ残さない。
+- observer feed の redaction は表示時ではなく生成側の allowlist で行い、token・pair code・grant・credential ID / hash・player UUID・device label を frame / payload / 検索 index から除く。
 - Backpack は IndexedDB＋BroadcastChannel の小さな検索 / pin 棚から始める（`2026-07-12-07`）。
 
 per-sprite 第 4 tab は stream が実在するまで park する。main stream / substream と Scratch object の写像は
