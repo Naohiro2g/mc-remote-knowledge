@@ -1,0 +1,28 @@
+# Selected from the post-restart Paper latest.log. Private absolute paths and player/network identity omitted.
+
+[18:52:42] [ServerMain/INFO]: [bootstrap] Running Java 25 (OpenJDK 64-Bit Server VM 25.0.3+9-LTS; Amazon.com Inc. Corretto-25.0.3.9.1) on Linux <REDACTED_KERNEL> (amd64)
+[18:52:42] [ServerMain/INFO]: [bootstrap] Loading Paper 1.21.11-130-ver/1.21.11@c5a2736 (2026-04-11T11:14:19Z) for Minecraft 1.21.11
+[18:52:54] [Server thread/INFO]: This server is running Paper version 1.21.11-130-ver/1.21.11@c5a2736 (2026-04-11T11:14:19Z) (Implementing API version 1.21.11-R0.1-SNAPSHOT)
+[18:53:00] [Server thread/INFO]: [McRemote] Loading server plugin McRemote v1.21.11-2100.0.0b3
+[18:53:04] [Server thread/INFO]: [McRemote] Enabling McRemote v1.21.11-2100.0.0b3
+[18:53:04] [Server thread/INFO]: [McRemote] Auth enforcement: true
+[18:53:04] [Server thread/INFO]: [McRemote] Credential domain health: HEALTHY (healthy)
+[18:53:05] [Server thread/INFO]: [McRemote] Server started at port 25575
+[18:53:07] [Server thread/INFO]: Done (26.091s)! For help, type "help"
+
+Built artifact SHA-256:
+1ea1baa3545988d083d185eded38d39754b8dc7fe7a910ac0f42726a8d952869
+
+Installed artifact SHA-256:
+1ea1baa3545988d083d185eded38d39754b8dc7fe7a910ac0f42726a8d952869
+
+== 2026-08-03 revoke-persistence post-restart ==
+[09:01:33] [ServerMain/INFO]: [bootstrap] Running Java 25 (OpenJDK 64-Bit Server VM 25.0.3+9-LTS; Amazon.com Inc. Corretto-25.0.3.9.1) on Linux <REDACTED_KERNEL> (amd64)
+[09:01:33] [ServerMain/INFO]: [bootstrap] Loading Paper 1.21.11-130-ver/1.21.11@c5a2736 (2026-04-11T11:14:19Z) for Minecraft 1.21.11
+[09:01:47] [Server thread/INFO]: This server is running Paper version 1.21.11-130-ver/1.21.11@c5a2736 (2026-04-11T11:14:19Z) (Implementing API version 1.21.11-R0.1-SNAPSHOT)
+[09:01:55] [Server thread/INFO]: [McRemote] Loading server plugin McRemote v1.21.11-2100.0.0b3
+[09:01:59] [Server thread/INFO]: [McRemote] Enabling McRemote v1.21.11-2100.0.0b3
+[09:01:59] [Server thread/INFO]: [McRemote] Auth enforcement: true
+[09:01:59] [Server thread/INFO]: [McRemote] Credential domain health: HEALTHY (healthy)
+[09:02:00] [Server thread/INFO]: [McRemote] Server started at port 25575
+[09:02:04] [Server thread/INFO]: Done (32.649s)! For help, type "help"

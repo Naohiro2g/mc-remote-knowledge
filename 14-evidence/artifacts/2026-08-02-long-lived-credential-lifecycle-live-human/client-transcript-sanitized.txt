@@ -1,0 +1,53 @@
+# Reconstructed from observed terminal output. Not a raw transcript.
+# Pair codes, raw tokens, player UUIDs, credential/domain IDs, and local paths are redacted.
+
+== issue and save before restart ==
+[pairPoll]  ok -> type=long_lived (48 chars)
+[token.file] -> saved mode=0600 path=<TOKEN_FILE_A>
+[hello]     <- protocol=21.0.0 mc_version=1.21.11
+[hello]     <- world_constants.y_sea=62 catalogHash=6d0f8524b70e37fb8d7b34d0fdb45c2b058dcfea82920d86ca9aaabb9fcadc83
+[hello]     <- player=<PLAYER_UUID> permissions=<PERMISSIONS>
+[catalog.get] <- blocks=1166 entities=157 particles=115 bytes=170678 hash=OK
+[auth.listCredentials] <- active=2 current=<RESTART_CREDENTIAL> device=<DEVICE_LABEL_A>
+PASS: pair -> hello -> catalog.get + credential lifecycle verification
+
+== server restart ==
+[server] credential domain before restart = <DOMAIN_A>, health=HEALTHY
+[server] normal stop/start completed
+[server] credential domain after restart  = <DOMAIN_A>, health=HEALTHY
+
+== reuse after restart ==
+[token.file] <- loaded type=long_lived path=<TOKEN_FILE_A>
+[hello]     <- protocol=21.0.0 mc_version=1.21.11
+[hello]     <- player=<PLAYER_UUID> permissions=<PERMISSIONS>
+[catalog.get] <- blocks=1166 entities=157 particles=115 bytes=170678 hash=OK
+[auth.listCredentials] <- active=2 current=<RESTART_CREDENTIAL> device=<DEVICE_LABEL_A>
+PASS: token file -> hello -> catalog.get + credential lifecycle verification
+
+== logout and reconnect rejection ==
+[auth.logout] <- revoked=true id=<RESTART_CREDENTIAL>
+PASS: token file -> hello -> catalog.get + credential lifecycle verification
+[hello]     <- token_revoked (expected)
+[token.file] -> deleted path=<TOKEN_FILE_A>
+PASS: revoked credential rejected after reconnect; local token deleted
+
+== issue for multi-session revoke ==
+[pairPoll]  ok -> type=long_lived (48 chars)
+[token.file] -> saved mode=0600 path=<TOKEN_FILE_B>
+[auth.listCredentials] <- active=2 current=<MULTI_CREDENTIAL> device=<DEVICE_LABEL_B>
+PASS: pair -> hello -> catalog.get + credential lifecycle verification
+
+== explicit stale revoke and all-session close ==
+[token.file] <- loaded type=long_lived path=<TOKEN_FILE_B>
+[session-1.hello] <- player=<PLAYER_UUID>
+[session-2.hello] <- player=<PLAYER_UUID>
+[auth.listCredentials] <- active=2 current=<MULTI_CREDENTIAL>
+[stale.revoke] <- revoked=true id=<STALE_CREDENTIAL>
+[auth.listCredentials] <- active=1 stale-removed=true
+[current.revoke] <- revoked=true id=<MULTI_CREDENTIAL>
+[socket.close] <- session-1=true session-2=true
+[reconnect.hello] <- token_revoked (expected)
+[token.file] -> deleted path=<TOKEN_FILE_B>
+
+PASS: auth.revoke closed all credential sessions and rejected reconnect
+

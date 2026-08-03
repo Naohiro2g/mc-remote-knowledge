@@ -1,0 +1,69 @@
+{
+  "schema": "mc-remote-evidence-redactions-v1",
+  "handoff_id": "2026-08-02-long-lived-credential-live-human",
+  "redactions": [
+    {
+      "placeholder": "<PAIR_CODE>",
+      "meaning": "six-digit Minecraft pairing code",
+      "reason": "ephemeral secret entered by a player"
+    },
+    {
+      "placeholder": "<TOKEN_FILE_A/B/C>",
+      "meaning": "Git-external local file containing a raw bearer token",
+      "reason": "credential material and local path"
+    },
+    {
+      "placeholder": "<PLAYER_UUID>",
+      "meaning": "Minecraft player UUID",
+      "reason": "stable player identity"
+    },
+    {
+      "placeholder": "<RESTART_CREDENTIAL>/<MULTI_CREDENTIAL>/<STALE_CREDENTIAL>/<REVOKE_PERSISTENCE_CREDENTIAL>",
+      "meaning": "credential management UUID, consistently pseudonymized per role",
+      "reason": "credential identifier"
+    },
+    {
+      "placeholder": "<DOMAIN_A>",
+      "meaning": "credential domain UUID, same alias before and after restart",
+      "reason": "private deployment identity"
+    },
+    {
+      "placeholder": "<DEVICE_LABEL_A/B/C>",
+      "meaning": "test device display label",
+      "reason": "client metadata unnecessary for the public claim"
+    },
+    {
+      "placeholder": "<PERMISSIONS>",
+      "meaning": "player permission projection",
+      "reason": "not needed for the credential lifecycle claim"
+    },
+    {
+      "placeholder": "<REDACTED_KERNEL>",
+      "meaning": "local host kernel release",
+      "reason": "host inventory detail unnecessary for compatibility claim"
+    }
+  ],
+  "removed_without_placeholder": [
+    "raw mcrl_ token",
+    "player name",
+    "private absolute paths",
+    "client and player socket ports",
+    "server process ID and screen session identity"
+  ],
+  "retained": [
+    "public protocol, Minecraft, Paper, Java, and plugin versions",
+    "loopback API port",
+    "artifact SHA-256",
+    "catalogHash used only to correlate the runtime",
+    "counts, stable error reason, and PASS/FAIL observations"
+  ],
+  "raw_material": {
+    "included": false,
+    "reason": "raw terminal/session data may contain pair codes, bearer tokens, stable IDs, or private paths"
+  },
+  "claim_preservation": [
+    "Credential IDs use stable role aliases, so equality across restart and distinction between current/stale remain auditable.",
+    "The domain ID uses one stable alias before/after restart, preserving the continuity claim.",
+    "Token contents are not needed; type, length, server acceptance, revoke result, and token_revoked response support the lifecycle claim."
+  ]
+}

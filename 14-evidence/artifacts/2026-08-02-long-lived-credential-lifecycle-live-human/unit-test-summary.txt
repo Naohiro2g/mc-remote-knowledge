@@ -1,0 +1,29 @@
+# CredentialService deterministic test rerun
+
+Command:
+./gradlew test --rerun-tasks
+
+Result:
+BUILD SUCCESSFUL in 14s
+4 actionable tasks: 4 executed
+
+JUnit suite:
+club.code2create.mcremote.CredentialServiceTest
+tests=13 skipped=0 failures=0 errors=0
+timestamp=2026-08-02T14:11:38.077Z
+
+Covered cases:
+- old mcrp_ prefix is not migrated; unknown token type rejected
+- missing authority and domain mismatch fail closed
+- backend disappearance while running fails closed
+- create-only authority idempotency; contradiction/corruption rejection
+- explicit reset creates a new domain and archives old state
+- snapshot failure after authority commit remains successful and reconciles
+- long-lived credential survives restart and raw token is not stored
+- concurrent contradictory create-only publish has one winner
+- active credential limit does not auto-revoke an old credential
+- duplicate snapshot ID and incomplete bootstrap fail closed
+- symlink final is rejected
+- authority overlay preserves revoke after snapshot rollback
+- authority failure before linearization returns unavailable and fails closed
+

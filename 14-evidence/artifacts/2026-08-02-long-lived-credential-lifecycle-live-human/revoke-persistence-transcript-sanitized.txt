@@ -1,0 +1,36 @@
+# 2026-08-03 addendum. Reconstructed from observed terminal output.
+# Raw token, pair code, stable IDs, device label, player identity, and local paths are redacted.
+
+== issue and metadata ==
+[pairPoll]  ok -> type=long_lived (48 chars)
+[token.file] -> saved mode=0600 path=<TOKEN_FILE_C>
+[auth.listCredentials] <- active=1 current=<REVOKE_PERSISTENCE_CREDENTIAL> device=<DEVICE_LABEL_C>
+[auth.listCredentials] <- schema=OK device=matched issued_at=UTC last_used_at=UTC expires_at=null
+PASS: pair -> hello -> catalog.get + credential lifecycle verification
+
+== revoke before restart ==
+[auth.listCredentials] <- schema=OK device=valid issued_at=UTC last_used_at=UTC expires_at=null
+[auth.logout] <- revoked=true id=<REVOKE_PERSISTENCE_CREDENTIAL>
+PASS: token file -> hello -> catalog.get + credential lifecycle verification
+
+== storage and normal-log audit before restart ==
+[storage.audit] phase=pre-restart files=10 raw_exact=0 raw_body=0 bearer_patterns=0
+[log.audit] phase=pre-restart files=1 raw_exact=0 raw_body=0 bearer_patterns=0
+[hash-only] phase=pre-restart snapshot_records=1 authority_tombstones=1 revoked_projection=true
+PASS: server storage and normal log contain no raw bearer credential
+
+== normal server restart ==
+[server] normal stop/start completed
+[server] credential domain health=HEALTHY
+
+== storage and normal-log audit after restart ==
+[storage.audit] phase=post-restart files=10 raw_exact=0 raw_body=0 bearer_patterns=0
+[log.audit] phase=post-restart files=1 raw_exact=0 raw_body=0 bearer_patterns=0
+[hash-only] phase=post-restart snapshot_records=1 authority_tombstones=1 revoked_projection=true
+PASS: server storage and normal log contain no raw bearer credential
+
+== revoked credential after restart ==
+[hello]     <- token_revoked (expected)
+[token.file] -> deleted path=<TOKEN_FILE_C>
+PASS: revoked credential rejected after reconnect; local token deleted
+
