@@ -113,11 +113,43 @@ class CommitProjectionTests(unittest.TestCase):
         self.assertNotIn("scratch-plan_ja.md", capsule)
 
     def test_collection_uses_tracked_commit_tree(self) -> None:
+        """working treeにだけ在るMarkdownを収録しないことをprobeで観測する。"""
+        commit = BUNDLE.resolve_commit("HEAD")
+        with tempfile.NamedTemporaryFile(
+            dir=BUNDLE.REPO_ROOT,
+            prefix="untracked-probe-",
+            suffix="_ja.md",
+        ) as probe:
+            probe_name = Path(probe.name).name
+            tracked = BUNDLE.git_output(
+                "-c",
+                "core.quotePath=false",
+                "ls-tree",
+                "-r",
+                "--name-only",
+                commit,
+            ).splitlines()
+            self.assertNotIn(probe_name, tracked)
+            files = BUNDLE.collect_md_files(commit, [])
+        self.assertIn("00-hub/grand-design-roadmap_ja.md", files)
+        self.assertNotIn(probe_name, files)
+
+    def test_always_excluded_dirs_are_not_collected(self) -> None:
         commit = BUNDLE.resolve_commit("HEAD")
         files = BUNDLE.collect_md_files(commit, [])
-        self.assertIn("00-hub/grand-design-roadmap_ja.md", files)
-        self.assertNotIn("tools/README_ja.md", files)
-        self.assertNotIn("install_codex.md", files)
+        self.assertIn("tools/README_ja.md", BUNDLE.git_output(
+            "-c",
+            "core.quotePath=false",
+            "ls-tree",
+            "-r",
+            "--name-only",
+            commit,
+        ).splitlines())
+        for rel_posix in files:
+            self.assertFalse(
+                set(rel_posix.split("/")) & BUNDLE.ALWAYS_EXCLUDE_DIRS,
+                rel_posix,
+            )
 
     def test_same_commit_produces_identical_files(self) -> None:
         commit = BUNDLE.resolve_commit("HEAD")
