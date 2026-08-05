@@ -320,6 +320,33 @@ rollback domain は物理 volume の個数ではなく、**ある rollback 操�
 - plugin / Python / Scratch の wire 変更は**同一互換単位で着地させる**。
 - **改名は §9.1〜§9.6 の実装と同時に行う**（2026-08-02 の McRemote 着地確認で明確化）。`mcrp_` / `player_token` は config・`TokenStore`・pairing 試験など現行実装そのものに残っており、**名称だけ先に変えると実装と wire 契約が不整合になる**。`CredentialStore` と `RevocationAuthority` の導入に合わせて一括で移行する。
 
-### 9.9 検証と gate
+### 9.9 検証、credential checkpoint、gate（`2026-08-06-02`）
 
-実装の検証項目と、公開導線を開く gate の開放条件は `2026-08-02-03`（DECISIONS 未確定節）が持つ。stack 側の world restore と recovery archive import が credential を書き戻さない deterministic write-set 試験は実施済みで、`RevocationAuthority` 本体・二 backend profile・plugin live test は未実装。
+#### 9.9.1 McRemote が所有する checkpoint
+
+credential health projection は常駐 telemetry ではなく、**Stack doctor が明示要求した時点の checkpoint 応答**である。heartbeat、定期更新、常駐 polling、起動時または health 遷移時の自発更新は行わない。
+
+- Stack が container-local console から `credential checkpoint <checkpoint_id>` を実行したときだけ生成する。command は console-only とし、player command、RCON、McRemote wire へ公開しない。
+- `checkpoint_id` は Stack が doctor run ごとに生成する非 null の不透明な nonce である。McRemote は要求値を projection へそのまま相関値として返し、現在性を時刻から推測しない。
+- McRemote は checkpoint のたびに snapshot、revocation authority、credential domain の完全な read / schema / integrity / domain consistency 検証を行う。backend を変更せず、reconcile、bootstrap、reset、修復を副作用として起動しない。
+- 検証結果は `/data/plugins/McRemote/credential-health.json` へ atomic publish する。途中書き込みを final path で観測させず、publish 失敗時に古い file の `checkpoint_id` を新しい run の結果として扱わせない。
+- schema v1 の top-level は `schema`（固定値 `mcremote.credential-health`）、`schema_version`（`1`）、`emitted_at`、`checkpoint_id`、`health`、`reasons`、`credential_snapshot`、`revocation_authority`、`domain_consistency`、`reconcile_pending` とする。credential record、token / token hash、player UUID、device label を projection へ含めない。
+- `credential_snapshot`、`revocation_authority`、`domain_consistency` の nested object shape と enum vocabulary は McRemote と Stack が同じ schema revision の fixture で固定し、双方の parser / writer test を通してから利用可能とする。未確定の値を Stack が寛容に推測しない。
+
+checkpoint は観測 surface であり、§9.5 の bootstrap / reset transaction ではない。外部 transaction ID を checkpoint へ流用せず、doctor、通常起動、restore から bootstrap / reset を自動実行しない。bootstrap / reset の冪等再試行と transaction 所有権は未確定の別論点として残す。
+
+#### 9.9.2 Stack consumer 境界
+
+Stack doctor は次を満たす。
+
+1. deployment 単位で doctor を直列化し、一回の run につき新しい `checkpoint_id` を一つ生成する。
+2. Stack CLI 内部から container-local console helper を使って checkpoint command を投入する。operator に直接 Docker command を要求せず、RCON と McRemote wire を代替 transport にしない。
+3. 同一 run 内の短い bounded read / retry だけを許し、projection file を 16 KiB 以下の UTF-8 regular file・non-symlink として読む。
+4. schema 名、version、必須 field、enum、field 間の整合、`checkpoint_id` の完全一致を検証する。欠落、timeout、上限超過、unknown version / enum、矛盾、nonce 不一致は fail closed にする。
+5. `emitted_at` は形式と明白な未来値だけを sanity check し、固定秒数の freshness window には使わない。古い `HEALTHY` の排除は同一 doctor run の nonce 一致で行う。
+6. snapshot / authority の内部 JSON を解析・生成・修復せず、plugin 所有 projection の公開 schema だけを consume する。
+7. console helper の前提である `CREATE_CONSOLE_IN_PIPE=true` を render / doctor で確認する。実行 UID / GID は preset lock と render へ固定して container 実体と照合するか、同等に再現可能な実証契約を持つ。権限の偶然一致を runtime contract にしない。
+
+#### 9.9.3 公開 gate
+
+実装の検証項目と、公開導線を開く gate の開放条件は `2026-08-02-03`（DECISIONS 未確定節）が持つ。Stack 側の world restore と recovery archive import が credential を書き戻さない deterministic write-set 試験は実施済み。credential checkpoint は同条件 (6) の doctor 観測契約を具体化するが、**契約確定だけでは gate を開かない**。`RevocationAuthority` 本体、二 backend profile、checkpoint の両 repo test、runtime UID / GID の再現可能性、plugin live test、live restore 後の authority 継続が正式証跡として揃うまで gate は閉じたままとする。
