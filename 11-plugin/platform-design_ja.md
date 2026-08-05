@@ -131,6 +131,12 @@ PermissionProvider
 - LuckPerms は NeoForge/Forge/Fabric 版が公式に存在し、1.20.1 / 1.21.1 ともにカバー。「LuckPerms 前提」は mod 環境でも維持可能。
 - 認証の核（`pair_code` / `session_token` / long-lived credential＝旧 `player_token`・`2026-08-02-01` で改名）は LuckPerms 非依存。LuckPerms は**認可**部分のみ。
 - この PermissionProvider インターフェースを mod 展開時もそのまま流用できる。Phase 1（Paper）では LuckPermsProvider のみ実装、インターフェースは既に切れている。
+- **build range は paired UUID から load した LuckPerms User の effective meta として解決する**（`2026-08-06-01`）。`LuckPermsPermissionManager` は既存の `QueryOptions` を使い、
+  `user.getCachedData().getMetaData(queryOptions).getMetaValue(buildRangeMetaKey)` の結果を整数化して返す。
+  primary group の `Group#getCachedData()` だけを直接読まず、user node・継承 group・context・weight・meta stacking の優先順位を McRemote 側で再実装しない。
+  hello の `permissions.buildRange` と実際の build guard は、この同じ `PermissionProvider` の値解決経路を使う。
+  `QueryOptions` の既存 `server=global` context、meta key `luckperm_permissions.build.range`、meta 欠落または整数 parse 失敗時の `0`、
+  LuckPerms 不在時の `FallbackPermissionManager` は維持する。負値の契約は本決定で追加・変更しない。
 
 ---
 
