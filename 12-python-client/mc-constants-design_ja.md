@@ -6,7 +6,8 @@
 > **改訂履歴**：初版は「同梱した静的バージョン別ファイル群から import 時に生成する」設計だった。
 > `2026-07-29-04` で catalog のデータ源が稼働中サーバー（`catalog.get`）へ移り、
 > `2026-08-02-04` が `states` schema と signature 導出を、
-> `2026-08-02-05` が projection lifecycle（**非同梱・接続後獲得**）を確定した。
+> `2026-08-02-05` が projection lifecycle（**非同梱・接続後獲得**）を確定し、
+> `2026-08-06-04` が PC グローバル cache の root path と優先順を確定した。
 > 本文は現行設計に更新済み。**旧設計に属する記述は残していない**が、
 > 判断理由は §2 に「なぜ反転したか」として保存する。
 > `python-client-guide_ja.md` は未監査で、まだ旧設計（import 時生成・同梱）を説明している。
@@ -28,7 +29,7 @@
 └── mc_constants.manifest.json     # projection manifest（Git管理しない）
 
 (PC グローバルキャッシュ)
-└── ~/.cache/mc-remote/            # catalogHash キーの生 JSON・project / 環境 / 接続先を越えて共有
+└── ~/.cache/mcremote/             # XDG 未設定時の fallback。catalogHash キーで横断共有
 
 (ライブラリ側)
 └── mc_remote/
@@ -37,6 +38,15 @@
     ├── _constants_codegen.py      # projection generator
     └── minecraft.py / vec3.py
 ```
+
+PC グローバル cache の root は `2026-08-06-04` により、次の優先順で解決する。
+
+1. `$MCREMOTE_CACHE_DIR` が設定されていれば、その値。
+2. 未設定なら `$XDG_CACHE_HOME/mcremote`。
+3. `XDG_CACHE_HOME` も未設定なら `~/.cache/mcremote`。
+
+旧 `~/.cache/mc-remote` を読書きする互換分岐や自動移行は設けない。catalog cache は公開 game／mod data であり、
+credential store（`~/.config/mcremote`）とは directory と削除境界を分ける。
 
 **同梱物は無い**（`2026-08-02-05`）。clone 直後は補完が効かず、
 初回の認証済み hello を通してその環境がサーバーから補完能力を獲得する。
