@@ -1,0 +1,8 @@
+# Python candidate distribution artifacts
+710e6285b295dee1fd9da44685a36607c1e4620a18f03f490d621cc8dca4258b  minecraft_remote_api-2100.0.0b3.tar.gz
+1292944afa6dc67f407f34e8eabf29f080c8a45739ae7eba6593f8666e0c3a61  minecraft_remote_api-2100.0.0b3-py3-none-any.whl
+
+# Live-generated projection/cache artifacts
+fa0b713a0f67b5f0d045086a85e6855eea95162cfa483264d94bd742b155caaf  mc_constants.py
+5caa6ea4fb5430e83037b33abbf31df8863dd409df04619c79132c551d4fe90e  mc_constants.manifest.json
+360cb446c58ebf7c952118070ff5aed4f6112c12d4cd063fe94e0cbf638cbb03  catalogs/6d0f8524b70e37fb8d7b34d0fdb45c2b058dcfea82920d86ca9aaabb9fcadc83.json

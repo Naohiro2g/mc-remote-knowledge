@@ -1,0 +1,116 @@
+{
+  "test_id": "2026-08-06-b3-python-catalog-projection-live-human",
+  "test_class": "live-human",
+  "date": "2026-08-06",
+  "observed_at": {
+    "start": "2026-08-06T17:25:27+09:00",
+    "end": "2026-08-06T17:31:24+09:00"
+  },
+  "result": "PASS",
+  "knowledge_contract_commit": "1d10c773452a2b58255faeeebed0eec427c3023a",
+  "python": {
+    "commit": "af2d11d66a16e3085f569241406a703a1c28c348",
+    "version": "2100.0.0b3",
+    "protocol": "21.0.0"
+  },
+  "server": {
+    "endpoint": "[LOCAL_TEST_SERVER]",
+    "plugin_commit": "a3dab998b710f65f42f95058a68ec51d419b097c",
+    "plugin_version": "1.21.11-2100.0.0b3",
+    "jar_sha256": "aeb190705bd9957ce73557dc1be0fe15efe7250ba9bc688945e6f537e00ef78e",
+    "paper": "1.21.11-130-ver/1.21.11@c5a2736",
+    "minecraft": "1.21.11",
+    "bridge": {
+      "applicable": false,
+      "reason": "not_a_component_of_the_python_client_mcremote_plugin_architecture"
+    },
+    "world": "overworld",
+    "build_origin": [200, 0, 200]
+  },
+  "catalog": {
+    "hash": "6d0f8524b70e37fb8d7b34d0fdb45c2b058dcfea82920d86ca9aaabb9fcadc83",
+    "hash_recomputed_match": true,
+    "counts": {
+      "block": 1166,
+      "entity": 157,
+      "particle": 115
+    },
+    "first_source": "network",
+    "second_source": "cache",
+    "entity_example": {
+      "constant": "entity.ITEM_FRAME",
+      "value": "minecraft:item_frame"
+    },
+    "particle_example": {
+      "constant": "particle.VIBRATION",
+      "value": "minecraft:vibration"
+    }
+  },
+  "projection": {
+    "source_bytes": 71779,
+    "source_lines": 1462,
+    "manifest_bytes": 327,
+    "artifact_sha256": "fa0b713a0f67b5f0d045086a85e6855eea95162cfa483264d94bd742b155caaf",
+    "projection_key": "31dda5aa5af4783a4515440cd1afa347d2e32ccf0015849b76240ab9d30abccf",
+    "generator_version": "1",
+    "schema_version": 1
+  },
+  "block_roundtrip": {
+    "clear_status": 0,
+    "place_status": 0,
+    "restore_status": 0,
+    "all_restored": true,
+    "positions": [
+      {
+        "absolute": [205, 76, 202],
+        "facing": "north",
+        "observed": "minecraft:oak_stairs[facing=north,half=bottom,shape=straight,waterlogged=false]"
+      },
+      {
+        "absolute": [207, 76, 202],
+        "facing": "east",
+        "observed": "minecraft:oak_stairs[facing=east,half=bottom,shape=straight,waterlogged=false]"
+      },
+      {
+        "absolute": [209, 76, 202],
+        "facing": "west",
+        "observed": "minecraft:oak_stairs[facing=west,half=bottom,shape=straight,waterlogged=false]"
+      },
+      {
+        "absolute": [211, 76, 202],
+        "facing": "south",
+        "observed": "minecraft:oak_stairs[facing=south,half=bottom,shape=straight,waterlogged=false]"
+      }
+    ]
+  },
+  "redactions": [
+    "pairing_code",
+    "auth_token",
+    "token_store",
+    "player_uuid",
+    "private_host",
+    "private_connection_info",
+    "absolute_local_path"
+  ],
+  "claim_boundary": {
+    "verified": [
+      "human_pairing",
+      "authenticated_hello",
+      "catalog_get",
+      "catalog_hash_recomputation",
+      "projection_and_manifest",
+      "entity_particle_projection_import",
+      "catalog_cache_reuse",
+      "stateful_block_ref_roundtrip",
+      "exact_block_restore",
+      "candidate_tests_build_and_distribution_hashes"
+    ],
+    "not_verified": [
+      "live_permission_denied",
+      "live_rollback",
+      "github_prerelease_post_publish",
+      "testpypi_or_pypi_publish",
+      "entity_spawn_or_particle_emit"
+    ]
+  }
+}
