@@ -13,6 +13,10 @@ b3 の確定範囲は次の二つだけとする。
 1. GitHub Pages の接続無効 showcase profile
 2. UI スライス（Settings 接続先、パレット状態表示、Color Mode、お知らせ overlay）
 
+独立 WireScope は `2026-08-06-03` により b3 の完了条件へ追加しない。Scratch 先行の
+read-only 実装が完成・検証できた場合は b3 へ任意同梱できるが、未完成を理由に b3 を止めない。
+一方、同梱するコードは通常の build・lint・security・regression gate を免れない。
+
 旧 `.sb3` の load / save 互換は、shadow block を top-level にしない修正
 `5fb564d45b` と VM state snapshot integration test で解決済みのため b3 に含めない。
 ただし、接続先と token は作品へ保存せずブラウザ実行環境へ属するという
@@ -159,9 +163,10 @@ archive の b2 record、artifact、test plan は正式根拠として参照し�
 
 ## 3. b3 後の R3 作業束
 
-### R3-A — catalog picker と state UX（設計確定・scope 未割当）
+### R3-A — catalog picker と state UX（設計確定・b4）
 
-設計は `2026-08-02-07` で確定済み。**b3 scope へ自動追加しない**（§2 は `2026-07-27-01` のまま）。実装をどの段へ置くかは別途判断する。
+設計は `2026-08-02-07` で確定済み。**b3 scope へ追加せず b4 へ送る**。
+b3 の catalog 実装と実測を入力に、picker の見せ方、state UX、教材上の説明をさらに洗練してから収容する。
 
 - picker は入力支援であり、結果は編集可能な文字列として既存入力欄へ入る。自由入力・変数・reporter を維持し、reporter を黙って取り外さない。
 - vanilla block は短縮形（`oak_log`）、それ以外は完全修飾（`examplemod:ruby_block`）を入力する。Python 定数（`2026-08-02-05`）と同じ綴りにして、Scratch → Python 移行で二表記にしない。
@@ -182,11 +187,42 @@ archive の b2 record、artifact、test plan は正式根拠として参照し�
 - backup 紹介、外部 transfer、restore 手順を同じ運用 package へ追加し、world と credential を分離する。
 - 認証前後の availability guard、運用 metric、正規 bulk build / TNT の load test を beta gate へ追加する。
 - **Scratch 内 WireScope は接続・pairing の薄い面（mini）に絞る**（`2026-08-02-09` で `2026-07-12-07` を部分改訂）。McRemote block palette の状態領域へ置き、workspace を reflow せず、script 編集面や sprite 表示を覆わない。残すのは接続状態・pairing 進行（pair code・実行コマンド・待機・期限切れ・再試行案内）・設定先と実接続先・actionable error・display alias・独立 WireScope の起動導線。
-- **詳細観察面は別 origin の独立 WireScope へ移す**。hello 詳細・permissions・world constants・frame / payload・検索・比較・長時間観察はそちら。独立側は観察専用で、command 送信・切断・pairing・credential 操作・private target の列挙はできない。Scratch と Python が同じ app を使う。
-- **grant の受け渡しは URL を使わない**。ユーザー操作で許可済み URL を開き、`postMessage` の準備完了通知を `event.origin` と `event.source` で検証し、exact `targetOrigin` で `MessageChannel` を渡し、grant を `MessagePort` 経由で一度だけ渡す。`targetOrigin: "*"` は禁止。COOP 設定を配信前に確認する。
-- **display alias と observation grant を分離する**。alias は connection epoch 単位の非秘密の表示物で、検索・接続・認可に使わない。grant は不透明・短命・一回限りで、URL・ログ・referrer・`.sb3`・localStorage へ残さない。
-- observer feed の redaction は表示時ではなく生成側の allowlist で行い、token・pair code・grant・credential ID / hash・player UUID・device label を frame / payload / 検索 index から除く。
 - Backpack は IndexedDB＋BroadcastChannel の小さな検索 / pin 棚から始める（`2026-07-12-07`）。
+
+#### WireScope 実装ロードマップ
+
+正本は `2026-08-06-03` とし、独立 WireScope は共通の `@mc-remote/live` web app と
+Scratch／Python それぞれの source adapter・launcher で構成する。別々の UI app は作らない。
+observer schema は初版から `streams[]` を持ち、`1 stream = 1 connection = 1 build state` を維持する。
+target と stream を同一 ID にせず、将来は target 配下へ main／substream を追加する。
+
+1. **b3 前：Scratch read-only 版**
+   - Scratch を先行参照実装とする。b3 blocker にはせず、完成・検証できた範囲だけを任意同梱する。
+   - UI 全体が間に合わなくても、observer schema、security allowlist、lifecycle fixture、Scratch adapter 契約を固定する。
+   - 初版は Scratch の main stream 1件を観察し、別タブ／window で sanitized hello、permissions、world constants、frame／payloadを read-only 表示する。
+   - runtime config の信頼済み URL、origin/source 検証、exact `targetOrigin`、`MessageChannel`、一回限り grant を使う。
+   - `auth.*`、token、pair code、player UUID、credential 情報を独立 WireScope へ渡さない。
+2. **b3 後：Python 追従**
+   - Python API 担当は b3 release 後に着手し、Scratch が先行固定した schema、fixture、adapter 契約へ追従する。
+   - 引数なしの `mcremote wirescope` を launcher とし、Python connection を観察する adapter／local relay から共通 app へ同じ schema を渡す。
+   - 初版は `Minecraft.create()` で成立した main stream 1件を観察する。
+   - Scratch 後続前段と短期間だけ並走して両 adapter の conformance を確認し、長期間の共同設計状態にしない。
+   - 完成分は b4 へ同梱できるが、本決定だけで b4 blocker にはしない。
+3. **後続前段：Scratch main／substream と長時間観察**
+   - Scratch object model から main／substream への別途確定する写像に従い、各 stream を独立 connection・独立 build state として観察する。
+   - observer session が開いている間の長時間観察を実装する。
+   - observation history、grant、observer session は `.sb3`／`localStorage` へ永続化しない。
+4. **後続中段：Python substream と複数 source**
+   - Python の明示 substream API へ追従し、複数 source／複数 stream の read-only 観察、検索、比較を実装する。
+   - source／target ごとの grant を分離する。
+5. **後続後段：Scratch command 発行の予約**
+   - command 発行の認可、transport、grant、対象 stream、既存 Scratch connection の利用形は着手前に別途設計・批准する。
+   - 現時点では control capability の具体方式を確定せず、pairing、credential 操作、source connection の切断を自動追加しない。
+
+`2026-08-02-09` は初期 read-only 実装の現行契約として維持する。永久的な書込み禁止とは読まないが、
+後段の予約は同決定を今すぐ改訂しない。grant は URL へ置かず、display alias と capability を分離し、
+observer feed は生成側 allowlist で redaction する。別 origin 配信では CSP／COOP、cache、artifact identity、
+deploy smoke を配信側の gate に加える。
 
 per-sprite 第 4 tab は stream が実在するまで park する。main stream / substream と Scratch object の写像は
 `2026-07-21-07` の b4 scope freeze 前設計 gate で確定する。

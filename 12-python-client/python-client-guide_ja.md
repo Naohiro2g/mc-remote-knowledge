@@ -230,3 +230,30 @@ CLIはpair code表示、Minecraft内での承認待ち、credential保存、hell
 通常の`Minecraft.create()`は非対話にする。credential未登録、期限切れ、revoke、store消失時に標準出力でpairを始めてblocking待ちせず、実行すべき`mcremote login ...`を含むactionable exceptionを返す。自動pairはtest / devの明示opt-inだけに残す。
 
 credential storeは接続先profile / targetごとに分け、別channelや別Sandboxへtokenを黙って送らない。tokenをsource code、通常log、URL、sample repositoryへ書かない。現在のplayer tokenはbearer credentialであり、Proof of Possession用の端末鍵生成・keychain・challenge署名はこのrelease導線の必須条件にしない。
+
+---
+
+## 9. WireScope（b3後の計画）
+
+> **この節は将来計画です。現行の `mcremote` には `wirescope` subcommand はありません。**
+
+独立 WireScope は Scratch 版と Python 版で別々の UI app を作らず、共通の
+`@mc-remote/live` web app を使う（`2026-08-06-03`）。Python 側は Scratch の b3 前先行実装が固定した
+observer schema、security allowlist、lifecycle fixture、source adapter 契約へ b3 release 後に追従する。
+
+入口は引数なしの次の形とする。
+
+```bash
+mcremote wirescope
+```
+
+Python adapter と local relay は、`Minecraft.create()` で成立した main stream 1件を初版の観察対象とし、
+共通 WireScope app へ Scratch と同じ observer schema で渡す。schema は初版から `streams[]` を持ち、
+将来の明示 substream API と複数 source／stream の検索・比較へ追加的に拡張できる形にする。
+`1 stream = 1 connection = 1 build state` は維持し、target と stream の ID を同一化しない。
+
+WireScope は初期段階では read-only である。`auth.*`、token、pair code、player UUID、credential 情報を
+observer feed へ渡さず、history、grant、observer session を project file や local credential store へ
+永続化しない。Python 追従の完成分は b4 へ同梱できるが、本決定だけで b4 blocker にはしない。
+Scratch からの command 発行はさらに後段の予約であり、Python adapter や初期 read-only app へ
+自動的に追加しない。
