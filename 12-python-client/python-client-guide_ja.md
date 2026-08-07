@@ -216,8 +216,27 @@ token、pair code、player UUIDをsource、URL、通常log、Git管理fileへ書
 
 long-lived credentialの公開gateは閉じています。Pythonの既定を `long_lived` へ切り替えず、実利用で需要が確認されるまでcredential-lifecycle sliceを後続へ送ります。再開後の順序は正式list／revoke／logout API、checkpoint＋doctor、secret-safe live runner、snapshot rollback transaction、reset／災害復旧です。正本は [認証ロードマップ](../00-hub/authentication-roadmap_ja.md) と決定 `2026-08-07-01` です。
 
-## 9. WireScope（後続計画）
+## 9. WireScope（Python追従条件）
 
-現行の `mcremote` に `wirescope` subcommandはありません。将来は引数なしの `mcremote wirescope` をlauncherとし、Scratchと共通の `@mc-remote/live` appへ同じobserver schemaで接続する計画です（`2026-08-06-03`）。
+現行の `mcremote` に `wirescope` subcommandはありません。Scratch参照実装は共通
+`@mc-remote/live` appと observer contract を先行固定済みであり、Pythonは完成UIを再解釈せず、
+次の schema v1 入力条件へ追従します（`2026-08-06-03` の2026-08-07追記）。
 
-初版は `Minecraft.create()` で成立したmain stream 1件をread-only観察します。`auth.*`、token、pair code、player UUID、credential情報をobserver feedへ渡さず、history、grant、observer sessionをproject fileやcredential storeへ永続化しません。完成分はb4へ同梱できますが、本決定だけでb4 blockerにはしません。
+- top-level は `schema=mcremote.observer`、`schema_version=1`、`emitted_at`、`target`、`streams[]`。
+  Python source は `target.source_kind=python` とし、target ID と stream ID を同一化しません。
+- 初版は `Minecraft.create()` で成立した main connection 1件を `kind=main` として投影します。
+  `1 stream = 1 connection = 1 build state` を維持し、将来の明示 substream を schema 破壊なしで
+  `streams[]` へ追加できる形にします。
+- adapter は Scratch lifecycle fixture と schema validator に対する conformance を満たし、
+  generation-side allowlist で hello、permissions、world constants と許可された建築／world／player
+  frame・payloadだけを生成します。任意の Python object、無制限な履歴、内部 transport 状態を
+  observer feedへ直列化しません。
+- `auth.*`、token、pair code、player UUID、credential／device情報を生成せず、history、grant、
+  observer sessionをproject fileやcredential storeへ永続化しません。observerへ認証・操作権限も
+  渡しません。
+
+launcher入口は引数なしの `mcremote wirescope`、共通appとの間はadapter／local relayとする計画を
+維持します。ただしlocal relayとbrowser handoffの具体transportは未確定であり、Scratchの
+`MessageChannel` 実装をそのままPythonの契約とはしません。完成分はb4へ同梱できますが、この決定だけで
+b4 blockerにはしません。Python追従でMcRemote wire protocol、Bridge、pluginを変更する必要が生じた
+場合は、既存schema v1への単純追従として進めず別の横断決定へ戻します。

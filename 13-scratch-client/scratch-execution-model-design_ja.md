@@ -27,3 +27,17 @@
 ## 3. 教育哲学は 20-教材 側
 
 「旗を前面に出さない＝意味論への忠実」「教育方針の二層化と順序」「2021『なぜPython』への時間軸接続（並列ビークル論の実行モデル版の裏付け）」の哲学本体は [20-教材/ai-learning-design](../20-教材/ai-learning-design_ja.md) §11 に置く。本文書（技術本体）はその実行モデル根拠を供給する。
+
+## 4. WireScope observer の stream 境界
+
+`mcremote.observer` schema v1 の `streams[]` に置く stream は Scratch の script thread ではない。
+`1 stream = 1 McRemote connection = 1 build state` であり、§1–2 の per-script 実行状態をまとめて
+「Scratch が実行中／停止中」という単一状態へ畳まない。初期 Scratch 参照実装は既存 McRemote main
+connection 1件だけを `kind=main` として観測し、緑の旗、stack click、stop all を observer stream の
+生成・破棄や grant の再発行へ直接対応づけない。
+
+Scratch object model と将来の main／substream の写像は別途確定する。各 substream を追加する場合も、
+複数 script thread を一つの connection 内で multiplex する意味にはせず、独立 connection・独立 build
+state として表現する。observer はその状態と allowlist 済み frame を read-only に投影するだけで、
+Scratch script の起動・停止、pairing、credential 操作、source connection の切断を行わない。
+正本は決定 `2026-08-06-03` と [Scratch roadmap](scratch-roadmap_ja.md) §3 である。

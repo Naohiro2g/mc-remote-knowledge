@@ -17,6 +17,12 @@ b3 の確定範囲は次の二つだけだった。
 同梱せず、b3後の後続として扱う。将来のreleaseへ同梱するコードは通常の
 build・lint・security・regression gate を免れない。
 
+2026-08-07 時点で、`Naohiro2g/scratch-editor` の
+`develop@f7cea1177670f1ab3988b1b96a08f9f74736aab9` と未 commit worktree に、Scratch read-only
+参照実装の最初の縦切りがある。これは b3 release には含まれず、公開配信済みとも扱わない。
+実装到達点と残 gate は §3「WireScope 実装ロードマップ」および `2026-08-06-03` の
+2026-08-07 追記を正本とする。
+
 旧 `.sb3` の load / save 互換は、shadow block を top-level にしない修正
 `5fb564d45b` と VM state snapshot integration test で解決済みのため b3 に含めない。
 ただし、接続先と token は作品へ保存せずブラウザ実行環境へ属するという
@@ -196,9 +202,38 @@ Scratch／Python それぞれの source adapter・launcher で構成する。別
 observer schema は初版から `streams[]` を持ち、`1 stream = 1 connection = 1 build state` を維持する。
 target と stream を同一 ID にせず、将来は target 配下へ main／substream を追加する。
 
-1. **b3 前：Scratch read-only 版**
-   - Scratch を先行参照実装とする。b3 blocker にはせず、完成・検証できた範囲だけを任意同梱する。
-   - UI 全体が間に合わなくても、observer schema、security allowlist、lifecycle fixture、Scratch adapter 契約を固定する。
+##### Scratch read-only 参照実装の到達点（2026-08-07）
+
+最初の縦切りは実装済みである。共通 `@mc-remote/live` app、
+`schema=mcremote.observer`／`schema_version=1`／`streams[]` の observer contract、Scratch main
+stream lifecycle fixture、Scratch の generation-side allowlist adapter、WireScope mini から別 origin
+app を開く導線までを含む。handoff は送信元 window・exact origin・exact `targetOrigin` を検証し、
+`MessageChannel` と15秒有効・一回限りの grant を使う。直接アクセスした WireScope は観測権限を持たず、
+fail-closed の待機画面を表示する。
+
+observer へ生成するのは sanitized hello、permissions、world constants と、allowlist 済みの
+hello／建築／world／player frame・payload だけである。`auth.*`、token、pair code、player UUID、
+credential／device 情報、無制限な frame 履歴や VM 内部状態は生成しない。grant、history、observer
+session は `.sb3`／Web Storage へ永続化しない。
+
+WireScope、Scratch／McRemote UI、McRemote extension blocks は `en`、`ja`（「日本語」）、
+`ja-Hira`（「にほんご」）を持つ。`ja-Hira` は独立した正式 locale ID であり、大文字・小文字を
+正規化した判定後も canonical ID `ja-Hira` を保持する。McRemote の学習者向け `ja-Hira` 文言には
+漢字を含めず、固有名詞、接続先、入力値は原表記を維持する。
+
+検証済みは、`@mc-remote/live` 3 test files／15 tests、lint／format、web app／library build、
+scratch-gui 関連 5 suites／41 tests と変更範囲 lint、scratch-vm McRemote 関連 59 subtests／
+172 assertions と webpack build、scratch-gui production build、静的な CSP meta・handoff message・
+永続化 API 非使用・秘密情報非生成、実ブラウザーでの直接アクセス fail-closed と `ja-Hira` 表示である。
+
+残る gate は、実 Scratch→Minecraft 接続から独立 WireScope までの完全 E2E、別 origin 配信で
+CSP／COOP／cache／artifact identity を応答 header と deploy smoke で保証すること、Python
+adapter／local relay、multi-stream／multi-source、長期観察、command 発行である。正式 evidence record は
+実接続 E2E または deploy gate の実施時に作成する。
+
+1. **b3 前に計画した Scratch read-only 版（最初の縦切り実装済み・未配信）**
+   - Scratch を先行参照実装とする。b3 blocker にはせず、b3 release には同梱しなかった。
+   - observer schema、security allowlist、lifecycle fixture、Scratch adapter 契約を schema v1 として固定した。
    - 初版は Scratch の main stream 1件を観察し、別タブ／window で sanitized hello、permissions、world constants、frame／payloadを read-only 表示する。
    - runtime config の信頼済み URL、origin/source 検証、exact `targetOrigin`、`MessageChannel`、一回限り grant を使う。
    - `auth.*`、token、pair code、player UUID、credential 情報を独立 WireScope へ渡さない。

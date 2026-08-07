@@ -437,6 +437,46 @@
 | 2026-08-06-03 | **独立 WireScope は共通の `@mc-remote/live` web app と Scratch／Python 各 source adapter・launcher で構成し、observer schema は初版から `streams[]` を持つ。実装は Scratch read-only 先行→b3 後 Python 追従→複数 stream／長時間観察→複数 source の検索・比較→将来の Scratch command 発行、の順で段階化する**。①共通 UI app を Scratch 版／Python 版へ fork しない。②`1 stream = 1 connection = 1 build state` を維持し、初版は main stream 1件だけを観察するが、target と stream の ID を同一化せず、target 配下の main／substream を schema 破壊なしで追加できる形にする。③**b3 前**＝Scratch を参照実装とし、WireScope UI 全体は b3 blocker にしない。完成・検証できた範囲は b3 へ同梱できる。最低限 observer schema、security allowlist、lifecycle fixture、Scratch adapter 契約を固定し、別タブ／window で sanitized hello・permissions・world constants・frame／payload を read-only 表示する。runtime config の信頼済み URL、origin/source 検証、exact `targetOrigin`、`MessageChannel`、一回限り grant を使い、`auth.*`、token、pair code、player UUID、credential 情報を渡さない。④**b3 後**＝Python は Scratch が固定した schema／fixture／adapter 契約へ追従し、引数なしの `mcremote wirescope` を launcher として、`Minecraft.create()` で成立した main stream 1件を local relay 経由で共通 app へ渡す。Scratch 後続前段と短期間だけ並走して adapter conformance を確認し、長期間の共同設計状態にしない。完成分は b4 へ同梱できるが本決定だけで b4 blocker にしない。⑤**後続前段**＝Scratch object model から main／substream への別途確定する写像に従い、各 stream を独立 connection・独立 build state として観察し、observer session 中の長時間観察を実装する。history、grant、observer session は `.sb3`／`localStorage` へ永続化しない。⑥**後続中段**＝Python の明示 substream API、複数 source／複数 stream の read-only 検索・比較へ進み、source／target ごとの grant を分離する。⑦**後続後段**＝Scratch からの command 発行を将来 roadmap に予約するが、認可、transport、grant、対象 stream、既存 Scratch connection の利用形は着手前に別途批准し、現時点で control capability を具体化しない。pairing、credential 操作、source connection の切断を自動追加しない。`2026-08-02-09` は現行 read-only 実装契約として維持し、永久的な書込み禁止とは読まないが、本決定も同決定を今すぐ改訂しない | 確定（実装ロードマップと adapter／observer schema 境界。現時点は設計確定のみで、実装・unit・integration・live は未着手。搬送元＝`Naohiro2g/scratch-editor` Codex dev session／WireScope 実装ロードマップ設計、`develop@7cd936435520875729372bbbf28dd2f7266adb96`、knowledge 参照 commit `371a7823ac057945571e0f2dff625f29348bd97b`。搬送元 worktree の localhost WS 対応未 commit 差分は本決定へ含めない） | なぜ＝WireScope を b3 完了条件にすると release を不必要に拘束する一方、Scratch picker の検証、main／substream 観察、Python 追従設計には早期の参照実装が効く。Scratch には hello、frame log、display alias、WireScope mini、旧詳細 UI の資産があり先行しやすい。Python 着手を b3 後に置けば二担当の長期並走を避けつつ、完成 UI の後付け解釈ではなく先行固定した schema／fixture／adapter 契約へ追従できる。初版から `streams[]` を持てば単一 main stream から複数 main／substream へ追加的に拡張でき、read-only 観察・複数 stream・command を段階分離すれば security 境界と検証範囲を段ごとに閉じられる。却下＝①WireScope を b3 blocker にする ②Scratch／Python で別 UI app を作る ③両担当を最初から長期間並走させる ④Python が「Scratch 完成」という不明確な状態を待つ ⑤単一 stream 専用 schema を固定する ⑥1 connection 内で main／substream を multiplex する ⑦複数 source・長時間観察・command を初版へ束ねる ⑧将来 grant／command 認可を今推測して固定する ⑨`2026-08-02-09` を永久的な書込み禁止と解釈する | b3 前＝scratch-editor／`@mc-remote/live`／knowledge、別 origin 配信時は Stack／配信 artifact・WireScope URL・CSP／COOP・cache・deploy smoke。b3 後＝Python API／CLI／adapter／local relay。後続＝scratch-vm／scratch-gui／Python API／共通 app。既存 connection と command を再利用する限り plugin／Bridge／wire 変更は原則不要だが、WireScope 直接接続・新 method・server control を採る場合は protocol／plugin／Bridge／Stack を別決定で扱う。20-教材は WireScope 教材・Scratch→Python 移行教材を作る段で追従。参照＝`2026-08-02-09`／`2026-07-21-07`／versioning-design §10.11.1 項7・9・13／`scratch-execution-model-design_ja.md`／`python-client-guide_ja.md` |
 | 2026-08-06-04 | **Python catalog cache の root path は、`$MCREMOTE_CACHE_DIR` が設定されていればその値、未設定なら `$XDG_CACHE_HOME/mcremote`、`XDG_CACHE_HOME` も未設定なら `~/.cache/mcremote` の優先順で解決する**（`2026-06-26-03` (c) の `~/.cache/mc-remote/` 表記を改訂）。cache は引き続き PC global・`catalogHash` key・project／environment／接続先横断共有で、projection 出力先、credential store、wire method／schema／hash、package 同梱境界は変更しない。旧 `~/.cache/mc-remote` を読書きする互換分岐や自動移行は設けない | 確定（Python catalog cache の path 契約。実装変更なし。搬送元＝`Naohiro2g/minecraft-remote-api` Codex session、branch `protocol-21.0.0-b3` commit `af2d11d66a16e3085f569241406a703a1c28c348`、knowledge 参照 commit `ede3dcc0eec1e052ff48662cc7905105f684e7da`。同 commit の `mc_remote/catalog.py` と `PUBLISHING.md` は本優先順で整合し、b3 cache tests PASS。正式 live-human evidence は別 release gate blockerとして未取得） | なぜ＝CLI 名 `mcremote`、credential path `~/.config/mcremote`、Python 実装、PUBLISHING がすでに `mcremote` で一致している。tag 直前に実装を `mc-remote` へ移すと既存 cache の migration と二重 cache を発生させる。XDG override を正面に置けば OS／container ごとの cache root 選択を尊重し、`MCREMOTE_CACHE_DIR` は test・operator の明示 override として最優先にできる。却下＝①実装を `~/.cache/mc-remote` へ変更する（既存の実装・文書・credential 命名との一致を崩し移行を増やす）②両 path を無期限に併存させる（読書き先と削除対象が曖昧になり、cache hit／stale の再現性を落とす） | 10-protocol（wire-format-design §7.2・§7.2.1）／12-python-client（mc-constants-design、`mc_remote/catalog.py`、PUBLISHING、利用者の cache 配置）／`2026-06-26-03` (c)（path 表記のみ改訂） |
 
+### `2026-08-06-03` 実装到達点追記（2026-08-07）
+
+`2026-08-06-03` の設計時点の状態と却下案は上の行に保持する。その後、`Naohiro2g/scratch-editor`
+`develop@f7cea1177670f1ab3988b1b96a08f9f74736aab9` と未 commit worktree で、Scratch read-only
+参照実装の最初の縦切りまで到達した（搬送時 knowledge 参照 commit
+`7476a8cbf29d08663b075f5ce3517a03a142bbca`）。到達点は次のとおり。
+
+- 共通 `@mc-remote/live` app と observer contract を実装した。contract は
+  `schema=mcremote.observer`、`schema_version=1` とし、初期 Scratch main stream 1件でも
+  `streams[]` を使う。target と stream は別 ID のまま保持する。
+- Scratch adapter は generation-side allowlist で snapshot と frame payload を生成する。
+  `hello` と建築／world／player の観測可能 method だけを対象とし、`auth.*`、token、pair code、
+  player UUID、credential／device 情報、無制限な VM 内部状態や frame 履歴を生成しない。
+- Scratch から別 origin の WireScope へは、送信元 window と exact origin の検証、exact
+  `targetOrigin`、`MessageChannel`、15秒有効・一回限りの observation grant で接続する。grant を
+  URL や Web Storage へ置かない。直接アクセスした WireScope は fail closed で待機し、接続中の
+  Scratch の WireScope mini から開いた場合だけ観測 channel を得る。
+- WireScope、Scratch／McRemote UI、McRemote extension blocks に `en`、`ja`（表示名「日本語」）、
+  `ja-Hira`（表示名「にほんご」）を用意した。`ja-Hira` は独立した正式 locale とし、locale 判定時に
+  大文字・小文字を正規化しても canonical ID `ja-Hira` を返す。McRemote の学習者向け
+  `ja-Hira` 文言には漢字を含めず、固有名詞、接続先、入力値は原表記を維持する。
+
+検証は `@mc-remote/live` 3 test files／15 tests、ESLint、Prettier、web app／library build、
+scratch-gui 関連 5 suites／41 tests と変更範囲 lint、scratch-vm McRemote 関連 59 subtests／
+172 assertions と webpack build、scratch-gui production build が PASS。CSP meta、handoff message、
+永続化 API 非使用、秘密情報非生成を静的確認し、実ブラウザーで直接アクセス時の fail-closed 待機、
+Scratch 本体・McRemote blocks・WireScope mini・独立 WireScope の `ja-Hira` 表示を確認した。
+
+未検証／未実装は、実 Scratch→Minecraft 接続から独立 WireScope までの完全 E2E、別 origin 公開配信の
+CSP／COOP／cache／artifact identity を応答 header で保証する deploy gate、Python adapter／local relay、
+multi-source、長期履歴、command 発行である。正式 evidence record は実接続 E2E または deploy gate を
+実施した段で作成する。Python はこの schema v1 と Scratch lifecycle fixture を入力に追従し、transport
+の具体方式は別途確定する。現時点で McRemote wire protocol、Bridge、plugin は変更しない。
+
+この追記でも、WireScope を Scratch 内だけへ埋め込む案、WireScope から Bridge／Minecraft へ直接接続する案、
+token／pair code を URL・`postMessage`・Web Storage で渡す案、unrestricted な frame 履歴や VM 内部状態を
+渡す案、初期版へ command・multi-source・長期履歴を束ねる案、`ja` だけを用意して `ja-Hira` を同じ表示として
+扱う案は採らない。共通 observer contract を Scratch 固有 UI から分離して Python 追従を可能にし、認証・操作
+権限を渡さない read-only 面と、Scratch 標準の「日本語」／「にほんご」の区別を一貫して維持するためである。
+
 ## 2026-08-07
 
 | ID | 決定 | 状態 | なぜ / 却下案 | 影響 |
