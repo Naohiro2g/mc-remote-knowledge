@@ -202,16 +202,21 @@ Jupyter は一度読み込んだ `mc_constants` を**記憶（キャッシュ）
 > 非対話環境（CI・batch）では `pair=False` を明示し、pairing が必要なら即座にエラーを受け取ります。
 > **TTY による自動判定は行いません**（Jupyter や IDE は TTY でなくても対話環境のため）。
 >
-> 本節のうち失効しているのは次の3点です。
+> 本節のうち失効しているのは次の4点です。
 >
 > 1. `player_token` は `2026-08-02-01` で **long-lived credential**（`mcrl_`）へ改名されました。
 > 2. 「hash-only 永続 store、last-used、device 別 list / revoke が完成してから既定にする」は
 >    条件を3つしか挙げていません。正本は versioning-design §10.11.2 の6条件で、開放条件は
 >    `2026-08-02-03` が持ちます。**現時点で gate は閉じており、Python の既定は `session` のままです。**
 > 3. 「`Minecraft.create()` を非対話にする」は `2026-08-02-06` で改訂され、対話が既定になりました。
+> 4. `2026-08-07-01` により b3 の横断スコープは閉じ、credential-lifecycle slice は実利用での
+>    long-lived 需要が確認されるまで後続へ送りました。再開順序は list／revoke／logout、
+>    checkpoint＋doctor、secret-safe live runner、snapshot rollback transaction、reset／災害復旧です。
+>    正本は `00-hub/authentication-roadmap_ja.md` です。
 >
 > 将来 CLI が実装された場合も、通常教材の前提ではなく補助導線（事前設定・CI への credential 供給・
-> 認証障害の復旧・credential 一覧 / logout / revoke）に位置づけます。
+> 認証障害の復旧・credential 一覧 / logout / revoke）に位置づけます。b4 の利用者向け機能は
+> この slice の完了を待ちません。
 
 Pythonの建築コードとログイン操作を分ける。installed CLIの正面名は`mcremote`とし、公式betaへ初めて接続する例は次の形にする。
 

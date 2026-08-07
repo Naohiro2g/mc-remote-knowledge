@@ -350,3 +350,17 @@ Stack doctor は次を満たす。
 #### 9.9.3 公開 gate
 
 実装の検証項目と、公開導線を開く gate の開放条件は `2026-08-02-03`（DECISIONS 未確定節）が持つ。Stack 側の world restore と recovery archive import が credential を書き戻さない deterministic write-set 試験は実施済み。credential checkpoint は同条件 (6) の doctor 観測契約を具体化するが、**契約確定だけでは gate を開かない**。`RevocationAuthority` 本体、二 backend profile、checkpoint の両 repo test、runtime UID / GID の再現可能性、plugin live test、live restore 後の authority 継続が正式証跡として揃うまで gate は閉じたままとする。
+
+### 9.10 b3後の停止点と再開順序（`2026-08-07-01`）
+
+b3 の横断スコープは credential lifecycle の完了を待たずに閉じる。§9 の contract、実装済み部分、unit／live evidence は破棄せず後続 slice の入力にするが、long-lived の一般公開、Python 既定化、Stack 一般 profile への露出は行わない。
+
+ケータリング実践で session の期限切れ、server 再起動、複数日にまたがる利用に伴う再 pairing の負荷を観測し、長期 credential の実需要が確認された後に再開を横断決定する。再開後は次の順序を守る。
+
+1. `auth.listCredentials`／`auth.revoke`／`auth.logout` の plugin・client／CLI・conformance・live evidence を正式な管理面として閉じる。
+2. §9.9 の checkpoint と Stack doctor を共通 fixture、deterministic test、実 profile で接続する。
+3. 秘密を公開 artifact／logへ出さない live runner を固定する。
+4. snapshot rollback、authority 継続、backup 非包含、失敗時 rollback を一つの transaction として閉じる。
+5. 明示 reset、途中失敗からの再試行、authority 喪失時の新 domain＋全失効＋再 pairingを含む災害復旧を閉じる。
+
+段階の途中で公開 gate を開かない。b3完了とlong-lived公開可否を同一判定へ戻さず、最終的な開放条件は引き続き §9.9.3 と `2026-08-02-03` が持つ。観察と再開判断の正本は `00-hub/authentication-roadmap_ja.md`。

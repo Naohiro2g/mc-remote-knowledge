@@ -6,16 +6,16 @@
 
 ## 1. 現在地
 
-現在は **R2 完了・R3 入口**。直近の同期 release 列は b3 とする。
+現在は **R2 完了・R3 入口**。b3 は `2026-08-07-01` により横断スコープ完了・release済みとして凍結し、次の開発列を b4 とする。b3の正式release記録は `00-hub/release-gate-notes_ja.md` と `14-evidence/records/2026-08-07-scratch-b3-release-gate_ja.md` が持つ。
 
-b3 の確定範囲は次の二つだけとする。
+b3 の確定範囲は次の二つだけだった。
 
 1. GitHub Pages の接続無効 showcase profile
 2. UI スライス（Settings 接続先、パレット状態表示、Color Mode、お知らせ overlay）
 
-独立 WireScope は `2026-08-06-03` により b3 の完了条件へ追加しない。Scratch 先行の
-read-only 実装が完成・検証できた場合は b3 へ任意同梱できるが、未完成を理由に b3 を止めない。
-一方、同梱するコードは通常の build・lint・security・regression gate を免れない。
+独立 WireScope は `2026-08-06-03` により b3 の完了条件へ追加しない方針だった。b3 releaseには
+同梱せず、b3後の後続として扱う。将来のreleaseへ同梱するコードは通常の
+build・lint・security・regression gate を免れない。
 
 旧 `.sb3` の load / save 互換は、shadow block を top-level にしない修正
 `5fb564d45b` と VM state snapshot integration test で解決済みのため b3 に含めない。
@@ -23,7 +23,7 @@ read-only 実装が完成・検証できた場合は b3 へ任意同梱できる
 `2026-07-08-01` の層分離と serialization regression は維持する。
 `2026-07-10-01` は b2 から b3 へ送った当時の release gate 履歴として読む。
 
-## 2. b3 scope
+## 2. b3 scope（release済み・凍結）
 
 ### 2.1 Showcase profile
 

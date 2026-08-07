@@ -411,11 +411,15 @@ b2（package `2100.0.0b2` / protocol 21.0.0 積み上げ・凍結前）のスコ
 
 ### 10.11.2 b3を膨らませず、PoPをrelease gateから外す
 
-b3の責務は§10.11.1項14のcatalog一式と項15のScratch `.sb3` save/load互換に維持する。credential lifecycle、DoS guard、PoPをb3へ混ぜない。
+b3のprotocol／Python側責務は§10.11.1項14のcatalog一式とする。Scratch componentの現行b3責務は`2026-07-27-01`により`13-scratch-client/scratch-roadmap_ja.md` §2.3へ改訂済みで、§10.11.1項15のScratch `.sb3` save/load互換は当初計画の履歴として残すが、完了後の残gateへ戻さない。credential lifecycle、DoS guard、PoPをb3へ混ぜない。
 
-b3後の最優先は、公開betaを安全に運用するためのavailability sliceである。認証前connection / frame / timeout / pairing rateと、認証後session / inflight / queue / tick workload / backpressureを別々に実装・検証し、Cockpit、Paper同梱spark / spark API、McRemote metricで観測する。正規の大量建築やTNTを禁止せず、budget、tick分割、fairness、cancelでbounded degradationと回復を確認する。
+b3後の独立した後続候補として、公開betaを安全に運用するためのavailability sliceを維持する。認証前connection / frame / timeout / pairing rateと、認証後session / inflight / queue / tick workload / backpressureを別々に実装・検証し、Cockpit、Paper同梱spark / spark API、McRemote metricで観測する。正規の大量建築やTNTを禁止せず、budget、tick分割、fairness、cancelでbounded degradationと回復を確認する。現在の優先順は`2026-08-07-01`どおりb4利用者機能とケータリング観察を先に置き、本sliceをb3残件やlong-lived公開gateと同一化しない。
 
 長期credential（`2026-08-02-01` で `player_token` から `token_type: "long_lived"` / prefix `mcrl_` へ改名）の公開導線は、hash-only永続store、device label、last-used、list / revoke、world rollbackからの分離、safe restoreが揃うsliceまで待つ。このうち **wire と server lifecycle の contract は `2026-08-02-01` で確定済み**＝永続状態を `CredentialStore` snapshot と `RevocationAuthority` へ分け、revoke の線形化点を authority の durable commit に置き、plugin が保証する範囲（domain 整合・authority overlay・revoke 線形化・fail closed）と deployment が保証する範囲（authority を保護対象 rollback の write set から外すこと）を層として分けた。正本は `11-plugin/platform-design_ja.md` §9。**gate 自体はここで維持する**＝Python の既定 credential を long-lived へ切り替えない。開放条件（plugin 実装と実測、stack の profile / mount topology / backup 非包含 / doctor / live restore）は `2026-08-02-03` が持つ。**この一文は `2026-08-02-06` で改訂**＝旧文は「Pythonの明示CLI loginと非対話`Minecraft.create()`はこのlifecycleへ含める」だったが、Python の正面入口は引数なしの `Minecraft.create()`（対話 pairing を含む）とし、CLI は未実装のまま補助導線へ降ろした。**gate 自体は変更しない**＝Python の既定 credential は `session` のままで、`long_lived` を既定にしない。将来 CLI を実装して公開する場合も、gate が閉じている間の既定は `session` とする。Scratchは引き続きsession tokenのみを使う。
+
+**【2026-08-07 区切り・DECISIONS `2026-08-07-01`】b3 の横断スコープは完了として閉じる。** credential lifecycle、checkpoint、rollback resistance、reset／災害復旧は本節冒頭どおり b3 の責務ではなく、それらの未完了を b3 の残件へ戻さない。一方、この区切りは long-lived の公開承認ではない。公開 gate、既定 `session`、Scratch の session-only、`2026-08-02-03` の開放条件をすべて維持する。
+
+後続は b4 の利用者向け機能を先行し、ケータリング実践から再構築時間、pairing 負荷、現場の失敗点を集める。実利用で再 pairing が継続利用を実質的に妨げ、長期 credential の需要が確認された後に、人間の横断決定で credential-lifecycle slice を再開する。再開後の順序は、(1) 正式 list／revoke／logout API、(2) checkpoint＋doctor、(3) secret-safe live runner、(4) snapshot rollback transaction、(5) reset／災害復旧とする。既存 contract・実装・evidence は入力として保持するが、前段だけの完了で公開 gate を部分開放しない。観察項目と段階の正本は `00-hub/authentication-roadmap_ja.md`。
 
 接続時PoPはb4 / rc / public betaの必須要件にしない。token文字列だけを別端末で再利用する攻撃へのhardeningとして、token漏洩実績、長期credentialの普及、高価値world等のtriggerが立った時に再評価する。全command署名、独自secure channel、native TLS、mTLS、WebAuthnも現在のbeta gateへ含めない。採用を決めるまでexact algorithm、公開鍵encoding、canonical signature input、challenge wire shapeを批准しない。
 

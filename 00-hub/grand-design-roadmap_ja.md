@@ -34,7 +34,8 @@
 ## 4. 現在の横断優先
 
 1. public knowledge / stack / backstage の正本境界を運用で定着させる。
-2. R3 の利用者体験と公開可能な release gate を現行 contract へ合わせる。
-3. b4 scope freeze 前に main stream / substream と Scratch object の写像を確定する（`2026-07-21-07`）。
+2. b3 の横断スコープを閉じ、b4 へ送った利用者向け機能を進める（`2026-08-07-01`）。
+3. ケータリング実践から再構築時間、pairing 負荷、現場の失敗点を集める。long-lived credential の公開 gate は閉じたまま維持し、実需要の確認後に credential-lifecycle slice を再開する。
+4. b4 scope freeze 前に main stream / substream と Scratch object の写像を確定する（`2026-07-21-07`）。
 
 個別 repo の「次の一手」は保存せず、その repo の NOTES と contract から都度生成します。
