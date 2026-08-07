@@ -1,0 +1,36 @@
+{
+  "schema": "mc-remote-evidence-redactions-v1",
+  "handoff_id": "wirescope-live-human-20260808",
+  "redactions": [
+    {
+      "placeholder": "[LOCAL_ENVIRONMENT]",
+      "meaning": "private host, port, route, and local browser connection details",
+      "reason": "private infrastructure identity"
+    },
+    {
+      "placeholder": "[LOCAL_PATH_REDACTED]",
+      "meaning": "workspace, handoff-material, or raw-capture absolute path",
+      "reason": "local filesystem identity"
+    }
+  ],
+  "removed": [
+    "pairing code and authentication token",
+    "player UUID",
+    "private host, port, route, and connection information",
+    "credential and device information",
+    "filesystem absolute local paths",
+    "raw browser captures and transcript"
+  ],
+  "retained": [
+    "public source repository and commit",
+    "observer schema name and version",
+    "protocol and Minecraft version",
+    "generalized component path",
+    "PASS and ACCEPTED observations",
+    "unverified boundary"
+  ],
+  "raw_material": {
+    "included": false,
+    "location": "source-side local storage only"
+  }
+}

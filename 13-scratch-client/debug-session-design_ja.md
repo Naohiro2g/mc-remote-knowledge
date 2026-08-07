@@ -181,3 +181,21 @@ WS1（グランドプラン / AI 活用方針）
 - **実行は all-or-nothing 維持**（setBlocks で1ブロックでもはみ出したら丸ごと実行しない）。partial（はみ出し分だけ拒否）にはしない＝多人数・初学者・隣接箱庭の3条件下では「中途半端な書き込みが隣の境界に残らない安全」が「壁が見える分かりやすさ」より重い。
 - **分かりやすさは実行でなくエラーで実現**：実行は全部止め、error の `data` で「許可範囲 `bounds` と はみ出し座標 `violating`」を返し、ライブ画面ではみ出した面を可視化＝partial の教育的メリット（壁が見える）を world を汚さず回収。共同境界は all-or-nothing（安全）、個人箱庭内では partial 的手触りを将来探る余地。
 - 教育原則「なぜそうなったかを言語化できること」（[ai-learning](../20-教材/ai-learning-design_ja.md) §1）に直結＝all-or-nothing＋範囲返却は理由を明示、partial は world を見て推測させる。エラー切り分け教育の素材。
+
+### 初期 handshake と現在 build state の分離（2026-08-08）
+
+`mcremote.observer` schema v1 の `streams[].hello` は、接続時に成立した handshake の記録である。
+`hello.world`／`hello.origin` は初期値として保持し、同じ stream で後から観測した
+`build.setWorld`／`build.setOrigin` によって上書きしない。frame は起きた通信を記録する層、`hello` は
+接続開始時の契約を記録する層であり、可変状態の convenience view をどちらかへ偽装しない。
+
+現在の `world`／`origin` は次の observer schema slice で `current_build_state` として扱い、更新 event、
+lifecycle、fixture、Scratch／Python adapter conformance と一緒に固定する。schema v1 へ field を無断追加する案、
+`hello` を現在値で上書きする案、現在値のためだけに25msごとに Minecraft を polling する案は採らない。
+初期 handshake と可変 build state を分けることで、Scratch 固有 runtime の更新頻度を共通 observer contractへ
+持ち込まず、後続 Python adapter も同じ意味論で実装できる。
+
+Scratch 初期版の狭幅 UI とこの schema v1 境界は
+[Scratch roadmap](scratch-roadmap_ja.md) §3 および
+[2026-08-08 live-human record](../14-evidence/records/2026-08-08-wirescope-initial-live-human_ja.md)
+の範囲で検収済みである。

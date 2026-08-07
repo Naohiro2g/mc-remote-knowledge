@@ -227,6 +227,10 @@ long-lived credentialの公開gateは閉じています。Pythonの既定を `lo
 - 初版は `Minecraft.create()` で成立した main connection 1件を `kind=main` として投影します。
   `1 stream = 1 connection = 1 build state` を維持し、将来の明示 substream を schema 破壊なしで
   `streams[]` へ追加できる形にします。
+- `streams[].hello` は初期 handshake の記録です。`hello.world`／`hello.origin` を後続の
+  `build.setWorld`／`build.setOrigin` による現在値で上書きしません。現在の可変 build state は
+  schema v1へ未宣言 fieldとして追加せず、次の schema sliceで `current_build_state` と lifecycle／fixtureを
+  共に固定してから追従します。現在値を得るためだけの25ms pollingも行いません。
 - adapter は Scratch lifecycle fixture と schema validator に対する conformance を満たし、
   generation-side allowlist で hello、permissions、world constants と許可された建築／world／player
   frame・payloadだけを生成します。任意の Python object、無制限な履歴、内部 transport 状態を

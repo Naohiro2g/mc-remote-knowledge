@@ -231,6 +231,29 @@ CSP／COOP／cache／artifact identity を応答 header と deploy smoke で保�
 adapter／local relay、multi-stream／multi-source、長期観察、command 発行である。正式 evidence record は
 実接続 E2E または deploy gate の実施時に作成する。
 
+##### 初期版の live-human 検収（2026-08-08）
+
+Scratch 初期版は `Naohiro2g/scratch-editor`
+`develop@1cf1f02c6a6519b2edf3514a47481ad36d44a363` で commit・push 済みとなり、schema v1 と
+狭幅 read-only UI を初期版の合格点として受理した。protocol `21.0.0`／Minecraft `1.21.11` の
+local environment を使う live-human E2E で、Scratch→Bridge→Minecraft→独立 WireScope の
+`hello` と `chat.post` の request／response、同一 main stream の継続更新を確認した。Minecraft、
+Scratch、WireScope を横並びにできる狭幅2 column UI と `ja-Hira` 表示も人間確認済みである。
+
+schema v1 の `streams[].hello` は初期 handshake の記録であり、そこにある `world`／`origin` は
+接続時の値として保持する。後続の `build.setWorld`／`build.setOrigin` を受けても `hello` を現在値で
+上書きしない。現在の可変 build state は schema v1 の未宣言 field として追加せず、次の schema slice で
+`current_build_state` と lifecycle／fixtureを共に定義する。現在値を得るためだけに Minecraft を25msごとに
+pollingする方式も採らない。この分離により、Scratch／Python adapter は同じ handshake record と可変状態の
+境界へ追従できる。
+
+これにより、上記2026-08-07到達点の「完全 E2E」gapは、初期 main stream の `hello`／`chat.post` と
+継続 snapshot の範囲で閉じた。残るのは公開配信の CSP／COOP／cache／artifact identity deploy gate、
+Python adapter／local relay、実際の複数 connection を使う multi-stream E2E、現在 build state の次 schema
+slice である。正式根拠は
+[2026-08-08 WireScope initial live-human record](../14-evidence/records/2026-08-08-wirescope-initial-live-human_ja.md)
+を参照する。
+
 1. **b3 前に計画した Scratch read-only 版（最初の縦切り実装済み・未配信）**
    - Scratch を先行参照実装とする。b3 blocker にはせず、b3 release には同梱しなかった。
    - observer schema、security allowlist、lifecycle fixture、Scratch adapter 契約を schema v1 として固定した。
