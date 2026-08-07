@@ -1,0 +1,35 @@
+{
+  "schema": "mc-remote-evidence-redactions-v1",
+  "handoff_id": "2026-08-07-scratch-b3-3f1a10a",
+  "redactions": [
+    {
+      "placeholder": "[redacted]",
+      "meaning": "authentication token observed in frame logs",
+      "reason": "credential material"
+    },
+    {
+      "placeholder": "private Dev route",
+      "meaning": "private host, route, port, and connection identity",
+      "reason": "private infrastructure identity"
+    }
+  ],
+  "removed_or_not_collected": [
+    "pairing code",
+    "authentication token",
+    "pairing ID",
+    "private host, port, and connection information",
+    "player UUID",
+    "user-provided raw transcript"
+  ],
+  "retained": [
+    "public component versions and commits",
+    "deployed JAR SHA-256",
+    "protocol, Minecraft, and Paper versions",
+    "candidate SHA and CI run ID",
+    "HTTP status matrix, test counts, stable error reasons, and PASS/FAIL observations"
+  ],
+  "raw_material": {
+    "included": false,
+    "location": "not copied into the handoff"
+  }
+}
