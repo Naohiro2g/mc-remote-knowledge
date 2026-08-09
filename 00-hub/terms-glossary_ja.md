@@ -41,6 +41,20 @@
 - deployment の schema / file / API / CLI に無修飾の `catalog` / `registry` を新設しない。CLI は `mcrctl preset list` / `mcrctl preset show` の preset namespace に置く。
 - `サーバー` は computing / server-system 文脈（VPS、家サーバー、Games サーバー、Minecraft サーバー等）に予約し、飲食隠喩の役割に無修飾で使わない。給仕・ホール等の具体語と技術的実体の写像は、判断履歴で実際に使う段で確定する。
 
+## WireScope roles
+
+WireScopeでは、実装processや物理hostでなく、観察データ経路上の責務をsource／station／browserの三役で表す
+（`2026-08-10-02`）。
+
+| 正典表記 | 技術的な意味 | ドリフト注意 |
+| --- | --- | --- |
+| WireScope source | McRemote通信を観察し、generation-side allowlist済みのobserver dataを自targetとして差し出すrole | observer dataのpublishとMinecraft command能力を同一視しない |
+| WireScope station | あるdeploymentでapp artifact提供、source ingress、target／observer session broker、browser endpoint、有限buffer roleを組み合わせる論理runtime境界 | 物理PC、単一process、source transport、artifact registryと同一視しない。正典表記は英字とし、無修飾の「ステーション」を別名として増やさない |
+| WireScope browser | attach capabilityで許可されたtarget／streamをread-only表示するobserver tab／window | sourceやMinecraft control主体へ昇格させない |
+
+roleはdeploymentごとに同じprocessへ融合または複数processへ分離できる。`source`、`station`、`browser`という
+短い表記はWireScope文脈内でのみ上記の意味に使う。
+
 ## セッション・ループ（`claude-ai-guide_ja.md` §7）
 
 | 正典語 | 意味 | 避けたい揺れ |

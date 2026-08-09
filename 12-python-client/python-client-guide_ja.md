@@ -239,8 +239,15 @@ long-lived credentialの公開gateは閉じています。Pythonの既定を `lo
   observer sessionをproject fileやcredential storeへ永続化しません。observerへ認証・操作権限も
   渡しません。
 
-launcher入口は引数なしの `mcremote wirescope`、共通appとの間はadapter／local relayとする計画を
-維持します。ただしlocal relayとbrowser handoffの具体transportは未確定であり、Scratchの
-`MessageChannel` 実装をそのままPythonの契約とはしません。完成分はb4へ同梱できますが、この決定だけで
-b4 blockerにはしません。Python追従でMcRemote wire protocol、Bridge、pluginを変更する必要が生じた
-場合は、既存schema v1への単純追従として進めず別の横断決定へ戻します。
+共通appとの接続は
+[WireScope deployment設計](../15-wirescope/wirescope-deployment-design_ja.md)に従います。local relayは
+Python全体の固定topologyではなく、source・station・browserがbrowser-loopback到達関係にあるprofileの
+候補に限ります。LAN／VPS／cross-device profileでは、Python sourceからstationへの認証済みoutbound
+transportを候補とします。public WireScopeから利用者のlocalhost／LANへ接続する方式や、Scratchの
+`MessageChannel`契約をPythonへ直輸入する方式は採りません（`2026-08-10-02`）。
+
+schema v1 adapterとconformance fixtureは合格済みですが、launcher、source discovery、station-facing
+lifecycle、browser attach、buffer規律、artifact発見は未実装です。引数なしの`mcremote wirescope`は
+将来launcher候補として維持しますが、横断決定前にUDS、named pipe、WebSocket、loopback relayのいずれかを
+正規形として実装しません。Python追従でMcRemote wire protocol、Bridge、pluginの変更が必要になった場合は、
+既存schema v1への単純追従として進めず別の横断決定へ戻します。

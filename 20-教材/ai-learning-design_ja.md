@@ -30,6 +30,11 @@
 生徒を教師が評価しやすくすることではなく、生徒自身が「何を観察し、何を根拠に、できた／まだできていないと
 判断すればよいか」を獲得することに置く。
 
+WireScopeは、この順序を通信観察へ投影する。現在のread-only observerから、見る→選んで見る・比べるへ進み、
+将来「つつく」を加える場合もbrowserへcontrol能力を与えず、独立console sourceを増員する。capabilityと
+学習段階の接続は`2026-08-10-03`、技術正本は
+[WireScope deployment設計](../15-wirescope/wirescope-deployment-design_ja.md)を参照する。
+
 ---
 
 ## 2. 中心原理: なぜAIアシストとこの哲学が噛み合うのか

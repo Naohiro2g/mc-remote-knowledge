@@ -20,6 +20,22 @@ archive は通常依存にしない。例外参照で欠落を見つけたら NO
 
 公開 server package / runbook は `mc-remote-stack`、private ops は `mc-remote-backstage` が正本であり、knowledge に実環境の実値を戻さない（`2026-07-21-03`）。
 
+### 3.1 文書の三層
+
+knowledge の文書を「LLM 向け／人間向け」という読者一軸で分割せず、機能で三層に分ける
+（`2026-08-10-01`）。
+
+- **拘束層**：DECISIONS、固定票 template、terms glossary、各 owner の lock／schema／conformance
+  fixture。機械的な形式と参照可能性を正とし、通読性を主目的にしない。
+- **説明層**：スポークの設計文書と本書。肯定形の骨格から入り、後続で禁止事項・境界・未確定を示す。
+- **投影層**：README、Gemini Notebook 投影、チュートリアル等。読者と作業に合わせた入口であり、
+  独立した正本にしない。
+
+説明層の散文だけへ新しい拘束を置かない。禁止・必須・capability・schema 境界は拘束層へ置き、説明文書は
+完全 ID や schema／fixture を参照する。書き方の正本は
+[説明文書の様式ガイド](document-style-guide_ja.md) とする。既存文書は一括改修せず、触れる機会に骨格と錨を
+漸進的に整える。
+
 ## 4. Surface と同期
 
 Git repository が system of record。claude.ai Project や NotebookLM は snapshot / projection であり、食い違えば repository が正しい。snapshot から確定が生まれた場合は固定搬送票で repository 側へ戻し、ID 採番・stage・commit は live repository を所有する surface が行う。

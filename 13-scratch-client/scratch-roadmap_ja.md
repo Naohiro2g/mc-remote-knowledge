@@ -228,7 +228,8 @@ scratch-gui 関連 5 suites／41 tests と変更範囲 lint、scratch-vm McRemot
 
 残る gate は、実 Scratch→Minecraft 接続から独立 WireScope までの完全 E2E、別 origin 配信で
 CSP／COOP／cache／artifact identity を応答 header と deploy smoke で保証すること、Python
-adapter／local relay、multi-stream／multi-source、長期観察、command 発行である。正式 evidence record は
+station transport／launcher／browser attach、multi-stream／multi-source、長期観察、将来console sourceである。
+正式 evidence record は
 実接続 E2E または deploy gate の実施時に作成する。
 
 ##### 初期版の live-human 検収（2026-08-08）
@@ -249,7 +250,8 @@ pollingする方式も採らない。この分離により、Scratch／Python ad
 
 これにより、上記2026-08-07到達点の「完全 E2E」gapは、初期 main stream の `hello`／`chat.post` と
 継続 snapshot の範囲で閉じた。残るのは公開配信の CSP／COOP／cache／artifact identity deploy gate、
-Python adapter／local relay、実際の複数 connection を使う multi-stream E2E、現在 build state の次 schema
+Pythonのdeployment profile別station transport／launcher／browser attach、実際の複数 connection を使う
+multi-stream E2E、現在 build state の次 schema
 slice である。正式根拠は
 [2026-08-08 WireScope initial live-human record](../14-evidence/records/2026-08-08-wirescope-initial-live-human_ja.md)
 を参照する。
@@ -262,7 +264,9 @@ slice である。正式根拠は
    - `auth.*`、token、pair code、player UUID、credential 情報を独立 WireScope へ渡さない。
 2. **b3 後：Python 追従**
    - Python API 担当は b3 release 後に着手し、Scratch が先行固定した schema、fixture、adapter 契約へ追従する。
-   - 引数なしの `mcremote wirescope` を launcher とし、Python connection を観察する adapter／local relay から共通 app へ同じ schema を渡す。
+   - Python adapter conformanceは合格済み。引数なしの`mcremote wirescope`は将来launcher候補として維持する。
+   - station transportはdeployment profileごとに選び、local relay、UDS、named pipe、network transportのいずれかを全Python環境の正規形にしない。
+   - browser attachとstation-facing lifecycleの横断決定前にlauncher／relay実装へ進まない。
    - 初版は `Minecraft.create()` で成立した main stream 1件を観察する。
    - Scratch 後続前段と短期間だけ並走して両 adapter の conformance を確認し、長期間の共同設計状態にしない。
    - 完成分は b4 へ同梱できるが、本決定だけで b4 blocker にはしない。
@@ -273,14 +277,15 @@ slice である。正式根拠は
 4. **後続中段：Python substream と複数 source**
    - Python の明示 substream API へ追従し、複数 source／複数 stream の read-only 観察、検索、比較を実装する。
    - source／target ごとの grant を分離する。
-5. **後続後段：Scratch command 発行の予約**
-   - command 発行の認可、transport、grant、対象 stream、既存 Scratch connection の利用形は着手前に別途設計・批准する。
-   - 現時点では control capability の具体方式を確定せず、pairing、credential 操作、source connection の切断を自動追加しない。
+5. **後続後段：独立console sourceの予約**
+   - browser observerへcontrol capabilityを付与せず、consoleを実装する場合は自前でpairingする独立sourceとして別streamを持たせる（`2026-08-10-03`）。
+   - commandの認可、transport、target、教材gateは着手前に別途設計・批准する。openerの既存connectionを借りた代理送信を採らない。
 
-`2026-08-02-09` は初期 read-only 実装の現行契約として維持する。永久的な書込み禁止とは読まないが、
-後段の予約は同決定を今すぐ改訂しない。grant は URL へ置かず、display alias と capability を分離し、
-observer feed は生成側 allowlist で redaction する。別 origin 配信では CSP／COOP、cache、artifact identity、
-deploy smoke を配信側の gate に加える。
+`2026-08-02-09` のScratch read-only実装、grant、display alias、generation-side allowlistは維持する。
+共通配置とPython transportの正本は
+[WireScope deployment設計](../15-wirescope/wirescope-deployment-design_ja.md)、長期ビジョンは
+`2026-08-10-03`とする。別origin配信ではCSP／COOP、cache、artifact identity、deploy smokeを配信側の
+gateに加える。
 
 per-sprite 第 4 tab は stream が実在するまで park する。main stream / substream と Scratch object の写像は
 `2026-07-21-07` の b4 scope freeze 前設計 gate で確定する。

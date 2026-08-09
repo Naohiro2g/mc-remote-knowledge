@@ -51,11 +51,24 @@ Python の定数（`mc_constants.py`）は**同梱されず、初回の接続成
 - editor の warning と runtime の error は別のもの
 - projection の actionable warning は補完更新だけが失敗し、接続と建築は継続する（`2026-08-02-06` ⑦）
 
-## 教室runtimeの二つの基準構成
+## deploymentと教室runtimeの基準構成
 
-- **VPS**: 学校と家庭から同じ公開HTTPS/WSS・Minecraftへ継続接続する構成。
-- **ケータリング作戦**: 許可を得て持ち込むUbuntu notebook一台と標準USB Wi-Fi adapterで、Scratch / Bridge / Paper / McRemoteを教室LAN内に提供する`classroom-all-in-one`。
+**ケータリング型**は、preset・order・lock・artifactを使い、準備済みdeploymentを対象hostへ成立させる
+構築方式である。特定PCや教室topologyの名前ではない（`2026-07-25-03`／`2026-07-25-04`）。
 
-ケータリング構成では、生徒端末は専用SSIDへ接続し、固定gateway IPまたはQR codeから開始する。mDNS名はbest effortで、必ず数値IP fallbackを用意する。HTTP+same-origin WSの簡易modeではMcRemote自体は使えるが、camera、microphone、Web Crypto等のsecure-context機能が制限される可能性を案内する。HTTPSを求める場合は端末へのlocal CA導入か、実domain + DNS-01 + local DNSを選ぶ。
+- **公開VPS profile**：学校と家庭から同じ公開HTTPS／WSS／Minecraftへ継続接続する。
+- **`classroom-all-in-one` profile**：Ubuntu notebook、AP、Scratch、Bridge、Paper、McRemote等を一台へ
+  まとめる教室向け参考構成。ケータリング型の一例であり定義そのものではない。
+- **deployment LAN profile**：stationやMinecraftをLAN、VPN、閉域網内で提供する。all-in-one hostである
+  必要はない。
+- **限定公開／OSS operator profile**：利用者が管理するLANまたはHTTPS deploymentとして提供する。
+
+WireScopeを使う場合、browserは対象deploymentのtop-level WireScopeを直接開く。QRはそのtop-level URLを
+示し、公開案内pageからlocal resourceをfetchしない（`2026-08-10-02`）。
+
+`classroom-all-in-one`構成では、生徒端末は専用SSIDへ接続し、固定gateway IPまたはQR codeから開始する。
+mDNS名はbest effortで、必ず数値IP fallbackを用意する。HTTP＋same-origin WSの簡易modeではMcRemote自体は
+使えるが、camera、microphone、Web Crypto等のsecure-context機能が制限される可能性を案内する。HTTPSを
+求める場合は端末へのlocal CA導入か、実domain＋DNS-01＋local DNSを選ぶ。
 
 Minecraft identityを守るため`online-mode=true`を維持し、school Ethernet、USB tether等をInternet upstreamに使う。USB Wi-Fi adapterは製品名だけでなくchipset / VID:PID / Ubuntu 24.04 driver / AP mode / 想定台数 / suspend / 発熱を検証済み機材として固定する。学校network上の無許可APにしない。

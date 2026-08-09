@@ -3,6 +3,12 @@
 > マイクラリモコン設計記録
 > 関連: WS2（Scratch クライアント / wss ブリッジ）、WS3（param_mc_remote / 通信仕様）、WS1（AI 活用方針）
 > 結節点: 本構想は3ワークストリームが1点で交わる結節点。[versioning-design] の通信プロトコル、[platform-design] のセッション基盤、[ai-learning-design](../20-教材/ai-learning-design_ja.md) §7 の AI 組み込み（方向B）の最初の実験場。
+>
+> **現行契約への入口**：本書§1–9はWireScopeへ至った初期構想を含む。共通配置、source／station／browser、
+> capability、LNA、failure semanticsの現行正本は
+> [WireScope deployment設計](../15-wirescope/wirescope-deployment-design_ja.md)と`2026-08-10-02`、
+> 長期のconsole source方針は`2026-08-10-03`を優先する。本書から古いtopologyやbrowserへのcontrol能力を
+> 現行契約として導出しない。
 
 ---
 
@@ -56,6 +62,9 @@ Python だけで考えると、**結果返信はすでに mc_remote 通信に含
 
 ## 4. 別セッションでブラウザに見せる構成
 
+> **現行訂正**：下記は初期構想であり、PythonがScratchのwss Bridgeを転用することは現行契約ではない。
+> source transportはdeployment profileごとに選び、observer stationからBridge／Minecraftへ直接接続しない。
+
 返信先を、**Scratch クライアントと同様のセッション構成**にする。
 
 ```text
@@ -73,6 +82,9 @@ Python 実行
 ---
 
 ## 5. 飛躍: セッションが双方向なら「実行環境」になる
+
+> **現行訂正**：browser observerを双方向control主体へ昇格させない。将来consoleを同居させる場合は、
+> openerの接続を借りず、自前でpairingする独立sourceとして別streamを持たせる（`2026-08-10-03`）。
 
 「情報を見る」だけのつもりが、双方向セッションなら「建築コマンドも送れる」。
 

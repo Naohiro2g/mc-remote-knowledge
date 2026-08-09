@@ -14,6 +14,9 @@
 ## このリポの役割
 
 - 結論もの（設計記録・決定ログ・現行 contract）の唯一の真実の源。
+- 文書は拘束・説明・投影の三層で扱う。説明は肯定形の骨格から始め、新しい禁止・必須・capability・schema
+  境界を散文だけへ置かず DECISIONS、glossary、schema、fixture 等の拘束層へ錨を持たせる
+  （`2026-08-10-01`、正本は `00-hub/document-style-guide_ja.md`）。
 - 会話の生ログや秘密の実値を置かない。
 - private archive / backstage を通常参照せず、公開 contributor にアクセスを要求しない。
 - archive を例外参照したら `00-hub/NOTES_ja.md` に carry-forward 欠落として記録し、このリポだけで判断できる状態にして閉じる（`2026-07-21-01`）。
@@ -33,6 +36,7 @@
 12-python-client/  Python client の設計
 13-scratch-client/ Scratch client の設計
 14-evidence/       公開可能な evidence policy / sanitized records
+15-wirescope/      共通 observer UI・station・deployment 配置・attach 境界
 20-教材/           学習支援・教材設計
 30-広告宣伝/        公開戦略
 ```

@@ -9,6 +9,7 @@ public 正本世代の入口です。ここに載る path は、このリポ内�
 | `00-hub/DECISIONS_ja.md` | 公開可能で現行判断に必要な横断決定。旧世代から carry した行は同じ ID・同じ本文 |
 | `00-hub/NOTES_ja.md` | 未確定の芽と archive carry-forward 欠落 |
 | `00-hub/knowledge-repo-design_ja.md` | public SSOT の構造・trust boundary・運用理由 |
+| `00-hub/document-style-guide_ja.md` | 拘束／説明／投影の三層と、骨格→柵→拘束層への錨という説明文書の様式 |
 | `00-hub/grand-design-roadmap_ja.md` | 低 drift な粗い相マーカーと横断優先 |
 | `00-hub/authentication-roadmap_ja.md` | b3後の認証現在地、long-lived公開gate、ケータリング観察、credential-lifecycle再開順序 |
 | `00-hub/dev-repo-protocol_ja.md` | 4 dev リポの bootstrap、runtime marker、固定票三種 |
@@ -37,12 +38,19 @@ public 正本世代の入口です。ここに載る path は、このリポ内�
 | `13-scratch-client/scratch-roadmap_ja.md` | Scratch の現行 release scope、検収基線、R3 作業束 |
 | `13-scratch-client/scratch-plan_ja.md` | **原点文書（完全保存・改訂しない）**。再始動の起点。現行 contract の正本ではなく、食い違う場合は 10-protocol が優先（`2026-07-26-01`） |
 
+## WireScope
+
+| Path | 役割 |
+| --- | --- |
+| `15-wirescope/README_ja.md` | source／station／browser三役モデルから入る人間向け入口 |
+| `15-wirescope/wirescope-deployment-design_ja.md` | station、deployment profile、capability、LNA、failure semantics、長期ビジョンの説明正本 |
+
 ## 耐久層
 
 | Path | 役割 |
 | --- | --- |
 | `20-教材/ai-learning-design_ja.md` | 学習支援の哲学、AI 委譲境界、Scratch / Python の並列ビークル論 |
-| `20-教材/environment-guide_ja.md` | 教材・OSS の想定実行環境、uv 統一、教室 runtime の二つの基準構成 |
+| `20-教材/environment-guide_ja.md` | 教材・OSS の想定実行環境、uv 統一、deployment profile とケータリング型の区別 |
 | `20-教材/jupyter-notes_ja.md` | デモ .ipynb の autoreload / CWD / 実行順序依存の注意点 |
 | `token-hygiene-guide_ja.md` | 情報を失わず context token を減らす運用 |
 
