@@ -227,8 +227,8 @@ scratch-gui 関連 5 suites／41 tests と変更範囲 lint、scratch-vm McRemot
 永続化 API 非使用・秘密情報非生成、実ブラウザーでの直接アクセス fail-closed と `ja-Hira` 表示である。
 
 残る gate は、実 Scratch→Minecraft 接続から独立 WireScope までの完全 E2E、別 origin 配信で
-CSP／COOP／cache／artifact identity を応答 header と deploy smoke で保証すること、Python
-station transport／launcher／browser attach、multi-stream／multi-source、長期観察、将来console sourceである。
+CSP／COOP／cache／artifact identity を応答 header と deploy smoke で保証すること、Pythonの実artifact配布／
+browser launcher／real-browser attach、multi-stream／multi-source、長期観察、将来console sourceである。
 正式 evidence record は
 実接続 E2E または deploy gate の実施時に作成する。
 
@@ -245,7 +245,8 @@ session protocol v1の初期serialized shapeは
 
 当初搬送時点はScratch `develop@1cf1f02c6a6519b2edf3514a47481ad36d44a363`上の未commit worktreeだった。
 その後、selection window、session fixture、artifact、station attachを
-`agent/wirescope-session-artifact@192d1e3ccd213fb5012b92655e51b779270e15be`へ固定した。
+実装・artifact source `192d1e3ccd213fb5012b92655e51b779270e15be`へ固定し、PR #16のmerge commit
+`27f8906170bec5146714358d7017dbd601504775`としてremote `develop`へ着地した。
 
 ##### Immutable artifact contractの実装具体化（2026-08-11）
 
@@ -258,7 +259,11 @@ manifest双方を外側でpinし、manifest内archive hashとも照合する。r
 正式artifact生成はclean-checkout gateを必須とし、dirty worktreeから作った出力を正式identityとして配布しない。
 当初搬送時点はScratch `develop@1cf1f02c6a6519b2edf3514a47481ad36d44a363`上の未commit worktreeだった。
 generator、CLI、NOTICE、package scripts、protocol version constants、testsを含む固定参照は
-`agent/wirescope-session-artifact@192d1e3ccd213fb5012b92655e51b779270e15be`である。
+`192d1e3ccd213fb5012b92655e51b779270e15be`である。同commitのclean checkoutから生成した
+`wirescope-app.zip`のSHA-256は`947a6d478439ce60199be1b18b3c8d3cebdb46d2c022f8d9933138b23b2a5897`、
+detached `wirescope-app.manifest.json`は
+`4310ae34ec04997dbf136afa463a39de08ef97acc651f6fb70357b272ea1a143`である。同一入力からの2回生成、
+全assetのbyte数／SHA-256照合がPASSした。これは正式配布済みという意味ではない。
 
 ##### Station attach v1 fixtureの固定（2026-08-12）
 
@@ -273,8 +278,13 @@ Scratch browser adapterとPython loopback stationはこのfixtureを共通wire c
 逐次処理する。CR／CRLF、BOM、空line、未終端line、上限超過lineは拒否する。
 
 Scratch側は47 tests、build、Scratch regression 3 testsがPASS。Pythonの機械的conformanceは
-`Naohiro2g/minecraft-remote-api@14a662e173e3805870987691a938292a5de6e456`へ固定した。実loopback HTTP
-server、attach code再発行トリガー、browser起動、共通appとのreal-browser E2Eは未実装／未検証のまま維持する。
+`Naohiro2g/minecraft-remote-api@14a662e173e3805870987691a938292a5de6e456`、実loopback HTTP stationは
+`main@973c7f44211ad0fc2f87e1d119dcdbf04983a52f`へ固定した。実artifact配布、attach code再発行trigger、
+browser起動、共通appとのreal-browser E2Eは未実装／未検証のまま維持する。
+
+Scratch PR branchの既存CIではscratch-gui lint 2件が失敗したが、対象の
+`packages/scratch-gui/test/unit/util/mcremote-wirescope-source.test.js`はPR差分に含まれない。今回の
+session／artifact／station attach sliceの合格根拠には、この無関係な失敗を含めない。
 
 ##### 初期版の live-human 検収（2026-08-08）
 
@@ -294,7 +304,7 @@ pollingする方式も採らない。この分離により、Scratch／Python ad
 
 これにより、上記2026-08-07到達点の「完全 E2E」gapは、初期 main stream の `hello`／`chat.post` と
 継続 snapshot の範囲で閉じた。残るのは公開配信の CSP／COOP／cache／artifact identity deploy gate、
-Pythonのdeployment profile別station transport／launcher／browser attach、実際の複数 connection を使う
+Pythonの実artifact配布／launcher／real-browser attachとdeployment profile別の後続transport、実際の複数 connection を使う
 multi-stream E2E、現在 build state の次 schema
 slice である。正式根拠は
 [2026-08-08 WireScope initial live-human record](../14-evidence/records/2026-08-08-wirescope-initial-live-human_ja.md)

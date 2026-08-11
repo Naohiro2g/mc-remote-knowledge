@@ -66,11 +66,19 @@ station attach v1の機械可読正本は、Scratch参照実装commit
 （`2026-08-12-01`）。Scratch browser adapter、Python loopback HTTP station、将来のStack stationは、
 client別のwire shapeを作らず同じfixtureへconformanceする。
 
+Scratch実装とgeneratorはsource commit `192d1e3ccd213fb5012b92655e51b779270e15be`、remote `develop`への
+着地はmerge commit `27f8906170bec5146714358d7017dbd601504775`である。clean checkoutから生成した
+`wirescope-app.zip`のSHA-256は`947a6d478439ce60199be1b18b3c8d3cebdb46d2c022f8d9933138b23b2a5897`、
+detached manifestは`4310ae34ec04997dbf136afa463a39de08ef97acc651f6fb70357b272ea1a143`である。
+同一入力からの2回生成と全asset照合はPASSしたが、distributionへの同梱・配布gateは未完である。
+
 Python側の機械的conformanceは
 `Naohiro2g/minecraft-remote-api@14a662e173e3805870987691a938292a5de6e456`へ固定した。
 同実装はfixture provenance／SHA、strict codec、error mapping、security header、byte上限、NDJSON framing、
-既存attach capabilityとの整合を検査する。実loopback HTTP server、attach code再発行trigger、browser起動、
-real-browser E2Eの成立を意味しない。
+既存attach capabilityとの整合を検査する。後続のin-process loopback HTTP stationは実装commit
+`d4899f1ed4d139d579174527f6014677d78c4fbb`、merge済みmain
+`973c7f44211ad0fc2f87e1d119dcdbf04983a52f`へ固定した。実artifact配布、attach code再発行trigger、
+browser起動、real-browser E2Eの成立を意味しない。
 
 bootstrap responseはstrict JSONで、次のfieldだけを持つ。
 
@@ -258,9 +266,10 @@ Python lifecycleからsession endへの写像は次である。
 
 ## 9. Python実装起点とStack gate
 
-Pythonのconformance branch `d3c221c27c6af3db89bbc28f9965ea4e01a42353` とcurrent main
-`4a83e81c51aaa252ac5d92cdd5403ff0ab0b86f6` はdivergeしている。observerだけを移植せず、b3 catalog、
-projection、CLI、adapter一式をcurrent mainへ統合し、全test済みの新しい固定SHAを実装起点にする。
+Pythonはobserverだけを部分移植せず、b3 catalog、projection、CLI、adapter、station contract／runtimeを
+`main@973c7f44211ad0fc2f87e1d119dcdbf04983a52f`へ統合した。内部HTTP station、verified artifact loader、
+NDJSON stream、lifecycle cleanupはunit／deterministic段階で合格したが、通常の公開起動はcompatibility setが
+揃うまでWireScopeだけをfail closedにする。
 
 Python wheelへAGPL componentを同梱する前に、distribution-level license expression、license files、component
 notice、対応source導線をPEP 639 metadataと配布物で確定する。projectのlicense原則`2026-08-11-01`は
@@ -280,12 +289,12 @@ ingress、profileを完全なcompatibility setとしてlock・検証する。未
 
 実装は次の順で進める。
 
-1. 共通observer session envelopeとclient core
-2. Scratch adapter選択の状態機械と既存handoff regression
-3. detached app artifact／manifest
-4. Python main統合と新しい固定SHA
-5. Python in-process station、有限queue、attach code
-6. Python fixture／unit／conformance
+1. [done] 共通observer session envelopeとclient core
+2. [done] Scratch adapter選択の状態機械と既存handoff regression
+3. [done] detached app artifact／manifestの生成・再現性確認（distribution配布は項8）
+4. [done] Python main統合と新しい固定SHA
+5. [done] Python in-process station、有限queue、attach code
+6. [done] Python fixture／unit／conformance
 7. 共通appとのreal-browser loopback E2E
 8. 人間批准済みの`2026-08-11-01`に従うlicense／artifact配布実装の確認
 9. Stack後続gateの再判定

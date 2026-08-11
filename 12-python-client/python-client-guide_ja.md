@@ -262,13 +262,17 @@ HTTP stationは同じ参照実装commit `192d1e3ccd213fb5012b92655e51b779270e15b
 bootstrap、attach request、error status／attempt消費、byte上限、security header、NDJSON framingを
 Python側で独自解釈しません。機械的conformanceは
 `Naohiro2g/minecraft-remote-api@14a662e173e3805870987691a938292a5de6e456`へ固定した。targeted tests
-79件、全回帰159件、`uv lock --check`、sdist／wheel build、`git diff --check`がPASSした。これはcodecと
-fixture境界の到達点であり、実loopback HTTP server、attach code再発行trigger、browser起動、real-browser E2Eは
-未実装である。
+79件、全回帰159件、`uv lock --check`、sdist／wheel build、`git diff --check`がPASSした。
 
-schema v1 adapterとconformance fixtureは合格済みですが、current mainとconformance branchはdivergeしています。
-observerだけを移植せず、b3 catalog／projection／CLI／adapter一式をcurrent mainへ統合し、全test済みの新しい
-固定SHAを実装起点とします。引数なしの`mcremote wirescope`はcross-process transport決定まで予約のままです。
+後続の内部runtimeは実装commit `d4899f1ed4d139d579174527f6014677d78c4fbb`、merge済みmain
+`973c7f44211ad0fc2f87e1d119dcdbf04983a52f`へ固定した。`127.0.0.1`のephemeral portだけへbindする
+strict HTTP station、observer worker／NDJSON stream／lifecycle cleanup、detached manifest・archive・全assetを
+検証してmemory上から配信するconsumerを実装し、全回帰165件、sdist／wheel build、`git diff --check`がPASSした。
+wheel `RECORD`によるmanifest外部pinは合成artifactで検証したが、AGPL共通appはpackageへ同梱していない。
+public起動、実artifact配布、automatic browser launch、attach code再発行の外部trigger、real-browser E2Eは未実装である。
+
+schema v1 adapter、b3 catalog／projection／CLI、station contract／runtimeは上記mainへ統合済みである。
+引数なしの`mcremote wirescope`はcross-process transport決定まで予約のままです。
 AGPLの共通appをwheelへ同梱する前にPEP 639 metadata、license files、component notice、対応source導線を配布
 gateで確認します。consumerはdetached manifestとdeterministic ZIPの双方をwheel `RECORD`でpinし、外側の
 manifest hash、archive hash、manifest内archive hashを照合します。dirty checkout由来artifactを正式packageへ
