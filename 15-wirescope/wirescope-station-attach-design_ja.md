@@ -188,8 +188,9 @@ Pythonのconformance branch `d3c221c27c6af3db89bbc28f9965ea4e01a42353` とcurren
 projection、CLI、adapter一式をcurrent mainへ統合し、全test済みの新しい固定SHAを実装起点にする。
 
 Python wheelへAGPL componentを同梱する前に、distribution-level license expression、license files、component
-notice、対応source導線をPEP 639 metadataと配布物で確定する。projectのlicense原則 `2026-08-11-01` の
-批准はartifact配布gateの前提である。
+notice、対応source導線をPEP 639 metadataと配布物で確定する。projectのlicense原則`2026-08-11-01`は
+2026-08-11に人間批准済みである。未完なのは方針の批准でなく、各distributionが同原則を満たすことの実装・
+検証gateである。
 
 初期Python profileは`mc-remote-stack`をruntime dependencyにしない。StackがLAN／public HTTPS stationを
 実装するのは、共通artifact／session／attach contractとPython loopback real-browser E2Eが合格し、source
@@ -211,7 +212,7 @@ ingress、profileを完全なcompatibility setとしてlock・検証する。未
 5. Python in-process station、有限queue、attach code
 6. Python fixture／unit／conformance
 7. 共通appとのreal-browser loopback E2E
-8. `2026-08-11-01`に従うlicense／artifact配布確認
+8. 人間批准済みの`2026-08-11-01`に従うlicense／artifact配布実装の確認
 9. Stack後続gateの再判定
 
 次は今回確定しない。

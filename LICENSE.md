@@ -10,6 +10,7 @@
 プロジェクト所有codeの原則はMITです。ただしScratch Editor、WireScope等、component固有の`LICENSE`または
 artifact manifestが別ライセンスを示す場合は、そのcomponent表示を正とします。異なるライセンスのcomponentを
 含む配布物を一括して「MITのみ」と表示しません。第三者由来のものは原ライセンスを維持します。
+このcomponent境界は横断決定`2026-08-11-01`として2026-08-11に人間批准済みです。
 
 Contribution は、明示的な合意がない限り変更対象と同じライセンス（inbound = outbound）で提供されます。
 
