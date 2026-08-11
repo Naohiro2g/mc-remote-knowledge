@@ -66,6 +66,12 @@ station attach v1の機械可読正本は、Scratch参照実装commit
 （`2026-08-12-01`）。Scratch browser adapter、Python loopback HTTP station、将来のStack stationは、
 client別のwire shapeを作らず同じfixtureへconformanceする。
 
+Python側の機械的conformanceは
+`Naohiro2g/minecraft-remote-api@14a662e173e3805870987691a938292a5de6e456`へ固定した。
+同実装はfixture provenance／SHA、strict codec、error mapping、security header、byte上限、NDJSON framing、
+既存attach capabilityとの整合を検査する。実loopback HTTP server、attach code再発行trigger、browser起動、
+real-browser E2Eの成立を意味しない。
+
 bootstrap responseはstrict JSONで、次のfieldだけを持つ。
 
 ```json

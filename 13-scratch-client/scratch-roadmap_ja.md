@@ -272,8 +272,9 @@ Scratch browser adapterとPython loopback stationはこのfixtureを共通wire c
 作らない。attach codeをURLへ置かず、responseを一括で無制限bufferへ保持せず、strict UTF-8／LFのNDJSONとして
 逐次処理する。CR／CRLF、BOM、空line、未終端line、上限超過lineは拒否する。
 
-Scratch側は47 tests、build、Scratch regression 3 testsがPASS。Python conformance後のPython固定SHA追記、
-attach code再発行トリガー、共通appとのreal-browser E2Eは未確定／未検証のまま維持する。
+Scratch側は47 tests、build、Scratch regression 3 testsがPASS。Pythonの機械的conformanceは
+`Naohiro2g/minecraft-remote-api@14a662e173e3805870987691a938292a5de6e456`へ固定した。実loopback HTTP
+server、attach code再発行トリガー、browser起動、共通appとのreal-browser E2Eは未実装／未検証のまま維持する。
 
 ##### 初期版の live-human 検収（2026-08-08）
 

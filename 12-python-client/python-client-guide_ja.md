@@ -260,7 +260,11 @@ HTTP stationは同じ参照実装commit `192d1e3ccd213fb5012b92655e51b779270e15b
 `mc-remote/live/test/fixtures/station-attach-v1.json`（SHA-256
 `b50ce8e0cb8a6bb06f75d9bdad59b83006c92683bd73ced84a18223dde21fa81`）へconformanceします。
 bootstrap、attach request、error status／attempt消費、byte上限、security header、NDJSON framingを
-Python側で独自解釈しません。Python conformance合格後に実装固定SHAを追記します。
+Python側で独自解釈しません。機械的conformanceは
+`Naohiro2g/minecraft-remote-api@14a662e173e3805870987691a938292a5de6e456`へ固定した。targeted tests
+79件、全回帰159件、`uv lock --check`、sdist／wheel build、`git diff --check`がPASSした。これはcodecと
+fixture境界の到達点であり、実loopback HTTP server、attach code再発行trigger、browser起動、real-browser E2Eは
+未実装である。
 
 schema v1 adapterとconformance fixtureは合格済みですが、current mainとconformance branchはdivergeしています。
 observerだけを移植せず、b3 catalog／projection／CLI／adapter一式をcurrent mainへ統合し、全test済みの新しい
