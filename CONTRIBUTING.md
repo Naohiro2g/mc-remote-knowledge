@@ -14,7 +14,7 @@ Issue と Pull Request を歓迎します。archive や private backstage への
 
 ## ライセンス
 
-Contribution は、明示的な別合意がない限り、変更対象と同じライセンスで提供されます。文書・図・教育資料は CC BY-SA 4.0、独立コード・tool は MIT です。初期運営では CLA / DCO を要求しません。
+Contribution は、明示的な別合意がない限り、変更対象と同じライセンスで提供されます。文書・図・教育資料は CC BY-SA 4.0、プロジェクト所有code・toolは原則MITです。component固有の`LICENSE`／artifact manifestがある場合はその表示を正とします。初期運営では CLA / DCO を要求しません。
 
 ## Security
 

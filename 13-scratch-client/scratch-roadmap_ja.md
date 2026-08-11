@@ -264,9 +264,10 @@ slice である。正式根拠は
    - `auth.*`、token、pair code、player UUID、credential 情報を独立 WireScope へ渡さない。
 2. **b3 後：Python 追従**
    - Python API 担当は b3 release 後に着手し、Scratch が先行固定した schema、fixture、adapter 契約へ追従する。
-   - Python adapter conformanceは合格済み。引数なしの`mcremote wirescope`は将来launcher候補として維持する。
-   - station transportはdeployment profileごとに選び、local relay、UDS、named pipe、network transportのいずれかを全Python環境の正規形にしない。
-   - browser attachとstation-facing lifecycleの横断決定前にlauncher／relay実装へ進まない。
+   - Python adapter conformanceは合格済み。最初のstation実装はbrowser-loopback profileへ限定し、source process内のin-process stationとする（`2026-08-11-03`）。
+   - 共通app、same-origin station attach、observer session envelope、artifact contractの正本は[station attach設計](../15-wirescope/wirescope-station-attach-design_ja.md)とする。
+   - `wirescope=True`は`WireScopeStation.local()`のlow-floor省略形とし、cross-process、LAN、VPSへ意味を拡張しない。引数なし`mcremote wirescope`は予約のまま維持する。
+   - Scratch app側はMessageChannel adapterとstation attach adapterを共通session coreから分離し、選択を状態機械とtestで固定する。
    - 初版は `Minecraft.create()` で成立した main stream 1件を観察する。
    - Scratch 後続前段と短期間だけ並走して両 adapter の conformance を確認し、長期間の共同設計状態にしない。
    - 完成分は b4 へ同梱できるが、本決定だけで b4 blocker にはしない。
@@ -283,9 +284,10 @@ slice である。正式根拠は
 
 `2026-08-02-09` のScratch read-only実装、grant、display alias、generation-side allowlistは維持する。
 共通配置とPython transportの正本は
-[WireScope deployment設計](../15-wirescope/wirescope-deployment-design_ja.md)、長期ビジョンは
-`2026-08-10-03`とする。別origin配信ではCSP／COOP、cache、artifact identity、deploy smokeを配信側の
-gateに加える。
+[WireScope deployment設計](../15-wirescope/wirescope-deployment-design_ja.md)、共通app attach／artifactとPython
+初期profileは[station attach設計](../15-wirescope/wirescope-station-attach-design_ja.md)、長期ビジョンは
+`2026-08-10-03`とする。別origin配信ではCSP／COOP、cache、artifact identity、deploy smokeを配信側のgateに
+加える。
 
 per-sprite 第 4 tab は stream が実在するまで park する。main stream / substream と Scratch object の写像は
 `2026-07-21-07` の b4 scope freeze 前設計 gate で確定する。

@@ -7,6 +7,8 @@
 > **現行契約への入口**：本書§1–9はWireScopeへ至った初期構想を含む。共通配置、source／station／browser、
 > capability、LNA、failure semanticsの現行正本は
 > [WireScope deployment設計](../15-wirescope/wirescope-deployment-design_ja.md)と`2026-08-10-02`、
+> 共通appのadapter、observer session、artifact、Python browser-loopback profileは
+> [station attach設計](../15-wirescope/wirescope-station-attach-design_ja.md)と`2026-08-11-02`／`2026-08-11-03`、
 > 長期のconsole source方針は`2026-08-10-03`を優先する。本書から古いtopologyやbrowserへのcontrol能力を
 > 現行契約として導出しない。
 

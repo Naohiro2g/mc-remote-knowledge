@@ -48,7 +48,9 @@ projection は読者、テーマ、現在地、作業に合わせて生成する
 - private backstage: provider / account / cost / inventory / internal incident 等の運営情報。ただし秘密実値は置かない
 - Git 外: token、password、private key、秘密を含む raw log / capture / dump
 
-不明な権利物は fail closed で seed へ入れない。文書は CC BY-SA 4.0、独立 tool / code は MIT（`2026-07-21-02`）。
+不明な権利物はfail closedでseedへ入れない。文書はCC BY-SA 4.0、プロジェクト所有tool／codeは原則MITとし、
+component固有の`LICENSE`／artifact manifestがある場合はその表示を正とする（`2026-07-21-02`、
+`2026-08-11-01`）。
 
 ## 6. Contribution gate
 

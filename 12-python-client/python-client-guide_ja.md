@@ -239,15 +239,26 @@ long-lived credentialの公開gateは閉じています。Pythonの既定を `lo
   observer sessionをproject fileやcredential storeへ永続化しません。observerへ認証・操作権限も
   渡しません。
 
-共通appとの接続は
-[WireScope deployment設計](../15-wirescope/wirescope-deployment-design_ja.md)に従います。local relayは
-Python全体の固定topologyではなく、source・station・browserがbrowser-loopback到達関係にあるprofileの
-候補に限ります。LAN／VPS／cross-device profileでは、Python sourceからstationへの認証済みoutbound
-transportを候補とします。public WireScopeから利用者のlocalhost／LANへ接続する方式や、Scratchの
-`MessageChannel`契約をPythonへ直輸入する方式は採りません（`2026-08-10-02`）。
+共通appとの接続は[WireScope deployment設計](../15-wirescope/wirescope-deployment-design_ja.md)と
+[station attach設計](../15-wirescope/wirescope-station-attach-design_ja.md)に従います（`2026-08-10-02`、
+`2026-08-11-02`／`2026-08-11-03`）。最初に実装するのはsource／station／browserが同じnetwork namespaceに
+あるbrowser-loopback profileだけです。station roleをsource processへ融合し、`127.0.0.1`のephemeral portで
+共通appを提供します。UDS、named pipe、cross-process relay、LAN、VPSを初期sliceへ含めません。
 
-schema v1 adapterとconformance fixtureは合格済みですが、launcher、source discovery、station-facing
-lifecycle、browser attach、buffer規律、artifact発見は未実装です。引数なしの`mcremote wirescope`は
-将来launcher候補として維持しますが、横断決定前にUDS、named pipe、WebSocket、loopback relayのいずれかを
-正規形として実装しません。Python追従でMcRemote wire protocol、Bridge、pluginの変更が必要になった場合は、
-既存schema v1への単純追従として進めず別の横断決定へ戻します。
+APIは`wirescope=None | bool | WireScopeStation`を受け、`None`／`False`ではstation、artifact検証、browser、
+observer hookを開始しません。`True`は恒久的に`WireScopeStation.local()`のlow-floor省略形です。初期sliceは
+`local()`だけを実装し、将来profileを追加しても`True`の意味を変えません。
+
+stationはbrowser attachを待たず、通常のMinecraft接続、pairing、authenticated helloを進めます。TTY、
+artifact、stationのpreflightに失敗した場合はWireScopeだけをactionable warning付きで開始せず、Minecraft接続を
+継続します。observer hookはMinecraft RPC thread上でnetwork待機やsnapshot serializeをせず、有限のingress
+queueへ渡します。rolling windowの省略はobserver session envelopeで可視化し、backpressureと単一frame超過は
+observerだけを終了します。件数、byte数、code表現、期限、試行、再発行、cooldownはPython fixture／testで
+機械化します。
+
+schema v1 adapterとconformance fixtureは合格済みですが、current mainとconformance branchはdivergeしています。
+observerだけを移植せず、b3 catalog／projection／CLI／adapter一式をcurrent mainへ統合し、全test済みの新しい
+固定SHAを実装起点とします。引数なしの`mcremote wirescope`はcross-process transport決定まで予約のままです。
+AGPLの共通appをwheelへ同梱する前にPEP 639 metadata、license files、component notice、対応source導線を配布
+gateで確認します。Python追従でMcRemote wire protocol、Bridge、pluginの変更が必要になった場合は、既存schema
+v1への単純追従として進めず別の横断決定へ戻します。

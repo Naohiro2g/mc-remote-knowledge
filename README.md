@@ -66,4 +66,4 @@ Knowledge base of Minecraft Remote Project for learning/working along with LLM
 
 ## ライセンス
 
-オリジナルの文書・図・教育資料は CC BY-SA 4.0、独立して利用できるコード・ツールは MIT です。第三者由来のものは原ライセンスに従います。詳細は [LICENSE.md](LICENSE.md) と `LICENSES/` を参照してください。
+オリジナルの文書・図・教育資料は CC BY-SA 4.0、プロジェクト所有codeは原則MITです。Scratch Editor／WireScope等にcomponent固有のライセンスがある場合は、そのcomponentの`LICENSE`とartifact manifestを正とします。第三者由来のものは原ライセンスに従います。詳細は [LICENSE.md](LICENSE.md) と `LICENSES/` を参照してください。

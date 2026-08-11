@@ -7,6 +7,10 @@
 - 第三者由来の素材・派生物: 各ファイルに表示された原ライセンス
 - ライセンスまたは権利関係を確認できない素材: public repository に含めない
 
-特定ファイルに別のライセンス表示がある場合は、その表示を優先します。Contribution は、明示的な合意がない限り変更対象と同じライセンス（inbound = outbound）で提供されます。
+プロジェクト所有codeの原則はMITです。ただしScratch Editor、WireScope等、component固有の`LICENSE`または
+artifact manifestが別ライセンスを示す場合は、そのcomponent表示を正とします。異なるライセンスのcomponentを
+含む配布物を一括して「MITのみ」と表示しません。第三者由来のものは原ライセンスを維持します。
+
+Contribution は、明示的な合意がない限り変更対象と同じライセンス（inbound = outbound）で提供されます。
 
 Copyright (c) 2026 Naohiro Tsuji and contributors.

@@ -1,6 +1,8 @@
 # WireScope deployment 設計
 
-> 状態: `2026-08-10-02` の説明正本。schema v1実装到達点は`2026-08-06-03`と既存evidenceを参照する。
+> 状態: `2026-08-10-02` の配置に関する説明正本。共通appのattach／session／artifact契約とPython
+> browser-loopback参照profileは[station attach設計](wirescope-station-attach-design_ja.md)および
+> `2026-08-11-02`／`2026-08-11-03`を参照する。
 
 ## 1. 三役と共通責務
 
@@ -92,40 +94,44 @@ same-originはscheme、host、portの一致で判定する。loopbackはaddress-
 ### Scratch
 
 現在の別origin WireScope、送信元windowとexact originの検証、exact `targetOrigin`、`MessageChannel`、
-15秒有効・一回限りのgrantを維持する。直接アクセスしたbrowserには観察能力を与えない。
+15秒有効・一回限りのgrantを維持する。Scratch adapterとして有効なhandoffを得ないbrowserには、Scratch targetの
+観察能力を与えない。same-origin station bootstrapが成立する別profileまで禁止する意味ではない。
 
 ### Python
 
 schema v1 adapter、generation-side allowlist、main connection lifecycle fixtureは合格済みである。launcher、
-source discovery、station transport、browser attachは未実装である。
-
-browser-loopback到達profileではin-process、Unix domain socket、Windows named pipe、loopback relay等を候補に
-できる。LAN／VPSではsource発の認証済みoutbound transportを候補とする。いずれかをPython全体の正規形へ
-先取りしない。
+station、browser attachは未実装である。最初の参照profileはsource／station／browserが同じnetwork namespaceに
+あるbrowser-loopbackへ限定し、station roleをPython source processへ融合する。UDS、named pipe、cross-process
+relay、LAN／VPSはこの初期profileへ含めない。詳細は[station attach設計](wirescope-station-attach-design_ja.md)を
+参照する。
 
 ## 7. Failure semanticsとbuffer
 
 - grant不正、Origin不一致、schema不正はobserver側でfail closedとする。
-- station停止、transport障害、backpressureはMinecraft connectionと利用者codeに対してfail openとする。
+- station停止、transport障害、backpressure、capacity超過はMinecraft connectionと利用者codeに対してfail openとする。
 - observer処理はmain connectionへ無制限の待機、queue、同期serializeを持ち込まない。
 - adapter、transport、station、browserの各bufferは有限かつ非永続とする。
 - lossが生じ得る境界では、欠落を沈黙させず利用者が認識できる表現を必要とする。
 
 schema v1にはgap、truncated、per-frame byte limitのfieldがなく、strict validatorは未知fieldを拒否する。
-loss markerとbyte上限を実装する場合はschema v1へ無断追加せず、後続schema version／sliceをfixtureと
+初期station attachでは外側のobserver session envelopeがrolling historyの省略数とendを所有し、schema v1を
+変更しない。payload summaryやrecording／replay向けgap markerは後続schema version／sliceをfixtureと
 Scratch／Python conformance付きで固定する。schema v1のframe windowを完全な通信記録とは主張しない。
 
 ## 8. Artifactと互換性
 
-stationは固定identityを持つ`@mc-remote/live` artifactを提供する。artifactの取得、distribution、rollback、
-cache規則は未確定である。
+stationは固定identityを持つ`@mc-remote/live` artifactを提供する。初期artifactはarchiveとdetached manifestに
+分け、consumerの外側の信頼境界が双方のhashをpinする。manifestはsource commit、build identity、observer
+schema／session、handoff／attach protocol、asset inventory、license、対応sourceを記録する。runtime portや
+attach codeをimmutable assetへ埋め込まない。詳細は[station attach設計](wirescope-station-attach-design_ja.md)を
+参照する。
 
-後続sliceでは、observer schema version、validator、WireScope app artifact、source adapter fixture、station
-ingressを一つのcompatibility setとして検証する。初期交換fieldとUI上のversion表示方式は未確定とする。
+deploymentではobserver schema、session envelope、WireScope app artifact、station runtime、source ingress、
+profileを完全なcompatibility setとしてlock・検証する。source ingressを含むLAN／public setは未確定である。
 
 ## 9. Lifecycleの次slice
 
-transportとは独立に、次の意味論をstation-facing lifecycle候補として扱う。
+初期observer sessionは、次の意味論を共通endへ写像する。
 
 ```text
 target activated
@@ -134,21 +140,22 @@ target ended
 source closed
 ```
 
-exact message shape、自動reconnect、同じbrowserを新targetへattachする方法は未確定である。observer presenceを
-source／学習者へ見せるかも、privacyと教材設計を含む別判断とする。
+wire end reasonは`target-ended`、`source-closed`、`backpressure`、`capacity-exhausted`とする。
+`transport-lost`はstationが送れないためbrowserがlocal terminal stateとして合成する。自動reconnect、同じ
+browserを新targetへattachする方法は未確定である。observer presenceをsource／学習者へ見せるかも、privacyと
+教材設計を含む別判断とする。
 
 ## 10. 未確定事項
 
-- source discoveryとsource-to-station transport
-- source登録能力とbrowser attach能力の実装分離
-- grantの発行、引き渡し、redeem、replay防止
+- LAN／public profileのsource discoveryとsource-to-station transport
+- source登録能力とbrowser attach能力のdeployment実装
 - grant発行前frameを後発observerへ見せるか
 - target／display alias列挙capability
 - multi-user／multi-target isolation
-- station認証、rate limit、backpressure
-- buffer所有者、件数、byte上限、切り詰め規則
-- generation-side per-frame byte上限とloss marker
-- artifact配布、version交換、deploy、rollback
+- LAN／public station認証、rate limit、multi-user buffer分離
+- schema v1.1のpayload summary、gap marker、recording／replay loss表現
+- Python非TTY／Jupyter向けattach
+- artifact signing、公開deploy、rollback運用
 - LAN HTTP簡易modeとHTTPS／local CAの境界
 - Docker、WSL、SSH、Jupyter等のnetwork namespace差
 

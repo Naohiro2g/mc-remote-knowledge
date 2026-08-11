@@ -55,6 +55,14 @@ WireScopeでは、実装processや物理hostでなく、観察データ経路上
 roleはdeploymentごとに同じprocessへ融合または複数processへ分離できる。`source`、`station`、`browser`という
 短い表記はWireScope文脈内でのみ上記の意味に使う。
 
+| 正典表記 | 技術的な意味 | ドリフト注意 |
+| --- | --- | --- |
+| station attach protocol | WireScope browserがdeployment内のstationへattach codeを提示し、read-only observer sessionを得るversioned contract | Minecraft pairing、Scratch handoff、source ingressと同一視しない |
+| observer session envelope | schema v1 snapshotの外側でsnapshot＋history-windowとendを運ぶversioned envelope | `mcremote.observer` schema v1へtransport／loss fieldを追加しない |
+| browser-loopback profile | source、station、browserが同じnetwork namespaceにあり、browserがloopback top-level originを開くprofile | 「個人利用」「localhost一般」「public pageからlocalへ接続」と同義にしない |
+| in-process station | source processがstation roleを同一process内で兼任する梱包 | station roleそのもの、全Python profile、cross-process relayと同一視しない |
+| compatibility set | app artifact、runtime、schema、session／attach／ingress protocol、profile等を互換な一組としてlock・検証する単位 | 各componentを常に同時deployするという意味ではなく、変更後も完全なsetを検証する |
+
 ## セッション・ループ（`claude-ai-guide_ja.md` §7）
 
 | 正典語 | 意味 | 避けたい揺れ |
