@@ -247,6 +247,19 @@ session protocol v1の初期serialized shapeは
 `@mc-remote/live` 30 tests、build、Scratch regression 3 tests、`git diff --check`がPASS。固定実装SHAは
 Scratch側のcommit後に更新する。
 
+##### Immutable artifact contractの実装具体化（2026-08-11）
+
+`2026-08-11-02`に従い、共通appをdeterministicな`wirescope-app.zip`とdetached
+`wirescope-app.manifest.json`として生成する。manifestはarchive hashと既決のsource／build／protocol／asset／
+license identityを持つが、ZIPへ内包せず、自分自身のhashを内部へ持たない。Python wheelとStack lockはarchiveと
+manifest双方を外側でpinし、manifest内archive hashとも照合する。runtime port／attach codeをimmutable assetへ
+埋め込まない。
+
+正式artifact生成はclean-checkout gateを必須とし、dirty worktreeから作った出力を正式identityとして配布しない。
+搬送時点はScratch `develop@1cf1f02c6a6519b2edf3514a47481ad36d44a363`上の未commit worktreeであり、generator、
+CLI、NOTICE、package scripts、protocol version constants、testsを変更済み。35 unit tests、build、実assetの
+再現性確認、Scratch regressionがPASS。固定実装SHAはScratch側のcommit後に更新する。
+
 ##### 初期版の live-human 検収（2026-08-08）
 
 Scratch 初期版は `Naohiro2g/scratch-editor`

@@ -261,5 +261,7 @@ schema v1 adapterとconformance fixtureは合格済みですが、current main�
 observerだけを移植せず、b3 catalog／projection／CLI／adapter一式をcurrent mainへ統合し、全test済みの新しい
 固定SHAを実装起点とします。引数なしの`mcremote wirescope`はcross-process transport決定まで予約のままです。
 AGPLの共通appをwheelへ同梱する前にPEP 639 metadata、license files、component notice、対応source導線を配布
-gateで確認します。Python追従でMcRemote wire protocol、Bridge、pluginの変更が必要になった場合は、既存schema
-v1への単純追従として進めず別の横断決定へ戻します。
+gateで確認します。consumerはdetached manifestとdeterministic ZIPの双方をwheel `RECORD`でpinし、外側の
+manifest hash、archive hash、manifest内archive hashを照合します。dirty checkout由来artifactを正式packageへ
+同梱しません。Python追従でMcRemote wire protocol、Bridge、pluginの変更が必要になった場合は、既存schema v1への
+単純追従として進めず別の横断決定へ戻します。

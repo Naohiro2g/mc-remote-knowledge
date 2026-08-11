@@ -121,6 +121,11 @@ subdirectory、build recipe／toolchain／入力identity、observer schema／ses
 station attach version、asset inventoryと各hash、component license expression、対応source URLを持つ。
 runtime portやattach codeをassetへ埋め込まない。
 
+初期generatorは、同じclean checkoutとbuild入力からbyte-identicalな`wirescope-app.zip`を生成する。正式artifact
+生成はclean-checkout gateを通過したsourceだけに限定し、dirty worktreeから作ったarchive／manifestを正式な
+artifact identityとして配布しない。manifestはZIPへ内包せずdetached JSONとし、自分自身のhashをmanifest内へ
+持たせない。manifest shapeは上記field集合とversioned protocol constantsをgenerator／unit testで固定する。
+
 consumerはarchiveだけでなくmanifest自身のSHA-256も外側の信頼境界で固定する。Python wheelはwheel
 `RECORD`、Stackはdeployment lockでmanifestとarchiveの双方をpinし、manifest内のarchive hashとも照合する。
 archiveには`AGPL-3.0-only`本文とcomponent noticeを含め、asset inventoryへ登録する。

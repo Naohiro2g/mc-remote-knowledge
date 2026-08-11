@@ -511,3 +511,16 @@ Scratch参照実装は、adapter選択のselection windowを`2,000ms`として�
 worktreeである。`@mc-remote/live` 30 tests、build、Scratch regression 3 tests、`git diff --check`はPASS。
 固定実装SHAはScratch側のcommit後に更新する。openerだけでScratch adapterを確定する案、port受理後の
 fallback、schema v1へのhistory field追加は引き続き採らない。
+
+### `2026-08-11-02` artifact実装具体化追記（2026-08-11）
+
+Scratch参照実装は、同じclean checkoutとbuild入力からbyte-identicalな`wirescope-app.zip`を生成し、
+`wirescope-app.manifest.json`をdetached JSONとして生成する。manifestはarchive hashと既決のsource／build／
+protocol／asset／license identityを持つが、ZIPへ内包せず、自分自身のhashを内部へ持たない。consumerはarchiveと
+manifest双方のhashをPython wheel `RECORD`またはStack lock等の外側の信頼境界でpinし、manifest内archive hash
+とも照合する。runtime port／attach codeをimmutable assetへ埋め込まない。
+
+正式artifact生成はclean-checkout gateを必須とし、dirty worktree由来の出力を正式identityとして配布しない。
+搬送元は`Naohiro2g/scratch-editor` `develop@1cf1f02c6a6519b2edf3514a47481ad36d44a363`上の未commit
+worktreeである。35 unit tests、build、実asset再現性、Scratch regressionはPASS。固定実装SHAはScratch側の
+commit後に更新する。manifest内包、自己hash、runtime値埋込み、dirty treeからの正式生成は引き続き採らない。
