@@ -254,7 +254,8 @@ artifact、stationのpreflightに失敗した場合はWireScopeだけをactionab
 継続します。observer hookはMinecraft RPC thread上でnetwork待機やsnapshot serializeをせず、有限のingress
 queueへ渡します。rolling windowの省略はobserver session envelopeで可視化し、backpressureと単一frame超過は
 observerだけを終了します。件数、byte数、code表現、期限、試行、再発行、cooldownはPython fixture／testで
-機械化します。
+機械化します。session protocol v1のserialized conformance入力はScratch参照実装の
+`mc-remote/live/test/fixtures/observer-session-lifecycle.ndjson`とし、Python固有shapeを別に作りません。
 
 schema v1 adapterとconformance fixtureは合格済みですが、current mainとconformance branchはdivergeしています。
 observerだけを移植せず、b3 catalog／projection／CLI／adapter一式をcurrent mainへ統合し、全test済みの新しい

@@ -30,8 +30,8 @@ browser appは、次の状態遷移で一つのadapterだけを選ぶ。
 4. 一度MessagePortを受理した後はstation adapterへfallbackしない。
 5. station bootstrapが無い、または検証に失敗したdirect navigationには観察能力を与えない。
 
-selection windowの具体値はScratch contractとtestで固定し、source側のlaunch待機時間およびgrant発行後
-15秒の寿命とは別定数にする。
+Scratch参照実装のselection windowは`2,000ms`とする。source側のlaunch待機時間およびgrant発行後15秒の
+寿命とは別定数として実装・testし、一方の変更から他方を暗黙導出しない。
 
 ## 3. Same-origin station attach protocol
 
@@ -72,6 +72,11 @@ redeemは並行request間でもatomicとする。成功時は新しいsession to
 `history-window`とsnapshotは同じenvelopeで原子的に適用する。snapshotの`frames[]`は、そのenvelopeが示す
 retained windowそのものである。`dropped_frames`はobserver session内で単調増加し、target／session開始時に
 resetする。snapshot coalescingは欠落ではなく、rolling windowから実際に退去したframeだけを数える。
+
+session protocol v1の初期serialized shapeとline順序は、Scratch参照実装の
+`mc-remote/live/test/fixtures/observer-session-lifecycle.ndjson`を正規fixtureとする。既存Scratch wireには
+履歴省略の概念がないため、Scratch adapterが各snapshotの`dropped_frames`を`0`へ正規化する。schema v1
+snapshot内部へ同fieldを追加する意味ではない。Python station adapterは同fixtureへconformanceする。
 
 wireで送れるend reasonは次である。
 

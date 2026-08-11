@@ -232,6 +232,21 @@ station transport／launcher／browser attach、multi-stream／multi-source、�
 正式 evidence record は
 実接続 E2E または deploy gate の実施時に作成する。
 
+##### 共通session coreの実装具体化（2026-08-11）
+
+`2026-08-11-02`に従い、Scratch adapterのselection windowを`2,000ms`として、15秒のgrant寿命とは
+別定数へ分離した。openerは候補条件に留め、window内に有効なMessagePortを受理した時点でScratch adapterを
+確定し、port受理後はstation adapterへfallbackしない。
+
+session protocol v1の初期serialized shapeは
+`mc-remote/live/test/fixtures/observer-session-lifecycle.ndjson`へ固定した。既存Scratch wireは履歴省略を
+持たないためadapter内で`dropped_frames: 0`へ正規化し、`mcremote.observer` schema v1へhistory fieldを
+追加しない。Python station adapterは同fixtureをconformance入力として利用できる。
+
+搬送時点はScratch `develop@1cf1f02c6a6519b2edf3514a47481ad36d44a363`上の未commit worktreeである。
+`@mc-remote/live` 30 tests、build、Scratch regression 3 tests、`git diff --check`がPASS。固定実装SHAは
+Scratch側のcommit後に更新する。
+
 ##### 初期版の live-human 検収（2026-08-08）
 
 Scratch 初期版は `Naohiro2g/scratch-editor`
