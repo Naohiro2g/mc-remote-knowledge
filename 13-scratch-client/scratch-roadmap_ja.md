@@ -243,9 +243,9 @@ session protocol v1の初期serialized shapeは
 持たないためadapter内で`dropped_frames: 0`へ正規化し、`mcremote.observer` schema v1へhistory fieldを
 追加しない。Python station adapterは同fixtureをconformance入力として利用できる。
 
-搬送時点はScratch `develop@1cf1f02c6a6519b2edf3514a47481ad36d44a363`上の未commit worktreeである。
-`@mc-remote/live` 30 tests、build、Scratch regression 3 tests、`git diff --check`がPASS。固定実装SHAは
-Scratch側のcommit後に更新する。
+当初搬送時点はScratch `develop@1cf1f02c6a6519b2edf3514a47481ad36d44a363`上の未commit worktreeだった。
+その後、selection window、session fixture、artifact、station attachを
+`agent/wirescope-session-artifact@192d1e3ccd213fb5012b92655e51b779270e15be`へ固定した。
 
 ##### Immutable artifact contractの実装具体化（2026-08-11）
 
@@ -256,9 +256,24 @@ manifest双方を外側でpinし、manifest内archive hashとも照合する。r
 埋め込まない。
 
 正式artifact生成はclean-checkout gateを必須とし、dirty worktreeから作った出力を正式identityとして配布しない。
-搬送時点はScratch `develop@1cf1f02c6a6519b2edf3514a47481ad36d44a363`上の未commit worktreeであり、generator、
-CLI、NOTICE、package scripts、protocol version constants、testsを変更済み。35 unit tests、build、実assetの
-再現性確認、Scratch regressionがPASS。固定実装SHAはScratch側のcommit後に更新する。
+当初搬送時点はScratch `develop@1cf1f02c6a6519b2edf3514a47481ad36d44a363`上の未commit worktreeだった。
+generator、CLI、NOTICE、package scripts、protocol version constants、testsを含む固定参照は
+`agent/wirescope-session-artifact@192d1e3ccd213fb5012b92655e51b779270e15be`である。
+
+##### Station attach v1 fixtureの固定（2026-08-12）
+
+`2026-08-12-01`に従い、station attach v1のbootstrap、attach request、error mapping、byte上限、
+security header、NDJSON framingを、固定参照
+`agent/wirescope-session-artifact@192d1e3ccd213fb5012b92655e51b779270e15be`の
+`mc-remote/live/test/fixtures/station-attach-v1.json`へ固定した。fixture内容のSHA-256は
+`b50ce8e0cb8a6bb06f75d9bdad59b83006c92683bd73ced84a18223dde21fa81`である。
+
+Scratch browser adapterとPython loopback stationはこのfixtureを共通wire contractとして使い、client別shapeを
+作らない。attach codeをURLへ置かず、responseを一括で無制限bufferへ保持せず、strict UTF-8／LFのNDJSONとして
+逐次処理する。CR／CRLF、BOM、空line、未終端line、上限超過lineは拒否する。
+
+Scratch側は47 tests、build、Scratch regression 3 testsがPASS。Python conformance後のPython固定SHA追記、
+attach code再発行トリガー、共通appとのreal-browser E2Eは未確定／未検証のまま維持する。
 
 ##### 初期版の live-human 検収（2026-08-08）
 

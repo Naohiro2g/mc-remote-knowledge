@@ -256,6 +256,11 @@ queueへ渡します。rolling windowの省略はobserver session envelopeで可
 observerだけを終了します。件数、byte数、code表現、期限、試行、再発行、cooldownはPython fixture／testで
 機械化します。session protocol v1のserialized conformance入力はScratch参照実装の
 `mc-remote/live/test/fixtures/observer-session-lifecycle.ndjson`とし、Python固有shapeを別に作りません。
+HTTP stationは同じ参照実装commit `192d1e3ccd213fb5012b92655e51b779270e15be`の
+`mc-remote/live/test/fixtures/station-attach-v1.json`（SHA-256
+`b50ce8e0cb8a6bb06f75d9bdad59b83006c92683bd73ced84a18223dde21fa81`）へconformanceします。
+bootstrap、attach request、error status／attempt消費、byte上限、security header、NDJSON framingを
+Python側で独自解釈しません。Python conformance合格後に実装固定SHAを追記します。
 
 schema v1 adapterとconformance fixtureは合格済みですが、current mainとconformance branchはdivergeしています。
 observerだけを移植せず、b3 catalog／projection／CLI／adapter一式をcurrent mainへ統合し、全test済みの新しい

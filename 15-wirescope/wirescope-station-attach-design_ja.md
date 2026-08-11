@@ -57,6 +57,65 @@ redeemは並行request間でもatomicとする。成功時は新しいsession to
 上限も検証する。CORSとredirectを許可せず、responseは`Cache-Control: no-store`とする。profileはCSP、
 `Referrer-Policy`、`X-Content-Type-Options`を応答headerで保証する。
 
+### 3.1 Station attach v1 fixture
+
+station attach v1の機械可読正本は、Scratch参照実装commit
+`192d1e3ccd213fb5012b92655e51b779270e15be`の
+`mc-remote/live/test/fixtures/station-attach-v1.json`である。fixture内容のSHA-256は
+`b50ce8e0cb8a6bb06f75d9bdad59b83006c92683bd73ced84a18223dde21fa81`とする
+（`2026-08-12-01`）。Scratch browser adapter、Python loopback HTTP station、将来のStack stationは、
+client別のwire shapeを作らず同じfixtureへconformanceする。
+
+bootstrap responseはstrict JSONで、次のfieldだけを持つ。
+
+```json
+{
+  "station_attach_protocol_version": 1,
+  "observer_session_protocol_version": 1,
+  "observer_schema": {
+    "name": "mcremote.observer",
+    "version": 1
+  },
+  "artifact": {
+    "manifest_sha256": "64桁の小文字hex"
+  },
+  "station_ready": true
+}
+```
+
+`station_ready=false`でもshapeは変えない。attach requestは
+`{"attach_code":"00000000"}`のstrict JSON shapeとし、codeをURLへ置かない。error bodyは
+`{"error":"<code>"}`のstrict JSON shapeで、HTTP statusと試行消費を次に固定する。
+
+| HTTP status | error | code試行を消費 |
+| --- | --- | --- |
+| 409 | `target-not-ready` | しない |
+| 400 | `malformed-code` | しない |
+| 403 | `invalid-code` | する |
+| 429 | `attempts-exhausted` | する |
+| 410 | `code-expired` | しない |
+| 409 | `already-redeemed` | しない |
+| 400 | `invalid-request` | しない |
+
+byte上限は、bootstrap responseとerror responseを各`4,096` bytes、attach requestを`1,024` bytes、
+NDJSON 1行を`524,288` bytesとする。live NDJSON response全体を一括bufferへ保持する上限ではなく、
+lineごとに逐次処理する。
+
+station responseは次のheaderを必須とする。
+
+| Header | 値 |
+| --- | --- |
+| `Cache-Control` | `no-store` |
+| `Content-Security-Policy` | `default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'` |
+| `Cross-Origin-Opener-Policy` | `same-origin` |
+| `Referrer-Policy` | `no-referrer` |
+| `X-Content-Type-Options` | `nosniff` |
+
+bootstrap／errorは`application/json`、attach成功は`application/x-ndjson`をexact content typeとする。
+NDJSONはstrict UTF-8、LF区切り、各line末尾LFを必須とし、CR／CRLF、UTF-8 BOM、空line、未終端の
+最終line、上限超過lineを拒否する。正常なend envelope前のdecode／framing／limit errorまたはEOFは、
+stationがwire reasonを送ったことにせず、browser coreが`transport-lost`をlocal合成する。
+
 ## 4. Observer schemaとsession envelope
 
 `mcremote.observer` schema v1はsanitized snapshotのshapeを所有し、strict validatorと現行method allowlistを
