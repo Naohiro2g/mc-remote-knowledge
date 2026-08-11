@@ -278,3 +278,10 @@ gateで確認します。consumerはdetached manifestとdeterministic ZIPの双�
 manifest hash、archive hash、manifest内archive hashを照合します。dirty checkout由来artifactを正式packageへ
 同梱しません。Python追従でMcRemote wire protocol、Bridge、pluginの変更が必要になった場合は、既存schema v1への
 単純追従として進めず別の横断決定へ戻します。
+
+Scratchから受領するartifact delivery unitは、bytesとcanonical filenameを変えない
+`wirescope-app.zip`／`wirescope-app.manifest.json`のexact 2-file pairである（`2026-08-12-02`）。Pythonは
+これを別archiveへ再包装せず、第三のgenerated lock fileも要求しない。両fileを個別package dataとしてwheelへ
+収録し、build inputで両hashをpinしたうえでwheel `RECORD`とpackage inventoryを再検証する責務を持つ。
+Scratch実装は`09ccd563c93048f8a1d0a3dc1cee2d1f0ffb4681`へ固定済みだが、Python wheelへの実同梱・PEP 639
+metadata・license files・notice・exact source導線のdistribution-level確認は未完である。

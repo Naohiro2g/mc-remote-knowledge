@@ -265,6 +265,18 @@ detached `wirescope-app.manifest.json`は
 `4310ae34ec04997dbf136afa463a39de08ef97acc651f6fb70357b272ea1a143`である。同一入力からの2回生成、
 全assetのbyte数／SHA-256照合がPASSした。これは正式配布済みという意味ではない。
 
+##### Artifact delivery unitの固定（2026-08-12）
+
+`2026-08-12-02`に従い、consumerへ渡す単位をcanonical filenameとbytesを変更しない
+`wirescope-app.zip`／`wirescope-app.manifest.json`のexact 2-file pairへ固定した。wrapper archiveや第三の
+generated lock fileは追加せず、受領distributionが両hashの外側pinとpackage inventory検証を所有する。
+Python wheelは両fileを個別package dataとして`RECORD`で検証する。
+
+Scratch実装は`agent/wirescope-artifact-delivery@09ccd563c93048f8a1d0a3dc1cee2d1f0ffb4681`で、clean source
+`192d1e3ccd213fb5012b92655e51b779270e15be`からの再生成hash、ZIP integrity、AGPL `LICENSE`、NOTICE、
+対応source導線、protocol compatibility setを確認した。`@mc-remote/live` 48 testsとbuildがPASSした。
+Actions artifactや一時handoff directoryを公開配布正本とせず、公開channelはE2E／license gate後に判断する。
+
 ##### Station attach v1 fixtureの固定（2026-08-12）
 
 `2026-08-12-01`に従い、station attach v1のbootstrap、attach request、error mapping、byte上限、

@@ -203,6 +203,25 @@ consumerはarchiveだけでなくmanifest自身のSHA-256も外側の信頼境�
 `RECORD`、Stackはdeployment lockでmanifestとarchiveの双方をpinし、manifest内のarchive hashとも照合する。
 archiveには`AGPL-3.0-only`本文とcomponent noticeを含め、asset inventoryへ登録する。
 
+Scratchからconsumerへ渡すdelivery unitは、canonical filenameとbytesを変更しない次のexact 2-file pairである
+（`2026-08-12-02`）。
+
+```text
+wirescope-app.zip
+wirescope-app.manifest.json
+```
+
+別のwrapper archiveへ再包装せず、Scratch側で第三のgenerated lock fileを加えない。receiving distributionが
+両file hashの外側pinとpackage inventory検証を所有し、Python wheelでは2 fileを個別package dataとして
+`RECORD`で検証する。一時handoff directoryとその人間可読manifestは搬送手段であり、public artifact channel／
+release identityではない。公開channelはreal-browser E2Eとlicense／artifact配布gateより前に確定しない。
+
+delivery contractのScratch実装は
+`agent/wirescope-artifact-delivery@09ccd563c93048f8a1d0a3dc1cee2d1f0ffb4681`へ固定した。clean source
+`192d1e3ccd213fb5012b92655e51b779270e15be`から再生成した既存ZIP／manifest hashとの一致、ZIP integrity、
+AGPL license、NOTICE、対応source導線、protocol compatibility setを確認し、`@mc-remote/live` 48 testsと
+buildがPASSした。Python consumerの固定commitが着地するまで項8の配布gateは未完である。
+
 ## 7. Python browser-loopback参照profile
 
 初版はsource、station、browserが同じnetwork namespaceにあるprofileだけを実装し、station roleをPython
