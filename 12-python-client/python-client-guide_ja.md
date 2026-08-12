@@ -238,6 +238,11 @@ long-lived credentialの公開gateは閉じています。Pythonの既定を `lo
 - `auth.*`、token、pair code、player UUID、credential／device情報を生成せず、history、grant、
   observer sessionをproject fileやcredential storeへ永続化しません。observerへ認証・操作権限も
   渡しません。
+- 新規targetの`display_alias`は共通alias contract v1（`2026-08-12-03`）へ従います。正本fixtureはScratch
+  `develop@3b3d1f1c8a0dd66d265c5c6ea515cc5ac291209b`の
+  `mc-remote/live/test/fixtures/display-alias-v1.json`です。Pythonの現行8桁uppercase hex生成器は移行対象で、
+  canonical `WORD-WORD-NNNNNN`、connection epoch固定、再接続時新規生成、active衝突時再生成をfixture／testで
+  閉じるまで共通alias conformance完了としません。observer schema v1の受理shapeは狭めません。
 
 共通appとの接続は[WireScope deployment設計](../15-wirescope/wirescope-deployment-design_ja.md)と
 [station attach設計](../15-wirescope/wirescope-station-attach-design_ja.md)に従います（`2026-08-10-02`、

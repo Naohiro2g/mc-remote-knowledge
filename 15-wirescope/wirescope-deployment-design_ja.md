@@ -57,6 +57,33 @@ source transport、artifact registryのいずれとも同義ではない。Scrat
 - McRemote token、pair code、credential、UUID、内部transport状態をobserver認証へ流用しない。
 - sanitized observer dataもpublic dataでなくtarget-scoped confidentialを既定とする。
 
+### 3.1 Display alias contract v1
+
+人間がtargetを目視照合する`display_alias`はsource種別に依存しない共通生成contractとする
+（`2026-08-12-03`）。canonical vocabularyは次の16語である。
+
+```text
+MIND STORM SOCIETY PAPERT RESNICK PIAGET MINSKY LIFE
+DNA MUSIC WAVE BRAIN SELF APPLE ORANGE LEMON
+```
+
+canonical表示は`WORD-WORD-NNNNNN`で、ASCII hyphenとゼロ埋め6桁のASCII数字を使う。例は
+`MIND-STORM-000027`である。単語と数値の選び方はsource固有でよいが、語彙、表示形式、target lifecycle、
+active alias衝突時の再生成、安全境界は共通とする。機械可読正本はScratch
+`develop@3b3d1f1c8a0dd66d265c5c6ea515cc5ac291209b`の
+`mc-remote/live/test/fixtures/display-alias-v1.json`（SHA-256
+`85c8159a8b74788c0cf978078094d23a3cdae83c0be5e9aa9552bb820c8389ca`）である。
+
+aliasはauthenticated hello後のtarget成立時に生成し、connection epoch中は固定する。再接続で新targetが
+成立したら新しく生成し、同じtargetを複数observerで見る場合は同じaliasを使う。同一stationでactive aliasが
+衝突した場合は再生成する。aliasは非秘密の表示専用情報であり、target／stream ID、discovery／search key、
+attach capability、認可、player識別に使わず、UUID、接続先、credential、session／target IDを符号化しない。
+`source_kind`は別metadataとする。
+
+observer schema v1の`display_alias`は引き続きnon-empty stringを受理し、旧sessionや移行中sourceを拒否しない。
+canonical formatは新規・更新sourceのgeneration-side conformanceで検査する。alias contractのversion交換方式は、
+必要になるまで固定しない。
+
 source ingressとbrowser attachを同一network endpointへ載せる場合、最初のmessage種別だけで権限を分岐せず、
 型付きcapabilityまたは同等の分離を必要とする。具体方式は未確定である。
 

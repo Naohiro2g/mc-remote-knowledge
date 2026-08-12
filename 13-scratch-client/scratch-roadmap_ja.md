@@ -299,6 +299,20 @@ Scratch PR branchの既存CIではscratch-gui lint 2件が失敗したが、対�
 `packages/scratch-gui/test/unit/util/mcremote-wirescope-source.test.js`はPR差分に含まれない。今回の
 session／artifact／station attach sliceの合格根拠には、この無関係な失敗を含めない。
 
+##### 共通display alias contract v1（2026-08-12）
+
+`2026-08-12-03`に従い、Scratchのalias生成語彙をsource横断の16語と
+`WORD-WORD-NNNNNN`形式へ固定した。機械可読正本は
+`develop@3b3d1f1c8a0dd66d265c5c6ea515cc5ac291209b`の
+`mc-remote/live/test/fixtures/display-alias-v1.json`（SHA-256
+`85c8159a8b74788c0cf978078094d23a3cdae83c0be5e9aa9552bb820c8389ca`）である。source実装commitは
+`8678cfb44cd58275a76d7254297d32d147a67e71`である。
+
+Scratchは60 tests／174 assertions、`@mc-remote/live` 9 files／48 tests、scratch-vm lint error-zero、buildが
+PASSした。aliasは表示専用の非秘密情報で、`source_kind`、target／stream ID、attach／認可と分離する。
+observer schema v1と既存lifecycle fixtureは変更していない。Pythonの現行8桁uppercase hex生成器は、共通fixture、
+active衝突再生成、connection epoch lifecycleへの後続移行対象である。
+
 ##### 初期版の live-human 検収（2026-08-08）
 
 Scratch 初期版は `Naohiro2g/scratch-editor`

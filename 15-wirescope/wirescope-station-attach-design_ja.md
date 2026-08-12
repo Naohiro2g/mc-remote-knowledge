@@ -284,6 +284,12 @@ Python lifecycleからsession endへの写像は次である。
 - ingress／outbound処理能力の超過: `backpressure`
 - 単一frame admission上限超過: `capacity-exhausted`
 
+target成立時の`display_alias`は共通alias contract v1（`2026-08-12-03`）へ従う。canonical fixtureはScratch
+`develop@3b3d1f1c8a0dd66d265c5c6ea515cc5ac291209b`の
+`mc-remote/live/test/fixtures/display-alias-v1.json`（SHA-256
+`85c8159a8b74788c0cf978078094d23a3cdae83c0be5e9aa9552bb820c8389ca`）である。stationは同時にactiveな
+aliasの衝突を検出し、sourceに再生成させる。aliasをattach code、target列挙、認可へ昇格させない。
+
 初期profileは1 target、1 browser、main stream 1本に限定し、自動reattach、複数browser、複数targetを実装
 しない。引数なし`mcremote wirescope` subcommandはcross-process transport決定まで予約のままにする。
 
