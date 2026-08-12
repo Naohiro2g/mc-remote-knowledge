@@ -291,8 +291,9 @@ Scratch browser adapterとPython loopback stationはこのfixtureを共通wire c
 
 Scratch側は47 tests、build、Scratch regression 3 testsがPASS。Pythonの機械的conformanceは
 `Naohiro2g/minecraft-remote-api@14a662e173e3805870987691a938292a5de6e456`、実loopback HTTP stationは
-`main@973c7f44211ad0fc2f87e1d119dcdbf04983a52f`へ固定した。実artifact配布、attach code再発行trigger、
-browser起動、共通appとのreal-browser E2Eは未実装／未検証のまま維持する。
+`main@973c7f44211ad0fc2f87e1d119dcdbf04983a52f`へ固定した。Python wheel同梱とautomatic browser launcherは
+`codex/wirescope-wheel-browser-e2e@8c2360abffe64d3d0b84e2a8b3e1c5da7d25d018`へ到達した。attach code
+再発行trigger、実browser UIによる共通app／MessageChannel regression照合は未実装／未検証のまま維持する。
 
 Scratch PR branchの既存CIではscratch-gui lint 2件が失敗したが、対象の
 `packages/scratch-gui/test/unit/util/mcremote-wirescope-source.test.js`はPR差分に含まれない。今回の

@@ -220,7 +220,11 @@ delivery contractのScratch実装は
 `agent/wirescope-artifact-delivery@09ccd563c93048f8a1d0a3dc1cee2d1f0ffb4681`へ固定した。clean source
 `192d1e3ccd213fb5012b92655e51b779270e15be`から再生成した既存ZIP／manifest hashとの一致、ZIP integrity、
 AGPL license、NOTICE、対応source導線、protocol compatibility setを確認し、`@mc-remote/live` 48 testsと
-buildがPASSした。Python consumerの固定commitが着地するまで項8の配布gateは未完である。
+buildがPASSした。Python consumer／launcherは
+`codex/wirescope-wheel-browser-e2e@8c2360abffe64d3d0b84e2a8b3e1c5da7d25d018`へ固定した。exact pairを
+個別package dataとして同梱し、両hash／byte数／asset inventory／wheel `RECORD`、PEP 639
+`MIT AND AGPL-3.0-only`、MIT／AGPL／NOTICE、対応source導線を検証する。固定branch上のwheel buildと標準browser
+launcher経由NDJSON lifecycleは合格したが、main merge、公開release、実browser UI E2Eは未完である。
 
 ## 7. Python browser-loopback参照profile
 
@@ -314,8 +318,8 @@ ingress、profileを完全なcompatibility setとしてlock・検証する。未
 4. [done] Python main統合と新しい固定SHA
 5. [done] Python in-process station、有限queue、attach code
 6. [done] Python fixture／unit／conformance
-7. 共通appとのreal-browser loopback E2E
-8. 人間批准済みの`2026-08-11-01`に従うlicense／artifact配布実装の確認
+7. 共通appとのreal-browser loopback E2E（実browser UI操作とScratch regression照合は未完）
+8. [done on fixed branch] 人間批准済みの`2026-08-11-01`に従うwheel同梱／license inventory／launcher実装
 9. Stack後続gateの再判定
 
 次は今回確定しない。

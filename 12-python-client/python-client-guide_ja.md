@@ -269,19 +269,32 @@ Python側で独自解釈しません。機械的conformanceは
 strict HTTP station、observer worker／NDJSON stream／lifecycle cleanup、detached manifest・archive・全assetを
 検証してmemory上から配信するconsumerを実装し、全回帰165件、sdist／wheel build、`git diff --check`がPASSした。
 wheel `RECORD`によるmanifest外部pinは合成artifactで検証したが、AGPL共通appはpackageへ同梱していない。
-public起動、実artifact配布、automatic browser launch、attach code再発行の外部trigger、real-browser E2Eは未実装である。
+このmain時点ではpublic起動、実artifact配布、automatic browser launch、attach code再発行の外部trigger、
+real-browser E2Eは未実装だった。後続branchの到達点は下記delivery unit節で更新する。
 
 schema v1 adapter、b3 catalog／projection／CLI、station contract／runtimeは上記mainへ統合済みである。
 引数なしの`mcremote wirescope`はcross-process transport決定まで予約のままです。
-AGPLの共通appをwheelへ同梱する前にPEP 639 metadata、license files、component notice、対応source導線を配布
-gateで確認します。consumerはdetached manifestとdeterministic ZIPの双方をwheel `RECORD`でpinし、外側の
-manifest hash、archive hash、manifest内archive hashを照合します。dirty checkout由来artifactを正式packageへ
-同梱しません。Python追従でMcRemote wire protocol、Bridge、pluginの変更が必要になった場合は、既存schema v1への
-単純追従として進めず別の横断決定へ戻します。
+AGPLの共通appをwheelへ同梱するときは、PEP 639 metadata、license files、component notice、対応source導線を
+配布gateで確認する。consumerはdetached manifestとdeterministic ZIPの双方をwheel `RECORD`でpinし、外側の
+manifest hash、archive hash、manifest内archive hashを照合する。dirty checkout由来artifactを正式packageへ
+同梱しない。このpackage実装は下記固定branchで合格したが、main mergeと公開releaseは別状態として扱う。
+Python追従でMcRemote wire protocol、Bridge、pluginの変更が必要になった場合は、既存schema v1への単純追従として
+進めず別の横断決定へ戻す。
 
 Scratchから受領するartifact delivery unitは、bytesとcanonical filenameを変えない
 `wirescope-app.zip`／`wirescope-app.manifest.json`のexact 2-file pairである（`2026-08-12-02`）。Pythonは
 これを別archiveへ再包装せず、第三のgenerated lock fileも要求しない。両fileを個別package dataとしてwheelへ
 収録し、build inputで両hashをpinしたうえでwheel `RECORD`とpackage inventoryを再検証する責務を持つ。
 Scratch実装は`09ccd563c93048f8a1d0a3dc1cee2d1f0ffb4681`へ固定済みだが、Python wheelへの実同梱・PEP 639
-metadata・license files・notice・exact source導線のdistribution-level確認は未完である。
+metadata・license files・notice・exact source導線のdistribution-level実装は、その後
+`codex/wirescope-wheel-browser-e2e@8c2360abffe64d3d0b84e2a8b3e1c5da7d25d018`へ固定した。canonical
+filename／bytesのまま両fileをpackage dataへ収録し、固定hash／byte数／asset inventory／wheel `RECORD`を
+検証する。distributionのPEP 639 license expressionは`MIT AND AGPL-3.0-only`、license filesはMIT本文、
+AGPL本文、WireScope NOTICEとし、対応source URLをmetadataへ持つ。全回帰168件、`uv lock --check`、sdist／
+wheel build、wheel metadata／license gate、clean wheelからのartifact検証→実loopback station→標準browser
+launcher→NDJSON lifecycleがPASSした。top-level URLにsecretを含めず、browser起動失敗時はstationを回収して
+Minecraft側をfail openに保つ。
+
+この到達点は固定branch上のpackage／launcher integrationであり、main merge、公開release、実browser UI操作、
+Scratch common app／MessageChannel regressionとのreal-browser E2Eは未完である。attach code再発行の外部triggerも
+推測実装しない。
