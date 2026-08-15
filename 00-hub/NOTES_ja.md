@@ -4,6 +4,7 @@
 
 ## Inbox
 
+- 2026-08-16 [park] Scratch保存・移送の実装詳細 / `2026-08-16-01`〜`03`で一般UGC hosting、一般利用者account、Backpackを現行計画から撤回し、作品／スプライトのbrowser・file保存とOS clipboard移送を確定した。未確定の実装入力は①Clipboard API／custom MIME／text fallback／browser compatibility ②versioned block transfer bundleのschema・ID再生成・dependency semantics ③`.sprite3`のbrowser保存形式 ④IndexedDB schema・quota・migration ⑤unknown extension recovery／legacy minecraft migration ⑥`.sb3`／`.sprite3` McRemote compatibility fixture ⑦教材artifact配布profile ⑧provenance／attributionの将来設計 / 再開＝各Scratch実装track着手時。一般UGC hosting、`mc-remote-storage`、Backpackは残作業として再開せず、新しい要求・横断決定・人間批准を要する
 - 2026-08-10 [→DEC 2026-08-10-01] 説明層様式・漸進適用中 / スポークへ触れる機会ごとに肯定形の骨格を冒頭へ置き、本文の柵が拘束層へ錨を持つか確認する。一括改修の個別parkは作らず、初回適用をWireScope共通スポークとした
 - 2026-08-08 [→DEC 2026-08-10-02] WireScope deployment-scoped station 横断レビュー / Fable5／claude.aiの必須修正を反映し、有限bufferの所有者未決、自己target限定のgrant委譲、address spaceによるprofile分類、旧決定三件の改訂関係を横断決定と共通スポークへ着地した。正式evidenceはstation transport／deploy／browser E2E実施時まで作らない
 - 2026-08-08 [→DEC 2026-08-10-02] WireScope station後続contract論点 / fail-open／fail-closed、有限・非永続、target-scoped confidential、bootstrap規律は決定または共通スポークへ着地した。buffer所有・上限・loss表現、grantの時間的射程、列挙capability、observer presence、byte上限、version交換、lifecycle等は `15-wirescope/wirescope-deployment-design_ja.md` の後続sliceへ集約した

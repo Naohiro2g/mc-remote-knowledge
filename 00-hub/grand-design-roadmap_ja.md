@@ -24,6 +24,12 @@
 | R2 — 認証基盤 | 完了 | pair / token / permission / bridge を回帰 gate として維持 |
 | R3 — Scratch 公開 | 入口 | 三層保存、観察面、初学者 UI / 教材、安定運用 package を一つの体験へ閉じる |
 
+`2026-08-16-01`〜`2026-08-16-03`で匿名cloud、一般UGC hosting、Backpackを撤回し、保存・移送を
+作品／スプライトのbrowser・file保存とOS clipboardへ再構成した。このため上表R3行の「三層保存」は現行scope
+として使わない。R3〜R5の意味、4月へ向けた日程、各保存・移送trackの配置は、他の横断scopeを揃えた最後の
+R整理で改訂する。それまでは[Scratch roadmap](../13-scratch-client/scratch-roadmap_ja.md)と
+[作品の保存・移送設計](../13-scratch-client/scratch-project-storage-transfer-design_ja.md)を現在地の入力とする。
+
 ## 3. 不変の gate
 
 - protocol / plugin / clients の互換主張は test evidence を伴う。

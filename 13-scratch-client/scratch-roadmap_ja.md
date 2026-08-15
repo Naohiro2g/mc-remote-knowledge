@@ -182,18 +182,25 @@ b3 の catalog 実装と実測を入力に、picker の見せ方、state UX、�
 - `.sb3` へ保存するのは block 入力欄の文字列だけ（`2026-07-08-01`）。
 - observation grant と display alias は別票。
 
-### R3-B — 保存・学習・beta 体験
+### 保存・移送作業束（R配置は最終整理待ち）
 
-- 「ブラウザ保存作品」、匿名クラウド、`/project/<id>` を実装する（`2026-07-12-07`）。
-- McRemote Tutorial / Debug 導線と、最初の 1 block までの教材を揃える。
-- iPad / Safari を含む数分 onboarding と作例を R3 gate で確認する。
+現行の保存・移送モデルは
+[Scratch作品の保存・移送設計](scratch-project-storage-transfer-design_ja.md) と
+`2026-08-16-01`〜`2026-08-16-03`を正とする。匿名cloud、`/project/<id>`、一般UGC hosting、
+`mc-remote-storage`、Backpackは現行計画から撤回した。
+
+- 作品全体はブラウザ保存作品と`.sb3`、スプライトはブラウザ保存スプライトと`.sprite3`で扱う。
+- ブラウザ保存は同一storage partition・Editor originに閉じ、Minecraft接続先へbindingしない。
+- 対応McRemote Editor間のブロック移送はOS clipboardを使う方向とし、bundle contractはfixture前に推測実装しない。
+- 実装順序は`.sb3`／`.sprite3`互換fixture→ブラウザ保存作品→ブラウザ保存スプライト→clipboard移送→審査済み教材とする。
+- McRemote Tutorial / Debug 導線と、最初の1 blockまでの教材を揃える。
+- iPad／Safariを含むonboardingと保存・移送の実測gateは、最終R整理で配置する。
 
 ### R3-C — 運用 package と観測面
 
 - backup 紹介、外部 transfer、restore 手順を同じ運用 package へ追加し、world と credential を分離する。
 - 認証前後の availability guard、運用 metric、正規 bulk build / TNT の load test を beta gate へ追加する。
 - **Scratch 内 WireScope は接続・pairing の薄い面（mini）に絞る**（`2026-08-02-09` で `2026-07-12-07` を部分改訂）。McRemote block palette の状態領域へ置き、workspace を reflow せず、script 編集面や sprite 表示を覆わない。残すのは接続状態・pairing 進行（pair code・実行コマンド・待機・期限切れ・再試行案内）・設定先と実接続先・actionable error・display alias・独立 WireScope の起動導線。
-- Backpack は IndexedDB＋BroadcastChannel の小さな検索 / pin 棚から始める（`2026-07-12-07`）。
 
 #### WireScope 実装ロードマップ
 
