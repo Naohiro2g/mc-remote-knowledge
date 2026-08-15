@@ -330,7 +330,7 @@ ingress、profileを完全なcompatibility setとしてlock・検証する。未
 
 次は今回確定しない。
 
-- schema v1.1のgap marker、oversized frame summary、recording／replay loss表現
+- b5 schema v1.1とは別の後続version／sliceで扱うgap marker、oversized frame summary、recording／replay loss表現
 - 非TTY／Jupyter向けattach
 - cross-process、LAN、public stationのsource ingress
 - multi-user／multi-target isolation、LAN CA、公開rate limit

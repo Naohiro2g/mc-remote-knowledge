@@ -183,8 +183,10 @@ roleはdeploymentごとに同じprocessへ融合または複数processへ分離�
 | 正典語 | 意味 |
 | --- | --- |
 | identity | player / client の継続主体。stream key そのものとは同一化しない |
+| connection epoch | authenticated `hello` の成立から切断または reconnect までの、一つの接続寿命。event ring、sequence、entity handle はこの単位を越えて持ち越さない |
 | main stream | identity に対する既定の executor stream |
 | substream | 同じ identity が追加で持てる独立 executor stream |
 | executor stream | `1 stream = 1 connection = 1 build state`。world / origin / build state は stream ごとに独立 |
+| entity handle | connection epoch 内だけで entity を指す `mceh_` prefix の opaque identifier。UUID、認可 capability、player identity ではない |
 
 main / substream の方向は `2026-07-21-07`、土台は `2026-06-24-01`。Scratch object との写像は b4 scope freeze 前の未決。

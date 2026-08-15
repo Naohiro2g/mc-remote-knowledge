@@ -380,6 +380,33 @@ slice である。正式根拠は
 per-sprite 第 4 tab は stream が実在するまで park する。main stream / substream と Scratch object の写像は
 `2026-07-21-07` の b4 scope freeze 前設計 gate で確定する。
 
+### b5／b6 plugin APIのScratch投影
+
+b5／b6の横断scopeはDECISIONS `2026-08-16-04`〜`07`と
+[wire contract](../10-protocol/wire-format-design_ja.md) §5.4〜§5.8を正とする。Scratchはserverの
+`events.poll`を利用者へ直接露出せず、connectionごとに一つのpollerからtype別hat blockへ投影する。
+
+- mixed batchをFIFOでtype別hatへ振り分ける。
+- event DTOは起動したScratch threadへ個別に束縛し、共有の「最後のevent」を作らない。
+- overflow、capacity loss、明示破棄を確認可能にし、空batchや通常切断へ畳まない。
+- disconnect時にpoller、cursor、thread context、event cache、entity handle cacheを回収する。
+- event座標をworld blockへ渡す前に、eventがcaptureしたworld／originと現在値の一致を確認し、
+  不一致をactionable errorにする。
+
+`world.spawnEntity`のhandleは副作用と同じresponseから原子的に受け取る。共有の`last entity` reporterは
+作らない。副作用reporterをmonitor不能にできるruntimeではreporterを優先し、保証できない場合は
+出力変数付きcommand blockへ確定する。この選択はScratch runtimeのprototype結果を待つ。
+
+monitor-driven reporterには、monitor評価のthrottle、同一引数のin-flight request coalescing、
+disconnect時のcache破棄を設ける。明示的なscript callは毎回実行する。対象は
+`world.getHeight`、b6のentity pose／nearby、queue metric等である。`world.getHeight`はoptional引数を
+一つのblockへ押し込まず、maxYなし／ありの二reporterへ投影する。`height_not_found`を`-1`へ変換せず、
+空文字＋actionable errorまたは別found状態のどちらにするかを実装前に固定する。
+
+b5のWireScope schema v1.1対応はplugin fixture、Python observer projection、Scratch source adapter、
+common app artifactと同じcompatibility setで行う。plugin wire conformanceと共通UI／real-browser E2Eは
+別gateとし、Scratch側だけでallowlistやlegacy methodを拡張しない。
+
 ## 4. 搬送と確認
 
 b3 の確定搬送票は本書の §2 と該当 DECISIONS ID を参照し、凍結した原点文書を根拠にしない。

@@ -61,6 +61,7 @@ public 正本世代の入口です。ここに載る path は、このリポ内�
 | Path | 役割 |
 | --- | --- |
 | `14-evidence/README_ja.md` | public / private / Git 外の visibility policy |
+| `14-evidence/b5-b6-verification-design_ja.md` | b5／b6 event・entity・WireScope compatibilityのtest classと横断検証境界 |
 | `14-evidence/INDEX_ja.md` | public sanitized record の索引。新世代開始時点では空 |
 
 ## 初回 seed に含めないもの

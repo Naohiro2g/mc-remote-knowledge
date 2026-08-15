@@ -303,3 +303,35 @@ Minecraft側をfail openに保つ。
 この到達点は固定branch上のpackage／launcher integrationであり、main merge、公開release、実browser UI操作、
 Scratch common app／MessageChannel regressionとのreal-browser E2Eは未完である。attach code再発行の外部triggerも
 推測実装しない。
+
+## 10. b5／b6 API投影
+
+Python clientはpluginのepoch-scoped event／entity contractを隠さず、Python側だけのqueue、identity、
+retry規則を作らない（DECISIONS `2026-08-16-04`〜`07`）。
+
+### Event cursor
+
+- connectionごとに一つのcursorを持ち、`events.poll` responseを正常受理した後だけ
+  `through_sequence`まで進める。
+- response喪失時は同じ`after_sequence`で再取得し、destructive dequeueとして実装しない。
+- overflow／capacity／明示破棄の累積値を利用者から確認可能にし、event gapを空batchへ畳まない。
+- reconnect時はcursor、event cache、entity handleを全て破棄し、旧epochのreplayやhandle再利用を行わない。
+- b6 filterでも非一致eventをloss扱いせず、serverが返す`through_sequence`と`filtered_out`を正とする。
+
+### Entity handleとretry
+
+handleはopaque stringとして保持し、UUIDへ変換・解析しない。operationごとにserver errorをそのまま投影し、
+foreign／unknownをclient側で区別しない。`backpressure`だけを「後で同一要求をretry可能」と説明し、
+`work_limit_exceeded`、`entity_capacity_exhausted`、`permission_denied`、`internal_error`を自動retryしない。
+特に`world.spawnEntity`のresponse喪失は結果不明であり、重複spawnを避けるため再送しない。
+
+### Wrapperとobserver projection
+
+b5では`events.poll`、`world.getHeight`、`world.spawnParticle`、`world.spawnEntity`を同じwire contractへ
+薄く投影する。b6は`world.getNearbyEntities`、`entity.getPose`／`setPose`／`remove`、event filter／clear、
+`world.setSign`、typed particleを追加する。exact Python method signatureと戻り型は共通wire fixtureと
+plugin実装を入力に固定し、knowledgeだけからkwargsや独自型を推測しない。
+
+WireScope observer projectionはmethod allowlist、method別params／result validator、plugin fixture、
+Scratch adapter、common app artifactと一つのschema v1.1 compatibility setで更新する。Python wheelは
+exact app artifact versionをpinし、plugin wire conformanceとreal-browser E2Eを別gateとして通す。

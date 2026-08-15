@@ -364,3 +364,60 @@ b3 の横断スコープは credential lifecycle の完了を待たずに閉じ�
 5. 明示 reset、途中失敗からの再試行、authority 喪失時の新 domain＋全失効＋再 pairingを含む災害復旧を閉じる。
 
 段階の途中で公開 gate を開かない。b3完了とlong-lived公開可否を同一判定へ戻さず、最終的な開放条件は引き続き §9.9.3 と `2026-08-02-03` が持つ。観察と再開判断の正本は `00-hub/authentication-roadmap_ja.md`。
+
+## 10. b5／b6のevent・entity・dispatcher基盤
+
+b5は、イベントを受けて調べ、生成・操作するAPIを支える大規模な共通基盤を閉じる段である
+（DECISIONS `2026-08-16-04`〜`07`）。b6はこの基盤上の中規模API追加に限定し、別のidentity、
+transport、queueを作らない。
+
+### 10.1 Event captureとepoch別ring
+
+Bukkit Event objectをsession寿命へ持ち越さず、listener実行中にimmutable DTOへ変換する。paired playerの
+対象eventは、そのplayerへ束縛された全active connection epochへ複製する。epochごとに独立した有限ringと
+1始まりの単調増加sequenceを持ち、reconnect時に全て破棄する。
+
+- overflowは最古から退去し、`overflow_dropped_total`へ加算する。
+- resource admissionで投入不能なら`capacity_dropped_total`へ加算する。
+- pollは非破壊で、response喪失後も同じcursorを再取得できる。
+- `events.clear`による削除だけを`explicitly_discarded_total`へ加算する。
+- event DTOに発生時点のworld／originをcaptureし、後続のbuild state変更で書き換えない。
+- right-clickのmain／off-hand二重発火は相関判定して1件へ正規化する。
+
+ring件数、総byte、poll limitのexact値はunit／load／live試験で較正するruntime policyであり、本節から
+推測しない。compact JSON-RPC responseの61,440 bytes上限はwire contractとして先に適用する。
+
+### 10.2 Entity handle registry
+
+registryはconnection epochごとに`mceh_` handleとentityの対応を保持し、同一epoch／同一entityへは同じ
+handleを返す。handleはUUIDや認可情報を符号化せず、操作ごとにepoch ownershipとpermissionを再検証する。
+playerはregistryへ収容しない。
+
+spawnではworld変更前にhandle slot、permission、chunk／work admissionを一括確認する。slotを予約できない
+場合は`entity_capacity_exhausted`で終了し、副作用を起こさない。spawn失敗時は予約を解放する。
+disconnect／reconnect、remove成功、外部world移動でhandleを失効させる。成功した`entity.setPose`による
+world移動ではissued worldを更新する。
+
+Paper上でremoved／unloaded／world-changedをどこまで安定して判別できるかは実装試験で確認し、判別不能な
+状態を推測でreasonへ割り当てない。
+
+### 10.3 Dispatcherとavailability admission
+
+dispatcherは位置配列だけを前提にせず、b6のsign／typed particleまで有限なstructured JSON paramsを
+検証済みDTOとしてhandlerへ渡せる構造にする。permission、handle capacity、入力byte、chunk走査、work量を
+副作用前に検証する。
+
+`backpressure`は副作用前の一時的拒否、`work_limit_exceeded`は入力縮小が必要な拒否、
+`entity_capacity_exhausted`はhandle capacity拒否である。副作用開始後に結果を確定できない場合は
+`internal_error`とし、spawn後のresponse喪失を含めclientへ自動retryを許さない。
+
+`world.getHeight`のcolumn走査、nearby entityのradius／件数／chunk走査、particle count、sign更新は
+§8のper-session／player／global work budgetへ計上する。`world.setSign`は全入力検証後に変更し、
+更新失敗時の完全rollback方法をPaper実装で実証する。
+
+### 10.4 実装・検証の停止線
+
+`world.getHeight`候補は搬送元worktreeでunit 26件、Gradle build、diff checkまで合格したが未commitである。
+event listener、ring、handle、spawn、Paper状態reason、sign rollbackは未実装・未実証であり、設計確定を
+到達証拠へ読み替えない。plugin fixture完了と、Python／Scratch／WireScopeを含むcompatibility setおよび
+real-browser E2Eを別gateとして扱う。

@@ -180,7 +180,7 @@ browserを新targetへattachする方法は未確定である。observer presenc
 - target／display alias列挙capability
 - multi-user／multi-target isolation
 - LAN／public station認証、rate limit、multi-user buffer分離
-- schema v1.1のpayload summary、gap marker、recording／replay loss表現
+- payload summary、gap marker、recording／replay loss表現の後続schema version／slice（b5 schema v1.1のmethod validator拡張とは分離）
 - Python非TTY／Jupyter向けattach
 - artifact signing、公開deploy、rollback運用
 - LAN HTTP簡易modeとHTTPS／local CAの境界
@@ -228,3 +228,26 @@ browserへ貸して代理送信しない。console streamと既存source stream�
 この原則は、loopback web app、教室station、VPS、Electron等の梱包が変わっても同じである。場の名前は
 WireScopeのまま保ち、増えたroleやcomponentを個別に命名する。consoleのtransport、pairing、command scope、
 教材gateは実装着手前に別決定とする。
+
+## 13. b5 method観察とschema v1.1 compatibility set
+
+b5ではobserver schema／app artifact contractをv1.1へ進め、`events.poll`、`world.getHeight`、
+`world.spawnParticle`、`world.spawnEntity`と新しいreasonを観察できるようにする（DECISIONS
+`2026-08-16-07`）。これはschema v1へ未知fieldを追加する変更ではない。
+
+次を一つのcompatibility setとして更新する。
+
+- pluginのwire fixture
+- observer method allowlist
+- method別params／result／error validator
+- Python observer projection
+- Scratch source adapter
+- common app artifact／manifest
+- Python wheelのexact artifact pin
+
+plugin wire fixtureのconformance完了と、共通UIおよびreal-browser E2Eの完了を別gateにする。
+fixtureが通ってもUI表示・loss可視化・Scratch／Python両sourceの実browser動作が確認されるまでは
+WireScope b5 gateを完了扱いにしない。
+
+本sliceで確定するv1.1はmethod観察のcompatibility境界である。payload summary、gap marker、
+recording／replayのloss表現はv1.1へ含めず、後続version／sliceとして別に固定する。

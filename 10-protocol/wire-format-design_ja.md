@@ -55,7 +55,7 @@ JSON-RPC 2.0 を採用する（採用判断と却下案は §8）。
 ```
 
 - `id` を**省略**すると JSON-RPC の notification ＝ **応答も返らない**（高速建築でラウンドトリップを省く用途）。
-- 仕様上 notification は**エラーも返らない**。b1 の `chat.post` / `world.setBlock` / `world.setBlocks` は、疎通確認と error 観測を優先して **id 付き同期 request** として扱う（§7.3、DECISIONS `2026-07-01-08`）。notification / send-only 既定化は b1 に含めず、bN / debug 統合側の後続作業とする。サーバ→クライアントの async error/log push も bN。
+- 仕様上 notification は**エラーも返らない**。b1 の `chat.post` / `world.setBlock` / `world.setBlocks` は、疎通確認と error 観測を優先して **id 付き同期 request** として扱う（§7.3、DECISIONS `2026-07-01-08`）。notification / send-only 既定化は b1 に含めず後続体験設計で扱う。server pushは`2026-08-16-05`で採らず、eventは`events.poll`、command errorは対応requestで観察する。
 
 ### 3.3 応答（サーバ → クライアント）
 
@@ -99,6 +99,16 @@ JSON-RPC 2.0 を採用する（採用判断と却下案は §8）。
 | `player.setPos` | `[world, x, y, z]` | あり | paired player を指定 world の stream origin 相対位置へ teleport する（b2 準核） |
 | `player.getPose` | `[]` | あり | paired player の現在 world・位置・向き（yaw/pitch）を stream origin 相対で返す（b4 実装予定、§5.3） |
 | `player.setPose` | `[world, x, y, z, yaw, pitch]` | あり | paired player を指定 world の stream origin 相対位置・向きへ1回の teleport で一体反映する（b4 実装予定、§5.3） |
+| `events.poll` | `[after_sequence, limit]`（b6でfilter追加） | あり | epoch-scoped event ringを非破壊取得（b5、§5.4） |
+| `events.clear` | b6 fixtureで固定 | あり | 呼出時点までのretained eventを明示破棄（b6、§5.4） |
+| `world.getHeight` | `[x, z]`または`[x, z, max_y]` | あり | origin相対の最上面block高を返す（b5、§5.6） |
+| `world.spawnParticle` | `[particle, x, y, z, count, offset_x, offset_y, offset_z, speed, force]` | あり | b5はdata不要particleのみ（§5.7） |
+| `world.spawnEntity` | `[entity, x, y, z]` | あり | entityを生成しepoch-scoped handleを返す（b5、§5.7） |
+| `world.getNearbyEntities` | b6 fixtureで固定 | あり | boundedな近傍entity検索。playerを除外（b6、§5.8） |
+| `entity.getPose` | b6 fixtureで固定 | あり | handle対象のposeを返す（b6、§5.8） |
+| `entity.setPose` | b6 fixtureで固定 | あり | handle対象のposeを一体更新（b6、§5.8） |
+| `entity.remove` | b6 fixtureで固定 | あり | entityを除去しhandleを即時失効（b6、§5.8） |
+| `world.setSign` | b6 fixtureで固定 | あり | signの面と厳密4行の制限componentを一体更新（b6、§5.8） |
 
 - `chat.post` の message は `params[0]` の1値だけを正とする（DECISIONS `2026-07-01-01`）。
   旧テキストコマンド実装には分割された args を join して複数トークンを1メッセージ化する暗黙挙動があったが、
@@ -109,6 +119,7 @@ JSON-RPC 2.0 を採用する（採用判断と却下案は §8）。
 - `catalog.get` は protocol 21.0.0 系 b3 の実装予定に含める（DECISIONS `2026-07-29-04`、§7.2.1）。API 層名・wire method とも `catalog.get`。認証後のみ有効で、稼働中 registry から block/entity/particle を単一 response で返す。
 - `player.getPos` / `player.setPos` は protocol 21.0.0 系 b2 の準核に含める（DECISIONS `2026-07-07-02`）。API 層名は `getPos` / `setPos`、wire method は `player.*`。
 - `player.getPose` / `player.setPose` は protocol 21.0.0 系 b4 の実装予定に含める（DECISIONS `2026-07-29-03`、§5.3）。API 層名は `getPose` / `setPose`、wire method は `player.*`。既存 `getPos` / `setPos` は廃止せず維持する。
+- `events.*`、b5／b6の`world.*`／`entity.*`はprotocol 21.0.0を維持したrc前beta積層であり、artifact b5／b6のcompatibility setとして実装する（DECISIONS `2026-08-16-04`〜`07`、§5.4〜§5.8）。
 - `auth.*`（`auth.pairBegin` / `auth.pairPoll` / `auth.listCredentials` / `auth.revoke` / `auth.logout`）は hello の前段に位置する認証・credential 管理の名前空間で、**本表ではなく §6.5 / §6.6 が正本**。ペアリングは §6.5、credential の一覧と失効は §6.6（`2026-08-02-01`）。
 - `setPlayer` は**廃止**（protocol 21.0.0 系の b1 配布物でクリーン除去、DECISIONS `2026-06-15-02`/`2026-06-25-05`）。identity は `hello` が担い、サーバが token ↔ player を束縛するため**なりすまし不可**。
 
@@ -165,6 +176,96 @@ build state を変更する `setWorld(dimension)` / `setBuildOrigin(x,y,z)` は�
 
 > 却下＝旧 `camera.setNormal`/`setFixed`/`setFollow`/`setPos`（RemoteControllerMod のクライアント mod 側カメラ操作）を Paper 側 API として再現する案：対応する汎用 camera API が Paper に無い。却下＝`setSpectatorTarget` を walkthrough の基盤にする案：spectator mode 必須で entity 追従以外の pose を直接指定できない。却下＝位置と角度変更を別 request にする案：途中状態が見え1フレーム内で位置と視線がずれ得る。却下＝walkThrough 全体を server 側の長時間 job として先に固定する案：円弧・Y 補間・look-at 等はクライアント側の高水準処理として組み合わせやすい。
 
+### 5.4 events.poll と有限event ring（b5／b6）
+
+server pushは使わない。pluginはpaired playerに発生した対象eventを、そのplayerへ束縛された全active
+connection epochのringへimmutable DTOとして複製する。epochごとにring、sequence、cursorを独立させ、
+別sessionのpollでeventを失わせない。sequenceはepoch内で1から単調増加し、disconnect／reconnectで
+ringとともに破棄する。reconnect replayは行わない。
+
+`events.poll [after_sequence, limit]`は非破壊pollである。response喪失時は同じcursorで再取得でき、
+clientはresponseを正常受理した後だけ`through_sequence`までcursorを進める。
+
+- `after_sequence`がretained oldestより古い: lossを伴う有効なpoll。残っている先頭から返す。
+- `after_sequence`がlatestと同じ: 空の有効response。
+- `after_sequence`がlatestより大きい: `invalid_params`。
+- ring overflow: 最古eventから退去させる。沈黙したlossにしない。
+- compact JSON-RPC response: 最大61,440 bytes。WireScopeの64 KiB frame admissionへ余裕を残す。
+
+responseは`events`、`through_sequence`、`latest_sequence`、`filtered_out`と、epoch内で単調増加する
+`overflow_dropped_total`、`capacity_dropped_total`、`explicitly_discarded_total`を持つ。
+`capacity_dropped_total`はresource／capacity admissionによりringへ投入できなかったeventを数える。
+b5ではfilterとclearを実装せず、`filtered_out`と`explicitly_discarded_total`は常に0とする。
+
+b6 filterはringをsequence順に走査する。非一致eventでも`through_sequence`を進め、
+`filtered_out`へ加算するがlossには数えない。`events.clear`は呼出時点までのretained eventを削除し、
+`explicitly_discarded_total`へ加算する。
+
+b5のevent typeは次の3種である。exact JSON shapeはplugin fixtureを拘束層とし、Bukkit Event objectを
+wireやringへ保持しない。
+
+- `block_right_click`: 発生時のworld／origin、origin相対block position、face、canonical block state、hand。
+  相関するmain／off-hand二重発火は1件へ正規化する。
+- `chat_posted`: paired playerが投稿したoriginal plain input。slash commandは除外し、chat自体はcancelしない。
+- `projectile_hit`: 発生時のworld／origin、projectile type、hit position、blockまたはentity target。
+  player hitは`kind: "player"`だけとし、handle、UUID、player nameを返さない。
+
+空間eventは投入時点のworldとoriginを固定する。後からbuild world／originが変わっても既存DTOを変更・
+破棄せず、event受信を理由にpluginがbuild stateを暗黙変更しない。event座標を`world.*`へ渡すclientは、
+現在のworld／originとの一致を確認し、不一致をactionable errorとして扱う。
+
+### 5.5 connection epoch scoped entity handle（b5）
+
+entity handleは`mceh_` prefixと128 bit以上の暗号学的乱数に由来するopaque ASCII stringである。
+UUID、world、player、credentialを符号化せず、秘密や認可capabilityとして扱わない。同一epoch内では
+同じentityに同じhandleを返し、disconnect／reconnectで全て失効する。WireScope表示やScratch変数への
+格納は許可するが、操作のたびにepoch ownershipとpermissionを再検証する。
+
+- foreign／unknown handleはどちらも`entity_handle_not_found`へ畳む。
+- playerにはhandleを発行せず、player操作は`player.*`に限定する。
+- spawn前にhandle slotを予約し、予約不能ならworldを変更せず`entity_capacity_exhausted`。
+- 外部要因でentityがworldを移動した場合は失効する。成功した`entity.setPose`による移動ではissued worldを更新する。
+- known handleの対象状態は`entity_removed`、`entity_unloaded`、`entity_world_changed`で区別する。
+- spawn自体の失敗は`entity_spawn_failed`。spawn後にresponseを喪失した場合は結果不明であり、自動retryしない。
+
+### 5.6 world.getHeight（b5）
+
+paramsは`[x,z]`または`[x,z,max_y]`、resultはinteger。`x`、`z`、`max_y`、resultはstream origin相対で、
+`max_y`はinclusiveである。省略時は`world.maxHeight - 1 - origin.y`を使う。
+
+指定列を上から探索し、非passable blockかつ直上がpassableとなる最上面blockの相対yを返す。
+world上端の直上はpassableとして扱い、該当が無ければ`height_not_found`。走査量はavailability guardへ
+計上する。独立した`world.findFloor`は作らず、低い`max_y`を指定した反復で多層を探索できるようにする。
+
+### 5.7 world.spawnParticle／world.spawnEntity（b5）
+
+`world.spawnParticle`はcatalogのcanonical namespace IDを使う。b5はdata不要particleだけを受け、
+未知IDは`unknown_particle`、typed data必須は`particle_data_required`。count、offset、speed、work量を
+副作用前に検証し、resultには実際に受理したparticle countを返す。
+
+`world.spawnEntity`もcatalogのcanonical namespace IDを使い、成功時は§5.5のhandleを返す。
+playerまたはspawn不能typeは`entity_not_spawnable`、未知IDは`unknown_entity`。handle capacity、permission、
+chunk／work admissionをspawn前に検証し、別entityへのfallbackは行わない。
+
+availability reasonは追加の`retryable` fieldを作らず、次の意味を固定する。
+
+- `backpressure`: 副作用開始前。後で同一要求をretry可能。
+- `work_limit_exceeded`: 入力量を減らす必要があり、自動retry禁止。
+- `entity_capacity_exhausted`: 自動retry禁止。
+- `permission_denied`: permission変更までretryしない。
+- `internal_error`: 結果不明。非冪等操作を自動retryしない。
+
+### 5.8 b6のentity／sign／typed particle
+
+b6 entity APIはb4のpose shape `{world,pos,yaw,pitch}`を再利用する。nearby検索はstream world内、
+player除外、radius／件数／chunk走査をboundedにし、unloaded entityを探すためのchunk loadを行わない。
+必要なhandle capacityはrequest全体で事前確認し、部分的なhandle発行をしない。`entity.remove`成功時は
+handleを即時失効する。exact params／result shapeはb6 fixtureを実装前に固定する。
+
+`world.setSign`はstanding／wall signのcanonical block state、front／back、厳密4行の制限componentだけを
+受理する。全入力を検証してから変更し、更新失敗時は元block stateへrollbackする。typed particle dataは
+dustとblock stateの有限schemaだけを追加し、任意Java objectの直列化とitem particleはb6へ入れない。
+
 ---
 
 ## 6. hello ペイロード（**§6.1 / §6.5 確定・§6 全体 ratify 待ち**）
@@ -217,7 +318,7 @@ pair→token の入手フロー（§6.5）／origin 基準の相対座標／`pro
 
 ### 6.5 認証：ペアリングフロー（確定 `2026-07-04-06`）
 
-token の入手＝ペアリング。**hello の前段の独立メソッド `auth.*`**（hello は §6.1 の `auth:{token}` 1モードのみ）。トポロジは **poll**。完了 push は b2 では持たず（`2026-07-01-08`＝async push は bN）、bN で `auth.pairPoll` を server→client notification に差し替える＝begin 応答・`pairing_id` 相関・token payload をそのまま保存する push 形の部分集合。名前空間 `auth.*` は将来の `auth.refresh` / `auth.revoke` / `auth.logout` も同居させる。**`auth.listCredentials` / `auth.revoke` / `auth.logout` は `2026-08-02-01` で確定し §6.6 に置く**（`auth.refresh` は自動期限を設けないため予約のまま）。
+token の入手＝ペアリング。**hello の前段の独立メソッド `auth.*`**（hello は §6.1 の `auth:{token}` 1モードのみ）。トポロジは **poll**。`auth.pairPoll`をserver→client notificationへ差し替えず、server pushを採らない`2026-08-16-05`の規律を適用する。名前空間 `auth.*` は将来の `auth.refresh` / `auth.revoke` / `auth.logout` も同居させる。**`auth.listCredentials` / `auth.revoke` / `auth.logout` は `2026-08-02-01` で確定し §6.6 に置く**（`auth.refresh` は自動期限を設けないため予約のまま）。
 
 ```text
 → auth.pairBegin { token_type:"session", client:{name,version,locale}, device?:"教室PC-3" }
@@ -263,7 +364,7 @@ long-lived credential の一覧と失効。認証後のみ有効で、常に**�
 | --- | --- | --- |
 | ① | **block id 表現**（文字列名・名前空間） | **確定** `2026-06-26-03`（§7.1） |
 | ② | **`world.getBlock` 戻り型** | **確定** `2026-06-26-03`（文字列カタログ名・§7.1） |
-| ③ | **notification のエラー方針** | **b1 スコープ確定** `2026-07-01-08`（`2026-06-27-04` / `2026-07-01-06` を改訂）。b1 の setBlock/setBlocks/chat.post は **id 付き同期 request** として扱い、疎通確認・error 観測を優先する。notification / send-only 既定化とサーバ→クライアント async error/log push は b1 に含めず **bN / debug 統合**へ送る。残: async push の設計は debug 統合と同時 |
+| ③ | **notification のエラー方針** | **b1 スコープ確定** `2026-07-01-08`（`2026-06-27-04` / `2026-07-01-06` を改訂）。b1 の setBlock/setBlocks/chat.post は **id 付き同期 request** として扱い、疎通確認・error 観測を優先する。server push方向は`2026-08-16-05`で撤回し、eventは非破壊`events.poll`、command errorは対応requestで観察する。send-only UXは別の体験設計 |
 | ④ | **命名系統** | **確定** `2026-06-26-04`。ワイヤ method はドット名前空間（build setter は `build.*`＝`build.setWorld`/`build.setOrigin`）・API 名は camelCase 維持（§5.1）。b1 params は §5.1 |
 | ⑤ | **権限既定値** | 未決（**plugin/LuckPerms の現実依存**）。hello 応答 `permissions` の既定は config.yml の権限名（`mcr.online`/`mcr.offline`/`mcr.build.range`、scratch-plan §2.5）と実 LuckPerms 既定に律速＝plugin b1/認証 bN で実値を確認して確定 |
 
@@ -346,6 +447,20 @@ long-lived credential の一覧と失効。認証後のみ有効で、常に**�
 | player-state | `-32000`番台（実装定義域） | `permission_denied` | LuckPerms 等の認可により操作拒否。token は温存 | b2 |
 | | | `player_offline` | token は有効だが paired player がオンラインでない | b2 |
 | | | `teleport_failed` | `player.setPose` 等の teleport 呼び出し自体が `permission_denied`/`player_offline`/`unknown_world`/`invalid_params` 以外の要因で失敗（Paper `Entity.teleport` が false を返す等） | b4 |
+| world-query | `-32000`番台（実装定義域） | `height_not_found` | 指定上限以下に「非passableかつ直上passable」のblockが無い | b5 |
+| resource-ref | `-32602`（Invalid params） | `unknown_particle` | canonical particle IDがregistryに無い | b5 |
+| | | `particle_data_required` | b5では扱わないtyped data必須particle | b5 |
+| | | `unknown_entity` | canonical entity IDがregistryに無い | b5 |
+| | | `entity_not_spawnable` | playerまたはspawnを許可しないentity type | b5 |
+| availability | `-32000`番台（実装定義域） | `backpressure` | 副作用開始前の一時的な処理能力超過。同一要求を後でretry可能 | b5 |
+| | | `work_limit_exceeded` | 入力量または走査量がwork上限を超過。自動retryせず入力を縮小する | b5 |
+| | | `entity_capacity_exhausted` | handle slotを副作用前に予約できない。自動retryしない | b5 |
+| entity-state | `-32000`番台（実装定義域） | `entity_handle_not_found` | foreign／unknown handle。存在差を公開しない | b5 |
+| | | `entity_removed` | known handleの対象entityが除去済み | b5 |
+| | | `entity_unloaded` | known handleの対象entityがunloadされ現在操作不能 | b5 |
+| | | `entity_world_changed` | 対象entityが外部要因でissued worldから移動 | b5 |
+| | | `entity_spawn_failed` | admission後のspawn自体が失敗 | b5 |
+| server-state | `-32603`（Internal error） | `internal_error` | 結果が確定できない。非冪等操作を自動retryしない | b5 |
 | params 検証 | `-32602`（Invalid params） | `credential_not_found` | `auth.revoke` で指定した `credential_id` が要求元 UUID の active credential に無い（他 player の ID と存在しない ID を同値へ畳んで存在を隠す）。**caller の token は温存**し、`ref` に `credential_id` を返す | bN |
 | credential-state | `-32000`番台（実装定義域） | `credential_limit_reached` | UUID ごとの active long-lived credential 上限に到達。`data.type` / `data.limit` / `data.active` を返す。古い credential を自動失効させず、ユーザーが list / revoke する | bN |
 | auth-service | `-32000`番台（実装定義域） | `credential_store_unavailable` | server が credential 状態を現在検証できない、または credential 管理操作の durable な結果を確定できない。`data.operation`（`resolve`/`issue`/`list`/`revoke`/`touch`）を返す。**単独では token を invalid と分類せず、client は token を削除せず自動再ペアリングもしない**（token 温存・再試行） | bN |
@@ -355,7 +470,7 @@ long-lived credential の一覧と失効。認証後のみ有効で、常に**�
 - **reason 分割の理由**：生徒のミスが別物（付け忘れ/構文破壊/prop 無い/値不正）で、ライブ画面が別メッセージを出せると切り分け教育になる。`allowed` を返せるのは `invalid_property_value` だけ＝非対称が綺麗に出る。
 - **`unloaded_chunk` は b1 reason から廃止**（DECISIONS `2026-07-01-08`）。未生成 chunk に対してロード/生成せず有意味な block 操作や query を行う実体はなく、許可された操作ならロード/生成して処理する。禁止すべき操作は chunk ロード状態ではなく build policy / 範囲 / 認可の問題なので、ユーザーに返す安定 reason は `build_denied` とする。chunk generation policy が必要になった場合は bN で別 reason として設計する。
 - **後送り（名前予約のみ）**：`catalog_cache_stale`・`unknown_namespace`・`out_of_bounds`(world-state/y 範囲外・即判定で混乱しないため後送り)。
-- **適用範囲**：b1 では getBlock に加え、chat.post/setBlock/setBlocks も **id 付き同期 request** として result/error を取れる形を基準にする（`2026-07-01-08`）。notification は JSON-RPC 上は可能だが result/error を返さないため、send-only 既定化は b1 の疎通確認対象から外す。async push は bN。
+- **適用範囲**：b1 では getBlock に加え、chat.post/setBlock/setBlocks も **id 付き同期 request** として result/error を取れる形を基準にする（`2026-07-01-08`）。notification は JSON-RPC 上は可能だが result/error を返さないため、send-only 既定化は b1 の疎通確認対象から外す。server pushは採らず、eventは§5.4のpollへ進める（`2026-08-16-05`）。
 - **送信モードの体験タクソノミー**（`visible`/`paced`・`async`・`sync`・`batch`/`job`）は wire でなく**体験設計の層**＝DECISIONS `2026-07-01-08` が持つ。wire 上の実体は notification（応答なし）と id 付き request（同期 result/error）の2系統だけ。b1 は後者を確認基準にし、send-only / async UX は bN / debug 統合側で設計する。`visible`/`paced` はクライアント側 pacing、`batch`/`job` は高水準 API・後続プロトコルの話。
 
 ---
@@ -392,7 +507,7 @@ notification のエラー方針（§7 ③）は**エンベロープ選択に関�
 
 ## 10. b1 到達点（疎通テスト）
 
-b1（protocol は clean な 21.0.0、配布物は `2100.0.0b1` 系）は **payload flip と疎通確認に徹し MVP を小さく切る**（versioning-design §10.11、DECISIONS `2026-06-25-05` / `2026-07-01-08`）。エラー往復は **id 付き request**（setBlock/setBlocks/chat.post の同期 result/error）または **getBlock**（常に request）で示す。send-only / notification 既定化は b1 の到達点に含めず、bN / debug 統合へ送る。
+b1（protocol は clean な 21.0.0、配布物は `2100.0.0b1` 系）は **payload flip と疎通確認に徹し MVP を小さく切る**（versioning-design §10.11、DECISIONS `2026-06-25-05` / `2026-07-01-08`）。エラー往復は **id 付き request**（setBlock/setBlocks/chat.post の同期 result/error）または **getBlock**（常に request）で示す。send-only / notification 既定化は b1 の到達点に含めず後続へ送った。server push方向は後に`2026-08-16-05`でpollへ改訂した。
 
 **b1 で通したい最小テスト:**
 
@@ -403,4 +518,4 @@ b1（protocol は clean な 21.0.0、配布物は `2100.0.0b1` 系）は **paylo
 5. `world.getBlock(...)` が full・完全修飾の `"minecraft:oak_log[axis=y]"` を返す（§7.1 正準形）。
 6. 不正 state・未知 block は id 付き setBlock/setBlocks で、build policy 範囲外は id 付き setBlock/setBlocks または getBlock で、対応する `data.reason`（`unknown_block` / `invalid_property_value` / `build_denied` 等、§7.3）の error が返る。
 
-**b1 でやらないこと**（意識的に bN へ送る）：全 block catalog 配信 / mod catalog 取得 / full `world_constants.json` 配送 / `y_sea` の完全な意味論・superflat 判定・multi-version switching / Scratch 全 state UI / Scratch `setOrigin` の X/Y/Z 編集版・session/reconnect/save と origin 固定タイミングの厳密仕様 / Python 完全補完・`.pyi` 生成 / creative tab 再現 / ドア helper 実装 / kwargs 入力（catalog 連動・b2）/ サーバ→クライアント async error push（debug 統合・bN）。
+**b1 でやらないこと**（当時の後送り）：全 block catalog 配信 / mod catalog 取得 / full `world_constants.json` 配送 / `y_sea` の完全な意味論・superflat 判定 / multi-version switching / Scratch 全 state UI / Scratch `setOrigin` の X/Y/Z 編集版・session/reconnect/save と origin 固定タイミングの厳密仕様 / Python 完全補完・`.pyi` 生成 / creative tab 再現 / ドア helper 実装 / kwargs 入力（catalog 連動・b2）/ サーバ→クライアント async error push。最後のpush方向は`2026-08-16-05`で採らず、event pollへ置き換えた。

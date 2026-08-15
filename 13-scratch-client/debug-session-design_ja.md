@@ -186,7 +186,7 @@ WS1（グランドプラン / AI 活用方針）
 
 「ライブ画面」（＝本文書のデバッグセッションの学習者向け呼称）は、機能として特定 bN に割り当てるのでなく **b1 のログビューアから b5 まで育つ横串（観測点）**。Scratch/Python/Java など入口が増えても**同じ観察面**を使う、全クライアント共通の観測点。**【`2026-08-02-09` による現行形】WireScope は接続状態・sanitized wire・stream・world / origin・result / error を観察する面であり、catalog 管理・AI 補助・チュートリアル・command 送信・pairing・credential 管理を所有する万能ハブにはしない**（旧記述＝「接続状態・実行ログ・catalog・AI 補助・チュートリアルを同じ場所に集約する全クライアント共通ハブ」）。観察専用であることは独立 WireScope の権限境界そのもので、これらを持たせると観察面が操作面へ昇格する。Scratch→Python 移行でも同じライブ画面を使い続けることで環境の連続性を作る。**ブランド名（固有名詞・言語非依存）＝WireScope（JP 表記: ワイヤースコープ）**（旧「Debug Session」硬名は引退）。**説明的通称（一般名詞・各言語）＝EN: Live session/screen ・JP: ライブ画面**＝学習者に意味が通る別称。学習者・貢献者は日本人に限定しないのでブランドは言語非依存・通称のみ各言語化＝落とし所表記 `WireScope (Live screen)` / `ワイヤースコープ（ライブ画面）`。実装は observer UI package `@mc-remote/live`（モノリポ `mc-remote/live`・**配置予約のみ／実装 bN**、DECISIONS `2026-06-27-08`）。
 
-**setBlock の非同期エラーはここに落ちる**：b1 protocol は setBlock/setBlocks/chat.post を id 付き同期 request として扱い、疎通確認と error 観測を優先する（`2026-07-01-08`）。一方、サーバ→クライアントの **async error/log push（§7③ 推し=(c)）をライブ画面で受けて非同期表示**する形は別物＝push 用に Python の readline ループを改造する重い部分なので **bN（debug 統合）**。send-only / fire-and-forget の既定化やライブ画面のモードトグル（デバッグモード=setBlock に id 付与で同期応答 等のスイッチ）は bN/debug 側で設計する。ライブ画面側は b1 では持ち込まず、疎通は id 付き setBlock / getBlock で確認する。
+**command error と event は別経路で観察する**：b1 protocol は setBlock/setBlocks/chat.post を id 付き同期 request として扱い、疎通確認と error 観測を優先する（`2026-07-01-08`）。当時 bN へ送った server→client async error/log push は、`2026-08-16-05` で採用せず、event は connection epoch ごとの有限 ring と非破壊 `events.poll`、command error は対応 request の response として観察する形へ改訂した。send-only / fire-and-forget の既定化やライブ画面のモードトグルは別の体験設計に残し、WireScope は request／response と poll された event を共通の観察面へ投影する。
 
 ### building 制限の wire 部分（`build_denied` 方針メモ）
 

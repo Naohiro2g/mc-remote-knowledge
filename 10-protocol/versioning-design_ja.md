@@ -395,7 +395,7 @@ b2（package `2100.0.0b2` / protocol 21.0.0 積み上げ・凍結前）のスコ
 
 **【並行・軽量（protocol 非接触）】**
 
-13. WireScope v0 = Scratch 接続パネルとして実装: 6桁ペアコード表示・接続状態インジケータ（未接続→pair待ち→接続→切断）・現在の接続先（表示名と sandbox route）・hello 応答情報（protocol / mc_version / world_constants / permissions）・自クライアントの送受信フレームログ。サーバ→クライアント async push には触れない（bN/debug 統合のまま）。「wire を覗く」教育アングルの最初の実物。**【2026-07-05 扉②（post-b2 種・DECISIONS `2026-07-05-02` / `2026-07-20-08` / `2026-07-21-07`）】フレームログ表示モデルにストリーム識別子欄を最初から持たせる（N=1 でも破綻せず main / substream へ前方互換）。接続状態は色だけに依存せず、アイコン・テキストを併用する。**　**【2026-08-02-09 による現行形】b2 で実装した inline WireScope は、独立 WireScope の prototype として位置づける。現在の Scratch 内面は WireScope mini へ縮小し、hello 詳細・permissions・world constants・frame / payload は別 origin の独立 WireScope へ移す。stream 識別欄の前方互換要件は独立側へ継承する。本項の記述は b2 当時の実装内容として履歴に残す。**
+13. WireScope v0 = Scratch 接続パネルとして実装: 6桁ペアコード表示・接続状態インジケータ（未接続→pair待ち→接続→切断）・現在の接続先（表示名と sandbox route）・hello 応答情報（protocol / mc_version / world_constants / permissions）・自クライアントの送受信フレームログ。サーバ→クライアント async push には触れない。「wire を覗く」教育アングルの最初の実物。**【2026-07-05 扉②（post-b2 種・DECISIONS `2026-07-05-02` / `2026-07-20-08` / `2026-07-21-07`）】フレームログ表示モデルにストリーム識別子欄を最初から持たせる（N=1 でも破綻せず main / substream へ前方互換）。接続状態は色だけに依存せず、アイコン・テキストを併用する。**　**【2026-08-02-09 による現行形】b2 で実装した inline WireScope は、独立 WireScope の prototype として位置づける。現在の Scratch 内面は WireScope mini へ縮小し、hello 詳細・permissions・world constants・frame / payload は別 origin の独立 WireScope へ移す。stream 識別欄の前方互換要件は独立側へ継承する。本項の記述は b2 当時の実装内容として履歴に残す。server pushの後続方向は`2026-08-16-05`で非破壊pollへ改訂した。**
 
 **【b3 送り】**
 
@@ -404,10 +404,10 @@ b2（package `2100.0.0b2` / protocol 21.0.0 積み上げ・凍結前）のスコ
 
 **【bN のまま】**
 
-16. async error/log push / ライブ画面本格版（`2026-07-01-08` どおり）。
+16. async error/log push / ライブ画面本格版（当時の後送り。`2026-08-16-05`でserver pushを採らず、eventは非破壊pollへ改訂）。
 17. 逆方向ペアリング対策のデプロイ単位オプション（私有サーバー運用が R2 リリースに含まれるか確定した時点で再判断）。
 
-**整合参照**（搬送票の根拠/検証欄より）: 本スコープは claude.ai サーフェスでの横断検討によるもので、検証不能な実装依存項目は含まない。実装量見積り・§7⑤権限既定値・catalog 書き出しコストは各リポ現場確認で裏取りする。既存決定との整合: §10.11（bN=認証）、`2026-06-27-05`（catalogHash 常在）、`2026-06-24-01`（build state=stream 個別）、`2026-07-01-08`（async push は bN）、`2026-06-26-01`（hello 残起案=auth）、scratch-plan（pair UX 設計済み）、R2 locked decisions。
+**整合参照**（搬送票の根拠/検証欄より）: 本スコープは claude.ai サーフェスでの横断検討によるもので、検証不能な実装依存項目は含まない。実装量見積り・§7⑤権限既定値・catalog 書き出しコストは各リポ現場確認で裏取りする。既存決定との整合: §10.11（bN=認証）、`2026-06-27-05`（catalogHash 常在）、`2026-06-24-01`（build state=stream 個別）、`2026-07-01-08`（当時async pushをbNへ送ったが`2026-08-16-05`でpollへ改訂）、`2026-06-26-01`（hello 残起案=auth）、scratch-plan（pair UX 設計済み）、R2 locked decisions。
 
 ### 10.11.2 b3を膨らませず、PoPをrelease gateから外す
 
@@ -433,6 +433,39 @@ b4 全体スコープの確定は `2026-07-21-07` の stream identity 設計ゲ�
 - **範囲**：b4 の対象は paired player までとし、任意 entity への pose 操作は将来の bN へ送る。
 - **高水準 `player.walkThrough` は構想のみ**：軌道・速度・補間・注視方向をクライアント側で組み立て `getPose`/`setPose` を基礎命令として使う構想を記録するが、API 形と収容版は別途決定する。
 - **scope freeze との関係**：本項目は `2026-07-21-07` の stream identity 判断（main/substream 写像・Scratch 側実現可能性）とは独立な準核候補であり、その確定を待たず先に追加してよい起案として扱う。b4 全体の核/準核の切り分け・mc-target 等の確定は別途行う。
+
+### 10.11.4 b5／b6 のスコープ（確定）
+
+protocol は `21.0.0` を維持し、artifact version を b5=`2100.0.0b5`、
+b6=`2100.0.0b6` とする。protocol 自体に beta 番号を持たせず、rc 前の同一 protocol 系へ
+method と検証済み schema を積層できるという §10.11 の規律を適用する（DECISIONS
+`2026-08-16-04`）。
+
+b5 は大規模な共通基盤を閉じる段である。
+
+1. connection epoch ごとの有限 event ring、sequence cursor、overflow／loss
+2. 右クリック、チャット投稿、projectile hit event
+3. connection epoch scoped entity handle
+4. availability／work admission
+5. `world.getHeight`
+6. `world.spawnParticle`
+7. `world.spawnEntity`
+8. structured JSON params を保持できる dispatcher
+9. plugin／Python／Scratch／WireScope の compatibility set
+
+b6 は b5 基盤上の中規模 API 追加に限定し、新しい identity、transport、queue を作らない。
+
+- `world.getNearbyEntities`
+- `entity.getPose`／`entity.setPose`／`entity.remove`
+- `events.poll` filter／`events.clear`
+- `world.setSign`
+- typed particle data（dust／block state）
+- b6 終端での未批准 legacy wire method の置換または registry からの除去
+
+旧 Scratch `.sb3` opcode migration は wire method 整理と別 gate とする。b5／b6 のmethodを
+protocol `21.0.0`へ収容することは、実装、live evidence、release gateの合格を意味しない。
+exact ring／handle／poll／work上限はruntime policyとtest fixtureで較正し、横断version contractへ
+焼き込まない。
 
 ### 10.12 pre-release 状態は明示操作（自動認識は PyPI のみ）
 

@@ -17,3 +17,7 @@
 raw は `14-evidence/raw/` に一時配置できるが gitignore 対象であり、public commit しません。公開 record は token、pair code、private host、UUID 等を必要に応じて redact し、redaction が主張を壊していないことを確認します（`2026-07-06-03` / `2026-07-21-04`）。
 
 新 public 正本世代は過去 evidence を carry せず、空の索引から始めます。
+
+b5／b6 plugin APIの横断的な検証範囲は
+[b5／b6 横断検証設計](b5-b6-verification-design_ja.md)を参照します。これは未実施の結果を
+evidence化する文書ではなく、実行後にrecordへ残す主張とtest classの境界です。
