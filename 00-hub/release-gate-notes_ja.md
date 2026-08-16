@@ -47,3 +47,15 @@ release 判定は、実装 repo 側が事実と根拠を記入し、knowledge �
 - scope: versioning §10.11.1項14のcatalog一式、Scratch現行roadmapのb3 scope、各componentのb3 prereleaseを区切りとして閉じる。component番号の永久同期やstable releaseを主張しない
 - deferred: long-lived credentialの公開gate、checkpoint＋doctor、end-to-end snapshot rollback、reset／災害復旧は閉じたまま後続へ送る。既定は`session`のまま
 - non-claim: Stackの一般profile公開、hosted surface更新、long-lived公開可否をGREENとする記録ではない。これらをb3完了へ遡及混入しない
+
+## 2026-08-16 Python `2100.0.0b4` candidate
+
+- candidate: `codex/b4-player-pose@4d510442db58a94f8b249ddcd9d959381f97276c`
+- contract: DECISIONS `2026-08-16-08` / knowledge `b747fa2b3b6c278f1a8e920ba8e02b45e2cf2b47`
+- evidence: `14-evidence/records/2026-08-16-b4-python-pose-wirescope-live-human_ja.md`
+- status: **PYTHON CANDIDATE PASS — tag／releaseは未承認**
+- verified: candidate wheel、main stream 1件、`player.getPose`／`player.setPose`、origin相対座標、automatic browser launch、WireScope UI、終了表示、distribution／license gate
+- compatibility set: McRemote `9df8c46d600ff9605dc1822b304715de713e6767` / JAR SHA-256 `ab3b87c38b6876ec4ba26112eff35d7cb016395a1dae1661578fd3690e1dbc46` / WireScope source `56011f71291f47ced69cc4e3c377734f501b6081` / ZIP SHA-256 `1a56617c78c283332f1afe3bdd3797ab37f0cdc3455c86c73c926c751721657f`
+- rollback candidate: `v2100.0.0b3@af2d11d66a16e3085f569241406a703a1c28c348`。rollback実操作と再復帰は未実施
+- remaining: Scratch candidate／evidence、Scratch MessageChannelとの横断real-browser E2E、home alpha、exact compatibility set最終批准、release後identity確認
+- non-claim: 本項だけでPython tag、GitHub prerelease、横断b4 milestoneをGREENにしない

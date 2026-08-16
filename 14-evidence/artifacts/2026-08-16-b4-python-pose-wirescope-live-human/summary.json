@@ -1,0 +1,36 @@
+{
+  "record_type": "live-human",
+  "date": "2026-08-16",
+  "result": "PASS",
+  "knowledge_commit": "b747fa2b3b6c278f1a8e920ba8e02b45e2cf2b47",
+  "python_commit": "4d510442db58a94f8b249ddcd9d959381f97276c",
+  "protocol": "21.0.0",
+  "mcremote_commit": "9df8c46d600ff9605dc1822b304715de713e6767",
+  "mcremote_jar_sha256": "ab3b87c38b6876ec4ba26112eff35d7cb016395a1dae1661578fd3690e1dbc46",
+  "wirescope_source_commit": "56011f71291f47ced69cc4e3c377734f501b6081",
+  "wirescope_zip_sha256": "1a56617c78c283332f1afe3bdd3797ab37f0cdc3455c86c73c926c751721657f",
+  "wirescope_manifest_sha256": "f3ec11496b595bbca4ba27a6e938a1149336eb5a2da55e742d60e1681cf4d154",
+  "wheel_sha256": "eeed6261972987946b5e22dd8ff8d3533a758c7db57472d1d82766fbf964e7d0",
+  "sdist_sha256": "f64528a9a8dfa83fea715c940f69562d263796c9e6947ee65a8f506b0a228477",
+  "checks": {
+    "installed_wheel": "PASS",
+    "automatic_browser_launch": "PASS",
+    "player_get_pose": "PASS",
+    "origin_relative_coordinates": "PASS",
+    "yaw_normalization": "PASS",
+    "pitch_boundaries": "PASS",
+    "invalid_params_and_pose_unchanged": "PASS",
+    "wirescope_main_stream": "PASS",
+    "source_and_stream_end_state": "PASS",
+    "python_tests": "175 passed",
+    "wheel_distribution_gate": "PASS"
+  },
+  "redacted": [
+    "pair_code",
+    "attach_code",
+    "token",
+    "player_identity",
+    "connection_pose",
+    "loopback_port"
+  ]
+}

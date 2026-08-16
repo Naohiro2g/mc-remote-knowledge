@@ -324,8 +324,10 @@ ingress、profileを完全なcompatibility setとしてlock・検証する。未
 4. [done] Python main統合と新しい固定SHA
 5. [done] Python in-process station、有限queue、attach code
 6. [done] Python fixture／unit／conformance
-7. 共通appとのreal-browser loopback E2E（実browser UI操作とScratch regression照合は未完）
-8. [done on fixed branch] 人間批准済みの`2026-08-11-01`に従うwheel同梱／license inventory／launcher実装
+7. [Python candidate PASS] 共通appとのreal-browser loopback E2E（Python main streamの実browser UI操作は
+   `4d510442db58a94f8b249ddcd9d959381f97276c`でPASS。Scratch MessageChannel regressionとの横断照合と
+   home alphaは未完）
+8. [Python candidate PASS] 人間批准済みの`2026-08-11-01`に従うwheel同梱／license inventory／launcher実装
 9. Stack後続gateの再判定
 
 次は今回確定しない。

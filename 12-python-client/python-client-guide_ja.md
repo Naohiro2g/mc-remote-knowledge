@@ -300,9 +300,16 @@ wheel build、wheel metadata／license gate、clean wheelからのartifact検証
 launcher→NDJSON lifecycleがPASSした。top-level URLにsecretを含めず、browser起動失敗時はstationを回収して
 Minecraft側をfail openに保つ。
 
-この到達点は固定branch上のpackage／launcher integrationであり、main merge、公開release、実browser UI操作、
-Scratch common app／MessageChannel regressionとのreal-browser E2Eは未完である。attach code再発行の外部triggerも
-推測実装しない。
+後続のb4 candidate `codex/b4-player-pose@4d510442db58a94f8b249ddcd9d959381f97276c`では、同じ
+delivery／launcher基盤に`player.getPose`／`player.setPose`を載せ、candidate wheelをfresh venvへinstallして
+automatic browser launch、main stream 1件のWireScope UI操作、origin相対座標、yaw正規化、pitch境界、
+`invalid_params`時のpose不変、`mc.close()`後の終了表示までlive-humanでPASSした。全回帰175件と
+distribution／license gateもPASSした。正式根拠は
+[b4 Python pose／WireScope live-human evidence](../14-evidence/records/2026-08-16-b4-python-pose-wirescope-live-human_ja.md)とする。
+
+この到達点はPython component candidateのPASSであり、main merge、公開release、Scratch common app／
+MessageChannel regressionとの横断real-browser E2E、home alpha、rollback実操作は未完である。attach code再発行の
+外部triggerも推測実装しない。
 
 ## 10. b5／b6 API投影
 
