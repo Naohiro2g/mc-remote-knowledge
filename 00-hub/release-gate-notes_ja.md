@@ -57,5 +57,18 @@ release 判定は、実装 repo 側が事実と根拠を記入し、knowledge �
 - verified: candidate wheel、main stream 1件、`player.getPose`／`player.setPose`、origin相対座標、automatic browser launch、WireScope UI、終了表示、distribution／license gate
 - compatibility set: McRemote `9df8c46d600ff9605dc1822b304715de713e6767` / JAR SHA-256 `ab3b87c38b6876ec4ba26112eff35d7cb016395a1dae1661578fd3690e1dbc46` / WireScope source `56011f71291f47ced69cc4e3c377734f501b6081` / ZIP SHA-256 `1a56617c78c283332f1afe3bdd3797ab37f0cdc3455c86c73c926c751721657f`
 - rollback candidate: `v2100.0.0b3@af2d11d66a16e3085f569241406a703a1c28c348`。rollback実操作と再復帰は未実施
-- remaining: Scratch candidate／evidence、Scratch MessageChannelとの横断real-browser E2E、home alpha、exact compatibility set最終批准、release後identity確認
+- remaining: Scratch／Pythonの順次横断real-browser E2E、home alpha、plugin artifactを含むexact compatibility set最終批准、release後identity確認
 - non-claim: 本項だけでPython tag、GitHub prerelease、横断b4 milestoneをGREENにしない
+
+## 2026-08-16 Scratch editor `2100.0.0b4` candidate
+
+- candidate: `release/b4@56011f71291f47ced69cc4e3c377734f501b6081`
+- contract: DECISIONS `2026-08-16-08` / knowledge `b747fa2b3b6c278f1a8e920ba8e02b45e2cf2b47`
+- CI: run `31934776981`、exact candidate、全job success
+- evidence: `14-evidence/records/2026-08-16-scratch-b4-release-gate_ja.md`
+- status: **SCRATCH COMPONENT GREEN — tag／releaseは横断gateまで保留**
+- verified: Catalog Picker、`player.getPose`／`player.setPose`、Scratch main stream 1件のMessageChannel観察、pose対応common app、clean artifact reproduction、unit／build／CI
+- common artifact: ZIP SHA-256 `1a56617c78c283332f1afe3bdd3797ab37f0cdc3455c86c73c926c751721657f` / manifest SHA-256 `f3ec11496b595bbca4ba27a6e938a1149336eb5a2da55e742d60e1681cf4d154`。Python candidateと一致
+- rollback target: `v2100.0.0b3@3f1a10a366bfbe76e32b5a31c54da19eddd56e56`。hosted deploy／rollback実操作／再復帰は未実施
+- remaining: Scratch／Pythonの順次横断real-browser E2E、plugin artifactを含むexact compatibility set、home alpha、release後identity確認
+- non-claim: 本項からPython／plugin／home alphaまたは横断b4 milestoneのGREENを推測しない
