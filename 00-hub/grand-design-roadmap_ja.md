@@ -4,7 +4,7 @@
 
 ## 現在地
 
-**現在は R2 完了・R3 入口**（2026-07-21 public epoch 開始時点）。R1 / R2 / R3 は利用者価値と公開段階、b1 / b2 / b3 / b4 は同期 release 列であり、別の軸です。
+**現在は R2 完了・R3 入口**（2026-07-21 public epoch 開始時点）。R1 / R2 / R3 は利用者価値と公開段階、b1〜b6 は同期 release 列であり、別の軸です。
 
 この行は低 drift な粗い相だけを保持します。相を越えるときは DECISIONS 流で更新します（`2026-06-24-03`）。
 
@@ -26,8 +26,9 @@
 
 `2026-08-16-01`〜`2026-08-16-03`で匿名cloud、一般UGC hosting、Backpackを撤回し、保存・移送を
 作品／スプライトのbrowser・file保存とOS clipboardへ再構成した。このため上表R3行の「三層保存」は現行scope
-として使わない。R3〜R5の意味、4月へ向けた日程、各保存・移送trackの配置は、他の横断scopeを揃えた最後の
-R整理で改訂する。それまでは[Scratch roadmap](../13-scratch-client/scratch-roadmap_ja.md)と
+として使わない。`2026-08-16-09`で作品のブラウザ保存をb5、スプライトのブラウザ保存をb6へ配置したが、
+R3〜R5の意味と4月へ向けた日程は、他の横断scopeを揃えた最後のR整理で改訂する。それまでは
+[Scratch roadmap](../13-scratch-client/scratch-roadmap_ja.md)と
 [作品の保存・移送設計](../13-scratch-client/scratch-project-storage-transfer-design_ja.md)を現在地の入力とする。
 
 ## 3. 不変の gate
@@ -40,8 +41,8 @@ R整理で改訂する。それまでは[Scratch roadmap](../13-scratch-client/s
 ## 4. 現在の横断優先
 
 1. public knowledge / stack / backstage の正本境界を運用で定着させる。
-2. b3 の横断スコープを閉じ、b4 へ送った利用者向け機能を進める（`2026-08-07-01`）。
+2. main stream 1件へ限定したb4のWireScope初期版、Catalog Picker、player poseを進める（`2026-08-16-08`）。
 3. ケータリング実践から再構築時間、pairing 負荷、現場の失敗点を集める。long-lived credential の公開 gate は閉じたまま維持し、実需要の確認後に credential-lifecycle slice を再開する。
-4. b4 scope freeze 前に main stream / substream と Scratch object の写像を確定する（`2026-07-21-07`）。
+4. main／substreamとScratch objectの写像はb4を律速させず、post-b4の独立設計・実装sliceで再開する（`2026-08-16-08`）。
 
 個別 repo の「次の一手」は保存せず、その repo の NOTES と contract から都度生成します。

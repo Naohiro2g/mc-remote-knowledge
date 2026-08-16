@@ -169,6 +169,19 @@ archive の b2 record、artifact、test plan は正式根拠として参照し�
 
 ## 3. b3 後の R3 作業束
 
+### b4 scope（確定・main stream 1件）
+
+`2026-08-16-08`により、b4は次の三本へ固定した。
+
+1. Scratch／Python両sourceと共通app／artifactによるWireScope初期版
+2. Scratch Catalog Picker
+3. `player.getPose`／`player.setPose`
+
+WireScopeは各sourceのmain stream 1件を順に観察し、common appとのreal-browser E2Eとhome alphaを
+completion gateに含める。substream、multi-stream、console、LAN／public station、schema v1.1、長期履歴は
+b4へ含めない。observer schemaの`streams[]`等の前方互換は維持するが、main／substreamとScratch objectの
+写像をb4の設計・実装gateにしない。
+
 ### R3-A — catalog picker と state UX（設計確定・b4）
 
 設計は `2026-08-02-07` で確定済み。**b3 scope へ追加せず b4 へ送る**。
@@ -182,7 +195,7 @@ b3 の catalog 実装と実測を入力に、picker の見せ方、state UX、�
 - `.sb3` へ保存するのは block 入力欄の文字列だけ（`2026-07-08-01`）。
 - observation grant と display alias は別票。
 
-### 保存・移送作業束（R配置は最終整理待ち）
+### 保存・移送作業束（b5／b6配置確定・R配置は最終整理待ち）
 
 現行の保存・移送モデルは
 [Scratch作品の保存・移送設計](scratch-project-storage-transfer-design_ja.md) と
@@ -192,7 +205,9 @@ b3 の catalog 実装と実測を入力に、picker の見せ方、state UX、�
 - 作品全体はブラウザ保存作品と`.sb3`、スプライトはブラウザ保存スプライトと`.sprite3`で扱う。
 - ブラウザ保存は同一storage partition・Editor originに閉じ、Minecraft接続先へbindingしない。
 - 対応McRemote Editor間のブロック移送はOS clipboardを使う方向とし、bundle contractはfixture前に推測実装しない。
-- 実装順序は`.sb3`／`.sprite3`互換fixture→ブラウザ保存作品→ブラウザ保存スプライト→clipboard移送→審査済み教材とする。
+- b5は`.sb3`／`.sprite3`互換fixture、IndexedDB共通基盤、ブラウザ保存作品、quota／破損／migration、ファイル保存への退避を閉じる。
+- b6はb5基盤と`.sprite3` fixtureを再利用してブラウザ保存スプライトを追加し、新しい保存基盤を作らない。
+- OS clipboardによるブロック移送と審査済み教材は独立trackとし、b5／b6へ自動追加しない。
 - McRemote Tutorial / Debug 導線と、最初の1 blockまでの教材を揃える。
 - iPad／Safariを含むonboardingと保存・移送の実測gateは、最終R整理で配置する。
 
@@ -358,7 +373,7 @@ slice である。正式根拠は
    - Scratch app側はMessageChannel adapterとstation attach adapterを共通session coreから分離し、選択を状態機械とtestで固定する。
    - 初版は `Minecraft.create()` で成立した main stream 1件を観察する。
    - Scratch 後続前段と短期間だけ並走して両 adapter の conformance を確認し、長期間の共同設計状態にしない。
-   - 完成分は b4 へ同梱できるが、本決定だけで b4 blocker にはしない。
+   - `2026-08-16-08`により、共通app／artifactとPython main streamのreal-browser E2Eはb4初期版の一部とする。
 3. **後続前段：Scratch main／substream と長時間観察**
    - Scratch object model から main／substream への別途確定する写像に従い、各 stream を独立 connection・独立 build state として観察する。
    - observer session が開いている間の長時間観察を実装する。
@@ -377,8 +392,8 @@ slice である。正式根拠は
 `2026-08-10-03`とする。別origin配信ではCSP／COOP、cache、artifact identity、deploy smokeを配信側のgateに
 加える。
 
-per-sprite 第 4 tab は stream が実在するまで park する。main stream / substream と Scratch object の写像は
-`2026-07-21-07` の b4 scope freeze 前設計 gate で確定する。
+per-sprite 第 4 tab は stream が実在するまで park する。main stream／substreamとScratch objectの写像は
+`2026-08-16-08`によりb4 scope freeze前gateから外し、post-b4の独立sliceで再開する。
 
 ### b5／b6 plugin APIのScratch投影
 

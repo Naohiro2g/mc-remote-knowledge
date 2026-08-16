@@ -425,14 +425,25 @@ b3後の独立した後続候補として、公開betaを安全に運用する�
 
 上記のavailabilityとcredential lifecycleを一つの大きな`b4`へ固定せず、公開previewにできるsliceごとに次の`bN`を切る。PoPを外したことを理由に長期bearer tokenを先行公開せず、lifecycle gateは独立に維持する（DECISIONS `2026-07-16-01` / `2026-07-16-03`）。
 
-### 10.11.3 b4 のスコープ（起案・player.getPose/setPose）
+### 10.11.3 b4 のスコープ（確定）
 
-b4 全体スコープの確定は `2026-07-21-07` の stream identity 設計ゲート（scope freeze 前に main/substream 写像を固定する判断）に律速され、本節はそれとは独立に確定した実装予定単独項目を記録する。正本決定は DECISIONS `2026-07-29-03`（出典: `Naohiro2g/McRemote` Codex dev session 確定搬送票、branch `release-close/2100.0.0b2`）。
+artifact version `2100.0.0b4`は、次の三本をmain stream 1件で一巡できる利用者向けsliceとして閉じる
+（DECISIONS `2026-08-16-08`）。
 
-- **`player.getPose` / `player.setPose` を b4 の実装予定に追加**：paired player の位置と向き（yaw/pitch）を1回の teleport で一体反映する。wire 契約の正本は wire-format-design §5.3（error reason は同 §7.3）。既存 `player.getPos`/`setPos`（§10.11.1 項8）は維持し廃止しない。
-- **範囲**：b4 の対象は paired player までとし、任意 entity への pose 操作は将来の bN へ送る。
-- **高水準 `player.walkThrough` は構想のみ**：軌道・速度・補間・注視方向をクライアント側で組み立て `getPose`/`setPose` を基礎命令として使う構想を記録するが、API 形と収容版は別途決定する。
-- **scope freeze との関係**：本項目は `2026-07-21-07` の stream identity 判断（main/substream 写像・Scratch 側実現可能性）とは独立な準核候補であり、その確定を待たず先に追加してよい起案として扱う。b4 全体の核/準核の切り分け・mc-target 等の確定は別途行う。
+1. **WireScope初期版**：Scratch／Pythonの両sourceが共通app／artifact contractを使い、それぞれの
+   main stream 1件を順に観察する。common appとのreal-browser E2Eとhome alphaで、接続、観察、失敗時の
+   切り分けを確認する。
+2. **Scratch Catalog Picker**：helloの`catalogHash`と一致したcatalogだけを候補表示に使い、自由入力、
+   変数、reporterを維持する。Pythonと同じresource表記を使う（`2026-08-02-07`）。
+3. **`player.getPose`／`player.setPose`**：paired playerの位置と向きを一体で読み書きする。
+   wire契約の正本はwire-format-design §5.3、決定は`2026-07-29-03`とする。
+
+b4ではsubstreamを実装せず、Scratch object modelとの写像もcompletion gateにしない。observer schemaの
+`streams[]`、targetとstreamの分離、`1 stream = 1 connection = 1 build state`は前方互換の器として維持する。
+main／substreamモデルとScratch／Pythonへの写像はpost-b4の独立sliceで再開する。
+
+multi-stream、console、LAN／public station、schema v1.1、長期履歴、高水準`player.walkThrough`はb4へ
+含めない。任意entityへのpose操作はb6へ配置済みである。
 
 ### 10.11.4 b5／b6 のスコープ（確定）
 
@@ -452,6 +463,7 @@ b5 は大規模な共通基盤を閉じる段である。
 7. `world.spawnEntity`
 8. structured JSON params を保持できる dispatcher
 9. plugin／Python／Scratch／WireScope の compatibility set
+10. `.sb3`／`.sprite3`互換fixtureと、Scratch作品全体のIndexedDBブラウザ保存基盤
 
 b6 は b5 基盤上の中規模 API 追加に限定し、新しい identity、transport、queue を作らない。
 
@@ -461,11 +473,12 @@ b6 は b5 基盤上の中規模 API 追加に限定し、新しい identity、tr
 - `world.setSign`
 - typed particle data（dust／block state）
 - b6 終端での未批准 legacy wire method の置換または registry からの除去
+- b5のIndexedDB基盤と`.sprite3` fixtureを使うScratchスプライトのブラウザ保存
 
 旧 Scratch `.sb3` opcode migration は wire method 整理と別 gate とする。b5／b6 のmethodを
 protocol `21.0.0`へ収容することは、実装、live evidence、release gateの合格を意味しない。
 exact ring／handle／poll／work上限はruntime policyとtest fixtureで較正し、横断version contractへ
-焼き込まない。
+焼き込まない。OS clipboardによるブロック移送は保存release gateへ自動追加せず、独立trackのまま維持する。
 
 ### 10.12 pre-release 状態は明示操作（自動認識は PyPI のみ）
 

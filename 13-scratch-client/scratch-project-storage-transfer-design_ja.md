@@ -223,8 +223,10 @@ Tutorial／Debug の既存 Scratch surface 再利用方針は維持する。
 4. **ブラウザタブ間 copy／paste**：OS clipboard prototype と versioned transfer bundle を固定する。
 5. **審査済み教材 artifact**：内容・権利・license・version・更新／撤回を確認して配布する。
 
-各 track は独立に検収できるが、共有 contract を片方だけで独自に固定しない。R3〜R5、b4 以降への配置は
-release scope の最終再整理が所有し、本決定から自動追加しない。
+各 track は独立に検収できるが、共有 contract を片方だけで独自に固定しない。`2026-08-16-09`により、
+1と2をb5、3をb6へ配置する。b6はb5のIndexedDB lifecycle、quota、migration、破損表示を再利用し、
+スプライト用に別の保存基盤を作らない。4と5は独立trackのまま維持し、b5／b6へ自動追加しない。
+R3〜R5の意味と日程への配置は最後のR整理が所有する。
 
 ## 13. 未確定事項
 
