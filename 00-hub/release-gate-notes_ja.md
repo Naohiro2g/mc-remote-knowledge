@@ -76,11 +76,13 @@ release 判定は、実装 repo 側が事実と根拠を記入し、knowledge �
 ## 2026-08-17 b4 home-alpha pre-auth transport correction
 
 - decision: `2026-08-17-01`
-- status: **OPEN — Scratch／Bridge実装とhome-alpha一巡待ち**
+- evidence: `14-evidence/records/2026-08-17-b4-home-alpha-integration_ja.md`
+- status: **PARTIAL PASS — one-shot認証とb4機能統合はPASS、session token再起動耐性はBLOCKED**
 - observed gap: McRemote `dab6908494290c894d8efbe6828707e544860fa1`のclose-after-flushでもresponseからEOF観測まで約41msあり、Bridge経由で`auth_required`直後0msに送る`auth.pairBegin`はtimeoutする。100ms待機では成功し、直接新TCPでは成功したが、固定delayは解決として採用しない
 - McRemote input: close-after-flush JAR SHA-256 `f902ed360ac1674143d8e79a49c8e109968f2c38dc36656c91a50dec89082aa8`。plugin追加変更は要求しない
-- Bridge input: `e5b006b…`はEOF後redialまでの部分実装。one-shot hintは未実装
-- required exact set: one-shot hint実装後のScratch adapter commit＋Bridge commit＋上記McRemote JAR＋b4 common app／Python candidate。旧Scratch／新Bridge、新Scratch／旧Bridgeを混在させない
-- deterministic gate: exact hint envelope、未知hint拒否、one-shot中の有限queue、timeout時close・再送なし、response frame完成→generation無効化→browser転送の順序
-- home-alpha gate: `auth_required`直後0msの`pairBegin`、`pairBegin`→複数`pairPoll`→token付き`hello`→通常persistent commandを一巡し、その後b4 WireScope実機検証へ進む
-- non-claim: 既存のPython candidate PASS／Scratch component GREENは撤回しないが、本項が閉じるまでhome-alpha、exact compatibility set、b4 releaseはGREENにしない。100ms待機、EOF依存、自動再送をfixture／runbookへ残さない
+- implemented set: Scratch／Bridge one-shot `8b69ecefc9771a47e2eac8bea242cf96c09d36f3`、pagehide lifecycle `1d2f18785d260564ad4bc30a26a45ef33fc813d6`、McRemote JARは上記digest、Python `4d510442db58a94f8b249ddcd9d959381f97276c`、WireScope ZIP `1a56617c78c283332f1afe3bdd3797ab37f0cdc3455c86c73c926c751721657f`
+- passed: `auth_required`直後0msのone-shot pairing、Scratch／Python／WireScope実機一巡、canonical b3 rollback、corrected b4再適用
+- failed: 同一corrected b4 runtimeの通常再起動後、期限内session tokenが`auth_required`。candidateはsession tokenをin-memoryだけに保持し、`2026-08-02-08`のhash-only snapshot永続化と不一致
+- doctor gap: credential domain `UNINITIALIZED`を現行doctorが検出せずPASS。`2026-08-06-02`のcredential checkpoint／doctor contractは未実装
+- next gate: McRemote session record永続化→artifact再固定→同一b4再起動とb3→b4再適用でtoken再利用→Stack credential health／doctor再照合
+- non-claim: 既存のPython candidate PASS／Scratch component GREENと今回の機能統合PASSは維持するが、認証再起動FAILが閉じるまでhome-alpha認証、credential継続を含むrollback／再適用、b4 releaseはGREENにしない。100ms待機、EOF依存、自動再送をfixture／runbookへ残さない

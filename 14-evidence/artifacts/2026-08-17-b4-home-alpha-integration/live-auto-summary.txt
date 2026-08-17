@@ -1,0 +1,17 @@
+PASS deploy corrected-b4 preset=mcremote-paper@5 lock=sha256:d2a2f7dce08ce5e56f688d217dfbc68556d2c76ac9a7038040ee06dd0a4cc23e
+PASS doctor runtime=healthy render=current network=loopback auth=required compatibility=unverified
+PASS runtime artifact sha256=f902ed360ac1674143d8e79a49c8e109968f2c38dc36656c91a50dec89082aa8 bytes=140590
+PASS direct terminal EOF response_ms=45 eof_after_response_ms=41 new_tcp_pairBegin=response
+PASS exact one-shot Bridge forwarded hello-pairBegin-pairPoll delay_ms=0
+PASS Scratch live-human pairing hello catalog-picker pose invalid_params player_offline
+PASS Scratch pagehide WireScope source=ended stream=ended
+PASS Python live-human pose boundary invalid_params restore WireScope source=ended stream=ended
+PASS Python runner result=LIVE-HUMAN_B4_POSE_AND_WIRESCOPE_PASS
+PASS rollback b3 lock=sha256:0bcace337a82f9197b5bcb3e6237ec27a8a12b42fbdfcaafbfa1f01332bcaf08 doctor=healthy player.getPose=method_not_found protocol=21.0.0
+PASS reapply b4 lock=sha256:d2a2f7dce08ce5e56f688d217dfbc68556d2c76ac9a7038040ee06dd0a4cc23e doctor=healthy artifact=f902ed360ac1674143d8e79a49c8e109968f2c38dc36656c91a50dec89082aa8 player.getPose=success
+PASS session-token immediate reconnect before restart
+PASS same-b4 runtime restart health=healthy doctor=healthy
+FAIL session-token reconnect after same-b4 restart reason=auth_required
+OBSERVED credential-domain health=UNINITIALIZED detail=explicit_bootstrap_required
+OBSERVED exact candidate session-token store=in-memory-only
+RESULT b4 feature and WireScope gates pass; home-alpha auth restart persistence remains blocked by McRemote SSOT drift and undetected credential-domain health

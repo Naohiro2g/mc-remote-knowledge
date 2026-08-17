@@ -1,0 +1,25 @@
+CLASS live-human
+ENVIRONMENT isolated home-alpha with private forwarded topology
+
+SCRATCH PASS pairing authenticated-hello protocol=21.0.0 catalog-hash=nonempty
+SCRATCH PASS catalog-picker catalog-and-block-state-selection
+SCRATCH PASS player.getPose result-shape=world-pos-yaw-pitch
+SCRATCH PASS player.setPose yaw-input=725 yaw-result=5 pitch-boundary=90
+SCRATCH PASS player.setPose pitch-input=90.0001 error=invalid_params pose=unchanged
+SCRATCH PASS invalid-request connection=scratch-connected wirescope-main=connected
+SCRATCH PASS player-offline error=player_offline source=connected wirescope-main=connected
+SCRATCH PASS normal-tab-close wirescope-source=ended wirescope-main=ended
+SCRATCH PASS wirescope-reload state=waiting-for-source
+
+PYTHON PASS pairing wirescope-attach source=python stream-count=1
+PYTHON PASS authenticated-hello protocol=21.0.0 catalog-hash=matches-scratch
+PYTHON PASS player.getPose result-shape=world-pos-yaw-pitch
+PYTHON PASS player.setPose yaw-input=725 yaw-normalized=true pitch-boundaries=-90,90
+PYTHON PASS player.setPose pitch-input=90.0001 error=invalid_params pose=unchanged
+PYTHON PASS missing-arguments error=invalid_params pose=unchanged
+PYTHON PASS origin-and-pose restored=true
+PYTHON PASS close wirescope-source=ended wirescope-main=ended
+PYTHON PASS runner-result=LIVE-HUMAN_B4_POSE_AND_WIRESCOPE_PASS
+
+REDACTED pair-code pairing-id attach-code token player-uuid player-name private-endpoint
+NOT-SECRET-BY-POLICY world-name pose-coordinates pose-angles

@@ -204,6 +204,11 @@ spark APIはsoft dependencyにし、利用不能時は固定capで動作を継�
 
 **session token（`mcrs_`）も同じ snapshot へ収容する**（`2026-08-02-08`）。ただし `RevocationAuthority` の overlay 対象にはしない＝session token は revoke を持たず、無効化が `expires_at` という絶対時刻の評価と credential domain reset（§9.5）だけで決まるため、**snapshot を巻き戻しても「期限切れが期限内へ戻る」ことが起きず rollback 安全**である。したがって tombstone 機構は long-lived credential にのみ必要。session record は §6.6 の管理 wire（`auth.listCredentials` / `auth.revoke`）の対象にせず、long-lived の active 上限（§9 冒頭の 16）にも数えない。
 
+**実装到達点（2026-08-18）**：b4候補`dab6908494290c894d8efbe6828707e544860fa1`はsession tokenを
+in-memory storeだけに保持しており、本節のsnapshot収容を未実装である。同一b4 runtimeの通常再起動後、期限内tokenが
+`auth_required`となることをhome-alphaで確認した。これは本契約の撤回理由ではなく実装差分であり、正式根拠は
+[b4 home-alpha統合・認証再起動evidence](../14-evidence/records/2026-08-17-b4-home-alpha-integration_ja.md)とする。
+
 record が 0 件でも domain を検証できるよう、snapshot は header を持つ。
 
 ```json

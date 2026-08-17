@@ -1,0 +1,23 @@
+{
+  "schema": "mc-remote-evidence-redactions-v1",
+  "handoff_id": "2026-08-17-b4-home-alpha-auth-terminal-close",
+  "redactions": [],
+  "removed": [
+    "pair code, pairing ID, and WireScope attach code",
+    "session token and credential contents",
+    "player UUID and player name",
+    "private host, IP address, SSH target, and forwarded port",
+    "raw server log, raw browser capture, and packet capture"
+  ],
+  "retained": [
+    "public source repositories and commits",
+    "artifact names, byte counts, digests, and lock digests",
+    "protocol version and generalized topology class",
+    "PASS and FAIL summaries",
+    "non-secret test values and error reasons"
+  ],
+  "raw_material": {
+    "included": false,
+    "location": "source-side local storage only"
+  }
+}
