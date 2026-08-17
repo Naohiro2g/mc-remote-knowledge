@@ -10,7 +10,9 @@
 > 共通appのadapter、observer session、artifact、Python browser-loopback profileは
 > [station attach設計](../15-wirescope/wirescope-station-attach-design_ja.md)と`2026-08-11-02`／`2026-08-11-03`、
 > 長期のconsole source方針は`2026-08-10-03`を優先する。本書から古いtopologyやbrowserへのcontrol能力を
-> 現行契約として導出しない。
+> 現行契約として導出しない。pre-auth pairingのone-shot transport hint（`2026-08-17-01`）は
+> Scratch–Bridge間のcommand transport契約であり、WireScope observer session／schema／frameではない。
+> exactな現行境界は[Scratch roadmap](scratch-roadmap_ja.md)を正とする。
 
 ---
 

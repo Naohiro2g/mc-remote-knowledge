@@ -72,3 +72,15 @@ release 判定は、実装 repo 側が事実と根拠を記入し、knowledge �
 - rollback target: `v2100.0.0b3@3f1a10a366bfbe76e32b5a31c54da19eddd56e56`。hosted deploy／rollback実操作／再復帰は未実施
 - remaining: Scratch／Pythonの順次横断real-browser E2E、plugin artifactを含むexact compatibility set、home alpha、release後identity確認
 - non-claim: 本項からPython／plugin／home alphaまたは横断b4 milestoneのGREENを推測しない
+
+## 2026-08-17 b4 home-alpha pre-auth transport correction
+
+- decision: `2026-08-17-01`
+- status: **OPEN — Scratch／Bridge実装とhome-alpha一巡待ち**
+- observed gap: McRemote `dab6908494290c894d8efbe6828707e544860fa1`のclose-after-flushでもresponseからEOF観測まで約41msあり、Bridge経由で`auth_required`直後0msに送る`auth.pairBegin`はtimeoutする。100ms待機では成功し、直接新TCPでは成功したが、固定delayは解決として採用しない
+- McRemote input: close-after-flush JAR SHA-256 `f902ed360ac1674143d8e79a49c8e109968f2c38dc36656c91a50dec89082aa8`。plugin追加変更は要求しない
+- Bridge input: `e5b006b…`はEOF後redialまでの部分実装。one-shot hintは未実装
+- required exact set: one-shot hint実装後のScratch adapter commit＋Bridge commit＋上記McRemote JAR＋b4 common app／Python candidate。旧Scratch／新Bridge、新Scratch／旧Bridgeを混在させない
+- deterministic gate: exact hint envelope、未知hint拒否、one-shot中の有限queue、timeout時close・再送なし、response frame完成→generation無効化→browser転送の順序
+- home-alpha gate: `auth_required`直後0msの`pairBegin`、`pairBegin`→複数`pairPoll`→token付き`hello`→通常persistent commandを一巡し、その後b4 WireScope実機検証へ進む
+- non-claim: 既存のPython candidate PASS／Scratch component GREENは撤回しないが、本項が閉じるまでhome-alpha、exact compatibility set、b4 releaseはGREENにしない。100ms待機、EOF依存、自動再送をfixture／runbookへ残さない

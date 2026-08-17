@@ -182,6 +182,20 @@ completion gateに含める。substream、multi-stream、console、LAN／public 
 b4へ含めない。observer schemaの`streams[]`等の前方互換は維持するが、main／substreamとScratch objectの
 写像をb4の設計・実装gateにしない。
 
+#### b4 home-alpha pre-auth transport correction（確定 `2026-08-17-01`）
+
+認証強制時の`auth_required`直後に`auth.pairBegin`を送る経路は、plugin TCPのEOF観測だけに依存しない。
+Scratch adapterは`auth.pairBegin`／`auth.pairPoll`に限り、Bridge向けone-shot transport hintとraw JSON-RPC
+payloadを一つのWebSocket messageで原子的に送る。Bridgeはhintだけを処理し、JSON-RPC payloadを解析・変更せず、
+pluginへhintを送らない。one-shotでは旧backend generationを破棄して新TCPへpayloadを一度だけ送り、最初の完全な
+NDJSON responseを得た後に当該generationを無効化・closeしてからbrowserへ転送する。固定delay、EOF待ち、自動再送は
+使わない。`hello`、credential管理method、通常commandは従来のpersistent transportを維持する。
+
+この変更はScratch adapterとBridgeのexact compatibility setで検収し、旧新混在を許容しない。exact envelope、未知hintの
+actionable error、one-shot中の有限queue、timeout時close・再送なし、response完成→generation無効化→browser転送の順序を
+fixture／testで固定する。home-alphaでは`auth_required`直後0msの`pairBegin`、複数回の`pairPoll`、token付き再`hello`、
+通常persistent commandまでを一巡する。hintはWireScope observer schema v1へJSON-RPC frameとして投影しない。
+
 ### R3-A — catalog picker と state UX（設計確定・b4）
 
 設計は `2026-08-02-07` で確定済み。**b3 scope へ追加せず b4 へ送る**。
