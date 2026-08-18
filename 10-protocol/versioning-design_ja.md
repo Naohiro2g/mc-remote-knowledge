@@ -472,11 +472,13 @@ b5 は大規模な共通基盤を閉じる段である。
 8. structured JSON params を保持できる dispatcher
 9. plugin／Python／Scratch／WireScope の compatibility set
 10. `.sb3`／`.sprite3`互換fixtureと、Scratch作品全体のIndexedDBブラウザ保存基盤
+11. Minecraft由来の連続位置3桁、yaw／pitch 2桁、yaw `[-180,180)`、pitch `[-90,90]`を固定する
+    数値正準化（DECISIONS `2026-08-19-01`）
 
 b6 は b5 基盤上の中規模 API 追加に限定し、新しい identity、transport、queue を作らない。
 
 - `world.getNearbyEntities`
-- `entity.getPose`／`entity.setPose`／`entity.remove`
+- `entity.getPose`／`entity.setPose`／`entity.remove`（b5で導入した数値正準形を再利用）
 - `events.poll` filter／`events.clear`
 - `world.setSign`
 - typed particle data（dust／block state）

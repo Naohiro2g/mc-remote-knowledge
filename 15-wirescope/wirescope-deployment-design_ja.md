@@ -249,5 +249,10 @@ plugin wire fixtureのconformance完了と、共通UIおよびreal-browser E2E�
 fixtureが通ってもUI表示・loss可視化・Scratch／Python両sourceの実browser動作が確認されるまでは
 WireScope b5 gateを完了扱いにしない。
 
+連続位置・角度はpluginがDECISIONS `2026-08-19-01`の正準numberへ変換した後のframeを観察する。
+observer validatorと共通UIは座標や角度を別値へ再round／wrap／clampしない。UIが可読性のため末尾ゼロを
+補う場合も、raw frame、copy、fixture比較はserverから受けたJSON numberを正とする。Scratch／Pythonで
+同じframeを異なる桁へ変換しないことをcompatibility setで検査する。
+
 本sliceで確定するv1.1はmethod観察のcompatibility境界である。payload summary、gap marker、
 recording／replayのloss表現はv1.1へ含めず、後続version／sliceとして別に固定する。

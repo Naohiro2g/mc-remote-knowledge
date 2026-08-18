@@ -424,7 +424,23 @@ dispatcherは位置配列だけを前提にせず、b6のsign／typed particle�
 §8のper-session／player／global work budgetへ計上する。`world.setSign`は全入力検証後に変更し、
 更新失敗時の完全rollback方法をPaper実装で実証する。
 
-### 10.4 実装・検証の停止線
+### 10.4 連続座標・角度の正準化
+
+artifact b5から、Minecraft由来の連続位置を小数第3位、yaw／pitchを小数第2位へ十進`HALF_UP`で
+正準化する（DECISIONS `2026-08-19-01`、wire §5.0.1）。pluginが唯一の正準化ownerとなり、handlerごと、
+Python／Scratchごとに丸めを重ねない。
+
+- 入力はfinite／pitch値域を副作用前に検査するが、位置とyawを表示桁へ丸めてから適用しない。
+- player／entityのset成功resultは入力echoでなく、適用後のPaper stateを再取得して正準化する。
+- yawは`[-180,180)`へnormalize→小数第2位へround→境界再normalizeの順とする。
+- pitch範囲外はclampせず`invalid_params`とし、Minecraft状態を変更しない。
+- `-0`はJSON生成前に`0`へ直す。
+- projectile hitの連続位置はevent capture時に正準化し、ring投入後は変更しない。
+- integer fieldとmethod固有scalarへ共通rounding helperを誤適用しない。
+
+tie、負値、yaw境界、pitch両端、負のゼロ、set後再取得、event captureをplugin fixtureで固定する。
+
+### 10.5 実装・検証の停止線
 
 `world.getHeight`候補は搬送元worktreeでunit 26件、Gradle build、diff checkまで合格したが未commitである。
 event listener、ring、handle、spawn、Paper状態reason、sign rollbackは未実装・未実証であり、設計確定を

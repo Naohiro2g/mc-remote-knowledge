@@ -140,6 +140,29 @@ build コマンドの座標解釈は符号化の未定（§7④）に**先行し
 
 > 却下＝座標規範を DECISIONS 止まりにし wire doc に書かない：ワイヤ符号化の SSOT が座標意味論を欠くと、plugin/Python が別計算をしても契約上は「合致」に見え、疎通 Layer 2 まで検出されない。符号化（§7④）と規範は別物で、規範は先に固定できる。
 
+### 5.0.1 連続座標・角度の正準数値表現（確定 `2026-08-19-01`）
+
+Minecraftの状態から取得してwireへ返す連続位置は小数第3位、角度は小数第2位へ十進`HALF_UP`で
+丸める。`-0`は`0`へ正規化し、JSON numberのまま返す。`1.230`のような末尾ゼロはwireで要求せず、
+同じ数値の`1.23`を正準値として扱う。
+
+- 連続位置：`x`／`y`／`z`を小数第3位。例：`1.2345 → 1.235`、`-1.2345 → -1.235`。
+- yaw：任意の有限入力を受理する。出力は`[-180,180)`へ正規化して小数第2位へ丸め、丸め結果が
+  `180`になった場合は`-180`へ再正規化する。例：`180 → -180`、`181 → -179`、`-181 → 179`、
+  `540 → -180`。
+- pitch：有限入力`[-90,90]`を両端込みで受理する。範囲外は副作用前に`invalid_params`とし、
+  clamp／wrapしない。Minecraftから取得した出力は小数第2位で返す。
+
+入力座標・角度はfinite／値域を検査するが、上記の表示桁へ丸めてから副作用を実行しない。
+成功responseは入力値のechoでなく、適用後のMinecraft状態を読み直して本節の正準化を行う。
+integerと定義されたblock座標、height、count、sequence等には本節の丸めを適用せず、小数入力を
+黙ってintegerへ変換しない。offset、speed、radius等の非座標scalarは各methodの個別contractを正とする。
+
+正準化はpluginが一度だけ所有する。Python／Scratch／WireScopeは受信したwire numberを再丸めせず、
+UIが末尾ゼロを補って表示しても保持値とframeを変更しない。eventの連続位置はlistenerでcaptureするときに
+正準化してimmutable DTOへ入れ、poll時の再計算やclient別変換を行わない。artifact b4以前のraw出力は
+履歴として維持し、本契約はartifact b5のcompatibility setから適用する。
+
 ### 5.1 符号化（b1 収容済み）
 
 build state を変更する `setWorld(dimension)` / `setBuildOrigin(x,y,z)` は、**両者セッション中変更可・stream 個別**で**既に確定**している（DECISIONS `2026-06-15-02` / `2026-06-24-01`）。
@@ -154,7 +177,7 @@ build state を変更する `setWorld(dimension)` / `setBuildOrigin(x,y,z)` は�
 
 `player.*` は paired player を対象にする操作群で、identity は hello/auth が確定した token に束縛された UUID から解決する。クライアントは player 名を送らない。
 
-- **`player.getPos`**：params は `[]`。paired player の現在 world と現在位置を返す。result は `{ "world": "overworld", "pos": [x, y, z] }`。`pos` はその stream の build origin からの相対座標で、`stream.world` と player の現在 world の一致は要求しない。
+- **`player.getPos`**：params は `[]`。paired player の現在 world と現在位置を返す。result は `{ "world": "overworld", "pos": [x, y, z] }`。`pos` はその stream の build origin からの相対座標で、`stream.world` と player の現在 world の一致は要求しない。artifact b5以後のresultは§5.0.1の連続位置正準形を使う。
 - **`player.setPos`**：params は `[world, x, y, z]`。`world` を teleport 先 world とし、server が `absolute = stream.origin + [x,y,z]` を計算して paired player を移動する。player の現在 world と指定 world が異なる場合も、権限が許せば次元跨ぎ teleport として実行する。成功 result は getPos と同形の `{ "world": "...", "pos": [x, y, z] }` を返す。
 - **world key**：wire/result key は hello result と揃えて `world` とする。説明上は次元（dimension）と呼んでよいが、wire key に `dimension` は作らない。
 - **origin との関係**：`player.*` は stream origin を共有するが、`build.setWorld` が保持する `stream.world` には暗黙依存しない。`world.*` は `stream.world + stream.origin`、`player.*` は `explicit/current world + stream.origin` で読む。
@@ -169,7 +192,7 @@ build state を変更する `setWorld(dimension)` / `setBuildOrigin(x,y,z)` は�
 
 - **`player.getPose`**：params は `[]`。paired player の現在 world・位置・向きを返す。result は `{ "world": "...", "pos": [x, y, z], "yaw": ..., "pitch": ... }`（`pos` は §5.2 と同じ stream origin 相対）。
 - **`player.setPose`**：params は `[world, x, y, z, yaw, pitch]`。§5.2 の `setPos` と同じく `absolute = stream.origin + [x,y,z]` を計算し、**位置と向きを1回の teleport で一体反映**する（位置だけ・角度だけの部分更新はしない）。成功 result は `getPose` と同形。
-- **値域**：`x`/`y`/`z`/`yaw`/`pitch` は有限値必須（NaN/Infinity は `invalid_params`）。`yaw` は任意の有限値を受け入れ、result では Minecraft の通常表現へ正規化する。`pitch` は `-90..90` の範囲外だと `invalid_params`。
+- **値域と出力正準形**：`x`/`y`/`z`/`yaw`/`pitch` は有限値必須（NaN/Infinity は `invalid_params`）。`yaw` は任意の有限値を受け入れ、resultでは`[-180,180)`へ正規化する。`pitch`は`[-90,90]`を両端込みとし、範囲外は`invalid_params`で副作用前に拒否する。入力を丸めてからteleportせず、成功後に再取得した位置を小数第3位、yaw／pitchを小数第2位へ§5.0.1どおり正準化する。
 - **teleport 失敗**：teleport の呼び出し自体が失敗した場合（Paper `Entity.teleport(Location)` が `permission_denied`/`player_offline`/`unknown_world`/`invalid_params` のいずれにも当たらない要因で失敗を返す等）を成功扱いにしない。この場合は新設 reason `teleport_failed`（player-state family、§7.3）で返す。
 - **範囲**：b4 の対象は paired player までとし、任意 entity への pose 操作は将来拡張とする。
 - **高水準 walkThrough（構想・未確定）**：`player.walkThrough` は軌道・速度・補間・注視方向をクライアント側で組み立て、`getPose`/`setPose` を基礎命令として使う構想。正確な API 形と収容版は別途決定する。
@@ -209,6 +232,9 @@ wireやringへ保持しない。
 - `chat_posted`: paired playerが投稿したoriginal plain input。slash commandは除外し、chat自体はcancelしない。
 - `projectile_hit`: 発生時のworld／origin、projectile type、hit position、blockまたはentity target。
   player hitは`kind: "player"`だけとし、handle、UUID、player nameを返さない。
+
+`block_right_click`のblock positionはintegerのままとする。`projectile_hit`の連続hit positionは発生時の
+captureで§5.0.1の小数第3位へ正準化し、後から丸め直さない。
 
 空間eventは投入時点のworldとoriginを固定する。後からbuild world／originが変わっても既存DTOを変更・
 破棄せず、event受信を理由にpluginがbuild stateを暗黙変更しない。event座標を`world.*`へ渡すclientは、
@@ -257,7 +283,7 @@ availability reasonは追加の`retryable` fieldを作らず、次の意味を�
 
 ### 5.8 b6のentity／sign／typed particle
 
-b6 entity APIはb4のpose shape `{world,pos,yaw,pitch}`を再利用する。nearby検索はstream world内、
+b6 entity APIはb4のpose shape `{world,pos,yaw,pitch}`と§5.0.1の出力正準形を再利用する。nearby検索はstream world内、
 player除外、radius／件数／chunk走査をboundedにし、unloaded entityを探すためのchunk loadを行わない。
 必要なhandle capacityはrequest全体で事前確認し、部分的なhandle発行をしない。`entity.remove`成功時は
 handleを即時失効する。exact params／result shapeはb6 fixtureを実装前に固定する。

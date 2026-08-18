@@ -15,6 +15,11 @@ wire contractは[wire-format-design](../10-protocol/wire-format-design_ja.md)を
 - right-clickのmain／off-hand正規化fixture。
 - handleのformat、同epoch同entityの同値、foreign／unknown同値化、disconnect失効、slot予約。
 - `world.getHeight`のmax_y inclusive、world上端、空列、多層、origin相対、work admission。
+- 連続位置の小数第3位、角度の小数第2位に対する正負の`HALF_UP` tie、負のゼロ除去。
+- yawの`[-180,180)`境界（`180`／`181`／`-181`／`540`とround後の`180`再正規化）。
+- pitchの`-90`／`90`受理と範囲外`invalid_params`、clamp禁止、失敗時状態不変。
+- set入力を事前roundせず、適用後再取得resultだけを正準化すること。block座標等integerの小数拒否。
+- `projectile_hit`連続位置がcapture時に正準化され、ring／poll／clientで再roundされないこと。
 - particle／entity catalog ID、typed-data拒否、spawn前検証、fallback禁止、結果不明時retry禁止。
 - nearbyのbounded scan／player除外／partial handle禁止、remove失効。
 - signの4行／面／state検証とrollback、typed particleの有限schema。
@@ -34,6 +39,8 @@ wire contractは[wire-format-design](../10-protocol/wire-format-design_ja.md)を
 7. entityのremove、unload、外部world移動、`entity.setPose` world移動を実Paper挙動と照合する。
 8. spawn、particle、height、nearby、signをwork limit境界の内外で確認する。
 9. WireScopeへScratch／Pythonの両sourceを順に接続し、b5 method／result／error／lossを同じUIで確認する。
+10. player／projectile／entity poseの正準値がplugin、Python、Scratch、WireScopeで一致し、入力精度を
+    副作用前に失っていないことを確認する。
 
 ## 3. Real-browser／live-human
 
@@ -46,6 +53,7 @@ wire contractは[wire-format-design](../10-protocol/wire-format-design_ja.md)を
 - monitorの連続評価がthrottle／coalescingされ、明示script callは省略されない。
 - `height_not_found`が通常の高さ値と区別でき、actionableに説明される。
 - non-idempotent operationの結果不明時にclientが自動retryしない。
+- 長いnative小数が座標3桁／角度2桁の同じwire値として表示され、raw frameとclient値が一致する。
 
 ## 4. Evidenceの着地条件
 

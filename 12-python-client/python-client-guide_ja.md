@@ -339,6 +339,11 @@ b5では`events.poll`、`world.getHeight`、`world.spawnParticle`、`world.spawn
 `world.setSign`、typed particleを追加する。exact Python method signatureと戻り型は共通wire fixtureと
 plugin実装を入力に固定し、knowledgeだけからkwargsや独自型を推測しない。
 
+Minecraft由来の連続位置・角度はpluginが正準化したJSON numberをそのまま返す（DECISIONS
+`2026-08-19-01`）。Python wrapperは座標3桁、角度2桁へ再roundせず、yawの再wrap、pitchのclampも
+行わない。set系は入力精度を保って送信し、成功時はserverが適用後に再取得した正準resultを利用者へ返す。
+block座標、height、count、sequence等のinteger fieldをfloatから黙って丸めない。
+
 WireScope observer projectionはmethod allowlist、method別params／result validator、plugin fixture、
 Scratch adapter、common app artifactと一つのschema v1.1 compatibility setで更新する。Python wheelは
 exact app artifact versionをpinし、plugin wire conformanceとreal-browser E2Eを別gateとして通す。

@@ -432,6 +432,11 @@ disconnect時のcache破棄を設ける。明示的なscript callは毎回実行
 一つのblockへ押し込まず、maxYなし／ありの二reporterへ投影する。`height_not_found`を`-1`へ変換せず、
 空文字＋actionable errorまたは別found状態のどちらにするかを実装前に固定する。
 
+連続位置は小数第3位、yaw／pitchは小数第2位にpluginが正準化したwire numberを受け取る
+（DECISIONS `2026-08-19-01`）。Scratch adapter／blockは値を再round、yawを再wrap、pitchをclampしない。
+monitor等のUIが末尾ゼロを補っても、thread context、変数、WireScope frameの値を変更しない。set系blockは
+入力を表示桁へ丸めず送信し、成功後のserver resultを正とする。integer fieldの小数入力を黙って整数化しない。
+
 b5のWireScope schema v1.1対応はplugin fixture、Python observer projection、Scratch source adapter、
 common app artifactと同じcompatibility setで行う。plugin wire conformanceと共通UI／real-browser E2Eは
 別gateとし、Scratch側だけでallowlistやlegacy methodを拡張しない。
