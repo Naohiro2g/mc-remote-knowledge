@@ -1,0 +1,9 @@
+CLASS live-human
+PASS Scratch saved project loaded into newly reconstructed environment
+PASS Scratch new pairing; no prior token reused
+PASS Scratch green-flag building program executed
+PASS Scratch fixed three-block signature confirmed independently by server console
+PASS Python fresh credential directory and independent pairing
+PASS Python saved source executed from fresh exact-wheel environment
+PASS Python client and server console agreed on fixed three-block signature
+REDACTED pair-code pairing-id token token-hash player-uuid credential-uuid domain-uuid private-endpoint

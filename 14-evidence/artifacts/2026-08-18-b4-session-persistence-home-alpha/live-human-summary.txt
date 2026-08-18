@@ -1,0 +1,8 @@
+CLASS live-human
+ACTION one session pairing approved in Minecraft
+PASS initial authenticated hello protocol=21.0.0
+PASS initial player.getPose result-shape=world-pos-yaw-pitch
+PASS same token immediate reconnect
+PASS same token authentication after normal b4 restart
+PASS same token authentication after b3 rollback and b4 reapplication
+REDACTED pair-code pairing-id token token-hash player-uuid credential-uuid domain-uuid private-endpoint

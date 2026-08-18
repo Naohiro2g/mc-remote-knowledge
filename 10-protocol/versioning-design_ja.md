@@ -445,6 +445,14 @@ main／substreamモデルとScratch／Pythonへの写像はpost-b4の独立slice
 multi-stream、console、LAN／public station、schema v1.1、長期履歴、高水準`player.walkThrough`はb4へ
 含めない。任意entityへのpose操作はb6へ配置済みである。
 
+b4の復旧gateは、利用者が保存したScratch／Pythonの建築コードを新規world・新規credential環境へ持ち込み、
+再pairing後に再実行して同じ観察可能な建築結果を得られることとする（`2026-08-18-01`）。Minecraft world、
+接続、pairing、session token、build state、WireScope状態は別の保護契約がない限り再生成可能なruntime stateであり、
+b3がb4 credential snapshotを読めることやdowngrade中のtoken継続をb4 completion gateへ入れない。
+同一b4通常再起動を跨ぐ期限内session token認証はこの除外に含めず、`2026-08-02-08`どおり維持する。
+教材は現行記法を正準形とし、旧記法には恒久shimではなく書き換え方法とmigration fixtureを与える。
+long-lived公開、credential checkpoint／doctor、world backup／restoreはpost-b4 contractとして維持する。
+
 ### 10.11.4 b5／b6 のスコープ（確定）
 
 protocol は `21.0.0` を維持し、artifact version を b5=`2100.0.0b5`、

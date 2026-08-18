@@ -1,0 +1,14 @@
+PASS empty deployment lock=sha256:e037b47824a1062804d7db67fdb9fc3cf0c16700ff9d24400be4d42ebc00bffa
+PASS exact plugin sha256=331633ef15a729658496e89fe49cb8a5eb5ebcb2ec86937b7e5313528d7ec997
+PASS new world volume; no prior world bytes copied
+PASS new credential volumes; no prior snapshot, authority, or token copied
+PASS explicit plugin-owned credential bootstrap status=HEALTHY
+PASS token-free hello reason=auth_required
+PASS Scratch precondition expected signature absent blocks=3
+PASS Scratch postcondition expected signature present blocks=3
+PASS Python wheel sha256=eeed6261972987946b5e22dd8ff8d3533a758c7db57472d1d82766fbf964e7d0 version=2100.0.0b4 protocol=21.0.0
+PASS Python source sha256=2fbd80a0c4bc6512bd5136fa57ed315e28dad99ac60246ff97f8ab9915c172a9
+PASS Python precondition expected signature absent blocks=3
+PASS Python client getBlock postcondition blocks=3
+PASS Python server-console postcondition blocks=3
+PASS final runtime=healthy credential-domain=HEALTHY

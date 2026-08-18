@@ -73,7 +73,7 @@ release 判定は、実装 repo 側が事実と根拠を記入し、knowledge �
 - remaining: Scratch／Pythonの順次横断real-browser E2E、plugin artifactを含むexact compatibility set、home alpha、release後identity確認
 - non-claim: 本項からPython／plugin／home alphaまたは横断b4 milestoneのGREENを推測しない
 
-## 2026-08-17 b4 home-alpha pre-auth transport correction
+## 2026-08-17 b4 home-alpha pre-auth transport correction（初回観測）
 
 - decision: `2026-08-17-01`
 - evidence: `14-evidence/records/2026-08-17-b4-home-alpha-integration_ja.md`
@@ -86,3 +86,38 @@ release 判定は、実装 repo 側が事実と根拠を記入し、knowledge �
 - doctor gap: credential domain `UNINITIALIZED`を現行doctorが検出せずPASS。`2026-08-06-02`のcredential checkpoint／doctor contractは未実装
 - next gate: McRemote session record永続化→artifact再固定→同一b4再起動とb3→b4再適用でtoken再利用→Stack credential health／doctor再照合
 - non-claim: 既存のPython candidate PASS／Scratch component GREENと今回の機能統合PASSは維持するが、認証再起動FAILが閉じるまでhome-alpha認証、credential継続を含むrollback／再適用、b4 releaseはGREENにしない。100ms待機、EOF依存、自動再送をfixture／runbookへ残さない
+- resolution: このFAIL観測は削除しない。後続McRemote `3496db9293baa6e1d4f79439cacbd239ba15e2b7`と`2026-08-18-b4-session-persistence-home-alpha`でsame-b4再起動とb4再適用後のtoken再利用がPASSし、最終判定は下記2026-08-18項へ移った
+
+## 2026-08-18 b4 横断 release gate
+
+- decision: `2026-08-16-08`／`2026-08-17-01`／`2026-08-18-01`
+- status: **GREEN — exact b4 compatibility setのGitHub prerelease作成を承認**
+- protected value: Scratch／Pythonの保存済み建築コード。復旧基準はコード保存→空環境再構築→再pairing→必要なら書き換え→再実行
+- exact set:
+  - McRemote `3496db9293baa6e1d4f79439cacbd239ba15e2b7`／JAR SHA-256 `331633ef15a729658496e89fe49cb8a5eb5ebcb2ec86937b7e5313528d7ec997`
+  - Python `4d510442db58a94f8b249ddcd9d959381f97276c`／wheel SHA-256 `eeed6261972987946b5e22dd8ff8d3533a758c7db57472d1d82766fbf964e7d0`
+  - Scratch／Bridge one-shot `8b69ecefc9771a47e2eac8bea242cf96c09d36f3`、pagehide lifecycle `1d2f18785d260564ad4bc30a26a45ef33fc813d6`
+  - WireScope ZIP SHA-256 `1a56617c78c283332f1afe3bdd3797ab37f0cdc3455c86c73c926c751721657f`／manifest SHA-256 `f3ec11496b595bbca4ba27a6e938a1149336eb5a2da55e742d60e1681cf4d154`
+  - Stack `780d99291d669fd1ec98c513245bf6fdbac36271`／runtime implementation `cd3ff18e31534f394e5fc7ad63af1f164ce54f15`／`home-server@3`／`mcremote-paper@6`
+- passed:
+  - Scratch Catalog Picker、player pose、Scratch／Python main stream各1件の共通WireScope観察
+  - pre-auth one-shot pairing、固定delay・自動再送なし
+  - same-b4通常再起動後の期限内session token認証
+  - b4再適用後の同token認証。b3はb4 session recordを読めずfail closedし、snapshotを破損しなかった
+  - 新規world／credential環境でのScratch `.sb3`／Python source再pairing・再実行とserver側独立照合
+  - b3 artifact rollback／b4再適用、exact artifact／lock照合
+- formal evidence:
+  - `2026-08-16-scratch-b4-release-gate`
+  - `2026-08-16-b4-python-pose-wirescope-live-human`
+  - `2026-08-17-b4-home-alpha-integration`（初回PASS／FAILを保持）
+  - `2026-08-18-b4-session-persistence-home-alpha`
+  - `2026-08-18-b4-code-preservation-recovery-live-human`
+- release approval:
+  - Python tag `v2100.0.0b4` target=`4d510442db58a94f8b249ddcd9d959381f97276c`、GitHub prerelease ON、Latest非対象
+  - Scratch tag `v2100.0.0b4` target=`1d2f18785d260564ad4bc30a26a45ef33fc813d6`、GitHub prerelease ON、Latest非対象
+  - McRemote tag `v1.21.11-2100.0.0b4` target=`3496db9293baa6e1d4f79439cacbd239ba15e2b7`、GitHub prerelease ON、Latest非対象、上記exact JARをassetにする
+  - tag／release作成後はtarget SHA、prerelease flag、Latest非対象、asset digestを再確認してrelease identityを閉じる
+- non-blocking observations:
+  - b3はb4の`session` recordを理解せず`unknown_persisted_credential_type_session`となる。b3をcredential継続付きdowngrade runtimeとしては承認しない
+  - checkpoint projectionは未実装で、Stack doctorは`doctor_credential_health_unsupported`としてfail closedする。これをdoctor PASSへ読み替えない
+- deferred / non-claim: long-lived credential一般公開、checkpoint／doctor完成、world backup／restore、一般Stack profile、public hosted deployment、PyPI／Modrinth公開、substream／multi-stream、b5以降。これらをb4 GREENから推測しない

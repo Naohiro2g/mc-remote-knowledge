@@ -26,6 +26,21 @@ credential lifecycle、checkpoint、rollback resistance、reset／災害復旧�
 
 long-lived 実装が存在すること、設計が確定していること、開発者にとって便利であることだけでは再開 trigger にしない。session の期限切れ、server 再起動、複数日にまたがる継続利用等により、再 pairing が現場の利用を実質的に妨げることを観測したときに需要として扱う。固定の数値閾値は現段階で捏造せず、sanitized な実践記録を参照して人間が再開を決める。
 
+### 2.1 b4 の復旧境界
+
+b4では利用者が書いたScratch／Pythonの建築コードを既定の保護対象とする（`2026-08-18-01`）。
+復旧はコード保存→空環境再構築→再pairing→必要なら現行正準記法へ書き換え→再実行を基準にする。
+同一b4 runtimeの通常再起動を跨ぐ期限内session token認証は`2026-08-02-08`どおり実装・実機確認する一方、
+b3によるb4 session recordの読込、downgrade中のtoken継続、world／接続／WireScope状態の完全復元は
+b4 blockerにしない。
+
+この境界はcredential lifecycleを不要とする判断ではない。long-lived公開、checkpoint＋doctor、snapshot rollback、
+reset／災害復旧、world backup／restoreは後続の運用品質sliceとして維持する。b4 exact setでは
+same-b4再起動後のtoken再利用とb4再適用後のtoken再利用がPASSし、未実装checkpointをStack doctorが
+`doctor_credential_health_unsupported`としてfail closedにした。正式根拠は
+`2026-08-18-b4-session-persistence-home-alpha`と
+`2026-08-18-b4-code-preservation-recovery-live-human`である。
+
 ## 3. ケータリング実践で残す観察
 
 各実践では、可能な範囲で次を残す。

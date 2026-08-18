@@ -1,0 +1,18 @@
+PASS stack candidate=cd3ff18e31534f394e5fc7ad63af1f164ce54f15 tests=325 ruff=pass diff-check=pass
+PASS b4 preset=mcremote-paper@6 profile=home-server@3 lock=sha256:7bb6a81e6428aa986a42418025c101ef4621c4cd26cf793bb3296e582ee10baf
+PASS b4 artifact sha256=331633ef15a729658496e89fe49cb8a5eb5ebcb2ec86937b7e5313528d7ec997 bytes=140712
+PASS volumes world=preserved credential-snapshot=separate credential-authority=separate
+OBSERVED pre-bootstrap credential-health=UNHEALTHY reason=snapshot_authority_presence_mismatch
+PASS explicit plugin-owned bootstrap
+PASS post-bootstrap credential-health=HEALTHY
+EXPECTED doctor exit=2 reason=doctor_credential_health_unsupported checkpoint=not-implemented
+PASS session-token immediate reconnect
+PASS session-token same-b4 restart reconnect protocol=21.0.0
+OBSERVED post-restart player.getPose=player_offline auth=accepted
+PASS b3 exact runtime lock=sha256:a98dae360b347edfc6e048dd078fc1ebce1cfefac3e09b02b7d0483d16f4e76e artifact=aeb190705bd9957ce73557dc1be0fe15efe7250ba9bc688945e6f537e00ef78e
+FAIL b3 credential-health=UNHEALTHY reason=unknown_persisted_credential_type_session
+PASS b4 reapply artifact=331633ef15a729658496e89fe49cb8a5eb5ebcb2ec86937b7e5313528d7ec997 credential-health=HEALTHY
+PASS b4 reapply same-pre-rollback-session-token authentication protocol=21.0.0
+OBSERVED first-b4-reapply-attempt=host_port_in_use retry=success
+RESULT same-b4 restart persistence fixed; b4 reapply preserves token; usable b3 rollback remains blocked by snapshot backward incompatibility
+POLICY INPUT code-first recovery handoff treats b3 credential downgrade incompatibility as non-blocking for b4; SSOT landing pending

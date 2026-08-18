@@ -1,0 +1,27 @@
+{
+  "excluded": [
+    "pair_code",
+    "pairing_id",
+    "session_token",
+    "token_hash",
+    "player_uuid",
+    "player_name",
+    "credential_uuid",
+    "credential_domain_uuid",
+    "device_label",
+    "private_host",
+    "private_ip",
+    "ssh_target",
+    "forward_port",
+    "raw_server_log"
+  ],
+  "included_non_secret": [
+    "fixture_world_coordinates",
+    "block_ids",
+    "component_commit",
+    "artifact_digest",
+    "lock_digest",
+    "protocol_version",
+    "test_result"
+  ]
+}

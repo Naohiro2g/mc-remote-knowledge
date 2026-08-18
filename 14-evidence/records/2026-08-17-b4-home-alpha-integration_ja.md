@@ -128,3 +128,15 @@ McRemote実装の差分である。
 McRemoteで`2026-08-02-08`に適合するhash-only session recordを実装してartifactを再固定した後、
 同一b4通常再起動とb3→b4再適用の両方で同じ期限内tokenを再試験する。Stackはcredential bootstrap／health
 projectionとdoctor検出を再照合する。両方が合格するまでhome-alpha認証修正とb4 release gateを閉じない。
+
+## Addendum — 2026-08-18
+
+本recordのFAILは当時のexact setに対する有効な観測として保持する。後続McRemote
+`3496db9293baa6e1d4f79439cacbd239ba15e2b7`はsession recordをhash-only snapshotへ収容し、
+JAR SHA-256 `331633ef15a729658496e89fe49cb8a5eb5ebcb2ec86937b7e5313528d7ec997`として再固定された。
+
+後続正式根拠[`2026-08-18-b4-session-persistence-home-alpha`](2026-08-18-b4-session-persistence-home-alpha_ja.md)で、
+同一b4通常再起動後とb4再適用後の期限内token認証がPASSした。Stack doctorは未実装checkpointを
+`doctor_credential_health_unsupported`としてfail closedにした。b3がb4 session recordを読めない観測は維持するが、
+`2026-08-18-01`により建築コード保護のb4 blockerから分離した。空環境からのコード再実行は
+[`2026-08-18-b4-code-preservation-recovery-live-human`](2026-08-18-b4-code-preservation-recovery-live-human_ja.md)を参照する。
