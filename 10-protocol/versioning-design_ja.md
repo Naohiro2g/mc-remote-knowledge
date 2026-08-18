@@ -354,7 +354,7 @@ final を誤って出した／soak 前に Latest 化した場合の退避手段�
 - **GitHub フラグが最も安い緊急避難**＝公開チャンネル（PyPI/Modrinth）へ出す前なら完全可逆。`2000.0.0`（plugin）がこの適用第1例（§10.7、`2026-06-25-03`）。
 - 公開チャンネルに出た後は yank／削除しか無く版番号を消費する。**rc を bootstrap 中は GitHub 留めにする設計（§10.9）は、この退避コスト差から導かれる**＝最も可逆な層で soak し、不可逆な公開チャンネルへは AND 律速で慎重に昇格する。
 
-### 10.11 protocol 21.0.0 のスコープと beta 段階構築
+### 10.11 protocol 21.0.0 のスコープと beta 段階構築（b4で終了）
 
 protocol 21.0.0 を載せる配布系列は `2100.0.0b1` から始まり、旧スキーム（実質未出荷の 2000.0.0／legacy 1214.x）に対する**新スキーム major** を1本に束ねる。protocol 自体には beta 概念を持たせず、b1 は package / GitHub release 側の prerelease 段階として扱う（DECISIONS `2026-06-25-05` / `2026-06-27-01`）。
 
@@ -363,9 +363,10 @@ protocol 21.0.0 を載せる配布系列は `2100.0.0b1` から始まり、旧�
 - **b1 ＝ build model**：`setWorld(dimension)`／`setBuildOrigin(x,y,z)`（両者セッション中変更可）、`setPlayer` 除去、build state＝stream 個別（`2026-06-24-01`）、座標 絶対y＝origin y＋dy（`2026-06-25-01`、Y_SEA は hello 経由の情報定数で座標式に不使用）、既定原点 (200,0,200)。hello の版/ワールド定数通知・protocol ネゴ（`2026-06-15-04`/`2026-06-19-03`）もここで可。
 - **後続 bN ＝ 認証**：pair/hello/token/LuckPerms（`2026-06-11-02`/`2026-06-15-01`）。hello に auth フィールドを足すのはこの段。
 - **b→rc（API凍結＝教材執筆OK、`2026-06-25-02`）**：build model も認証も固まってから。
-- **rc soak → `2100.0.0` stable**：新スキーム初の公開版（認証込み）。
+- **当初のrc計画**：`2100.0.0` stableへ進む予定だったが、構造化block valueの破壊的変更を
+  `2026-08-19-02`でprotocol 22へ置いたため、protocol 21系列は`2100.0.0b4`で終了する。
 
-**束ねの根拠**：メジャーに束ねること＝一度に凍結すること、ではない。beta は凍結前に内容を積み上げる機構なので、1メジャー内でも build model を先・認証を後に置け、分割が認証の安定化に人質を取られない。R2 はリリース節目であって protocol メジャー境界ではなく、1つの R2 が1メジャーを beta 段階構築で運べる。却下＝認証を別メジャー 22.0.0 に分離（stable 未到達の使い捨て 21 か、R2 が却下する無認証 stable を一度公開するかのどちらかで移行も二度）。
+**束ねの根拠**：メジャーに束ねること＝一度に凍結すること、ではない。beta は凍結前に内容を積み上げる機構なので、1メジャー内でも build model を先・認証を後に置け、分割が認証の安定化に人質を取られない。R2 はリリース節目であって protocol メジャー境界ではなく、1つの R2 が1メジャーを beta 段階構築で運べる。当時却下した「認証だけを22へ分離」は引き続き不採用である。後のprotocol 22は認証分離ではなく、既存set/get shapeの破壊的変更をhelloで拒否するための新境界である（`2026-08-19-02`）。
 
 **足並み**：plugin/api は同一 protocol を名乗る限り混在可（§3）。core 番号＋接尾辞は揃える（§2）＝plugin は version `2100.0.0b1`、PythonAPI は `minecraft-remote-api==2100.0.0b1`。plugin の Git tag / release title / JAR artifact 名は §10.12.1 で分離し、`mc-target` は plugin 確認票で固定する。scratch-editor の b1 GitHub tag は component prefix を付けて `scratch-editor-2100.0.0b1` とする（DECISIONS `2026-07-02-04`）。hello 互換はメジャー一致必須（§8）ゆえ分割は両側同時実装。bN はbootstrap中GitHub限定、component成熟後はPyPI/Modrinthのpre-release面へも同じ版を出せる（§10.9）。
 
@@ -453,26 +454,32 @@ b3がb4 credential snapshotを読めることやdowngrade中のtoken継続をb4 
 教材は現行記法を正準形とし、旧記法には恒久shimではなく書き換え方法とmigration fixtureを与える。
 long-lived公開、credential checkpoint／doctor、world backup／restoreはpost-b4 contractとして維持する。
 
-### 10.11.4 b5／b6 のスコープ（確定）
+### 10.11.4 protocol 22.0.0とb5／b6のスコープ（確定）
 
-protocol は `21.0.0` を維持し、artifact version を b5=`2100.0.0b5`、
-b6=`2100.0.0b6` とする。protocol 自体に beta 番号を持たせず、rc 前の同一 protocol 系へ
-method と検証済み schema を積層できるという §10.11 の規律を適用する（DECISIONS
-`2026-08-16-04`）。
+構造化block valueが`world.setBlock`／`setBlocks`のparamsと`world.getBlock`のresultを
+破壊的に変更するため、b5からprotocolを`22.0.0`へ上げる。artifact versionは
+b5=`2200.0.0b5`、b6=`2200.0.0b6`とする。beta番号は既存scope名と一致させ、protocol 22系列で
+`b1`へ戻さない。protocol 21の最終artifactは`2100.0.0b4`である（DECISIONS
+`2026-08-16-04`を`2026-08-19-02`で改訂）。
 
-b5 は大規模な共通基盤を閉じる段である。
+protocol 21と22のclient／plugin混在はhelloで`protocol_mismatch`として拒否する。旧文字列refを
+受理するunion schemaや恒久shimをprotocol 22へ置かない。protocol自体にbeta番号を持たせず、
+b5／b6は同じ22.0.0のcompatibility setとして積層する。
 
-1. connection epoch ごとの有限 event ring、sequence cursor、overflow／loss
-2. 右クリック、チャット投稿、projectile hit event
-3. connection epoch scoped entity handle
-4. availability／work admission
-5. `world.getHeight`
-6. `world.spawnParticle`
-7. `world.spawnEntity`
-8. structured JSON params を保持できる dispatcher
-9. plugin／Python／Scratch／WireScope の compatibility set
-10. `.sb3`／`.sprite3`互換fixtureと、Scratch作品全体のIndexedDBブラウザ保存基盤
-11. Minecraft由来の連続位置3桁、yaw／pitch 2桁、yaw `[-180,180)`、pitch `[-90,90]`を固定する
+b5は大規模な共通基盤を閉じる段である。
+
+1. `block_id`と`state`を分けた構造化`BlockSpec`／`BlockValue`、set/get対称化、Python／Scratch投影
+2. connection epoch ごとの有限 event ring、sequence cursor、overflow／loss
+3. 右クリック、チャット投稿、projectile hit event
+4. connection epoch scoped entity handle
+5. availability／work admission
+6. `world.getHeight`
+7. `world.spawnParticle`
+8. `world.spawnEntity`
+9. structured JSON params を保持できる dispatcher
+10. plugin／Python／Scratch／WireScope の compatibility set
+11. `.sb3`／`.sprite3`互換fixtureと、Scratch作品全体のIndexedDBブラウザ保存基盤
+12. Minecraft由来の連続位置3桁、yaw／pitch 2桁、yaw `[-180,180)`、pitch `[-90,90]`を固定する
     数値正準化（DECISIONS `2026-08-19-01`）
 
 b6 は b5 基盤上の中規模 API 追加に限定し、新しい identity、transport、queue を作らない。
@@ -485,8 +492,8 @@ b6 は b5 基盤上の中規模 API 追加に限定し、新しい identity、tr
 - b6 終端での未批准 legacy wire method の置換または registry からの除去
 - b5のIndexedDB基盤と`.sprite3` fixtureを使うScratchスプライトのブラウザ保存
 
-旧 Scratch `.sb3` opcode migration は wire method 整理と別 gate とする。b5／b6 のmethodを
-protocol `21.0.0`へ収容することは、実装、live evidence、release gateの合格を意味しない。
+旧Scratch `.sb3` opcode migrationはwire method整理と別gateとする。b5／b6のmethodを
+protocol `22.0.0`へ収容することは、実装、live evidence、release gateの合格を意味しない。
 exact ring／handle／poll／work上限はruntime policyとtest fixtureで較正し、横断version contractへ
 焼き込まない。OS clipboardによるブロック移送は保存release gateへ自動追加せず、独立trackのまま維持する。
 

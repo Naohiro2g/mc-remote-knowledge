@@ -196,18 +196,28 @@ actionable error、one-shot中の有限queue、timeout時close・再送なし、
 fixture／testで固定する。home-alphaでは`auth_required`直後0msの`pairBegin`、複数回の`pairPoll`、token付き再`hello`、
 通常persistent commandまでを一巡する。hintはWireScope observer schema v1へJSON-RPC frameとして投影しない。
 
-### R3-A — catalog picker と state UX（設計確定・b4）
+### R3-A — catalog picker と構造化block value（b4実装、protocol 22で改訂）
 
-設計は `2026-08-02-07` で確定済み。**b3 scope へ追加せず b4 へ送る**。
-b3 の catalog 実装と実測を入力に、picker の見せ方、state UX、教材上の説明をさらに洗練してから収容する。
+Catalog Picker初版は`2026-08-02-07`によりb4で一体文字列を既存入力欄へ挿入する形として実装した。
+protocol 22では`2026-08-19-02`により、公開値を`block_id`と`state`へ分離する。b4 artifactと
+evidenceは当時のprotocol 21実装として維持し、b5のScratch／Python／plugin／WireScope compatibility
+setで構造化形へ切り替える。
 
-- picker は入力支援であり、結果は編集可能な文字列として既存入力欄へ入る。自由入力・変数・reporter を維持し、reporter を黙って取り外さない。
-- vanilla block は短縮形（`oak_log`）、それ以外は完全修飾（`examplemod:ruby_block`）を入力する。Python 定数（`2026-08-02-05`）と同じ綴りにして、Scratch → Python 移行で二表記にしない。
+- pickerは入力支援であり、block IDとstateを別入力として扱う。自由入力・変数・reporterを維持し、reporterを黙って取り外さない。
+- vanilla block IDは短縮形（`oak_log`）、それ以外は完全修飾（`examplemod:ruby_block`）を入力する。Python定数と同じ綴りにして、Scratch→Python移行で二表記にしない。
+- state propertyを持たないblockと、Minecraft既定stateを使うblockは空state objectとして送る。既存block stateとのmergeはしない。
+- 日本語／英語は表示・検索metadataとし、machine ID／property／valueを翻訳しない。日本語表示名、英語表示名、canonical ID、aliasに対する空白区切りAND検索を行う。
 - catalog は **hello の `catalogHash` と一致した後だけ** picker で使う。同梱既定版フォールバックは持たない。IndexedDB cache は再取得を省く保存であって、オフライン catalog ではない。
 - 状態表示は `NOT ACQUIRED` / `CURRENT` / `UNAVAILABLE` の3つ。適合未確認の catalog を使わないので中間状態が生じない。
 - 未接続時の通知は「最初の command 実行時だけ」。`connection_disabled` では接続を促さず展示版の説明を出す（`2026-07-28-01`）。
-- `.sb3` へ保存するのは block 入力欄の文字列だけ（`2026-07-08-01`）。
+- `.sb3`にはblock IDとstate入力を分けて保存する。まだstable版で使われていないb4の一体文字列入力について、恒久migrationを作らない。
+- getは`([x] [y] [z] のブロック情報)`で一回だけ通信し、`([ブロック情報] のブロックID)`と`([ブロック情報] の状態 [property])`で同じimmutable snapshotを投影する。ID用とstate用に別通信を行わない。
+- 取得結果は「このスプライトのみ」の変数へ保存できる。extension共有のlast-valueを作らず、Stage変数へ入れた場合だけ明示共有する。cloneは通常のsprite-local variable規則に従う。
+- b4のmain stream 1件でもspriteごとの値処理は独立させ、将来substreamへ写像してもblock value shapeを変えない。
 - observation grant と display alias は別票。
+
+共通値モデルとScratch内部token／fixtureの正本は
+[ブロック値・状態・多言語投影設計](../10-protocol/block-value-design_ja.md)とする。
 
 ### 保存・移送作業束（b5／b6配置確定・R配置は最終整理待ち）
 

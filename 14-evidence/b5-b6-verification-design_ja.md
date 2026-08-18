@@ -1,6 +1,7 @@
 # b5／b6 横断検証設計
 
-この文書は、DECISIONS `2026-08-16-04`〜`07`で確定したplugin APIについて、何をどのtest classで
+この文書は、DECISIONS `2026-08-16-04`〜`07`と`2026-08-19-01`／`02`で確定したprotocol 22の
+plugin APIについて、何をどのtest classで
 確かめるかを示します。未実施の計画をevidenceと呼ばず、実行後にだけrecord／artifactを作ります。
 wire contractは[wire-format-design](../10-protocol/wire-format-design_ja.md)を正とします。
 
@@ -9,6 +10,11 @@ wire contractは[wire-format-design](../10-protocol/wire-format-design_ja.md)を
 各dev repositoryのtestと固定commitで次を閉じます。
 
 - event DTOがBukkit Event objectを保持せず、world／originを発生時にcaptureする。
+- `BlockSpec`／`BlockValue`のstrict shape、stateless blockの`state:{}`、短縮ID／部分state入力、
+  完全修飾ID／full state出力、set→getの意味的round-trip。
+- protocol 21／22の混在がhelloで拒否され、文字列refとobjectのunion受理が無い。
+- Pythonの`block_id`／`state` APIと`BlockValue`、Scratchの一回取得snapshot／accessor、
+  sprite-local保存、共有last-block不在、clone／disconnect lifecycle。
 - paired playerの全active epochへ複製し、ring／sequence／cursorがepoch間で独立する。
 - stale／latest／future cursor、非破壊poll、overflow／capacity／clearの累積値。
 - compact responseが61,440 bytesを越えない。
@@ -41,6 +47,7 @@ wire contractは[wire-format-design](../10-protocol/wire-format-design_ja.md)を
 9. WireScopeへScratch／Pythonの両sourceを順に接続し、b5 method／result／error／lossを同じUIで確認する。
 10. player／projectile／entity poseの正準値がplugin、Python、Scratch、WireScopeで一致し、入力精度を
     副作用前に失っていないことを確認する。
+11. stateless／stateful blockをPythonとScratchからset→getし、同じ構造化値をWireScopeで確認する。
 
 ## 3. Real-browser／live-human
 
@@ -54,6 +61,8 @@ wire contractは[wire-format-design](../10-protocol/wire-format-design_ja.md)を
 - `height_not_found`が通常の高さ値と区別でき、actionableに説明される。
 - non-idempotent operationの結果不明時にclientが自動retryしない。
 - 長いnative小数が座標3桁／角度2桁の同じwire値として表示され、raw frameとclient値が一致する。
+- Scratchの一つの`ブロック情報` snapshotからIDと複数state propertyを取り出し、sprite間で
+  暗黙共有されず、Stage変数へ入れた場合だけ明示共有される。
 
 ## 4. Evidenceの着地条件
 

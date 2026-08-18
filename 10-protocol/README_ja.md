@@ -7,3 +7,6 @@ protocol は plugin・python-client・scratch-client の3つにまたがる共�
 このディレクトリは mc-remote-knowledge のスポーク。`00-hub/` の方針（全体計画・理念・全体アーキテクチャ）に従う。
 
 横断的な影響を持つ決定（複数ワークストリームに波及するもの）は、ここに書くと同時に `00-hub/DECISIONS_ja.md` に1行追記する。
+
+ブロックID／stateの構造化値、set／get対称性、Python／Scratch／将来言語への投影は
+[ブロック値・状態・多言語投影設計](block-value-design_ja.md)を人間向け説明正本とする。

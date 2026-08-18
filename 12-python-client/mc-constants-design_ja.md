@@ -8,9 +8,12 @@
 > `2026-08-02-04` が `states` schema と signature 導出を、
 > `2026-08-02-05` が projection lifecycle（**非同梱・接続後獲得**）を確定し、
 > `2026-08-06-04` が PC グローバル cache の root path と優先順を確定した。
+> `2026-08-19-02` はprotocol 22のblock値を`block_id`と`state`へ分離し、projectionを
+> 文字列ref生成器でなくID／state入力支援として位置づけ直した。
 > 本文は現行設計に更新済み。**旧設計に属する記述は残していない**が、
 > 判断理由は §2 に「なぜ反転したか」として保存する。
-> `python-client-guide_ja.md` は未監査で、まだ旧設計（import 時生成・同梱）を説明している。
+> 公開利用面は`python-client-guide_ja.md`、block値の共通形は
+> `10-protocol/block-value-design_ja.md`を正とする。
 
 ---
 
@@ -34,7 +37,7 @@
 (ライブラリ側)
 └── mc_remote/
     ├── __init__.py
-    ├── catalog.py                 # catalog.get・検証・block_ref
+    ├── catalog.py                 # catalog.get・検証・BlockSpec入力支援
     ├── _constants_codegen.py      # projection generator
     └── minecraft.py / vec3.py
 ```
@@ -236,6 +239,9 @@ projection を作らず、init を促す actionable warning を出す。
   **state signature の異なり数**（`2026-08-02-04` の導出規則による）、stub サイズ、
   解析時間、補完遅延の実測が要る。異なり数が小さければ静的型は安く手に入り、
   大きければ維持不能と結論できる。どちらに転んでも判断がつく測定として先に行う。
+  protocol 22の実行時escape hatchは文字列`block_state_ref`でなく、
+  `state: Mapping[str, str | int | bool]`である。Python identifierにできないmod propertyも
+  mappingのkeyとして保持し、`block_id`とstateを再結合しない。
 - **将来のmcpi統合**: 数値ID対応・座標系の差異吸収・setBlock等のAPI差異を
   別途設計する必要がある。本改修のスコープ外。
 

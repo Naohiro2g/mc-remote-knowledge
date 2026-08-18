@@ -13,3 +13,6 @@
 作品共有の責任分界、ブラウザ保存作品／スプライト、`.sb3`／`.sprite3`、OS clipboardによる
 ブロック移送は [Scratch作品の保存・移送設計](scratch-project-storage-transfer-design_ja.md) を参照する。
 McRemoteは一般UGC hostingと一般利用者accountを所有しない（`2026-08-16-01`〜`03`）。
+
+protocol 22の構造化block valueと、スプライトごとの`ブロック情報`／ID／state reporterは
+[ブロック値・状態・多言語投影設計](../10-protocol/block-value-design_ja.md)を参照する。

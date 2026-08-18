@@ -374,10 +374,11 @@ b3 の横断スコープは credential lifecycle の完了を待たずに閉じ�
 
 段階の途中で公開 gate を開かない。b3完了とlong-lived公開可否を同一判定へ戻さず、最終的な開放条件は引き続き §9.9.3 と `2026-08-02-03` が持つ。観察と再開判断の正本は `00-hub/authentication-roadmap_ja.md`。
 
-## 10. b5／b6のevent・entity・dispatcher基盤
+## 10. protocol 22／b5・b6のevent・entity・dispatcher基盤
 
 b5は、イベントを受けて調べ、生成・操作するAPIを支える大規模な共通基盤を閉じる段である
-（DECISIONS `2026-08-16-04`〜`07`）。b6はこの基盤上の中規模API追加に限定し、別のidentity、
+（DECISIONS `2026-08-16-04`〜`07`）。構造化block valueによる破壊的変更を境界として、b5から
+protocolを`22.0.0`へ上げる（`2026-08-19-02`）。b6はこの基盤上の中規模API追加に限定し、別のidentity、
 transport、queueを作らない。
 
 ### 10.1 Event captureとepoch別ring
@@ -415,6 +416,12 @@ Paper上でremoved／unloaded／world-changedをどこまで安定して判別�
 dispatcherは位置配列だけを前提にせず、b6のsign／typed particleまで有限なstructured JSON paramsを
 検証済みDTOとしてhandlerへ渡せる構造にする。permission、handle capacity、入力byte、chunk走査、work量を
 副作用前に検証する。
+
+同じdispatcher境界で、`world.setBlock`／`world.setBlocks`の`BlockSpec`と`world.getBlock`の
+`BlockValue`を`{block_id,state}`の構造化DTOとして扱う。pluginはcatalog／稼働中registryを正本に、
+短縮vanilla IDの補完、state property／value検証、部分stateからの新規block data生成、get時の完全修飾IDと
+full state正準化を一度だけ所有する。旧`block_state_ref`文字列をparseするprotocol 21経路とprotocol 22を
+同じhandlerで自動判別せず、helloのprotocol major不一致で先に拒否する。
 
 `backpressure`は副作用前の一時的拒否、`work_limit_exceeded`は入力縮小が必要な拒否、
 `entity_capacity_exhausted`はhandle capacity拒否である。副作用開始後に結果を確定できない場合は

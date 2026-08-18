@@ -229,11 +229,13 @@ browserへ貸して代理送信しない。console streamと既存source stream�
 WireScopeのまま保ち、増えたroleやcomponentを個別に命名する。consoleのtransport、pairing、command scope、
 教材gateは実装着手前に別決定とする。
 
-## 13. b5 method観察とschema v1.1 compatibility set
+## 13. protocol 22／b5 method観察とschema v1.1 compatibility set
 
 b5ではobserver schema／app artifact contractをv1.1へ進め、`events.poll`、`world.getHeight`、
 `world.spawnParticle`、`world.spawnEntity`と新しいreasonを観察できるようにする（DECISIONS
-`2026-08-16-07`）。これはschema v1へ未知fieldを追加する変更ではない。
+`2026-08-16-07`）。加えて、protocol 22の`world.setBlock`／`world.setBlocks`／`world.getBlock`は、
+`block_id`と`state`を分離した構造化`BlockSpec`／`BlockValue`として観察する（`2026-08-19-02`）。
+これはschema v1へ未知fieldを追加する変更ではない。
 
 次を一つのcompatibility setとして更新する。
 
@@ -248,6 +250,12 @@ b5ではobserver schema／app artifact contractをv1.1へ進め、`events.poll`�
 plugin wire fixtureのconformance完了と、共通UIおよびreal-browser E2Eの完了を別gateにする。
 fixtureが通ってもUI表示・loss可視化・Scratch／Python両sourceの実browser動作が確認されるまでは
 WireScope b5 gateを完了扱いにしない。
+
+block valueのvalidatorとUIは`block_id`／`state`を文字列refへ再結合せず、同じobject shapeのまま扱う。
+stateが無いblockも`state:{}`を表示・copy・fixture比較の正とし、getのfull stateとsetの部分stateを
+method別validatorで区別する。protocol 21の文字列frameとprotocol 22のobject frameを一つのunion schemaで
+黙って受理せず、plugin、Python、Scratch、observer validator、common app artifactのprotocol identityを
+一つのcompatibility setとして固定する。
 
 連続位置・角度はpluginがDECISIONS `2026-08-19-01`の正準numberへ変換した後のframeを観察する。
 observer validatorと共通UIは座標や角度を別値へ再round／wrap／clampしない。UIが可読性のため末尾ゼロを

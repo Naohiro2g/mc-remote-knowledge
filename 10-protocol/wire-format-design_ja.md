@@ -3,7 +3,7 @@
 > マイクラリモコン（Code2CreateClub / mc-remote.com）設計記録
 > 関連: `Naohiro2g/McRemote`（プラグイン）, `Naohiro2g/minecraft-remote-api`（API）, `Naohiro2g/scratch-editor`（Scratch クライアント）
 > 出典: scratch-editor 作業セッション 2026-06-26（`scratch3_mcremote/index.js` の DRAFT 実装でピン留め）
-> 結節点: [versioning-design] §3（メジャー増分）/§8（hello ネゴ）/§10.11（protocol 21.0.0）と直結。本文書は**ワイヤ符号化の SSOT**で、版判定規則の正は versioning-design §8。
+> 結節点: [versioning-design] §3（メジャー増分）/§8（hello ネゴ）/§10.11（protocol 21.0.0／22.0.0）と直結。本文書は**ワイヤ符号化の SSOT**で、版判定規則の正は versioning-design §8。
 
 ---
 
@@ -12,9 +12,9 @@
 本文書は**プラグイン ↔ 各クライアントの実際のワイヤ符号化**（フレーミング・エンベロープ・コマンド表・エラー形）を定める。これは [versioning-design] が扱う **protocol semver（20.0.0 / 21.0.0…）とは別レイヤ**。
 
 - **エンベロープ形式版** ＝ `jsonrpc: "2.0"`（JSON-RPC 2.0 を採用、§3）。各メッセージに自己記述で載る。
-- **protocol 版** ＝ semver（例 **`21.0.0`**）。互換判定は versioning-design §8（メジャー一致必須・`plugin.minor >= client.minor`・パッチ不問）。hello で交渉する。**package 版 `2100.0.0b1` とは別レイヤ**＝`b1` は配布チャンネル表記で **wire 非搭載**、hello の `protocol` フィールドには clean な protocol semver `21.0.0` を載せる（DECISIONS `2026-06-27-01`）。package は protocol から fold 規則（versioning-design `2026-06-19-04`）で派生＝独立ではない。
+- **protocol 版** ＝ semver（例 **`21.0.0`／`22.0.0`**）。互換判定は versioning-design §8（メジャー一致必須・`plugin.minor >= client.minor`・パッチ不問）。hello で交渉する。**package 版 `2100.0.0b1`／`2200.0.0b5` とは別レイヤ**＝`bN` は配布チャンネル表記で **wire 非搭載**、hello の `protocol` フィールドには clean な protocol semverを載せる（DECISIONS `2026-06-27-01`／`2026-08-19-02`）。package は protocol から fold 規則（versioning-design `2026-06-19-04`）で派生＝独立ではない。
 
-> **「protocol v1」という旧称について**：scratch-plan §4/§5 が「プロトコル v1 仕様書」と呼んでいたのは本文書のワイヤ仕様のこと。protocol semver の `1.x` とは無関係で混同しやすいので、本リポでは「**ワイヤ形式**」と呼び、semver は versioning-design の番号で呼ぶ。このワイヤ符号化が初めて載る protocol semver は **21.0.0**。`2100.0.0b1` はそれを載せる配布物側の prerelease 表記で、protocol 自体の beta ではない（versioning-design §10.11）。
+> **「protocol v1」という旧称について**：scratch-plan §4/§5 が「プロトコル v1 仕様書」と呼んでいたのは本文書のワイヤ仕様のこと。protocol semver の `1.x` とは無関係で混同しやすいので、本リポでは「**ワイヤ形式**」と呼び、semver は versioning-design の番号で呼ぶ。このワイヤ符号化が初めて載ったprotocol semverは **21.0.0**、構造化block valueへの破壊的変更は **22.0.0** に載る。`2100.0.0b1`／`2200.0.0b5`は配布物側のprerelease表記で、protocol自体のbetaではない（versioning-design §10.11）。
 
 ---
 
@@ -41,8 +41,10 @@ JSON-RPC 2.0 を採用する（採用判断と却下案は §8）。
 ### 3.1 要求（クライアント → サーバ）
 
 ```json
-{ "jsonrpc": "2.0", "id": 1, "method": "world.setBlock", "params": [0, 0, 0, "stone"] }
+{ "jsonrpc": "2.0", "id": 1, "method": "world.setBlock", "params": [0, 0, 0, { "block_id": "minecraft:stone", "state": {} }] }
 ```
+
+この例はprotocol 22の形である。protocol 21の文字列block refは§7.1の改訂前履歴として扱う。
 
 - `method` ＝ コマンド名（**TCP ドット名直結**、§4）。
 - `params` ＝ **位置引数の配列**（順序が意味を持つ）。例外として `hello` のみ object 形（§6）。
@@ -51,7 +53,7 @@ JSON-RPC 2.0 を採用する（採用判断と却下案は §8）。
 ### 3.2 notification（応答不要・id 省略）
 
 ```json
-{ "jsonrpc": "2.0", "method": "world.setBlock", "params": [0, 0, 0, "stone"] }
+{ "jsonrpc": "2.0", "method": "world.setBlock", "params": [0, 0, 0, { "block_id": "minecraft:stone", "state": {} }] }
 ```
 
 - `id` を**省略**すると JSON-RPC の notification ＝ **応答も返らない**（高速建築でラウンドトリップを省く用途）。
@@ -91,9 +93,9 @@ JSON-RPC 2.0 を採用する（採用判断と却下案は §8）。
 | `build.setWorld` | `[dimension]` | あり | build state の world/dimension を変更。`dimension` は `overworld` / `nether` / `the_end` |
 | `build.setOrigin` | `[x, y, z]` | あり | build origin を変更。Scratch b1 UI は y を露出せず 0 固定で送る |
 | `chat.post` | `[msg]` | あり（b1 は id 付き同期 request） / notification 時なし | チャット送信 |
-| `world.setBlock` | `[x, y, z, block]` | あり（b1 は id 付き同期 request） / notification 時なし | 1ブロック設置 |
-| `world.setBlocks` | `[x1, y1, z1, x2, y2, z2, block]` | あり（b1 は id 付き同期 request） / notification 時なし | 直方体充填 |
-| `world.getBlock` | `[x, y, z]` | あり | ブロック取得 |
+| `world.setBlock` | `[x, y, z, blockSpec]` | あり（b1 は id 付き同期 request） / notification 時なし | protocol 22では構造化`BlockSpec`で1ブロック設置（§7.1） |
+| `world.setBlocks` | `[x1, y1, z1, x2, y2, z2, blockSpec]` | あり（b1 は id 付き同期 request） / notification 時なし | protocol 22では構造化`BlockSpec`で直方体充填（§7.1） |
+| `world.getBlock` | `[x, y, z]` | あり | protocol 22では構造化`BlockValue`を返す（§7.1） |
 | `catalog.get` | `[]` | あり | 稼働中 registry から block/entity/particle catalog を取得（b3 実装予定、§7.2.1） |
 | `player.getPos` | `[]` | あり | paired player の現在 world と現在位置を stream origin 相対で返す（b2 準核） |
 | `player.setPos` | `[world, x, y, z]` | あり | paired player を指定 world の stream origin 相対位置へ teleport する（b2 準核） |
@@ -115,11 +117,11 @@ JSON-RPC 2.0 を採用する（採用判断と却下案は §8）。
   JSON-RPC 21.0.0 では互換契約として保存しない。クライアントは1つの string を `[msg]` として送る。
 - b1 の `chat.post` / `world.setBlock` / `world.setBlocks` は `id` 付き request として送って同期 result/error を返す（DECISIONS `2026-07-01-08`）。notification / send-only 既定化は b1 から外し、bN / debug 統合側で扱う。
 - `build.setWorld` / `build.setOrigin` は protocol 21.0.0 系の b1 配布物における build model 収容条件に含める（DECISIONS `2026-07-01-10`）。API 層名は `setWorld` / `setBuildOrigin`、wire method は `build.*`。
-- `world.getBlock` は **result をそのまま返す**（取得値が `undefined` / error のときは**空文字**）。戻り型の確定（int ↔ 文字列）は §7 ②。
+- `world.getBlock` はprotocol 22で`BlockValue`をresultとして返す。失敗を空文字へ畳まずJSON-RPC errorで返す（§7.1／§7.3）。protocol 21の文字列resultはb4までの履歴である。
 - `catalog.get` は protocol 21.0.0 系 b3 の実装予定に含める（DECISIONS `2026-07-29-04`、§7.2.1）。API 層名・wire method とも `catalog.get`。認証後のみ有効で、稼働中 registry から block/entity/particle を単一 response で返す。
 - `player.getPos` / `player.setPos` は protocol 21.0.0 系 b2 の準核に含める（DECISIONS `2026-07-07-02`）。API 層名は `getPos` / `setPos`、wire method は `player.*`。
 - `player.getPose` / `player.setPose` は protocol 21.0.0 系 b4 の実装予定に含める（DECISIONS `2026-07-29-03`、§5.3）。API 層名は `getPose` / `setPose`、wire method は `player.*`。既存 `getPos` / `setPos` は廃止せず維持する。
-- `events.*`、b5／b6の`world.*`／`entity.*`はprotocol 21.0.0を維持したrc前beta積層であり、artifact b5／b6のcompatibility setとして実装する（DECISIONS `2026-08-16-04`〜`07`、§5.4〜§5.8）。
+- `events.*`、b5／b6の`world.*`／`entity.*`はprotocol 22.0.0のartifact b5／b6 compatibility setとして実装する。b5は構造化block valueによる破壊的変更をmajor境界にし、それ以外のb5／b6 scopeは維持する（DECISIONS `2026-08-16-04`〜`07`、`2026-08-19-02`、§5.4〜§5.8）。
 - `auth.*`（`auth.pairBegin` / `auth.pairPoll` / `auth.listCredentials` / `auth.revoke` / `auth.logout`）は hello の前段に位置する認証・credential 管理の名前空間で、**本表ではなく §6.5 / §6.6 が正本**。ペアリングは §6.5、credential の一覧と失効は §6.6（`2026-08-02-01`）。
 - `setPlayer` は**廃止**（protocol 21.0.0 系の b1 配布物でクリーン除去、DECISIONS `2026-06-15-02`/`2026-06-25-05`）。identity は `hello` が担い、サーバが token ↔ player を束縛するため**なりすまし不可**。
 
@@ -388,27 +390,44 @@ long-lived credential の一覧と失効。認証後のみ有効で、常に**�
 
 | # | 論点 | 状態 |
 | --- | --- | --- |
-| ① | **block id 表現**（文字列名・名前空間） | **確定** `2026-06-26-03`（§7.1） |
-| ② | **`world.getBlock` 戻り型** | **確定** `2026-06-26-03`（文字列カタログ名・§7.1） |
+| ① | **block id／state表現** | **改訂確定** `2026-08-19-02`（protocol 22の構造化block value・§7.1） |
+| ② | **`world.getBlock` 戻り型** | **改訂確定** `2026-08-19-02`（`BlockValue` object・§7.1） |
 | ③ | **notification のエラー方針** | **b1 スコープ確定** `2026-07-01-08`（`2026-06-27-04` / `2026-07-01-06` を改訂）。b1 の setBlock/setBlocks/chat.post は **id 付き同期 request** として扱い、疎通確認・error 観測を優先する。server push方向は`2026-08-16-05`で撤回し、eventは非破壊`events.poll`、command errorは対応requestで観察する。send-only UXは別の体験設計 |
 | ④ | **命名系統** | **確定** `2026-06-26-04`。ワイヤ method はドット名前空間（build setter は `build.*`＝`build.setWorld`/`build.setOrigin`）・API 名は camelCase 維持（§5.1）。b1 params は §5.1 |
 | ⑤ | **権限既定値** | 未決（**plugin/LuckPerms の現実依存**）。hello 応答 `permissions` の既定は config.yml の権限名（`mcr.online`/`mcr.offline`/`mcr.build.range`、scratch-plan §2.5）と実 LuckPerms 既定に律速＝plugin b1/認証 bN で実値を確認して確定 |
 
 > §8 のエラーコード（`PROTOCOL_MISMATCH` 等）と認証系コード（`TOKEN_EXPIRED` 等、scratch-plan §2.5）を JSON-RPC error オブジェクトへどう写像するかの対応表も、ここで確定する。
 
-### 7.1 block_state_ref（確定 `2026-06-26-03`、`2026-06-27-02` で改訂）
+### 7.1 構造化block value（protocol 22、確定 `2026-08-19-02`）
 
-§7①② への回答。block 値は単なる id ではなく **state 込みの `block_state_ref` 文字列**＝正準形は `namespace:path` または `namespace:path[prop=value,...]`。**1ルール「入力 tolerate・出力 canonical-full」を namespace と state の両軸に適用する**（`2026-06-27-02`）。
+protocol 22.0.0では、protocol 21の`block_state_ref`文字列を`block_id`と`state`へ分離する。
+人間向けの理由、Python／Scratch投影、fixture境界は
+[ブロック値・状態・多言語投影設計](block-value-design_ja.md)を正とする。
 
-- **基本形＝文字列名**（平坦化後＝1.13+ の1系統）。数値 id+data・mcpi は先送り（mc-constants #11 整合）。
-- **入力（tolerate）**：
-  - namespace＝無印 OK。plugin が `:` 無し→`minecraft:` を補完（チャットコマンド/mcpi と同様）。**無印の未知名は失敗扱い**（黙殺しない、§7.3 `unknown_block`）。
-  - state＝部分指定 OK・順不同 OK。未指定 prop は plugin の `createBlockData` が default 補完。素の id（全 default）も可。
-- **出力＝正準（canonical-full）**：getBlock は常に **(1) 完全修飾**（バニラも `minecraft:…`・`2026-06-27-02` で旧「バニラ短縮」を訂正）**(2) full state**（全 prop 明示）**(3) プロパティ名アルファベット昇順**（plugin が `getAsString()` 出力をソート＝Paper の emit 順は未規定で版で崩れうるため我々の契約で固定し、往復テストを exact 文字列で書けるようにする）。**int 廃止方向**。
-- **値の表記**：bool は小文字 `true`/`false`、整数 state（`level`/`age` 等）は裸の数字。
-- **変換責務＝pass-through**：文字列名を client→bridge→plugin で素通し。**数値変換は導入しない**（mcpi 統合時に別設計）。
-- **round-trip**：正準（完全修飾＋full＋ソート）形で**文字列等価**が成立。例 `setBlock(...,"oak_stairs[facing=north]")`（部分・無印）→ `getBlock(...) → "minecraft:oak_stairs[facing=north,half=bottom,shape=straight,waterlogged=false]"`（完全修飾・full・ソート済み）。テストは full 形を assert（意味的 round-trip）。
-- **層の分離**：短縮名・state 省略・kwargs などの書きやすさ/見やすさは **UI・教材・Python 定数の入力側**で吸収（`2026-06-27-02`）。catalog の `default_state` が「短い表示↔full 復元」の前提＝§7.2 と連動（catalog 本体は b3、`2026-07-07-02`/`2026-07-29-04` で b2→b3 に再配置済み）。
+set入力の`BlockSpec`とget出力の`BlockValue`は同じcontainer shapeを持つ。
+
+```json
+{
+  "block_id": "minecraft:oak_log",
+  "state": {
+    "axis": "z"
+  }
+}
+```
+
+- `block_id`はstring必須。入力は`:`無しのvanilla短縮IDを許容し、pluginが`minecraft:`を補完する。出力は常に完全修飾する。
+- `state`はobject必須。valueはJSON native scalar（boolean／number／string）とし、array／object／`null`を許容しない。
+- 最上位fieldは`block_id`と`state`のexact 2 fieldとし、欠落field／未知fieldは`invalid_params`とする。
+- state propertyを持たないblockは`state: {}`とする。field欠落、`null`、空文字を使わない。
+- set入力のstateは部分指定を許容し、空objectを含む未指定propertyはMinecraftの既定値で補う。既存block stateとのmergeはしない。
+- get出力のstateはfull stateとする。JSON objectのmember順序に意味はなく、consumerは順序へ依存しない。
+- deterministic fixture／Scratch内部tokenでは、最上位を`block_id`→`state`、state propertyを名前の昇順でcompact JSON化する。
+- `world.setBlock` paramsは`[x,y,z,blockSpec]`、`world.setBlocks`は`[x1,y1,z1,x2,y2,z2,blockSpec]`。
+- `world.getBlock` resultは`BlockValue`一つであり、IDとstateを別method／別responseにしない。
+
+入力は寛容、出力は正準という`2026-06-27-02`の原則は、文字列文法でなくobject fieldへ引き継ぐ。
+protocol 21の文字列`block_state_ref`、`getBlock`文字列result、文字列等価round-tripはb4までの契約として
+履歴に残し、protocol 22で互換unionや自動判別を設けない。
 
 ### 7.2 カタログ配送・キャッシュ（確定 `2026-06-26-03`）
 
@@ -441,8 +460,8 @@ long-lived credential の一覧と失効。認証後のみ有効で、常に**�
     "particle": { "<namespace:path>": {}, "...": {} }
   }
   ```
-  - block entry の `states`/`default_state` は §7.1 の canonical 出力（完全修飾・full state・プロパティ名アルファベット順）と対応させる。値は JSON ネイティブ型（bool/number/string）を使い、`block_state_ref` 文字列表現（§7.1）とは client 側で相互変換する（catalog schema 自体を ref 文字列のパーサにしない）。
-  - **block entry の完全 schema と validator 規則は `2026-08-02-04` で確定**＝`states` は property 名 → 許容値の配列、`default_state` は property 名 → 値で、両者の property 集合は一致。各 `states[property]` は空でない配列、値は JSON scalar、1 property 内は同一 JSON 型、重複値は禁止、`default_state[property]` は許容値に含まれる。未知の追加フィールドは将来拡張のため無視可能。catalog validator は schema と個別許容値を検証するが、**最終的な `block_state_ref` 受理は server が正本**（§7.1）。
+  - block entry の `states`/`default_state` は §7.1 の構造化block valueと対応させる。値はJSON native scalar（boolean／number／string）を使い、protocol 22ではclientが`block_state_ref`文字列へ相互変換しない。
+  - **block entry の完全 schema と validator 規則は `2026-08-02-04` で確定**＝`states` は property 名 → 許容値の配列、`default_state` は property 名 → 値で、両者の property 集合は一致。各 `states[property]` は空でない配列、値は JSON scalar、1 property 内は同一 JSON 型、重複値は禁止、`default_state[property]` は許容値に含まれる。未知の追加フィールドは将来拡張のため無視可能。catalog validatorは入力支援を担うが、最終的な`BlockSpec`受理はserverが正本である（§7.1、`2026-08-19-02`）。
   - **state signature は wire へ追加しない**（`2026-08-02-04`）。client が `states` から導出する＝property 名の昇順 × JSON 型 × canonical な許容値集合（型順 boolean → number → string、boolean は `false` → `true`、number は昇順、string は辞書順）。`default_state` は含めない。上の例では `oak_log` と他の `axis` だけを持つ丸太類が同一 signature に束なる。
   - entity/particle の内部 schema は block ほど複雑な state を持たないため、最小限の識別子集合として扱い、詳細は実装時に catalog validator（`20-教材/ai-learning-design_ja.md` §7 が前提とする states schema・許容値照合）と合わせて詰める。
 - **hash algorithm**：`catalogHash` は catalog 本体（`block`/`entity`/`particle` の3キー、`catalogHash` フィールド自体は除く）を**再帰的キーソート・区切り文字最小化（コンパクト）で直列化した UTF-8 バイト列の SHA-256 hex digest**とする。内容（mod レジストリ構成含む）が変われば必ず hash も変わることを保証し、§6.2/§7.2 の「版＋mod レジストリ指紋」を満たす。
@@ -458,15 +477,15 @@ long-lived credential の一覧と失効。認証後のみ有効で、常に**�
 §7③ の b1 部分を画定。**JSON-RPC 標準 error オブジェクトに一本化**（独自封筒を作らない＝`2026-06-26-01` の標準枠原則に忠実）。`code` は JSON-RPC 標準に従い、**意味は `data.reason`（安定 enum）が運ぶ二層**。UI/AI/test は `reason` を分岐 key にし family（code）を意識しなくてよい。
 
 - **`message`**＝英語短文（ja は client が `reason` から投影）。
-- **`data.ref`**＝問題の入力をエコー。**ref 検証、および特定の要求入力を原因とする params 検証で必須**とし、state / service / permission 等、対応する入力値が存在しない reason では**省略する**（`2026-08-02-02` で「一律必須」から改訂）。意味のない sentinel・空文字・`null` を捏造しない＝client は「`ref` があるか」で分岐できる。改訂の理由＝`2026-07-07-02` の `permission_denied` / `player_offline` と `2026-07-29-03` の `teleport_failed` にはエコーすべき入力が無く、一律必須は既に満たせていなかった。
+- **protocol 21の`data.ref`**＝文字列ref検証で問題入力をエコーした履歴field。protocol 22の構造化block valueでは使用せず、対応する`block_id`／`property`／`value`／`allowed`を返す。state／service／permission等、対応する入力値が存在しないreasonでは意味のないsentinel、空文字、`null`を捏造しない。
 - **`data.allowed`**＝`invalid_property_value` で許容値を返せれば返す（**b1 任意 / b2 必須**・catalog 連動）。
 
 | family | code | reason | 意味 | b1 |
 | --- | --- | --- | --- | --- |
-| ref 検証 | `-32602`（Invalid params） | `malformed_ref` | 括弧崩れ等の parse 失敗 | ○ |
-| | | `unknown_block` | 文法 OK・block 不在（無印補完後の未知名含む） | ○ |
-| | | `unknown_property` | prop 名がそのブロックに無い（`stone[axis=y]`） | ○ |
-| | | `invalid_property_value` | 値が許容外（`oak_log[axis=w]`）。`allowed` を返せる | ○ |
+| ref 検証（protocol 21履歴） | `-32602`（Invalid params） | `malformed_ref` | 括弧崩れ等のparse失敗。protocol 22では使用しない | b4まで |
+| block検証 | `-32602`（Invalid params） | `unknown_block` | `block_id`がblock不在（無印補完後の未知名含む） | ○ |
+| | | `unknown_property` | property名がそのblockに無い | ○ |
+| | | `invalid_property_value` | 値が許容外。`allowed`を返せる | ○ |
 | params 検証 | `-32602`（Invalid params） | `invalid_params` | JSON-RPC params の形・型・座標値が不正 | b2 |
 | | | `unknown_world` | 指定 world が解決できない | b2 |
 | world-state | `-32000`番台（実装定義域） | `build_denied` | build policy / 範囲 / 認可により操作拒否。返せる場合は `data.bounds` / `data.violating` 等で理由を補足 | ○ |
@@ -539,9 +558,9 @@ b1（protocol は clean な 21.0.0、配布物は `2100.0.0b1` 系）は **paylo
 
 1. `hello` が成功する（安定応答・`protocol`=`21.0.0`・`catalogHash:null`・`world_constants.y_sea` key が存在、§6）。
 2. `build.setWorld` / `build.setOrigin` が収容されている（Scratch b1 UI の `setOrigin` は固定値 `0` を見せ、y=0 固定で送る）。
-3. `world.setBlock(..., "minecraft:stone")` が成功する。
-4. `world.setBlock(..., "minecraft:oak_log[axis=y]")` が成功する。
-5. `world.getBlock(...)` が full・完全修飾の `"minecraft:oak_log[axis=y]"` を返す（§7.1 正準形）。
-6. 不正 state・未知 block は id 付き setBlock/setBlocks で、build policy 範囲外は id 付き setBlock/setBlocks または getBlock で、対応する `data.reason`（`unknown_block` / `invalid_property_value` / `build_denied` 等、§7.3）の error が返る。
+3. `world.setBlock(...,"minecraft:stone")` が成功する。
+4. `world.setBlock(...,"minecraft:oak_log[axis=y]")` が成功する。
+5. `world.getBlock(...)` がfull・完全修飾の`"minecraft:oak_log[axis=y]"`を返す（protocol 21当時の正準形）。
+6. 不正state・未知blockはid付きsetBlock/setBlocksで、build policy範囲外はid付きsetBlock/setBlocksまたはgetBlockで、対応する`data.reason`（`unknown_block`／`invalid_property_value`／`build_denied`等、§7.3）のerrorが返る。
 
 **b1 でやらないこと**（当時の後送り）：全 block catalog 配信 / mod catalog 取得 / full `world_constants.json` 配送 / `y_sea` の完全な意味論・superflat 判定 / multi-version switching / Scratch 全 state UI / Scratch `setOrigin` の X/Y/Z 編集版・session/reconnect/save と origin 固定タイミングの厳密仕様 / Python 完全補完・`.pyi` 生成 / creative tab 再現 / ドア helper 実装 / kwargs 入力（catalog 連動・b2）/ サーバ→クライアント async error push。最後のpush方向は`2026-08-16-05`で採らず、event pollへ置き換えた。

@@ -259,11 +259,11 @@ uv に統一する（決定 `2026-06-24-02` / 事実 `F-pyenv-win-stale`）。
 
 ### AI 出力を catalog でハードゲート検証
 
-「catalog に無い id を提案しない」は**プロンプト指示でなく validator で実現**する。AI が出した `block_state_ref` を parse → catalog 照合（§7.2 の `states` schema・許容値）→ 不正なら抑止し「現在の catalog に無い」と表示。プロンプト指示は漏れるが validator は漏れない。Phase 2（埋め込み/制御 AI、§7）・「AI に振りすぎない」補助原則（§4）・過剰依存対策に直結。kwargs 入力も文字列入力も**同じ catalog validator を通す**（[wire §7.1](../10-protocol/wire-format-design_ja.md) の入力 tolerate と同じ検証面を共有）。
+「catalog に無い id を提案しない」は**プロンプト指示でなく validator で実現**する。AIが出したprotocol 22の`BlockSpec`（`block_id`＋`state` object）をcatalogの`states` schema・許容値と照合し、不正なら抑止して「現在のcatalogに無い」と表示する。プロンプト指示は漏れるがvalidatorは漏れない。Phase 2（埋め込み／制御AI、§7）・「AIに振りすぎない」補助原則（§4）・過剰依存対策に直結する。Python、Scratch、AI入力は同じschemaとfixtureを通し、一体文字列refのparseをclientごとに再実装しない（[block-value-design](../10-protocol/block-value-design_ja.md)、[wire §7.1](../10-protocol/wire-format-design_ja.md)）。
 
 ### 非言語 → getBlock 観察 → 言語化 の三段橋
 
-パパート/レゴ/モンテッソーリ（control of error）の系譜。body-syntonic な理解を、**getBlock で世界を読み返す**（非言語→言語の変換器）ことを介して言語化に橋渡しする。核原則「AI にコード生成させてよい、ただし**なぜそうなるかを言語化できること**」（§1/§4）の非言語側の橋脚＝§9 最優先未決「言語化の伸びの測定」の観測材料にもなる。getBlock が full・完全修飾の正準形を返す（[wire §7.1](../10-protocol/wire-format-design_ja.md)）ことで、「置いたもの」を曖昧さなく読み返せる＝この橋の信頼性を支える。
+パパート／レゴ／モンテッソーリ（control of error）の系譜。body-syntonicな理解を、**getBlockで世界を読み返す**（非言語→言語の変換器）ことを介して言語化に橋渡しする。核原則「AIにコード生成させてよい、ただし**なぜそうなるかを言語化できること**」（§1／§4）の非言語側の橋脚であり、§9最優先未決「言語化の伸びの測定」の観測材料にもなる。getBlockが完全修飾`block_id`とfull `state`を一つの構造化snapshotとして返す（[block-value-design](../10-protocol/block-value-design_ja.md)）ことで、「何であるか」と「どの状態か」を曖昧さなく読み返せる。
 
 ---
 

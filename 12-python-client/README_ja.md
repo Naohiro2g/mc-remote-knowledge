@@ -7,3 +7,7 @@
 このディレクトリは mc-remote-knowledge のスポーク。`00-hub/` の方針（全体計画・理念・全体アーキテクチャ）に従う。
 
 横断的な影響を持つ決定（複数ワークストリームに波及するもの）は、ここに書くと同時に `00-hub/DECISIONS_ja.md` に1行追記する。
+
+protocol 22の`block_id`／`state`共通値モデルは
+[ブロック値・状態・多言語投影設計](../10-protocol/block-value-design_ja.md)、Pythonでの利用面は
+[Python client guide](python-client-guide_ja.md)を参照する。
