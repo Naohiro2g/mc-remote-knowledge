@@ -91,7 +91,7 @@ release 判定は、実装 repo 側が事実と根拠を記入し、knowledge �
 ## 2026-08-18 b4 横断 release gate
 
 - decision: `2026-08-16-08`／`2026-08-17-01`／`2026-08-18-01`
-- status: **GREEN — exact b4 compatibility setのGitHub prerelease作成を承認**
+- status: **CLOSED — exact b4 compatibility setのGitHub prerelease公開identityを確認し、b4 milestoneを閉じる**
 - protected value: Scratch／Pythonの保存済み建築コード。復旧基準はコード保存→空環境再構築→再pairing→必要なら書き換え→再実行
 - exact set:
   - McRemote `3496db9293baa6e1d4f79439cacbd239ba15e2b7`／JAR SHA-256 `331633ef15a729658496e89fe49cb8a5eb5ebcb2ec86937b7e5313528d7ec997`
@@ -112,11 +112,10 @@ release 判定は、実装 repo 側が事実と根拠を記入し、knowledge �
   - `2026-08-17-b4-home-alpha-integration`（初回PASS／FAILを保持）
   - `2026-08-18-b4-session-persistence-home-alpha`
   - `2026-08-18-b4-code-preservation-recovery-live-human`
-- release approval:
-  - Python tag `v2100.0.0b4` target=`4d510442db58a94f8b249ddcd9d959381f97276c`、GitHub prerelease ON、Latest非対象
-  - Scratch tag `v2100.0.0b4` target=`1d2f18785d260564ad4bc30a26a45ef33fc813d6`、GitHub prerelease ON、Latest非対象
-  - McRemote tag `v1.21.11-2100.0.0b4` target=`3496db9293baa6e1d4f79439cacbd239ba15e2b7`、GitHub prerelease ON、Latest非対象、上記exact JARをassetにする
-  - tag／release作成後はtarget SHA、prerelease flag、Latest非対象、asset digestを再確認してrelease identityを閉じる
+- release identities（GitHub API再確認済み）:
+  - [Python `v2100.0.0b4`](https://github.com/Naohiro2g/minecraft-remote-api/releases/tag/v2100.0.0b4): target=`4d510442db58a94f8b249ddcd9d959381f97276c`、prerelease=true、draft=false、Latest非対象。binary assetなし、release notesにwheel／sdist digestを固定、PyPI／TestPyPI非公開
+  - [Scratch `v2100.0.0b4`](https://github.com/Naohiro2g/scratch-editor/releases/tag/v2100.0.0b4): target=`1d2f18785d260564ad4bc30a26a45ef33fc813d6`、release ID `372338711`、prerelease=true、draft=false、Latest非対象、追加assetなし
+  - [McRemote `v1.21.11-2100.0.0b4`](https://github.com/Naohiro2g/McRemote/releases/tag/v1.21.11-2100.0.0b4): annotated tag target=`3496db9293baa6e1d4f79439cacbd239ba15e2b7`、prerelease=true、draft=false、Latest非対象。asset=`mc-remote-1.21.11-2100.0.0b4.jar`／140,712 bytes／SHA-256 `331633ef15a729658496e89fe49cb8a5eb5ebcb2ec86937b7e5313528d7ec997`
 - non-blocking observations:
   - b3はb4の`session` recordを理解せず`unknown_persisted_credential_type_session`となる。b3をcredential継続付きdowngrade runtimeとしては承認しない
   - checkpoint projectionは未実装で、Stack doctorは`doctor_credential_health_unsupported`としてfail closedする。これをdoctor PASSへ読み替えない
