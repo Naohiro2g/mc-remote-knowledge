@@ -102,6 +102,53 @@ namespaceの関係で分類する。
 Jupyter、WSL、Docker、SSH、remote notebookでは「個人利用」でもbrowser loopbackとsource loopbackが同じとは
 限らない。profile判定は実際のnamespaceと到達関係から行う。
 
+### 4.1 公開browser surfaceのhostname
+
+公式のcross-origin browser source handoff用WireScope appには、source非依存でchannel-boundな
+public canonical hostnameを与える（決定`2026-08-20-01`）。
+
+| channel | public canonical hostname |
+| --- | --- |
+| stable | `wirescope.mc-remote.com` |
+| beta | `wirescope-beta.mc-remote.com` |
+| alpha | `wirescope-alpha.mc-remote.com` |
+| dev | なし |
+
+stableは無接尾辞、beta／alphaは`<surface>-<channel>.mc-remote.com`とする。旧`scope.mc-remote.com`は、
+起動導線がruntime config／linkとなって手入力の短さが利点でなくなり、完全なWireScopeブランド名の識別性が
+上回ったため改訂する。channelからexposureは導出せず、public canonical hostnameを提供するenvironmentだけが
+上記名を使う。
+
+このhostnameは利用者が開く共通WireScope browser app surfaceを表す。station process、物理host、provider、
+source ingress、source kind、protocol／schema／artifact version、target／stream identityを表さない。
+`wirescope-station-*`や`wirescope-scratch-*`等のrole／source別public hostnameを作らず、内部service名だけに
+`wirescope-station`、`wirescope-app`、`wirescope-ingress`等を使える。
+
+b4の公開Scratch betaは次のorigin関係を取る。
+
+```text
+https://scratch-beta.mc-remote.com
+        └─ cross-origin MessageChannel handoff
+           └─> https://wirescope-beta.mc-remote.com
+```
+
+Python browser-loopbackは同じapp artifactを`http://127.0.0.1:<ephemeral-port>/`から提供し、public hostnameを
+使わない。共通なのはartifact bytes、detached manifest、schema、session envelope、UI、validator、artifact
+identityであり、deployment originとresponse headerではない。public pageからloopback stationへfetch／WebSocketを
+伸ばさない。
+
+cross-origin handoffの成立は、source originとWireScope origin双方のresponse header／runtime configを一組で
+検証する。source側は現行adapterが要求するdistinct absolute referrer originをselection window中に渡せること、
+WireScope側はopenerを同window中に切断しないことをbrowser smokeで確認する。Python loopback stationの
+`Cross-Origin-Opener-Policy: same-origin`をpublic handoff originへ流用せず、逆方向にも流用しない。同一URLを
+query parameterや未認証入力で異なるsecurity profileへ切り替えない。exact CSP／COOP／Referrer-Policy／cacheは
+deploy fixtureで固定する。
+
+LAN-only／isolated profileはpublic canonical hostname規則の対象外である。operator管理下のDNS namespaceを使い、
+scheme、hostname、port、TLS／local CA、browser origin、station authority、certificate identityをprofile／lockへ
+exactに固定する。`.local`はmDNSと衝突するため通常DNS suffixとして無条件に正典化しない。official public
+same-origin stationが同じcanonical hostnameを使うかは、source ingressとheader profileを伴う後続決定で扱う。
+
 ## 5. LNAとbootstrap
 
 - browserはtop-level WireScopeよりprivateなaddress spaceへobserver endpointを伸ばさない。
@@ -131,6 +178,28 @@ station、browser attachは未実装である。最初の参照profileはsource�
 あるbrowser-loopbackへ限定し、station roleをPython source processへ融合する。UDS、named pipe、cross-process
 relay、LAN／VPSはこの初期profileへ含めない。詳細は[station attach設計](wirescope-station-attach-design_ja.md)を
 参照する。
+
+### Cross-origin browser source handoffの一般化方向
+
+Scratchはb4で検証済みの最初のbrowser source profileである。第二のbrowser-based sourceが具体化したときは、
+source固有のWireScope app／hostname／stationをforkせず、共通appのcross-origin browser source handoff familyへ
+登録済みsource profileとして追加する（決定`2026-08-20-02`）。browser adapterの大分類は、cross-origin browser
+source handoffとsame-origin station attachの二つを維持する。
+
+各browser source profileはregistered `source_kind`、source application identity、exact allowed source origin、
+handoff protocol version、schema／session compatibility、MessagePort数、selection window、readiness、grant delivery、
+target lifecycle、generation-side allowlist、failure semantics、artifact compatibility setをfixtureで固定する。未知profile、
+source自己申告origin、`targetOrigin: "*"`を受理しない。openerやreferrerだけで認可せず、event source／originをexactに
+照合し、grantをURL、cookie、storageへ置かない。port／grant処理後はstation attachへfallbackしない。
+
+このhandoffはobserver dataを渡すsource-specific transportであり、Minecraft command、pairing、credential、他targetの
+探索／一覧、公開source registration能力へ昇格させない。browser JavaScriptでなくbackend processが観測元なら、frontend
+browserへ代理publishさせず、後続の認証済みsource ingressを使う。source種別追加とmulti-target／multi-source UI、station
+federationを同じsliceにしない。
+
+局面は第二のbrowser sourceが具体化する前の共通境界である。具体sourceがMessageChannelのsecurity／lifecycle条件を満たせない
+場合は、Scratchを偽装させたり無理に同transportへ押し込まず本決定を再吟味する。exact envelopeとprofile registryは後続fixture
+まで未確定であり、b4へ遡及せずb5へも自動追加しない。
 
 ## 7. Failure semanticsとbuffer
 
@@ -174,6 +243,9 @@ browserを新targetへattachする方法は未確定である。observer presenc
 
 ## 10. 未確定事項
 
+- public handoffの両origin response header fixture、DNS／TLS／deploy／rollback／health check
+- common browser handoffのexact envelope、source application identity encoding、source profile registry
+- backend source ingress transport／hostname、official public same-origin station origin、dual-profile origin
 - LAN／public profileのsource discoveryとsource-to-station transport
 - source登録能力とbrowser attach能力のdeployment実装
 - grant発行前frameを後発observerへ見せるか

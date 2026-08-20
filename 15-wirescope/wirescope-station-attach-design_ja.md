@@ -18,6 +18,11 @@ loopback station ── HTTP attach adapter ──┘
 Scratch固有のhandoffをPythonへ移植せず、Python専用UIも作らない。将来のconsoleは第三のbrowser adapterでは
 なく、自前のpairingとcontrol capabilityを持つ独立sourceである（`2026-08-10-03`）。
 
+b4ではScratch固有MessageChannel adapterを実装事実として維持する。第二のbrowser-based sourceが具体化した
+場合は、これをそのままScratchとして流用せず、cross-origin browser source handoff familyの登録済みprofileへ
+一般化する。common envelope／profile registryは後続fixtureまで未確定であり、この方向をb4へ遡及させずb5へも
+自動追加しない（`2026-08-20-02`）。
+
 ## 2. Adapterの選択
 
 browser appは、次の状態遷移で一つのadapterだけを選ぶ。
@@ -29,6 +34,11 @@ browser appは、次の状態遷移で一つのadapterだけを選ぶ。
    station bootstrapを確認する。
 4. 一度MessagePortを受理した後はstation adapterへfallbackしない。
 5. station bootstrapが無い、または検証に失敗したdirect navigationには観察能力を与えない。
+
+adapterの大分類は、cross-origin browser source handoff adapterとsame-origin station attach adapterの二つとする。
+browser sourceごとに第三、第四のtransport adapterを増やさず、同じMessageChannel transportで成立するsourceは
+fixture付きprofileとして追加する。ただし具体sourceがMessageChannelのsecurity／lifecycle条件を満たせない場合は、
+無理に同familyへ押し込まず横断決定へ戻る。
 
 Scratch参照実装のselection windowは`2,000ms`とする。source側のlaunch待機時間およびgrant発行後15秒の
 寿命とは別定数として実装・testし、一方の変更から他方を暗黙導出しない。
@@ -124,6 +134,11 @@ station responseは次のheaderを必須とする。
 | `Cross-Origin-Opener-Policy` | `same-origin` |
 | `Referrer-Policy` | `no-referrer` |
 | `X-Content-Type-Options` | `nosniff` |
+
+この`Cross-Origin-Opener-Policy: same-origin`はsame-origin station attach profileのheaderであり、
+`wirescope[-channel].mc-remote.com`のcross-origin browser source handoffへ機械的に流用しない。public handoffは
+source側のreferrer送出とWireScope側のopener維持を含む両originのheader fixtureを別に持つ。同じURLをqueryで
+header profile切替する方式は採らない（`2026-08-20-01`）。
 
 bootstrap／errorは`application/json`、attach成功は`application/x-ndjson`をexact content typeとする。
 NDJSONはstrict UTF-8、LF区切り、各line末尾LFを必須とし、CR／CRLF、UTF-8 BOM、空line、未終端の
@@ -313,6 +328,9 @@ Stackではapp artifact、station runtime、browser endpoint、source ingressを
 service／portへ載せてもpath、credential、rate limit、request schemaを分離し、最初のmessage種別だけで権限を
 分岐しない。McRemote credentialを再利用しない。変更・rollback後もartifact、runtime、schema、session、attach、
 ingress、profileを完全なcompatibility setとしてlock・検証する。未批准fieldを先にprofile schemaへ追加しない。
+
+公式cross-origin browser handoffのpublic canonical hostnameと、将来のLAN／public same-origin station originは
+同義ではない。Python browser-loopbackはpublic hostnameを使わず、loopback top-level originのまま維持する。
 
 ## 10. 実装順序とpark
 

@@ -279,6 +279,12 @@ long-lived credentialの公開gateは閉じています。Pythonの既定を `lo
 あるbrowser-loopback profileだけです。station roleをsource processへ融合し、`127.0.0.1`のephemeral portで
 共通appを提供します。UDS、named pipe、cross-process relay、LAN、VPSを初期sliceへ含めません。
 
+公式cross-origin browser handoffの`wirescope[-channel].mc-remote.com`はScratch等のbrowser source用surfaceであり、
+Python browser-loopbackは使用しません。Python wheelが共有するのはexact app artifact／manifest／schema／UIで、
+public originやresponse headerではありません。Python初期profileのsource ingressはsource process内のin-process
+callbackであり、public pageからloopbackへfetch／WebSocketを伸ばす構成やnetwork source ingressへ変更しません
+（`2026-08-20-01`／`02`）。
+
 APIは`wirescope=None | bool | WireScopeStation`を受け、`None`／`False`ではstation、artifact検証、browser、
 observer hookを開始しません。`True`は恒久的に`WireScopeStation.local()`のlow-floor省略形です。初期sliceは
 `local()`だけを実装し、将来profileを追加しても`True`の意味を変えません。

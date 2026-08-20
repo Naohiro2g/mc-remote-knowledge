@@ -51,6 +51,7 @@ WireScopeでは、実装processや物理hostでなく、観察データ経路上
 | WireScope source | McRemote通信を観察し、generation-side allowlist済みのobserver dataを自targetとして差し出すrole | observer dataのpublishとMinecraft command能力を同一視しない |
 | WireScope station | あるdeploymentでapp artifact提供、source ingress、target／observer session broker、browser endpoint、有限buffer roleを組み合わせる論理runtime境界 | 物理PC、単一process、source transport、artifact registryと同一視しない。正典表記は英字とし、無修飾の「ステーション」を別名として増やさない |
 | WireScope browser | attach capabilityで許可されたtarget／streamをread-only表示するobserver tab／window | sourceやMinecraft control主体へ昇格させない |
+| WireScope browser surface | 利用者が共通WireScope appを開くbrowser endpoint。公式public canonical hostnameは`wirescope[-channel].mc-remote.com` | station process、source ingress、source kind、物理host、artifact versionと同一視しない |
 
 roleはdeploymentごとに同じprocessへ融合または複数processへ分離できる。`source`、`station`、`browser`という
 短い表記はWireScope文脈内でのみ上記の意味に使う。
@@ -58,6 +59,8 @@ roleはdeploymentごとに同じprocessへ融合または複数processへ分離�
 | 正典表記 | 技術的な意味 | ドリフト注意 |
 | --- | --- | --- |
 | station attach protocol | WireScope browserがdeployment内のstationへattach codeを提示し、read-only observer sessionを得るversioned contract | Minecraft pairing、Scratch handoff、source ingressと同一視しない |
+| browser source handoff | browser-based source appから別originのWireScope browserへ、登録済みsource profileと`MessageChannel`でobserver targetを引き渡す経路 | 公開source registration、station attach、backend source ingress、Minecraft controlと同一視しない |
+| source ingress | WireScope sourceがgeneration-side allowlist済みobserver dataをstationまたは共通session coreへpublishする論理入口 | browser attach、multi-source UI、station federationと同一視しない。ScratchではMessageChannel、Python loopbackではin-process callbackが初期投影 |
 | observer session envelope | schema v1 snapshotの外側でsnapshot＋history-windowとendを運ぶversioned envelope | `mcremote.observer` schema v1へtransport／loss fieldを追加しない |
 | browser-loopback profile | source、station、browserが同じnetwork namespaceにあり、browserがloopback top-level originを開くprofile | 「個人利用」「localhost一般」「public pageからlocalへ接続」と同義にしない |
 | in-process station | source processがstation roleを同一process内で兼任する梱包 | station roleそのもの、全Python profile、cross-process relayと同一視しない |

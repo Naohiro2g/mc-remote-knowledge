@@ -46,7 +46,7 @@ public 正本世代の入口です。ここに載る path は、このリポ内�
 | Path | 役割 |
 | --- | --- |
 | `15-wirescope/README_ja.md` | source／station／browser三役モデルから入る人間向け入口 |
-| `15-wirescope/wirescope-deployment-design_ja.md` | station、deployment profile、capability、LNA、failure semantics、長期ビジョンの説明正本 |
+| `15-wirescope/wirescope-deployment-design_ja.md` | public browser hostname、browser source handoff、station、deployment profile、capability、LNA、failure semantics、長期ビジョンの説明正本 |
 | `15-wirescope/wirescope-station-attach-design_ja.md` | 共通appのadapter、observer session、artifact、Python browser-loopback参照profile、Stack gateの説明正本 |
 
 ## 耐久層

@@ -389,6 +389,9 @@ slice である。正式根拠は
    - observer schema、security allowlist、lifecycle fixture、Scratch adapter 契約を schema v1 として固定した。
    - 初版は Scratch の main stream 1件を観察し、別タブ／window で sanitized hello、permissions、world constants、frame／payloadを read-only 表示する。
    - runtime config の信頼済み URL、origin/source 検証、exact `targetOrigin`、`MessageChannel`、一回限り grant を使う。
+   - 公式public betaのcanonical WireScope URLは`https://wirescope-beta.mc-remote.com`とする。DNS／TLS、
+     runtime config切替、両originのCSP／COOP／Referrer-Policy／cache、deploy smokeは別gateであり、
+     hostname決定だけで配信済みとは扱わない（`2026-08-20-01`）。
    - `auth.*`、token、pair code、player UUID、credential 情報を独立 WireScope へ渡さない。
 2. **b3 後：Python 追従**
    - Python API 担当は b3 release 後に着手し、Scratch が先行固定した schema、fixture、adapter 契約へ追従する。
@@ -396,6 +399,9 @@ slice である。正式根拠は
    - 共通app、same-origin station attach、observer session envelope、artifact contractの正本は[station attach設計](../15-wirescope/wirescope-station-attach-design_ja.md)とする。
    - `wirescope=True`は`WireScopeStation.local()`のlow-floor省略形とし、cross-process、LAN、VPSへ意味を拡張しない。引数なし`mcremote wirescope`は予約のまま維持する。
    - Scratch app側はMessageChannel adapterとstation attach adapterを共通session coreから分離し、選択を状態機械とtestで固定する。
+   - Scratchはcross-origin browser source handoffの初期profileである。第二のbrowser sourceが具体化した時点で
+     共通handoff familyをfixture付きで一般化し、Scratch偽装、source別UI／hostnameを作らない。この一般化を
+     b4へ遡及せず、b5へ自動追加しない（`2026-08-20-02`）。
    - 初版は `Minecraft.create()` で成立した main stream 1件を観察する。
    - Scratch 後続前段と短期間だけ並走して両 adapter の conformance を確認し、長期間の共同設計状態にしない。
    - `2026-08-16-08`により、共通app／artifactとPython main streamのreal-browser E2Eはb4初期版の一部とする。
@@ -415,7 +421,8 @@ slice である。正式根拠は
 [WireScope deployment設計](../15-wirescope/wirescope-deployment-design_ja.md)、共通app attach／artifactとPython
 初期profileは[station attach設計](../15-wirescope/wirescope-station-attach-design_ja.md)、長期ビジョンは
 `2026-08-10-03`とする。別origin配信ではCSP／COOP、cache、artifact identity、deploy smokeを配信側のgateに
-加える。
+加える。handoff成立にはScratch側のreferrer送出とWireScope側のopener維持が必要なため、両originを一組で
+browser smokeする。Python loopback stationの`COOP: same-origin`をpublic handoffへ流用しない。
 
 per-sprite 第 4 tab は stream が実在するまで park する。main stream／substreamとScratch objectの写像は
 `2026-08-16-08`によりb4 scope freeze前gateから外し、post-b4の独立sliceで再開する。

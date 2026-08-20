@@ -4,7 +4,8 @@ WireScope は、Scratch、Python、将来のほかの client が同じ画面で 
 read-only observer です。この README は人間向けの入口です。配置、capability、security boundary の正本は
 [WireScope deployment 設計](wirescope-deployment-design_ja.md)、共通appのattach／session／artifactは
 [station attach設計](wirescope-station-attach-design_ja.md)と決定`2026-08-10-02`／`2026-08-11-02`／
-`2026-08-11-03`を参照してください。
+`2026-08-11-03`を参照してください。公式public browser surfaceのhostnameと、将来のbrowser source
+handoff familyは決定`2026-08-20-01`／`2026-08-20-02`およびdeployment設計§4.1／§6を正とします。
 
 ## WireScope の三役モデル：source／station／browser
 
