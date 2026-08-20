@@ -13,8 +13,8 @@ wire contractは[wire-format-design](../10-protocol/wire-format-design_ja.md)を
 - `BlockSpec`／`BlockValue`のstrict shape、stateless blockの`state:{}`、短縮ID／部分state入力、
   完全修飾ID／full state出力、set→getの意味的round-trip。
 - protocol 21／22の混在がhelloで拒否され、文字列refとobjectのunion受理が無い。
-- set成功resultとevent blockが同じ`BlockValue` codecを使い、`getBlocks`が端点反転でも
-  x→y→z（z最速）を維持し、各軸10／総数1000をworld access前に拒否する。
+- id付きset成功resultがexact `null`、notificationが正常／拒否とも無応答で、event blockは`BlockValue`を維持する。
+- `getBlocks`が端点反転でもx→y→z（z最速）を維持し、各軸10／総数1000をworld access前に拒否する。
 - `getBlockWithData`が`method_not_found`、JSON numberがscale非依存、`data.path`が規定形である。
 - Pythonの`block_id`／`state` APIと`BlockValue`、Scratchの一回取得snapshot／accessor、
   sprite-local保存、共有last-block不在、clone／disconnect lifecycle。
@@ -34,6 +34,11 @@ wire contractは[wire-format-design](../10-protocol/wire-format-design_ja.md)を
 - signの4行／面／state検証とrollback、typed particleの有限schema。
 - Python cursor／retry／handle投影、Scratch thread-local event context／monitor guard。
 - WireScope schema v1.1 validatorとartifact compatibility set。
+- bounded thread-safe connection FIFO、notificationの無言drop禁止、backpressure中の順序維持。
+- 正常／拒否notificationから`connection.flush`までのbarrier、後続command非包含、epoch非跨越、
+  flushが個別成功を集約しないこと。
+- PythonのDEBUG／TRACE／FAST、全modeのsetter `None`、mode transition fence、自動flush／明示flush。
+- Scratchの保存されるmode block、main stream共有、並行script登録順、thread-local TRACE delay、tab close非保証。
 
 ## 2. Live-auto
 
@@ -51,6 +56,9 @@ wire contractは[wire-format-design](../10-protocol/wire-format-design_ja.md)を
 10. player／projectile／entity poseの正準値がplugin、Python、Scratch、WireScopeで一致し、入力精度を
     副作用前に失っていないことを確認する。
 11. stateless／stateful blockをPythonとScratchからset→getし、同じ構造化値をWireScopeで確認する。
+12. 同一座標への複数FAST notification→flushでFIFO順の最終値を確認し、不正notification→flushでは
+    responseが捏造されずworld不変、flush自体は個別errorを集約しないことを確認する。
+13. queue capacity境界でnotificationの無言drop／flush追越しがなく、保持不能時はconnectionとflushが失敗する。
 
 ## 3. Real-browser／live-human
 
@@ -68,6 +76,9 @@ wire contractは[wire-format-design](../10-protocol/wire-format-design_ja.md)を
   暗黙共有されず、Stage変数へ入れた場合だけ明示共有される。
 - StateTextのcatalog型解決、表現不能token拒否、BlockInfoText、`⟦mcr-error:<reason>⟧`の
   exact grammar／remote reason allowlist、PickerのID／state原子的Undoを確認する。
+- Scratchのmode blockが`.sb3`へ保存され、読込だけでは適用されず、実行後にmain stream全体へ作用する。
+- TRACEが成功後に呼出元threadだけを待たせ、FASTがsent／unconfirmed、明示flushがbarrierとして見える。
+- Python／Scratch両sourceのnotificationと`connection.flush`をWireScopeが区別し、synthetic resultを作らない。
 
 ## 4. Evidenceの着地条件
 

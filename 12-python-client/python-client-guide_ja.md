@@ -154,8 +154,8 @@ b3の主要APIは次のとおりです。
 | Python API | 役割 |
 | --- | --- |
 | `postToChat(message)` | chatへ投稿 |
-| `setBlock(x, y, z, block_id, *, state=None)` | 1個設置し、適用後の`BlockValue`を返す（protocol 22／b5） |
-| `setBlocks(x0, y0, z0, x1, y1, z1, block_id, *, state=None)` | 直方体を設置し、書込みに用いたfull `BlockValue`を返す（protocol 22／b5） |
+| `setBlock(x, y, z, block_id, *, state=None)` | 1個設置し、全build modeで`None`を返す（protocol 22／b5） |
+| `setBlocks(x0, y0, z0, x1, y1, z1, block_id, *, state=None)` | 直方体を設置し、全build modeで`None`を返す（protocol 22／b5） |
 | `getBlock(x, y, z)` | `BlockValue(block_id, state)`を取得（protocol 22／b5） |
 | `getBlocks(x0, y0, z0, x1, y1, z1)` | 各軸10／最大1000件をz最速順の`BlockValue` sequenceで取得 |
 | `setWorld(world)` | このstreamのbuild worldを変更 |
@@ -192,12 +192,43 @@ print(value.state)              # {"axis": "z"}
 print(value.state.get("axis"))  # z
 ```
 
-`setBlock()`／`setBlocks()`も`BlockValue`を返す。`getBlocks()`は端点方向に依存せずmin／maxへ
+`setBlock()`／`setBlocks()`は全build modeで`None`を返す。適用後の状態を観察する場合は`getBlock()`／
+`getBlocks()`を明示的に呼ぶ。`getBlocks()`は端点方向に依存せずmin／maxへ
 正規化したx→y→z（z最速）順を保つ。各要素へ座標を重複させず、旧`getBlockWithData()`は提供しない。
 
 state propertyを持たないblockは`state == {}`となる。入力の短縮vanilla ID／部分stateと、出力の
 完全修飾ID／full stateという正準化はpluginが所有し、Python側で別の文字列表現へ戻さない。
 共通値モデルは[ブロック値・状態・多言語投影設計](../10-protocol/block-value-design_ja.md)を参照する。
+
+### build execution mode
+
+`world.setBlock`／`world.setBlocks`は単一APIのまま、connection単位のclient execution policyを持つ。
+
+```python
+from mc_remote.minecraft import BuildMode, Minecraft
+
+mc = Minecraft.create(
+    build_mode=BuildMode.TRACE,
+    trace_delay=0.25,
+)
+
+mc.setBuildMode(BuildMode.FAST)
+mc.setBuildMode(BuildMode.TRACE, trace_delay=1.0)
+mc.flush()
+```
+
+- DEBUGはid付きrequestを送りresponseまで待つ。library既定modeである。
+- TRACEはid付きrequestの成功後、呼出元を`trace_delay`秒待たせる。既定は`0.25`秒で、error時は待たない。
+- FASTはnotificationを送り、個別server responseを待たない。finite bufferのbackpressureには従う。
+- modeとdelayはconnection／stream個別のclient stateで、wire paramsやhelloへ追加しない。
+- mode切替は同じ送信sequencerへtransition fenceとして登録し、`connection.flush`成功後に原子的に反映する。
+  flush失敗時は旧modeを維持する。
+- 各setterは登録時点のmodeとdelayを保持する。後のmode変更で成立済みTRACE待機を変更しない。
+- 正常な`close()`／context manager終了は自動flushする。flush失敗は完了保証失敗として通知したうえで
+  connectionを回収する。既存例外とclose失敗が重なる場合の優先順位はPython fixtureで固定する。
+
+`mc.flush()`はworldを読まない明示barrierであり、先行FAST notificationの個別成功を復元しない。同一connectionの
+後続get requestもFIFO上は先行commandを追い越さないが、教材では完了確認に`flush()`を使う。
 
 ## 6. catalog／projectionの失敗
 

@@ -188,6 +188,42 @@ BlockInfoText、StateText、ErrorTextは通常のScratch値として扱う。
 - b5のmain stream 1件でもspriteごとの値処理を独立させる。
 - 将来substreamへ写像してもvisible value shapeを変更しない。
 
+### 8.1 build execution mode
+
+Scratchの正典操作は、接続panelのhidden settingでなく保存されるcommand blockとする。
+
+```text
+建築モードを [TRACE ▼] にする（TRACEの待ち時間 (0.25) 秒）
+```
+
+blockと入力値は`.sb3`へ保存されるが、project読込だけでruntime stateを復元しない。実行すると呼出元が属する
+現在streamのclient execution policyを変更する。新しいstreamの既定はDEBUG／`0.25`秒である。b5はmain stream
+1件なのでStage、sprite、clone、全scriptが同じmodeを共有し、将来substreamを追加した場合はstreamごとに分離する。
+module global、browser global、`localStorage`へ保存せず、modeをwire params／helloへ送らない。
+
+mode blockはmodeとTRACE delayを検証し、connection送信sequencerへ一つのtransitionとして登録する。後続commandの
+登録を止めて`connection.flush`を待ち、成功後に両値を原子的に変更してから後続を再開する。失敗時は旧modeを維持し、
+actionable errorを出す。各setは登録時点のmodeとdelayを保持する。別scriptとの境界はVMの実行開始時刻でなく
+connection送信列への登録順とし、flushとlocal mode更新の間へsetを割り込ませない。
+
+TRACE delayは`0`以上の有限numberとし、不正値を`0`へ丸めない。TRACEのset成功response後に、そのset blockを
+実行したScratch threadだけを待たせる。connection全体や別scriptは止めず、`setBlocks`一回につき一回だけ待つ。
+error時は待たず、後のmode変更で成立済みのdelayを取り消さない。DEBUG／FASTでも入力欄と値は維持するが使用しない。
+runtime固有の最大値は実装fixtureで固定する。
+
+DEBUGはrequest responseを待ち、TRACEはresponseと成功後delayを待つ。FASTはnotificationを登録後、通常は呼出元を
+継続し、transport逼迫時だけfinite bufferのbackpressureを受ける。FASTのserver-side成功／errorを捏造せず、
+WireScopeではsent／unconfirmedとして扱う。StateText／catalog等のlocal validation errorはmodeにかかわらず表示する。
+
+FASTの明示barrierとして、`connection.flush`へ対応する次のcommand blockを設ける。
+
+```text
+送ったブロック設置が終わるまで待つ
+```
+
+flush失敗はactionable errorとする。明示的な切断等、responseを待てる終了経路はflushできるが、tab close、reload、
+navigationで完了を保証しない。接続panelは現在のmode／delayを表示できるが、b5では第二の変更面にしない。
+
 ## 9. protocol 21との関係
 
 protocol 21／b4はGitHub prereleaseとして公開済みだが、stableな作品利用へ入っておらず、
@@ -216,6 +252,10 @@ Scratch fixtureは最低限、次を固定する。
 10. variable／reporter接続時に両入力を変更せず取り外さないこと
 11. sprite-local、Stage共有、clone、並行thread、共有last-value不在
 12. disconnect cache回収、monitor throttle、in-flight coalescing
+13. mode blockとdelayの`.sb3`保存、読込だけではruntimeへ適用しないこと
+14. main stream上の並行script、transition登録順、flush追越し禁止、失敗時の旧mode維持
+15. TRACE delayが呼出元threadだけに作用し、`setBlocks`一回につき一回であること
+16. FAST local validation／remote unconfirmed、明示flush、tab close非保証
 
 plugin、Python、Scratch、WireScopeのfixtureとartifactをprotocol 22 compatibility setとして検収する。
 

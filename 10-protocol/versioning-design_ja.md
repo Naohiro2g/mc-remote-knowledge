@@ -468,7 +468,7 @@ b5／b6は同じ22.0.0のcompatibility setとして積層する。
 
 b5は大規模な共通基盤を閉じる段である。
 
-1. `block_id`と`state`を分けた構造化`BlockSpec`／`BlockValue`、set成功値・event block値、
+1. `block_id`と`state`を分けた構造化`BlockSpec`／`BlockValue`、set成功`null`、event block値、
    有界な`world.getBlocks`、`world.getBlockWithData`除去、Python／Scratch投影
 2. connection epoch ごとの有限 event ring、sequence cursor、overflow／loss
 3. 右クリック、チャット投稿、projectile hit event
@@ -482,6 +482,8 @@ b5は大規模な共通基盤を閉じる段である。
 11. `.sb3`／`.sprite3`互換fixtureと、Scratch作品全体のIndexedDBブラウザ保存基盤
 12. Minecraft由来の連続位置3桁、yaw／pitch 2桁、yaw `[-180,180)`、pitch `[-90,90]`を固定する
     数値正準化（DECISIONS `2026-08-19-01`）
+13. `world.setBlock`／`world.setBlocks`のDEBUG／TRACE／FAST、bounded connection FIFO、
+    `connection.flush` barrier、Python／Scratch／WireScope lifecycle（DECISIONS `2026-08-20-03`）
 
 b6 は b5 基盤上の中規模 API 追加に限定し、新しい identity、transport、queue を作らない。
 

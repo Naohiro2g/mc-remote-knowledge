@@ -57,7 +57,7 @@ JSON-RPC 2.0 を採用する（採用判断と却下案は §8）。
 ```
 
 - `id` を**省略**すると JSON-RPC の notification ＝ **応答も返らない**（高速建築でラウンドトリップを省く用途）。
-- 仕様上 notification は**エラーも返らない**。b1 の `chat.post` / `world.setBlock` / `world.setBlocks` は、疎通確認と error 観測を優先して **id 付き同期 request** として扱う（§7.3、DECISIONS `2026-07-01-08`）。notification / send-only 既定化は b1 に含めず後続体験設計で扱う。server pushは`2026-08-16-05`で採らず、eventは`events.poll`、command errorは対応requestで観察する。
+- 仕様上 notification は**エラーも返らない**。b1 の `chat.post` / `world.setBlock` / `world.setBlocks` は、疎通確認と error 観測を優先して **id 付き同期 request** として扱った（§7.3、DECISIONS `2026-07-01-08`）。protocol 22／b5では`world.setBlock`／`world.setBlocks`に限り、DEBUG／TRACEはid付きrequest、FASTはnotificationを使う（`2026-08-20-03`）。server pushは`2026-08-16-05`で採らず、eventは`events.poll`、command errorは対応requestで観察する。
 
 ### 3.3 応答（サーバ → クライアント）
 
@@ -81,6 +81,31 @@ JSON-RPC 2.0 を採用する（採用判断と却下案は §8）。
 - id はクライアントが採番（1 始まりの連番、接続単位）。サーバは応答に同じ id を返す。
 - クライアントは未応答要求を id キーの保留表（`_pending`）で管理し、応答到着で解決する。**接続切断時の保留解決は未実装（既知ギャップ、§9）**。
 
+### 3.5 build execution modeと`connection.flush`
+
+protocol 22／b5のclientは、`world.setBlock`／`world.setBlocks`だけにDEBUG／TRACE／FASTを投影する。
+mode名とTRACE delayはstream-scopedなclient execution policyであり、wire params、hello、plugin build stateへ
+送らない。
+
+| mode | wire | 呼出元の待機 |
+| --- | --- | --- |
+| DEBUG | id付きrequest | server responseまで待つ |
+| TRACE | id付きrequest | server responseまで待ち、成功後にclient側delay |
+| FAST | idなしnotification | 個別responseを待たず、通常は送信列への登録後に継続 |
+
+TRACEの既定delayは`0.25`秒で、成功した一回のsetter呼出しごとに呼出元だけを待たせる。`setBlocks`の
+領域内blockごとには待たない。error時は待たない。FASTもfinite bufferとtransport backpressureには従う。
+
+`connection.flush`は、同一connectionの送信列で先に登録されたcommandが成功または拒否の終端へ到達するまで
+待つ明示barrierである。integer idを持つrequest、exact `params: []`、authenticated hello後だけを正規形とし、
+`result: null`を返す。build origin／construction permissionを要求せず、work budgetを消費しない。idなし呼出しは
+responseを持たず完了保証を与えない。
+
+flush成功は個々のnotification成功を集約しない。Paper main thread上のMcRemote handlerと必要なPaper API呼出しが
+終わり、後続McRemote操作が状態を観察できる時点までを保証する。chunk永続保存、Minecraft client描画、後続tickの
+物理収束、他connectionからの後続変更は保証しない。同一connectionの後続requestもFIFO上はordering pointになるが、
+worldを観察しない明示barrierは`connection.flush`とする。
+
 ---
 
 ## 4. コマンド表（確定）
@@ -93,10 +118,11 @@ JSON-RPC 2.0 を採用する（採用判断と却下案は §8）。
 | `build.setWorld` | `[dimension]` | あり | build state の world/dimension を変更。`dimension` は `overworld` / `nether` / `the_end` |
 | `build.setOrigin` | `[x, y, z]` | あり | build origin を変更。Scratch b1 UI は y を露出せず 0 固定で送る |
 | `chat.post` | `[msg]` | あり（b1 は id 付き同期 request） / notification 時なし | チャット送信 |
-| `world.setBlock` | `[x, y, z, blockSpec]` | `BlockValue` / notification時なし | protocol 22では構造化`BlockSpec`で1ブロック設置（§7.1） |
-| `world.setBlocks` | `[x1, y1, z1, x2, y2, z2, blockSpec]` | `BlockValue` / notification時なし | protocol 22では構造化`BlockSpec`で直方体充填（§7.1） |
+| `world.setBlock` | `[x, y, z, blockSpec]` | id付きは`null` / notification時なし | protocol 22では構造化`BlockSpec`で1ブロック設置（§7.1） |
+| `world.setBlocks` | `[x1, y1, z1, x2, y2, z2, blockSpec]` | id付きは`null` / notification時なし | protocol 22では構造化`BlockSpec`で直方体充填（§7.1） |
 | `world.getBlock` | `[x, y, z]` | あり | protocol 22では構造化`BlockValue`を返す（§7.1） |
 | `world.getBlocks` | `[x1, y1, z1, x2, y2, z2]` | `BlockValue[]` | protocol 22の有界領域query（§7.1.1） |
+| `connection.flush` | `[]` | `null` | 同一connectionの先行commandに対する明示barrier（§3.5） |
 | `catalog.get` | `[]` | あり | 稼働中 registry から block/entity/particle catalog を取得（b3 実装予定、§7.2.1） |
 | `player.getPos` | `[]` | あり | paired player の現在 world と現在位置を stream origin 相対で返す（b2 準核） |
 | `player.setPos` | `[world, x, y, z]` | あり | paired player を指定 world の stream origin 相対位置へ teleport する（b2 準核） |
@@ -116,7 +142,7 @@ JSON-RPC 2.0 を採用する（採用判断と却下案は §8）。
 - `chat.post` の message は `params[0]` の1値だけを正とする（DECISIONS `2026-07-01-01`）。
   旧テキストコマンド実装には分割された args を join して複数トークンを1メッセージ化する暗黙挙動があったが、
   JSON-RPC 21.0.0 では互換契約として保存しない。クライアントは1つの string を `[msg]` として送る。
-- b1 の `chat.post` / `world.setBlock` / `world.setBlocks` は `id` 付き request として送って同期 result/error を返す（DECISIONS `2026-07-01-08`）。notification / send-only 既定化は b1 から外し、bN / debug 統合側で扱う。
+- b1 の `chat.post` / `world.setBlock` / `world.setBlocks` は `id` 付き request として送って同期 result/error を返した（DECISIONS `2026-07-01-08`）。protocol 22／b5はset系だけにconnection単位のDEBUG／TRACE／FASTを導入し、`chat.post`へ暗黙拡張しない（`2026-08-20-03`）。
 - `build.setWorld` / `build.setOrigin` は protocol 21.0.0 系の b1 配布物における build model 収容条件に含める（DECISIONS `2026-07-01-10`）。API 層名は `setWorld` / `setBuildOrigin`、wire method は `build.*`。
 - `world.getBlock` はprotocol 22で`BlockValue`をresultとして返す。失敗を空文字へ畳まずJSON-RPC errorで返す（§7.1／§7.3）。protocol 21の文字列resultはb4までの履歴である。
 - `catalog.get` は protocol 21.0.0 系 b3 の実装予定に含める（DECISIONS `2026-07-29-04`、§7.2.1）。API 層名・wire method とも `catalog.get`。認証後のみ有効で、稼働中 registry から block/entity/particle を単一 response で返す。
@@ -425,8 +451,10 @@ set入力の`BlockSpec`とget出力の`BlockValue`は同じcontainer shapeを持
 - deterministic fixture／Scratch内部tokenでは、最上位を`block_id`→`state`、state propertyを名前の昇順でcompact JSON化する。
 - `world.setBlock` paramsは`[x,y,z,blockSpec]`、`world.setBlocks`は`[x1,y1,z1,x2,y2,z2,blockSpec]`。
 - `world.getBlock` resultは`BlockValue`一つであり、IDとstateを別method／別responseにしない。
-- id付き`world.setBlock`は適用後に対象座標を再取得した`BlockValue`、`world.setBlocks`はserverが
-  検証・default補完して全書込みへ用いたfull `BlockValue`を返す。後者は領域全体の再走査結果ではない。
+- id付き`world.setBlock`／`world.setBlocks`の成功resultは`null`とする。idなしnotificationは成功responseも
+  error responseも返さない。set後の状態を観察する場合は`world.getBlock`／`world.getBlocks`を明示的に使う。
+- `state:{}`は`BlockSpec`／`BlockValue`内の型不変条件であり、値を返さないset成功の`result:null`を禁止する
+  protocol全体の規則ではない。
 - event DTO内のblockも同じ`BlockValue`を使い、別のcanonical block stringを作らない。
 
 入力は寛容、出力は正準という`2026-06-27-02`の原則は、文字列文法でなくobject fieldへ引き継ぐ。
@@ -538,7 +566,7 @@ string`"3"`は別型とする。BlockValue出力はregistryの正準型を使い
 - **`unloaded_chunk` は b1 reason から廃止**（DECISIONS `2026-07-01-08`）。未生成 chunk に対してロード/生成せず有意味な block 操作や query を行う実体はなく、許可された操作ならロード/生成して処理する。禁止すべき操作は chunk ロード状態ではなく build policy / 範囲 / 認可の問題なので、ユーザーに返す安定 reason は `build_denied` とする。chunk generation policy が必要になった場合は bN で別 reason として設計する。
 - **後送り（名前予約のみ）**：`catalog_cache_stale`・`unknown_namespace`・`out_of_bounds`(world-state/y 範囲外・即判定で混乱しないため後送り)。
 - **適用範囲**：b1 では getBlock に加え、chat.post/setBlock/setBlocks も **id 付き同期 request** として result/error を取れる形を基準にする（`2026-07-01-08`）。notification は JSON-RPC 上は可能だが result/error を返さないため、send-only 既定化は b1 の疎通確認対象から外す。server pushは採らず、eventは§5.4のpollへ進める（`2026-08-16-05`）。
-- **送信モードの体験タクソノミー**（`visible`/`paced`・`async`・`sync`・`batch`/`job`）は wire でなく**体験設計の層**＝DECISIONS `2026-07-01-08` が持つ。wire 上の実体は notification（応答なし）と id 付き request（同期 result/error）の2系統だけ。b1 は後者を確認基準にし、send-only / async UX は bN / debug 統合側で設計する。`visible`/`paced` はクライアント側 pacing、`batch`/`job` は高水準 API・後続プロトコルの話。
+- **送信モードの体験タクソノミー**はprotocol 22／b5でDEBUG／TRACE／FASTへ具体化した（`2026-08-20-03`）。wire上の実体はnotification（応答なし）、id付きrequest（同期result/error）、`connection.flush` barrierであり、mode名やdelayはwireへ送らない。TRACEはclient側pacing、FASTはsend-onlyで、batch／jobは引き続き高水準API・後続protocolの話である。
 
 ---
 

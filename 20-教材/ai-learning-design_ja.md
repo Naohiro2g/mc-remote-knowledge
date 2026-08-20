@@ -313,6 +313,17 @@ JSON-RPC frame（WireScope）
 McRemote plugin / Minecraft result
 ```
 
+block設置の実行体験は、同じ`setBlock`／`setBlocks`をDEBUG／TRACE／FASTで切り替えて比較できる。
+DEBUGはresponseとerrorを確認し、TRACEは成功後に呼出元だけを既定0.25秒待たせ、FASTは個別responseを
+待たずに送る。Scratchは保存される`建築モードを [MODE] にする（TRACEの待ち時間 (秒)）`block、Pythonは
+`setBuildMode()`を使い、アルゴリズム本体へmode別setterや`time.sleep()`を埋め込まない。ピラミッドの一段、
+壁の一面等を一回の`setBlocks`にすれば、TRACEで構成過程を観察できる。
+
+FASTは成功を意味せず、server-side errorも個別には戻らない。完了確認は`connection.flush`に対応する
+「送ったブロック設置が終わるまで待つ」またはPythonの`mc.flush()`を使い、状態確認は明示的なget系で行う。
+WireScopeではnotificationをsent／unconfirmed、flushをbarrierとして読み、syntheticな成功を教えない
+（決定`2026-08-20-03`）。
+
 3年間のprogressionは次を基準にする。
 
 1. **APIを使う**: function、引数、戻り値、loop、座標、自動建築、errorを体験する。

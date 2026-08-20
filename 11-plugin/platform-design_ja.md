@@ -423,7 +423,8 @@ dispatcherは位置配列だけを前提にせず、b6のsign／typed particle�
 full state正準化を一度だけ所有する。旧`block_state_ref`文字列をparseするprotocol 21経路とprotocol 22を
 同じhandlerで自動判別せず、helloのprotocol major不一致で先に拒否する。
 
-id付きset成功resultとevent DTO内のblockも同じ`BlockValue` codecを使う。`world.getBlocks`は各軸10、
+event DTO内のblockは同じ`BlockValue` codecを使う。id付きset成功resultは`null`とし、適用後の観察は
+明示的なget系へ分ける。`world.getBlocks`は各軸10、
 総数1000のadmissionをworld access前に行い、min／max正規化後にx→y→z（z最速）で走査する。
 `world.getBlockWithData`はregistryへ載せない。JSON numberは十進値としてscale非依存でcatalogと比較し、
 原因fieldを一意に示せる`invalid_params`だけに任意の`data.path`を付ける（`2026-08-19-03`）。
@@ -431,6 +432,23 @@ id付きset成功resultとevent DTO内のblockも同じ`BlockValue` codecを使�
 `backpressure`は副作用前の一時的拒否、`work_limit_exceeded`は入力縮小が必要な拒否、
 `entity_capacity_exhausted`はhandle capacity拒否である。副作用開始後に結果を確定できない場合は
 `internal_error`とし、spawn後のresponse喪失を含めclientへ自動retryを許さない。
+
+#### 10.3.1 Connection FIFOとflush barrier
+
+protocol 22／b5では、一つのconnectionで受理したcommandをboundedかつthread-safeなFIFOへ登録し、Paper
+main threadで同じ順序に処理する。client APIの呼出開始時刻でなく、このFIFOへの登録順を受理順とする。
+一時的backpressureで先頭commandを延期しても、後続`connection.flush`が追い越してはならない。queue飽和時に
+notificationだけを黙って捨てず、保持不能ならconnectionを失敗させて後続flushも失敗させる。exact容量は実測と
+fixtureで固定する。
+
+`connection.flush`はauthenticated hello後、integer id、exact `params: []`のrequestとして受理する。
+build origin／construction permissionは不要で、work budgetを消費しない。同じconnection epochで先に登録された
+commandが成功または拒否の終端へ到達した後、`result:null`を返す。permanentなvalidation／permission／work-limit
+拒否も終端だが、その個別errorをflushへ集約しない。
+
+処理完了はMcRemote handlerと必要なPaper API呼出しの完了までであり、chunk永続保存、client描画、後続tickの
+物理収束を含まない。既存の出力queueを吐いて切断するclose-after-flushと、このcommand barrierを同一視しない。
+idなし`connection.flush`はresponseを持たず、呼出元へ完了保証を与えない。
 
 `world.getHeight`のcolumn走査、nearby entityのradius／件数／chunk走査、particle count、sign更新は
 §8のper-session／player／global work budgetへ計上する。`world.setSign`は全入力検証後に変更し、

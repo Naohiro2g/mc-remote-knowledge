@@ -105,10 +105,17 @@ state propertyを持たないブロックも、`state`を欠落、`null`、空�
 Minecraftの既定stateを使った新しいblock dataを作る。部分stateも同様に、指定しなかった
 propertyをMinecraftの既定値で補う。
 
-id付き`world.setBlock`／`world.setBlocks`の成功resultも`BlockValue`とする。`setBlock`は
-適用後に対象座標を読み直した値を返す。`setBlocks`はserverが検証・default補完し、領域全体の
-書込みへ用いたfull `BlockValue`を返す。後者は領域内の各blockを再走査したsnapshotではなく、
-物理更新等で各座標が後から同じ状態に留まることまで主張しない。
+id付き`world.setBlock`／`world.setBlocks`の成功resultは`null`とする。idなしnotificationはresponseを
+返さない。setterは副作用command、getterは観察queryとして分離し、適用後の状態が必要なら
+`world.getBlock`／`world.getBlocks`を明示的に呼ぶ（決定`2026-08-20-03`）。
+
+これは`2026-08-19-03`が却下した`null`を明示的に改訂する。当時はsetが常にid付きrequestで、set成功、get、
+eventを`BlockValue`へ揃える利点があった。DEBUG／TRACE／FAST導入後はFASTがresponse自体を持たず、同期modeだけ
+`BlockValue`を返すとclient setterの戻り型がmode依存になる。全modeの公開setterを値なしへ揃え、観察をgetへ
+分ける利益が、set成功値の共通codecより上回る。
+
+stateを持たないblockの`state:{}`は`BlockSpec`／`BlockValue`内の型不変条件であり、値を返さないcommandの
+`result:null`と衝突しない。意味のない将来予約`{}`、入力echo、`{applied:N}`を成功resultにしない。
 
 ## 4. getの意味
 
@@ -189,7 +196,7 @@ def setBlock(
     block_id: str,
     *,
     state: Mapping[str, str | int | bool] | None = None,
-) -> BlockValue:
+) -> None:
     ...
 ```
 
@@ -206,7 +213,7 @@ print(value.state)
 print(value.state.get("axis"))
 ```
 
-`setBlocks()`もserverが書込みへ使用したfull `BlockValue`を返す。`getBlocks()`はwire順序を保つ
+`setBlock()`／`setBlocks()`はDEBUG／TRACE／FASTの全modeで`None`を返す。`getBlocks()`はwire順序を保つ
 immutableな`BlockValue` sequenceを返す。Pythonは各要素へ座標を捏造せず、呼出し側が入力領域と
 規定のz最速順から対応を導く。
 
@@ -325,3 +332,6 @@ protocol 21 clientとprotocol 22 plugin、またはその逆はhelloで`protocol
 - protocol 21と22のshapeを同じprotocol番号の下で混在させる。
 - `world.getBlocks`をcomma区切り文字列、無制限領域、端点入力順依存で返す。
 - full-state `world.getBlock`と重複する`world.getBlockWithData` aliasを残す。
+- DEBUG／TRACEだけsetterから`BlockValue`を返し、公開戻り型をmode依存にする。
+- FAST notificationへsyntheticな成功responseを作る。
+- set成功に意味のない空object、入力echo、自明または部分成功を誤解させる`{applied:N}`を返す。

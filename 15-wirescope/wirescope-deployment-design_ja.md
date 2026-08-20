@@ -329,10 +329,16 @@ method別validatorで区別する。protocol 21の文字列frameとprotocol 22�
 黙って受理せず、plugin、Python、Scratch、observer validator、common app artifactのprotocol identityを
 一つのcompatibility setとして固定する。
 
-`world.setBlock`／`world.setBlocks`の`BlockValue` result、`world.getBlocks`の有界array、
+`world.setBlock`／`world.setBlocks`の部分`BlockSpec` request、`result:null`、FAST notification、
+`connection.flush` request／response、`world.getBlocks`の有界array、
 `block_right_click.block`、`projectile_hit.target.block`も同じvalidatorへ収容する。WireScopeは
-Scratch StateText／BlockInfoTextへ再結合せず、partial request、full result、event snapshot、errorの
+Scratch StateText／BlockInfoTextへ再結合せず、partial request、getterのfull result、event snapshot、errorの
 `data.path`を構造化frameのまま観察する（`2026-08-19-03`／`04`）。
+
+FASTはid省略をそのままsent／unconfirmedとして表示し、success／error responseを合成しない。DEBUG／TRACEは
+wire上では同じid付きrequestなので、frame間隔からmode名を推測しない。`connection.flush`は先行commandの
+barrierとして表示するが、notificationごとの成功集約とは説明しない。mode名とTRACE delayはobserver schemaへ
+追加せず、plugin、Python、Scratch、validator、common appを`2026-08-20-03`のcompatibility setで更新する。
 
 連続位置・角度はpluginがDECISIONS `2026-08-19-01`の正準numberへ変換した後のframeを観察する。
 observer validatorと共通UIは座標や角度を別値へ再round／wrap／clampしない。UIが可読性のため末尾ゼロを
