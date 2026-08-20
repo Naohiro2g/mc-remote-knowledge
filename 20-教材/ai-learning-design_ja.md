@@ -265,6 +265,11 @@ uv に統一する（決定 `2026-06-24-02` / 事実 `F-pyenv-win-stale`）。
 
 パパート／レゴ／モンテッソーリ（control of error）の系譜。body-syntonicな理解を、**getBlockで世界を読み返す**（非言語→言語の変換器）ことを介して言語化に橋渡しする。核原則「AIにコード生成させてよい、ただし**なぜそうなるかを言語化できること**」（§1／§4）の非言語側の橋脚であり、§9最優先未決「言語化の伸びの測定」の観測材料にもなる。getBlockが完全修飾`block_id`とfull `state`を一つの構造化snapshotとして返す（[block-value-design](../10-protocol/block-value-design_ja.md)）ことで、「何であるか」と「どの状態か」を曖昧さなく読み返せる。
 
+ScratchではMinecraft記法のStateText／BlockInfoTextを使い、Pythonのstate mappingと意味的に対応させる。
+state名／値はja-Hira・jaと英語machine vocabularyを併記し、get→inspect→setと
+`⟦mcr-error:<reason>⟧`による失敗分岐を比較教材にできる。詳細contractは
+[Scratch block value投影設計](../13-scratch-client/scratch-block-value-projection-design_ja.md)を参照する。
+
 ---
 
 ## 11. Scratch 実行モデルと教育哲学（緑の旗の脱中心化・並列ビークル）

@@ -423,6 +423,11 @@ dispatcherは位置配列だけを前提にせず、b6のsign／typed particle�
 full state正準化を一度だけ所有する。旧`block_state_ref`文字列をparseするprotocol 21経路とprotocol 22を
 同じhandlerで自動判別せず、helloのprotocol major不一致で先に拒否する。
 
+id付きset成功resultとevent DTO内のblockも同じ`BlockValue` codecを使う。`world.getBlocks`は各軸10、
+総数1000のadmissionをworld access前に行い、min／max正規化後にx→y→z（z最速）で走査する。
+`world.getBlockWithData`はregistryへ載せない。JSON numberは十進値としてscale非依存でcatalogと比較し、
+原因fieldを一意に示せる`invalid_params`だけに任意の`data.path`を付ける（`2026-08-19-03`）。
+
 `backpressure`は副作用前の一時的拒否、`work_limit_exceeded`は入力縮小が必要な拒否、
 `entity_capacity_exhausted`はhandle capacity拒否である。副作用開始後に結果を確定できない場合は
 `internal_error`とし、spawn後のresponse喪失を含めclientへ自動retryを許さない。

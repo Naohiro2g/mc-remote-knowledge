@@ -468,7 +468,8 @@ b5／b6は同じ22.0.0のcompatibility setとして積層する。
 
 b5は大規模な共通基盤を閉じる段である。
 
-1. `block_id`と`state`を分けた構造化`BlockSpec`／`BlockValue`、set/get対称化、Python／Scratch投影
+1. `block_id`と`state`を分けた構造化`BlockSpec`／`BlockValue`、set成功値・event block値、
+   有界な`world.getBlocks`、`world.getBlockWithData`除去、Python／Scratch投影
 2. connection epoch ごとの有限 event ring、sequence cursor、overflow／loss
 3. 右クリック、チャット投稿、projectile hit event
 4. connection epoch scoped entity handle
@@ -489,7 +490,7 @@ b6 は b5 基盤上の中規模 API 追加に限定し、新しい identity、tr
 - `events.poll` filter／`events.clear`
 - `world.setSign`
 - typed particle data（dust／block state）
-- b6 終端での未批准 legacy wire method の置換または registry からの除去
+- b6 終端での残る未批准legacy wire methodの置換またはregistryからの除去
 - b5のIndexedDB基盤と`.sprite3` fixtureを使うScratchスプライトのブラウザ保存
 
 旧Scratch `.sb3` opcode migrationはwire method整理と別gateとする。b5／b6のmethodを

@@ -25,7 +25,7 @@ McRemote protocol 22.0.0では、Minecraftのブロックを一体化した文�
 
 本書は人間向けの説明正本である。JSON-RPCの厳密なmethod／error契約は
 [wire-format-design](wire-format-design_ja.md)、版境界は
-[versioning-design](versioning-design_ja.md)を正とする（決定`2026-08-19-02`）。
+[versioning-design](versioning-design_ja.md)を正とする（決定`2026-08-19-02`／`03`）。
 
 ## 2. 一つの形、二つの役割
 
@@ -105,6 +105,11 @@ state propertyを持たないブロックも、`state`を欠落、`null`、空�
 Minecraftの既定stateを使った新しいblock dataを作る。部分stateも同様に、指定しなかった
 propertyをMinecraftの既定値で補う。
 
+id付き`world.setBlock`／`world.setBlocks`の成功resultも`BlockValue`とする。`setBlock`は
+適用後に対象座標を読み直した値を返す。`setBlocks`はserverが検証・default補完し、領域全体の
+書込みへ用いたfull `BlockValue`を返す。後者は領域内の各blockを再走査したsnapshotではなく、
+物理更新等で各座標が後から同じ状態に留まることまで主張しない。
+
 ## 4. getの意味
 
 `world.getBlock`は一つの`BlockValue`を返す。
@@ -129,6 +134,15 @@ getとsetを同じ構造にすることで、読み取った値を別座標へ�
 JSON objectのmember順序に意味はない。fixtureやScratch内部tokenのdeterministic serializationでは、
 最上位を`block_id`、`state`の順、state propertyを名前の昇順で出力する。
 
+`world.getBlocks`は複数座標を有界に読むmethodである。6個のorigin相対integer座標を受け、
+各軸をmin／maxへ正規化し、両端を含む領域をx外側・y中間・z内側（z最速）の昇順で走査する。
+resultは同じ順序の`BlockValue` arrayで、座標を各要素へ重複収録しない。各軸のinclusive長は10以下、
+全体は最大1000件とする。一軸でも上限を超えればworld走査前に`work_limit_exceeded`、shape／integer
+違反は`invalid_params`とする。
+
+旧`world.getBlockWithData`はfull-state `world.getBlock`に包含されるためprotocol 22で廃止し、
+`method_not_found`とする。
+
 ## 5. 検証とerror
 
 構造やJSON型が不正な場合は`invalid_params`とする。文字列refの構文解析が無くなるため、
@@ -140,6 +154,13 @@ JSON objectのmember順序に意味はない。fixtureやScratch内部tokenのde
 | `unknown_block` | 補完後のblock IDがregistryに無い | `block_id` |
 | `unknown_property` | blockに存在しないstate property | `block_id`, `property` |
 | `invalid_property_value` | property値が許容外 | `block_id`, `property`, `value`, `allowed` |
+
+原因fieldを特定できる`invalid_params`は、任意の`data.path`を返せる。pathは`params`をrootとし、
+array indexを`[n]`、object fieldを`.name`で連結する（例`params[3].state.axis`）。pathで表現できない
+入力や原因fieldが一つに定まらない場合は省略し、入力全体を文字列化して代用しない。
+
+catalogのJSON numberは十進数値としてscale非依存で比較する。`3`、`3.0`、`3e0`は同じnumberであり、
+string`"3"`とは異なる。出力はMinecraft registryの正準型に戻し、整数stateはJSON integerとして返す。
 
 最終受理はserver registryを読むpluginが所有する。clientのresource catalog検証は入力支援であり、
 server validationの代替ではない。
@@ -168,7 +189,7 @@ def setBlock(
     block_id: str,
     *,
     state: Mapping[str, str | int | bool] | None = None,
-) -> None:
+) -> BlockValue:
     ...
 ```
 
@@ -184,6 +205,10 @@ print(value.block_id)
 print(value.state)
 print(value.state.get("axis"))
 ```
+
+`setBlocks()`もserverが書込みへ使用したfull `BlockValue`を返す。`getBlocks()`はwire順序を保つ
+immutableな`BlockValue` sequenceを返す。Pythonは各要素へ座標を捏造せず、呼出し側が入力領域と
+規定のz最速順から対応を導く。
 
 公開helperとしての`block_ref()`はprotocol 22の正準APIに含めない。protocol 21のコードには、
 恒久shimでなく現行記法への書き換え例を提供する。
@@ -212,9 +237,10 @@ end
 ```
 
 `ブロック情報`は同じ観察時点のIDとstateを持つimmutable snapshotである。ID用とstate用に
-別々の`world.getBlock`を送らない。Scratch内部ではcanonical compact JSONとして保持できるが、
-利用者にsplitやJSON parseを要求しない。accessorはshapeを検証し、不正値を黙って空文字へ
-変換しない。
+別々の`world.getBlock`を送らない。Scratch-visibleなStateText／BlockInfoText、予約ErrorText、
+Pickerと多言語表示の詳細は
+[Scratch block value投影設計](../13-scratch-client/scratch-block-value-projection-design_ja.md)を正とする
+（決定`2026-08-19-04`）。これらの文字列をwireやPythonへ逆流させない。
 
 ### 7.1 スプライトごとの利用
 
@@ -264,8 +290,10 @@ canonical ID、Python定数を並べる。state editorは必要になるまで�
 6. non-vanilla完全修飾ID
 7. `invalid_params`、`unknown_block`、`unknown_property`、`invalid_property_value`
 8. set→getの意味的round-trip
-9. Scratch block information tokenとaccessor
-10. sprite-local保存、並行thread、clone、disconnect時cache回収
+9. set成功result、event内block、scale非依存number、`data.path`
+10. bounded `getBlocks`の順序／反転端点／軸・総数上限と`getBlockWithData`拒否
+11. Scratch block information tokenとaccessor
+12. sprite-local保存、並行thread、clone、disconnect時cache回収
 
 plugin fixture、Python codec／API、Scratch codec／block、WireScope method validator、教材例を一つの
 compatibility setとして更新する。片側だけで旧文字列と新objectを混在させない。
@@ -295,3 +323,5 @@ protocol 21 clientとprotocol 22 plugin、またはその逆はhelloで`protocol
 - extension全体で共有する「最後のブロック情報」を作る。
 - 日本語表示名をblock IDやstate valueとして送る。
 - protocol 21と22のshapeを同じprotocol番号の下で混在させる。
+- `world.getBlocks`をcomma区切り文字列、無制限領域、端点入力順依存で返す。
+- full-state `world.getBlock`と重複する`world.getBlockWithData` aliasを残す。

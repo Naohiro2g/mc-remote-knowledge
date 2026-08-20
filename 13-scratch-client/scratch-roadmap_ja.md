@@ -216,8 +216,9 @@ setで構造化形へ切り替える。
 - b4のmain stream 1件でもspriteごとの値処理は独立させ、将来substreamへ写像してもblock value shapeを変えない。
 - observation grant と display alias は別票。
 
-共通値モデルとScratch内部token／fixtureの正本は
-[ブロック値・状態・多言語投影設計](../10-protocol/block-value-design_ja.md)とする。
+共通値モデルは[ブロック値・状態・多言語投影設計](../10-protocol/block-value-design_ja.md)、
+Scratch-visibleなStateText／BlockInfoText、Picker、ErrorTextとfixtureは
+[Scratch block value投影設計](scratch-block-value-projection-design_ja.md)を正とする。
 
 ### 保存・移送作業束（b5／b6配置確定・R配置は最終整理待ち）
 

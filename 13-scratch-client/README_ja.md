@@ -16,3 +16,5 @@ McRemoteは一般UGC hostingと一般利用者accountを所有しない（`2026-
 
 protocol 22の構造化block valueと、スプライトごとの`ブロック情報`／ID／state reporterは
 [ブロック値・状態・多言語投影設計](../10-protocol/block-value-design_ja.md)を参照する。
+Scratch-visibleなStateText／BlockInfoText、Picker、`⟦mcr-error:<reason>⟧`は
+[Scratch block value投影設計](scratch-block-value-projection-design_ja.md)を正とする。

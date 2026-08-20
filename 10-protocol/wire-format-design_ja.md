@@ -93,9 +93,10 @@ JSON-RPC 2.0 を採用する（採用判断と却下案は §8）。
 | `build.setWorld` | `[dimension]` | あり | build state の world/dimension を変更。`dimension` は `overworld` / `nether` / `the_end` |
 | `build.setOrigin` | `[x, y, z]` | あり | build origin を変更。Scratch b1 UI は y を露出せず 0 固定で送る |
 | `chat.post` | `[msg]` | あり（b1 は id 付き同期 request） / notification 時なし | チャット送信 |
-| `world.setBlock` | `[x, y, z, blockSpec]` | あり（b1 は id 付き同期 request） / notification 時なし | protocol 22では構造化`BlockSpec`で1ブロック設置（§7.1） |
-| `world.setBlocks` | `[x1, y1, z1, x2, y2, z2, blockSpec]` | あり（b1 は id 付き同期 request） / notification 時なし | protocol 22では構造化`BlockSpec`で直方体充填（§7.1） |
+| `world.setBlock` | `[x, y, z, blockSpec]` | `BlockValue` / notification時なし | protocol 22では構造化`BlockSpec`で1ブロック設置（§7.1） |
+| `world.setBlocks` | `[x1, y1, z1, x2, y2, z2, blockSpec]` | `BlockValue` / notification時なし | protocol 22では構造化`BlockSpec`で直方体充填（§7.1） |
 | `world.getBlock` | `[x, y, z]` | あり | protocol 22では構造化`BlockValue`を返す（§7.1） |
+| `world.getBlocks` | `[x1, y1, z1, x2, y2, z2]` | `BlockValue[]` | protocol 22の有界領域query（§7.1.1） |
 | `catalog.get` | `[]` | あり | 稼働中 registry から block/entity/particle catalog を取得（b3 実装予定、§7.2.1） |
 | `player.getPos` | `[]` | あり | paired player の現在 world と現在位置を stream origin 相対で返す（b2 準核） |
 | `player.setPos` | `[world, x, y, z]` | あり | paired player を指定 world の stream origin 相対位置へ teleport する（b2 準核） |
@@ -133,7 +134,7 @@ JSON-RPC 2.0 を採用する（採用判断と却下案は §8）。
 
 build コマンドの座標解釈は符号化の未定（§7④）に**先行して確定**している（DECISIONS `2026-06-25-01`/`2026-06-24-01`/`2026-06-15-04`）。両実装はこの規範を一字一句同じに実装する（食い違うと疎通で初めて露見し静かに割れる）。
 
-- **全軸 origin 相対**：`world.setBlock`/`world.setBlocks`/`world.getBlock` の `x,y,z` は build origin からのデルタ。
+- **全軸 origin 相対**：`world.setBlock`/`world.setBlocks`/`world.getBlock`/`world.getBlocks` の `x,y,z` は build origin からのデルタ。
 - **絶対座標＝origin＋デルタ（各軸）**：とくに **絶対 y ＝ origin.y ＋ dy**。**暗黙の Y オフセットは持たない**。
 - **`world_constants.y_sea` は情報定数**：hello result の `world_constants` object 内で `y_sea` として広告するのみで、**座標式に焼かない**（`2026-06-15-04` / `2026-07-02-02`）。`y_sea` は `number | null` で、`null` は不明またはその world/profile では意味を持たないことを示す。
 - **既定**：build 未設定時は world=overworld・origin=(200,0,200)。
@@ -229,10 +230,10 @@ b6 filterはringをsequence順に走査する。非一致eventでも`through_seq
 b5のevent typeは次の3種である。exact JSON shapeはplugin fixtureを拘束層とし、Bukkit Event objectを
 wireやringへ保持しない。
 
-- `block_right_click`: 発生時のworld／origin、origin相対block position、face、canonical block state、hand。
+- `block_right_click`: 発生時のworld／origin、origin相対block position、face、protocol 22の`BlockValue`、hand。
   相関するmain／off-hand二重発火は1件へ正規化する。
 - `chat_posted`: paired playerが投稿したoriginal plain input。slash commandは除外し、chat自体はcancelしない。
-- `projectile_hit`: 発生時のworld／origin、projectile type、hit position、blockまたはentity target。
+- `projectile_hit`: 発生時のworld／origin、projectile type、hit position、blockまたはentity target。block targetはprotocol 22の`BlockValue`を持つ。
   player hitは`kind: "player"`だけとし、handle、UUID、player nameを返さない。
 
 `block_right_click`のblock positionはintegerのままとする。`projectile_hit`の連続hit positionは発生時の
@@ -424,10 +425,25 @@ set入力の`BlockSpec`とget出力の`BlockValue`は同じcontainer shapeを持
 - deterministic fixture／Scratch内部tokenでは、最上位を`block_id`→`state`、state propertyを名前の昇順でcompact JSON化する。
 - `world.setBlock` paramsは`[x,y,z,blockSpec]`、`world.setBlocks`は`[x1,y1,z1,x2,y2,z2,blockSpec]`。
 - `world.getBlock` resultは`BlockValue`一つであり、IDとstateを別method／別responseにしない。
+- id付き`world.setBlock`は適用後に対象座標を再取得した`BlockValue`、`world.setBlocks`はserverが
+  検証・default補完して全書込みへ用いたfull `BlockValue`を返す。後者は領域全体の再走査結果ではない。
+- event DTO内のblockも同じ`BlockValue`を使い、別のcanonical block stringを作らない。
 
 入力は寛容、出力は正準という`2026-06-27-02`の原則は、文字列文法でなくobject fieldへ引き継ぐ。
 protocol 21の文字列`block_state_ref`、`getBlock`文字列result、文字列等価round-tripはb4までの契約として
 履歴に残し、protocol 22で互換unionや自動判別を設けない。
+
+### 7.1.1 world.getBlocks（protocol 22、確定 `2026-08-19-03`）
+
+- paramsは6個のorigin相対integer座標`[x1,y1,z1,x2,y2,z2]`。
+- 各軸の端点をmin／maxへ正規化し、両端を含める。入力方向でresult順序を変えない。
+- x外側、y中間、z内側の昇順で走査し、zを最速とする。
+- resultは走査順の`BlockValue` JSON array。座標は各要素へ重複収録しない。
+- 各軸のinclusive長は10以下、全体は最大1000件。一軸でも超過すればworld走査前に
+  `work_limit_exceeded`を返す。
+- params shape／integer違反は`invalid_params`。小数を丸めない。
+- `world.getBlockWithData`は`world.getBlock`に包含されるためprotocol 22 registryへ載せず、
+  `method_not_found`とする。
 
 ### 7.2 カタログ配送・キャッシュ（確定 `2026-06-26-03`）
 
@@ -478,7 +494,13 @@ protocol 21の文字列`block_state_ref`、`getBlock`文字列result、文字列
 
 - **`message`**＝英語短文（ja は client が `reason` から投影）。
 - **protocol 21の`data.ref`**＝文字列ref検証で問題入力をエコーした履歴field。protocol 22の構造化block valueでは使用せず、対応する`block_id`／`property`／`value`／`allowed`を返す。state／service／permission等、対応する入力値が存在しないreasonでは意味のないsentinel、空文字、`null`を捏造しない。
+- **`data.path`**＝原因fieldを一意に特定できる`invalid_params`で任意。rootは`params`、array indexは
+  `[n]`、object fieldは`.name`で連結する（例`params[3].state.axis`）。原因が一つに定まらない場合は
+  省略し、入力全体の文字列化を代用品にしない。
 - **`data.allowed`**＝`invalid_property_value` で許容値を返せれば返す（**b1 任意 / b2 必須**・catalog 連動）。
+
+block stateのJSON numberは十進数値としてscale非依存で比較する。`3`、`3.0`、`3e0`は同じnumber、
+string`"3"`は別型とする。BlockValue出力はregistryの正準型を使い、整数stateをJSON integerへ戻す。
 
 | family | code | reason | 意味 | b1 |
 | --- | --- | --- | --- | --- |

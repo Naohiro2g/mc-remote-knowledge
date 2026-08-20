@@ -154,9 +154,10 @@ b3の主要APIは次のとおりです。
 | Python API | 役割 |
 | --- | --- |
 | `postToChat(message)` | chatへ投稿 |
-| `setBlock(x, y, z, block_id, *, state=None)` | 構造化block指定で1個設置（protocol 22／b5） |
-| `setBlocks(x0, y0, z0, x1, y1, z1, block_id, *, state=None)` | 構造化block指定で直方体設置（protocol 22／b5） |
+| `setBlock(x, y, z, block_id, *, state=None)` | 1個設置し、適用後の`BlockValue`を返す（protocol 22／b5） |
+| `setBlocks(x0, y0, z0, x1, y1, z1, block_id, *, state=None)` | 直方体を設置し、書込みに用いたfull `BlockValue`を返す（protocol 22／b5） |
 | `getBlock(x, y, z)` | `BlockValue(block_id, state)`を取得（protocol 22／b5） |
+| `getBlocks(x0, y0, z0, x1, y1, z1)` | 各軸10／最大1000件をz最速順の`BlockValue` sequenceで取得 |
 | `setWorld(world)` | このstreamのbuild worldを変更 |
 | `setBuildOrigin(x, y, z)` | このstreamのoriginを変更 |
 | `getPos()` | paired playerのworldとorigin相対位置を取得 |
@@ -190,6 +191,9 @@ print(value.block_id)           # minecraft:oak_log
 print(value.state)              # {"axis": "z"}
 print(value.state.get("axis"))  # z
 ```
+
+`setBlock()`／`setBlocks()`も`BlockValue`を返す。`getBlocks()`は端点方向に依存せずmin／maxへ
+正規化したx→y→z（z最速）順を保つ。各要素へ座標を重複させず、旧`getBlockWithData()`は提供しない。
 
 state propertyを持たないblockは`state == {}`となる。入力の短縮vanilla ID／部分stateと、出力の
 完全修飾ID／full stateという正準化はpluginが所有し、Python側で別の文字列表現へ戻さない。

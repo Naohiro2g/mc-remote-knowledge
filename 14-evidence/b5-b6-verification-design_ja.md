@@ -13,6 +13,9 @@ wire contractは[wire-format-design](../10-protocol/wire-format-design_ja.md)を
 - `BlockSpec`／`BlockValue`のstrict shape、stateless blockの`state:{}`、短縮ID／部分state入力、
   完全修飾ID／full state出力、set→getの意味的round-trip。
 - protocol 21／22の混在がhelloで拒否され、文字列refとobjectのunion受理が無い。
+- set成功resultとevent blockが同じ`BlockValue` codecを使い、`getBlocks`が端点反転でも
+  x→y→z（z最速）を維持し、各軸10／総数1000をworld access前に拒否する。
+- `getBlockWithData`が`method_not_found`、JSON numberがscale非依存、`data.path`が規定形である。
 - Pythonの`block_id`／`state` APIと`BlockValue`、Scratchの一回取得snapshot／accessor、
   sprite-local保存、共有last-block不在、clone／disconnect lifecycle。
 - paired playerの全active epochへ複製し、ring／sequence／cursorがepoch間で独立する。
@@ -63,6 +66,8 @@ wire contractは[wire-format-design](../10-protocol/wire-format-design_ja.md)を
 - 長いnative小数が座標3桁／角度2桁の同じwire値として表示され、raw frameとclient値が一致する。
 - Scratchの一つの`ブロック情報` snapshotからIDと複数state propertyを取り出し、sprite間で
   暗黙共有されず、Stage変数へ入れた場合だけ明示共有される。
+- StateTextのcatalog型解決、表現不能token拒否、BlockInfoText、`⟦mcr-error:<reason>⟧`の
+  exact grammar／remote reason allowlist、PickerのID／state原子的Undoを確認する。
 
 ## 4. Evidenceの着地条件
 
