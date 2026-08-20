@@ -460,7 +460,8 @@ build modeはmode別setterや接続panel設定に分けず、保存される
 全Stage／sprite／cloneが共有し、block実行時だけ`connection.flush`後にmode／delayを原子的に変更する。
 新streamはDEBUG／0.25秒、TRACE delayは呼出元threadだけ、FASTはnotificationでsent／unconfirmedとする。
 明示barrier用の「送ったブロック設置が終わるまで待つ」を追加し、tab closeでflush完了を保証しない
-（`2026-08-20-03`）。
+（contract=`2026-08-20-03`、b5配置=`2026-08-20-04`）。Scratchのmode／flush実装とfixtureを
+post-b5へ送った状態でb5全体GREENとしない。
 
 b5のWireScope schema v1.1対応はplugin fixture、Python observer projection、Scratch source adapter、
 common app artifactと同じcompatibility setで行う。plugin wire conformanceと共通UI／real-browser E2Eは

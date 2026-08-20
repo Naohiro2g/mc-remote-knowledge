@@ -1,9 +1,12 @@
 # b5／b6 横断検証設計
 
-この文書は、DECISIONS `2026-08-16-04`〜`07`と`2026-08-19-01`／`02`で確定したprotocol 22の
+この文書は、DECISIONS `2026-08-16-04`〜`07`、`2026-08-19-01`／`02`、`2026-08-20-03`／`04`で確定したprotocol 22の
 plugin APIについて、何をどのtest classで
 確かめるかを示します。未実施の計画をevidenceと呼ばず、実行後にだけrecord／artifactを作ります。
 wire contractは[wire-format-design](../10-protocol/wire-format-design_ja.md)を正とします。
+
+build execution modeのplugin／Python／Scratch／WireScope検収と横断evidenceはb5 completion gateであり、
+一部surfaceの合格だけからb5全体GREENを推測しません（`2026-08-20-04`）。
 
 ## 1. Unit／deterministic
 
