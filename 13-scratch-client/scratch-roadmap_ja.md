@@ -220,7 +220,7 @@ setで構造化形へ切り替える。
 Scratch-visibleなStateText／BlockInfoText、Picker、ErrorTextとfixtureは
 [Scratch block value投影設計](scratch-block-value-projection-design_ja.md)を正とする。
 
-### 保存・移送作業束（b5／b6配置確定・R配置は最終整理待ち）
+### 保存・移送作業束（b5後・b6前entry gate／b6配置確定・R配置は最終整理待ち）
 
 現行の保存・移送モデルは
 [Scratch作品の保存・移送設計](scratch-project-storage-transfer-design_ja.md) と
@@ -230,8 +230,11 @@ Scratch-visibleなStateText／BlockInfoText、Picker、ErrorTextとfixtureは
 - 作品全体はブラウザ保存作品と`.sb3`、スプライトはブラウザ保存スプライトと`.sprite3`で扱う。
 - ブラウザ保存は同一storage partition・Editor originに閉じ、Minecraft接続先へbindingしない。
 - 対応McRemote Editor間のブロック移送はOS clipboardを使う方向とし、bundle contractはfixture前に推測実装しない。
-- b5は`.sb3`／`.sprite3`互換fixture、IndexedDB共通基盤、ブラウザ保存作品、quota／破損／migration、ファイル保存への退避を閉じる。
-- b6はb5基盤と`.sprite3` fixtureを再利用してブラウザ保存スプライトを追加し、新しい保存基盤を作らない。
+- ブラウザ保存はb5 completion gateから外す。b5 GREEN後・b6 API本実装前の独立entry gateで、
+  `.sb3`／`.sprite3`互換fixture、IndexedDB共通基盤、ブラウザ保存作品、一覧・復元・削除、
+  quota／破損／migration、ファイル保存への退避を実装・試用する（`2026-08-21-02`）。
+- b6はentry gateで試用した基盤と`.sprite3` fixtureを再利用してブラウザ保存スプライトを追加し、
+  新しい保存基盤を作らない。
 - OS clipboardによるブロック移送と審査済み教材は独立trackとし、b5／b6へ自動追加しない。
 - McRemote Tutorial / Debug 導線と、最初の1 blockまでの教材を揃える。
 - iPad／Safariを含むonboardingと保存・移送の実測gateは、最終R整理で配置する。
@@ -439,16 +442,22 @@ b5／b6の横断scopeはDECISIONS `2026-08-16-04`〜`07`と
 - disconnect時にpoller、cursor、thread context、event cache、entity handle cacheを回収する。
 - event座標をworld blockへ渡す前に、eventがcaptureしたworld／originと現在値の一致を確認し、
   不一致をactionable errorにする。
+- b5で公開するevent surfaceは`block_right_click`／`chat_posted`／`projectile_hit`のhatに限定する。
+  raw poll block、filter、`events.clear`は公開せず、filter／clearはb6へ置く。
 
 `world.spawnEntity`のhandleは副作用と同じresponseから原子的に受け取る。共有の`last entity` reporterは
 作らない。副作用reporterをmonitor不能にできるruntimeではreporterを優先し、保証できない場合は
 出力変数付きcommand blockへ確定する。この選択はScratch runtimeのprototype結果を待つ。
 
-wire paramsは`[x,y,z,entity]`の座標先行順とする（DECISIONS `2026-08-21-01`）。Scratch b5候補
-`acb76ea89bc8a95ffc5337133a6cd93210808e76`の`[entity,x,y,z]`送信は修正対象であり、現行contractへ
-適合済みとは扱わない。VM unit、observer fixture、WireScope params validatorを同じ順序へ更新し、両順序を
-union受理しない。`world.spawnParticle`を追加する場合も、9／10 paramsの座標先行順とforce省略時`true`へ
-従う。
+wire paramsは`[x,y,z,entity]`の座標先行順、`world.spawnParticle`は9／10 paramsの座標先行順と
+force省略時`true`とする（DECISIONS `2026-08-21-01`）。VM unit、observer fixture、WireScope params
+validatorを同じ順序へ更新し、旧順序とのunionを受理しない。
+
+Scratch候補`5c93a70494`は搬送時点でclean・未pushで、構造化block値、StateText／BlockInfoText／ErrorText、
+Picker、`getBlocks`／`getHeight`／spawn、DEBUG／TRACE／FAST、`connection.flush`、既存b5 methodの
+WireScope v1.1投影を実装済みと報告した。source固定・横断合格は未主張であり、b5残範囲は3種eventの
+poller／hat／thread context／loss／lifecycle、plugin fixture conformance、clean artifact、full regression、
+実plugin smoke、real-browser WireScope E2Eである（`2026-08-21-02`）。
 
 monitor-driven reporterには、monitor評価のthrottle、同一引数のin-flight request coalescing、
 disconnect時のcache破棄を設ける。明示的なscript callは毎回実行する。対象は
@@ -464,7 +473,9 @@ monitor等のUIが末尾ゼロを補っても、thread context、変数、WireSc
 build modeはmode別setterや接続panel設定に分けず、保存される
 `建築モードを [MODE] にする（TRACEの待ち時間 (秒)）`command blockへ投影する。b5のmain streamでは
 全Stage／sprite／cloneが共有し、block実行時だけ`connection.flush`後にmode／delayを原子的に変更する。
-新streamはDEBUG／0.25秒、TRACE delayは呼出元threadだけ、FASTはnotificationでsent／unconfirmedとする。
+新streamはDEBUG／0.25秒、TRACE delayは有限な0〜2.0秒でclampせず、呼出元threadだけを待たせる。
+FASTはnotificationでmachine token `sent-unconfirmed`、日本語「送信済み・結果未確認」、英語
+`Sent · unconfirmed`とする。
 明示barrier用の「送ったブロック設置が終わるまで待つ」を追加し、tab closeでflush完了を保証しない
 （contract=`2026-08-20-03`、b5配置=`2026-08-20-04`）。Scratchのmode／flush実装とfixtureを
 post-b5へ送った状態でb5全体GREENとしない。

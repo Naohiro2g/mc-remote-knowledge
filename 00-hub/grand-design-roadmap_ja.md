@@ -26,7 +26,8 @@
 
 `2026-08-16-01`〜`2026-08-16-03`で匿名cloud、一般UGC hosting、Backpackを撤回し、保存・移送を
 作品／スプライトのbrowser・file保存とOS clipboardへ再構成した。このため上表R3行の「三層保存」は現行scope
-として使わない。`2026-08-16-09`で作品のブラウザ保存をb5、スプライトのブラウザ保存をb6へ配置したが、
+として使わない。`2026-08-21-02`で作品のブラウザ保存をb5 completion gateから外し、b5 GREEN後・
+b6 API本実装前の独立entry gateへ移した。スプライトのブラウザ保存は、試用した基盤を再利用してb6へ置く。
 R3〜R5の意味と4月へ向けた日程は、他の横断scopeを揃えた最後のR整理で改訂する。それまでは
 [Scratch roadmap](../13-scratch-client/scratch-roadmap_ja.md)と
 [作品の保存・移送設計](../13-scratch-client/scratch-project-storage-transfer-design_ja.md)を現在地の入力とする。

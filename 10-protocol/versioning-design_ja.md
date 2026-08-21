@@ -479,16 +479,18 @@ b5は大規模な共通基盤を閉じる段である。
 8. 座標先行4 paramsの`world.spawnEntity`
 9. structured JSON params を保持できる dispatcher
 10. plugin／Python／Scratch／WireScope の compatibility set
-11. `.sb3`／`.sprite3`互換fixtureと、Scratch作品全体のIndexedDBブラウザ保存基盤
-12. Minecraft由来の連続位置3桁、yaw／pitch 2桁、yaw `[-180,180)`、pitch `[-90,90]`を固定する
+11. Minecraft由来の連続位置3桁、yaw／pitch 2桁、yaw `[-180,180)`、pitch `[-90,90]`を固定する
     数値正準化（DECISIONS `2026-08-19-01`）
-13. `world.setBlock`／`world.setBlocks`のDEBUG／TRACE／FAST、bounded connection FIFO、
+12. `world.setBlock`／`world.setBlocks`のDEBUG／TRACE／FAST、bounded connection FIFO、
     `connection.flush` barrier、Python／Scratch／WireScope lifecycle（contract=`2026-08-20-03`、
     b5配置=`2026-08-20-04`）
 
-項13はpost-b5候補ではなくb5の必須横断scopeである。component単位の実装・検収は独立に進められるが、
+項12はpost-b5候補ではなくb5の必須横断scopeである。component単位の実装・検収は独立に進められるが、
 plugin、Python、Scratch、WireScope、compatibility fixture／evidenceのいずれかを後送りした部分setを
-b5全体GREENとしない。exact容量・UI token等の実装較正値もb5 candidateで固定する。
+b5全体GREENとしない。b5 candidateはqueue、ring、poll、handle、particle、work、timeoutへ有限な暫定値を
+置き、exact値と上限時挙動をfixture／lock／evidenceへ固定する。b5 GREENは境界fixture、cleanなcommon
+artifact、短い実plugin smoke、real-browser WireScope E2Eを要求するが、授業相当full load／soakと最終capacity
+較正はb6 API実装後へ送る（`2026-08-21-02`）。暫定値を横断version contractへ焼き込まない。
 
 項7／8のexact paramsはDECISIONS `2026-08-21-01`を正とする。protocol 22の最初のexact compatibility
 setへ座標先行順を収容し、particle-first／entity-firstとのunion、自動判定、protocol 21 shimを作らない。
@@ -501,12 +503,18 @@ b6 は b5 基盤上の中規模 API 追加に限定し、新しい identity、tr
 - `world.setSign`
 - typed particle data（dust／block state）
 - b6 終端での残る未批准legacy wire methodの置換またはregistryからの除去
-- b5のIndexedDB基盤と`.sprite3` fixtureを使うScratchスプライトのブラウザ保存
+- b6 entry gateで試用したIndexedDB基盤と`.sprite3` fixtureを使うScratchスプライトのブラウザ保存
+
+b5 GREEN後・b6 API本実装前に、Scratch保存の独立entry gateを置く。`.sb3`／`.sprite3`互換fixture、
+作品全体のIndexedDB lifecycle、一覧・復元・削除、quota、破損、migration、`.sb3`への退避を実装・試用する。
+これはb5 completion gateでもb6 API scopeでもない。b6は同じ基盤をブラウザ保存スプライトへ再利用し、
+別の保存基盤を作らない（`2026-08-16-09`を`2026-08-21-02`で改訂）。
 
 旧Scratch `.sb3` opcode migrationはwire method整理と別gateとする。b5／b6のmethodを
 protocol `22.0.0`へ収容することは、実装、live evidence、release gateの合格を意味しない。
-exact ring／handle／poll／work上限はruntime policyとtest fixtureで較正し、横断version contractへ
-焼き込まない。OS clipboardによるブロック移送は保存release gateへ自動追加せず、独立trackのまま維持する。
+exact ring／handle／poll／particle／work／buffer／timeout上限はruntime policyとtest fixtureで較正し、
+横断version contractへ焼き込まない。b5は有限な暫定値で共通基盤を閉じ、b6 API実装後に全methodを載せた
+実環境で本較正する。OS clipboardによるブロック移送は保存entry gateへ自動追加せず、独立trackのまま維持する。
 
 ### 10.12 pre-release 状態は明示操作（自動認識は PyPI のみ）
 

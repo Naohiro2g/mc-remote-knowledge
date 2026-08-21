@@ -218,17 +218,22 @@ mc.flush()
 ```
 
 - DEBUGはid付きrequestを送りresponseまで待つ。library既定modeである。
-- TRACEはid付きrequestの成功後、呼出元を`trace_delay`秒待たせる。既定は`0.25`秒で、error時は待たない。
+- TRACEはid付きrequestの成功後、呼出元を`trace_delay`秒待たせる。既定は`0.25`秒、許容範囲は
+  有限な`0`〜`2.0`秒（両端を含む）で、範囲外をclampせず、error時は待たない。
 - FASTはnotificationを送り、個別server responseを待たない。finite bufferのbackpressureには従う。
 - modeとdelayはconnection／stream個別のclient stateで、wire paramsやhelloへ追加しない。
 - mode切替は同じ送信sequencerへtransition fenceとして登録し、`connection.flush`成功後に原子的に反映する。
   flush失敗時は旧modeを維持する。
 - 各setterは登録時点のmodeとdelayを保持する。後のmode変更で成立済みTRACE待機を変更しない。
 - 正常な`close()`／context manager終了は自動flushする。flush失敗は完了保証失敗として通知したうえで
-  connectionを回収する。既存例外とclose失敗が重なる場合の優先順位はPython fixtureで固定する。
+  connectionを回収する。context manager本体の例外とclose／flush失敗が重なる場合は本体例外をprimaryに
+  維持し、close／flush失敗をexception chainまたはnoteへ残す。本体例外が無い場合はclose／flush失敗を
+  呼出元へ送出する。この優先順位と、いずれの場合もconnectionを回収することをfixtureで固定する。
 
 `mc.flush()`はworldを読まない明示barrierであり、先行FAST notificationの個別成功を復元しない。同一connectionの
 後続get requestもFIFO上は先行commandを追い越さないが、教材では完了確認に`flush()`を使う。
+flushは通常のconnection request timeoutを共用する。timeout時は先行処理の成否を確定せず、自動retryせず、
+mode切替を成立させずにconnectionを回収する。timeout実値はcandidate fixture／lockへ固定し、protocol定数にしない。
 
 ## 6. catalog／projectionの失敗
 
@@ -386,6 +391,8 @@ retry規則を作らない（DECISIONS `2026-08-16-04`〜`07`）。
 
 - connectionごとに一つのcursorを持ち、`events.poll` responseを正常受理した後だけ
   `through_sequence`まで進める。
+- `events.poll`は`[after_sequence]`または`[after_sequence,{"max_events":N}]`を使う。Python既定は
+  server既定へ委ねられ、利用者が指定した正integerはserver上限を拡張しない希望上限として扱う。
 - response喪失時は同じ`after_sequence`で再取得し、destructive dequeueとして実装しない。
 - overflow／capacity／明示破棄の累積値を利用者から確認可能にし、event gapを空batchへ畳まない。
 - reconnect時はcursor、event cache、entity handleを全て破棄し、旧epochのreplayやhandle再利用を行わない。

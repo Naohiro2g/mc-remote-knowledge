@@ -93,8 +93,10 @@ mode名とTRACE delayはstream-scopedなclient execution policyであり、wire 
 | TRACE | id付きrequest | server responseまで待ち、成功後にclient側delay |
 | FAST | idなしnotification | 個別responseを待たず、通常は送信列への登録後に継続 |
 
-TRACEの既定delayは`0.25`秒で、成功した一回のsetter呼出しごとに呼出元だけを待たせる。`setBlocks`の
-領域内blockごとには待たない。error時は待たない。FASTもfinite bufferとtransport backpressureには従う。
+TRACEの既定delayは`0.25`秒、許容範囲は有限な`0`〜`2.0`秒（両端を含む）で、成功した一回の
+setter呼出しごとに呼出元だけを待たせる。範囲外をclampせず、mode変更前に拒否して旧mode／delayを維持する。
+`setBlocks`の領域内blockごとには待たない。error時は待たない。FASTもfinite bufferとtransport
+backpressureには従う。
 
 `connection.flush`は、同一connectionの送信列で先に登録されたcommandが成功または拒否の終端へ到達するまで
 待つ明示barrierである。integer idを持つrequest、exact `params: []`、authenticated hello後だけを正規形とし、
@@ -105,6 +107,11 @@ flush成功は個々のnotification成功を集約しない。Paper main thread�
 終わり、後続McRemote操作が状態を観察できる時点までを保証する。chunk永続保存、Minecraft client描画、後続tickの
 物理収束、他connectionからの後続変更は保証しない。同一connectionの後続requestもFIFO上はordering pointになるが、
 worldを観察しない明示barrierは`connection.flush`とする。
+
+clientは`connection.flush`だけの別magic timeoutを作らず、同じconnectionの通常request timeoutを適用する。
+timeoutはserverから返されたJSON-RPC errorではなく、先行commandの成功／拒否を確定できないlocalな完了不明である。
+非冪等操作を自動retryせず、mode切替を成立させず、当該connectionを回収する。candidateのtimeout実値はclient fixture／
+lockへ記録し、b6 API実装後の負荷較正でruntime policyとして更新できる。
 
 ---
 
@@ -128,7 +135,7 @@ worldを観察しない明示barrierは`connection.flush`とする。
 | `player.setPos` | `[world, x, y, z]` | あり | paired player を指定 world の stream origin 相対位置へ teleport する（b2 準核） |
 | `player.getPose` | `[]` | あり | paired player の現在 world・位置・向き（yaw/pitch）を stream origin 相対で返す（b4 実装予定、§5.3） |
 | `player.setPose` | `[world, x, y, z, yaw, pitch]` | あり | paired player を指定 world の stream origin 相対位置・向きへ1回の teleport で一体反映する（b4 実装予定、§5.3） |
-| `events.poll` | `[after_sequence, limit]`（b6でfilter追加） | あり | epoch-scoped event ringを非破壊取得（b5、§5.4） |
+| `events.poll` | `[after_sequence]`／`[after_sequence, {max_events}]`（b6で同optionsへfilter追加） | あり | epoch-scoped event ringを非破壊取得（b5、§5.4） |
 | `events.clear` | b6 fixtureで固定 | あり | 呼出時点までのretained eventを明示破棄（b6、§5.4） |
 | `world.getHeight` | `[x, z]`または`[x, z, max_y]` | あり | origin相対の最上面block高を返す（b5、§5.6） |
 | `world.spawnParticle` | `[x, y, z, offset_x, offset_y, offset_z, particle, speed, count, (force)]` | あり | 9／10 params、`force`省略時`true`。b5はdata不要particleのみ（§5.7） |
@@ -235,14 +242,20 @@ connection epochのringへimmutable DTOとして複製する。epochごとにrin
 別sessionのpollでeventを失わせない。sequenceはepoch内で1から単調増加し、disconnect／reconnectで
 ringとともに破棄する。reconnect replayは行わない。
 
-`events.poll [after_sequence, limit]`は非破壊pollである。response喪失時は同じcursorで再取得でき、
-clientはresponseを正常受理した後だけ`through_sequence`までcursorを進める。
+`events.poll`は`[after_sequence]`または`[after_sequence,{"max_events":N}]`の非破壊pollである。
+`max_events`は正integerのclient希望上限で、省略時はserver既定を使い、指定時はclient値とserver上限の
+小さい方を適用する。server上限を超える希望値をerrorにせず、未知option、0、負数、非integerは
+`invalid_params`とする。件数上限より先にbyte上限へ達した場合は、収まるeventまでを返す。
+response喪失時は同じcursorで再取得でき、clientはresponseを正常受理した後だけ`through_sequence`まで
+cursorを進める。b6のfilterは同じoptions objectを精密化し、b5 clientへ別のpoll methodを作らない。
 
 - `after_sequence`がretained oldestより古い: lossを伴う有効なpoll。残っている先頭から返す。
 - `after_sequence`がlatestと同じ: 空の有効response。
 - `after_sequence`がlatestより大きい: `invalid_params`。
 - ring overflow: 最古eventから退去させる。沈黙したlossにしない。
-- compact JSON-RPC response: 最大61,440 bytes。WireScopeの64 KiB frame admissionへ余裕を残す。
+- compact JSON-RPC response: 最大61,440 bytes（60 KiB）。WireScopeの64 KiB encoded frame admissionへ
+  4,096 bytesの余裕を残す。b5では最大合法responseをobserver schema v1.1／session envelopeまで投影し、
+  UTF-8 encoded frameが65,536 bytes以下となることをescape量の多い文字列を含むfixtureで確認する。
 
 responseは`events`、`through_sequence`、`latest_sequence`、`filtered_out`と、epoch内で単調増加する
 `overflow_dropped_total`、`capacity_dropped_total`、`explicitly_discarded_total`を持つ。

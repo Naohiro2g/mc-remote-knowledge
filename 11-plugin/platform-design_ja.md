@@ -379,7 +379,9 @@ b3 の横断スコープは credential lifecycle の完了を待たずに閉じ�
 b5は、イベントを受けて調べ、生成・操作するAPIを支える大規模な共通基盤を閉じる段である
 （DECISIONS `2026-08-16-04`〜`07`）。構造化block valueによる破壊的変更を境界として、b5から
 protocolを`22.0.0`へ上げる（`2026-08-19-02`）。b6はこの基盤上の中規模API追加に限定し、別のidentity、
-transport、queueを作らない。
+transport、queueを作らない。b5 GREENは有限な暫定runtime policyと境界fixtureを要求するが、授業相当負荷に
+対するcapacityの本較正とfull soakはb6 API実装後に一組で行う（`2026-08-21-02`）。暫定値を無制限や
+未設定の代用にせず、candidate lock／evidenceへexact値を記録する。
 
 ### 10.1 Event captureとepoch別ring
 
@@ -394,8 +396,11 @@ Bukkit Event objectをsession寿命へ持ち越さず、listener実行中にimmu
 - event DTOに発生時点のworld／originをcaptureし、後続のbuild state変更で書き換えない。
 - right-clickのmain／off-hand二重発火は相関判定して1件へ正規化する。
 
-ring件数、総byte、poll limitのexact値はunit／load／live試験で較正するruntime policyであり、本節から
-推測しない。compact JSON-RPC responseの61,440 bytes上限はwire contractとして先に適用する。
+ring件数、総byte、server poll既定／上限のexact値はruntime policyである。b5 candidateは有限な暫定値を
+unit／境界fixtureと短いsmokeで固定し、b6 API実装後にload／live試験で本較正する。`events.poll`の
+`max_events`はclient希望上限であり、server上限を拡張しない。compact JSON-RPC responseの61,440 bytes
+上限はwire contractとして先に適用し、observer schema v1.1／session envelopeへ通したencoded frameが
+64 KiBを越えないことをb5 fixtureで確認する。
 
 ### 10.2 Entity handle registry
 
@@ -403,7 +408,8 @@ registryはconnection epochごとに`mceh_` handleとentityの対応を保持し
 handleを返す。handleはUUIDや認可情報を符号化せず、操作ごとにepoch ownershipとpermissionを再検証する。
 playerはregistryへ収容しない。
 
-spawnではworld変更前にhandle slot、permission、chunk／work admissionを一括確認する。slotを予約できない
+spawnではworld変更前にhandle slot、permission、chunk／work admissionを一括確認する。epoch別handle capは
+有限なruntime policyとし、b5 candidateで暫定値と上限fixtureを固定して、b6 API実装後に本較正する。slotを予約できない
 場合は`entity_capacity_exhausted`で終了し、副作用を起こさない。spawn失敗時は予約を解放する。
 disconnect／reconnect、remove成功、外部world移動でhandleを失効させる。成功した`entity.setPose`による
 world移動ではissued worldを更新する。
@@ -446,7 +452,8 @@ protocol 22／b5では、一つのconnectionで受理したcommandをboundedか�
 main threadで同じ順序に処理する。client APIの呼出開始時刻でなく、このFIFOへの登録順を受理順とする。
 一時的backpressureで先頭commandを延期しても、後続`connection.flush`が追い越してはならない。queue飽和時に
 notificationだけを黙って捨てず、保持不能ならconnectionを失敗させて後続flushも失敗させる。exact容量は実測と
-fixtureで固定する。
+fixtureで固定する。b5はfiniteであること、境界時の無言drop／追越し不在、candidateの暫定値を閉じ、最適容量の
+load較正はb6 API実装後に行う。
 
 `connection.flush`はauthenticated hello後、integer id、exact `params: []`のrequestとして受理する。
 build origin／construction permissionは不要で、work budgetを消費しない。同じconnection epochで先に登録された

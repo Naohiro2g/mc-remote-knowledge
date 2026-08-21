@@ -7,7 +7,21 @@ plugin APIについて、何をどのtest classで
 wire contractは[wire-format-design](../10-protocol/wire-format-design_ja.md)を正とします。
 
 build execution modeのplugin／Python／Scratch／WireScope検収と横断evidenceはb5 completion gateであり、
-一部surfaceの合格だけからb5全体GREENを推測しません（`2026-08-20-04`）。
+一部surfaceの合格だけからb5全体GREENを推測しません（`2026-08-20-04`）。一方、full load／soakと
+capacityの最終較正、Scratch browser保存はb5 completion gateへ含めません（`2026-08-21-02`）。
+
+### b5 GREENの最小横断gate
+
+b5は次を一組で閉じます。
+
+- queue／ring／poll／handle／particle／work／timeoutへ有限な暫定値を置き、値と境界挙動をcandidateへ固定する。
+- 3種event、block query、height／spawn、DEBUG／TRACE／FAST、`connection.flush`をplugin fixtureへ適合させる。
+- Python／Scratch／WireScope v1.1を同じfixtureへ適合させ、clean artifactを生成する。
+- 実pluginの短いevent／block／spawn／mode smokeとreal-browser WireScope E2Eを通す。
+- 無制限queue、無言drop、partial side effect、synthetic responseが無いことを確認する。
+
+最適capacity、授業相当load、長時間soakはb6 API実装後の本較正で扱います。b5で採った暫定値は
+protocol不変定数や最終運用値と主張しません。
 
 ## 1. Unit／deterministic
 
@@ -23,8 +37,11 @@ build execution modeのplugin／Python／Scratch／WireScope検収と横断evide
 - Pythonの`block_id`／`state` APIと`BlockValue`、Scratchの一回取得snapshot／accessor、
   sprite-local保存、共有last-block不在、clone／disconnect lifecycle。
 - paired playerの全active epochへ複製し、ring／sequence／cursorがepoch間で独立する。
-- stale／latest／future cursor、非破壊poll、overflow／capacity／clearの累積値。
-- compact responseが61,440 bytesを越えない。
+- stale／latest／future cursor、非破壊poll、overflow／capacityの累積値。b5のclear／filtered値は0、
+  b6でfilter／clearを追加する。
+- `events.poll`の省略／`max_events`希望上限、server上限、未知option拒否。
+- compact responseが61,440 bytesを越えず、schema v1.1／session envelope投影後のsingle encoded frameが
+  65,536 bytesを越えない。
 - right-clickのmain／off-hand正規化fixture。
 - handleのformat、同epoch同entityの同値、foreign／unknown同値化、disconnect失効、slot予約。
 - `world.getHeight`のmax_y inclusive、world上端、空列、多層、origin相対、work admission。
@@ -38,8 +55,8 @@ build execution modeのplugin／Python／Scratch／WireScope検収と横断evide
   accepted count result。
 - `world.spawnEntity`の座標先行4 params、旧順序拒否、unknownでCOW等を生成しないこと、player／
   spawn不能type、capacity拒否時の副作用不在、epoch-scoped handle、結果不明時retry禁止。
-- nearbyのbounded scan／player除外／partial handle禁止、remove失効。
-- signの4行／面／state検証とrollback、typed particleの有限schema。
+- b6のnearbyに対するbounded scan／player除外／partial handle禁止、remove失効。
+- b6 signの4行／面／state検証とrollback、typed particleの有限schema。
 - Python cursor／retry／handle投影、Scratch thread-local event context／monitor guard。
 - WireScope schema v1.1 validatorとartifact compatibility set。
 - bounded thread-safe connection FIFO、notificationの無言drop禁止、backpressure中の順序維持。
@@ -47,6 +64,8 @@ build execution modeのplugin／Python／Scratch／WireScope検収と横断evide
   flushが個別成功を集約しないこと。
 - PythonのDEBUG／TRACE／FAST、全modeのsetter `None`、mode transition fence、自動flush／明示flush。
 - Scratchの保存されるmode block、main stream共有、並行script登録順、thread-local TRACE delay、tab close非保証。
+- TRACE delayの`0`／`0.25`／`2.0`受理、範囲外拒否とclamp不在、Pythonの本体例外優先、
+  WireScopeの`sent-unconfirmed` exact表示。
 
 ## 2. Live-auto
 
@@ -55,11 +74,11 @@ build execution modeのplugin／Python／Scratch／WireScope検収と横断evide
 1. 2 playerでeventが相互混入しない。
 2. 同一playerの2 active connection epochが同じeventをそれぞれpollできる。
 3. response喪失後に同cursorで再取得し、副作用を再実行しない。
-4. ring overflow／capacity拒否／clearのcounterとsequence gapが一致する。
+4. ring overflow／capacity拒否のcounterとsequence gapが一致する。filter／clearはb6試験で追加する。
 5. disconnect／reconnectで旧cursorとhandleが使えない。
 6. event後にbuild world／originを変更してもDTOが変わらず、clientの不一致guardが作動する。
-7. entityのremove、unload、外部world移動、`entity.setPose` world移動を実Paper挙動と照合する。
-8. spawn、particle、height、nearby、signをwork limit境界の内外で確認する。spawn系はfractionalな
+7. b5ではentityのunload／外部world移動を確認し、b6でremove／`entity.setPose` world移動を実Paper挙動と照合する。
+8. b5ではspawn、particle、heightをwork limit境界の内外で確認し、b6でnearby／signを追加する。spawn系はfractionalな
    origin相対座標を事前roundせず、座標先行paramsでplugin／Python／Scratch／WireScopeが一致すること、
    particleのforce省略時`true`と未知entityの副作用不在も確認する。
 9. WireScopeへScratch／Pythonの両sourceを順に接続し、b5 method／result／error／lossを同じUIで確認する。
@@ -87,12 +106,14 @@ build execution modeのplugin／Python／Scratch／WireScope検収と横断evide
 - StateTextのcatalog型解決、表現不能token拒否、BlockInfoText、`⟦mcr-error:<reason>⟧`の
   exact grammar／remote reason allowlist、PickerのID／state原子的Undoを確認する。
 - Scratchのmode blockが`.sb3`へ保存され、読込だけでは適用されず、実行後にmain stream全体へ作用する。
-- TRACEが成功後に呼出元threadだけを待たせ、FASTがsent／unconfirmed、明示flushがbarrierとして見える。
+- TRACEが成功後に呼出元threadだけを待たせ、FASTがmachine token `sent-unconfirmed`、
+  日本語「送信済み・結果未確認」、英語`Sent · unconfirmed`として見え、明示flushがbarrierとして見える。
 - Python／Scratch両sourceのnotificationと`connection.flush`をWireScopeが区別し、synthetic resultを作らない。
 
 ## 4. Evidenceの着地条件
 
 正式recordには、knowledge contract commit、plugin／Python／Scratch／WireScopeの固定SHA、artifact identity、
 test class、実行範囲、PASS／FAIL、未検証範囲を記載します。token、pair code、UUID、private host等のraw値は
-公開せず、主張のスコープを実行したcaseから越えません。exact capacity値は試験結果と採用理由を伴う
-implementation contractとして着地し、横断決定を無根拠に書き換えません。
+公開せず、主張のスコープを実行したcaseから越えません。b5の暫定capacity値は境界fixtureと短いsmokeの
+採用理由を伴うimplementation contractとして着地し、b6 API実装後の本較正では全methodを載せた実環境の
+load／soak結果と更新理由を別recordへ残します。runtime policyの更新を横断version contractの変更と混同しません。

@@ -206,14 +206,15 @@ mode blockはmodeとTRACE delayを検証し、connection送信sequencerへ一つ
 actionable errorを出す。各setは登録時点のmodeとdelayを保持する。別scriptとの境界はVMの実行開始時刻でなく
 connection送信列への登録順とし、flushとlocal mode更新の間へsetを割り込ませない。
 
-TRACE delayは`0`以上の有限numberとし、不正値を`0`へ丸めない。TRACEのset成功response後に、そのset blockを
+TRACE delayは有限な`0`〜`2.0`秒（両端を含む）とし、範囲外を`0`や境界値へ丸めない。TRACEのset成功response後に、そのset blockを
 実行したScratch threadだけを待たせる。connection全体や別scriptは止めず、`setBlocks`一回につき一回だけ待つ。
 error時は待たず、後のmode変更で成立済みのdelayを取り消さない。DEBUG／FASTでも入力欄と値は維持するが使用しない。
-runtime固有の最大値は実装fixtureで固定する。
 
 DEBUGはrequest responseを待ち、TRACEはresponseと成功後delayを待つ。FASTはnotificationを登録後、通常は呼出元を
 継続し、transport逼迫時だけfinite bufferのbackpressureを受ける。FASTのserver-side成功／errorを捏造せず、
-WireScopeではsent／unconfirmedとして扱う。StateText／catalog等のlocal validation errorはmodeにかかわらず表示する。
+WireScopeではmachine token `sent-unconfirmed`、日本語「送信済み・結果未確認」、英語`Sent · unconfirmed`として
+扱う。これはid欠落とresponse不在から導出し、mode名／delayをobserver schemaへ追加しない。
+StateText／catalog等のlocal validation errorはmodeにかかわらず表示する。
 
 FASTの明示barrierとして、`connection.flush`へ対応する次のcommand blockを設ける。
 
@@ -221,7 +222,8 @@ FASTの明示barrierとして、`connection.flush`へ対応する次のcommand b
 送ったブロック設置が終わるまで待つ
 ```
 
-flush失敗はactionable errorとする。明示的な切断等、responseを待てる終了経路はflushできるが、tab close、reload、
+flush失敗はactionable errorとする。通常のconnection request timeoutを共用し、timeout時は先行処理の成否を
+確定せず、同じ建築操作を自動retryしない。明示的な切断等、responseを待てる終了経路はflushできるが、tab close、reload、
 navigationで完了を保証しない。接続panelは現在のmode／delayを表示できるが、b5では第二の変更面にしない。
 
 ## 9. protocol 21との関係
