@@ -43,11 +43,16 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - gate coordinator: knowledge担当session。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
 - current phase: component candidate準備／通常dev環境の設計準備
-- contract: 技術scopeはDECISIONS `2026-08-21-01`／`2026-08-21-02`およびknowledge `f50ebb13f00facfc2e73163a24f002f4c8b77d43`、進行責任は`2026-08-21-03`／`2026-08-21-04`
+- contract: 技術scopeはDECISIONS `2026-08-21-01`／`2026-08-21-02`およびknowledge `f50ebb13f00facfc2e73163a24f002f4c8b77d43`、進行責任は`2026-08-21-03`／`2026-08-21-04`およびknowledge `575ce310048525f38e11815c8a38d01658b843b3`
 - exact compatibility set / freeze status: **未凍結**。各componentのpush済みcandidateとcommon artifactの収束待ち
+- component readiness:
+  - McRemote: **決定論的candidate準備済み**。`main@6214a6a5efe5180c1cd0f374089736908b07ee34`、JAR SHA-256 `f293e63a77f178bc8d3cba8276e95124f2ee6b3eca77c15867a6fc5e5f166531`、85 tests PASS。GitHub remote main一致と変更範囲をknowledge coordinatorが再確認済み。live未実施
+  - Scratch: event sliceとcommon WireScope artifact待ち
+  - Python: Scratch common artifact受領後の再固定待ち
+- input correction: McRemote作業票のknowledge SHA `f50ebb17…`は存在せず、実在する`f50ebb13f00facfc2e73163a24f002f4c8b77d43`を参照。契約差分なし
 - target deployment / profile / lock: 通常dev環境。exact deployment／profile／lockはStack確認後に固定。ケータリング型は本gate対象外
 - authorized next action:
-  - McRemote: `events.poll` options、有限response queue、完全response境界fixtureを決定論的に完了し、push済みJAR identityを返す
+  - McRemote: candidateを変更せず待機する。追加のhuman／Stack／実server試験を開始しない
   - Scratch: event poller／3種hat／thread-local contextとcommon WireScope artifactを決定論的に完了し、push済みidentityを返す
   - Python: Scratch common artifact受領後に同梱artifactを再固定し、push済みwheel／sdist identityを返す
   - Stack／backstage: 通常dev環境のinventory、profile再利用可否、order／lock、preflight／doctor経路を準備する。candidate deployはまだ行わない
