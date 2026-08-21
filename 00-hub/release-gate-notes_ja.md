@@ -47,16 +47,17 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - exact compatibility set / freeze status: **未凍結**。各componentのpush済みcandidateとcommon artifactの収束待ち
 - landing verification: `2026-08-21-03`／`2026-08-21-04`の責務契約はMcRemote、Python、Scratch、Stack、backstageの全担当で一致。Pythonの下記schema差分は責務契約の着地差分でなくb5 component実装差分
 - component readiness:
-  - McRemote: **決定論的source candidate準備済み**。`main@6214a6a5efe5180c1cd0f374089736908b07ee34`、JAR SHA-256 `f293e63a77f178bc8d3cba8276e95124f2ee6b3eca77c15867a6fc5e5f166531`、85 tests PASS。GitHub remote main一致と変更範囲をknowledge coordinatorが再確認済み。Stackが取得できるartifact identity／経路はexact set凍結前に固定する。live未実施
-  - Scratch: local `4c97a4d4db28a39c5b4379416a01f29bc3e3958d`、clean、未push。event sliceとtop-level `schema_version: 1`を維持するcommon WireScope artifact待ち
-  - Python: local `7231418dc595d42ae0af841c8761e853046972dd`、clean、未push。observer top-levelを誤って`1.1`とする実装差分あり。`schema_version: 1`へ修正し、Scratch common artifact受領後に再固定する
+  - McRemote: **決定論的source candidate準備済み**。`main@6214a6a5efe5180c1cd0f374089736908b07ee34`、JAR SHA-256 `f293e63a77f178bc8d3cba8276e95124f2ee6b3eca77c15867a6fc5e5f166531`、85 tests PASS。GitHub remote main一致と変更範囲をknowledge coordinatorが再確認済み。対象JARにはCI artifact、package、content-addressed store、b5 tag／release asset等のimmutable取得経路がなく、local `build/libs`だけではexact setへ採用しない。releaseを先行作成せず、Stackのreview済みimport経路を準備して同一bytesを固定する。live未実施
+  - Scratch: event sliceとtop-level `schema_version: 1`を維持するcommon WireScope artifactをbuild中。push済みsource、ZIP／detached manifest、inventory、決定論的testの最終返却待ち
+  - Python: schema修正第1段階をlocal `a831aa1f9bc6c50ddf1bff9974b7c0cefe51cd58`で完了。top-level `schema_version: 1`とcompatibility revision `v1.1`を分離し、215 tests PASS、clean、未push。Scratch common artifact受領前なのでexact candidateとはみなさない
 - input correction: McRemote作業票のknowledge SHA `f50ebb17…`は存在せず、実在する`f50ebb13f00facfc2e73163a24f002f4c8b77d43`を参照。契約差分なし
-- target deployment / profile / lock: 通常dev環境。exact deployment／profile／lockはStack確認後に固定。ケータリング型は本gate対象外
+- target deployment / profile / lock: 通常dev環境`dev-integration`／`home-server@5`候補／lock未生成。physical hostはbackstageの`m720s2`候補、channel=`dev`、exposure=`lan-only`、purpose=`integration`、server port候補はJava `25566`／McRemote `25576`。公開Stack draft PR `#26`（`8c852047ced629f940263e3b3573e4f947881e19`）とbackstage draft PR `#3`（`1a1e105f4e3482b373a9f2215736995e7cb3e146`）で準備済み。既存`25565`／`25575` runtimeの管理主体、LAN到達性、firewallは未確認。order／lock、bootstrap contract、artifact配置、candidate deployは未実施。ケータリング型は本gate対象外
 - authorized next action:
-  - McRemote: source candidateを変更せず待機する。exact set凍結前に、Stackから取得できるJAR identity／経路の照会へ回答する。追加のhuman／Stack／実server試験を開始しない
-  - Scratch: event poller／3種hat／thread-local contextと、observer top-level `schema_version: 1`を維持するcommon WireScope artifactを決定論的に完了し、push済みidentityを返す
-  - Python: top-level schemaを`1`へ修正する局所作業を進める。Scratch common artifact受領後に同梱artifactを再固定し、全決定論的test／build後のpush済みsource／wheel／sdist identityを返す
-  - Stack／backstage: 別repo・別branch／PRで、通常dev環境のinventory、profile再利用可否、order／lock、preflight／doctor経路を準備する。物理hostへGUI／Minecraft clientを常設する前提やケータリングscopeを加えず、candidate deployはまだ行わない
+  - McRemote: source candidateとJAR bytesを変更せず待機する。tag／release／assetを作成せず、Stackのreview済みimport経路が確定した後にclean sourceと既知digestの照合へ協力する。追加のbuild、human／Stack／実server試験を開始しない
+  - Scratch: buildを完了し、event poller／3種hat／thread-local context、top-level `schema_version: 1`、common WireScope ZIP／detached manifestを同一candidateへ固定する。全決定論的test後、push済みsource、artifact bytes／SHA-256／inventory、残差分を返す。deploy／liveを開始しない
+  - Python: 第1段階commitを変更せずScratch artifact待ちとする。受領後に同梱artifactを再固定し、全決定論的test、wheel／sdist build、metadata／RECORD／license検査後のpush済みsource／artifact identityを返す。それまではpush済みexact candidateを主張しない
+  - Stack: draft PR `#26`を公開reviewへ回し、指摘反映後にrepoの通常手順でmerge可能な状態へする。期限付きCI artifactやrelease先行作成に依存しない、content-addressed storeへの最小のreview済みimport経路を設計・実装・決定論的testする。exact preset／bootstrap contractの入力枠を準備するが、実order／lock生成、host install、artifact import、render／apply／doctor、candidate deployはまだ行わない
+  - backstage: draft PR `#3`をprivate reviewへ回し、secret／private addressを公開repoへ移さずrepoの通常手順でmerge可能な状態へする。既存`25565`／`25575` runtimeの管理主体、候補port、LAN／firewall到達性は人間確認項目として保持し、停止・変更しない。hostへのinstallはまだ行わない
 - live-auto / live-human: **未許可**。exact set凍結とenvironment readiness確認後にcoordinatorが統一実施票を発行する
 - non-claim: component GREEN、b5横断GREEN、通常dev環境完成、release承認をまだ主張しない
 
