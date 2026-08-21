@@ -45,17 +45,18 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - current phase: component candidate準備／通常dev環境の設計準備
 - contract: 技術scopeはDECISIONS `2026-08-21-01`／`2026-08-21-02`およびknowledge `f50ebb13f00facfc2e73163a24f002f4c8b77d43`、進行責任は`2026-08-21-03`／`2026-08-21-04`およびknowledge `575ce310048525f38e11815c8a38d01658b843b3`
 - exact compatibility set / freeze status: **未凍結**。各componentのpush済みcandidateとcommon artifactの収束待ち
+- landing verification: `2026-08-21-03`／`2026-08-21-04`の責務契約はMcRemote、Python、Scratch、Stack、backstageの全担当で一致。Pythonの下記schema差分は責務契約の着地差分でなくb5 component実装差分
 - component readiness:
-  - McRemote: **決定論的candidate準備済み**。`main@6214a6a5efe5180c1cd0f374089736908b07ee34`、JAR SHA-256 `f293e63a77f178bc8d3cba8276e95124f2ee6b3eca77c15867a6fc5e5f166531`、85 tests PASS。GitHub remote main一致と変更範囲をknowledge coordinatorが再確認済み。live未実施
-  - Scratch: event sliceとcommon WireScope artifact待ち
-  - Python: Scratch common artifact受領後の再固定待ち
+  - McRemote: **決定論的source candidate準備済み**。`main@6214a6a5efe5180c1cd0f374089736908b07ee34`、JAR SHA-256 `f293e63a77f178bc8d3cba8276e95124f2ee6b3eca77c15867a6fc5e5f166531`、85 tests PASS。GitHub remote main一致と変更範囲をknowledge coordinatorが再確認済み。Stackが取得できるartifact identity／経路はexact set凍結前に固定する。live未実施
+  - Scratch: local `4c97a4d4db28a39c5b4379416a01f29bc3e3958d`、clean、未push。event sliceとtop-level `schema_version: 1`を維持するcommon WireScope artifact待ち
+  - Python: local `7231418dc595d42ae0af841c8761e853046972dd`、clean、未push。observer top-levelを誤って`1.1`とする実装差分あり。`schema_version: 1`へ修正し、Scratch common artifact受領後に再固定する
 - input correction: McRemote作業票のknowledge SHA `f50ebb17…`は存在せず、実在する`f50ebb13f00facfc2e73163a24f002f4c8b77d43`を参照。契約差分なし
 - target deployment / profile / lock: 通常dev環境。exact deployment／profile／lockはStack確認後に固定。ケータリング型は本gate対象外
 - authorized next action:
-  - McRemote: candidateを変更せず待機する。追加のhuman／Stack／実server試験を開始しない
-  - Scratch: event poller／3種hat／thread-local contextとcommon WireScope artifactを決定論的に完了し、push済みidentityを返す
-  - Python: Scratch common artifact受領後に同梱artifactを再固定し、push済みwheel／sdist identityを返す
-  - Stack／backstage: 通常dev環境のinventory、profile再利用可否、order／lock、preflight／doctor経路を準備する。candidate deployはまだ行わない
+  - McRemote: source candidateを変更せず待機する。exact set凍結前に、Stackから取得できるJAR identity／経路の照会へ回答する。追加のhuman／Stack／実server試験を開始しない
+  - Scratch: event poller／3種hat／thread-local contextと、observer top-level `schema_version: 1`を維持するcommon WireScope artifactを決定論的に完了し、push済みidentityを返す
+  - Python: top-level schemaを`1`へ修正する局所作業を進める。Scratch common artifact受領後に同梱artifactを再固定し、全決定論的test／build後のpush済みsource／wheel／sdist identityを返す
+  - Stack／backstage: 別repo・別branch／PRで、通常dev環境のinventory、profile再利用可否、order／lock、preflight／doctor経路を準備する。物理hostへGUI／Minecraft clientを常設する前提やケータリングscopeを加えず、candidate deployはまだ行わない
 - live-auto / live-human: **未許可**。exact set凍結とenvironment readiness確認後にcoordinatorが統一実施票を発行する
 - non-claim: component GREEN、b5横断GREEN、通常dev環境完成、release承認をまだ主張しない
 
