@@ -61,6 +61,11 @@ private inventoryとprivate evidenceはbackstage、秘密実値を含むrawはGi
 一つのStack担当がStackとbackstageを一続きで扱える。ただし両repoのcommit／PRを分け、backstageの
 実値をStackへ複製しない。管理者権限や対話認証が必要な操作は人間の実行境界として明示する。
 
+backstageの管理下へ置いた物理hostでは、稼働service、listen port、所有者、用途、期待状態をprivate
+inventoryで把握する。所有者または用途を説明できないservice／listenerは通常状態として受容せず、変更や
+candidate deployの前に停止または正当なmanaged stateへ写像する。完全なprivate実値を公開Stackへ複製する
+ことは要求せず、公開側にはpreflight可能なdesired stateと不整合の有無だけを投影する。
+
 ## 4. 横断release gateは一人が進行する
 
 各横断release gateには、人間が一人のgate coordinatorを指定する。指定が無い場合の既定は、当該gateを
