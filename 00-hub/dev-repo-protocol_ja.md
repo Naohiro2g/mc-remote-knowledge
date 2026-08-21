@@ -125,9 +125,16 @@ Claude Code は `AGENTS.md` を自動では読まないため、各開発リポ�
 ```
 
 - リリース前確認を求められたら、knowledge リポ `00-hub/release-gate-notes_ja.md` の確認票フォーマットに従う。
-  repo 側 agent は事実と根拠だけを書き、b1 適合の最終判定をしない。`knowledge repo b1定義.path` と
-  `knowledge repo b1定義.commit` は必ず埋める。commit は確認票作成時に実際に読んだ knowledge repo の
-  commit SHA とする。未記入の票は仮記入扱い。
+  repo 側 agent は事実と根拠だけを書き、componentまたは横断gateの最終判定をしない。`knowledge contract path` と
+  `knowledge contract commit` は必ず埋める。commit は確認票作成時に実際に読んだ knowledge repo のcommit SHAとする。
+  未記入の票は仮記入扱い。
+
+- 横断release gateでは、`release-gate-notes_ja.md`に記録された一人のgate coordinatorだけが、repo間の依存順、
+  exact compatibility set、shared環境へのcandidate deploy、人間参加試験、横断`GREEN`／`HOLD`／`RED`を進行する。
+  repo側agentは自repoの実装・決定論的test・push済みartifact・差分報告を進められるが、他repoへ着手を命じず、
+  shared環境を変更せず、人間参加試験を開始しない。Stack／backstage担当も、一般的なhost preflightを除き、
+  candidate deployはcoordinatorがexact setと`authorized next action`を示してから行う。coordinatorまたは許可済みの
+  次操作が不明な場合は、推測で進めず事実を返して停止する（DECISIONS `2026-08-21-04`）。
 
 - テスト証跡は再現コストで3階級に分ける（DECISIONS `2026-07-06-03`）。`unit/deterministic` はテストコード＋PASS
   コマンド＋commit を証跡とし、JSON 保存を必須にしない。`live-auto` は実サーバ相手だが人間操作なしの smoke で、

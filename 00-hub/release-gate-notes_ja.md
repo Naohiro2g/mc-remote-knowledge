@@ -1,8 +1,12 @@
 # Release gate notes — public baseline
 
-> 新 public 正本世代の空テンプレート。旧世代の release 固有履歴は carry しない。
+> 新public正本世代の単一template／状態集約。旧世代のrelease固有履歴はcarryしない。
 
-release 判定は、実装 repo 側が事実と根拠を記入し、knowledge 側が contract と照合します。秘密実値、private inventory、未 sanitized raw log はここへ貼りません。
+release判定は、実装repo側が事実と根拠を記入し、単一のgate coordinatorがknowledge側で
+contractと照合します。shared環境へのcandidate deployと人間参加試験は、coordinatorがexact setと
+許可済みの次操作を示した後に行います。責務と正準進行は
+[release運用と責務分担](release-operations-responsibility-design_ja.md)を参照します。
+秘密実値、private inventory、未sanitized raw logはここへ貼りません。
 
 ## 確認票
 
@@ -12,8 +16,14 @@ release 判定は、実装 repo 側が事実と根拠を記入し、knowledge �
 - 対象 repo:
 - 対象 branch/commit:
 - release / channel:
+- gate coordinator:
+- human release owner:
+- current phase:
 - knowledge contract path:
 - knowledge contract commit:
+- exact compatibility set / freeze status:
+- target deployment / profile / lock:
+- authorized next action:
 - test class: unit/deterministic / live-auto / live-human
 - 実行した command / 手順:
 - 結果:
@@ -24,6 +34,25 @@ release 判定は、実装 repo 側が事実と根拠を記入し、knowledge �
 ```
 
 `live-human` や高い再現コストを持つ検証は `14-evidence/` の sanitized record を参照します。private evidence は `mc-remote-backstage`、秘密を含む raw は Git 外です（`2026-07-06-03` / `2026-07-21-04`）。
+
+repo担当は自repoの事実と根拠を返し、他repoの着手、shared環境へのdeploy、人間参加試験、横断判定を
+開始しません。candidate identityが変わった場合は旧exact setを失効させ、gate coordinatorへ戻します。
+
+## 2026-08-21 b5横断release gate（進行中）
+
+- gate coordinator: knowledge担当session。人間による明示handoffなしに他担当へ移さない
+- human release owner: プロジェクトオーナー
+- current phase: component candidate準備／通常dev環境の設計準備
+- contract: 技術scopeはDECISIONS `2026-08-21-01`／`2026-08-21-02`およびknowledge `f50ebb13f00facfc2e73163a24f002f4c8b77d43`、進行責任は`2026-08-21-03`／`2026-08-21-04`
+- exact compatibility set / freeze status: **未凍結**。各componentのpush済みcandidateとcommon artifactの収束待ち
+- target deployment / profile / lock: 通常dev環境。exact deployment／profile／lockはStack確認後に固定。ケータリング型は本gate対象外
+- authorized next action:
+  - McRemote: `events.poll` options、有限response queue、完全response境界fixtureを決定論的に完了し、push済みJAR identityを返す
+  - Scratch: event poller／3種hat／thread-local contextとcommon WireScope artifactを決定論的に完了し、push済みidentityを返す
+  - Python: Scratch common artifact受領後に同梱artifactを再固定し、push済みwheel／sdist identityを返す
+  - Stack／backstage: 通常dev環境のinventory、profile再利用可否、order／lock、preflight／doctor経路を準備する。candidate deployはまだ行わない
+- live-auto / live-human: **未許可**。exact set凍結とenvironment readiness確認後にcoordinatorが統一実施票を発行する
+- non-claim: component GREEN、b5横断GREEN、通常dev環境完成、release承認をまだ主張しない
 
 ## 2026-08-07 Scratch editor `2100.0.0b3`
 

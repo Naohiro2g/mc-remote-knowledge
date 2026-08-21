@@ -12,7 +12,8 @@
 - [claude-ai-guide_ja.md](claude-ai-guide_ja.md) — claude.ai / repository 間の session loop
 - [claude-ai-instructions_ja.md](claude-ai-instructions_ja.md) — claude.ai instructions の貼り付け用本文
 - [llm-agent-boundary-guide_ja.md](llm-agent-boundary-guide_ja.md) — 権限・実行能力・検証能力の境界
-- [release-gate-notes_ja.md](release-gate-notes_ja.md) — 公開 release gate の空テンプレート
+- [release-operations-responsibility-design_ja.md](release-operations-responsibility-design_ja.md) — runbook、machine、deployment、横断release gateの責務分担
+- [release-gate-notes_ja.md](release-gate-notes_ja.md) — 公開release gateの確認票と進行状態
 - [terms-glossary_ja.md](terms-glossary_ja.md) — drift しやすい横断語彙の正典
 
 private ops は `mc-remote-backstage`、公開 server runbook は `mc-remote-stack` に置き、本リポへ複製しません。

@@ -16,7 +16,8 @@ public 正本世代の入口です。ここに載る path は、このリポ内�
 | `00-hub/claude-ai-guide_ja.md` | session loop と surface 間の着地方法 |
 | `00-hub/claude-ai-instructions_ja.md` | claude.ai instructions |
 | `00-hub/llm-agent-boundary-guide_ja.md` | agent の権限・実行・検証境界 |
-| `00-hub/release-gate-notes_ja.md` | 新世代で使う空の release gate template |
+| `00-hub/release-operations-responsibility-design_ja.md` | 公開runbook、物理host、deployment、component担当、gate coordinator、人間release ownerの責務と横断release gateの正準進行 |
+| `00-hub/release-gate-notes_ja.md` | 公開release gateの確認票、coordinator、phase、exact set、許可済み次操作の状態集約 |
 | `00-hub/terms-glossary_ja.md` | 横断語彙 |
 | `00-hub/external-facts_ja.md` | 決定が `F-<topic>` で参照する外部事実の生きた台帳（調査日・状態・次回確認を更新する） |
 | `00-hub/domain-knowledge-modules-design_ja.md` | 起案。領域知識を domain knowledge module として分離する方式（`2026-07-02-01` の起案正本） |

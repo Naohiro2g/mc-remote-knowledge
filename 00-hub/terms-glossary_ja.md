@@ -66,6 +66,19 @@ roleはdeploymentごとに同じprocessへ融合または複数processへ分離�
 | in-process station | source processがstation roleを同一process内で兼任する梱包 | station roleそのもの、全Python profile、cross-process relayと同一視しない |
 | compatibility set | app artifact、runtime、schema、session／attach／ingress protocol、profile等を互換な一組としてlock・検証する単位 | 各componentを常に同時deployするという意味ではなく、変更後も完全なsetを検証する |
 
+## Release運用の役割
+
+release運用では、物理host、deployment、実装、進行、最終批准を一つの「担当」へ潰さない
+（`2026-08-21-03`／`2026-08-21-04`）。一人が複数roleを兼ねても正本と判定境界は維持する。
+
+| 正典表記 | 技術的な意味 | ドリフト注意 |
+| --- | --- | --- |
+| 物理host | 実在するmachineと、backstageで管理するinventory／SSH aliasのidentity | deployment、environment、profile、channelをhost名から推測しない |
+| component担当 | 一つの開発repoで実装、決定論的test、push済みcandidate、artifact、事実票を所有するrole | 他repoの着手、shared環境deploy、横断GREENを所有しない |
+| deployment担当 | Stackのprofile／order／lock、artifact取得、apply、doctor、deployment evidenceを所有するrole | component候補やproduct contractを独自に選ばない |
+| gate coordinator | 一つの横断release gateでscope、依存順、exact set、統一実施票、evidence集約、横断判定を一人で進行するrole | 全実装・全操作の実行者、human release owner、複数repoのcomponent担当と同義にしない |
+| human release owner | 公開tag、release、registry publish、public deploy等の最終外部操作を批准する人間role | componentの自己申告だけで技術gateをGREENにするroleではない |
+
 ## セッション・ループ（`claude-ai-guide_ja.md` §7）
 
 | 正典語 | 意味 | 避けたい揺れ |
