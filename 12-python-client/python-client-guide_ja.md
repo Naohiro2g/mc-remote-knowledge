@@ -424,5 +424,7 @@ Minecraft由来の連続位置・角度はpluginが正準化したJSON numberを
 block座標、height、count、sequence等のinteger fieldをfloatから黙って丸めない。
 
 WireScope observer projectionはmethod allowlist、method別params／result validator、plugin fixture、
-Scratch adapter、common app artifactと一つのschema v1.1 compatibility setで更新する。Python wheelは
+Scratch adapter、common app artifactと一つのmethod-observation compatibility set v1.1で更新する。
+この`v1.1`はcompatibility setの改訂番号であり、observer snapshotのtop-levelは引き続き
+`schema_version=1`とする。`schema_version=1.1`や未宣言fieldを生成しない。Python wheelは
 exact app artifact versionをpinし、plugin wire conformanceとreal-browser E2Eを別gateとして通す。

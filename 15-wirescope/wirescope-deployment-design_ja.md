@@ -307,7 +307,9 @@ b5ではobserver schema／app artifact contractをv1.1へ進め、`events.poll`�
 `world.spawnParticle`、`world.spawnEntity`と新しいreasonを観察できるようにする（DECISIONS
 `2026-08-16-07`）。加えて、protocol 22の`world.setBlock`／`world.setBlocks`／`world.getBlock`は、
 `block_id`と`state`を分離した構造化`BlockSpec`／`BlockValue`として観察する（`2026-08-19-02`）。
-これはschema v1へ未知fieldを追加する変更ではない。
+ここでいう`v1.1`はmethod allowlist、validator、adapter、artifactを一組にするcompatibility setの
+改訂番号である。observer snapshotのtop-level wire fieldは引き続き`schema_version=1`とし、
+`schema_version=1.1`へ変更したりschema v1へ未宣言fieldを追加したりしない。
 
 spawn系params validatorは`world.spawnParticle`の座標先行9／10 params
 `[x,y,z,offset_x,offset_y,offset_z,particle,speed,count,(force)]`と、`world.spawnEntity`の座標先行4 params
