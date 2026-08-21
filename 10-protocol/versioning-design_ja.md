@@ -475,8 +475,8 @@ b5は大規模な共通基盤を閉じる段である。
 4. connection epoch scoped entity handle
 5. availability／work admission
 6. `world.getHeight`
-7. `world.spawnParticle`
-8. `world.spawnEntity`
+7. 座標先行9／10 params、`force`省略時`true`の`world.spawnParticle`
+8. 座標先行4 paramsの`world.spawnEntity`
 9. structured JSON params を保持できる dispatcher
 10. plugin／Python／Scratch／WireScope の compatibility set
 11. `.sb3`／`.sprite3`互換fixtureと、Scratch作品全体のIndexedDBブラウザ保存基盤
@@ -489,6 +489,9 @@ b5は大規模な共通基盤を閉じる段である。
 項13はpost-b5候補ではなくb5の必須横断scopeである。component単位の実装・検収は独立に進められるが、
 plugin、Python、Scratch、WireScope、compatibility fixture／evidenceのいずれかを後送りした部分setを
 b5全体GREENとしない。exact容量・UI token等の実装較正値もb5 candidateで固定する。
+
+項7／8のexact paramsはDECISIONS `2026-08-21-01`を正とする。protocol 22の最初のexact compatibility
+setへ座標先行順を収容し、particle-first／entity-firstとのunion、自動判定、protocol 21 shimを作らない。
 
 b6 は b5 基盤上の中規模 API 追加に限定し、新しい identity、transport、queue を作らない。
 

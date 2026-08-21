@@ -444,6 +444,12 @@ b5／b6の横断scopeはDECISIONS `2026-08-16-04`〜`07`と
 作らない。副作用reporterをmonitor不能にできるruntimeではreporterを優先し、保証できない場合は
 出力変数付きcommand blockへ確定する。この選択はScratch runtimeのprototype結果を待つ。
 
+wire paramsは`[x,y,z,entity]`の座標先行順とする（DECISIONS `2026-08-21-01`）。Scratch b5候補
+`acb76ea89bc8a95ffc5337133a6cd93210808e76`の`[entity,x,y,z]`送信は修正対象であり、現行contractへ
+適合済みとは扱わない。VM unit、observer fixture、WireScope params validatorを同じ順序へ更新し、両順序を
+union受理しない。`world.spawnParticle`を追加する場合も、9／10 paramsの座標先行順とforce省略時`true`へ
+従う。
+
 monitor-driven reporterには、monitor評価のthrottle、同一引数のin-flight request coalescing、
 disconnect時のcache破棄を設ける。明示的なscript callは毎回実行する。対象は
 `world.getHeight`、b6のentity pose／nearby、queue metric等である。`world.getHeight`はoptional引数を

@@ -429,6 +429,13 @@ event DTO内のblockは同じ`BlockValue` codecを使う。id付きset成功resu
 `world.getBlockWithData`はregistryへ載せない。JSON numberは十進値としてscale非依存でcatalogと比較し、
 原因fieldを一意に示せる`invalid_params`だけに任意の`data.path`を付ける（`2026-08-19-03`）。
 
+spawn系はprotocol 22でもハードフォーク前からの座標先行順を維持する。`world.spawnParticle`は
+`[x,y,z,offset_x,offset_y,offset_z,particle,speed,count,(force)]`の9／10 paramsとし、force省略時は
+`true`とする。`world.spawnEntity`はexact `[x,y,z,entity]`とする。いずれも連続座標を表示桁へ事前roundせず、
+canonical ID、型、値域、permission、capacity、chunk／work admissionを副作用前に検証する。未知entityを
+`minecraft:cow`等へfallbackしない。particle-first／entity-firstを型で自動判別する経路やunion handlerを
+作らない（`2026-08-21-01`）。
+
 `backpressure`は副作用前の一時的拒否、`work_limit_exceeded`は入力縮小が必要な拒否、
 `entity_capacity_exhausted`はhandle capacity拒否である。副作用開始後に結果を確定できない場合は
 `internal_error`とし、spawn後のresponse喪失を含めclientへ自動retryを許さない。

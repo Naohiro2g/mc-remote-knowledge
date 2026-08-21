@@ -309,6 +309,12 @@ b5ではobserver schema／app artifact contractをv1.1へ進め、`events.poll`�
 `block_id`と`state`を分離した構造化`BlockSpec`／`BlockValue`として観察する（`2026-08-19-02`）。
 これはschema v1へ未知fieldを追加する変更ではない。
 
+spawn系params validatorは`world.spawnParticle`の座標先行9／10 params
+`[x,y,z,offset_x,offset_y,offset_z,particle,speed,count,(force)]`と、`world.spawnEntity`の座標先行4 params
+`[x,y,z,entity]`だけを受理する。旧順序をunion受理せずraw frameを再配列しない。particleのforce省略と
+明示booleanはraw frame上の差を保って観察し、省略値のsynthetic fieldをframeへ追加しない
+（`2026-08-21-01`）。
+
 次を一つのcompatibility setとして更新する。
 
 - pluginのwire fixture

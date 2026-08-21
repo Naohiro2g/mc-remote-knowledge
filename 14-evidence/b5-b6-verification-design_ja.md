@@ -1,6 +1,7 @@
 # b5／b6 横断検証設計
 
-この文書は、DECISIONS `2026-08-16-04`〜`07`、`2026-08-19-01`／`02`、`2026-08-20-03`／`04`で確定したprotocol 22の
+この文書は、DECISIONS `2026-08-16-04`〜`07`、`2026-08-19-01`／`02`、`2026-08-20-03`／`04`、
+`2026-08-21-01`で確定したprotocol 22の
 plugin APIについて、何をどのtest classで
 確かめるかを示します。未実施の計画をevidenceと呼ばず、実行後にだけrecord／artifactを作ります。
 wire contractは[wire-format-design](../10-protocol/wire-format-design_ja.md)を正とします。
@@ -32,7 +33,11 @@ build execution modeのplugin／Python／Scratch／WireScope検収と横断evide
 - pitchの`-90`／`90`受理と範囲外`invalid_params`、clamp禁止、失敗時状態不変。
 - set入力を事前roundせず、適用後再取得resultだけを正準化すること。block座標等integerの小数拒否。
 - `projectile_hit`連続位置がcapture時に正準化され、ring／poll／clientで再roundされないこと。
-- particle／entity catalog ID、typed-data拒否、spawn前検証、fallback禁止、結果不明時retry禁止。
+- `world.spawnParticle`の座標先行9／10 params、force省略時`true`／明示`true`／`false`、旧順序拒否、
+  非有限座標、負offset／speed、小数／負count、unknown／typed-data-required、work／backpressure、
+  accepted count result。
+- `world.spawnEntity`の座標先行4 params、旧順序拒否、unknownでCOW等を生成しないこと、player／
+  spawn不能type、capacity拒否時の副作用不在、epoch-scoped handle、結果不明時retry禁止。
 - nearbyのbounded scan／player除外／partial handle禁止、remove失効。
 - signの4行／面／state検証とrollback、typed particleの有限schema。
 - Python cursor／retry／handle投影、Scratch thread-local event context／monitor guard。
@@ -54,7 +59,9 @@ build execution modeのplugin／Python／Scratch／WireScope検収と横断evide
 5. disconnect／reconnectで旧cursorとhandleが使えない。
 6. event後にbuild world／originを変更してもDTOが変わらず、clientの不一致guardが作動する。
 7. entityのremove、unload、外部world移動、`entity.setPose` world移動を実Paper挙動と照合する。
-8. spawn、particle、height、nearby、signをwork limit境界の内外で確認する。
+8. spawn、particle、height、nearby、signをwork limit境界の内外で確認する。spawn系はfractionalな
+   origin相対座標を事前roundせず、座標先行paramsでplugin／Python／Scratch／WireScopeが一致すること、
+   particleのforce省略時`true`と未知entityの副作用不在も確認する。
 9. WireScopeへScratch／Pythonの両sourceを順に接続し、b5 method／result／error／lossを同じUIで確認する。
 10. player／projectile／entity poseの正準値がplugin、Python、Scratch、WireScopeで一致し、入力精度を
     副作用前に失っていないことを確認する。

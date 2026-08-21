@@ -131,8 +131,8 @@ worldを観察しない明示barrierは`connection.flush`とする。
 | `events.poll` | `[after_sequence, limit]`（b6でfilter追加） | あり | epoch-scoped event ringを非破壊取得（b5、§5.4） |
 | `events.clear` | b6 fixtureで固定 | あり | 呼出時点までのretained eventを明示破棄（b6、§5.4） |
 | `world.getHeight` | `[x, z]`または`[x, z, max_y]` | あり | origin相対の最上面block高を返す（b5、§5.6） |
-| `world.spawnParticle` | `[particle, x, y, z, count, offset_x, offset_y, offset_z, speed, force]` | あり | b5はdata不要particleのみ（§5.7） |
-| `world.spawnEntity` | `[entity, x, y, z]` | あり | entityを生成しepoch-scoped handleを返す（b5、§5.7） |
+| `world.spawnParticle` | `[x, y, z, offset_x, offset_y, offset_z, particle, speed, count, (force)]` | あり | 9／10 params、`force`省略時`true`。b5はdata不要particleのみ（§5.7） |
+| `world.spawnEntity` | `[x, y, z, entity]` | あり | entityを生成しepoch-scoped handleを返す（b5、§5.7） |
 | `world.getNearbyEntities` | b6 fixtureで固定 | あり | boundedな近傍entity検索。playerを除外（b6、§5.8） |
 | `entity.getPose` | b6 fixtureで固定 | あり | handle対象のposeを返す（b6、§5.8） |
 | `entity.setPose` | b6 fixtureで固定 | あり | handle対象のposeを一体更新（b6、§5.8） |
@@ -294,13 +294,22 @@ world上端の直上はpassableとして扱い、該当が無ければ`height_no
 
 ### 5.7 world.spawnParticle／world.spawnEntity（b5）
 
-`world.spawnParticle`はcatalogのcanonical namespace IDを使う。b5はdata不要particleだけを受け、
-未知IDは`unknown_particle`、typed data必須は`particle_data_required`。count、offset、speed、work量を
-副作用前に検証し、resultには実際に受理したparticle countを返す。
+`world.spawnParticle`は座標先行の9個または10個のpositional params
+`[x,y,z,offset_x,offset_y,offset_z,particle,speed,count,(force)]`を受ける。`force`は省略でき、
+省略時は`true`とする。`x`／`y`／`z`はstream origin相対の連続座標で、副作用前に表示桁へ丸めない。
+offset三軸とspeedは有限の非負number、countは非負integer、指定したforceはbooleanでなければならない。
+particleにはcatalogのcanonical namespace IDを使う。b5はdata不要particleだけを受け、未知IDは
+`unknown_particle`、typed data必須は`particle_data_required`。count、offset、speed、work量を副作用前に
+検証し、resultには実際に受理したparticle countを返す。
 
-`world.spawnEntity`もcatalogのcanonical namespace IDを使い、成功時は§5.5のhandleを返す。
-playerまたはspawn不能typeは`entity_not_spawnable`、未知IDは`unknown_entity`。handle capacity、permission、
-chunk／work admissionをspawn前に検証し、別entityへのfallbackは行わない。
+`world.spawnEntity`はexact 4個のpositional params `[x,y,z,entity]`を受ける。`x`／`y`／`z`はstream
+origin相対の連続座標で、副作用前に表示桁へ丸めない。entityにはcatalogのcanonical namespace IDを使い、
+成功時は§5.5のhandleを返す。playerまたはspawn不能typeは`entity_not_spawnable`、未知IDは
+`unknown_entity`。handle capacity、permission、chunk／work admissionをspawn前に検証し、未知IDを
+`minecraft:cow`等の別entityへfallbackしない。
+
+protocol 22ではparticle-first／entity-first順序とのunion受付や、型による旧新順序の自動判定を行わない
+（DECISIONS `2026-08-21-01`）。
 
 availability reasonは追加の`retryable` fieldを作らず、次の意味を固定する。
 
