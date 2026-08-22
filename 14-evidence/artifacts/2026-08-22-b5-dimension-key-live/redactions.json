@@ -1,0 +1,19 @@
+{
+  "test_id": "2026-08-22-b5-dimension-key-live",
+  "content_redactions": [],
+  "not_collected_as_irrelevant_to_claim": [
+    "bearer token",
+    "pairing_id",
+    "private endpoint",
+    "player UUID"
+  ],
+  "retained_as_non_secret_evidence": [
+    "DimensionKey",
+    "origin",
+    "coordinates",
+    "angles",
+    "test chat text",
+    "error reason"
+  ],
+  "pair_code": "Not a mandatory redaction target; no pair code was collected in these summaries."
+}

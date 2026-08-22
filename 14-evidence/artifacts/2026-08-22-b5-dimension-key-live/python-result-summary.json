@@ -1,0 +1,37 @@
+{
+  "test_id": "2026-08-22-b5-dimension-key-live",
+  "test_class": ["live-auto", "live-human"],
+  "result": "PASS",
+  "protocol": "22.0.0",
+  "artifact": "2200.0.0b5",
+  "observer": {
+    "schema": "mcremote.observer",
+    "schema_version": 1,
+    "compatibility_revision": "v1.1",
+    "world_field_absent": true
+  },
+  "hello": {
+    "dimension": "minecraft:overworld",
+    "origin": [200, 0, 200]
+  },
+  "failure_reasons": [
+    "unknown_dimension",
+    "unknown_dimension",
+    "method_not_found"
+  ],
+  "events": {
+    "block_right_click": "minecraft:overworld",
+    "chat_posted": "minecraft:overworld",
+    "projectile_hit": "minecraft:overworld"
+  },
+  "context_guard": {
+    "same_context": "PASS",
+    "dimension_mismatch": "PASS"
+  },
+  "wirescope_human": {
+    "frames": "PASS",
+    "source_end": "PASS"
+  },
+  "candidate_changed": false,
+  "server_changed": false
+}

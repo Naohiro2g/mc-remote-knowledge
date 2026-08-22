@@ -1,0 +1,31 @@
+{
+  "test_id": "2026-08-22-b5-dimension-key-live",
+  "source_commit": "1a11c46bac5696afd3f494caac56ae682ed00fb0",
+  "segments": {
+    "dimension_menu": [
+      {"direction":"send","method":"build.setDimension","payload":{"params":["overworld"]}},
+      {"direction":"receive","method":"build.setDimension","payload":{"result":{"dimension":"minecraft:overworld","origin":[200,0,200]}}},
+      {"direction":"send","method":"build.setDimension","payload":{"params":["the_nether"]}},
+      {"direction":"receive","method":"build.setDimension","payload":{"result":{"dimension":"minecraft:the_nether","origin":[200,0,200]}}},
+      {"direction":"send","method":"build.setDimension","payload":{"params":["the_end"]}},
+      {"direction":"receive","method":"build.setDimension","payload":{"result":{"dimension":"minecraft:the_end","origin":[200,0,200]}}}
+    ],
+    "general_namespace_and_world_not_alias": [
+      {"direction":"send","method":"build.setDimension","payload":{"params":["myworld:world"]}},
+      {"direction":"receive","method":"build.setDimension","payload":{"error":{"code":-32000,"message":"unknown_dimension","data":{"reason":"unknown_dimension","dimension":"myworld:world"}}}},
+      {"direction":"send","method":"build.setDimension","payload":{"params":["world"]}},
+      {"direction":"receive","method":"build.setDimension","payload":{"error":{"code":-32000,"message":"unknown_dimension","data":{"reason":"unknown_dimension","dimension":"minecraft:world"}}}}
+    ],
+    "player_pose": [
+      {"direction":"send","method":"player.getPose","payload":{"params":[]}},
+      {"direction":"receive","method":"player.getPose","payload":{"result":{"dimension":"minecraft:overworld","pos":[0,0,0],"yaw":0,"pitch":0}}},
+      {"direction":"send","method":"player.setPose","payload":{"params":["overworld",0,0,0,0,0]}},
+      {"direction":"receive","method":"player.setPose","payload":{"result":{"dimension":"minecraft:overworld","pos":[0,0,0],"yaw":0,"pitch":0}}}
+    ],
+    "events": [
+      {"type":"chat_posted","dimension":"minecraft:overworld","origin":[200,0,200],"message":"hello beta5 scratch"},
+      {"type":"block_right_click","dimension":"minecraft:overworld","origin":[200,0,200],"pos":[5,70,5],"face":"up","block":{"block_id":"minecraft:sea_lantern","state":{}},"hand":"main"},
+      {"type":"projectile_hit","dimension":"minecraft:overworld","origin":[200,0,200],"projectile":"minecraft:arrow","pos":[5,70.346,5.473],"target":{"kind":"block","block":{"block_id":"minecraft:sea_lantern","state":{}},"pos":[5,70,5],"face":"west"}}
+    ]
+  }
+}

@@ -42,7 +42,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 
 - gate coordinator: knowledge担当session。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
-- current phase: **DimensionKey exact compatibility set凍結／Scratch live segment待ち**。統一試験票`2026-08-22-b5-dimension-key-live`のPython segmentはexact setでPASSした。candidateとserverを変更せず、次段のScratch segmentだけを実行する
+- current phase: **b5横断技術gate GREEN／human release owner判断待ち**。統一試験票`2026-08-22-b5-dimension-key-live`のPython／Scratch両segmentがexact setでPASSし、正式evidenceへ着地した
 - contract: 技術scopeはDECISIONS `2026-08-21-01`／`2026-08-21-02`／`2026-08-22-02`、進行責任は`2026-08-21-03`／`2026-08-21-04`。DimensionKeyの説明正本は`10-protocol/dimension-key-design_ja.md`
 - exact compatibility set / freeze status: **凍結**。McRemote `bbbb53602a9c375e2ead3ee4c22174d5cf424f55`／JAR 195,998 bytes・SHA-256 `f7ddbcb5a92acadfe1adb7a9f6a4f50a05707e2eefbd1c01ff9aeeebe0a36547`、Scratch `1a11c46bac5696afd3f494caac56ae682ed00fb0`／CI run `32574020556`／GUI build artifact ID `9476135596`・digest `sha256:a5fef95460d2e07accd5eb82276def9eafa36692166e1db34e833447e6f6865e`／Bridge artifact ID `9476136894`・digest `sha256:2b84bf753ac67ea4906c9beb590cdb63d03da282015e40995ec129e3697b8e7b`／common WireScope ZIP `407031d5…a6964`・manifest `15d0c6b9…5bda`、Python `64b0f8831fa33e74f1b70b9102b3f29ec99b8e14`／wheel 170,271 bytes・SHA-256 `370f0fef3d5124a1024cbea8dfb4c65f2080cb545ab342086a827287d0f3f195`／sdist 175,715 bytes・SHA-256 `4337c6502f2be58e2bbf526d657c3f41d962bab08dd5a68eeb9527d66c9896b6`を一組とする。protocol `22.0.0`、artifact `2200.0.0b5`、observer schema／session／handoff／station attach version `1`、compatibility revision `v1.1`。いずれかのsourceまたはartifact identityが変わればこのfreezeを失効させる
 - landing verification: `2026-08-21-03`／`2026-08-21-04`の責務契約は全担当で一致。McRemote、Python、Scratch／WireScopeはknowledge `f9d5dc7780ab2673b8872dc7481d230e10ca95d9`とremote mainの一致、`2026-08-22-02`との設計差分なしを確認した。各返却で列挙された差分はknowledge契約の不一致ではなく、旧world契約candidateの未追従実装である。設計再検討へ戻さず、3担当の実装とpush済みidentity返却を許可する
@@ -69,12 +69,14 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - authorized next action:
   - unified test ID: `2026-08-22-b5-dimension-key-live`
   - Python segment: **PASS**。exact source `64b0f8831fa33e74f1b70b9102b3f29ec99b8e14`／wheel `370f0fef…f195`、McRemote `bbbb5360…`／JAR `f7ddbcb5…36547`、WireScope `407031d5…a6964`／manifest `15d0c6b9…5bda`を使用した。authenticated hello、shorthandからcanonical DimensionKeyへの正準化、両build setterのcontext一体同期、pose、旧alias不採用、一般namespaceのserver到達、旧method拒否、失敗時context不変、3 event DTO、same-context guard、意図的mismatch拒否、WireScope schema version `1`／`world` fieldなし、real-browser終了表示をすべてPASS。初期2停止は試験runnerの過剰なerror値固定とbrowserによるsnapshot slot消費で、candidate不具合ではない。最終runは正常終了しcandidate／server／config変更なし
-  - Scratch segment: exact source `1a11c46b…`のCI buildを使い、同じserverへ接続する。dimension blockの標準menu `overworld`／`the_nether`／`the_end`から少なくとも`overworld`と`the_nether`を一度選び、完全修飾値がwireへ出ることを確認して`overworld`へ戻す。reporter／自由入力の`myworld:world`がlocal allowlistで拒否されずserverの`unknown_dimension`になること、`world`が旧aliasとして成功しないこと、player pose 1回と3 event hat各1回がcanonical dimensionを持つことを確認する。WireScope real-browserで`build.setDimension`、player、event frameが`dimension`を保持し`world` fieldを持たないことを確認する
+  - Scratch segment: **PASS**。exact source `1a11c46b…`／CI run `32574020556`を使い、標準3dimension menuと完全修飾result、一般namespaceのserver到達、旧`world` alias不在、pose、3 event hat、canonical dimension／origin／loss `0`、real-browser WireScopeのbuild／player／event frameと`world` field不在を確認した。poll frameが履歴を押し流すため操作ごとの分割runを使い、初回旧localhost cacheはfresh originで同じexact artifactを表示して解消。candidate／server設定変更なし、接続終了、worktree clean
   - 省略範囲: standalone McRemote live runner、spawn capacity、block／height、FIFO／1041 notification burst、poll上限、全回帰、試験前後の重複readiness、world／entity清掃を実施しない。既存PASSを再利用する
   - 進行規則: Python PASS後にScratchを開始する。失敗時はそのsegmentで停止し、exact request／response、reason、candidate identityだけを返す。candidate、server配置、config、起動方式を試験中に変更しない。人間操作の取り直しは失敗した操作だけに限定する
   - 返却: 各担当は実行したexact artifact、PASS／FAIL一覧、WireScope確認、未実施範囲、candidate変更なし、接続終了だけを一枚で返す。component GREENや横断GREENを主張しない
-- live-auto / live-human: **Scratch segmentだけ開始許可**。Pythonを再実行しない。McRemote／Stack／backstageは試験を主導せず、server障害時だけ事実を返す
-- non-claim: component GREEN、b5横断GREEN、通常dev環境完成、release承認をまだ主張しない
+- live-auto / live-human: **完了**。追加試験を行わない。正式recordは`14-evidence/records/2026-08-22-b5-dimension-key-live_ja.md`
+- gate result: **GREEN — b5横断技術gate完了**。exact compatibility setを維持し、human release ownerの明示批准なしにtag／GitHub prerelease／registry publish／public deployを開始しない
+- authorized next action: human release ownerは本recordとnon-claimを確認し、b5 prerelease作成の可否と対象componentを明示する。component／Stack／backstage担当はそれまでcandidate、server、release面を変更しない
+- non-claim: Scratch browser保存、b6 API、full load／soak、capacity本較正、custom loaded dimension成功、他Minecraft／Paper版、通常dev環境runbook改訂、public deployment、release承認を主張しない
 
 ## 2026-08-07 Scratch editor `2100.0.0b3`
 
