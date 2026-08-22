@@ -393,13 +393,13 @@ Bukkit Event objectをsession寿命へ持ち越さず、listener実行中にimmu
 - resource admissionで投入不能なら`capacity_dropped_total`へ加算する。
 - pollは非破壊で、response喪失後も同じcursorを再取得できる。
 - `events.clear`による削除だけを`explicitly_discarded_total`へ加算する。
-- event DTOに発生時点のworld／originをcaptureし、後続のbuild state変更で書き換えない。
+- event DTOに発生時点の完全修飾DimensionKey／originをcaptureし、後続のbuild state変更で書き換えない。
 - right-clickのmain／off-hand二重発火は相関判定して1件へ正規化する。
 
 ring件数、総byte、server poll既定／上限のexact値はruntime policyである。b5 candidateは有限な暫定値を
 unit／境界fixtureと短いsmokeで固定し、b6 API実装後にload／live試験で本較正する。`events.poll`の
 `max_events`はclient希望上限であり、server上限を拡張しない。compact JSON-RPC responseの61,440 bytes
-上限はwire contractとして先に適用し、observer schema v1.1／session envelopeへ通したencoded frameが
+上限はwire contractとして先に適用し、observer schema v1（compatibility revision v1.1）／session envelopeへ通したencoded frameが
 64 KiBを越えないことをb5 fixtureで確認する。
 
 ### 10.2 Entity handle registry
@@ -408,13 +408,22 @@ registryはconnection epochごとに`mceh_` handleとentityの対応を保持し
 handleを返す。handleはUUIDや認可情報を符号化せず、操作ごとにepoch ownershipとpermissionを再検証する。
 playerはregistryへ収容しない。
 
-spawnではworld変更前にhandle slot、permission、chunk／work admissionを一括確認する。epoch別handle capは
+### 10.2.1 DimensionKey resolver（protocol 22）
+
+pluginの公開空間identityはBukkit world nameでなくMinecraft DimensionKeyとする。入力は完全修飾
+`namespace:path`または`minecraft` namespaceを省略したpathだけを受け、`NamespacedKey`へ変換して
+`Bukkit.getWorld(NamespacedKey)`でloaded dimensionを解決する。`World#getName()`、Environment、folder名、
+先頭worldをfallbackに使わず、出力は`World#getKey().toString()`へ正準化する。build state、hello、player、
+event、entity handleのissued locationは全てこのidentityを共有する。詳細は
+[DimensionKey設計](../10-protocol/dimension-key-design_ja.md)を正とする。
+
+spawnではdimensionへの副作用前にhandle slot、permission、chunk／work admissionを一括確認する。epoch別handle capは
 有限なruntime policyとし、b5 candidateで暫定値と上限fixtureを固定して、b6 API実装後に本較正する。slotを予約できない
 場合は`entity_capacity_exhausted`で終了し、副作用を起こさない。spawn失敗時は予約を解放する。
-disconnect／reconnect、remove成功、外部world移動でhandleを失効させる。成功した`entity.setPose`による
-world移動ではissued worldを更新する。
+disconnect／reconnect、remove成功、外部dimension移動でhandleを失効させる。成功した`entity.setPose`による
+dimension移動ではissued dimensionを更新する。
 
-Paper上でremoved／unloaded／world-changedをどこまで安定して判別できるかは実装試験で確認し、判別不能な
+Paper上でremoved／unloaded／dimension-changedをどこまで安定して判別できるかは実装試験で確認し、判別不能な
 状態を推測でreasonへ割り当てない。
 
 ### 10.3 Dispatcherとavailability admission

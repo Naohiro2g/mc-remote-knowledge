@@ -122,8 +122,8 @@ lockへ記録し、b6 API実装後の負荷較正でruntime policyとして更�
 | method | params（位置） | 応答 | 備考 |
 | --- | --- | --- | --- |
 | `hello` | object（§6） | あり | 接続ハンドシェイク。1接続に1回。identity/auth/build を担う |
-| `build.setWorld` | `[dimension]` | あり | build state の world/dimension を変更。`dimension` は `overworld` / `nether` / `the_end` |
-| `build.setOrigin` | `[x, y, z]` | あり | build origin を変更。Scratch b1 UI は y を露出せず 0 固定で送る |
+| `build.setDimension` | `[dimension_ref]` | `{dimension,origin}` | protocol 22のstream-local DimensionKeyを変更（§5.1） |
+| `build.setOrigin` | `[x, y, z]` | `{dimension,origin}` | build originを変更し、server正準build contextを返す |
 | `chat.post` | `[msg]` | あり（b1 は id 付き同期 request） / notification 時なし | チャット送信 |
 | `world.setBlock` | `[x, y, z, blockSpec]` | id付きは`null` / notification時なし | protocol 22では構造化`BlockSpec`で1ブロック設置（§7.1） |
 | `world.setBlocks` | `[x1, y1, z1, x2, y2, z2, blockSpec]` | id付きは`null` / notification時なし | protocol 22では構造化`BlockSpec`で直方体充填（§7.1） |
@@ -131,10 +131,10 @@ lockへ記録し、b6 API実装後の負荷較正でruntime policyとして更�
 | `world.getBlocks` | `[x1, y1, z1, x2, y2, z2]` | `BlockValue[]` | protocol 22の有界領域query（§7.1.1） |
 | `connection.flush` | `[]` | `null` | 同一connectionの先行commandに対する明示barrier（§3.5） |
 | `catalog.get` | `[]` | あり | 稼働中 registry から block/entity/particle catalog を取得（b3 実装予定、§7.2.1） |
-| `player.getPos` | `[]` | あり | paired player の現在 world と現在位置を stream origin 相対で返す（b2 準核） |
-| `player.setPos` | `[world, x, y, z]` | あり | paired player を指定 world の stream origin 相対位置へ teleport する（b2 準核） |
-| `player.getPose` | `[]` | あり | paired player の現在 world・位置・向き（yaw/pitch）を stream origin 相対で返す（b4 実装予定、§5.3） |
-| `player.setPose` | `[world, x, y, z, yaw, pitch]` | あり | paired player を指定 world の stream origin 相対位置・向きへ1回の teleport で一体反映する（b4 実装予定、§5.3） |
+| `player.getPos` | `[]` | あり | paired playerの現在dimensionと現在位置をstream origin相対で返す（§5.2） |
+| `player.setPos` | `[dimension_ref, x, y, z]` | あり | paired playerを指定dimensionのstream origin相対位置へteleportする（§5.2） |
+| `player.getPose` | `[]` | あり | paired playerの現在dimension・位置・向きをstream origin相対で返す（§5.3） |
+| `player.setPose` | `[dimension_ref, x, y, z, yaw, pitch]` | あり | 指定dimensionへ位置・向きを1回のteleportで一体反映する（§5.3） |
 | `events.poll` | `[after_sequence]`／`[after_sequence, {max_events}]`（b6で同optionsへfilter追加） | あり | epoch-scoped event ringを非破壊取得（b5、§5.4） |
 | `events.clear` | b6 fixtureで固定 | あり | 呼出時点までのretained eventを明示破棄（b6、§5.4） |
 | `world.getHeight` | `[x, z]`または`[x, z, max_y]` | あり | origin相対の最上面block高を返す（b5、§5.6） |
@@ -150,7 +150,7 @@ lockへ記録し、b6 API実装後の負荷較正でruntime policyとして更�
   旧テキストコマンド実装には分割された args を join して複数トークンを1メッセージ化する暗黙挙動があったが、
   JSON-RPC 21.0.0 では互換契約として保存しない。クライアントは1つの string を `[msg]` として送る。
 - b1 の `chat.post` / `world.setBlock` / `world.setBlocks` は `id` 付き request として送って同期 result/error を返した（DECISIONS `2026-07-01-08`）。protocol 22／b5はset系だけにconnection単位のDEBUG／TRACE／FASTを導入し、`chat.post`へ暗黙拡張しない（`2026-08-20-03`）。
-- `build.setWorld` / `build.setOrigin` は protocol 21.0.0 系の b1 配布物における build model 収容条件に含める（DECISIONS `2026-07-01-10`）。API 層名は `setWorld` / `setBuildOrigin`、wire method は `build.*`。
+- protocol 22は`build.setDimension`／`build.setOrigin`を使う。protocol 21の`build.setWorld`／`setWorld()`はb4以前の履歴で、alias／unionを作らない（`2026-08-22-02`）。
 - `world.getBlock` はprotocol 22で`BlockValue`をresultとして返す。失敗を空文字へ畳まずJSON-RPC errorで返す（§7.1／§7.3）。protocol 21の文字列resultはb4までの履歴である。
 - `catalog.get` は protocol 21.0.0 系 b3 の実装予定に含める（DECISIONS `2026-07-29-04`、§7.2.1）。API 層名・wire method とも `catalog.get`。認証後のみ有効で、稼働中 registry から block/entity/particle を単一 response で返す。
 - `player.getPos` / `player.setPos` は protocol 21.0.0 系 b2 の準核に含める（DECISIONS `2026-07-07-02`）。API 層名は `getPos` / `setPos`、wire method は `player.*`。
@@ -161,7 +161,7 @@ lockへ記録し、b6 API実装後の負荷較正でruntime policyとして更�
 
 ---
 
-## 5. setWorld / setBuildOrigin（決定済み・b1 収容済み）
+## 5. DimensionKey / build context
 
 ### 5.0 座標規範（確定・符号化に先行）
 
@@ -170,7 +170,7 @@ build コマンドの座標解釈は符号化の未定（§7④）に**先行し
 - **全軸 origin 相対**：`world.setBlock`/`world.setBlocks`/`world.getBlock`/`world.getBlocks` の `x,y,z` は build origin からのデルタ。
 - **絶対座標＝origin＋デルタ（各軸）**：とくに **絶対 y ＝ origin.y ＋ dy**。**暗黙の Y オフセットは持たない**。
 - **`world_constants.y_sea` は情報定数**：hello result の `world_constants` object 内で `y_sea` として広告するのみで、**座標式に焼かない**（`2026-06-15-04` / `2026-07-02-02`）。`y_sea` は `number | null` で、`null` は不明またはその world/profile では意味を持たないことを示す。
-- **既定**：build 未設定時は world=overworld・origin=(200,0,200)。
+- **既定**：build未設定時はdimension=`minecraft:overworld`・origin=(200,0,200)。
 - **Scratch は y 封印**：標準 UI では `origin.y` を編集可能にしない。ただし Y を完全に隠すのではなく固定値 `0` として見せ、`setBuildOrigin` / wire `build.setOrigin` には y=0 を送る（`2026-07-02-03`）。
 - **scope は stream 個別**（`2026-06-24-01`）：build state は接続（stream）ごとに保持。
 
@@ -199,13 +199,22 @@ UIが末尾ゼロを補って表示しても保持値とframeを変更しない�
 正準化してimmutable DTOへ入れ、poll時の再計算やclient別変換を行わない。artifact b4以前のraw出力は
 履歴として維持し、本契約はartifact b5のcompatibility setから適用する。
 
-### 5.1 符号化（b1 収容済み）
+### 5.1 DimensionKeyとbuild setter（protocol 22）
 
-build state を変更する `setWorld(dimension)` / `setBuildOrigin(x,y,z)` は、**両者セッション中変更可・stream 個別**で**既に確定**している（DECISIONS `2026-06-15-02` / `2026-06-24-01`）。
+現行の完全な入力／出力、surface投影、protocol 21非互換境界は
+[DimensionKey設計](dimension-key-design_ja.md)を説明正本とする（`2026-08-22-02`）。
 
-- **method 名＝確定（`2026-06-26-04`）**：ワイヤは **`build.*` 名前空間のドット名**＝**`build.setWorld`**(dimension)・**`build.setOrigin`**(x,y,z)。API 層の method 名は **`setWorld`/`setBuildOrigin`（camelCase）を維持**＝API 名↔ワイヤ名は別層（mcpi が既にそう、§7④）。`build.*` を `world.*` と分けるのは build state が stream 別セッション設定で共有ワールド変更ではないため。
-- **params（b1）**：`build.setWorld` は `[dimension]`（`overworld` / `nether` / `the_end`）、`build.setOrigin` は `[x, y, z]`。build 未設定時は overworld・origin `(200,0,200)`。
-- **Scratch b1 UI（`2026-07-01-10` / `2026-07-02-03`）**：Scratch b1 は `setWorld` / `setOrigin` を収容する。`setOrigin` の y は編集可能にせず、固定値 `0` として見せる（例: `[建築原点(X, Y, Z) を (x), 0, (z) にする]`）。X/Y/Z 編集版は標準導線に入れず、Y 軸学習は `setBlock` の y 引数に置く。
+- `DimensionKey`は完全修飾`namespace:path`。出力は常に完全修飾する。
+- 入力`DimensionRef`は完全修飾key、または`minecraft` namespaceだけを省略したpath。省略時だけ`minecraft:`を補う。
+- `world`／`normal`／`nether`／`end`をaliasにしない。case変換、trim、Environment／folder名fallbackを行わない。
+- pluginは`Bukkit.getWorld(NamespacedKey)`でloaded dimensionを解決し、`World#getKey()`を出力する。
+- wireは`build.setDimension [dimension_ref]`と`build.setOrigin [x,y,z]`。両者は成功時にexact
+  `{ "dimension": <DimensionKey>, "origin": [x,y,z] }`を返す。
+- clientはsetter入力で現在contextを更新せず、hello／成功resultだけを正とする。
+- protocol 21／b4以前の`build.setWorld`／`setWorld()`／`world` fieldは履歴として保持するが、protocol 22へ移行しない。
+
+Scratchは標準menuに`overworld`／`the_nether`／`the_end`を提示できるが、wireを3dimensionへ閉じない。
+`setOrigin`の標準UIでy=0固定とする既存学習導線は維持する。
 
 ---
 
@@ -213,23 +222,28 @@ build state を変更する `setWorld(dimension)` / `setBuildOrigin(x,y,z)` は�
 
 `player.*` は paired player を対象にする操作群で、identity は hello/auth が確定した token に束縛された UUID から解決する。クライアントは player 名を送らない。
 
-- **`player.getPos`**：params は `[]`。paired player の現在 world と現在位置を返す。result は `{ "world": "overworld", "pos": [x, y, z] }`。`pos` はその stream の build origin からの相対座標で、`stream.world` と player の現在 world の一致は要求しない。artifact b5以後のresultは§5.0.1の連続位置正準形を使う。
-- **`player.setPos`**：params は `[world, x, y, z]`。`world` を teleport 先 world とし、server が `absolute = stream.origin + [x,y,z]` を計算して paired player を移動する。player の現在 world と指定 world が異なる場合も、権限が許せば次元跨ぎ teleport として実行する。成功 result は getPos と同形の `{ "world": "...", "pos": [x, y, z] }` を返す。
-- **world key**：wire/result key は hello result と揃えて `world` とする。説明上は次元（dimension）と呼んでよいが、wire key に `dimension` は作らない。
-- **origin との関係**：`player.*` は stream origin を共有するが、`build.setWorld` が保持する `stream.world` には暗黙依存しない。`world.*` は `stream.world + stream.origin`、`player.*` は `explicit/current world + stream.origin` で読む。
+- **`player.getPos`**：paramsは`[]`。paired playerの現在dimensionと現在位置を返す。resultは
+  `{ "dimension": "minecraft:overworld", "pos": [x,y,z] }`。`pos`はstream origin相対で、
+  `stream.dimension`とplayerの現在dimensionの一致を要求しない。artifact b5以後は§5.0.1も適用する。
+- **`player.setPos`**：paramsは`[dimension_ref,x,y,z]`。serverがDimensionRefを§5.1で解決し、
+  `absolute = stream.origin + relative`を計算して指定dimensionへteleportする。成功resultはgetPosと同形。
+- **originとの関係**：`player.*`はstream originを共有するが`stream.dimension`へ暗黙依存しない。
+  `world.*`は`stream.dimension + stream.origin`、`player.*`は`explicit/current dimension + stream.origin`で読む。
 - **権限**：許可/拒否は LuckPerms に委譲し、protocol 独自の teleport 権限体系は作らない。拒否は `permission_denied`。
-- **基本 reason**：`permission_denied` / `player_offline` / `unknown_world` / `invalid_params`。エラー形は §7.3 の JSON-RPC 標準 error object と二層 reason に従う。
+- **基本reason**：`permission_denied`／`player_offline`／`unknown_dimension`／`invalid_params`。
 
-> 却下＝`player.getPos` を `stream.world` 不一致時 error にする案：result に現在 world を明示すれば不一致は状態でありエラーではない。却下＝`player.setPos` が暗黙に `stream.world` を使う案：world を引数で明示する方が、次元跨ぎ teleport と origin 相対の関係を説明しやすく、`getPos` の `{world,pos}` と対になる。却下＝McRemote 独自の teleport 権限を新設する案：認可体系を protocol に増やさず LuckPerms に一本化する。
+> 却下＝`player.getPos`を`stream.dimension`不一致時errorにする案：resultに現在dimensionを明示すれば不一致は状態でありエラーではない。却下＝`player.setPos`が暗黙に`stream.dimension`を使う案：dimensionを引数で明示する方が次元跨ぎteleportとorigin相対の関係を説明しやすい。却下＝McRemote独自のteleport権限を新設する案：認可体系をprotocolに増やさずLuckPermsに一本化する。
 
 ### 5.3 player.getPose / player.setPose（b4 実装予定）
 
 `player.getPose` / `player.setPose` は §5.2 の `getPos`/`setPos` に**向き（yaw/pitch）を加えた版**で、b4 の実装予定に含める（DECISIONS `2026-07-29-03`）。API 層名は `getPose`/`setPose`、wire method は `player.*`。既存 `getPos`/`setPos` は廃止せず維持する（用途に応じて位置のみ／位置＋向きを使い分ける）。
 
-- **`player.getPose`**：params は `[]`。paired player の現在 world・位置・向きを返す。result は `{ "world": "...", "pos": [x, y, z], "yaw": ..., "pitch": ... }`（`pos` は §5.2 と同じ stream origin 相対）。
-- **`player.setPose`**：params は `[world, x, y, z, yaw, pitch]`。§5.2 の `setPos` と同じく `absolute = stream.origin + [x,y,z]` を計算し、**位置と向きを1回の teleport で一体反映**する（位置だけ・角度だけの部分更新はしない）。成功 result は `getPose` と同形。
+- **`player.getPose`**：paramsは`[]`。resultは
+  `{ "dimension": <DimensionKey>, "pos": [x,y,z], "yaw": ..., "pitch": ... }`。
+- **`player.setPose`**：paramsは`[dimension_ref,x,y,z,yaw,pitch]`。§5.2と同じ解決・座標式を使い、
+  **位置と向きを1回のteleportで一体反映**する。成功resultは`getPose`と同形。
 - **値域と出力正準形**：`x`/`y`/`z`/`yaw`/`pitch` は有限値必須（NaN/Infinity は `invalid_params`）。`yaw` は任意の有限値を受け入れ、resultでは`[-180,180)`へ正規化する。`pitch`は`[-90,90]`を両端込みとし、範囲外は`invalid_params`で副作用前に拒否する。入力を丸めてからteleportせず、成功後に再取得した位置を小数第3位、yaw／pitchを小数第2位へ§5.0.1どおり正準化する。
-- **teleport 失敗**：teleport の呼び出し自体が失敗した場合（Paper `Entity.teleport(Location)` が `permission_denied`/`player_offline`/`unknown_world`/`invalid_params` のいずれにも当たらない要因で失敗を返す等）を成功扱いにしない。この場合は新設 reason `teleport_failed`（player-state family、§7.3）で返す。
+- **teleport失敗**：teleport自体が失敗した場合（`permission_denied`／`player_offline`／`unknown_dimension`／`invalid_params`のいずれにも当たらない要因でPaper `Entity.teleport(Location)`がfalseを返す等）を成功扱いにせず、`teleport_failed`を返す。
 - **範囲**：b4 の対象は paired player までとし、任意 entity への pose 操作は将来拡張とする。
 - **高水準 walkThrough（構想・未確定）**：`player.walkThrough` は軌道・速度・補間・注視方向をクライアント側で組み立て、`getPose`/`setPose` を基礎命令として使う構想。正確な API 形と収容版は別途決定する。
 
@@ -254,7 +268,7 @@ cursorを進める。b6のfilterは同じoptions objectを精密化し、b5 clie
 - `after_sequence`がlatestより大きい: `invalid_params`。
 - ring overflow: 最古eventから退去させる。沈黙したlossにしない。
 - compact JSON-RPC response: 最大61,440 bytes（60 KiB）。WireScopeの64 KiB encoded frame admissionへ
-  4,096 bytesの余裕を残す。b5では最大合法responseをobserver schema v1.1／session envelopeまで投影し、
+  4,096 bytesの余裕を残す。b5では最大合法responseをobserver schema v1（compatibility revision v1.1）／session envelopeまで投影し、
   UTF-8 encoded frameが65,536 bytes以下となることをescape量の多い文字列を含むfixtureで確認する。
 
 responseは`events`、`through_sequence`、`latest_sequence`、`filtered_out`と、epoch内で単調増加する
@@ -269,31 +283,31 @@ b6 filterはringをsequence順に走査する。非一致eventでも`through_seq
 b5のevent typeは次の3種である。exact JSON shapeはplugin fixtureを拘束層とし、Bukkit Event objectを
 wireやringへ保持しない。
 
-- `block_right_click`: 発生時のworld／origin、origin相対block position、face、protocol 22の`BlockValue`、hand。
+- `block_right_click`: 発生時のdimension／origin、origin相対block position、face、protocol 22の`BlockValue`、hand。
   相関するmain／off-hand二重発火は1件へ正規化する。
 - `chat_posted`: paired playerが投稿したoriginal plain input。slash commandは除外し、chat自体はcancelしない。
-- `projectile_hit`: 発生時のworld／origin、projectile type、hit position、blockまたはentity target。block targetはprotocol 22の`BlockValue`を持つ。
+- `projectile_hit`: 発生時のdimension／origin、projectile type、hit position、blockまたはentity target。block targetはprotocol 22の`BlockValue`を持つ。
   player hitは`kind: "player"`だけとし、handle、UUID、player nameを返さない。
 
 `block_right_click`のblock positionはintegerのままとする。`projectile_hit`の連続hit positionは発生時の
 captureで§5.0.1の小数第3位へ正準化し、後から丸め直さない。
 
-空間eventは投入時点のworldとoriginを固定する。後からbuild world／originが変わっても既存DTOを変更・
+空間eventは投入時点のdimensionとoriginを固定する。後からbuild dimension／originが変わっても既存DTOを変更・
 破棄せず、event受信を理由にpluginがbuild stateを暗黙変更しない。event座標を`world.*`へ渡すclientは、
-現在のworld／originとの一致を確認し、不一致をactionable errorとして扱う。
+現在のdimension／originとの一致を確認し、不一致をactionable errorとして扱う。
 
 ### 5.5 connection epoch scoped entity handle（b5）
 
 entity handleは`mceh_` prefixと128 bit以上の暗号学的乱数に由来するopaque ASCII stringである。
-UUID、world、player、credentialを符号化せず、秘密や認可capabilityとして扱わない。同一epoch内では
+UUID、dimension、player、credentialを符号化せず、秘密や認可capabilityとして扱わない。同一epoch内では
 同じentityに同じhandleを返し、disconnect／reconnectで全て失効する。WireScope表示やScratch変数への
 格納は許可するが、操作のたびにepoch ownershipとpermissionを再検証する。
 
 - foreign／unknown handleはどちらも`entity_handle_not_found`へ畳む。
 - playerにはhandleを発行せず、player操作は`player.*`に限定する。
-- spawn前にhandle slotを予約し、予約不能ならworldを変更せず`entity_capacity_exhausted`。
-- 外部要因でentityがworldを移動した場合は失効する。成功した`entity.setPose`による移動ではissued worldを更新する。
-- known handleの対象状態は`entity_removed`、`entity_unloaded`、`entity_world_changed`で区別する。
+- spawn前にhandle slotを予約し、予約不能ならdimensionを変更せず`entity_capacity_exhausted`。
+- 外部要因でentityがdimensionを移動した場合は失効する。成功した`entity.setPose`による移動ではissued dimensionを更新する。
+- known handleの対象状態は`entity_removed`、`entity_unloaded`、`entity_dimension_changed`で区別する。
 - spawn自体の失敗は`entity_spawn_failed`。spawn後にresponseを喪失した場合は結果不明であり、自動retryしない。
 
 ### 5.6 world.getHeight（b5）
@@ -334,7 +348,7 @@ availability reasonは追加の`retryable` fieldを作らず、次の意味を�
 
 ### 5.8 b6のentity／sign／typed particle
 
-b6 entity APIはb4のpose shape `{world,pos,yaw,pitch}`と§5.0.1の出力正準形を再利用する。nearby検索はstream world内、
+b6 entity APIはprotocol 22のpose shape `{dimension,pos,yaw,pitch}`と§5.0.1の出力正準形を再利用する。nearby検索はstream dimension内、
 player除外、radius／件数／chunk走査をboundedにし、unloaded entityを探すためのchunk loadを行わない。
 必要なhandle capacityはrequest全体で事前確認し、部分的なhandle発行をしない。`entity.remove`成功時は
 handleを即時失効する。exact params／result shapeはb6 fixtureを実装前に固定する。
@@ -345,41 +359,43 @@ dustとblock stateの有限schemaだけを追加し、任意Java objectの直列
 
 ---
 
-## 6. hello ペイロード（**§6.1 / §6.5 確定・§6 全体 ratify 待ち**）
+## 6. helloペイロード
 
-> 状態＝**部分確定**。§6.1 の要求 `params` は、`protocol` 最小・`auth:{token}` 単一モード・`build` 省略時既定・`sandbox` 非搭載で確定（DECISIONS `2026-07-04-06` / `2026-07-06-05`）。§6.5 の `auth.*` ペアリングフローも確定済み。§8 整合（`mc_version`/`supported_mc_versions` 広告の欠落）は解消済み（§6.2）、版フィールドは `v`→`protocol` に改名して §8 と一名一義化。**安定形・`protocol`=`21.0.0`・b1 は `catalogHash:null`・`world_constants.y_sea`・リッチマニフェスト再棄却は確定**（DECISIONS `2026-06-27-01`/`2026-06-27-05`/`2026-07-02-02`）。§6 全体の ratify は、証跡参照を付けた DECISIONS 追記と §6.2–§6.4 の最終整合 sweep で閉じる。
+protocol 22の現行helloはprotocol 21で確定したJSON-RPC／auth／catalog／world constantsの骨格を維持し、
+空間identityだけを`2026-08-22-02`によりDimensionKeyへ全面改訂する。`protocol`は`22.0.0`、build要求は
+`dimension`／`origin`、応答は完全修飾`dimension`を返す。protocol 21の`world` fieldは履歴でありunion受理しない。
 
 ### 6.1 要求 `params`（object）
 
 ```json
-{ "protocol": "21.0.0", "client": { "name": "...", "version": "...", "locale": "..." },
-  "auth": { "token": "..." }, "build": { "world": "overworld", "origin": [200, 0, 200] } }
+{ "protocol": "22.0.0", "client": { "name": "...", "version": "...", "locale": "..." },
+  "auth": { "token": "..." }, "build": { "dimension": "minecraft:overworld", "origin": [200, 0, 200] } }
 ```
 
-- `protocol` ＝ **protocol semver `21.0.0`**（§8 ネゴ用・clean な protocol 版）。**package 版 `2100.0.0b1` を載せない**（`b1` は配布チャンネル表記で互換に無関係、DECISIONS `2026-06-27-01`）。`jsonrpc` がエンベロープ版枠を占めるため版フィールドは protocol semver に一本化し、§8 の `protocol` と同名（旧称 `v` から改名・一名一義方針）。
+- `protocol` ＝protocol semver `22.0.0`。package版`2200.0.0b5`を載せない。protocol 21の旧例はb4以前の履歴である。
 - `sandbox` は **`hello.params` に載せない**。bridge 経由の Sandbox routing は §2 の WSS 接続メタ（例 `?sandbox=...`）が担う。直 TCP 経路では接続先 host/port が routing 情報であり、plugin が受け取る wire payload は bridge 経由でも直 TCP でも同一に保つ。
-- `auth` は **`{ token }` の1モード**（token はサーバで player 束縛）。**ペアリング（token の入手）は hello の前段の独立メソッド `auth.pairBegin` / `auth.pairPoll`**（§6.5・確定 `2026-07-04-06`）＝hello 自体は pair モードを持たない。`build` 省略時は overworld・原点 (200,0,200)。
+- `auth` は **`{ token }` の1モード**（token はサーバで player 束縛）。**ペアリング（token の入手）は hello の前段の独立メソッド `auth.pairBegin` / `auth.pairPoll`**（§6.5・確定 `2026-07-04-06`）＝hello 自体は pair モードを持たない。`build`省略時はdimension=`minecraft:overworld`・原点(200,0,200)。`build.dimension`は§5.1のDimensionRefで、成功resultは正準DimensionKeyを返す。
 - **enforcement トグル連動**（plugin config・§10.11.1 項5）：hello の `auth` 扱いはトグルで変わる。**OFF（開発既定）**＝`auth.token` 欠落/空を許容し**無認証セッション可**（3リポ非同期着地のため・item5）＝この段では最小必須は `{ protocol }`。**ON（リリース既定）**＝`auth` 必須で、欠落→`auth_required`、検証失敗→`token_expired` / `token_revoked` / `token_not_found` / `token_invalid` 等の認証 reason（§6.3）。構文不正・未知形式・検証不能は `token_invalid`。
 
 ### 6.2 応答 `result`
 
 ```json
 {
-  "protocol": "21.0.0",
+  "protocol": "22.0.0",
   "mc_version": "1.21.11",
   "supported_mc_versions": ["1.21.11"],
   "catalogHash": null,
   "world_constants": { "y_sea": 62 },
   "session": "...",
   "player": "...",
-  "world": "overworld",
+  "dimension": "minecraft:overworld",
   "origin": [200, 0, 200],
   "permissions": { "online": true, "offline": false, "buildRange": 100 },
   "server": "..."
 }
 ```
 
-- **安定形（確定 `2026-06-27-05` / `2026-07-02-02`）**：hello 応答は `{protocol, mc_version, supported_mc_versions, catalogHash}`（＋session/player/world/origin/permissions）を基礎に、world/profile 情報定数だけを `world_constants` bucket に束ねる。**b1 は無認証ゆえ `catalogHash: null`**（フィールドは常在）、認証＋catalog が来る bN で実値が埋まる＝クライアントは「フィールド有無」でなく「`catalogHash` が埋まってるか」だけ見る（封筒の破壊的変更ゼロ・b2 で何が育ったか目で見える）。**入れ子リッチマニフェスト（`catalogs.block.{format,namespaces,inline,url,size}`）は再棄却**＝§7.2/§8.1 の単一 `catalogHash` 畳み込み・一名一義を維持。
+- **protocol 22安定形**：hello応答は`{protocol,mc_version,supported_mc_versions,catalogHash}`にsession／player／`dimension`／origin／permissionsを加える。`dimension`はserverが解決した完全修飾DimensionKeyで、clientは要求値で上書きしない。world/profile情報定数は`world_constants` bucketへ束ねる。`catalogHash`と`world_constants`の既存規律は維持する。
 - **§8 整合**：versioning-design §8.1 が要求する `mc_version` / `supported_mc_versions`（踊り場リスト）を応答に含める（§8.1 必須ゆえ省けない）。互換判定は §8 のメジャー一致則に従う。
 - **`permissions.buildRange` の意味論**（確定 `2026-08-06-01`）：hello が返す整数値と server の実際の build guard は、paired UUID に対する同じ `PermissionProvider` の値解決経路を使う。LuckPerms 使用時は、既存 `QueryOptions` における User の effective meta を正本とし、McRemote が primary group だけを直接読んだり、user node・継承・context・weight・meta stacking の優先順位を再実装したりしない。meta key、context、meta 欠落または整数 parse 失敗時の `0`、LuckPerms 不在時の fallback は既存どおり。これは既存 field の値解決修正であり、wire field 名・shape・protocol `21.0.0` を変更しない。負値の意味論は別判断とする。
 - **`catalogHash`**（確定 `2026-06-26-03`・§7.2）：ブロック等カタログのキャッシュ識別子＝`mc_version`/`supported_mc_versions` 広告に**紐づくレジストリ指紋**（重複フィールドにしない）。クライアントは `catalogHash` が実値で、その hash に一致する cache を持たない場合にだけ本体を取得する。`catalogHash` が null なら本体を取得しない（b1 は無認証ゆえ常に null）。**クライアント別の非同梱・利用規則は §7.2 に従う**（`2026-08-02-05` / `2026-08-02-07` で「同梱既定版 fallback」は Python・Scratch とも廃止済み）。
@@ -391,7 +407,7 @@ dustとblock stateの有限schemaだけを追加し、任意Java objectの直列
 
 ### 6.4 確定済みの決定事項（auth 以外）
 
-pair→token の入手フロー（§6.5）／origin 基準の相対座標／`protocol` で版交渉／権限を応答で surface／最小必須 `{ protocol }`（enforcement OFF）または `{ protocol, auth:{token} }`（enforcement ON）・build 省略時 overworld (200,0,200)。auth フロー（ペアリング）の実体は §6.5・`2026-07-04-06` で確定。Sandbox routing は hello payload ではなく §2 の bridge routing が担う。
+pair→tokenの入手フロー（§6.5）／origin基準の相対座標／`protocol`で版交渉／権限を応答でsurface／最小必須`{protocol}`（enforcement OFF）または`{protocol,auth:{token}}`（enforcement ON）・build省略時dimension=`minecraft:overworld`／origin=(200,0,200)。authフローは§6.5、DimensionKeyは§5.1に従う。Sandbox routingはhello payloadではなく§2のbridge routingが担う。
 
 ### 6.5 認証：ペアリングフロー（確定 `2026-07-04-06`）
 
@@ -442,7 +458,7 @@ long-lived credential の一覧と失効。認証後のみ有効で、常に**�
 | ① | **block id／state表現** | **改訂確定** `2026-08-19-02`（protocol 22の構造化block value・§7.1） |
 | ② | **`world.getBlock` 戻り型** | **改訂確定** `2026-08-19-02`（`BlockValue` object・§7.1） |
 | ③ | **notification のエラー方針** | **b1 スコープ確定** `2026-07-01-08`（`2026-06-27-04` / `2026-07-01-06` を改訂）。b1 の setBlock/setBlocks/chat.post は **id 付き同期 request** として扱い、疎通確認・error 観測を優先する。server push方向は`2026-08-16-05`で撤回し、eventは非破壊`events.poll`、command errorは対応requestで観察する。send-only UXは別の体験設計 |
-| ④ | **命名系統** | **確定** `2026-06-26-04`。ワイヤ method はドット名前空間（build setter は `build.*`＝`build.setWorld`/`build.setOrigin`）・API 名は camelCase 維持（§5.1）。b1 params は §5.1 |
+| ④ | **命名系統** | **protocol 22改訂確定** `2026-08-22-02`。wire methodはドット名前空間、build setterは`build.setDimension`／`build.setOrigin`。API名はcamelCase。protocol 21の`build.setWorld`は履歴のみ |
 | ⑤ | **権限既定値** | 未決（**plugin/LuckPerms の現実依存**）。hello 応答 `permissions` の既定は config.yml の権限名（`mcr.online`/`mcr.offline`/`mcr.build.range`、scratch-plan §2.5）と実 LuckPerms 既定に律速＝plugin b1/認証 bN で実値を確認して確定 |
 
 > §8 のエラーコード（`PROTOCOL_MISMATCH` 等）と認証系コード（`TOKEN_EXPIRED` 等、scratch-plan §2.5）を JSON-RPC error オブジェクトへどう写像するかの対応表も、ここで確定する。
@@ -559,11 +575,11 @@ string`"3"`は別型とする。BlockValue出力はregistryの正準型を使い
 | | | `unknown_property` | property名がそのblockに無い | ○ |
 | | | `invalid_property_value` | 値が許容外。`allowed`を返せる | ○ |
 | params 検証 | `-32602`（Invalid params） | `invalid_params` | JSON-RPC params の形・型・座標値が不正 | b2 |
-| | | `unknown_world` | 指定 world が解決できない | b2 |
+| | | `unknown_dimension` | 指定DimensionKeyがloaded dimensionとして解決できない | b5／protocol 22 |
 | world-state | `-32000`番台（実装定義域） | `build_denied` | build policy / 範囲 / 認可により操作拒否。返せる場合は `data.bounds` / `data.violating` 等で理由を補足 | ○ |
 | player-state | `-32000`番台（実装定義域） | `permission_denied` | LuckPerms 等の認可により操作拒否。token は温存 | b2 |
 | | | `player_offline` | token は有効だが paired player がオンラインでない | b2 |
-| | | `teleport_failed` | `player.setPose` 等の teleport 呼び出し自体が `permission_denied`/`player_offline`/`unknown_world`/`invalid_params` 以外の要因で失敗（Paper `Entity.teleport` が false を返す等） | b4 |
+| | | `teleport_failed` | `player.setPose`等のteleport自体が`permission_denied`／`player_offline`／`unknown_dimension`／`invalid_params`以外の要因で失敗 | b5／protocol 22 |
 | world-query | `-32000`番台（実装定義域） | `height_not_found` | 指定上限以下に「非passableかつ直上passable」のblockが無い | b5 |
 | resource-ref | `-32602`（Invalid params） | `unknown_particle` | canonical particle IDがregistryに無い | b5 |
 | | | `particle_data_required` | b5では扱わないtyped data必須particle | b5 |
@@ -575,7 +591,7 @@ string`"3"`は別型とする。BlockValue出力はregistryの正準型を使い
 | entity-state | `-32000`番台（実装定義域） | `entity_handle_not_found` | foreign／unknown handle。存在差を公開しない | b5 |
 | | | `entity_removed` | known handleの対象entityが除去済み | b5 |
 | | | `entity_unloaded` | known handleの対象entityがunloadされ現在操作不能 | b5 |
-| | | `entity_world_changed` | 対象entityが外部要因でissued worldから移動 | b5 |
+| | | `entity_dimension_changed` | 対象entityが外部要因でissued dimensionから移動 | b5 |
 | | | `entity_spawn_failed` | admission後のspawn自体が失敗 | b5 |
 | server-state | `-32603`（Internal error） | `internal_error` | 結果が確定できない。非冪等操作を自動retryしない | b5 |
 | params 検証 | `-32602`（Invalid params） | `credential_not_found` | `auth.revoke` で指定した `credential_id` が要求元 UUID の active credential に無い（他 player の ID と存在しない ID を同値へ畳んで存在を隠す）。**caller の token は温存**し、`ref` に `credential_id` を返す | bN |

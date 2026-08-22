@@ -301,9 +301,9 @@ browserへ貸して代理送信しない。console streamと既存source stream�
 WireScopeのまま保ち、増えたroleやcomponentを個別に命名する。consoleのtransport、pairing、command scope、
 教材gateは実装着手前に別決定とする。
 
-## 13. protocol 22／b5 method観察とschema v1.1 compatibility set
+## 13. protocol 22／b5 method観察とschema v1／compatibility revision v1.1
 
-b5ではobserver schema／app artifact contractをv1.1へ進め、`events.poll`、`world.getHeight`、
+b5ではobserver top-level schema version `1`を維持したままcompatibility revision／app artifact contractをv1.1へ進め、`events.poll`、`world.getHeight`、
 `world.spawnParticle`、`world.spawnEntity`と新しいreasonを観察できるようにする（DECISIONS
 `2026-08-16-07`）。加えて、protocol 22の`world.setBlock`／`world.setBlocks`／`world.getBlock`は、
 `block_id`と`state`を分離した構造化`BlockSpec`／`BlockValue`として観察する（`2026-08-19-02`）。
@@ -343,6 +343,12 @@ method別validatorで区別する。protocol 21の文字列frameとprotocol 22�
 Scratch StateText／BlockInfoTextへ再結合せず、partial request、getterのfull result、event snapshot、errorの
 `data.path`を構造化frameのまま観察する（`2026-08-19-03`／`04`）。
 
+protocol 22では`build.setDimension`、hello／player position・pose／eventの`dimension`、
+`unknown_dimension`、`entity_dimension_changed`をmethod validatorとadapterへ同時投影する。DimensionKeyは
+完全修飾`namespace:path`のraw fieldとして表示し、Bukkit world nameへ変換しない。旧`build.setWorld`、
+`world` identity field、旧reasonとのunionを受理せず、`world.*`操作namespaceと`world_constants`は別概念として
+維持する（`2026-08-22-02`）。
+
 FASTはid省略をmachine token `sent-unconfirmed`として扱い、日本語「送信済み・結果未確認」、英語
 `Sent · unconfirmed`と表示して、success／error responseを合成しない。この状態はframeのid欠落とresponse不在から
 導出し、mode名、TRACE delay、synthetic status responseをobserver schemaへ追加しない。DEBUG／TRACEは
@@ -350,7 +356,7 @@ wire上では同じid付きrequestなので、frame間隔からmode名を推測�
 barrierとして表示するが、notificationごとの成功集約とは説明しない。mode名とTRACE delayはobserver schemaへ
 追加せず、plugin、Python、Scratch、validator、common appを`2026-08-20-03`のcompatibility setで更新する。
 
-`events.poll`のcompact response上限60 KiBは、最大合法responseをschema v1.1 frameとsession envelopeへ通した
+`events.poll`のcompact response上限60 KiBは、最大合法responseをschema v1（compatibility revision v1.1）frameとsession envelopeへ通した
 UTF-8 encoded bytesで検証する。escape量の多い文字列を含めても単一frame上限64 KiBを越えないことをb5 fixtureで
 確認し、full load／rolling historyの本較正はb6 API実装後に行う（`2026-08-21-02`）。
 

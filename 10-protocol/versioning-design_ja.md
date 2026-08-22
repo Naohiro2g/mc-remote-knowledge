@@ -484,6 +484,10 @@ b5は大規模な共通基盤を閉じる段である。
 12. `world.setBlock`／`world.setBlocks`のDEBUG／TRACE／FAST、bounded connection FIFO、
     `connection.flush` barrier、Python／Scratch／WireScope lifecycle（contract=`2026-08-20-03`、
     b5配置=`2026-08-20-04`）
+13. 空間identityをMinecraft DimensionKeyへ統一し、`build.setDimension`、hello／player／eventの
+    `dimension`、`unknown_dimension`、`entity_dimension_changed`へ全面改訂する。一般namespaceを最初の
+    exact setから受理し、protocol 21／b4以前の`world`語彙とのalias／union／migrationを作らない
+    （`2026-08-22-02`）
 
 項12はpost-b5候補ではなくb5の必須横断scopeである。component単位の実装・検収は独立に進められるが、
 plugin、Python、Scratch、WireScope、compatibility fixture／evidenceのいずれかを後送りした部分setを

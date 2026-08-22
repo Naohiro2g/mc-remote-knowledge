@@ -137,17 +137,17 @@ fresh cloneでは、同じcatalogがPC cacheにあっても、そのproject自�
 player identityとbuild stateは別の層です。
 
 - identity：pairingしたplayer。`getPos()`／`setPos()`の対象になります。
-- build state：各connection／streamが持つworldとorigin。
+- build state：各connection／streamが持つ正準DimensionKeyとorigin。
 - project設定：`param_mc_remote.py` が持つ接続先と初期 `BUILD_ORIGIN`。
 
 `1 Minecraft instance = 1 connection = 1 build state`です。`setPlayer()` は削除され、次を使います。
 
 ```python
-mc.setWorld("overworld")
+mc.setDimension("overworld")
 mc.setBuildOrigin(ORIGIN.x, ORIGIN.y, ORIGIN.z)
 ```
 
-建築座標はorigin相対で、絶対座標は `origin + relative` です。Y座標にも暗黙offsetはありません。`setWorld()` と `setBuildOrigin()` はsession中に変更できます。
+建築座標はorigin相対で、絶対座標は`origin + relative`です。Y座標にも暗黙offsetはありません。`setDimension()`と`setBuildOrigin()`はsession中に変更できます。入力は完全修飾DimensionKeyまたは`minecraft` namespaceを省略したpathで、出力と保持値は常に完全修飾します。`setWorld()` aliasは作りません。
 
 b3の主要APIは次のとおりです。
 
@@ -158,10 +158,10 @@ b3の主要APIは次のとおりです。
 | `setBlocks(x0, y0, z0, x1, y1, z1, block_id, *, state=None)` | 直方体を設置し、全build modeで`None`を返す（protocol 22／b5） |
 | `getBlock(x, y, z)` | `BlockValue(block_id, state)`を取得（protocol 22／b5） |
 | `getBlocks(x0, y0, z0, x1, y1, z1)` | 各軸10／最大1000件をz最速順の`BlockValue` sequenceで取得 |
-| `setWorld(world)` | このstreamのbuild worldを変更 |
+| `setDimension(dimension)` | このstreamのbuild dimensionを変更し、serverの正準resultから現在contextを更新 |
 | `setBuildOrigin(x, y, z)` | このstreamのoriginを変更 |
-| `getPos()` | paired playerのworldとorigin相対位置を取得 |
-| `setPos(world, x, y, z)` | paired playerを明示worldのorigin相対位置へ移動 |
+| `getPos()` | paired playerのdimensionとorigin相対位置を取得 |
+| `setPos(dimension, x, y, z)` | paired playerを明示dimensionのorigin相対位置へ移動 |
 
 protocol 22ではblock IDとstateを分ける。state propertyを持たないblockやMinecraft既定stateを
 使う場合は、stateを指定しない。
@@ -292,12 +292,12 @@ long-lived credentialの公開gateは閉じています。Pythonの既定を `lo
 - 初版は `Minecraft.create()` で成立した main connection 1件を `kind=main` として投影します。
   `1 stream = 1 connection = 1 build state` を維持し、将来の明示 substream を schema 破壊なしで
   `streams[]` へ追加できる形にします。
-- `streams[].hello` は初期 handshake の記録です。`hello.world`／`hello.origin` を後続の
-  `build.setWorld`／`build.setOrigin` による現在値で上書きしません。現在の可変 build state は
+- `streams[].hello`は初期handshakeの記録です。protocol 22では`hello.dimension`／`hello.origin`を後続の
+  `build.setDimension`／`build.setOrigin`による現在値で上書きしません。現在の可変build stateは
   schema v1へ未宣言 fieldとして追加せず、次の schema sliceで `current_build_state` と lifecycle／fixtureを
   共に固定してから追従します。現在値を得るためだけの25ms pollingも行いません。
 - adapter は Scratch lifecycle fixture と schema validator に対する conformance を満たし、
-  generation-side allowlist で hello、permissions、world constants と許可された建築／world／player
+  generation-side allowlistでhello、permissions、world constantsと許可された建築／dimension／player
   frame・payloadだけを生成します。任意の Python object、無制限な履歴、内部 transport 状態を
   observer feedへ直列化しません。
 - `auth.*`、token、pair code、player UUID、credential／device情報を生成せず、history、grant、

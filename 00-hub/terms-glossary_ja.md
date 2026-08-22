@@ -41,6 +41,18 @@
 - deployment の schema / file / API / CLI に無修飾の `catalog` / `registry` を新設しない。CLI は `mcrctl preset list` / `mcrctl preset show` の preset namespace に置く。
 - `サーバー` は computing / server-system 文脈（VPS、家サーバー、Games サーバー、Minecraft サーバー等）に予約し、飲食隠喩の役割に無修飾で使わない。給仕・ホール等の具体語と技術的実体の写像は、判断履歴で実際に使う段で確定する。
 
+## Minecraft空間identity
+
+| 正典表記 | 技術的な意味 | ドリフト注意 |
+| --- | --- | --- |
+| DimensionKey | protocol 22で建築先、player／entity所在、event発生先を識別する完全修飾`namespace:path`。plugin出力は`World#getKey()`由来 | Bukkit world folder名、`World#getName()`、Environment、Stackのworld identityと同一視しない |
+| DimensionRef | DimensionKey、または`minecraft` namespaceだけを省略した入力path。省略時だけ`minecraft:`を補完する | `world`／`normal`／`nether`／`end`等のaliasを増やさない。一般namespaceを標準3dimensionだけのenumへ閉じない |
+| build context | connection／stream単位の現在DimensionKeyとabsolute originの組`{dimension,origin}` | helloの初期snapshot、client入力alias、build execution modeと混同しない |
+| Minecraft world | Bukkit `World` object、保存directory／volume、生成済みworld data等、実空間または永続対象 | wire上のdimension identity field名へ使わない。`world.*`操作namespaceと`world_constants`はidentityではないため存続する |
+
+protocol 21／b4以前の`build.setWorld`、`world` field、短縮値は履歴語彙であり、protocol 22の現行surfaceへ
+aliasとして持ち込まない（`2026-08-22-02`）。
+
 ## WireScope roles
 
 WireScopeでは、実装processや物理hostでなく、観察データ経路上の責務をsource／station／browserの三役で表す

@@ -372,8 +372,8 @@ local environment を使う live-human E2E で、Scratch→Bridge→Minecraft→
 `hello` と `chat.post` の request／response、同一 main stream の継続更新を確認した。Minecraft、
 Scratch、WireScope を横並びにできる狭幅2 column UI と `ja-Hira` 表示も人間確認済みである。
 
-schema v1 の `streams[].hello` は初期 handshake の記録であり、そこにある `world`／`origin` は
-接続時の値として保持する。後続の `build.setWorld`／`build.setOrigin` を受けても `hello` を現在値で
+schema v1の`streams[].hello`は初期handshakeの記録であり、protocol 22ではそこにある`dimension`／`origin`を
+接続時の値として保持する。後続の`build.setDimension`／`build.setOrigin`を受けても`hello`を現在値で
 上書きしない。現在の可変 build state は schema v1 の未宣言 field として追加せず、次の schema slice で
 `current_build_state` と lifecycle／fixtureを共に定義する。現在値を得るためだけに Minecraft を25msごとに
 pollingする方式も採らない。この分離により、Scratch／Python adapter は同じ handshake record と可変状態の
@@ -440,7 +440,7 @@ b5／b6の横断scopeはDECISIONS `2026-08-16-04`〜`07`と
 - event DTOは起動したScratch threadへ個別に束縛し、共有の「最後のevent」を作らない。
 - overflow、capacity loss、明示破棄を確認可能にし、空batchや通常切断へ畳まない。
 - disconnect時にpoller、cursor、thread context、event cache、entity handle cacheを回収する。
-- event座標をworld blockへ渡す前に、eventがcaptureしたworld／originと現在値の一致を確認し、
+- event座標をworld blockへ渡す前に、eventがcaptureしたdimension／originと現在値の一致を確認し、
   不一致をactionable errorにする。
 - b5で公開するevent surfaceは`block_right_click`／`chat_posted`／`projectile_hit`のhatに限定する。
   raw poll block、filter、`events.clear`は公開せず、filter／clearはb6へ置く。
@@ -452,6 +452,12 @@ b5／b6の横断scopeはDECISIONS `2026-08-16-04`〜`07`と
 wire paramsは`[x,y,z,entity]`の座標先行順、`world.spawnParticle`は9／10 paramsの座標先行順と
 force省略時`true`とする（DECISIONS `2026-08-21-01`）。VM unit、observer fixture、WireScope params
 validatorを同じ順序へ更新し、旧順序とのunionを受理しない。
+
+protocol 22のScratch公開面は`建築するディメンションを[overworld]にする`相当のcommandを
+`build.setDimension`へ投影する。menuは`overworld`／`the_nether`／`the_end`を提示できるが、自由入力では
+`myworld:world`等の一般namespaceも受理する。runtimeへ保存する現在値、hello、player／event DTOは完全修飾
+DimensionKeyとし、`world`／`normal`／`nether`／`end`をaliasにしない。旧`setWorld` opcodeやfieldの
+migrationは作らない（`2026-08-22-02`）。
 
 Scratch候補`5c93a70494`は搬送時点でclean・未pushで、構造化block値、StateText／BlockInfoText／ErrorText、
 Picker、`getBlocks`／`getHeight`／spawn、DEBUG／TRACE／FAST、`connection.flush`、既存b5 methodの
@@ -480,7 +486,7 @@ FASTはnotificationでmachine token `sent-unconfirmed`、日本語「送信済�
 （contract=`2026-08-20-03`、b5配置=`2026-08-20-04`）。Scratchのmode／flush実装とfixtureを
 post-b5へ送った状態でb5全体GREENとしない。
 
-b5のWireScope schema v1.1対応はplugin fixture、Python observer projection、Scratch source adapter、
+b5のWireScope schema v1／compatibility revision v1.1対応はplugin fixture、Python observer projection、Scratch source adapter、
 common app artifactと同じcompatibility setで行う。plugin wire conformanceと共通UI／real-browser E2Eは
 別gateとし、Scratch側だけでallowlistやlegacy methodを拡張しない。
 

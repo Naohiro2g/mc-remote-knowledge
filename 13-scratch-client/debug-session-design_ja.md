@@ -201,11 +201,11 @@ WS1（グランドプラン / AI 活用方針）
 ### 初期 handshake と現在 build state の分離（2026-08-08）
 
 `mcremote.observer` schema v1 の `streams[].hello` は、接続時に成立した handshake の記録である。
-`hello.world`／`hello.origin` は初期値として保持し、同じ stream で後から観測した
-`build.setWorld`／`build.setOrigin` によって上書きしない。frame は起きた通信を記録する層、`hello` は
+protocol 22では`hello.dimension`／`hello.origin`を初期値として保持し、同じstreamで後から観測した
+`build.setDimension`／`build.setOrigin`によって上書きしない。frameは起きた通信を記録する層、`hello`は
 接続開始時の契約を記録する層であり、可変状態の convenience view をどちらかへ偽装しない。
 
-現在の `world`／`origin` は次の observer schema slice で `current_build_state` として扱い、更新 event、
+現在の`dimension`／`origin`は次のobserver schema sliceで`current_build_state`として扱い、更新event、
 lifecycle、fixture、Scratch／Python adapter conformance と一緒に固定する。schema v1 へ field を無断追加する案、
 `hello` を現在値で上書きする案、現在値のためだけに25msごとに Minecraft を polling する案は採らない。
 初期 handshake と可変 build state を分けることで、Scratch 固有 runtime の更新頻度を共通 observer contractへ

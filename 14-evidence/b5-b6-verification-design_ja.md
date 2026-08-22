@@ -1,7 +1,7 @@
 # b5／b6 横断検証設計
 
 この文書は、DECISIONS `2026-08-16-04`〜`07`、`2026-08-19-01`／`02`、`2026-08-20-03`／`04`、
-`2026-08-21-01`で確定したprotocol 22の
+`2026-08-21-01`／`2026-08-22-02`で確定したprotocol 22の
 plugin APIについて、何をどのtest classで
 確かめるかを示します。未実施の計画をevidenceと呼ばず、実行後にだけrecord／artifactを作ります。
 wire contractは[wire-format-design](../10-protocol/wire-format-design_ja.md)を正とします。
@@ -27,7 +27,10 @@ protocol不変定数や最終運用値と主張しません。
 
 各dev repositoryのtestと固定commitで次を閉じます。
 
-- event DTOがBukkit Event objectを保持せず、world／originを発生時にcaptureする。
+- event DTOがBukkit Event objectを保持せず、完全修飾DimensionKey／originを発生時にcaptureする。
+- DimensionRefの`overworld`→`minecraft:overworld`補完、完全修飾`minecraft:the_nether`／
+  `myworld:world`の保持、`world`等alias不在、未知keyの`unknown_dimension`、setter／hello／player／eventの
+  canonical identity一致。`build.setWorld`や`world` fieldとのunionを受理しない。
 - `BlockSpec`／`BlockValue`のstrict shape、stateless blockの`state:{}`、短縮ID／部分state入力、
   完全修飾ID／full state出力、set→getの意味的round-trip。
 - protocol 21／22の混在がhelloで拒否され、文字列refとobjectのunion受理が無い。
@@ -40,7 +43,7 @@ protocol不変定数や最終運用値と主張しません。
 - stale／latest／future cursor、非破壊poll、overflow／capacityの累積値。b5のclear／filtered値は0、
   b6でfilter／clearを追加する。
 - `events.poll`の省略／`max_events`希望上限、server上限、未知option拒否。
-- compact responseが61,440 bytesを越えず、schema v1.1／session envelope投影後のsingle encoded frameが
+- compact responseが61,440 bytesを越えず、schema v1（compatibility revision v1.1）／session envelope投影後のsingle encoded frameが
   65,536 bytesを越えない。
 - right-clickのmain／off-hand正規化fixture。
 - handleのformat、同epoch同entityの同値、foreign／unknown同値化、disconnect失効、slot予約。
@@ -58,7 +61,7 @@ protocol不変定数や最終運用値と主張しません。
 - b6のnearbyに対するbounded scan／player除外／partial handle禁止、remove失効。
 - b6 signの4行／面／state検証とrollback、typed particleの有限schema。
 - Python cursor／retry／handle投影、Scratch thread-local event context／monitor guard。
-- WireScope schema v1.1 validatorとartifact compatibility set。
+- WireScope schema v1／compatibility revision v1.1 validatorとartifact set。
 - bounded thread-safe connection FIFO、notificationの無言drop禁止、backpressure中の順序維持。
 - 正常／拒否notificationから`connection.flush`までのbarrier、後続command非包含、epoch非跨越、
   flushが個別成功を集約しないこと。
@@ -76,18 +79,20 @@ protocol不変定数や最終運用値と主張しません。
 3. response喪失後に同cursorで再取得し、副作用を再実行しない。
 4. ring overflow／capacity拒否のcounterとsequence gapが一致する。filter／clearはb6試験で追加する。
 5. disconnect／reconnectで旧cursorとhandleが使えない。
-6. event後にbuild world／originを変更してもDTOが変わらず、clientの不一致guardが作動する。
-7. b5ではentityのunload／外部world移動を確認し、b6でremove／`entity.setPose` world移動を実Paper挙動と照合する。
-8. b5ではspawn、particle、heightをwork limit境界の内外で確認し、b6でnearby／signを追加する。spawn系はfractionalな
+6. event後にbuild dimension／originを変更してもDTOが変わらず、clientの不一致guardが作動する。
+7. `overworld`入力後もhello／setter result／player／eventが`minecraft:overworld`で一致し、一般namespaceの
+   loaded dimensionも同じgrammarで往復する。Bukkit world nameをidentityとして返さない。
+8. b5ではentityのunload／外部dimension移動を確認し、b6でremove／`entity.setPose` dimension移動を実Paper挙動と照合する。
+9. b5ではspawn、particle、heightをwork limit境界の内外で確認し、b6でnearby／signを追加する。spawn系はfractionalな
    origin相対座標を事前roundせず、座標先行paramsでplugin／Python／Scratch／WireScopeが一致すること、
    particleのforce省略時`true`と未知entityの副作用不在も確認する。
-9. WireScopeへScratch／Pythonの両sourceを順に接続し、b5 method／result／error／lossを同じUIで確認する。
-10. player／projectile／entity poseの正準値がplugin、Python、Scratch、WireScopeで一致し、入力精度を
+10. WireScopeへScratch／Pythonの両sourceを順に接続し、b5 method／result／error／lossを同じUIで確認する。
+11. player／projectile／entity poseの正準値がplugin、Python、Scratch、WireScopeで一致し、入力精度を
     副作用前に失っていないことを確認する。
-11. stateless／stateful blockをPythonとScratchからset→getし、同じ構造化値をWireScopeで確認する。
-12. 同一座標への複数FAST notification→flushでFIFO順の最終値を確認し、不正notification→flushでは
+12. stateless／stateful blockをPythonとScratchからset→getし、同じ構造化値をWireScopeで確認する。
+13. 同一座標への複数FAST notification→flushでFIFO順の最終値を確認し、不正notification→flushでは
     responseが捏造されずworld不変、flush自体は個別errorを集約しないことを確認する。
-13. queue capacity境界でnotificationの無言drop／flush追越しがなく、保持不能時はconnectionとflushが失敗する。
+14. queue capacity境界でnotificationの無言drop／flush追越しがなく、保持不能時はconnectionとflushが失敗する。
 
 ## 3. Real-browser／live-human
 
