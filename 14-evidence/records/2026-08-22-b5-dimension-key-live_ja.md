@@ -109,8 +109,17 @@ bearer token、pairing ID、private endpoint、player UUIDは主張に不要な�
 common artifact、実pluginの短いevent／block／spawn／mode wire smoke、Python／Scratch real-browser WireScope E2E、
 protocol 22 DimensionKey改訂が一つのexact compatibility setへ収束した。したがって**b5横断技術gateをGREEN**とする。
 
-GREENはhuman release ownerによるtag／GitHub prerelease／registry publish／public deployの批准を代替しない。
-外部release操作は別途明示承認後に実施し、作成後identityを再確認する。
+## Prerelease identity verification
+
+human release ownerの明示承認後、次のGitHub prereleaseを作成し、tag target、prerelease／draft／Latest状態、
+assetまたはrelease notes digestをAPIで確認した。
+
+- McRemote: [v1.21.11-2200.0.0b5](https://github.com/Naohiro2g/McRemote/releases/tag/v1.21.11-2200.0.0b5)、tag target `bbbb53602a9c375e2ead3ee4c22174d5cf424f55`、JAR 195,998 bytes／SHA-256 `f7ddbcb5a92acadfe1adb7a9f6a4f50a05707e2eefbd1c01ff9aeeebe0a36547`、release notes SHA-256 `64f2ceddf75d25af18d26079207b3281c0175dcf65d5e44826b543d7539ea364`
+- Python: [v2200.0.0b5](https://github.com/Naohiro2g/minecraft-remote-api/releases/tag/v2200.0.0b5)、tag target `64b0f8831fa33e74f1b70b9102b3f29ec99b8e14`、assetsなし、release notes SHA-256 `c03752383655e757eed677a590ffd18b8ab5f806a8ba25fb5757c2150150dc04`
+- Scratch: [v2200.0.0b5](https://github.com/Naohiro2g/scratch-editor/releases/tag/v2200.0.0b5)、tag target `1a11c46bac5696afd3f494caac56ae682ed00fb0`、追加assetsなし。CI／Bridge digestとWireScope ZIP／manifest SHAをrelease notesへ記載
+
+3 releaseともprerelease ON、draft OFF、Latest非対象であり、各repo worktreeはcleanだった。PyPI／TestPyPI、
+registry publish、public deployは実施していない。
 
 ## Non-claim／後続
 
