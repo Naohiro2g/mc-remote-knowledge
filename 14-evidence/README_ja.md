@@ -14,7 +14,7 @@
 - `mc-remote-backstage`: private inventory / internal ops / 非秘密だが非公開の evidence
 - Git 外: token、password、private key、秘密実値を含む raw log / capture / dump
 
-raw は `14-evidence/raw/` に一時配置できるが gitignore 対象であり、public commit しません。公開 record は token、pair code、private host、UUID 等を必要に応じて redact し、redaction が主張を壊していないことを確認します（`2026-07-06-03` / `2026-07-21-04`）。
+raw は `14-evidence/raw/` に一時配置できるが gitignore 対象であり、public commit しません。公開 record は token、`pairing_id`、private host、UUID 等を必要に応じて redact し、redaction が主張を壊していないことを確認します（`2026-07-06-03` / `2026-07-21-04` / `2026-08-22-01`）。pair codeと表示用`/mcremote pair NNN-NNN`は通常log、transcript、公開evidenceへ収録でき、必須redaction対象ではありません。
 
 新 public 正本世代は過去 evidence を carry せず、空の索引から始めます。
 

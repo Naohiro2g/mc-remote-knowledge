@@ -113,7 +113,8 @@ protocol不変定数や最終運用値と主張しません。
 ## 4. Evidenceの着地条件
 
 正式recordには、knowledge contract commit、plugin／Python／Scratch／WireScopeの固定SHA、artifact identity、
-test class、実行範囲、PASS／FAIL、未検証範囲を記載します。token、pair code、UUID、private host等のraw値は
-公開せず、主張のスコープを実行したcaseから越えません。b5の暫定capacity値は境界fixtureと短いsmokeの
+test class、実行範囲、PASS／FAIL、未検証範囲を記載します。token、`pairing_id`、UUID、private host等のraw値は
+公開せず、主張のスコープを実行したcaseから越えません。pair codeと表示用pair commandは通常log／公開evidenceへ
+収録でき、redactionを要求しません。b5の暫定capacity値は境界fixtureと短いsmokeの
 採用理由を伴うimplementation contractとして着地し、b6 API実装後の本較正では全methodを載せた実環境の
 load／soak結果と更新理由を別recordへ残します。runtime policyの更新を横断version contractの変更と混同しません。

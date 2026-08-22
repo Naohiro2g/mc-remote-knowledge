@@ -93,7 +93,8 @@ release運用では、物理host、deployment、実装、進行、最終批准�
 | 着地確認依頼 | knowledge リポでの ID 採番・配置・commit/push 後に、元リポへ戻って「正しく着地したか」を確認させる固定 Markdown ブロック | 完了報告（戻り確認が抜ける） |
 | セッションクローズ票 | セッション終了時または長時間作業の節目に出す、次回再開用の短い作業状態ブロック。決定の正本ではなく、必要なら NOTES / DECISIONS / 確定搬送票への入口を示す | 長文要約／会話ログ（再開に不要な情報が混ざる） |
 | evidence record | 人間参加・横断型実機テストなど再現コストが高い検証を、後から監査できるように `14-evidence/records/<test_id>_ja.md` へまとめた構造化サマリ。搬送票の根拠/検証欄から record path と commit/SHA で参照する | ローカル未追跡ファイル名／会話内の PASS 要約 |
-| sanitized artifact | token / pair code / private host / UUID 等の秘密実値・個人識別値を redaction した、`14-evidence/artifacts/<test_id>/` または private evidence 保存先へ置ける証跡 | raw log の公開 commit |
+| pair code | `auth.pairBegin`が返す約120秒・一回限りの6桁表示・操作用コード。credential／永続identityではなく、通常log、transcript、公開evidenceへ収録できる | token、`pairing_id`、attach code |
+| sanitized artifact | token / `pairing_id` / private host / UUID 等の秘密実値・個人識別値を redaction した、`14-evidence/artifacts/<test_id>/` または private evidence 保存先へ置ける証跡。pair codeは必須redaction対象ではない | raw secret log の公開 commit |
 | handoff materials | dev repo 側でセッションを跨いで knowledge へ渡す素材を保持する一時置き場。公式パスは `handoff-materials/<handoff_id>/`、構成は `MANIFEST_ja.md`＋`materials/`、既定 gitignore。正式証跡ではなく、knowledge 着地と着地確認OK後に削除。private ops として保持が必要なら `mc-remote-backstage` へ移す | `14-evidence-handoff/`／root 直下 tarball／dev 側 `records/`・`artifacts/`／frozen archive への追記 |
 
 ### 裁き状態（確約 / 捕捉 / 工房）

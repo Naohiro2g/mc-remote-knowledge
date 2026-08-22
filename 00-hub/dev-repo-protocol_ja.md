@@ -140,11 +140,13 @@ Claude Code は `AGENTS.md` を自動では読まないため、各開発リポ�
   コマンド＋commit を証跡とし、JSON 保存を必須にしない。`live-auto` は実サーバ相手だが人間操作なしの smoke で、
   通常は script＋PASS summary で足りるが、protocol ratify / release gate の根拠に使う回は transcript を保存する。
   `live-human`（`/mcremote pair` 等、人間操作・端末・実機状態を含む）は、正式根拠にする回では knowledge リポ
-  `14-evidence/records/<test_id>_ja.md` に構造化サマリを作り、token / pair code / private host / UUID 等を redact
+  `14-evidence/records/<test_id>_ja.md` に構造化サマリを作り、token / `pairing_id` / private host / UUID 等を redact
   した sanitized artifact を `14-evidence/artifacts/<test_id>/` へ置く。raw は `14-evidence/raw/`（gitignore・剪定可）
   または外部/private 保管＋hash 参照。搬送票・確認票の `根拠/検証` には test class、evidence record path、artifact
   path、commit/SHA を明記する。ローカル未追跡ファイル名だけを正式証跡として扱わない。開発フェーズ終端・milestone・
-  公開準備では、再現コストだけでなく token cost と redaction / 移管コストも見て棚卸しする。
+  公開準備では、再現コストだけでなく token cost と redaction / 移管コストも見て棚卸しする。pair codeと表示用
+  `/mcremote pair NNN-NNN`はcredentialではなく、通常log、transcript、公開evidenceへ収録できる。これらを
+  sanitizationの必須削除対象にしない。
   dev 側が作るのは確定搬送票＋素材まで。record path / artifact path は命名提案として書けるが、`records/` /
   `artifacts/` / `INDEX` / `redactions.json` の正式 authoring・配置・commit は knowledge 側が行う。
   セッション終了で消えると困る素材は `handoff-materials/<handoff_id>/` に置く（既定 gitignore）。中身は

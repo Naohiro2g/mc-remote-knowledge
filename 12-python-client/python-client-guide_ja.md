@@ -239,7 +239,7 @@ mode切替を成立させずにconnectionを回収する。timeout実値はcandi
 
 `Minecraft.create()` による自動projectionはbest-effortです。fetch、validate、cache、generate、publish等で失敗すると `CatalogProjectionWarning` を出しますが、認証済みbuild streamは維持し、接続済みclientを返します。
 
-warningには失敗stage、接続と建築は成功していること、補完だけが更新されなかったこと、再試行方法が含まれます。token、pair code、credential内容は含めません。
+warningには失敗stage、接続と建築は成功していること、補完だけが更新されなかったこと、再試行方法が含まれます。token、`pairing_id`、credential内容は含めません。pairing進行の通常logはpair codeと表示用commandを記録できます。
 
 修正後は明示的に再試行できます。
 
@@ -275,7 +275,7 @@ mc = Minecraft.create(
 
 token storeは `$MCREMOTE_CONFIG_DIR`、`$XDG_CONFIG_HOME/mcremote`、`~/.config/mcremote` の優先順で解決し、`token.json` を接続先namespace別に保持します。`token_key`を省略した既定namespaceは `"{address}:{port}"` です。
 
-token、pair code、player UUIDをsource、URL、通常log、Git管理fileへ書かないでください。`param_mc_remote.py` にcredentialを置かないでください。
+token、`pairing_id`、player UUIDをsource、URL、通常log、Git管理fileへ書かないでください。`param_mc_remote.py` にcredentialを置かないでください。pair codeは約120秒・一回限りの表示・操作用コードなので、console、通常log、test transcript、Git管理の公開evidenceへ残して構いません。ただし再利用可能な設定値やcredentialとして保存しません。
 
 現行のinstalled CLIが持つsubcommandは `mcremote init` だけです。`login`、`status`、`devices`、`revoke`、`logout` は未実装であり、現行手順として案内しません。
 

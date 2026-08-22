@@ -50,7 +50,7 @@ same-b4再起動後のtoken再利用とb4再適用後のtoken再利用がPASSし
 - **失敗点**：失敗した段階、公開可能な stable reason／症状、検出方法、復旧行動、復旧までに必要だった人間介入。
 - **long-lived 需要の有無**：session のままで支障がなかったか、継続 credential があれば避けられた中断だったか。
 
-pair code、token、player UUID、private host／route、account、秘密を含む raw log は収集物へ入れない。正式な横断根拠にする場合は `14-evidence/` の visibility と redaction 規律に従う。
+token、`pairing_id`、player UUID、private host／route、account、秘密を含む raw log は収集物へ入れない。pair codeは約120秒・一回限りの表示・操作用コードでありcredentialではないため、通常log、transcript、公開evidenceへそのまま収録でき、redactionを要求しない。正式な横断根拠にする場合は `14-evidence/` の visibility と redaction 規律に従う。
 
 ## 4. credential-lifecycle 再開後の順序
 
@@ -62,7 +62,7 @@ pair code、token、player UUID、private host／route、account、秘密を含�
 2. **checkpoint＋doctor**
    - `2026-08-06-02` の nonce 付き明示 checkpoint と Stack doctor consumer を共通 fixture、deterministic test、実 profile で接続する。
 3. **secret-safe live runner**
-   - token、pair code、UUID、private endpoint を公開 artifact や process log へ漏らさず、発行、一覧、失効、logout、再接続を反復検証できる runner を固定する。
+   - token、`pairing_id`、credential、UUID、private endpoint を公開 artifact や process log へ漏らさず、発行、一覧、失効、logout、再接続を反復検証できる runner を固定する。pair codeと表示用pair commandは通常log／evidenceへ残してよい。
 4. **snapshot rollback transaction**
    - revoke 済み credential と非 revoke credential を区別したまま snapshot rollback、再起動、authority 継続、backup 非包含、失敗時 rollback を一つの transaction として検証する。
 5. **reset／災害復旧**

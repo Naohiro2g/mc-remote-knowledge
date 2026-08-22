@@ -68,7 +68,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   - Python: **開始許可**。source `af2b19dd4a4f0404c4bde439021ca7e017904a04`、wheel SHA-256 `a3dacff46027108a6216ded320ad7b75f9b42b4dbdb3e424059c49e0935fcf0c`をfresh venvへ入れ、同serverでb5 API、mode／flush、3 event DTO／cursor／loss、observer schema v1／compatibility v1.1、common WireScope real-browser attachを確認する。Python runnerの接続／authenticated helloを開始確認とし、Stackの別preflightを挟まない。pairing等の人間操作は統一票の一部として実施し、終了時にconnection／WireScope sourceを閉じる。world／entity cleanupは要求しない
   - Scratch: Python segment PASS後、source `602ecdf809f87a7e33e50d7c465b7248429e26dc`のexact GUI／Bridge／WireScopeを用い、構造化block値、Picker、getBlocks／height／spawn、DEBUG／TRACE／FAST／flush、3種hatとthread-local event context、disconnect／reconnect回収、WireScope real-browser観察を確認する。raw poll／filter／events.clear／browser保存はb5試験へ混入しない
   - backstage: PR `#5`をdraft解除・mergeし、host-native service／listenerのcurrent inventoryを維持する。試験中に未知service／listenerを検出した場合だけreadinessを取り下げる
-- live-auto / live-human: **Python segmentを許可**。fresh venvのexact wheelからlive-autoを行い、必要なpairing、3種event、common WireScope real-browser attachだけをlive-humanとして組み合わせる。tokenを転記・記録しない。Python PASSまではScratch segmentへ進まない
+- live-auto / live-human: **Python segmentを許可**。fresh venvのexact wheelからlive-autoを行い、必要なpairing、3種event、common WireScope real-browser attachだけをlive-humanとして組み合わせる。pair codeと表示用pair commandは通常log／transcript／公開evidenceへexact値を記録できる。tokenと`pairing_id`は転記・記録しない。Python PASSまではScratch segmentへ進まない
 - non-claim: component GREEN、b5横断GREEN、通常dev環境完成、release承認をまだ主張しない
 
 ## 2026-08-07 Scratch editor `2100.0.0b3`
