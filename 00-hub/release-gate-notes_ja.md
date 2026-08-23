@@ -95,6 +95,19 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - 次の横断候補前に、常設通常dev integration harnessの正準入口とmachine-readable gate manifestをStack／backstage／knowledgeの各責務に従って実装する。
 - b5で実施した非影響PASSは、change coneと元identity／non-claimを明示できる場合に限り後続gateへ再利用できる。
 
+### b5 public deploy 実施記録（2026-08-23）
+
+- decision: `2026-08-23-02`
+- 対象 repo: mc-remote-stack（協調: McRemote, scratch-editor）
+- gate coordinator: mc-remote-stackリポのClaude Codeセッション。human release ownerが本セッション内でpublic VPS beta（official-public-beta）へのb5 exact set適用を明示承認し、実行した
+- 実施日: 2026-08-23
+- exact compatibility set遷移: `public-web-paper@5` → `@6`（Stack PR `#31`、merge `7cb0168`）→ `@7`（Stack PR `#34`、merge `a58f51d`）。`vps-server@8` → `@12`
+- 適用先: official-public-beta VPS、lock `sha256:a2e93aaf512f895f4ec5482c443a0763ff534f68f611dd14ca58fb49b109bb92`
+- credential永続化regressionと修正: 適用直後にMcRemote CredentialServiceが`UNHEALTHY`（`Unknown persisted credential type: session`）となった。`git log --graph`によるcommit history比較で、b5ブランチが共有merge-base `9df8c46`（b4 player pose commits）から、b4側のsession token永続化fix `3496db9`（2026-08-18、`2026-08-02-08`実装、evidence `2026-08-18-b4-session-persistence-home-alpha`）がマージされる前に分岐しており、b5独自のprotocol-22作業が同じcredential関連fileを独立に書き換えたためこの修正が欠落していたと判明した。意図的なb5設計変更ではなく並行branch間の取り込み漏れであり、既存on-disk `session`型recordを読込み時に黙って捨てるだけのshimは、b4で実機検証済みの同一runtime再起動を跨ぐsession token継続を回復しない不完全な対応として不採用とし、`3496db9`をcherry-pickして修正した。McRemote `v1.21.11-2200.0.1b5`（JAR SHA-256 `b20705899e3d352a434640b2b075845e34bdac9bda895ee8d1a768f8d232a844`、独立clean checkout 2件でbyte-for-byte一致、`./gradlew check` 101 tests PASS、うちsession-persistence関連6 tests）としてVPSへ適用した
+- live doctor結果: 適用時点で接続player 0名・直近backup 1時間以内の低リスクな窓だった。修正適用後、`docker logs`で`[McRemote] Credential domain health: HEALTHY (healthy)`を確認。`mcrctl doctor`はruntime／lock／network／protocol／homepage／scratch-runtime／wirescope全項目OKで、`compatibility=unverified`のみ既存の想定内WARN（regressionと無関係）
+- non-claim: capacity較正、soak、rollback実演、公開向け人間参加試験は本follow-upで実施しない
+- 関連決定: `2026-08-23-02`（「b5後・b6前の保存entry gate」という語は時期を示すだけで、public deploy可否を制限する条件ではないという訂正を含む）
+
 ## 2026-08-07 Scratch editor `2100.0.0b3`
 
 - candidate: `release/b3@3f1a10a366bfbe76e32b5a31c54da19eddd56e56`

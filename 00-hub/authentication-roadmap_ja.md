@@ -41,6 +41,8 @@ same-b4再起動後のtoken再利用とb4再適用後のtoken再利用がPASSし
 `2026-08-18-b4-session-persistence-home-alpha`と
 `2026-08-18-b4-code-preservation-recovery-live-human`である。
 
+b5では、共有merge-base以降に分岐した並行release branch間でこのfixが未マージのまま残る回帰が発生した。b5ブランチはb4のsession token永続化fix `3496db9`のマージ前に分岐しており、b5独自のprotocol-22作業が同じcredential関連fileを独立に書き換えたためこの修正が欠落し、public VPS beta適用後にcredential domainが`UNHEALTHY`となった。原因はb5設計の意図的変更ではなく並行branch間の取り込み漏れであり、`3496db9`をcherry-pickして`2200.0.1b5`で回復した（`2026-08-23-02`）。同種の「共有merge-base比較→diff確認→独立reproducible build」による検証は、release branchが並行して分岐した場合の一般的な確認手順として後続releaseでも有効である。
+
 ## 3. ケータリング実践で残す観察
 
 各実践では、可能な範囲で次を残す。
