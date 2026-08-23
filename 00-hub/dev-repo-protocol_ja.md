@@ -136,6 +136,20 @@ Claude Code は `AGENTS.md` を自動では読まないため、各開発リポ�
   candidate deployはcoordinatorがexact setと`authorized next action`を示してから行う。coordinatorまたは許可済みの
   次操作が不明な場合は、推測で進めず事実を返して停止する（DECISIONS `2026-08-21-04`）。
 
+- 検証は仕様成熟度とchange coneに応じる（DECISIONS `2026-08-23-01`）。探索・仕様形成中の既定は
+  targeted static／unit／共有fixtureと軽量横断pulseであり、各candidateで全repo回帰、exact artifact固定、
+  formal evidence、live-humanを自動的に要求しない。repo担当は「テストを厳重に」だけから最大suiteを選ばず、
+  変更したcontract／component／artifactと実行したtestの対応を返す。全回帰はshared foundation、release
+  candidate、RC等、その範囲が必要な局面で行う。
+
+- candidate identityが変わればexact setは失効するが、非影響の観測事実まで無条件に破棄しない。
+  gate coordinatorが元の主張／identity、不変とする依存、non-claimを明示した場合はPASSを再利用できる。
+  repo担当が独自に「非影響」を横断確定せず、影響候補と根拠を返す。
+
+- 横断gateのknowledge SHA、tag target、remote commit、artifact digestは、自由文の手転記を信用せず
+  Git／provider API／artifact本体から存在と一致を検証する。gate manifestが提示されている場合はそれを入力にし、
+  typoや過期限identityの場合は実在する「最新」を自動代用せずcoordinatorへ返す。
+
 - テスト証跡は再現コストで3階級に分ける（DECISIONS `2026-07-06-03`）。`unit/deterministic` はテストコード＋PASS
   コマンド＋commit を証跡とし、JSON 保存を必須にしない。`live-auto` は実サーバ相手だが人間操作なしの smoke で、
   通常は script＋PASS summary で足りるが、protocol ratify / release gate の根拠に使う回は transcript を保存する。
@@ -150,8 +164,10 @@ Claude Code は `AGENTS.md` を自動では読まないため、各開発リポ�
   dev 側が作るのは確定搬送票＋素材まで。record path / artifact path は命名提案として書けるが、`records/` /
   `artifacts/` / `INDEX` / `redactions.json` の正式 authoring・配置・commit は knowledge 側が行う。
   セッション終了で消えると困る素材は `handoff-materials/<handoff_id>/` に置く（既定 gitignore）。中身は
-  `MANIFEST_ja.md`＋`materials/`。`handoff-materials/` は正式証跡ではなく、knowledge 着地と元リポ側の着地確認OK
-  後に削除する。private ops として保持が必要なら `mc-remote-backstage` へ移す。frozen archive は着地先にしない。
+  `MANIFEST_ja.md`＋`materials/`。`handoff-materials/`は正式証跡ではない。release closeまたは後続sliceへの移管時に、
+  全directoryを①knowledgeの正式evidenceへ昇格 ②引継ぎ先と参照identityを明示して後続担当へ移管
+  ③他の正本／evidenceから非参照を確認して失効破棄、のいずれかへ分類する。private opsとして保持が必要なら
+  `mc-remote-backstage`へ移す。frozen archiveや未分類の放置を着地先にしない。
   `14-evidence-handoff/` や root 直下 tarball は使わない。
 
 - 横断的な決定（複数リポ／スポークに波及）をしたら、下の `確定搬送票` を出す。dev 側 agent は
@@ -217,6 +233,9 @@ Claude Code は `AGENTS.md` を自動では読まないため、各開発リポ�
 - NOTES/DECISIONS:
 - 注意点:
 ```
+
+release branchを閉じるときは、tagがあることだけで完了としない。release sourceをdefault branchへ統合したか、
+統合しない理由と保持branch／tagがあるか、未追跡・無参照handoffが残っていないかを返す。
 
 ## トークン衛生
 冗長出力は文脈に流さない。全ログはファイルへ、文脈には失敗時の末尾だけ:

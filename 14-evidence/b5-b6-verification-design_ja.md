@@ -5,10 +5,27 @@
 plugin APIについて、何をどのtest classで
 確かめるかを示します。未実施の計画をevidenceと呼ばず、実行後にだけrecord／artifactを作ります。
 wire contractは[wire-format-design](../10-protocol/wire-format-design_ja.md)を正とします。
+検証の成熟度、change cone、PASS再利用は`2026-08-23-01`と
+[release運用と責務分担](../00-hub/release-operations-responsibility-design_ja.md)を正とします。
 
 build execution modeのplugin／Python／Scratch／WireScope検収と横断evidenceはb5 completion gateであり、
 一部surfaceの合格だけからb5全体GREENを推測しません（`2026-08-20-04`）。一方、full load／soakと
 capacityの最終較正、Scratch browser保存はb5 completion gateへ含めません（`2026-08-21-02`）。
+
+### この文書の読み方
+
+以下の項目はprotocol 22 b5／b6の**assertion inventory**であり、一つのcandidate変更ごとに
+全項目を再実施するchecklistではありません。各回のgate coordinatorはcontract maturity、change cone、
+必要なtest tierを固定し、次のように選択します。
+
+- Tier 0／1：変更sliceと共有基盤に直接関係するunit／deterministicだけを実行する。
+- Tier 2：常設通常dev harnessで成功・error・event／observerの代表一往復を確認する。
+- Tier 3：exact set凍結後、change cone内のassertionと人間でしか判定できない最小範囲を実行する。
+- Tier 4：RC／正式releaseで、横断主張に必要な総合受入、capacity、soak、rollbackを実行する。
+
+b5で確定した項目は当時の正式根拠として維持します。b6／b7／b8の仕様形成中は、
+本文書の項目数を理由にfull regression／live-humanを自動追加しません。非影響PASSを再利用する場合は、
+元identity、主張、不変依存、non-claimをrelease gate notes／gate manifestへ記録します。
 
 ### b5 GREENの最小横断gate
 
@@ -70,9 +87,10 @@ protocol不変定数や最終運用値と主張しません。
 - TRACE delayの`0`／`0.25`／`2.0`受理、範囲外拒否とclamp不在、Pythonの本体例外優先、
   WireScopeの`sent-unconfirmed` exact表示。
 
-## 2. Live-auto
+## 2. Live-auto assertion inventory
 
 実Paper serverと複数clientを使い、sanitized transcriptをrelease gateに必要な回だけ保存します。
+次の14項目はTier 3／4でchange coneに応じて選ぶ完全表であり、Tier 2の軽量pulseへ全件を持ち込みません。
 
 1. 2 playerでeventが相互混入しない。
 2. 同一playerの2 active connection epochが同じeventをそれぞれpollできる。
@@ -94,10 +112,11 @@ protocol不変定数や最終運用値と主張しません。
     responseが捏造されずworld不変、flush自体は個別errorを集約しないことを確認する。
 14. queue capacity境界でnotificationの無言drop／flush追越しがなく、保持不能時はconnectionとflushが失敗する。
 
-## 3. Real-browser／live-human
+## 3. Real-browser／live-human assertion inventory
 
 共通appの実browser UI、Scratch hat／thread context、monitor-driven reporter、entity handle受領を人間が
-操作して確認します。plugin wire fixture合格だけでこのgateを代替しません。
+操作して確認します。plugin wire fixture合格だけでこのgateを代替しません。ただし、これらは
+人間の視覚／操作／browser lifecycleが必要な主張に限りTier 3で選び、全件受入はTier 4へ送ります。
 
 - mixed event batchからtype別hatがFIFOで起動し、各threadが自分のDTOを読む。
 - shared last-event／last-entityへの依存がない。

@@ -19,8 +19,12 @@ contractと照合します。shared環境へのcandidate deployと人間参加�
 - gate coordinator:
 - human release owner:
 - current phase:
+- contract maturity / required test tier:
 - knowledge contract path:
 - knowledge contract commit:
+- gate manifest identity:
+- change cone:
+- reused PASS / rationale:
 - exact compatibility set / freeze status:
 - target deployment / profile / lock:
 - authorized next action:
@@ -37,8 +41,10 @@ contractと照合します。shared環境へのcandidate deployと人間参加�
 
 repo担当は自repoの事実と根拠を返し、他repoの着手、shared環境へのdeploy、人間参加試験、横断判定を
 開始しません。candidate identityが変わった場合は旧exact setを失効させ、gate coordinatorへ戻します。
+ただし旧setの観測事実まで自動的に破棄せず、`2026-08-23-01`のchange coneとPASS再利用条件で再評価します。
+仕様形成中はTier 0〜2を既定とし、人間参加・全回帰・capacity／soakをrelease候補より前へ自動的に持ち込みません。
 
-## 2026-08-21 b5横断release gate（進行中）
+## 2026-08-21 b5横断release gate（CLOSED）
 
 - gate coordinator: knowledge担当session。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
@@ -79,6 +85,15 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - release identity verification: McRemote [v1.21.11-2200.0.0b5](https://github.com/Naohiro2g/McRemote/releases/tag/v1.21.11-2200.0.0b5)はtag target `bbbb53602a9c375e2ead3ee4c22174d5cf424f55`、prerelease ON、draft OFF、Latest非対象、JAR asset 195,998 bytes／SHA-256 `f7ddbcb5…36547`、release notes SHA-256 `64f2cedd…a364`。Python [v2200.0.0b5](https://github.com/Naohiro2g/minecraft-remote-api/releases/tag/v2200.0.0b5)はtag target `64b0f8831fa33e74f1b70b9102b3f29ec99b8e14`、prerelease ON、draft OFF、Latest非対象、assetsなし、release notes SHA-256 `c0375238…0dc04`。Scratch [v2200.0.0b5](https://github.com/Naohiro2g/scratch-editor/releases/tag/v2200.0.0b5)はtag target `1a11c46bac5696afd3f494caac56ae682ed00fb0`、prerelease ON、draft OFF、Latest非対象、追加assetsなし、CI／Bridge digestとWireScope SHAをnotesへ記載。各repo worktreeはclean
 - authorized next action: release identity確認をもってb5 gateをcloseする。PyPI／TestPyPI、registry publish、public deploy、runtime／server変更、b6実装はこのrelease確認に含めない。次の作業は別途b5後・b6前の保存entry gateまたはb6 scopeとして起票する
 - non-claim: Scratch browser保存、b6 API、full load／soak、capacity本較正、custom loaded dimension成功、他Minecraft／Paper版、通常dev環境runbook改訂、public deploymentを主張しない
+
+### b5から次gateへ持ち越す方法論
+
+- decision: `2026-08-23-01`
+- b5の厳密検証でspawn、runner認証、DimensionKeyの問題を発見したことは有効であり、試験項目を破棄しない。
+- 手戻りの主因は、仕様形成中の毎回へrelease gate級の固定・環境準備・全検証を適用したこと、通常dev harnessとdeploymentを混同したこと、identityを手転記したことである。
+- b6／b7／b8はTier 0〜2でcontractを収束させ、RC候補までTier 4を自動要求しない。capacity／soakは実装が載った後の実測へ送る。
+- 次の横断候補前に、常設通常dev integration harnessの正準入口とmachine-readable gate manifestをStack／backstage／knowledgeの各責務に従って実装する。
+- b5で実施した非影響PASSは、change coneと元identity／non-claimを明示できる場合に限り後続gateへ再利用できる。
 
 ## 2026-08-07 Scratch editor `2100.0.0b3`
 

@@ -1,7 +1,7 @@
 # Release運用と責務分担
 
 この文書は、公開runbook、物理マシン、deployment、横断release gateを、誰がどの正本で
-扱うかを説明する。拘束層は`2026-08-21-03`／`2026-08-21-04`、個々のgateの現在地は
+扱うかを説明する。拘束層は`2026-08-21-03`／`2026-08-21-04`／`2026-08-23-01`、個々のgateの現在地は
 [release gate notes](release-gate-notes_ja.md)を正とする。
 
 ## 1. 骨格
@@ -75,8 +75,10 @@ candidate deployの前に停止または正当なmanaged stateへ写像する。
 gate coordinatorは次を所有する。
 
 - gate scopeと参照するknowledge commit
+- contract maturity、必要なtest tier、change cone
 - component間の依存順と着手依頼
 - exact compatibility setの凍結と失効
+- 既存PASSの再利用判定とnon-claim
 - shared環境へのcandidate deploy許可
 - 一つのlive-auto／live-human実施票
 - evidenceの収集範囲とnon-claim
@@ -115,43 +117,132 @@ Minecraft、Scratch、browser等で人間操作が必要な箇所だけを統一
 knowledge担当はcontract照合、sanitized evidenceの正式authoring、横断判定を行う。human release ownerは
 公開tag、release、registry publish、public deploy等の外部状態を変える最終操作を批准する。
 
-## 6. 正準進行
+## 6. 仕様成熟度とtest tier
 
-1. gate定義：scope、contract commit、必要なcomponent、evidence、target topology、non-claimを固定する。
-2. component準備：各repoがpush済みcommit、artifact identity、決定論的test、残差分を返す。
-3. exact set凍結：coordinatorが一組のsource／artifact／schema／policyを固定する。
-4. 環境準備：Stack担当が許可されたsetをorder／lockへ投影し、apply／doctor結果を返す。
-5. 統一実施票：coordinatorが順序、担当、停止条件、redaction境界を一票で示す。
-6. 実機検証：live-autoを先に行い、必要な箇所だけlive-humanを行う。
-7. evidence着地：各担当の素材をknowledgeがformal record／artifactへ収容する。
-8. 横断判定：coordinatorが`GREEN`／`HOLD`／`RED`と未主張範囲を記録する。
-9. release：human release ownerの批准後、各repo担当が指定identityを公開する。
-10. close：公開identityを再確認し、release gate notesと必要なDECISIONSを閉じる。
+test classの`unit/deterministic`／`live-auto`／`live-human`は実行方式と証跡コストの分類である。
+test tierは、開発の成熟度とその時点で必要な主張の強さを表す。両者を混同しない。
 
-candidate commit、artifact bytes、schema、policyのいずれかが変わった場合、旧exact setを失効させる。影響する
-段階まで戻って再凍結・再deployする。shared環境へ未push worktreeや一時buildを差し込まない。
+| Tier | 適用局面 | 既定の検証 | まだ要求しないもの |
+| --- | --- | --- | --- |
+| 0 | 探索・実装中 | 変更箇所のtargeted static／unit、fixture生成 | 全repo回帰、artifact固定、formal evidence |
+| 1 | component contract候補 | 影響内の決定論的test、build、source／artifact再現性 | shared環境deploy、live-human |
+| 2 | 横断contract形成中 | 共有fixtureと常設dev harnessの軽量横断pulse | exact set凍結、全受入試験 |
+| 3 | release candidate | exact set固定後のchange cone内検証、必要な短いlive-auto／human | 影響外の無条件再試験、全capacity／soak |
+| 4 | RC／正式release受入 | 人間でしか確認できないUI、capacity、soak、rollback、全体主張 | なし。ただしnon-claimは明示する |
+
+Tier 2の軽量横断pulseは、少なくともauthenticated hello、変更sliceの代表的な成功、
+代表的なerror、必要な場合のevent、observer／WireScope decodeを一往復させる。目的はGREENを出す
+ことでなく、surface間のsemantic drift、runner gap、環境前提の誤認を安く発見することである。
+
+仕様形成中はTier 0〜2を反復する。合意済みcontractと共有fixtureが収束した後にのみ
+Tier 3へ入る。beta番号やartifact versionが存在することだけでTier 3と見なさない。
+
+## 7. Change coneとPASSの再利用
+
+candidateのsource／artifact identityが変わったらexact setは失効する。ただし、これは過去の観測事実を
+すべて無効にする意味ではない。coordinatorは変更からrelease主張へ至るchange coneを作り、
+影響するcontract、component、artifact、environment、test assertionを列挙する。
+
+再利用の最小条件は次のとおり。
+
+- 元のtestの主張とnon-claimが特定できる。
+- 実行したsource／artifact／fixture／environment identityが特定できる。
+- 今回の変更がその主張へ影響しない理由を言語化できる。
+- security、protocol、永続化、並行性等の横断依存を「同じファイルを触っていない」だけで非影響にしない。
+
+代表的な戻り方は次のとおり。
+
+| 変更 | 原則として再実施する範囲 |
+| --- | --- |
+| wire shape／version | plugin codec、影響client adapter、validator、共有fixture、代表live |
+| pluginの局所不具合 | plugin決定論的testと当該methodの短いlive。非影響UIは再利用可 |
+| client UI／表示 | 当該clientと、observer shapeへ影響する場合のWireScope |
+| packaging／archive metadata | 再現性、digest、license／RECORD。gameplay liveは原則再利用 |
+| harness／runbook／hostのみ | start／ready／stopと代表pulse。product全回帰は原則再利用 |
+
+## 8. 通常dev integration harness
+
+通常dev integration harnessはpublic deploymentの縮小版ではなく、人間とagentが同じserver consoleと
+candidateを扱う暖機である。必要時に起動し、終了後は次のtestで再利用できる。次を正準操作にする。
+
+- reviewed artifactの配置とdigest照合
+- `start`／`status`／`attach`／`stop`に相当する一義的な入口
+- Paper起動、plugin起動、credential health、listenerの個別readiness
+- 二重起動、port競合、別runtimeへの誤配置の防止
+- 人間がconsoleを直接確認し、detach／reattachできること
+
+container、system service、特定process supervisorを一律の既定にしない。現在の通常devが`run.sh`と
+名前付きScreenを使う事実はbackstageのhost写像とStack runbookで扱い、論理contractを特定hostのpathや
+Screenへ固定しない。毎gateの再構築、OS service化、container化は別の要求がある場合だけ行う。
+
+## 9. Gate manifestと手作業の排除
+
+横断gateの動く状態は、少なくとも次を持つmachine-readable gate manifestへ投影する。
+
+- gate ID、coordinator、knowledge commit、contract maturity
+- component source／artifact／fixture identityと取得元
+- exact setのfreeze状態
+- change cone、必要test tier、実行済み・再利用・未実施assertion
+- target harness／environment lease、authorized next action、停止条件
+- evidenceとnon-claim、release／close状態
+
+正本はDECISIONS、説明文書、component source、Stack lock、evidenceに残し、manifestはそれらを一回の
+gateに束ねる機械的投影とする。exact schemaと生成ツールはStack／knowledgeの後続実装で固定するが、
+b6の最初のTier 2横断前までに使える形へする。knowledge SHA、tag target、remote commitは自由文から転記せず、
+Git／provider APIから取得して存在と一致を検証する。
+
+## 10. 正準進行
+
+1. 仕様形成：Tier 0〜2でcontract、共有fixture、代表pulseを収束させる。
+2. gate定義：scope、contract commit、maturity、change cone、必要tier、target topology、non-claimを固定する。
+3. component準備：各repoがpush済みcommit、artifact identity、影響内test、残差分を返す。
+4. exact set凍結：coordinatorが一組のsource／artifact／schema／policyを固定する。
+5. 環境準備：常設harnessを既定とし、必要な場合だけStackが許可されたsetをdeploy／doctorする。
+6. 統一実施票：coordinatorが再利用PASS、実行するassertion、順序、担当、停止条件を一票で示す。
+7. 実機検証：Tier 3はchange cone内の短いlive-autoを先に行い、人間でしか判定できない箇所だけlive-humanを行う。
+8. evidence着地：各担当の素材をknowledgeがformal record／artifactへ収容する。
+9. 横断判定：coordinatorが`GREEN`／`HOLD`／`RED`と未主張範囲を記録する。
+10. release：human release ownerの批准後、各repo担当が指定identityを公開する。
+11. close：公開identity、default branch統合／保持先、handoff全件の着地を再確認し、gateを閉じる。
+
+candidate commit、artifact bytes、schema、policyのいずれかが変わった場合、旧exact setを失効させる。change coneの
+影響段階まで戻って再凍結・必要な場合だけ再deployする。shared環境へ未push worktreeや一時buildを差し込まない。
 
 試験が失敗した場合は観測を保持してcoordinatorへ戻す。その場のad hoc patchで同じ試験を続けず、component
 側で修正、決定論的test、push、artifact再固定を行う。統一実施票に無い追加試験を正式gate根拠へ使う場合は、
 coordinatorがscopeと主張を更新する。
 
-## 7. Release gate notesの役割
+## 11. Release gate notesの役割
 
 `release-gate-notes_ja.md`は、版ごとの動く進行状態を集約する。各gateは少なくとも次を持つ。
 
 - gate coordinator
 - human release owner
 - current phase
+- contract maturity／required test tier／change cone
 - exact compatibility setとfreeze状態
+- 再利用するPASSとnon-claim
 - target deployment／profile／lock
+- gate manifest identity
 - authorized next action
 
 設計判断はDECISIONS、実機結果はevidence、実マシン情報はbackstageへ置き、このファイルへ複製しない。
 
-## 8. 既存決定との関係
+## 12. Release close
+
+releaseの公開だけでcloseとしない。各componentについて次を確認する。
+
+- release／tag targetが意図したsourceとartifactへ固定された。
+- release sourceをdefault branchへ統合した、または統合しない理由と保持branch／tagを明示した。
+- `handoff-materials/`を「正式evidenceへ昇格」「後続slice／担当へ引継ぎ」「失効・破棄」のいずれかへ全件分類した。
+- 引継ぎは引継ぎ先、参照identity、次の一手が特定できる。破棄は他の正本／evidenceから非参照であることを確認してから行う。
+- gate manifest、release gate notes、NOTESの現在地が次のmilestoneと矛盾しない。
+
+## 13. 既存決定との関係
 
 - `2026-07-01-04`／`2026-07-01-05`：release gate notesへの集約とknowledge側最終判定を維持し、単一進行責任とphase制御を追加する。
 - `2026-07-06-03`／`2026-07-21-04`：evidenceのtest classとvisibility境界を維持する。
 - `2026-07-21-03`：Stack／backstage境界を維持し、runbookの目的とmachine写像を精密化する。
 - `2026-07-23-01`：deployment／profile／environment／order／lockの分離を維持する。
 - `2026-07-19-05`：主張を証拠のスコープから越境させない。
+- `2026-08-23-01`：単一coordinatorと責務分離を維持し、test tier、change cone、常設dev harness、gate manifest、release closeを追加する。

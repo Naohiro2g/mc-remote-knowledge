@@ -81,7 +81,7 @@ roleはdeploymentごとに同じprocessへ融合または複数processへ分離�
 ## Release運用の役割
 
 release運用では、物理host、deployment、実装、進行、最終批准を一つの「担当」へ潰さない
-（`2026-08-21-03`／`2026-08-21-04`）。一人が複数roleを兼ねても正本と判定境界は維持する。
+（`2026-08-21-03`／`2026-08-21-04`／`2026-08-23-01`）。一人が複数roleを兼ねても正本と判定境界は維持する。
 
 | 正典表記 | 技術的な意味 | ドリフト注意 |
 | --- | --- | --- |
@@ -90,6 +90,10 @@ release運用では、物理host、deployment、実装、進行、最終批准�
 | deployment担当 | Stackのprofile／order／lock、artifact取得、apply、doctor、deployment evidenceを所有するrole | component候補やproduct contractを独自に選ばない |
 | gate coordinator | 一つの横断release gateでscope、依存順、exact set、統一実施票、evidence集約、横断判定を一人で進行するrole | 全実装・全操作の実行者、human release owner、複数repoのcomponent担当と同義にしない |
 | human release owner | 公開tag、release、registry publish、public deploy等の最終外部操作を批准する人間role | componentの自己申告だけで技術gateをGREENにするroleではない |
+| test tier | 仕様成熟度と必要な主張に応じて、targeted testからRC総合受入までを0〜4に分ける進行段階 | `unit/deterministic`／`live-auto`／`live-human`というtest classと同義にしない |
+| change cone | 一つの変更からrelease主張へ至る、contract・component・artifact・environment・assertionの影響範囲 | exact set失効を、過去の全PASSが無条件に失効することと混同しない |
+| 通常dev integration harness | 人間とagentが代表的な横断確認に共用する、必要時起動・対話的・再利用可能なserver暖機 | public deployment、ケータリングprofile、特定host、Docker／systemdと同義にしない |
+| gate manifest | knowledge commit、component／artifact identity、maturity、change cone、必要tier、再利用PASS、環境、許可済み操作を一gateへ束ねる機械可読投影 | DECISIONS、component source、Stack lock、formal evidenceに代わる新しい二重正本にしない |
 
 ## セッション・ループ（`claude-ai-guide_ja.md` §7）
 

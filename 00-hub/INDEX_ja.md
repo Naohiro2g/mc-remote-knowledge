@@ -16,7 +16,7 @@ public 正本世代の入口です。ここに載る path は、このリポ内�
 | `00-hub/claude-ai-guide_ja.md` | session loop と surface 間の着地方法 |
 | `00-hub/claude-ai-instructions_ja.md` | claude.ai instructions |
 | `00-hub/llm-agent-boundary-guide_ja.md` | agent の権限・実行・検証境界 |
-| `00-hub/release-operations-responsibility-design_ja.md` | 公開runbook、物理host、deployment、component担当、gate coordinator、人間release ownerの責務と横断release gateの正準進行 |
+| `00-hub/release-operations-responsibility-design_ja.md` | 公開runbook、物理host、deployment、component担当、gate coordinator、人間release ownerの責務、test tier／change cone／常設dev harness／gate manifest／release close |
 | `00-hub/release-gate-notes_ja.md` | 公開release gateの確認票、coordinator、phase、exact set、許可済み次操作の状態集約 |
 | `00-hub/terms-glossary_ja.md` | 横断語彙 |
 | `00-hub/external-facts_ja.md` | 決定が `F-<topic>` で参照する外部事実の生きた台帳（調査日・状態・次回確認を更新する） |
@@ -65,7 +65,7 @@ public 正本世代の入口です。ここに載る path は、このリポ内�
 | Path | 役割 |
 | --- | --- |
 | `14-evidence/README_ja.md` | public / private / Git 外の visibility policy |
-| `14-evidence/b5-b6-verification-design_ja.md` | b5／b6 event・entity・WireScope compatibilityのtest classと横断検証境界 |
+| `14-evidence/b5-b6-verification-design_ja.md` | b5／b6 event・entity・WireScope compatibilityのassertion inventory、test class／tier、横断検証境界 |
 | `14-evidence/INDEX_ja.md` | public sanitized record の索引。新世代開始時点では空 |
 
 ## 初回 seed に含めないもの
