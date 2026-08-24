@@ -384,3 +384,75 @@ pyenv + Poetryから`uv`へ移し、初回はtemplateと`uv run`で制作へ早�
 - 旧世代 §8 の実務メモ（インライン補完型 AI の位置づけ、エージェント環境での Git 実行）。2026-06 時点の環境依存メモで現行性を確認できないため、uv 統一だけを §8 に残して落とした。
 
 archive link を解決扱いにしない。
+
+---
+
+## 14. plugin API／client API／ユーザーコードの三層責務モデル
+
+出典: McRemote dev session（`world.setSign`設計対話、2026-08-24）からの文書素材、knowledge側で本節へ着地。
+技術側の関連契約は [10-protocol/wire-format-design](../10-protocol/wire-format-design_ja.md) §5.8、
+no-merge方針は `2026-08-19-02`。並行実行の教育哲学は §11、3年間カリキュラムのAPI層diagramは §12 を参照する。
+既存 §1〜§13 の番号は変えず、本節を新規に追加する（節番号は変動時に他文書からの参照を無言で壊すため）。
+
+### 三層
+
+McRemoteの機能は、常に次の三層のどこかに置かれる。
+
+1. **plugin API（wire protocol）層**: Paperプラグインが JSON-RPC として公開する最小限の操作。
+   `world.getBlock`／`world.setBlock`、`world.setSign`等
+2. **client API層**: Python library（`minecraft-remote-api`）や Scratch ブロックが、plugin 層の
+   操作を組み合わせて提供する、利用者向けの語彙
+3. **ユーザーコード層**: 学習者自身が書くスクリプト。client API を組み合わせて具体的な建築を行う
+
+### 伝統: plugin層はGET＋PUTのみ、richnessは上位層が持つ
+
+Raspberry Pi Edition向けのMCPI（Minecraft Pi Edition API）以来、Pythonの伝統では、サーバー側
+（plugin層）はGETとPUTという最小限の操作だけを持ち、「1点だけ変える」ようなPATCH的な体験は、
+**ユーザーコード（または将来的にclient library）が「読む→メモリ上で変更→書き戻す」を自分で組み立てる**
+ことで実現してきた。これは「最低限だが、頑張れば何でもできる」という設計哲学であり、plugin層の面積を
+小さく保ったまま、利用者側の工夫で表現力を確保する。McRemoteのblock操作（`getBlock`／`setBlock`）は
+この伝統に忠実であり、`setSign`もPUT的操作として設計された（面単位は独立指定可、面内の4行は必ず揃える）。
+
+### PUTとPATCHという2つの正当なメンタルモデル
+
+- **PUT的操作**: 「これから先、これがこの場所の完全な姿である」と宣言する。既存状態を知らなくても
+  安全に呼べる（べき等）。新しく置く／完全に置き換える時に自然。
+- **PATCH的操作**: 「今そこにある物の、この1点だけを変える」。他のプロパティは触れず現状維持。
+  既にある物を少しだけ調整する時に自然（例: ドアの`open`だけを切り替える）。
+
+Minecraft自体、新規設置（PUT的）とプレイヤーの右クリックによる既存ブロックの状態切り替え
+（PATCH的、ドア・レバー・ボタン等）を別操作として提供しており、どちらか一方に統合すべきものではない。
+「plugin層はGET＋PUTのみ」という伝統的方針は、PATCH的操作を**否定するものではなく**、PATCH的体験を
+client API層がGET＋PUTの合成で提供する、という責務分担を意味する（`2026-08-19-02`のno-merge判断も、
+「mergeを永久禁止する一般原則」ではなく`BlockSpec`という特定操作の入力契約の曖昧さ解消が目的だった）。
+
+### なぜこれが学習支援哲学の話でもあるのか: Scratchの並行実行
+
+MCPIのPython伝統でread-modify-writeのrace conditionが実用上あまり問題にならなかったのは、通常1つの
+スクリプトが順次実行されるためである。§11で扱ったとおり、Scratchは**並行script実行が中心的な機能**
+であり、既存決定群も「並行script登録順」「同一playerの複数session」等へ既に配慮している。もし
+client API層（Scratchブロック）がGET→SETを内部合成してPATCH的ブロックを提供した場合、**複数スクリプトが
+同じ対象の別プロパティを同時に更新すると、lost update（片方の変更が消える）が、Pythonの伝統よりはるかに
+起きやすい**。
+
+これは「初学者、特にScratchにはPATCH概念（plugin層でのatomicな部分更新）が有効かもしれない」という
+直感に対する、具体的な技術的裏付けになる。plugin層にPATCHを持たせるかどうかの判断は、「利便性」だけ
+でなく「Scratchの並行実行モデルにおけるatomicity」という観点で評価すべきである。
+
+### 示唆: 段階的な学習ラダー
+
+三層モデルと合わせて、段階的な語彙導入も示唆される。§12の3年間progression（APIを使う／組み合わせる／
+設計して共有する）との接続候補であり、確定した教材順序ではない。
+
+1. **PUTのみ**（新しく置く）
+2. **GET／PUT**（読んでから置く。既存の値を知った上で建築する）
+3. **GET／PUT／PATCH(UPDATE)**（1点だけを既存オブジェクトへ反映する）
+
+この順は、対象操作の複雑さと、学習者が扱える抽象度の両方に沿っている可能性がある。
+
+### この節が主張しないこと
+
+- plugin層に`world.updateBlock`や`world.updateSign`のようなPATCH的wireメソッドを追加すべき、という
+  結論には至っていない。Scratchの並行実行という具体的な理由づけはあるが、実装判断ではない。
+  具体候補は `00-hub/NOTES_ja.md` の該当 park 項目を参照する。
+- 学習ラダーの提示順を教材のprogressionへ即座に反映すべき、という決定ではない。
