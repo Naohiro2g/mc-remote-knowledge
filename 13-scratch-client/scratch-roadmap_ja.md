@@ -220,7 +220,7 @@ setで構造化形へ切り替える。
 Scratch-visibleなStateText／BlockInfoText、Picker、ErrorTextとfixtureは
 [Scratch block value投影設計](scratch-block-value-projection-design_ja.md)を正とする。
 
-### 保存・移送作業束（b5後・b6前entry gate／b6配置確定・R配置は最終整理待ち）
+### 保存・移送作業束（entry gate＋b6保存は実装candidate完了・R配置は最終整理待ち）
 
 現行の保存・移送モデルは
 [Scratch作品の保存・移送設計](scratch-project-storage-transfer-design_ja.md) と
@@ -230,11 +230,12 @@ Scratch-visibleなStateText／BlockInfoText、Picker、ErrorTextとfixtureは
 - 作品全体はブラウザ保存作品と`.sb3`、スプライトはブラウザ保存スプライトと`.sprite3`で扱う。
 - ブラウザ保存は同一storage partition・Editor originに閉じ、Minecraft接続先へbindingしない。
 - 対応McRemote Editor間のブロック移送はOS clipboardを使う方向とし、bundle contractはfixture前に推測実装しない。
-- ブラウザ保存はb5 completion gateから外す。b5 GREEN後・b6 API本実装前の独立entry gateで、
-  `.sb3`／`.sprite3`互換fixture、IndexedDB共通基盤、ブラウザ保存作品、一覧・復元・削除、
-  quota／破損／migration、ファイル保存への退避を実装・試用する（`2026-08-21-02`）。
-- b6はentry gateで試用した基盤と`.sprite3` fixtureを再利用してブラウザ保存スプライトを追加し、
-  新しい保存基盤を作らない。
+- ブラウザ保存はb5 completion gateから外す。entry gateのfixtureと作品保存基盤をスプライト保存より先に
+  成立させるが、別trackのb6 API本実装完了は待たず、同一sliceで続けて実装できる（`2026-08-25-04`）。
+- scratch-editor `agent/wirescope-session-artifact@7d112a544e48391c70c627fd0c7f7572cf6810d6`では、
+  `.sb3`／`.sprite3` fixture、作品用IndexedDB基盤、同じdatabaseの別object storeを使うスプライト保存、
+  一覧／復元／削除を実装し、deterministic testとlocalhost実browser確認まで完了した。正式evidence、
+  default branch統合、公開artifact、release完了は別gateである。
 - OS clipboardによるブロック移送と審査済み教材は独立trackとし、b5／b6へ自動追加しない。
 - McRemote Tutorial / Debug 導線と、最初の1 blockまでの教材を揃える。
 - iPad／Safariを含むonboardingと保存・移送の実測gateは、最終R整理で配置する。

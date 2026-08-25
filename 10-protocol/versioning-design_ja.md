@@ -509,10 +509,14 @@ b6 は b5 基盤上の中規模 API 追加に限定し、新しい identity、tr
 - b6 終端での残る未批准legacy wire methodの置換またはregistryからの除去
 - b6 entry gateで試用したIndexedDB基盤と`.sprite3` fixtureを使うScratchスプライトのブラウザ保存
 
-b5 GREEN後・b6 API本実装前に、Scratch保存の独立entry gateを置く。`.sb3`／`.sprite3`互換fixture、
-作品全体のIndexedDB lifecycle、一覧・復元・削除、quota、破損、migration、`.sb3`への退避を実装・試用する。
-これはb5 completion gateでもb6 API scopeでもない。b6は同じ基盤をブラウザ保存スプライトへ再利用し、
-別の保存基盤を作らない（`2026-08-16-09`を`2026-08-21-02`で改訂）。
+b5 GREEN後にScratch保存の独立entry gateを置く。`.sb3`／`.sprite3`互換fixture、作品全体のIndexedDB
+lifecycle、一覧・復元・削除、quota、破損、migration、`.sb3`への退避を実装・試用する。これはb5 completion
+gateでもb6 protocol API scopeでもない。「b6 API本実装前」は依存と時期の目安で、b6 API完了待ちではない。
+entry gate内の依存を先に満たせば、同じsliceでブラウザ保存スプライトを実装し、b6 APIと並行できる。
+スプライト保存は同じIndexedDB databaseを再利用してobject storeを分け、別の保存基盤を作らない。
+scratch-editor `agent/wirescope-session-artifact@7d112a544e48391c70c627fd0c7f7572cf6810d6`は実装・局所検証済みcandidate
+であり、正式evidence、統合、releaseは別gateとする（`2026-08-16-09`を`2026-08-21-02`／
+`2026-08-25-04`で改訂・精密化）。
 
 旧Scratch `.sb3` opcode migrationはwire method整理と別gateとする。b5／b6のmethodを
 protocol `22.0.0`へ収容することは、実装、live evidence、release gateの合格を意味しない。

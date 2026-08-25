@@ -223,11 +223,18 @@ Tutorial／Debug の既存 Scratch surface 再利用方針は維持する。
 4. **ブラウザタブ間 copy／paste**：OS clipboard prototype と versioned transfer bundle を固定する。
 5. **審査済み教材 artifact**：内容・権利・license・version・更新／撤回を確認して配布する。
 
-各 track は独立に検収できるが、共有 contract を片方だけで独自に固定しない。`2026-08-21-02`により、
-1と2はb5 completion gateから外し、b5 GREEN後・b6 API本実装前の独立entry gateで実装・試用する。
-3はb6へ配置し、entry gateで試用したIndexedDB lifecycle、quota、migration、破損表示を再利用して、
-スプライト用に別の保存基盤を作らない。4と5は独立trackのまま維持し、entry gate／b6へ自動追加しない。
-R3〜R5の意味と日程への配置は最後のR整理が所有する。
+各 track は独立に検収できるが、共有 contract を片方だけで独自に固定しない。`2026-08-21-02`／
+`2026-08-25-04`により、1と2はb5 completion gateから外した独立entry gateとする。ここでいう
+「b5後・b6 API本実装前」は依存と時期の目安であり、別trackのb6 API完了を待つ条件ではない。
+同一slice内で1→2の依存を満たした後、3を続けて実装でき、b6 API実装と並行してよい。3は2の
+IndexedDB databaseを共有してobject storeを分け、別の保存基盤を作らない。4と5は独立trackのまま維持し、
+entry gate／b6へ自動追加しない。R3〜R5の意味と日程への配置は最後のR整理が所有する。
+
+2026-08-25時点でscratch-editor `agent/wirescope-session-artifact@7d112a544e48391c70c627fd0c7f7572cf6810d6`は、
+1〜3を同一sliceで実装し、deterministic testとlocalhost実browserでの人間確認まで完了したcandidateである。
+作品の一覧／復元／削除はFile menu、個別スプライトの保存は右クリックmenu、保存済みスプライトの
+一覧／復元／削除はFile menuに置く。これは搬送元の実装・観測範囲であり、正式evidence、default branch統合、
+公開artifact、release完了を意味しない。
 
 ## 13. 未確定事項
 
