@@ -522,7 +522,8 @@ scratch-editor `agent/wirescope-session-artifact@7d112a544e48391c70c627fd0c7f757
 protocol `22.0.0`へ収容することは、実装、live evidence、release gateの合格を意味しない。
 exact ring／handle／poll／particle／work／buffer／timeout上限はruntime policyとtest fixtureで較正し、
 横断version contractへ焼き込まない。b5は有限な暫定値で共通基盤を閉じ、b6 API実装後に全methodを載せた
-実環境で本較正する。OS clipboardによるブロック移送は保存entry gateへ自動追加せず、独立trackのまま維持する。
+実環境で本較正する。OS clipboardによるブロック移送は保存entry gateへ自動追加せず、ブラウザ保存スプライトの
+運用評価後まで`deferred`とする（`2026-08-26-01`）。
 
 ### 10.12 pre-release 状態は明示操作（自動認識は PyPI のみ）
 

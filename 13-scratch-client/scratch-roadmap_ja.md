@@ -229,16 +229,20 @@ Scratch-visibleなStateText／BlockInfoText、Picker、ErrorTextとfixtureは
 
 - 作品全体はブラウザ保存作品と`.sb3`、スプライトはブラウザ保存スプライトと`.sprite3`で扱う。
 - ブラウザ保存は同一storage partition・Editor originに閉じ、Minecraft接続先へbindingしない。
-- 対応McRemote Editor間のブロック移送はOS clipboardを使う方向とし、bundle contractはfixture前に推測実装しない。
+- ブロック移送は、先にブラウザ保存スプライトを同一originのスニペット棚として評価する。OS clipboardは
+  別originまたはstack単位の未充足需要が残った時だけ再開する`deferred` trackとし、bundle contractを先取りしない
+  （`2026-08-26-01`）。
 - ブラウザ保存はb5 completion gateから外す。entry gateのfixtureと作品保存基盤をスプライト保存より先に
   成立させるが、別trackのb6 API本実装完了は待たず、同一sliceで続けて実装できる（`2026-08-25-04`）。
 - scratch-editor `agent/wirescope-session-artifact@7d112a544e48391c70c627fd0c7f7572cf6810d6`では、
   `.sb3`／`.sprite3` fixture、作品用IndexedDB基盤、同じdatabaseの別object storeを使うスプライト保存、
   一覧／復元／削除を実装し、deterministic testとlocalhost実browser確認まで完了した。正式evidence、
   default branch統合、公開artifact、release完了は別gateである。
-- OS clipboardによるブロック移送と審査済み教材は独立trackとし、b5／b6へ自動追加しない。
+- OS clipboardによるブロック移送と審査済み教材は独立trackとし、b5／b6へ自動追加しない。前者は
+  ブラウザ保存スプライトの運用評価後まで保留する。
 - McRemote Tutorial / Debug 導線と、最初の1 blockまでの教材を揃える。
-- iPad／Safariを含むonboardingと保存・移送の実測gateは、最終R整理で配置する。
+- iPad Safari／ChromeでのIndexedDB保存・eviction、Home Screen差分、`persist()`の実効性を実測する。
+  `persist()`だけを耐久性保証にせず、重要な作品／スプライトのfile退避を維持する。配置は最終R整理が所有する。
 
 ### R3-C — 運用 package と観測面
 
