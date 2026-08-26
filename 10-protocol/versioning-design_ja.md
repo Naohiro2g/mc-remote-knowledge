@@ -527,8 +527,13 @@ b5 tag／JARを差し替えず、22内で同名eventの意味論を狭めない�
 protocol 23移行と`pickaxe_poke`はMcRemote
 `codex/b6-pickaxe-poke@b0f5503301f9ca1b8226eea0c6ca56c947aab196`でplugin実装済みである。
 v22検証資産の複製は作らず、現行fixture／scriptをv23へrename／更新した。targeted unit／deterministicと
-live-human実施報告はPASSだが、正式live-human record、client surface、横断fixture、artifact統合／
-releaseは未完であり、b6全体のrelease gate通過は主張しない（`2026-08-26-07`）。
+live-human実施報告はPASSである（`2026-08-26-07`）。scratch-editor
+`agent/b6-pickaxe-poke@e6b0d35cd2`は`@mc-remote/protocol`、`@mc-remote/live`、scratch-vm、
+scratch-guiへprotocol `23.0.0`、`pickaxe_poke` DTO、hat block、`item` menu、WireScope投影、翻訳を
+実装し、対象unit／deterministic、lint、VM buildをPASSしたpush済みcandidateである。これにより
+Scratch／WireScope client surfaceは局所実装済みとなったが、pluginとの実接続によるlive-human、
+正式evidence、default branch統合、exact横断candidate、artifact統合／releaseは未完であり、b6全体の
+release gate通過は主張しない。
 
 sign三操作のexact wireは`2026-08-26-05`でcontract lockした。McRemote
 `codex/b6-set-sign@a34fec0b64a5c939687de4a89fb94e2728d2e116`はplugin実装・局所検証済みcandidateである。

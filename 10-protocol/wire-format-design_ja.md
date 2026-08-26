@@ -309,8 +309,11 @@ captureで§5.0.1の小数第3位へ正準化し、後から丸め直さない�
 
 McRemote `codex/b6-pickaxe-poke@b0f5503301f9ca1b8226eea0c6ca56c947aab196`は本contractと
 protocol `23.0.0`／artifact `2300.0.0b6`への移行をplugin実装済みである（`2026-08-26-07`）。
-unit／deterministicと対象live-humanの実施報告はあるが、正式evidence record、client surface、
-横断fixture、artifact統合／releaseは別gateである。
+unit／deterministicと対象live-humanの実施報告がある。scratch-editor
+`agent/b6-pickaxe-poke@e6b0d35cd2`はclient側のprotocol `23.0.0`、`PickaxePokeEvent`、
+`events-v23.json`、Scratch hat／event context、WireScope observer投影を実装し、対象test／lint／buildを
+PASSしたpush済みcandidateである。pluginとの実接続によるlive-human、正式evidence record、default branch
+統合、exact横断candidate、artifact統合／releaseは別gateであり、局所実装から完了を推測しない。
 
 空間eventは投入時点のdimensionとoriginを固定する。後からbuild dimension／originが変わっても既存DTOを変更・
 破棄せず、event受信を理由にpluginがbuild stateを暗黙変更しない。event座標を`world.*`へ渡すclientは、

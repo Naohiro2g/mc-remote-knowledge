@@ -454,7 +454,9 @@ b5／b6の横断scopeはDECISIONS `2026-08-16-04`〜`07`／`2026-08-26-06`と
 - b5で公開するevent surfaceは`block_right_click`／`chat_posted`／`projectile_hit`のhatに限定する。
   raw poll block、filter、`events.clear`は公開せず、filter／clearはb6へ置く。
 - b6／protocol 23ではwire type `block_right_click`を除去して`pickaxe_poke`へ置換する。exactなScratch
-  block label／menuは共有fixtureとsurface設計で固定し、本節から推測しない。
+  block label／menuは共有fixtureとsurface設計で固定し、本節から推測しない。scratch-editor
+  `agent/b6-pickaxe-poke@e6b0d35cd2`は`whenPickaxePoke` hat、threadへ束縛するevent validation、
+  `item` property menu、ja／ja-Hira翻訳、WireScope source adapter allowlistを実装済みである。
 
 `world.spawnEntity`のhandleは副作用と同じresponseから原子的に受け取る。共有の`last entity` reporterは
 作らない。副作用reporterをmonitor不能にできるruntimeではreporterを優先し、保証できない場合は
@@ -475,6 +477,16 @@ Picker、`getBlocks`／`getHeight`／spawn、DEBUG／TRACE／FAST、`connection.
 WireScope v1.1投影を実装済みと報告した。source固定・横断合格は未主張であり、b5残範囲は3種eventの
 poller／hat／thread context／loss／lifecycle、plugin fixture conformance、clean artifact、full regression、
 実plugin smoke、real-browser WireScope E2Eである（`2026-08-21-02`）。
+
+protocol 23のevent置換candidate `e6b0d35cd2`はpush済みで、`@mc-remote/protocol` 12件、
+`@mc-remote/live` 66件、scratch-vm対象351件、scratch-gui対象test、変更範囲lint、i18n抽出、VM buildを
+PASSしたと報告された。VM integration全1389件中2件は並列実行時だけ失敗し、個別再実行ではPASSしたため、
+本sliceと無関係な環境flakinessという搬送元判定を記録するが、full regression PASSへは数えない。実pluginとの
+live-human、正式evidence、default branch統合、公開artifact／releaseは未実施・未主張である。機能実現の
+三層モデルは本event置換の追加実装を要求せず、既存のplugin API一操作をScratchへ投影する位置づけを維持する。
+test harness `extension_mcremote.js`の`FakeWebSocket.fireMessage`にはmock hello補完をprotocol majorの
+正規表現へ直書きする脆さがあり、本candidateでは`/^22\./`から`/^23\./`へ更新した。production contractや
+b6 blockerではないが、次回major更新時は現行protocol定数またはfixtureから導出するhelperへの一般化を検討する。
 
 monitor-driven reporterには、monitor評価のthrottle、同一引数のin-flight request coalescing、
 disconnect時のcache破棄を設ける。明示的なscript callは毎回実行する。対象は
