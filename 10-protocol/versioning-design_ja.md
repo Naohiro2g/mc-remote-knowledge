@@ -536,6 +536,20 @@ Scratch／WireScope client surfaceは局所実装済みとなったが、plugin�
 正式evidence、default branch統合、exact横断candidate、artifact統合／releaseは未完であり、b6全体の
 release gate通過は主張しない。
 
+scratch-editor `agent/b6-wirescope-display-filter@3c199b08645306fc77441f59e89d5ebacbb9d836`は、Scratch VM、
+WireScope source adapter、`@mc-remote/live`のhandle検証を`mcr_eh_`へ揃えて旧`mceh_`を拒否し、
+test harnessのmock hello補完が静的公開された現行`PROTOCOL_VERSION`からmajorを導出する形へ修正した。
+protocol 22の歴史fixture `spawn-v22.json`はtype-check用履歴として改名せず残す。対象test／lint／buildは
+PASS報告済みだが、実pluginとのlive-human、default branch統合、横断fixture、正式evidence、releaseは
+未実施・未主張である。
+
+同branchの後続`c720341a2cee4b01f2b2a227cf6379ac0ac92db2`は、b6非blockerのclient-only
+WireScope表示filterと、Scratch保持windowのtrim件数を`dropped_frames`へ累積する修正を実装したpush済み
+candidateである。`@mc-remote/live` 119件、scratch-vm対象404件、scratch-gui source対象13件、変更範囲lint／
+buildをPASSし、deterministic sourceによる実browser確認を行ったと報告された。実McRemote plugin E2E、
+and／or検索の全組合せ、iPad／Safariは未確認である。exact methodグループ名／写像は人間未批准のため、
+本実装到達点からprotocol／observer contractを推測しない。
+
 McRemote `codex/b6-protocol23-cleanup@af71e564200d73ec8ee06e05d7e4d8bcfcdb3d39`は、
 `EntityHandleRegistry`の発行／lookup共通prefixを`mcr_eh_`へ変更して旧`mceh_`をNOT_FOUNDとし、
 未批准legacy entity method 10件をregistryから外して専用handlerを削除したpush済みplugin candidateである。

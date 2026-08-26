@@ -491,9 +491,23 @@ PASSしたと報告された。VM integration全1389件中2件は並列実行時
 本sliceと無関係な環境flakinessという搬送元判定を記録するが、full regression PASSへは数えない。実pluginとの
 live-human、正式evidence、default branch統合、公開artifact／releaseは未実施・未主張である。機能実現の
 三層モデルは本event置換の追加実装を要求せず、既存のplugin API一操作をScratchへ投影する位置づけを維持する。
-test harness `extension_mcremote.js`の`FakeWebSocket.fireMessage`にはmock hello補完をprotocol majorの
-正規表現へ直書きする脆さがあり、本candidateでは`/^22\./`から`/^23\./`へ更新した。production contractや
-b6 blockerではないが、次回major更新時は現行protocol定数またはfixtureから導出するhelperへの一般化を検討する。
+後続のscratch-editor
+`agent/b6-wirescope-display-filter@3c199b08645306fc77441f59e89d5ebacbb9d836`はprotocol 23 cleanupとして、
+scratch-vmのcommand／event検証、Scratch WireScope source adapter、`@mc-remote/live` observerを`mcr_eh_`へ
+揃え、旧`mceh_`をalias受理しない。protocol 22のtype-check用歴史fixture `spawn-v22.json`は改名せず残した。
+また、test harness `FakeWebSocket`のmock hello補完を`/^23\./`の直書きから静的公開された
+`Scratch3McRemoteBlocks.PROTOCOL_VERSION`のmajor導出へ変更し、次回major更新時の同箇所追従を不要にした。
+対象test／lint／buildはPASS報告済みだが、default branch統合、実pluginとのlive-human、横断fixture、
+正式evidence、artifact統合／releaseは未完である。
+
+同branchの後続`c720341a2cee4b01f2b2a227cf6379ac0ac92db2`は、現在保持するframe windowだけに作用する
+WireScope表示filterと、`FRAME_LOG_LIMIT=100`超過trim件数の`dropped_frames`累積を実装した。filterはframe log、
+wire、server event ring、poll頻度、payloadを変更しない。`@mc-remote/live` 119件、scratch-vm対象404件、
+scratch-gui source対象13件、変更範囲lint／buildをPASSし、deterministic sourceを使った実browser確認では、
+空振りpollの既定非表示、request／response pair連動、件数、105→5／125→25の欠落表示、reload後の選好復元を
+確認したと報告された。実McRemote plugin E2E、and／or検索の全組合せ、iPad／Safariは未確認である。
+methodグループ8種＋`other`のexact名／写像は実装candidateのまま人間未批准で、Scratch surfaceの確定contractや
+b6 release gate通過を主張しない。
 
 monitor-driven reporterには、monitor評価のthrottle、同一引数のin-flight request coalescing、
 disconnect時のcache破棄を設ける。明示的なscript callは毎回実行する。対象は

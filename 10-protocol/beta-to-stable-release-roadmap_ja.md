@@ -69,8 +69,17 @@ McRemoteのsign、`pickaxe_poke`、`mcr_eh_`化とlegacy entity method除去、s
 `pickaxe_poke`、Pythonのprotocol 23／sign／`pickaxe_poke`／`mcr_eh_`投影にはpush済み実装candidateが
 あります。ただし横断fixture、exact candidate set、正式evidence、統合artifact、releaseは別gateです。
 
+scratch-editor `agent/b6-wirescope-display-filter@3c199b08645306fc77441f59e89d5ebacbb9d836`は、Scratch VM、
+WireScope source adapter、`@mc-remote/live`のhandle検証を`mcr_eh_`へ揃え、旧`mceh_`を受けず、protocol
+22の歴史fixture `spawn-v22.json`を現行protocol fixtureへ読み替えず残したpush済みcleanup candidateです。
+同commitはtest harnessのprotocol major直書きを現行`PROTOCOL_VERSION`参照へ改めています。対象test／lint／
+buildは搬送元でPASSしましたが、default branch統合、実plugin接続、横断fixture、正式evidence、releaseは別gateです。
+
 WireScope表示側filterはclient-onlyの独立companionです。b6に間に合わなければb7以降へ送り、b6をHOLDに
-しません。server側`events.poll` filterとは別物です。
+しません。server側`events.poll` filterとは別物です。scratch-editor
+`agent/b6-wirescope-display-filter@c720341a2cee4b01f2b2a227cf6379ac0ac92db2`には表示filterと
+`dropped_frames`修正のpush済み実装candidateがあります。filterのexact methodグループ名／写像は人間未批准で、
+本candidateや本表からcontractを推測しません。
 
 ### 3.2 b7 — direction
 

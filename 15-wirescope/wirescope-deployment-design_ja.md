@@ -214,6 +214,13 @@ schema v1にはgap、truncated、per-frame byte limitのfieldがなく、strict 
 変更しない。payload summaryやrecording／replay向けgap markerは後続schema version／sliceをfixtureと
 Scratch／Python conformance付きで固定する。schema v1のframe windowを完全な通信記録とは主張しない。
 
+scratch-editor `agent/b6-wirescope-display-filter@c720341a2cee4b01f2b2a227cf6379ac0ac92db2`は、Scratch VMの
+`FRAME_LOG_LIMIT=100`超過trim件数をconnection単位で累積し、source adapterからsession envelopeの
+`history_window.dropped_frames`へ渡す実装candidateである。累積値はframe logと同じconstructor／connection
+reset境界で0へ戻り、UI filterによる非表示件数を加えない。対象unit／deterministic testと、105／125 frameを
+投入して5／25を表示するdeterministic sourceの実browser確認はPASS報告済みだが、実plugin E2Eと正式evidenceは
+未実施である。この局所修正は既存のloss可視化原則を実装するもので、observer frame schemaを変更しない。
+
 ## 8. Artifactと互換性
 
 stationは固定identityを持つ`@mc-remote/live` artifactを提供する。初期artifactはarchiveとdetached manifestに
@@ -367,3 +374,33 @@ observer validatorと共通UIは座標や角度を別値へ再round／wrap／cla
 
 本sliceで確定するv1.1はmethod観察のcompatibility境界である。payload summary、gap marker、
 recording／replayのloss表現はv1.1へ含めず、後続version／sliceとして別に固定する。
+
+## 14. protocol 23／b6の表示filter candidate
+
+WireScope表示filterは、sourceが既に観察してbrowserの現在windowへ保持したframeから表示対象だけを選ぶ
+client-only capabilityである。wire、server event ring、`events.poll`の頻度／params／result、frame payload、
+observer schemaを変更しない。server側`events.poll` filter／`events.clear`とは別sliceであり、未達でもb6を
+HOLDにしない（`2026-08-26-08`）。
+
+scratch-editor `agent/b6-wirescope-display-filter@c720341a2cee4b01f2b2a227cf6379ac0ac92db2`は、次を実装した
+push済みcandidateである。
+
+- methodグループ、`events.poll`内のevent分類、or／and検索で表示を選ぶ。既定は空振りpollだけを隠す。
+- `events.poll`のrequest／responseを`request_id`でpairにし、pair全体を同じ判定で表示する。responseのない
+  orphanは空振りへ分類しない。複数event typeを含むresponseは有効な分類が一つでもあればpair全体を表示する。
+- 検索は大文字小文字を区別しない部分一致で、一つの欄のカンマ区切りkeywordはORとして扱う。このkeyword
+  合成は実装時のUX candidateで、確定contractではない。
+- 選好だけを`localStorage`の`mcremote.wirescope.frame-filter`、version 1、
+  `{version,methodGroups,eventClasses,orSearch,andSearch}`へ保存する。frame、payload、検索履歴は保存しない。
+- switch件数は現在保持windowからfilter状態と独立に計算する。非表示frameを`dropped_frames`へ加えない。
+
+実装candidateのmethod写像は`connection`（`hello`＋`connection.*`）、`auth`、`build`、`catalog`、`chat`、
+`events`、`player`、`world`の8種＋`other`である。ただし現行`OBSERVED_METHODS`は`auth.*`／`catalog.*`を
+通さないため両groupは常に0件となる。またevent分類は`pickaxe_poke`／`chat_posted`／`projectile_hit`／
+`empty`／`other`だが、現行`parseEvent()`は未知typeを`other`へ渡す前にsnapshot全体を拒否するため、実データの
+`other`は到達不能である。したがってexact group名／写像、到達不能classを通常switchとして見せるか、
+allowlist外groupを将来用に露出するかは人間未批准であり、本節から確定contractを推測しない。
+
+搬送元は`@mc-remote/live` 119件、scratch-vm対象404件、scratch-gui source対象13件、変更範囲lint／buildの
+PASSと、deterministic sourceによる実browser確認を報告した。実McRemote plugin経由のlive-human E2E、
+and／or検索の全組合せ、iPad／Safari等の別browser、default branch統合、正式evidence、releaseは未実施・未主張である。
