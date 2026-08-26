@@ -507,7 +507,7 @@ b6 は b5 基盤上の中規模 API 追加に限定し、新しい identity、tr
 - `world.setSign`
 - typed particle data（dust／block state）
 - b6 終端での残る未批准legacy wire methodの置換またはregistryからの除去
-- b6 entry gateで試用したIndexedDB基盤と`.sprite3` fixtureを使うScratchスプライトのブラウザ保存
+- b6 entry gateで試用したIndexedDB基盤と`.sb3`／`.sprite3` fixtureを使うScratch作品／スプライトのブラウザ保存
 
 b5 GREEN後にScratch保存の独立entry gateを置く。`.sb3`／`.sprite3`互換fixture、作品全体のIndexedDB
 lifecycle、一覧・復元・削除、quota、破損、migration、`.sb3`への退避を実装・試用する。これはb5 completion
@@ -516,7 +516,9 @@ entry gate内の依存を先に満たせば、同じsliceでブラウザ保存�
 スプライト保存は同じIndexedDB databaseを再利用してobject storeを分け、別の保存基盤を作らない。
 scratch-editor `agent/wirescope-session-artifact@7d112a544e48391c70c627fd0c7f7572cf6810d6`は実装・局所検証済みcandidate
 であり、正式evidence、統合、releaseは別gateとする（`2026-08-16-09`を`2026-08-21-02`／
-`2026-08-25-04`で改訂・精密化）。
+`2026-08-25-04`で改訂・精密化）。`2026-08-26-02`により作品／スプライト両方のブラウザ保存をb6 Scratch
+artifactのrelease scopeへ含める。OS clipboard移送は含めない。`persist()` grant成功、7日間無操作の実時間待機、
+iPad Safari／Chrome、Home Screen差分はb6 blockerにせず、browser-local境界とfile退避をrelease説明へ含める。
 
 旧Scratch `.sb3` opcode migrationはwire method整理と別gateとする。b5／b6のmethodを
 protocol `22.0.0`へ収容することは、実装、live evidence、release gateの合格を意味しない。

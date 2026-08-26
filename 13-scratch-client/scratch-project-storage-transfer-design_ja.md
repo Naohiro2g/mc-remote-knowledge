@@ -234,7 +234,7 @@ save／load、copy／paste、スプライト移送が、元作品との関係や
 
 Tutorial／Debug の既存 Scratch surface 再利用方針は維持する。
 
-## 12. 実装順序
+## 12. 実装順序とb6 release配置
 
 1. **ファイル互換 fixture**：`.sb3`／`.sprite3` の現行挙動、McRemote block、dependency、semantic
    round-trip、runtime 情報の非収容を固定する。
@@ -248,15 +248,30 @@ Tutorial／Debug の既存 Scratch surface 再利用方針は維持する。
 `2026-08-25-04`により、1と2はb5 completion gateから外した独立entry gateとする。ここでいう
 「b5後・b6 API本実装前」は依存と時期の目安であり、別trackのb6 API完了を待つ条件ではない。
 同一slice内で1→2の依存を満たした後、3を続けて実装でき、b6 API実装と並行してよい。3は2の
-IndexedDB databaseを共有してobject storeを分け、別の保存基盤を作らない。4は`2026-08-26-01`により
-`deferred`とし、3の評価で別originまたはstack単位の未充足需要が観測された時だけ再開する。5は独立trackのまま
-維持し、entry gate／b6へ自動追加しない。R3〜R5の意味と日程への配置は最後のR整理が所有する。
+IndexedDB databaseを共有してobject storeを分け、別の保存基盤を作らない。`2026-08-26-02`により、1〜3を
+**ブラウザ保存作品＋ブラウザ保存スプライト**としてb6 release scopeへ含める。これはScratch artifactのrelease
+scopeであり、protocol method追加ではない。4は`2026-08-26-01`／`2026-08-26-02`により`deferred`とし、
+3の評価で別originまたはstack単位の未充足需要が観測された時だけ再開する。4をb6 completionへ含めない。
+5は独立trackのまま維持し、b6へ自動追加しない。
 
 2026-08-25時点でscratch-editor `agent/wirescope-session-artifact@7d112a544e48391c70c627fd0c7f7572cf6810d6`は、
 1〜3を同一sliceで実装し、deterministic testとlocalhost実browserでの人間確認まで完了したcandidateである。
 作品の一覧／復元／削除はFile menu、個別スプライトの保存は右クリックmenu、保存済みスプライトの
 一覧／復元／削除はFile menuに置く。これは搬送元の実装・観測範囲であり、正式evidence、default branch統合、
 公開artifact、release完了を意味しない。
+
+b6 release gateでは、少なくとも次を同じScratch candidateで閉じる。
+
+- `.sb3`／`.sprite3` fixtureと、runtime secret非収容の決定論的回帰
+- 作品とスプライトで同一IndexedDB databaseを使い、object storeを分離すること
+- 作品の自動保存、一覧、復元、削除
+- スプライト右クリックからの保存と、File menuでの一覧、作品への追加としての復元、削除
+- 同一originの別tab／別windowで保存物を共有できることのreal-browser確認
+- browser-localで消去され得ることと、重要物を`.sb3`／`.sprite3`へ退避する説明
+
+`navigator.storage.persist()`のgrant成功、7日間無操作の実時間待機、iPad Safari／Chrome、Home Screen差分は
+b6 blockerにしない。persistence補助UIをb6へ含める場合も、実際の`persisted()`状態を表示し、永久保存保証と
+説明しない。これらはb6後も継続して観測し、結果が得られた時にsupport説明と後続release gateを更新する。
 
 ブラウザ保存は耐久性を保証しない。WebKitは7日間のSafari利用中に該当siteへのuser interactionがなければ
 script-writable storageを削除すると説明しており、Home Screen web appは別扱いとする。

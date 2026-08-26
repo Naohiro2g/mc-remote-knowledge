@@ -220,7 +220,7 @@ setで構造化形へ切り替える。
 Scratch-visibleなStateText／BlockInfoText、Picker、ErrorTextとfixtureは
 [Scratch block value投影設計](scratch-block-value-projection-design_ja.md)を正とする。
 
-### 保存・移送作業束（entry gate＋b6保存は実装candidate完了・R配置は最終整理待ち）
+### 保存・移送作業束（ブラウザ保存はb6 release scope、OS clipboardは保留）
 
 現行の保存・移送モデルは
 [Scratch作品の保存・移送設計](scratch-project-storage-transfer-design_ja.md) と
@@ -238,11 +238,15 @@ Scratch-visibleなStateText／BlockInfoText、Picker、ErrorTextとfixtureは
   `.sb3`／`.sprite3` fixture、作品用IndexedDB基盤、同じdatabaseの別object storeを使うスプライト保存、
   一覧／復元／削除を実装し、deterministic testとlocalhost実browser確認まで完了した。正式evidence、
   default branch統合、公開artifact、release完了は別gateである。
+- ブラウザ保存作品とブラウザ保存スプライトをb6 Scratch artifactのrelease scopeへ含める。fixture、秘密非収容、
+  作品／スプライトの保存・一覧・復元・削除、同一originの別tab／window共有、file退避説明をb6 gateで閉じる
+  （`2026-08-26-02`）。
 - OS clipboardによるブロック移送と審査済み教材は独立trackとし、b5／b6へ自動追加しない。前者は
-  ブラウザ保存スプライトの運用評価後まで保留する。
+  `deferred`で確定し、ブラウザ保存スプライトの運用評価後、別originまたはstack単位の実需が残った時だけ再開する。
 - McRemote Tutorial / Debug 導線と、最初の1 blockまでの教材を揃える。
 - iPad Safari／ChromeでのIndexedDB保存・eviction、Home Screen差分、`persist()`の実効性を実測する。
-  `persist()`だけを耐久性保証にせず、重要な作品／スプライトのfile退避を維持する。配置は最終R整理が所有する。
+  `persist()`だけを耐久性保証にせず、重要な作品／スプライトのfile退避を維持する。これらの長期実測はb6 blockerに
+  せず、support説明と後続release gateへ反映する。
 
 ### R3-C — 運用 package と観測面
 
