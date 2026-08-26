@@ -488,9 +488,51 @@ Python学習者は`Door.open`を使うことも、`getBlock`＋`setBlock`から�
 PUTのみ、GET＋PUT、PATCHという提示順は操作意味論の学習候補であり、三層の順序とは別である。`buildPyramid`、
 `updateSign`、`postToChat`等の語彙も単一の高級／低級尺度へ並べず、学習目標ごとに入口を選ぶ。
 
+### ロードマップは完成表でなく、学習を含む反復の時間軸
+
+機能実現の三層モデルを完全に解くには、APIを実装するだけでは足りない。**実装→カリキュラム策定→実際の
+学習者との学び→設計改訂**を複数releaseにわたって反復する。releaseはモデルの完成を宣言する節目でなく、
+配置と学習経路の仮説を、使って観察できる形で届ける節目である。したがって、カリキュラム全体の確定や長期の
+学習者観察をb6のcompletion条件にはしない。一方、後で調べられるよう、何を試そうとしたかと非主張を残す。
+
+三層で同じ機能を重複して実現できることは選択肢を増やすが、入口を列挙するだけでは進む道を見えにくくする。
+教材は課題ごとに、少なくとも次の経路から適切な入口と次の移動先を案内する。
+
+- 用意されたAPIやScratch blockを使い、まずMinecraft上の概念と結果を掴む。
+- 小さい操作からユーザーコードで組み立て、状態、手順、再利用を学ぶ。
+- client／plugin APIの実現へ進み、surface、wire、atomicity、共有状態の保証を調べる。
+
+これは初級／中級／上級を固定する三段階ではない。目的に応じて途中から入り、同じ機能を別の実現位置で
+作り直し、前後へ移動できる学習パスとして扱う。
+
+API文書と教材では、各機能を名前だけの一覧にせず、少なくとも**実現位置**、**操作意味論**（read／replace／
+update／action／composite等）、**操作範囲**（一行、一対象、複数対象等）、**serverが保証する性質**、
+**想定する学習経路**を構造的に区別する。exactなtag schemaはAPI文書の生成方式とともに後続設計できるが、
+これらの分類を説明文の中へ埋没させない。
+
+### b6で置くsignの観察単位
+
+b6では単純で最小単位の操作を主軸にしつつ、signについて次の三操作を一組で置く。
+
+| wire method | 操作意味論 | b6で観察すること |
+| --- | --- | --- |
+| `world.getSign` | read | 現在状態を正準形で読み、置換／更新前後を比較できるか |
+| `world.setSign` | replace | 指定単位の全体状態を宣言する理解しやすさと、四行をまとめて扱う価値 |
+| `world.updateSignLine` | update／PATCH | 面＋行index＋`LineSpec`一件だけを変える最小操作の見え方とserver側atomicity |
+
+sign lineの制限componentは、色と`bold`／`italic`／`underlined`／`strikethrough`／`obfuscated`の
+5文字修飾を扱う。任意JSON Componentは対象外に保つ。この一組は三層モデルを実証済みにする完成解ではなく、
+GET＋PUTで組む経路とserver側PATCHを比べ、Python／Scratchのsurfaceや教材でどう見せるかを判断する材料である。
+
+b6で小さい操作を主にすることも、高級／低級の序列ではない。見え方、見せ方、必要なserver保証、学習上の
+役割が明確なら、高機能packageを同じreleaseへ含められる。逆に便利そうというだけで三層すべてへ重複実装せず、
+release後の観察を次の配置判断へ戻す。
+
 ### この節が主張しないこと
 
 - すべての機能を三層へ重複実装することを必須にしない。
 - `world.updateBlock`、`world.updateSign`、`Door.open`、`buildPyramid`という具体的APIの採用を確定しない。
 - `mc.`の有無を、plugin実装かclient合成かを判定する規則にしない。
 - PUT／GET＋PUT／PATCHの順を教材progressionへ自動適用しない。
+- sign三操作の採用だけから、Python／Scratchへ同じsurfaceを必須化しない。
+- b6で機能実現の三層モデルが完成または実証済みになるとは主張しない。

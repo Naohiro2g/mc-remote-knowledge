@@ -144,7 +144,9 @@ lockへ記録し、b6 API実装後の負荷較正でruntime policyとして更�
 | `entity.getPose` | b6 fixtureで固定 | あり | handle対象のposeを返す（b6、§5.8） |
 | `entity.setPose` | b6 fixtureで固定 | あり | handle対象のposeを一体更新（b6、§5.8） |
 | `entity.remove` | b6 fixtureで固定 | あり | entityを除去しhandleを即時失効（b6、§5.8） |
-| `world.setSign` | b6 fixtureで固定 | あり | signの面と厳密4行の制限componentを一体更新（b6、§5.8） |
+| `world.getSign` | b6 fixtureで固定 | あり | signのfront／backとwaxedを制限componentの正準形で取得（b6、§5.8） |
+| `world.setSign` | b6 fixtureで固定 | あり | signの指定単位と厳密4行の制限componentを置換（b6、§5.8） |
+| `world.updateSignLine` | b6 fixtureで固定 | あり | signの面＋行index＋`LineSpec`一件をPATCH（b6、§5.8） |
 
 - `chat.post` の message は `params[0]` の1値だけを正とする（DECISIONS `2026-07-01-01`）。
   旧テキストコマンド実装には分割された args を join して複数トークンを1メッセージ化する暗黙挙動があったが、
@@ -353,8 +355,16 @@ player除外、radius／件数／chunk走査をboundedにし、unloaded entity�
 必要なhandle capacityはrequest全体で事前確認し、部分的なhandle発行をしない。`entity.remove`成功時は
 handleを即時失効する。exact params／result shapeはb6 fixtureを実装前に固定する。
 
-`world.setSign`はstanding／wall signのcanonical block state、front／back、厳密4行の制限componentだけを
-受理する。全入力を検証してから変更し、更新失敗時は元block stateへrollbackする。typed particle dataは
+sign APIは`world.getSign`、`world.setSign`、`world.updateSignLine`をb6へ配置する。`world.getSign`は現在状態を
+読み取り、`world.setSign`は指定単位の厳密4行を置換し、`world.updateSignLine`は面＋行index＋`LineSpec`一件だけを
+PATCHする。制限componentは色と`bold`／`italic`／`underlined`／`strikethrough`／`obfuscated`の5文字修飾を扱い、
+任意JSON Componentを受理しない。`world.setSign`は全入力を検証してから変更し、更新失敗時は元block stateへ
+rollbackする。`world.updateSignLine`は三層モデルのserver側最小PATCHを試す操作だが、GET＋PUTによるclient／
+ユーザーコードの合成も有効な学習経路として残す（DECISIONS `2026-08-26-03`／`2026-08-26-04`）。
+
+旧candidate `7b0a2aa05148812bc7997bfd575756d0e07ae15b`は`world.getSign`／`world.setSign`の実装・観測済み比較基準である。
+5修飾と`world.updateSignLine`を含む次candidateのidentity、exact params順、行indexの基数、result、error、
+rollback／競合時意味論、client surfaceはfixture／contract lockで固定し、本節から推測しない。typed particle dataは
 dustとblock stateの有限schemaだけを追加し、任意Java objectの直列化とitem particleはb6へ入れない。
 
 ---

@@ -501,10 +501,15 @@ setへ座標先行順を収容し、particle-first／entity-firstとのunion、�
 
 b6 は b5 基盤上の中規模 API 追加に限定し、新しい identity、transport、queue を作らない。
 
+機能実現の三層モデルはb6で完成させる対象でなく、実装→カリキュラム策定→実際の学習者との学び→改訂を
+後続releaseへつなぐ長期の評価軸とする。b6では単純／最小単位の操作を主軸にするが、高級／低級の序列や
+高機能packageの一律除外規則にはしない。API文書は実現位置、操作意味論、操作範囲、server保証、想定学習経路を
+区別し、重複実装の中から案内する経路を明示する（`2026-08-26-03`／`2026-08-26-04`）。
+
 - `world.getNearbyEntities`
 - `entity.getPose`／`entity.setPose`／`entity.remove`（b5で導入した数値正準形を再利用）
 - `events.poll` filter／`events.clear`
-- `world.setSign`
+- `world.getSign`／`world.setSign`／`world.updateSignLine`（read／replace／面＋行一件のPATCHを比較するsign slice）
 - typed particle data（dust／block state）
 - b6 終端での残る未批准legacy wire methodの置換またはregistryからの除去
 - b6 entry gateで試用したIndexedDB基盤と`.sb3`／`.sprite3` fixtureを使うScratch作品／スプライトのブラウザ保存
