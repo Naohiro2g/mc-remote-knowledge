@@ -560,8 +560,13 @@ sign三操作のexact wireは`2026-08-26-05`でcontract lockした。McRemote
 `codex/b6-set-sign@a34fec0b64a5c939687de4a89fb94e2728d2e116`はplugin実装・局所検証済みcandidateである。
 Python `codex/b6-protocol23-python@69a160aecfc6cd346b3341cdf10007e2903b5207`はprotocol／package
 `23.0.0`／`2300.0.0b6`、`pickaxe_poke`、sign三操作、`mcr_eh_`投影を実装し、unit／deterministic
-237件をPASSしたpush済みcandidateである。Python component surfaceは局所実装済みとなったが、Scratchの
-sign surface、共有横断fixture、live、default branch統合、正式evidence、artifact統合、releaseは未完である。
+237件をPASSしたpush済みcandidateである。scratch-editor
+`agent/b6-pickaxe-poke@9dbdc1aeb00e9873cf0eb4de226c11acb4ea0cb4`もsign三操作とread accessorを
+実装したpush済みcandidateである。Scratchのwrite blockは正式`LineSpec`のstring shorthandだけを公開し、
+色／装飾object書込みは初期surfaceへ出さない。`getSign`はfull `LineValue`を保持して色／5装飾／waxedを
+読み取れる。この絞り込みはブラウザ確認で人間承認済みだが、実plugin接続のsign liveではない。これにより
+plugin／Python／Scratch component surfaceは局所実装済みとなったが、共有横断fixture、live、default branch統合、
+正式evidence、artifact統合、releaseは未完である。
 したがってb6 method集合全体の状態は`candidate`を維持する。
 
 b5 GREEN後にScratch保存の独立entry gateを置く。`.sb3`／`.sprite3`互換fixture、作品全体のIndexedDB

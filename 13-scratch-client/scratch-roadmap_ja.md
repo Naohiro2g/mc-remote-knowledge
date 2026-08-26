@@ -471,6 +471,12 @@ b5／b6の横断scopeはDECISIONS `2026-08-16-04`〜`07`／`2026-08-26-06`と
   block label／menuは共有fixtureとsurface設計で固定し、本節から推測しない。scratch-editor
   `agent/b6-pickaxe-poke@e6b0d35cd2`は`whenPickaxePoke` hat、threadへ束縛するevent validation、
   `item` property menu、ja／ja-Hira翻訳、WireScope source adapter allowlistを実装済みである。
+- b6 sign三操作は`2026-08-26-05`のexact wireへ投影する。`getSign` reporterは両面4行、色、5装飾、waxedを
+  full snapshotとして返し、network accessなしのtext／color／decoration／waxed accessorで読む。`setSign`は
+  指定面4行のfull replace、`updateSignLine`は面＋0始まり行index一件のPATCHとしてcommand blockへ出す。
+  初期Scratch write surfaceは正式`LineSpec`のplain string shorthandだけを公開し、色／装飾object書込みは
+  まだ出さない。これはwire contractの変更や欠落でなく、ブラウザでblock面を確認して人間承認したsurfaceの
+  絞り込みである。readはfull `LineValue`を失わない。
 - b7／protocol 23.1はplayer／entity directionのget／set、b8／23.2はnearby／entity pose／removeを
   get／setで分割しない概念別sliceとする。Scratch blockのexact label、menu、reporter／command形は各wire
   contract lock後に固定し、raw UUIDやcomma-separated valueを旧実装から持ち込まない。
@@ -501,6 +507,14 @@ PASSしたと報告された。VM integration全1389件中2件は並列実行時
 本sliceと無関係な環境flakinessという搬送元判定を記録するが、full regression PASSへは数えない。実pluginとの
 live-human、正式evidence、default branch統合、公開artifact／releaseは未実施・未主張である。機能実現の
 三層モデルは本event置換の追加実装を要求せず、既存のplugin API一操作をScratchへ投影する位置づけを維持する。
+sign三操作candidate
+`agent/b6-pickaxe-poke@9dbdc1aeb00e9873cf0eb4de226c11acb4ea0cb4`は、新規`SignInfoText`、
+`getSign`／`setSign`／`updateSignLine` block、read accessor、面／行／装飾menu、sign固有wire error reason、
+ja／ja-Hira表示を実装した。write commandは既存DEBUG／TRACE／FAST pathを再利用する。搬送元はscratch-vm
+対象375件、scratch-gui l10n 4件、lintを再実行してPASSし、i18n抽出とwebpack buildの先行PASSも報告した。
+plain textだけを入力するwrite blockの絞り込みは実browserで人間承認済みである。一方、実plugin接続による
+sign三操作のlive-auto／live-human、共有fixture、formal evidence、default branch統合、releaseは未実施・未主張である。
+
 後続のscratch-editor
 `agent/b6-wirescope-display-filter@3c199b08645306fc77441f59e89d5ebacbb9d836`はprotocol 23 cleanupとして、
 scratch-vmのcommand／event検証、Scratch WireScope source adapter、`@mc-remote/live` observerを`mcr_eh_`へ

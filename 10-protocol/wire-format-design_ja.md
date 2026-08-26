@@ -435,8 +435,12 @@ writeは全入力とavailabilityを検証してから、sign state全体に対�
 
 McRemote `codex/b6-set-sign@a34fec0b64a5c939687de4a89fb94e2728d2e116`はpush済みplugin candidateで、129 unit tests、
 Paper 1.21.11 live-auto、5装飾と一行限定更新のlive-human PASSが報告済みである。ただしstale snapshot競合を
-意図的に再現したlive検証と、`updateSignLine`の`sign_waxed` live-humanは未実施。Python／Scratch surface、
-共有横断fixture、artifact統合、releaseも未完であり、局所実装からこれらを推測しない。
+意図的に再現したlive検証と、`updateSignLine`の`sign_waxed` live-humanは未実施。Python
+`codex/b6-protocol23-python@69a160aecfc6cd346b3341cdf10007e2903b5207`とScratch
+`agent/b6-pickaxe-poke@9dbdc1aeb00e9873cf0eb4de226c11acb4ea0cb4`にもpush済みclient candidateがある。
+Scratchはreadでfull `LineValue`を保持し、writeでは`LineSpec`のstring shorthandだけを公開する。このsurface
+絞り込みはobject形式のwire受理を狭めず、Scratchから色／装飾を書けるとは主張しない。共有横断fixture、
+実pluginとScratchのsign live、artifact統合、releaseは未完であり、局所実装からこれらを推測しない。
 
 ---
 

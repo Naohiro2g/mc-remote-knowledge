@@ -65,8 +65,8 @@ b6は次を一つのprotocol 23 compatibility setとして閉じます。
   `entity.getPos`／`setPos`、`entity.getRotation`／`setRotation`、`entity.getPitch`／`setPitch`、
   `entity.getYaw`／`setYaw`、`entity.remove`。後続で採用する概念は新contractとして戻す。
 
-McRemoteのsign、`pickaxe_poke`、`mcr_eh_`化とlegacy entity method除去、scratch-editorのbrowser保存と
-`pickaxe_poke`、Pythonのprotocol 23／sign／`pickaxe_poke`／`mcr_eh_`投影にはpush済み実装candidateが
+McRemoteのsign、`pickaxe_poke`、`mcr_eh_`化とlegacy entity method除去、scratch-editorのbrowser保存、
+sign、`pickaxe_poke`、Pythonのprotocol 23／sign／`pickaxe_poke`／`mcr_eh_`投影にはpush済み実装candidateが
 あります。ただし横断fixture、exact candidate set、正式evidence、統合artifact、releaseは別gateです。
 
 scratch-editor `agent/b6-wirescope-display-filter@3c199b08645306fc77441f59e89d5ebacbb9d836`は、Scratch VM、
