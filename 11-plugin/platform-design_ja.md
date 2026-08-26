@@ -395,8 +395,16 @@ Bukkit Event objectをsession寿命へ持ち越さず、listener実行中にimmu
 - pollは非破壊で、response喪失後も同じcursorを再取得できる。
 - `events.clear`による削除だけを`explicitly_discarded_total`へ加算する。
 - event DTOに発生時点の完全修飾DimensionKey／originをcaptureし、後続のbuild state変更で書き換えない。
-- right-clickのmain／off-hand二重発火は相関判定して1件へ正規化する。protocol 23では
+- right-clickは同一player／dimension／x／y／z／tickの2回目callbackをhandに関係なく重複として
+  1件へ正規化する。main／off-handだけでなく、同一handの二重発火も同じkeyで抑止する。protocol 23では
   `Tag.ITEMS_PICKAXES`に合致する所持itemだけを`pickaxe_poke`として投入し、旧`block_right_click`は投入しない。
+- `pickaxe_poke`を受け取るactive sessionが一つ以上あるcapture成立時だけ、
+  `player.swingHand(hand)`で腕振りを返す。sessionのないplayerへは適用せず、vanilla interactionはcancelしない。
+
+このdedupとfeedbackはMcRemote
+`codex/b6-pickaxe-poke@b0f5503301f9ca1b8226eea0c6ca56c947aab196`で実装・対象検証済みである
+（`2026-08-26-07`）。同一hand二重発火は独立2 roundのlive-humanで観測されたが、正式な
+sanitized evidence recordは未作成である。
 
 ring件数、総byte、server poll既定／上限のexact値はruntime policyである。b5 candidateは有限な暫定値を
 unit／境界fixtureと短いsmokeで固定し、b6 API実装後にload／live試験で本較正する。`events.poll`の

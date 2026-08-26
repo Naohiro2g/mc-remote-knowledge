@@ -524,6 +524,12 @@ b5 tag／JARを差し替えず、22内で同名eventの意味論を狭めない�
 - b6 終端での残る未批准legacy wire methodの置換またはregistryからの除去
 - b6 entry gateで試用したIndexedDB基盤と`.sb3`／`.sprite3` fixtureを使うScratch作品／スプライトのブラウザ保存
 
+protocol 23移行と`pickaxe_poke`はMcRemote
+`codex/b6-pickaxe-poke@b0f5503301f9ca1b8226eea0c6ca56c947aab196`でplugin実装済みである。
+v22検証資産の複製は作らず、現行fixture／scriptをv23へrename／更新した。targeted unit／deterministicと
+live-human実施報告はPASSだが、正式live-human record、client surface、横断fixture、artifact統合／
+releaseは未完であり、b6全体のrelease gate通過は主張しない（`2026-08-26-07`）。
+
 sign三操作のexact wireは`2026-08-26-05`でcontract lockした。McRemote
 `codex/b6-set-sign@a34fec0b64a5c939687de4a89fb94e2728d2e116`はplugin実装・局所検証済みcandidateである。
 Python／Scratch surface、共有横断fixture、artifact統合、releaseは未完のため、method状態は`candidate`を維持する。

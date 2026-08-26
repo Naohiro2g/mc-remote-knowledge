@@ -303,8 +303,14 @@ captureで§5.0.1の小数第3位へ正準化し、後から丸め直さない�
 - payload: 旧eventの`pos`／`face`／`block`／`hand`に、item type keyのcanonical文字列`item`を追加
 - delivery: `sessionsFor(event.getPlayer())`。player identityはpayloadへ追加しない
 - interaction: `ignoreCancelled=true`の観察専用。対象blockのvanilla interactionをcancelしない
+- cardinality: 同一player／dimension／x／y／z／tickの2回目callbackはhandに関係なく重複として1件へ正規化する
 
 同名eventをpickaxe限定へ狭める案、旧新eventの恒久二重配送、bN／capability判別の新設は採らない。
+
+McRemote `codex/b6-pickaxe-poke@b0f5503301f9ca1b8226eea0c6ca56c947aab196`は本contractと
+protocol `23.0.0`／artifact `2300.0.0b6`への移行をplugin実装済みである（`2026-08-26-07`）。
+unit／deterministicと対象live-humanの実施報告はあるが、正式evidence record、client surface、
+横断fixture、artifact統合／releaseは別gateである。
 
 空間eventは投入時点のdimensionとoriginを固定する。後からbuild dimension／originが変わっても既存DTOを変更・
 破棄せず、event受信を理由にpluginがbuild stateを暗黙変更しない。event座標を`world.*`へ渡すclientは、

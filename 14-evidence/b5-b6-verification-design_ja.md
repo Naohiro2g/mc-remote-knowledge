@@ -1,7 +1,7 @@
 # b5／b6 横断検証設計
 
 この文書は、DECISIONS `2026-08-16-04`〜`07`、`2026-08-19-01`／`02`、`2026-08-20-03`／`04`、
-`2026-08-21-01`／`2026-08-22-02`／`2026-08-26-06`で確定したprotocol 22／b5とprotocol 23／b6の
+`2026-08-21-01`／`2026-08-22-02`／`2026-08-26-06`／`2026-08-26-07`で確定したprotocol 22／b5とprotocol 23／b6の
 plugin APIについて、何をどのtest classで
 確かめるかを示します。未実施の計画をevidenceと呼ばず、実行後にだけrecord／artifactを作ります。
 wire contractは[wire-format-design](../10-protocol/wire-format-design_ja.md)を正とします。
@@ -62,7 +62,8 @@ protocol不変定数や最終運用値と主張しません。
 - `events.poll`の省略／`max_events`希望上限、server上限、未知option拒否。
 - compact responseが61,440 bytesを越えず、schema v1（compatibility revision v1.1）／session envelope投影後のsingle encoded frameが
   65,536 bytesを越えない。
-- right-clickのmain／off-hand正規化fixture。
+- `pickaxe_poke`のexact DTOと、同一player／dimension／x／y／z／tickの2回目callbackを
+  handに関係なく1件へ正規化するdedup。opposite-handとsame-handの両caseを固定する。
 - handleのformat、同epoch同entityの同値、foreign／unknown同値化、disconnect失効、slot予約。
 - `world.getHeight`のmax_y inclusive、world上端、空列、多層、origin相対、work admission。
 - 連続位置の小数第3位、角度の小数第2位に対する正負の`HALF_UP` tie、負のゼロ除去。
@@ -91,6 +92,10 @@ protocol不変定数や最終運用値と主張しません。
 
 実Paper serverと複数clientを使い、sanitized transcriptをrelease gateに必要な回だけ保存します。
 次の14項目はTier 3／4でchange coneに応じて選ぶ完全表であり、Tier 2の軽量pulseへ全件を持ち込みません。
+
+`pickaxe_poke`は実playerの物理右clickを必要とし、現行`live_auto.py`の到達範囲には入らない。
+これは`not_exercised`（current harness unreachable）と記録し、PASS／FAILのいずれにも数えない。
+plugin実装完了をblockしないが、release gateの正式根拠に使う場合は後述のlive-human recordを必須とする。
 
 1. 2 playerでeventが相互混入しない。
 2. 同一playerの2 active connection epochが同じeventをそれぞれpollできる。
@@ -133,6 +138,8 @@ protocol不変定数や最終運用値と主張しません。
 - TRACEが成功後に呼出元threadだけを待たせ、FASTがmachine token `sent-unconfirmed`、
   日本語「送信済み・結果未確認」、英語`Sent · unconfirmed`として見え、明示flushがbarrierとして見える。
 - Python／Scratch両sourceのnotificationと`connection.flush`をWireScopeが区別し、synthetic resultを作らない。
+- paired playerがpickaxeで1回pokeしたとき`pickaxe_poke`が正確に1件だけ届き、`item`が
+  fully-qualified keyで、capture成立時に腕振りが見える。未接続playerとvanilla interactionへの非影響も主張する場合は同じrecordで確認する。
 
 ## 4. Evidenceの着地条件
 
@@ -142,3 +149,8 @@ test class、実行範囲、PASS／FAIL、未検証範囲を記載します。to
 収録でき、redactionを要求しません。b5の暫定capacity値は境界fixtureと短いsmokeの
 採用理由を伴うimplementation contractとして着地し、b6 API実装後の本較正では全methodを載せた実環境の
 load／soak結果と更新理由を別recordへ残します。runtime policyの更新を横断version contractの変更と混同しません。
+
+McRemote `codex/b6-pickaxe-poke@b0f5503301f9ca1b8226eea0c6ca56c947aab196`は、targeted unit／deterministic PASSと
+script上のlive-human PASSが搬送報告されたplugin candidateです。ただし`14-evidence/records/`の
+構造化recordとsanitized artifactは未作成であり、この報告だけをb6 release gateの正式根拠に繰り上げません
+（`2026-08-26-07`）。
