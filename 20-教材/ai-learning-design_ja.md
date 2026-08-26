@@ -387,72 +387,110 @@ archive link を解決扱いにしない。
 
 ---
 
-## 14. plugin API／client API／ユーザーコードの三層責務モデル
+## 14. 機能実現の三層モデル
 
-出典: McRemote dev session（`world.setSign`設計対話、2026-08-24）からの文書素材、knowledge側で本節へ着地。
-技術側の関連契約は [10-protocol/wire-format-design](../10-protocol/wire-format-design_ja.md) §5.8、
-no-merge方針は `2026-08-19-02`。並行実行の教育哲学は §11、3年間カリキュラムのAPI層diagramは §12 を参照する。
-既存 §1〜§13 の番号は変えず、本節を新規に追加する（節番号は変動時に他文書からの参照を無言で壊すため）。
+出典: McRemote dev session（`world.setSign`設計対話、2026-08-24〜26）からの文書素材を
+`2026-08-26-03`で確定した。技術側の関連契約は
+[10-protocol/wire-format-design](../10-protocol/wire-format-design_ja.md) §5.8、no-merge方針は
+`2026-08-19-02`。並行実行の教育哲学は §11、3年間カリキュラムのAPI層diagramは §12 を参照する。
 
-### 三層
+### 三層は「どこで実現するか」であり、高級／低級の階段ではない
 
-McRemoteの機能は、常に次の三層のどこかに置かれる。
+同じ機能を、次の三つの実現位置に置ける。
 
-1. **plugin API（wire protocol）層**: Paperプラグインが JSON-RPC として公開する最小限の操作。
-   `world.getBlock`／`world.setBlock`、`world.setSign`等
-2. **client API層**: Python library（`minecraft-remote-api`）や Scratch ブロックが、plugin 層の
-   操作を組み合わせて提供する、利用者向けの語彙
-3. **ユーザーコード層**: 学習者自身が書くスクリプト。client API を組み合わせて具体的な建築を行う
+1. **server／plugin API層**: Paper pluginがwire methodとして実行し、server上で結果を保証する位置。
+   認可、atomicity、共有worldの並行更新、有限work、全client共通の正準意味論を所有できる。
+2. **client API層**: Python libraryやScratch extensionが利用者へ公開する位置。単一wire methodの薄い投影も、
+   複数methodの合成、型や表現の変換、学習者向けの語彙も置ける。
+3. **ユーザーコード層**: コードを書く人がPythonの関数／classやScratchのscript／定義blockとして実現する位置。
+   課題固有の手順、実験、再利用部品、学習者自身のAPIを置ける。
 
-### 伝統: plugin層はGET＋PUTのみ、richnessは上位層が持つ
+三層は排他的な所有区分ではない。**同じ概念が三層すべてに重複して存在してよい**。用意されたScratch blockで
+全体像を先に掴み、同じ動作をユーザーコードで組み直し、必要ならclient APIやplugin APIの実装へ進む、という
+複数の学習経路を同時に残す。ある層で実現できることは、他の層へ置かない理由にはならない。
 
-Raspberry Pi Edition向けのMCPI（Minecraft Pi Edition API）以来、Pythonの伝統では、サーバー側
-（plugin層）はGETとPUTという最小限の操作だけを持ち、「1点だけ変える」ようなPATCH的な体験は、
-**ユーザーコード（または将来的にclient library）が「読む→メモリ上で変更→書き戻す」を自分で組み立てる**
-ことで実現してきた。これは「最低限だが、頑張れば何でもできる」という設計哲学であり、plugin層の面積を
-小さく保ったまま、利用者側の工夫で表現力を確保する。McRemoteのblock操作（`getBlock`／`setBlock`）は
-この伝統に忠実であり、`setSign`もPUT的操作として設計された（面単位は独立指定可、面内の4行は必ず揃える）。
+この意味で「API三層」とは呼ばない。ユーザーコードは必ずしもAPIではなく、「三層責務」も機能を一層だけへ
+割り当てる印象を生む。正称を**機能実現の三層モデル**とし、「責務」は各層が保証すべき性質を述べる時だけ使う。
 
-### PUTとPATCHという2つの正当なメンタルモデル
+### 利用者から見える境界
 
-- **PUT的操作**: 「これから先、これがこの場所の完全な姿である」と宣言する。既存状態を知らなくても
-  安全に呼べる（べき等）。新しく置く／完全に置き換える時に自然。
-- **PATCH的操作**: 「今そこにある物の、この1点だけを変える」。他のプロパティは触れず現状維持。
-  既にある物を少しだけ調整する時に自然（例: ドアの`open`だけを切り替える）。
+Python利用者に見える`mc.foo()`はclient APIのsurfaceである。その内部が一つのwire methodを委譲しているか、
+複数のwire methodをclientで合成しているかは、呼出し表記だけでは分からない。`mc.`の付かない関数やclassは
+ユーザーコード、別library、または利用者が作ったAPIのいずれにもなり得る。
 
-Minecraft自体、新規設置（PUT的）とプレイヤーの右クリックによる既存ブロックの状態切り替え
-（PATCH的、ドア・レバー・ボタン等）を別操作として提供しており、どちらか一方に統合すべきものではない。
-「plugin層はGET＋PUTのみ」という伝統的方針は、PATCH的操作を**否定するものではなく**、PATCH的体験を
-client API層がGET＋PUTの合成で提供する、という責務分担を意味する（`2026-08-19-02`のno-merge判断も、
-「mergeを永久禁止する一般原則」ではなく`BlockSpec`という特定操作の入力契約の曖昧さ解消が目的だった）。
+Scratchでも、McRemote extensionのblockはclient APIのsurfaceだが、そのblockがpluginへ一回送信するか、
+client内で複数操作を合成するかは初学者から見えなくてよい。Scratchの「ブロック定義」や組み合わせたscriptは
+ユーザーコード層に当たる。実現位置を観察する必要が生じた段階では、教材説明、source、test、WireScopeを使って
+境界を明らかにし、見た目の記法から推測させない。
 
-### なぜこれが学習支援哲学の話でもあるのか: Scratchの並行実行
+### 操作の粒度・意味のまとまりは別軸
 
-MCPIのPython伝統でread-modify-writeのrace conditionが実用上あまり問題にならなかったのは、通常1つの
-スクリプトが順次実行されるためである。§11で扱ったとおり、Scratchは**並行script実行が中心的な機能**
-であり、既存決定群も「並行script登録順」「同一playerの複数session」等へ既に配慮している。もし
-client API層（Scratchブロック）がGET→SETを内部合成してPATCH的ブロックを提供した場合、**複数スクリプトが
-同じ対象の別プロパティを同時に更新すると、lost update（片方の変更が消える）が、Pythonの伝統よりはるかに
-起きやすい**。
+server／client／ユーザーコードという実現位置と、APIの「細かさ」「人間に近い意味」「複合度」は直交する。
+server APIを「原始的」「低級」、client APIやユーザーコードを「高級」とは定義しない。各層に、単一対象の操作、
+複数対象の一括操作、Minecraftの目的語彙、教材や作品固有の語彙が混在し得る。
 
-これは「初学者、特にScratchにはPATCH概念（plugin層でのatomicな部分更新）が有効かもしれない」という
-直感に対する、具体的な技術的裏付けになる。plugin層にPATCHを持たせるかどうかの判断は、「利便性」だけ
-でなく「Scratchの並行実行モデルにおけるatomicity」という観点で評価すべきである。
+例えば次は配置を考えるための例であり、同名methodの採用を決める表ではない。
 
-### 示唆: 段階的な学習ラダー
+| 概念例 | 操作の性格 | 置き得る実現位置 |
+| --- | --- | --- |
+| `setBlock` | 一地点のworld状態を指定する | pluginへの一回の委譲、client API、直接呼ぶユーザーコード |
+| `postToChat` | 一操作だが人間に明確な意味を持つ | plugin＋client API。必要ならユーザー側のmessage helper |
+| `updateSign` | 対象固有の一部変更 | atomicityを持つplugin、GET＋PUTを合成するclient、ユーザー関数 |
+| `Door.open` | Minecraft対象を目的語彙で扱う | client library、ユーザーclass、必要ならserver側のatomic操作 |
+| `buildPyramid` | 多数の配置を一つの目的へ合成する | 教材用client helper、ユーザーコード、有限batchを担うserver操作 |
 
-三層モデルと合わせて、段階的な語彙導入も示唆される。§12の3年間progression（APIを使う／組み合わせる／
-設計して共有する）との接続候補であり、確定した教材順序ではない。
+一つの尺度で高級／低級を付けると、`postToChat`のように一回で完結しながら人間的意味が強い操作や、
+`setBlocks`のようにserver APIでありながら多数の変更を束ねる操作を説明できない。設計時は少なくとも、
+**実現位置**、**何回・何対象を束ねるか**、**どの利用者概念を名前にするか**を別々に記録する。
 
-1. **PUTのみ**（新しく置く）
-2. **GET／PUT**（読んでから置く。既存の値を知った上で建築する）
-3. **GET／PUT／PATCH(UPDATE)**（1点だけを既存オブジェクトへ反映する）
+### 三層間の関係
 
-この順は、対象操作の複雑さと、学習者が扱える抽象度の両方に沿っている可能性がある。
+- **委譲**: client APIが同じ意味のplugin methodを一回呼ぶ。
+- **合成**: client APIまたはユーザーコードが複数操作から新しい意味を作る。
+- **併存**: 用意されたAPIがあっても、学習者が同じ機能を自分で再実装できる。
+- **昇格**: 繰り返し使う合成をclientまたはpluginへ追加する。便利だから自動昇格するのではなく、必要な保証で決める。
+
+plugin層へ置く主な理由は、serverでのatomicity、認可、共有状態の競合制御、性能・有限性、全client共通の意味、
+clientからは安全に実現できないcapabilityである。client層へ置く主な理由は、Python／Scratchごとの自然な表現、
+発見しやすさ、定型的な安全な合成、教材上の足場である。ユーザーコードへ置く主な理由は、組み合わせること自体が
+学習対象であること、作品固有であること、まだ共通APIへ固定する段階でないことである。複数の理由が成立すれば、
+複数層へ置いてよい。
+
+### MCPIは出発点であって上限ではない
+
+Raspberry Pi Edition向けMCPIは、小さいMinecraft APIとPython clientを用意し、その先の組み合わせを
+ユーザーコードへ広く委ねた。この簡潔さと、自分で組み立てられる余地はMcRemoteでも重要である。一方、MCPIで
+server APIになかったことだけを理由に、client APIやplugin APIへの追加を退けない。`updateBlock`／`modifyBlock`、
+対象別操作、教材用の語彙を検討することは、歴史からの逸脱ではなく、現在の並行実行、複数client、観察可能性、
+学習経路に合わせて三層の配置を選び直すことである。
+
+### PUTとPATCHという二つの正当なメンタルモデル
+
+- **PUT的操作**: 「これから先、これがこの場所の指定した全体状態である」と宣言する。新しく置く、または
+  対象単位を完全に置き換える時に自然。
+- **PATCH的操作**: 「今そこにある物の、この点だけを変える」。他の状態を維持して調整する時に自然。
+
+GET＋PUTをclient APIまたはユーザーコードで合成すればPATCH的な体験を作れる。その経路は、学習者が状態の
+読み書きを理解する題材にもなる。一方、Scratchの並行scriptなどで複数処理が同じ対象を更新すると、GETからPUTまでに
+他の変更を上書きするlost updateが起こり得る。server側PATCHはatomicityと全client共通の意味を持てる。
+
+したがって、PATCHをどの層へ置くかは高級／低級や便利さだけで決めず、学習価値、競合、正準意味論、対象範囲から
+決める。`2026-08-19-02`のno-mergeは`BlockSpec`の入力契約を固定した判断であり、別methodとしてのPATCHを永久に
+禁止する一般原則ではない。
+
+### 学習経路への投影
+
+学習者には、その時点で理解しやすい入口を提示する。Scratch初学者には用意されたblockから概念全体を見せられる。
+Python学習者は`Door.open`を使うことも、`getBlock`＋`setBlock`から自分で書くことも、client libraryへまとめることも
+できる。さらに進めばplugin側のatomicityやwire contractを扱える。これは一方向に高級から低級へ降りる階段ではなく、
+同じ概念を異なる実現位置から作り直して理解する経路である。
+
+PUTのみ、GET＋PUT、PATCHという提示順は操作意味論の学習候補であり、三層の順序とは別である。`buildPyramid`、
+`updateSign`、`postToChat`等の語彙も単一の高級／低級尺度へ並べず、学習目標ごとに入口を選ぶ。
 
 ### この節が主張しないこと
 
-- plugin層に`world.updateBlock`や`world.updateSign`のようなPATCH的wireメソッドを追加すべき、という
-  結論には至っていない。Scratchの並行実行という具体的な理由づけはあるが、実装判断ではない。
-  具体候補は `00-hub/NOTES_ja.md` の該当 park 項目を参照する。
-- 学習ラダーの提示順を教材のprogressionへ即座に反映すべき、という決定ではない。
+- すべての機能を三層へ重複実装することを必須にしない。
+- `world.updateBlock`、`world.updateSign`、`Door.open`、`buildPyramid`という具体的APIの採用を確定しない。
+- `mc.`の有無を、plugin実装かclient合成かを判定する規則にしない。
+- PUT／GET＋PUT／PATCHの順を教材progressionへ自動適用しない。
