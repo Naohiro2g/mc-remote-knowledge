@@ -49,14 +49,7 @@ Scratch固有の現状は[Scratch roadmap](../13-scratch-client/scratch-roadmap_
 | 2027-03 | classroom artifact freeze | 教材固定、本番相当dry run、修正だけを許可 |
 | 2027-04 | 3月に選定したstableで新学年開始 | 学習者観察を後続releaseへ還流 |
 
-## 4. 不変の gate
-
-- protocol / plugin / clients の互換主張は test evidence を伴う。
-- `live-human` は sanitized evidence record を残す。
-- vanilla Java / Bedrock の基線を壊さず、追加観察面は任意導入にする。
-- public contributor が archive / backstage を読まなくても判断できる。
-
-## 5. 現在の横断優先
+## 4. 現在の横断優先
 
 1. b6をprotocol 23のsign／poke／browser保存とlegacy cleanupで閉じる。
 2. b7 direction、b8 entity lifecycleをget／setで割らない縦sliceとして9月中に閉じる。
@@ -66,3 +59,10 @@ Scratch固有の現状は[Scratch roadmap](../13-scratch-client/scratch-roadmap_
 6. long-lived credentialの公開gateは閉じたまま、ケータリングで実需要を観察してから再開する。
 
 個別 repo の「次の一手」は保存せず、その repo の NOTES と contract から都度生成します。
+
+## 5. 不変の gate
+
+- protocol / plugin / clients の互換主張は test evidence を伴う。
+- `live-human` は sanitized evidence record を残す。
+- vanilla Java / Bedrock の基線を壊さず、追加観察面は任意導入にする。
+- public contributor が archive / backstage を読まなくても判断できる。
