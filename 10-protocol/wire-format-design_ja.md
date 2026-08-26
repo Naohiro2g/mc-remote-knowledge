@@ -3,7 +3,7 @@
 > マイクラリモコン（Code2CreateClub / mc-remote.com）設計記録
 > 関連: `Naohiro2g/McRemote`（プラグイン）, `Naohiro2g/minecraft-remote-api`（API）, `Naohiro2g/scratch-editor`（Scratch クライアント）
 > 出典: scratch-editor 作業セッション 2026-06-26（`scratch3_mcremote/index.js` の DRAFT 実装でピン留め）
-> 結節点: [versioning-design] §3（メジャー増分）/§8（hello ネゴ）/§10.11（protocol 21.0.0／22.0.0）と直結。本文書は**ワイヤ符号化の SSOT**で、版判定規則の正は versioning-design §8。
+> 結節点: [versioning-design] §3（メジャー増分）/§8（hello ネゴ）/§10.11（protocol 21.0.0／22.0.0／23.0.0）と直結。本文書は**ワイヤ符号化の SSOT**で、版判定規則の正は versioning-design §8。
 
 ---
 
@@ -12,9 +12,9 @@
 本文書は**プラグイン ↔ 各クライアントの実際のワイヤ符号化**（フレーミング・エンベロープ・コマンド表・エラー形）を定める。これは [versioning-design] が扱う **protocol semver（20.0.0 / 21.0.0…）とは別レイヤ**。
 
 - **エンベロープ形式版** ＝ `jsonrpc: "2.0"`（JSON-RPC 2.0 を採用、§3）。各メッセージに自己記述で載る。
-- **protocol 版** ＝ semver（例 **`21.0.0`／`22.0.0`**）。互換判定は versioning-design §8（メジャー一致必須・`plugin.minor >= client.minor`・パッチ不問）。hello で交渉する。**package 版 `2100.0.0b1`／`2200.0.0b5` とは別レイヤ**＝`bN` は配布チャンネル表記で **wire 非搭載**、hello の `protocol` フィールドには clean な protocol semverを載せる（DECISIONS `2026-06-27-01`／`2026-08-19-02`）。package は protocol から fold 規則（versioning-design `2026-06-19-04`）で派生＝独立ではない。
+- **protocol 版** ＝ semver（例 **`21.0.0`／`22.0.0`／`23.0.0`**）。互換判定は versioning-design §8（メジャー一致必須・`plugin.minor >= client.minor`・パッチ不問）。hello で交渉する。**package 版 `2100.0.0b1`／`2200.0.0b5`／`2300.0.0b6` とは別レイヤ**＝`bN` は配布チャンネル表記で **wire 非搭載**、hello の`protocol`にはcleanなprotocol semverを載せる（DECISIONS `2026-06-27-01`／`2026-08-19-02`／`2026-08-26-06`）。packageはprotocolからfold規則（versioning-design `2026-06-19-04`）で派生＝独立ではない。
 
-> **「protocol v1」という旧称について**：scratch-plan §4/§5 が「プロトコル v1 仕様書」と呼んでいたのは本文書のワイヤ仕様のこと。protocol semver の `1.x` とは無関係で混同しやすいので、本リポでは「**ワイヤ形式**」と呼び、semver は versioning-design の番号で呼ぶ。このワイヤ符号化が初めて載ったprotocol semverは **21.0.0**、構造化block valueへの破壊的変更は **22.0.0** に載る。`2100.0.0b1`／`2200.0.0b5`は配布物側のprerelease表記で、protocol自体のbetaではない（versioning-design §10.11）。
+> **「protocol v1」という旧称について**：scratch-plan §4/§5 が「プロトコル v1 仕様書」と呼んでいたのは本文書のワイヤ仕様のこと。protocol semver の `1.x` とは無関係で混同しやすいので、本リポでは「**ワイヤ形式**」と呼び、semver は versioning-design の番号で呼ぶ。このワイヤ符号化が初めて載ったprotocol semverは **21.0.0**、構造化block valueへの破壊的変更は **22.0.0**、`block_right_click`から`pickaxe_poke`への破壊的置換は **23.0.0** に載る。配布物側の`bN`はprotocol自体のbetaではない（versioning-design §10.11）。
 
 ---
 
@@ -157,7 +157,7 @@ lockへ記録し、b6 API実装後の負荷較正でruntime policyとして更�
 - `catalog.get` は protocol 21.0.0 系 b3 の実装予定に含める（DECISIONS `2026-07-29-04`、§7.2.1）。API 層名・wire method とも `catalog.get`。認証後のみ有効で、稼働中 registry から block/entity/particle を単一 response で返す。
 - `player.getPos` / `player.setPos` は protocol 21.0.0 系 b2 の準核に含める（DECISIONS `2026-07-07-02`）。API 層名は `getPos` / `setPos`、wire method は `player.*`。
 - `player.getPose` / `player.setPose` は protocol 21.0.0 系 b4 の実装予定に含める（DECISIONS `2026-07-29-03`、§5.3）。API 層名は `getPose` / `setPose`、wire method は `player.*`。既存 `getPos` / `setPos` は廃止せず維持する。
-- `events.*`、b5／b6の`world.*`／`entity.*`はprotocol 22.0.0のartifact b5／b6 compatibility setとして実装する。b5は構造化block valueによる破壊的変更をmajor境界にし、それ以外のb5／b6 scopeは維持する（DECISIONS `2026-08-16-04`〜`07`、`2026-08-19-02`、§5.4〜§5.8）。
+- b5の`events.*`／`world.*`はprotocol 22.0.0／artifact b5、b6の追加`world.*`／`entity.*`／eventはprotocol 23.0.0／artifact b6のcompatibility setとして実装する。b6は`block_right_click`を削除して`pickaxe_poke`へ置換し、それ以外のb5 contractをcarryする（DECISIONS `2026-08-16-04`〜`07`、`2026-08-19-02`、`2026-08-26-06`、§5.4〜§5.8）。
 - `auth.*`（`auth.pairBegin` / `auth.pairPoll` / `auth.listCredentials` / `auth.revoke` / `auth.logout`）は hello の前段に位置する認証・credential 管理の名前空間で、**本表ではなく §6.5 / §6.6 が正本**。ペアリングは §6.5、credential の一覧と失効は §6.6（`2026-08-02-01`）。
 - `setPlayer` は**廃止**（protocol 21.0.0 系の b1 配布物でクリーン除去、DECISIONS `2026-06-15-02`/`2026-06-25-05`）。identity は `hello` が担い、サーバが token ↔ player を束縛するため**なりすまし不可**。
 
@@ -251,7 +251,7 @@ Scratchは標準menuに`overworld`／`the_nether`／`the_end`を提示できる�
 
 > 却下＝旧 `camera.setNormal`/`setFixed`/`setFollow`/`setPos`（RemoteControllerMod のクライアント mod 側カメラ操作）を Paper 側 API として再現する案：対応する汎用 camera API が Paper に無い。却下＝`setSpectatorTarget` を walkthrough の基盤にする案：spectator mode 必須で entity 追従以外の pose を直接指定できない。却下＝位置と角度変更を別 request にする案：途中状態が見え1フレーム内で位置と視線がずれ得る。却下＝walkThrough 全体を server 側の長時間 job として先に固定する案：円弧・Y 補間・look-at 等はクライアント側の高水準処理として組み合わせやすい。
 
-### 5.4 events.poll と有限event ring（b5／b6）
+### 5.4 events.poll と有限event ring（protocol 22／b5、protocol 23／b6）
 
 server pushは使わない。pluginはpaired playerに発生した対象eventを、そのplayerへ束縛された全active
 connection epochのringへimmutable DTOとして複製する。epochごとにring、sequence、cursorを独立させ、
@@ -293,6 +293,18 @@ wireやringへ保持しない。
 
 `block_right_click`のblock positionはintegerのままとする。`projectile_hit`の連続hit positionは発生時の
 captureで§5.0.1の小数第3位へ正準化し、後から丸め直さない。
+
+**protocol 23／b6の置換（確定 `2026-08-26-06`）**：b5で配布済みの`block_right_click`はprotocol 22の
+`released` eventとして履歴と互換契約に残し、b5 artifactを差し替えない。有限ringを通常playの右click noiseが
+消費する不備を直すため、protocol 23では`block_right_click`を削除し、次の`pickaxe_poke`へ置き換える。
+
+- type: `pickaxe_poke`
+- gate: `org.bukkit.Tag.ITEMS_PICKAXES`に合致する所持itemでのblock右click
+- payload: 旧eventの`pos`／`face`／`block`／`hand`に、item type keyのcanonical文字列`item`を追加
+- delivery: `sessionsFor(event.getPlayer())`。player identityはpayloadへ追加しない
+- interaction: `ignoreCancelled=true`の観察専用。対象blockのvanilla interactionをcancelしない
+
+同名eventをpickaxe限定へ狭める案、旧新eventの恒久二重配送、bN／capability判別の新設は採らない。
 
 空間eventは投入時点のdimensionとoriginを固定する。後からbuild dimension／originが変わっても既存DTOを変更・
 破棄せず、event受信を理由にpluginがbuild stateを暗黙変更しない。event座標を`world.*`へ渡すclientは、
@@ -350,7 +362,7 @@ availability reasonは追加の`retryable` fieldを作らず、次の意味を�
 
 ### 5.8 b6のentity／sign／typed particle
 
-b6 entity APIはprotocol 22のpose shape `{dimension,pos,yaw,pitch}`と§5.0.1の出力正準形を再利用する。nearby検索はstream dimension内、
+b6 entity APIはprotocol 22で固定したpose shape `{dimension,pos,yaw,pitch}`と§5.0.1の出力正準形をprotocol 23へcarryする。nearby検索はstream dimension内、
 player除外、radius／件数／chunk走査をboundedにし、unloaded entityを探すためのchunk loadを行わない。
 必要なhandle capacityはrequest全体で事前確認し、部分的なhandle発行をしない。`entity.remove`成功時は
 handleを即時失効する。exact params／result shapeはb6 fixtureを実装前に固定する。
@@ -408,18 +420,18 @@ Paper 1.21.11 live-auto、5装飾と一行限定更新のlive-human PASSが報�
 
 ## 6. helloペイロード
 
-protocol 22の現行helloはprotocol 21で確定したJSON-RPC／auth／catalog／world constantsの骨格を維持し、
-空間identityだけを`2026-08-22-02`によりDimensionKeyへ全面改訂する。`protocol`は`22.0.0`、build要求は
-`dimension`／`origin`、応答は完全修飾`dimension`を返す。protocol 21の`world` fieldは履歴でありunion受理しない。
+protocol 23の現行helloはprotocol 22で確定したJSON-RPC／auth／catalog／world constants／DimensionKeyの骨格を
+そのままcarryし、`protocol`だけを`23.0.0`へ上げる。build要求は`dimension`／`origin`、応答は完全修飾
+`dimension`を返す。protocol 21の`world` fieldとprotocol 22の版値は履歴でありunion受理しない。
 
 ### 6.1 要求 `params`（object）
 
 ```json
-{ "protocol": "22.0.0", "client": { "name": "...", "version": "...", "locale": "..." },
+{ "protocol": "23.0.0", "client": { "name": "...", "version": "...", "locale": "..." },
   "auth": { "token": "..." }, "build": { "dimension": "minecraft:overworld", "origin": [200, 0, 200] } }
 ```
 
-- `protocol` ＝protocol semver `22.0.0`。package版`2200.0.0b5`を載せない。protocol 21の旧例はb4以前の履歴である。
+- `protocol` ＝protocol semver `23.0.0`。package版`2300.0.0b6`を載せない。protocol 22／b5以前の版値は履歴である。
 - `sandbox` は **`hello.params` に載せない**。bridge 経由の Sandbox routing は §2 の WSS 接続メタ（例 `?sandbox=...`）が担う。直 TCP 経路では接続先 host/port が routing 情報であり、plugin が受け取る wire payload は bridge 経由でも直 TCP でも同一に保つ。
 - `auth` は **`{ token }` の1モード**（token はサーバで player 束縛）。**ペアリング（token の入手）は hello の前段の独立メソッド `auth.pairBegin` / `auth.pairPoll`**（§6.5・確定 `2026-07-04-06`）＝hello 自体は pair モードを持たない。`build`省略時はdimension=`minecraft:overworld`・原点(200,0,200)。`build.dimension`は§5.1のDimensionRefで、成功resultは正準DimensionKeyを返す。
 - **enforcement トグル連動**（plugin config・§10.11.1 項5）：hello の `auth` 扱いはトグルで変わる。**OFF（開発既定）**＝`auth.token` 欠落/空を許容し**無認証セッション可**（3リポ非同期着地のため・item5）＝この段では最小必須は `{ protocol }`。**ON（リリース既定）**＝`auth` 必須で、欠落→`auth_required`、検証失敗→`token_expired` / `token_revoked` / `token_not_found` / `token_invalid` 等の認証 reason（§6.3）。構文不正・未知形式・検証不能は `token_invalid`。
@@ -428,7 +440,7 @@ protocol 22の現行helloはprotocol 21で確定したJSON-RPC／auth／catalog�
 
 ```json
 {
-  "protocol": "22.0.0",
+  "protocol": "23.0.0",
   "mc_version": "1.21.11",
   "supported_mc_versions": ["1.21.11"],
   "catalogHash": null,
@@ -442,7 +454,7 @@ protocol 22の現行helloはprotocol 21で確定したJSON-RPC／auth／catalog�
 }
 ```
 
-- **protocol 22安定形**：hello応答は`{protocol,mc_version,supported_mc_versions,catalogHash}`にsession／player／`dimension`／origin／permissionsを加える。`dimension`はserverが解決した完全修飾DimensionKeyで、clientは要求値で上書きしない。world/profile情報定数は`world_constants` bucketへ束ねる。`catalogHash`と`world_constants`の既存規律は維持する。
+- **protocol 23安定形**：protocol 22のhello shapeを変更せずcarryし、版値だけ`23.0.0`へ上げる。応答は`{protocol,mc_version,supported_mc_versions,catalogHash}`にsession／player／`dimension`／origin／permissionsを加える。`dimension`はserverが解決した完全修飾DimensionKeyで、clientは要求値で上書きしない。world/profile情報定数は`world_constants` bucketへ束ねる。`catalogHash`と`world_constants`の既存規律は維持する。
 - **§8 整合**：versioning-design §8.1 が要求する `mc_version` / `supported_mc_versions`（踊り場リスト）を応答に含める（§8.1 必須ゆえ省けない）。互換判定は §8 のメジャー一致則に従う。
 - **`permissions.buildRange` の意味論**（確定 `2026-08-06-01`）：hello が返す整数値と server の実際の build guard は、paired UUID に対する同じ `PermissionProvider` の値解決経路を使う。LuckPerms 使用時は、既存 `QueryOptions` における User の effective meta を正本とし、McRemote が primary group だけを直接読んだり、user node・継承・context・weight・meta stacking の優先順位を再実装したりしない。meta key、context、meta 欠落または整数 parse 失敗時の `0`、LuckPerms 不在時の fallback は既存どおり。これは既存 field の値解決修正であり、wire field 名・shape・protocol `21.0.0` を変更しない。負値の意味論は別判断とする。
 - **`catalogHash`**（確定 `2026-06-26-03`・§7.2）：ブロック等カタログのキャッシュ識別子＝`mc_version`/`supported_mc_versions` 広告に**紐づくレジストリ指紋**（重複フィールドにしない）。クライアントは `catalogHash` が実値で、その hash に一致する cache を持たない場合にだけ本体を取得する。`catalogHash` が null なら本体を取得しない（b1 は無認証ゆえ常に null）。**クライアント別の非同梱・利用規則は §7.2 に従う**（`2026-08-02-05` / `2026-08-02-07` で「同梱既定版 fallback」は Python・Scratch とも廃止済み）。

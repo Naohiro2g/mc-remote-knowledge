@@ -1,7 +1,7 @@
 # b5／b6 横断検証設計
 
 この文書は、DECISIONS `2026-08-16-04`〜`07`、`2026-08-19-01`／`02`、`2026-08-20-03`／`04`、
-`2026-08-21-01`／`2026-08-22-02`で確定したprotocol 22の
+`2026-08-21-01`／`2026-08-22-02`／`2026-08-26-06`で確定したprotocol 22／b5とprotocol 23／b6の
 plugin APIについて、何をどのtest classで
 確かめるかを示します。未実施の計画をevidenceと呼ばず、実行後にだけrecord／artifactを作ります。
 wire contractは[wire-format-design](../10-protocol/wire-format-design_ja.md)を正とします。
@@ -14,7 +14,7 @@ capacityの最終較正、Scratch browser保存はb5 completion gateへ含めま
 
 ### この文書の読み方
 
-以下の項目はprotocol 22 b5／b6の**assertion inventory**であり、一つのcandidate変更ごとに
+以下の項目はprotocol 22／b5とprotocol 23／b6の**assertion inventory**であり、一つのcandidate変更ごとに
 全項目を再実施するchecklistではありません。各回のgate coordinatorはcontract maturity、change cone、
 必要なtest tierを固定し、次のように選択します。
 

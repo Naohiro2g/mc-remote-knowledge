@@ -374,12 +374,13 @@ b3 の横断スコープは credential lifecycle の完了を待たずに閉じ�
 
 段階の途中で公開 gate を開かない。b3完了とlong-lived公開可否を同一判定へ戻さず、最終的な開放条件は引き続き §9.9.3 と `2026-08-02-03` が持つ。観察と再開判断の正本は `00-hub/authentication-roadmap_ja.md`。
 
-## 10. protocol 22／b5・b6のevent・entity・dispatcher基盤
+## 10. protocol 22／b5とprotocol 23／b6のevent・entity・dispatcher基盤
 
 b5は、イベントを受けて調べ、生成・操作するAPIを支える大規模な共通基盤を閉じる段である
 （DECISIONS `2026-08-16-04`〜`07`）。構造化block valueによる破壊的変更を境界として、b5から
-protocolを`22.0.0`へ上げる（`2026-08-19-02`）。b6はこの基盤上の中規模API追加に限定し、別のidentity、
-transport、queueを作らない。b5 GREENは有限な暫定runtime policyと境界fixtureを要求するが、授業相当負荷に
+protocolを`22.0.0`へ上げる（`2026-08-19-02`）。b6は`block_right_click`を`pickaxe_poke`へ置換する
+破壊的変更のためprotocol `23.0.0`へ上げるが、この基盤上の中規模API追加というscopeを維持し、別のidentity、
+transport、queueを作らない（`2026-08-26-06`）。b5 GREENは有限な暫定runtime policyと境界fixtureを要求するが、授業相当負荷に
 対するcapacityの本較正とfull soakはb6 API実装後に一組で行う（`2026-08-21-02`）。暫定値を無制限や
 未設定の代用にせず、candidate lock／evidenceへexact値を記録する。
 
@@ -394,7 +395,8 @@ Bukkit Event objectをsession寿命へ持ち越さず、listener実行中にimmu
 - pollは非破壊で、response喪失後も同じcursorを再取得できる。
 - `events.clear`による削除だけを`explicitly_discarded_total`へ加算する。
 - event DTOに発生時点の完全修飾DimensionKey／originをcaptureし、後続のbuild state変更で書き換えない。
-- right-clickのmain／off-hand二重発火は相関判定して1件へ正規化する。
+- right-clickのmain／off-hand二重発火は相関判定して1件へ正規化する。protocol 23では
+  `Tag.ITEMS_PICKAXES`に合致する所持itemだけを`pickaxe_poke`として投入し、旧`block_right_click`は投入しない。
 
 ring件数、総byte、server poll既定／上限のexact値はruntime policyである。b5 candidateは有限な暫定値を
 unit／境界fixtureと短いsmokeで固定し、b6 API実装後にload／live試験で本較正する。`events.poll`の

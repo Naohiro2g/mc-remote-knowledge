@@ -314,9 +314,9 @@ compatibility setとして更新する。片側だけで旧文字列と新object
 | --- | --- | --- |
 | b4 | `21.0.0` | `2100.0.0b4` |
 | b5 | `22.0.0` | `2200.0.0b5` |
-| b6 | `22.0.0` | `2200.0.0b6` |
+| b6 | `23.0.0` | `2300.0.0b6` |
 
-protocol 21 clientとprotocol 22 plugin、またはその逆はhelloで`protocol_mismatch`として拒否する。
+protocol 21／22／23でメジャーが異なるclientとpluginはhelloで`protocol_mismatch`として拒否する。
 旧文字列refのin-band互換受付、新旧を自動判定するunion schema、恒久的な`block_ref()` shimは設けない。
 利用者が保存したコードには、現行正準記法への書き換え方法を提供する。
 

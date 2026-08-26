@@ -382,10 +382,11 @@ distribution／license gateもPASSした。正式根拠は
 MessageChannel regressionとの横断real-browser E2E、home alpha、rollback実操作は未完である。attach code再発行の
 外部triggerも推測実装しない。
 
-## 10. b5／b6 API投影
+## 10. protocol 22／b5とprotocol 23／b6のAPI投影
 
 Python clientはpluginのepoch-scoped event／entity contractを隠さず、Python側だけのqueue、identity、
-retry規則を作らない（DECISIONS `2026-08-16-04`〜`07`）。
+retry規則を作らない（DECISIONS `2026-08-16-04`〜`07`）。b5はprotocol 22、b6は
+`block_right_click`を`pickaxe_poke`へ置換するprotocol 23のcompatibility setとして分ける（`2026-08-26-06`）。
 
 ### Event cursor
 
@@ -408,7 +409,7 @@ foreign／unknownをclient側で区別しない。`backpressure`だけを「後�
 ### Wrapperとobserver projection
 
 b5では`events.poll`、`world.getHeight`、`world.spawnParticle`、`world.spawnEntity`を同じwire contractへ
-薄く投影する。b6は`world.getNearbyEntities`、`entity.getPose`／`setPose`／`remove`、event filter／clear、
+薄く投影する。b6は`pickaxe_poke`、`world.getNearbyEntities`、`entity.getPose`／`setPose`／`remove`、event filter／clear、
 `world.setSign`、typed particleを追加する。exact Python method signatureと戻り型は共通wire fixtureと
 plugin実装を入力に固定し、knowledgeだけからkwargsや独自型を推測しない。
 

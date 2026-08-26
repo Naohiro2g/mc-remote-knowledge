@@ -439,9 +439,9 @@ browser smokeする。Python loopback stationの`COOP: same-origin`をpublic han
 per-sprite 第 4 tab は stream が実在するまで park する。main stream／substreamとScratch objectの写像は
 `2026-08-16-08`によりb4 scope freeze前gateから外し、post-b4の独立sliceで再開する。
 
-### b5／b6 plugin APIのScratch投影
+### protocol 22／b5とprotocol 23／b6 plugin APIのScratch投影
 
-b5／b6の横断scopeはDECISIONS `2026-08-16-04`〜`07`と
+b5／b6の横断scopeはDECISIONS `2026-08-16-04`〜`07`／`2026-08-26-06`と
 [wire contract](../10-protocol/wire-format-design_ja.md) §5.4〜§5.8を正とする。Scratchはserverの
 `events.poll`を利用者へ直接露出せず、connectionごとに一つのpollerからtype別hat blockへ投影する。
 
@@ -453,6 +453,8 @@ b5／b6の横断scopeはDECISIONS `2026-08-16-04`〜`07`と
   不一致をactionable errorにする。
 - b5で公開するevent surfaceは`block_right_click`／`chat_posted`／`projectile_hit`のhatに限定する。
   raw poll block、filter、`events.clear`は公開せず、filter／clearはb6へ置く。
+- b6／protocol 23ではwire type `block_right_click`を除去して`pickaxe_poke`へ置換する。exactなScratch
+  block label／menuは共有fixtureとsurface設計で固定し、本節から推測しない。
 
 `world.spawnEntity`のhandleは副作用と同じresponseから原子的に受け取る。共有の`last entity` reporterは
 作らない。副作用reporterをmonitor不能にできるruntimeではreporterを優先し、保証できない場合は

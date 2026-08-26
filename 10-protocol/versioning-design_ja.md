@@ -454,17 +454,22 @@ b3がb4 credential snapshotを読めることやdowngrade中のtoken継続をb4 
 教材は現行記法を正準形とし、旧記法には恒久shimではなく書き換え方法とmigration fixtureを与える。
 long-lived公開、credential checkpoint／doctor、world backup／restoreはpost-b4 contractとして維持する。
 
-### 10.11.4 protocol 22.0.0とb5／b6のスコープ（確定）
+### 10.11.4 protocol 22.0.0／b5とprotocol 23.0.0／b6のスコープ（確定）
+
+> **破壊的event置換の確定（2026-08-26）**：DECISIONS `2026-08-26-06`により、b5の
+> `block_right_click`を不備と判定し、b6で`pickaxe_poke`へ置き換える。削除を含むため
+> b6はprotocol `23.0.0`／artifact `2300.0.0b6`へ移す。b5 artifactとprotocol 22の
+> `block_right_click` contractは履歴として変更しない。
 
 構造化block valueが`world.setBlock`／`setBlocks`のparamsと`world.getBlock`のresultを
-破壊的に変更するため、b5からprotocolを`22.0.0`へ上げる。artifact versionは
-b5=`2200.0.0b5`、b6=`2200.0.0b6`とする。beta番号は既存scope名と一致させ、protocol 22系列で
-`b1`へ戻さない。protocol 21の最終artifactは`2100.0.0b4`である（DECISIONS
-`2026-08-16-04`を`2026-08-19-02`で改訂）。
+破壊的に変更するため、b5からprotocolを`22.0.0`へ上げる。b5 artifactは`2200.0.0b5`で閉じる。
+さらに既存event typeを削除・置換するb6はprotocol `23.0.0`、artifact `2300.0.0b6`とする。
+beta番号はrelease train上の段名を維持して`b1`へ戻さない。protocol 21の最終artifactは
+`2100.0.0b4`である（DECISIONS `2026-08-16-04`を`2026-08-19-02`／`2026-08-26-06`で改訂）。
 
-protocol 21と22のclient／plugin混在はhelloで`protocol_mismatch`として拒否する。旧文字列refを
-受理するunion schemaや恒久shimをprotocol 22へ置かない。protocol自体にbeta番号を持たせず、
-b5／b6は同じ22.0.0のcompatibility setとして積層する。
+protocol 21／22／23のメジャーが異なるclient／plugin混在はhelloで`protocol_mismatch`として拒否する。
+旧文字列refや旧event typeを受理するunion schema、恒久shimを後継protocolへ置かない。protocol自体に
+beta番号を持たせず、b5は22.0.0、b6は23.0.0の別compatibility setとする。
 
 b5は大規模な共通基盤を閉じる段である。
 
@@ -501,6 +506,10 @@ setへ座標先行順を収容し、particle-first／entity-firstとのunion、�
 
 b6 は b5 基盤上の中規模 API 追加に限定し、新しい identity、transport、queue を作らない。
 
+`block_right_click`の削除・`pickaxe_poke`への置換だけが、この「API追加」に対する破壊的な例外である。
+protocol 22を名乗るb5 clientとb6 pluginの混在を黙って壊さないため、b6全体をprotocol 23へ移す。
+b5 tag／JARを差し替えず、22内で同名eventの意味論を狭めない（`2026-08-26-06`）。
+
 機能実現の三層モデルはb6で完成させる対象でなく、実装→カリキュラム策定→実際の学習者との学び→改訂を
 後続releaseへつなぐ長期の評価軸とする。b6では単純／最小単位の操作を主軸にするが、高級／低級の序列や
 高機能packageの一律除外規則にはしない。API文書は実現位置、操作意味論、操作範囲、server保証、想定学習経路を
@@ -509,6 +518,7 @@ b6 は b5 基盤上の中規模 API 追加に限定し、新しい identity、tr
 - `world.getNearbyEntities`
 - `entity.getPose`／`entity.setPose`／`entity.remove`（b5で導入した数値正準形を再利用）
 - `events.poll` filter／`events.clear`
+- `pickaxe_poke`（protocol 22の`block_right_click`を置換。`ITEMS_PICKAXES` gate、旧payload＋`item`）
 - `world.getSign`／`world.setSign`／`world.updateSignLine`（read／replace／面＋行一件のPATCHを比較するsign slice）
 - typed particle data（dust／block state）
 - b6 終端での残る未批准legacy wire methodの置換またはregistryからの除去
@@ -529,8 +539,8 @@ scratch-editor `agent/wirescope-session-artifact@7d112a544e48391c70c627fd0c7f757
 artifactのrelease scopeへ含める。OS clipboard移送は含めない。`persist()` grant成功、7日間無操作の実時間待機、
 iPad Safari／Chrome、Home Screen差分はb6 blockerにせず、browser-local境界とfile退避をrelease説明へ含める。
 
-旧Scratch `.sb3` opcode migrationはwire method整理と別gateとする。b5／b6のmethodを
-protocol `22.0.0`へ収容することは、実装、live evidence、release gateの合格を意味しない。
+旧Scratch `.sb3` opcode migrationはwire method整理と別gateとする。b5 methodをprotocol `22.0.0`、
+b6 methodをprotocol `23.0.0`へ収容することは、実装、live evidence、release gateの合格を意味しない。
 exact ring／handle／poll／particle／work／buffer／timeout上限はruntime policyとtest fixtureで較正し、
 横断version contractへ焼き込まない。b5は有限な暫定値で共通基盤を閉じ、b6 API実装後に全methodを載せた
 実環境で本較正する。OS clipboardによるブロック移送は保存entry gateへ自動追加せず、ブラウザ保存スプライトの
