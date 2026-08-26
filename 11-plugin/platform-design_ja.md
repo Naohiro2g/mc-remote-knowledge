@@ -419,6 +419,13 @@ handleを返す。protocol 22／b5は`mceh_`、protocol 23／b6以降は`mcr_eh_
 alias受理しない。handleはUUIDや認可情報を符号化せず、操作ごとにepoch ownershipとpermissionを再検証する。
 playerはregistryへ収容しない（`2026-08-26-08`）。
 
+このprefix切替とprotocol 23 registry cleanupはMcRemote
+`codex/b6-protocol23-cleanup@af71e564200d73ec8ee06e05d7e4d8bcfcdb3d39`で実装済みcandidateである。
+旧`mceh_`はlookupでNOT_FOUNDとなり、`world.getNearbyEntities`、entityのpos／rotation／pitch／yaw各get／set、
+`entity.remove`の計10 methodは未登録のため通常の`method_not_found`になる。専用legacy handlerは削除したが、
+`world.spawnEntity`、handle registry、availability等のb5共通基盤は維持する。133 testsはPASS、実serverでの
+live-auto／live-humanは未実施・未主張である。
+
 ### 10.2.1 DimensionKey resolver（protocol 22）
 
 pluginの公開空間identityはBukkit world nameでなくMinecraft DimensionKeyとする。入力は完全修飾

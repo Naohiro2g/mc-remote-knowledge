@@ -536,6 +536,12 @@ Scratch／WireScope client surfaceは局所実装済みとなったが、plugin�
 正式evidence、default branch統合、exact横断candidate、artifact統合／releaseは未完であり、b6全体の
 release gate通過は主張しない。
 
+McRemote `codex/b6-protocol23-cleanup@af71e564200d73ec8ee06e05d7e4d8bcfcdb3d39`は、
+`EntityHandleRegistry`の発行／lookup共通prefixを`mcr_eh_`へ変更して旧`mceh_`をNOT_FOUNDとし、
+未批准legacy entity method 10件をregistryから外して専用handlerを削除したpush済みplugin candidateである。
+133 unit／deterministic testsはPASSした。`scripts/live_auto.py`は新prefixへ更新して構文／import確認済みだが、
+実serverでのlive-auto／live-human、formal evidence、統合artifact／releaseは未実施・未主張である。
+
 sign三操作のexact wireは`2026-08-26-05`でcontract lockした。McRemote
 `codex/b6-set-sign@a34fec0b64a5c939687de4a89fb94e2728d2e116`はplugin実装・局所検証済みcandidateである。
 Python `codex/b6-protocol23-python@69a160aecfc6cd346b3341cdf10007e2903b5207`はprotocol／package
