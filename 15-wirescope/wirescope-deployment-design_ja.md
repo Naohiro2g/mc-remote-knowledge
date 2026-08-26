@@ -375,45 +375,90 @@ observer validatorと共通UIは座標や角度を別値へ再round／wrap／cla
 本sliceで確定するv1.1はmethod観察のcompatibility境界である。payload summary、gap marker、
 recording／replayのloss表現はv1.1へ含めず、後続version／sliceとして別に固定する。
 
-## 14. protocol 23／b6の表示filter candidate
+## 14. protocol 23／b6の表示filter — client-only UX v1
 
 WireScope表示filterは、sourceが既に観察してbrowserの現在windowへ保持したframeから表示対象だけを選ぶ
 client-only capabilityである。wire、server event ring、`events.poll`の頻度／params／result、frame payload、
 observer schemaを変更しない。server側`events.poll` filter／`events.clear`とは別sliceであり、未達でもb6を
-HOLDにしない（`2026-08-26-08`）。
+HOLDにしない（`2026-08-26-08`）。`2026-08-27-01`はscratch-editorの現行実装をb6へ含める
+**client-only UX v1**として批准した。ここでいうUX v1は表示挙動の識別であり、protocol、observer schema、
+station sessionまたはartifact coreへ新しいversionを追加しない。
 
-scratch-editor `agent/b6-wirescope-display-filter@c720341a2cee4b01f2b2a227cf6379ac0ac92db2`は、次を実装した
-push済みcandidateである。
+### 14.1 methodグループ
 
-- methodグループ、`events.poll`内のevent分類、or／and検索で表示を選ぶ。既定は空振りpollだけを隠す。
-- `events.poll`のrequest／responseを`request_id`でpairにし、pair全体を同じ判定で表示する。responseのない
-  orphanは空振りへ分類しない。複数event typeを含むresponseは有効な分類が一つでもあればpair全体を表示する。
-- 検索は大文字小文字を区別しない部分一致で、一つの欄のカンマ区切りkeywordはORとして扱う。このkeyword
-  合成は実装時のUX candidateで、確定contractではない。
-- 選好だけを`localStorage`の`mcremote.wirescope.frame-filter`、version 1、
-  `{version,methodGroups,eventClasses,orSearch,andSearch}`へ保存する。frame、payload、検索履歴は保存しない。
-- switch件数は現在保持windowからfilter状態と独立に計算する。非表示frameを`dropped_frames`へ加えない。
+内部分類は次の8種＋`other`で固定する。methodはobserver validatorを通過した後、一つのgroupへ入る。
 
-実装candidateのmethod写像は`connection`（`hello`＋`connection.*`）、`auth`、`build`、`catalog`、`chat`、
-`events`、`player`、`world`の8種＋`other`である。ただし現行`OBSERVED_METHODS`は`auth.*`／`catalog.*`を
-通さないため両groupは常に0件となる。またevent分類は`pickaxe_poke`／`chat_posted`／`projectile_hit`／
-`empty`／`other`だが、現行`parseEvent()`は未知typeを`other`へ渡す前にsnapshot全体を拒否するため、実データの
-`other`は到達不能である。したがってexact group名／写像、到達不能classを通常switchとして見せるか、
-allowlist外groupを将来用に露出するかは人間未批准であり、本節から確定contractを推測しない。
+| 内部token | 写像 | 現行`OBSERVED_METHODS`の対象 | UI |
+| --- | --- | --- | --- |
+| `connection` | `hello`、`connection.*` | `hello`、`connection.flush` | 表示「接続」 |
+| `auth` | `auth.*` | なし | 非表示 |
+| `build` | `build.*` | `build.setDimension`、`build.setOrigin` | 表示「建築」 |
+| `catalog` | `catalog.*` | なし | 非表示 |
+| `chat` | `chat.*` | `chat.post` | 表示「チャット」 |
+| `events` | `events.*` | `events.poll` | 表示「イベント」 |
+| `player` | `player.*` | `player.getPos`／`setPos`／`getPose`／`setPose` | 表示「プレイヤー」 |
+| `world` | `world.*` | `world.setBlock`／`setBlocks`／`getBlock`／`getBlocks`／`getHeight`／`spawnParticle`／`spawnEntity` | 表示「ワールド」 |
+| `other` | 上記に一致しないmethod | なし | 表示「その他」 |
 
-後続のscratch-editor
-`agent/b6-wirescope-display-filter@46919addc071c3607864672854190c1bbeb7047e`は、内部の
-`ALL_METHOD_GROUPS`／`EVENT_CLASSES`、保存state、default-true、filter判定を変えず、UI描画対象だけを
-`OBSERVABLE_METHOD_GROUPS`／`OBSERVABLE_EVENT_CLASSES`へ分けたpush済みcandidateである。表示から
-`auth`／`catalog` method groupとevent `other`を除き、理由付きdisabled UIは追加しない。method `other`は
-将来または予期しないmethodのcatch-allとして表示に残すため、現行strict method allowlist下では0件のswitchが
-一つ残る。「現時点で観測可能な分類だけ」という説明にはこの例外があり、method `other`を通常switchとして残す
-判断を含め、exact分類契約は引き続き未批准とする。
+`auth`／`catalog`は将来の分類tokenとして内部stateへ保持するが、現行allowlistから到達せず常に0件なのでswitchを
+描画しない。理由付きdisabled表示も作らない。`other`も現行strict allowlist下では0件だが、将来または予期しない
+methodのcatch-allという役割を優先し、通常switchとして表示する。この例外を含む現行挙動をUX v1として受理する。
 
-本後続commitについて、搬送元は`@mc-remote/live` 124件、lint／buildのPASSと、deterministic sourceによる
-実browserで非表示化および既存のswitch連動／件数／and／or検索／`dropped_frames`が変わらないことを確認した。
-実plugin経由のlive-auto／live-human E2Eではない。
+この表はobserver allowlist自体を拡張しない。特にb6 sign三操作`world.getSign`／`world.setSign`／
+`world.updateSignLine`は現行`OBSERVED_METHODS`に含まれず、`world` filterで表示できるとは主張しない。
+signを観測対象へ加える場合は、validator／adapter／fixtureの別changeとして扱う。
 
-搬送元は`@mc-remote/live` 119件、scratch-vm対象404件、scratch-gui source対象13件、変更範囲lint／buildの
-PASSと、deterministic sourceによる実browser確認を報告した。実McRemote plugin経由のlive-human E2E、
-and／or検索の全組合せ、iPad／Safari等の別browser、default branch統合、正式evidence、releaseは未実施・未主張である。
+### 14.2 `events.poll`のevent分類
+
+| 内部token | 意味 | UI |
+| --- | --- | --- |
+| `pickaxe_poke` | responseに同typeが一件以上ある | 表示「ツルハシでつつく」 |
+| `chat_posted` | responseに同typeが一件以上ある | 表示「チャット投稿」 |
+| `projectile_hit` | responseに同typeが一件以上ある | 表示「発射物ヒット」 |
+| `empty` | responseの`events`が空配列 | 表示「空振り」、既定OFF |
+| `other` | 上記以外のtype | 非表示 |
+
+現行`parseEvent()`は未知typeを分類へ渡す前にsnapshot全体を拒否するため、実データのevent `other`は到達不能である。
+内部stateと防御的分類は残すが、switchは描画しない。parserを未知event許容へ変える場合はUI表示集合を再吟味する。
+
+### 14.3 pair、判定、検索、件数
+
+同じstream内の`events.poll` request／responseは`request_id`でpairにし、一つのfilter unitとして同じ表示判定を
+適用する。responseのないorphanは`empty`へ分類せず、event switchによるgateを適用しない。responseが複数typeを
+含む場合は該当classのいずれかがONならpair全体を表示する。非poll frameは一frameで一unitである。
+
+判定式は次で固定する。
+
+```text
+基本通過 = method groupがON
+           AND（events.pollとして分類不能 OR 該当event classのいずれかがON）
+表示 =（基本通過 OR（or検索がON AND or欄が一致））
+       AND（and検索がOFF OR and欄が一致）
+```
+
+検索対象はunit内各frameのmethod名とJSON payloadを連結した文字列で、大文字小文字を区別しない部分一致とする。
+一つの欄へcomma区切りで入力した複数keywordは、そのいずれかが一致すれば欄全体を一致とする。keywordが空なら
+一致しないため、空のor欄をONにしても効果はなく、空のand欄をONにすると全unitが非表示になる。
+
+件数は現在保持windowに対してfilter stateと独立に計算する。methodはunitごとに一回、eventはpairが含むclassごとに
+一回を数え、同じclassのeventが複数あってもそのpairでは一回とする。表示から除外したunitを`dropped_frames`へ
+加えず、保持windowから実際に退去したframeのlossと表示選好を混ぜない。
+
+### 14.4 既定値と保存
+
+初期stateは全method group ON、event classは`empty`だけOFF、or／and検索はOFFかつ空文字である。UIに描画しない
+`auth`／`catalog`／event `other`も内部stateではONを保持する。選好stateは`localStorage` key
+`mcremote.wirescope.frame-filter`、version 1、
+`{version,methodGroups,eventClasses,orSearch,andSearch}`へbest-effortで保存する。現在入力中のor／and文字列は
+各search stateの一部として保存するが、過去の検索履歴一覧は作らない。frameとpayloadは保存しない。欠損／型違反fieldは
+field単位で既定値へ戻し、壊れたJSON、異なるversion、storage read失敗はfilter UIを壊さず全既定値へ戻す。
+storage write失敗は例外を外へ出さず、現在のmemory上の選好を保ったまま永続化だけを行わない。
+
+### 14.5 実装identityと検証境界
+
+実装基準はscratch-editor `agent/b6-wirescope-display-filter@c720341a2cee4b01f2b2a227cf6379ac0ac92db2`、
+UI表示集合の後続は`46919addc071c3607864672854190c1bbeb7047e`、b6統合sourceは
+`agent/b6-integration@040f06617c80e54cdba9421b6c69445efdf099ba`である。搬送元は`@mc-remote/live` 124件、
+lint／build、deterministic sourceによる実browserで、switch表示集合、pair連動、件数、and／or検索、
+`dropped_frames`、reload後の選好復元を確認した。実McRemote plugin E2E、and／or全組合せ、iPad／Safari、
+default branch統合、正式evidence、releaseは未実施・未主張である。

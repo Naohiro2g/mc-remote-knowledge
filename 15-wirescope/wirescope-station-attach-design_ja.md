@@ -162,9 +162,12 @@ retained windowそのものである。`dropped_frames`はobserver session内で
 resetする。snapshot coalescingは欠落ではなく、rolling windowから実際に退去したframeだけを数える。
 
 session protocol v1の初期serialized shapeとline順序は、Scratch参照実装の
-`mc-remote/live/test/fixtures/observer-session-lifecycle.ndjson`を正規fixtureとする。既存Scratch wireには
-履歴省略の概念がないため、Scratch adapterが各snapshotの`dropped_frames`を`0`へ正規化する。schema v1
-snapshot内部へ同fieldを追加する意味ではない。Python station adapterは同fixtureへconformanceする。
+`mc-remote/live/test/fixtures/observer-session-lifecycle.ndjson`を正規fixtureとする。同fixtureの
+`dropped_frames:0`は退去frameがないcaseであり、全snapshotを0へ固定する規則ではない。scratch-editor
+`agent/b6-wirescope-display-filter@c720341a2cee4b01f2b2a227cf6379ac0ac92db2`以降のScratch adapterは、
+Scratch VMの保持windowから実際に退去したframe累積を同fieldへ渡す。UI filterで非表示にしたframeは加えない。
+これはschema v1 snapshot内部へfieldを追加する変更ではない。Python station adapterは同じsession envelope意味論へ
+conformanceする。
 
 wireで送れるend reasonは次である。
 

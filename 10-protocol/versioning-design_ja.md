@@ -547,8 +547,8 @@ PASS報告済みだが、実pluginとのlive-human、default branch統合、横�
 WireScope表示filterと、Scratch保持windowのtrim件数を`dropped_frames`へ累積する修正を実装したpush済み
 candidateである。`@mc-remote/live` 119件、scratch-vm対象404件、scratch-gui source対象13件、変更範囲lint／
 buildをPASSし、deterministic sourceによる実browser確認を行ったと報告された。実McRemote plugin E2E、
-and／or検索の全組合せ、iPad／Safariは未確認である。exact methodグループ名／写像は人間未批准のため、
-本実装到達点からprotocol／observer contractを推測しない。
+and／or検索の全組合せ、iPad／Safariは未確認である。`2026-08-27-01`で現行のmethod／event分類とUI表示集合を
+b6 client-only UX v1として受理したが、protocol／observer schema／observer allowlistの変更とはしない。
 
 McRemote `codex/b6-protocol23-cleanup@af71e564200d73ec8ee06e05d7e4d8bcfcdb3d39`は、
 `EntityHandleRegistry`の発行／lookup共通prefixを`mcr_eh_`へ変更して旧`mceh_`をNOT_FOUNDとし、

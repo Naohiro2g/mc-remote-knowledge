@@ -78,8 +78,9 @@ buildは搬送元でPASSしましたが、default branch統合、実plugin接続
 WireScope表示側filterはclient-onlyの独立companionです。b6に間に合わなければb7以降へ送り、b6をHOLDに
 しません。server側`events.poll` filterとは別物です。scratch-editor
 `agent/b6-wirescope-display-filter@c720341a2cee4b01f2b2a227cf6379ac0ac92db2`には表示filterと
-`dropped_frames`修正のpush済み実装candidateがあります。filterのexact methodグループ名／写像は人間未批准で、
-本candidateや本表からcontractを推測しません。
+`dropped_frames`修正のpush済み実装candidateがあります。`2026-08-27-01`で現行のmethod／event分類、pair、
+検索、件数、保存state、UI表示集合をclient-only UX v1として受理しました。wire／server filter／observer allowlistは
+変更せず、exact表示挙動は`15-wirescope/wirescope-deployment-design_ja.md` §14を正とします。
 
 2026-08-27時点のScratch b6 component入力は、上記の個別candidateと作品／スプライトbrowser保存を合流した
 `agent/b6-integration@040f06617c80e54cdba9421b6c69445efdf099ba`です。scratch-vmは4217/4220件をPASSし、

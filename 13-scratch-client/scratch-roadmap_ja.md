@@ -530,8 +530,9 @@ wire、server event ring、poll頻度、payloadを変更しない。`@mc-remote/
 scratch-gui source対象13件、変更範囲lint／buildをPASSし、deterministic sourceを使った実browser確認では、
 空振りpollの既定非表示、request／response pair連動、件数、105→5／125→25の欠落表示、reload後の選好復元を
 確認したと報告された。実McRemote plugin E2E、and／or検索の全組合せ、iPad／Safariは未確認である。
-methodグループ8種＋`other`のexact名／写像は実装candidateのまま人間未批准で、Scratch surfaceの確定contractや
-b6 release gate通過を主張しない。
+`2026-08-27-01`でmethodグループ8種＋`other`、event 5分類、pair、検索、件数、保存stateと現行UI表示集合を
+b6 client-only UX v1として人間批准した。これはwire／server filter／observer allowlistを変更せず、実plugin E2Eや
+b6 release gate通過も意味しない。exact表示挙動は`15-wirescope/wirescope-deployment-design_ja.md` §14を正とする。
 
 monitor-driven reporterには、monitor評価のthrottle、同一引数のin-flight request coalescing、
 disconnect時のcache破棄を設ける。明示的なscript callは毎回実行する。対象は
