@@ -256,7 +256,17 @@ Scratch-visibleなStateText／BlockInfoText、Picker、ErrorTextとfixtureは
 
 - backup 紹介、外部 transfer、restore 手順を同じ運用 package へ追加し、world と credential を分離する。
 - 認証前後の availability guard、運用 metric、正規 bulk build / TNT の load test を beta gate へ追加する。
-- **Scratch 内 WireScope は接続・pairing の薄い面（mini）に絞る**（`2026-08-02-09` で `2026-07-12-07` を部分改訂）。McRemote block palette の状態領域へ置き、workspace を reflow せず、script 編集面や sprite 表示を覆わない。残すのは接続状態・pairing 進行（pair code・実行コマンド・待機・期限切れ・再試行案内）・設定先と実接続先・actionable error・display alias・独立 WireScope の起動導線。
+- **Scratch 内 WireScope は接続・pairing の薄い面（mini）に絞る**（`2026-08-02-09` で
+  `2026-07-12-07` を部分改訂）。workspaceをreflowせず、script編集面、sprite表示、各tabのpalette／listを
+  覆わない原則を維持する。2026-08-27の局所配置改訂では、同決定の具体配置「McRemote block paletteの
+  状態領域」を、Code／Costumes／Soundsのtab行右側にある3 tab共通領域へ置き換えた。折りたたみ時はtab行の
+  高さへ収まる通常のflex要素、展開時の詳細だけを下向きdropdownとする。残すのは接続状態・pairing進行
+  （pair code・実行コマンド・待機・期限切れ・再試行案内）・設定先と実接続先・actionable error・display alias・
+  独立WireScopeの起動導線であり、miniの責務は変えない。scratch-editor
+  `agent/b6-wirescope-display-filter@5217f4c296a5f69592980b20a4495d86cc1ddcb8`はこの配置を実装した
+  push済みcandidateで、対象14 tests、lint、development build、localhostでの配置／全tab共通表示／折りたたみ／
+  dropdown目視確認をPASSした。実plugin接続、default branch統合、releaseは本UI確認から主張しない。palette上の
+  絶対配置overlayを維持する案は実際に操作を妨げたため採らない。
 
 #### WireScope 実装ロードマップ
 
