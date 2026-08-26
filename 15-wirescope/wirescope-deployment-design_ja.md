@@ -358,7 +358,7 @@ barrierとして表示するが、notificationごとの成功集約とは説明�
 
 `events.poll`のcompact response上限60 KiBは、最大合法responseをschema v1（compatibility revision v1.1）frameとsession envelopeへ通した
 UTF-8 encoded bytesで検証する。escape量の多い文字列を含めても単一frame上限64 KiBを越えないことをb5 fixtureで
-確認し、full load／rolling historyの本較正はb6 API実装後に行う（`2026-08-21-02`）。
+確認し、full load／rolling historyの本較正はb8実装後・API freeze前に行う（`2026-08-21-02`を`2026-08-26-08`で配置改訂）。
 
 連続位置・角度はpluginがDECISIONS `2026-08-19-01`の正準numberへ変換した後のframeを観察する。
 observer validatorと共通UIは座標や角度を別値へ再round／wrap／clampしない。UIが可読性のため末尾ゼロを

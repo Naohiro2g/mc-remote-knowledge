@@ -381,7 +381,7 @@ b5は、イベントを受けて調べ、生成・操作するAPIを支える大
 protocolを`22.0.0`へ上げる（`2026-08-19-02`）。b6は`block_right_click`を`pickaxe_poke`へ置換する
 破壊的変更のためprotocol `23.0.0`へ上げるが、この基盤上の中規模API追加というscopeを維持し、別のidentity、
 transport、queueを作らない（`2026-08-26-06`）。b5 GREENは有限な暫定runtime policyと境界fixtureを要求するが、授業相当負荷に
-対するcapacityの本較正とfull soakはb6 API実装後に一組で行う（`2026-08-21-02`）。暫定値を無制限や
+対するcapacityの本較正とfull soakはb8実装後・API freeze前に一組で行う（`2026-08-21-02`を`2026-08-26-08`で配置改訂）。暫定値を無制限や
 未設定の代用にせず、candidate lock／evidenceへexact値を記録する。
 
 ### 10.1 Event captureとepoch別ring
@@ -407,16 +407,17 @@ Bukkit Event objectをsession寿命へ持ち越さず、listener実行中にimmu
 sanitized evidence recordは未作成である。
 
 ring件数、総byte、server poll既定／上限のexact値はruntime policyである。b5 candidateは有限な暫定値を
-unit／境界fixtureと短いsmokeで固定し、b6 API実装後にload／live試験で本較正する。`events.poll`の
+unit／境界fixtureと短いsmokeで固定し、b8実装後・API freeze前にload／live試験で本較正する。`events.poll`の
 `max_events`はclient希望上限であり、server上限を拡張しない。compact JSON-RPC responseの61,440 bytes
 上限はwire contractとして先に適用し、observer schema v1（compatibility revision v1.1）／session envelopeへ通したencoded frameが
 64 KiBを越えないことをb5 fixtureで確認する。
 
 ### 10.2 Entity handle registry
 
-registryはconnection epochごとに`mceh_` handleとentityの対応を保持し、同一epoch／同一entityへは同じ
-handleを返す。handleはUUIDや認可情報を符号化せず、操作ごとにepoch ownershipとpermissionを再検証する。
-playerはregistryへ収容しない。
+registryはconnection epochごとにentity handleとentityの対応を保持し、同一epoch／同一entityへは同じ
+handleを返す。protocol 22／b5は`mceh_`、protocol 23／b6以降は`mcr_eh_`を新規発行し、23で旧prefixを
+alias受理しない。handleはUUIDや認可情報を符号化せず、操作ごとにepoch ownershipとpermissionを再検証する。
+playerはregistryへ収容しない（`2026-08-26-08`）。
 
 ### 10.2.1 DimensionKey resolver（protocol 22）
 
@@ -428,7 +429,7 @@ event、entity handleのissued locationは全てこのidentityを共有する。
 [DimensionKey設計](../10-protocol/dimension-key-design_ja.md)を正とする。
 
 spawnではdimensionへの副作用前にhandle slot、permission、chunk／work admissionを一括確認する。epoch別handle capは
-有限なruntime policyとし、b5 candidateで暫定値と上限fixtureを固定して、b6 API実装後に本較正する。slotを予約できない
+有限なruntime policyとし、b5 candidateで暫定値と上限fixtureを固定して、b8実装後・API freeze前に本較正する。slotを予約できない
 場合は`entity_capacity_exhausted`で終了し、副作用を起こさない。spawn失敗時は予約を解放する。
 disconnect／reconnect、remove成功、外部dimension移動でhandleを失効させる。成功した`entity.setPose`による
 dimension移動ではissued dimensionを更新する。
@@ -438,7 +439,7 @@ Paper上でremoved／unloaded／dimension-changedをどこまで安定して判�
 
 ### 10.3 Dispatcherとavailability admission
 
-dispatcherは位置配列だけを前提にせず、b6のsign／typed particleまで有限なstructured JSON paramsを
+dispatcherは位置配列だけを前提にせず、b6のsignと後続のdirection／entity lifecycle／typed particleまで有限なstructured JSON paramsを
 検証済みDTOとしてhandlerへ渡せる構造にする。permission、handle capacity、入力byte、chunk走査、work量を
 副作用前に検証する。
 
@@ -472,7 +473,7 @@ main threadで同じ順序に処理する。client APIの呼出開始時刻で�
 一時的backpressureで先頭commandを延期しても、後続`connection.flush`が追い越してはならない。queue飽和時に
 notificationだけを黙って捨てず、保持不能ならconnectionを失敗させて後続flushも失敗させる。exact容量は実測と
 fixtureで固定する。b5はfiniteであること、境界時の無言drop／追越し不在、candidateの暫定値を閉じ、最適容量の
-load較正はb6 API実装後に行う。
+load較正はb8実装後・API freeze前に行う。
 
 `connection.flush`はauthenticated hello後、integer id、exact `params: []`のrequestとして受理する。
 build origin／construction permissionは不要で、work budgetを消費しない。同じconnection epochで先に登録された

@@ -10,3 +10,7 @@ protocol は plugin・python-client・scratch-client の3つにまたがる共�
 
 ブロックID／stateの構造化値、set／get対称性、Python／Scratch／将来言語への投影は
 [ブロック値・状態・多言語投影設計](block-value-design_ja.md)を人間向け説明正本とする。
+
+旧b6 scopeの概念別分割、method成熟状態、Paper 26.x対応、rc／初回stableへの日程は
+[betaから初回stableまでのreleaseロードマップ](beta-to-stable-release-roadmap_ja.md)を参照する
+（DECISIONS `2026-08-26-08`）。

@@ -362,10 +362,17 @@ pyenv + Poetryから`uv`へ移し、初回はtemplateと`uv run`で制作へ早�
 
 `2026-07-25-03` でケータリング型の確立を公開 stable 版より上に置いたため、旧「stable 優先・ケータリングは後段 track」の順序は使わない。
 
-- **2026年7〜8月**: ケータリング型（`2026-07-25-04`）の確立を主線に置く。ケータリング型と stable release が競合したときはケータリング型を先に通す。stable release を取り下げるわけではない。
 - **2026年8月**: 現学年は卒業発表で終了する。未検証の教室 runtime をここで初投入しない。
-- **2026年8月以降**: `classroom-all-in-one` profile、ケータリングキット（PC ・ AP ・ 接続 ・ 電源）、教材、teacher checklist、Python-only fallback を lab と別の支援者で検証する。
-- **2027年4月**: 新学年の3年間を開始する。共通 Python 基盤を全体へ、McRemote を選択層へ導入する。
+- **2026年9月中旬**: ケータリングPC／キットの検証を開始する。b7→b8→rc→stableの更新列を利用して、
+  新規setupだけでなくupdate、rollback、再pairing、作品／スプライトのfile退避を経験し、手順へ戻す。
+- **2026年10月**: rcから外部testerへ準備済みPC／キット、開始・更新・復旧手順、検証票、feedback導線を提供する。
+- **2026年11月**: 初回stableを運用候補へ上げ、rc→stable更新と採用Paper 26.xの環境差を確認する。
+- **2026年12月〜2027年1月**: `classroom-all-in-one` profile、教材、teacher checklist、Python-only
+  fallbackを運用手順と学習pathへ閉じる。
+- **2027年2月**: 別の支援者がcold setup、授業開始、典型障害からの復旧を行うrehearsalを実施する。
+- **2027年3月**: classroom artifact、教材、対応版をfreezeして本番相当dry runを行い、新機能を足さず修正だけを許可する。
+- **2027年4月**: 3月に選定したその時点のstableで新学年の3年間を開始する。共通Python基盤を全体へ、
+  McRemoteを選択層へ導入する。
 
 順序を入れ替えても gate は外さない。**別の支援者が授業外の個別支援なしに setup ・ 開始 ・ 復旧できること**を共通基盤の gate として維持する（`2026-07-16-05`）。
 

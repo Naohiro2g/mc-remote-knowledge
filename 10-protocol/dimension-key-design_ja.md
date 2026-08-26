@@ -62,7 +62,7 @@ dimension identityを運ぶ公開語彙は`dimension`へ統一する。
 | build setter result | `{dimension, origin}` |
 | player position／pose | params／resultの`dimension` |
 | event DTO | `dimension` |
-| b6 entity pose | params／resultの`dimension` |
+| b8 entity lifecycle | pose params／resultの`dimension` |
 | 解決失敗 | `unknown_dimension` |
 | entity外部移動 | `entity_dimension_changed` |
 

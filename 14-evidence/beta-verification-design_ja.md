@@ -1,12 +1,16 @@
-# b5／b6 横断検証設計
+# beta release train横断検証設計
 
 この文書は、DECISIONS `2026-08-16-04`〜`07`、`2026-08-19-01`／`02`、`2026-08-20-03`／`04`、
-`2026-08-21-01`／`2026-08-22-02`／`2026-08-26-06`／`2026-08-26-07`で確定したprotocol 22／b5とprotocol 23／b6の
-plugin APIについて、何をどのtest classで
+`2026-08-21-01`／`2026-08-22-02`／`2026-08-26-06`〜`08`で確定したprotocol 22／b5から
+protocol 23／b6〜b8までのplugin APIについて、何をどのtest classで
 確かめるかを示します。未実施の計画をevidenceと呼ばず、実行後にだけrecord／artifactを作ります。
 wire contractは[wire-format-design](../10-protocol/wire-format-design_ja.md)を正とします。
 検証の成熟度、change cone、PASS再利用は`2026-08-23-01`と
 [release運用と責務分担](../00-hub/release-operations-responsibility-design_ja.md)を正とします。
+
+DECISIONS `2026-08-26-08`は本文書のassertionを削らず、旧b6のrelease配置とPaper target別の実施範囲を
+概念別sliceへ再編しました。method状態とrelease pulseは
+[betaから初回stableまでのreleaseロードマップ](../10-protocol/beta-to-stable-release-roadmap_ja.md)を参照します。
 
 build execution modeのplugin／Python／Scratch／WireScope検収と横断evidenceはb5 completion gateであり、
 一部surfaceの合格だけからb5全体GREENを推測しません（`2026-08-20-04`）。一方、full load／soakと
@@ -14,7 +18,7 @@ capacityの最終較正、Scratch browser保存はb5 completion gateへ含めま
 
 ### この文書の読み方
 
-以下の項目はprotocol 22／b5とprotocol 23／b6の**assertion inventory**であり、一つのcandidate変更ごとに
+以下の項目はprotocol 22／b5とprotocol 23／b6〜b8の**assertion inventory**であり、一つのcandidate変更ごとに
 全項目を再実施するchecklistではありません。各回のgate coordinatorはcontract maturity、change cone、
 必要なtest tierを固定し、次のように選択します。
 
@@ -37,7 +41,7 @@ b5は次を一組で閉じます。
 - 実pluginの短いevent／block／spawn／mode smokeとreal-browser WireScope E2Eを通す。
 - 無制限queue、無言drop、partial side effect、synthetic responseが無いことを確認する。
 
-最適capacity、授業相当load、長時間soakはb6 API実装後の本較正で扱います。b5で採った暫定値は
+最適capacity、授業相当load、長時間soakはb8実装後・API freeze前の本較正で扱います。b5で採った暫定値は
 protocol不変定数や最終運用値と主張しません。
 
 ## 1. Unit／deterministic
@@ -58,7 +62,7 @@ protocol不変定数や最終運用値と主張しません。
   sprite-local保存、共有last-block不在、clone／disconnect lifecycle。
 - paired playerの全active epochへ複製し、ring／sequence／cursorがepoch間で独立する。
 - stale／latest／future cursor、非破壊poll、overflow／capacityの累積値。b5のclear／filtered値は0、
-  b6でfilter／clearを追加する。
+  filter／clearを採用するreleaseで追加する。
 - `events.poll`の省略／`max_events`希望上限、server上限、未知option拒否。
 - compact responseが61,440 bytesを越えず、schema v1（compatibility revision v1.1）／session envelope投影後のsingle encoded frameが
   65,536 bytesを越えない。
@@ -76,8 +80,9 @@ protocol不変定数や最終運用値と主張しません。
   accepted count result。
 - `world.spawnEntity`の座標先行4 params、旧順序拒否、unknownでCOW等を生成しないこと、player／
   spawn不能type、capacity拒否時の副作用不在、epoch-scoped handle、結果不明時retry禁止。
-- b6のnearbyに対するbounded scan／player除外／partial handle禁止、remove失効。
-- b6 signの4行／面／state検証とrollback、typed particleの有限schema。
+- b7 directionのunit vector出力、非zero vector入力、位置／dimension不変。
+- b8 nearbyに対するbounded scan／player除外／partial handle禁止、remove失効。
+- b6 signの4行／面／state検証とrollback。typed particle採用時は有限schema。
 - Python cursor／retry／handle投影、Scratch thread-local event context／monitor guard。
 - WireScope schema v1／compatibility revision v1.1 validatorとartifact set。
 - bounded thread-safe connection FIFO、notificationの無言drop禁止、backpressure中の順序維持。
@@ -105,8 +110,8 @@ plugin実装完了をblockしないが、release gateの正式根拠に使う場
 6. event後にbuild dimension／originを変更してもDTOが変わらず、clientの不一致guardが作動する。
 7. `overworld`入力後もhello／setter result／player／eventが`minecraft:overworld`で一致し、一般namespaceの
    loaded dimensionも同じgrammarで往復する。Bukkit world nameをidentityとして返さない。
-8. b5ではentityのunload／外部dimension移動を確認し、b6でremove／`entity.setPose` dimension移動を実Paper挙動と照合する。
-9. b5ではspawn、particle、heightをwork limit境界の内外で確認し、b6でnearby／signを追加する。spawn系はfractionalな
+8. b5ではentityのunload／外部dimension移動、b7ではdirection、b8ではremove／`entity.setPose` dimension移動を実Paper挙動と照合する。
+9. b5ではspawn、particle、heightをwork limit境界の内外で確認し、b6でsign、b8でnearbyを追加する。spawn系はfractionalな
    origin相対座標を事前roundせず、座標先行paramsでplugin／Python／Scratch／WireScopeが一致すること、
    particleのforce省略時`true`と未知entityの副作用不在も確認する。
 10. WireScopeへScratch／Pythonの両sourceを順に接続し、b5 method／result／error／lossを同じUIで確認する。
@@ -147,7 +152,7 @@ plugin実装完了をblockしないが、release gateの正式根拠に使う場
 test class、実行範囲、PASS／FAIL、未検証範囲を記載します。token、`pairing_id`、UUID、private host等のraw値は
 公開せず、主張のスコープを実行したcaseから越えません。pair codeと表示用pair commandは通常log／公開evidenceへ
 収録でき、redactionを要求しません。b5の暫定capacity値は境界fixtureと短いsmokeの
-採用理由を伴うimplementation contractとして着地し、b6 API実装後の本較正では全methodを載せた実環境の
+採用理由を伴うimplementation contractとして着地し、b8実装後・API freeze前の本較正では採用methodを載せた実環境の
 load／soak結果と更新理由を別recordへ残します。runtime policyの更新を横断version contractの変更と混同しません。
 
 McRemote `codex/b6-pickaxe-poke@b0f5503301f9ca1b8226eea0c6ca56c947aab196`は、targeted unit／deterministic PASSと

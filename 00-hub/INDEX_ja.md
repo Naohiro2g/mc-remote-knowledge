@@ -29,6 +29,7 @@ public 正本世代の入口です。ここに載る path は、このリポ内�
 | Path | 役割 |
 | --- | --- |
 | `10-protocol/versioning-design_ja.md` | protocol version と release compatibility の contract |
+| `10-protocol/beta-to-stable-release-roadmap_ja.md` | method成熟状態、b6 sign／b7 direction／b8 entity lifecycle、WireScope companion、Paper 26.x pulse、初回stableまでの現行roadmap |
 | `10-protocol/wire-format-design_ja.md` | wire envelope、hello/auth、command/error の contract |
 | `10-protocol/dimension-key-design_ja.md` | protocol 22のDimensionKey入力／出力、build context、surface投影、protocol 21非互換境界 |
 | `10-protocol/block-value-design_ja.md` | protocol 22の構造化block value、set／get対称性、多言語・Scratch投影の説明正本 |
@@ -60,12 +61,18 @@ public 正本世代の入口です。ここに載る path は、このリポ内�
 | `20-教材/jupyter-notes_ja.md` | デモ .ipynb の autoreload / CWD / 実行順序依存の注意点 |
 | `token-hygiene-guide_ja.md` | 情報を失わず context token を減らす運用 |
 
+## 広告宣伝
+
+| Path | 役割 |
+| --- | --- |
+| `30-広告宣伝/README_ja.md` | homepage、半自動release notes、技術記事とproduct gateの境界 |
+
 ## Evidence
 
 | Path | 役割 |
 | --- | --- |
 | `14-evidence/README_ja.md` | public / private / Git 外の visibility policy |
-| `14-evidence/b5-b6-verification-design_ja.md` | b5／b6 event・entity・WireScope compatibilityのassertion inventory、test class／tier、横断検証境界 |
+| `14-evidence/beta-verification-design_ja.md` | b5〜b8 event・sign・direction・entity・WireScope compatibilityのassertion inventory、test class／tier、横断検証境界 |
 | `14-evidence/INDEX_ja.md` | public sanitized record の索引。新世代開始時点では空 |
 
 ## 初回 seed に含めないもの

@@ -6,7 +6,11 @@
 
 ## 1. 現在地
 
-現在は **R2 完了・R3 入口**。b3 は `2026-08-07-01` により横断スコープ完了・release済みとして凍結し、次の開発列を b4 とする。b3の正式release記録は `00-hub/release-gate-notes_ja.md` と `14-evidence/records/2026-08-07-scratch-b3-release-gate_ja.md` が持つ。
+現在は **R1／R2を基線として維持し、R3進行中**（`2026-08-26-09`）。b3 は `2026-08-07-01` により
+横断スコープ完了・release済みとして凍結した。R3は旧A／B／C suffixを現行計画単位にせず、API learning
+surface、保存・再利用、観察・debug、release／運用package、curriculum／teacher handoffで管理する。
+b3の正式release記録は `00-hub/release-gate-notes_ja.md` と
+`14-evidence/records/2026-08-07-scratch-b3-release-gate_ja.md` が持つ。
 
 b3 の確定範囲は次の二つだけだった。
 
@@ -167,7 +171,7 @@ scope 別の品質基準を別正本として持たない。
 `live-human` はこの matrix で取り直し、`14-evidence/` に新しい sanitized record と必要な artifact を残す。
 archive の b2 record、artifact、test plan は正式根拠として参照しない。
 
-## 3. b3 後の R3 作業束
+## 3. b3後のR3能力track
 
 ### b4 scope（確定・main stream 1件）
 
@@ -196,7 +200,7 @@ actionable error、one-shot中の有限queue、timeout時close・再送なし、
 fixture／testで固定する。home-alphaでは`auth_required`直後0msの`pairBegin`、複数回の`pairPoll`、token付き再`hello`、
 通常persistent commandまでを一巡する。hintはWireScope observer schema v1へJSON-RPC frameとして投影しない。
 
-### R3-A — catalog picker と構造化block value（b4実装、protocol 22で改訂）
+### API learning surface — catalog pickerと構造化block value
 
 Catalog Picker初版は`2026-08-02-07`によりb4で一体文字列を既存入力欄へ挿入する形として実装した。
 protocol 22では`2026-08-19-02`により、公開値を`block_id`と`state`へ分離する。b4 artifactと
@@ -248,7 +252,7 @@ Scratch-visibleなStateText／BlockInfoText、Picker、ErrorTextとfixtureは
   `persist()`だけを耐久性保証にせず、重要な作品／スプライトのfile退避を維持する。これらの長期実測はb6 blockerに
   せず、support説明と後続release gateへ反映する。
 
-### R3-C — 運用 package と観測面
+### Release／運用packageと観測面
 
 - backup 紹介、外部 transfer、restore 手順を同じ運用 package へ追加し、world と credential を分離する。
 - 認証前後の availability guard、運用 metric、正規 bulk build / TNT の load test を beta gate へ追加する。
@@ -457,6 +461,9 @@ b5／b6の横断scopeはDECISIONS `2026-08-16-04`〜`07`／`2026-08-26-06`と
   block label／menuは共有fixtureとsurface設計で固定し、本節から推測しない。scratch-editor
   `agent/b6-pickaxe-poke@e6b0d35cd2`は`whenPickaxePoke` hat、threadへ束縛するevent validation、
   `item` property menu、ja／ja-Hira翻訳、WireScope source adapter allowlistを実装済みである。
+- b7／protocol 23.1はplayer／entity directionのget／set、b8／23.2はnearby／entity pose／removeを
+  get／setで分割しない概念別sliceとする。Scratch blockのexact label、menu、reporter／command形は各wire
+  contract lock後に固定し、raw UUIDやcomma-separated valueを旧実装から持ち込まない。
 
 `world.spawnEntity`のhandleは副作用と同じresponseから原子的に受け取る。共有の`last entity` reporterは
 作らない。副作用reporterをmonitor不能にできるruntimeではreporterを優先し、保証できない場合は
@@ -490,7 +497,7 @@ b6 blockerではないが、次回major更新時は現行protocol定数または
 
 monitor-driven reporterには、monitor評価のthrottle、同一引数のin-flight request coalescing、
 disconnect時のcache破棄を設ける。明示的なscript callは毎回実行する。対象は
-`world.getHeight`、b6のentity pose／nearby、queue metric等である。`world.getHeight`はoptional引数を
+`world.getHeight`、b8のentity pose／nearby、queue metric等である。`world.getHeight`はoptional引数を
 一つのblockへ押し込まず、maxYなし／ありの二reporterへ投影する。`height_not_found`を`-1`へ変換せず、
 空文字＋actionable errorまたは別found状態のどちらにするかを実装前に固定する。
 

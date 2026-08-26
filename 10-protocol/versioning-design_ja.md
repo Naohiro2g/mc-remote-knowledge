@@ -454,7 +454,11 @@ b3がb4 credential snapshotを読めることやdowngrade中のtoken継続をb4 
 教材は現行記法を正準形とし、旧記法には恒久shimではなく書き換え方法とmigration fixtureを与える。
 long-lived公開、credential checkpoint／doctor、world backup／restoreはpost-b4 contractとして維持する。
 
-### 10.11.4 protocol 22.0.0／b5とprotocol 23.0.0／b6のスコープ（確定）
+### 10.11.4 protocol 22.0.0／b5からprotocol 23.x／初回stableまでのスコープ（確定）
+
+> **release train再編（2026-08-26）**：DECISIONS `2026-08-26-08`により、旧b6一括scopeを
+> b6〜b8／条件付きb9の概念別縦sliceへ分割した。説明とmethod台帳は
+> [betaから初回stableまでのreleaseロードマップ](beta-to-stable-release-roadmap_ja.md)を参照する。
 
 > **破壊的event置換の確定（2026-08-26）**：DECISIONS `2026-08-26-06`により、b5の
 > `block_right_click`を不備と判定し、b6で`pickaxe_poke`へ置き換える。削除を含むため
@@ -499,12 +503,12 @@ plugin、Python、Scratch、WireScope、compatibility fixture／evidenceのい�
 b5全体GREENとしない。b5 candidateはqueue、ring、poll、handle、particle、work、timeoutへ有限な暫定値を
 置き、exact値と上限時挙動をfixture／lock／evidenceへ固定する。b5 GREENは境界fixture、cleanなcommon
 artifact、短い実plugin smoke、real-browser WireScope E2Eを要求するが、授業相当full load／soakと最終capacity
-較正はb6 API実装後へ送る（`2026-08-21-02`）。暫定値を横断version contractへ焼き込まない。
+較正はb8実装後・API freeze前へ送る（`2026-08-21-02`を`2026-08-26-08`で配置改訂）。暫定値を横断version contractへ焼き込まない。
 
 項7／8のexact paramsはDECISIONS `2026-08-21-01`を正とする。protocol 22の最初のexact compatibility
 setへ座標先行順を収容し、particle-first／entity-firstとのunion、自動判定、protocol 21 shimを作らない。
 
-b6 は b5 基盤上の中規模 API 追加に限定し、新しい identity、transport、queue を作らない。
+b6 は b5 基盤上の中規模 API 追加に限定し、新しいtransport、queueを作らない。
 
 `block_right_click`の削除・`pickaxe_poke`への置換だけが、この「API追加」に対する破壊的な例外である。
 protocol 22を名乗るb5 clientとb6 pluginの混在を黙って壊さないため、b6全体をprotocol 23へ移す。
@@ -515,13 +519,10 @@ b5 tag／JARを差し替えず、22内で同名eventの意味論を狭めない�
 高機能packageの一律除外規則にはしない。API文書は実現位置、操作意味論、操作範囲、server保証、想定学習経路を
 区別し、重複実装の中から案内する経路を明示する（`2026-08-26-03`／`2026-08-26-04`）。
 
-- `world.getNearbyEntities`
-- `entity.getPose`／`entity.setPose`／`entity.remove`（b5で導入した数値正準形を再利用）
-- `events.poll` filter／`events.clear`
 - `pickaxe_poke`（protocol 22の`block_right_click`を置換。`ITEMS_PICKAXES` gate、旧payload＋`item`）
 - `world.getSign`／`world.setSign`／`world.updateSignLine`（read／replace／面＋行一件のPATCHを比較するsign slice）
-- typed particle data（dust／block state）
-- b6 終端での残る未批准legacy wire methodの置換またはregistryからの除去
+- protocol 23 entity handle prefix `mcr_eh_`。protocol 22の`mceh_`をalias受理しない
+- 未批准legacy entity methodをregistryから除去し、後続採用分は新contractで戻す
 - b6 entry gateで試用したIndexedDB基盤と`.sb3`／`.sprite3` fixtureを使うScratch作品／スプライトのブラウザ保存
 
 protocol 23移行と`pickaxe_poke`はMcRemote
@@ -553,9 +554,17 @@ iPad Safari／Chrome、Home Screen差分はb6 blockerにせず、browser-local�
 旧Scratch `.sb3` opcode migrationはwire method整理と別gateとする。b5 methodをprotocol `22.0.0`、
 b6 methodをprotocol `23.0.0`へ収容することは、実装、live evidence、release gateの合格を意味しない。
 exact ring／handle／poll／particle／work／buffer／timeout上限はruntime policyとtest fixtureで較正し、
-横断version contractへ焼き込まない。b5は有限な暫定値で共通基盤を閉じ、b6 API実装後に全methodを載せた
+横断version contractへ焼き込まない。b5は有限な暫定値で共通基盤を閉じ、b8実装後・API freeze前に採用methodを載せた
 実環境で本較正する。OS clipboardによるブロック移送は保存entry gateへ自動追加せず、ブラウザ保存スプライトの
 運用評価後まで`deferred`とする（`2026-08-26-01`）。
+
+b7はprotocol `23.1.0`／artifact `2301.0.0b7`のdirection sliceとし、
+`player.getDirection`／`setDirection`／`entity.getDirection`／`setDirection`を一組で扱う。b8はprotocol
+`23.2.0`／artifact `2302.0.0b8`のentity lifecycle sliceとし、`world.getNearbyEntities`／
+`entity.getPose`／`setPose`／`remove`を一組で扱う。get／setをbeta間で機械的に分割しない。
+条件付きb9はprotocol `23.3.0`／artifact `2303.0.0b9`とし、9月中旬に初回stable必須と判定した
+自己完結slice一つだけへ使う。使わなければ初回stable coreは`2302.0.0`、使えば`2303.0.0`である。
+9月末に新API追加を止め、10月rc、11月初回stableへ進む（`2026-08-26-08`）。
 
 ### 10.12 pre-release 状態は明示操作（自動認識は PyPI のみ）
 

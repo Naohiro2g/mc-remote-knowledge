@@ -19,5 +19,5 @@ raw は `14-evidence/raw/` に一時配置できるが gitignore 対象であり
 新 public 正本世代は過去 evidence を carry せず、空の索引から始めます。
 
 b5／b6 plugin APIの横断的な検証範囲は
-[b5／b6 横断検証設計](b5-b6-verification-design_ja.md)を参照します。これは未実施の結果を
+[beta release train横断検証設計](beta-verification-design_ja.md)を参照します。これは未実施の結果を
 evidence化する文書ではなく、実行後にrecordへ残す主張とtest classの境界です。

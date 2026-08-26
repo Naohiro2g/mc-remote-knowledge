@@ -397,7 +397,7 @@ retry規則を作らない（DECISIONS `2026-08-16-04`〜`07`）。b5はprotocol
 - response喪失時は同じ`after_sequence`で再取得し、destructive dequeueとして実装しない。
 - overflow／capacity／明示破棄の累積値を利用者から確認可能にし、event gapを空batchへ畳まない。
 - reconnect時はcursor、event cache、entity handleを全て破棄し、旧epochのreplayやhandle再利用を行わない。
-- b6 filterでも非一致eventをloss扱いせず、serverが返す`through_sequence`と`filtered_out`を正とする。
+- filter採用後も非一致eventをloss扱いせず、serverが返す`through_sequence`と`filtered_out`を正とする。
 
 ### Entity handleとretry
 
@@ -409,9 +409,10 @@ foreign／unknownをclient側で区別しない。`backpressure`だけを「後�
 ### Wrapperとobserver projection
 
 b5では`events.poll`、`world.getHeight`、`world.spawnParticle`、`world.spawnEntity`を同じwire contractへ
-薄く投影する。b6は`pickaxe_poke`、`world.getNearbyEntities`、`entity.getPose`／`setPose`／`remove`、event filter／clear、
-`world.setSign`、typed particleを追加する。exact Python method signatureと戻り型は共通wire fixtureと
-plugin実装を入力に固定し、knowledgeだけからkwargsや独自型を推測しない。
+薄く投影する。b6は`pickaxe_poke`とsign三操作、b7はplayer／entityのdirection get／set、b8は
+`world.getNearbyEntities`と`entity.getPose`／`setPose`／`remove`を概念別の縦sliceとして追加する。
+event filter／clear、typed particleは条件付きb9以降のcandidateである。exact Python method signatureと
+戻り型は共通wire fixtureとplugin実装を入力に固定し、knowledgeだけからkwargsや独自型を推測しない。
 
 ただしwire paramsの順序はb5共通fixtureとして先に固定する。`world.spawnParticle`は
 `[x,y,z,offset_x,offset_y,offset_z,particle,speed,count,(force)]`、`world.spawnEntity`は

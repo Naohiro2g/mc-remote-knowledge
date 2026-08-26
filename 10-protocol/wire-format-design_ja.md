@@ -111,7 +111,7 @@ worldを観察しない明示barrierは`connection.flush`とする。
 clientは`connection.flush`だけの別magic timeoutを作らず、同じconnectionの通常request timeoutを適用する。
 timeoutはserverから返されたJSON-RPC errorではなく、先行commandの成功／拒否を確定できないlocalな完了不明である。
 非冪等操作を自動retryせず、mode切替を成立させず、当該connectionを回収する。candidateのtimeout実値はclient fixture／
-lockへ記録し、b6 API実装後の負荷較正でruntime policyとして更新できる。
+lockへ記録し、b8実装後・API freeze前の負荷較正でruntime policyとして更新できる。
 
 ---
 
@@ -135,15 +135,19 @@ lockへ記録し、b6 API実装後の負荷較正でruntime policyとして更�
 | `player.setPos` | `[dimension_ref, x, y, z]` | あり | paired playerを指定dimensionのstream origin相対位置へteleportする（§5.2） |
 | `player.getPose` | `[]` | あり | paired playerの現在dimension・位置・向きをstream origin相対で返す（§5.3） |
 | `player.setPose` | `[dimension_ref, x, y, z, yaw, pitch]` | あり | 指定dimensionへ位置・向きを1回のteleportで一体反映する（§5.3） |
-| `events.poll` | `[after_sequence]`／`[after_sequence, {max_events}]`（b6で同optionsへfilter追加） | あり | epoch-scoped event ringを非破壊取得（b5、§5.4） |
-| `events.clear` | b6 fixtureで固定 | あり | 呼出時点までのretained eventを明示破棄（b6、§5.4） |
+| `events.poll` | `[after_sequence]`／`[after_sequence, {max_events}]` | あり | epoch-scoped event ringを非破壊取得。filterは条件付きb9以降のcandidate（§5.4） |
+| `events.clear` | 後続contractで固定 | あり | retained eventの明示破棄候補。条件付きb9以降（§5.4） |
 | `world.getHeight` | `[x, z]`または`[x, z, max_y]` | あり | origin相対の最上面block高を返す（b5、§5.6） |
 | `world.spawnParticle` | `[x, y, z, offset_x, offset_y, offset_z, particle, speed, count, (force)]` | あり | 9／10 params、`force`省略時`true`。b5はdata不要particleのみ（§5.7） |
 | `world.spawnEntity` | `[x, y, z, entity]` | あり | entityを生成しepoch-scoped handleを返す（b5、§5.7） |
-| `world.getNearbyEntities` | b6 fixtureで固定 | あり | boundedな近傍entity検索。playerを除外（b6、§5.8） |
-| `entity.getPose` | b6 fixtureで固定 | あり | handle対象のposeを返す（b6、§5.8） |
-| `entity.setPose` | b6 fixtureで固定 | あり | handle対象のposeを一体更新（b6、§5.8） |
-| `entity.remove` | b6 fixtureで固定 | あり | entityを除去しhandleを即時失効（b6、§5.8） |
+| `player.getDirection` | b7 contractで固定 | あり | paired playerの向きを単位vectorで返すcandidate（b7、§5.8） |
+| `player.setDirection` | b7 contractで固定 | あり | 非zero vectorを向きへ正規化して適用するcandidate（b7、§5.8） |
+| `entity.getDirection` | b7 contractで固定 | あり | handle対象の向きを単位vectorで返すcandidate（b7、§5.8） |
+| `entity.setDirection` | b7 contractで固定 | あり | 非zero vectorをhandle対象の向きへ適用するcandidate（b7、§5.8） |
+| `world.getNearbyEntities` | b8 contractで固定 | あり | boundedな近傍entity検索。playerを除外（b8、§5.8） |
+| `entity.getPose` | b8 contractで固定 | あり | handle対象のposeを返す（b8、§5.8） |
+| `entity.setPose` | b8 contractで固定 | あり | handle対象のposeを一体更新（b8、§5.8） |
+| `entity.remove` | b8 contractで固定 | あり | entityを除去しhandleを即時失効（b8、§5.8） |
 | `world.getSign` | `[x, y, z]` | `{front:[LineValue×4],back:[LineValue×4],waxed:bool}` | signの両面とwaxedを正準形で取得（b6、§5.8.1） |
 | `world.setSign` | `[x, y, z, {front?:[LineSpec×4],back?:[LineSpec×4]}]` | `null` | 指定面を面内no-mergeの厳密4行へ置換（b6、§5.8.1） |
 | `world.updateSignLine` | `[x, y, z, face, line_index, LineSpec]` | `null` | signの一面・一行だけをPATCH（b6、§5.8.1） |
@@ -263,7 +267,7 @@ ringとともに破棄する。reconnect replayは行わない。
 小さい方を適用する。server上限を超える希望値をerrorにせず、未知option、0、負数、非integerは
 `invalid_params`とする。件数上限より先にbyte上限へ達した場合は、収まるeventまでを返す。
 response喪失時は同じcursorで再取得でき、clientはresponseを正常受理した後だけ`through_sequence`まで
-cursorを進める。b6のfilterは同じoptions objectを精密化し、b5 clientへ別のpoll methodを作らない。
+cursorを進める。filterを採用するreleaseでは同じoptions objectを精密化し、b5 clientへ別のpoll methodを作らない。
 
 - `after_sequence`がretained oldestより古い: lossを伴う有効なpoll。残っている先頭から返す。
 - `after_sequence`がlatestと同じ: 空の有効response。
@@ -278,7 +282,7 @@ responseは`events`、`through_sequence`、`latest_sequence`、`filtered_out`と
 `capacity_dropped_total`はresource／capacity admissionによりringへ投入できなかったeventを数える。
 b5ではfilterとclearを実装せず、`filtered_out`と`explicitly_discarded_total`は常に0とする。
 
-b6 filterはringをsequence順に走査する。非一致eventでも`through_sequence`を進め、
+後続filterはringをsequence順に走査する。非一致eventでも`through_sequence`を進め、
 `filtered_out`へ加算するがlossには数えない。`events.clear`は呼出時点までのretained eventを削除し、
 `explicitly_discarded_total`へ加算する。
 
@@ -321,7 +325,9 @@ PASSしたpush済みcandidateである。pluginとの実接続によるlive-huma
 
 ### 5.5 connection epoch scoped entity handle（b5）
 
-entity handleは`mceh_` prefixと128 bit以上の暗号学的乱数に由来するopaque ASCII stringである。
+protocol 22／b5のentity handleは`mceh_`、protocol 23／b6以降に新規発行するhandleは`mcr_eh_` prefixと
+128 bit以上の暗号学的乱数に由来するopaque ASCII stringである。prefix以外の意味論は同じとし、protocol 23で
+`mceh_`をalias受理しない。disconnectで全handleが失効するためmigrationは作らない。
 UUID、dimension、player、credentialを符号化せず、秘密や認可capabilityとして扱わない。同一epoch内では
 同じentityに同じhandleを返し、disconnect／reconnectで全て失効する。WireScope表示やScratch変数への
 格納は許可するが、操作のたびにepoch ownershipとpermissionを再検証する。
@@ -369,19 +375,26 @@ availability reasonは追加の`retryable` fieldを作らず、次の意味を�
 - `permission_denied`: permission変更までretryしない。
 - `internal_error`: 結果不明。非冪等操作を自動retryしない。
 
-### 5.8 b6のentity／sign／typed particle
+### 5.8 b6 signとb7 direction／b8 entity lifecycle
 
-b6 entity APIはprotocol 22で固定したpose shape `{dimension,pos,yaw,pitch}`と§5.0.1の出力正準形をprotocol 23へcarryする。nearby検索はstream dimension内、
-player除外、radius／件数／chunk走査をboundedにし、unloaded entityを探すためのchunk loadを行わない。
-必要なhandle capacityはrequest全体で事前確認し、部分的なhandle発行をしない。`entity.remove`成功時は
-handleを即時失効する。exact params／result shapeはb6 fixtureを実装前に固定する。
+b7 directionは`player.getDirection`／`setDirection`／`entity.getDirection`／`setDirection`を一組にする。
+getは向きを正規化した単位vector、setは有限な非zero vectorの大きさを捨てて向きだけへ正規化し、位置と
+dimensionを変更せず適用する。zero vector error、exact params／result、出力精度はb7 contract lockまで
+推測しない。rotation／pitch／yawを個別にget／setする六methodは採らない。
+
+b8 entity lifecycleはprotocol 22で固定したpose shape `{dimension,pos,yaw,pitch}`と§5.0.1の出力正準形を
+protocol 23へcarryする。nearby検索はstream dimension内、player除外、radius／件数／chunk走査をboundedにし、
+unloaded entityを探すためのchunk loadを行わない。必要なhandle capacityはrequest全体で事前確認し、部分的な
+handle発行をしない。一覧は`handle`／canonical `type`／`pos`を持つsnapshot方向とし、direction／full poseは
+個別getterに任せる。`entity.remove`成功時はhandleを即時失効する。exact params／result shapeはb8 contractを
+実装前に固定する。
 
 sign APIは`world.getSign`、`world.setSign`、`world.updateSignLine`をb6へ配置する。三層モデルのread／replace／
 最小PATCHを比較する一組だが、GET＋PUTによるclient／ユーザーコードの合成も有効な学習経路として残す
 （DECISIONS `2026-08-26-03`〜`05`）。exact contractは§5.8.1を正とする。
 
-typed particle dataはdustとblock stateの有限schemaだけを追加し、任意Java objectの直列化とitem particleは
-b6へ入れない。
+typed particle dataは条件付きb9以降のcandidateとする。採用時もdustとblock stateの有限schemaだけを扱い、
+任意Java objectの直列化とitem particleを同じsliceへ入れない。
 
 #### 5.8.1 sign exact contract
 
