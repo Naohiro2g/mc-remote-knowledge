@@ -144,9 +144,9 @@ lockへ記録し、b6 API実装後の負荷較正でruntime policyとして更�
 | `entity.getPose` | b6 fixtureで固定 | あり | handle対象のposeを返す（b6、§5.8） |
 | `entity.setPose` | b6 fixtureで固定 | あり | handle対象のposeを一体更新（b6、§5.8） |
 | `entity.remove` | b6 fixtureで固定 | あり | entityを除去しhandleを即時失効（b6、§5.8） |
-| `world.getSign` | b6 fixtureで固定 | あり | signのfront／backとwaxedを制限componentの正準形で取得（b6、§5.8） |
-| `world.setSign` | b6 fixtureで固定 | あり | signの指定単位と厳密4行の制限componentを置換（b6、§5.8） |
-| `world.updateSignLine` | b6 fixtureで固定 | あり | signの面＋行index＋`LineSpec`一件をPATCH（b6、§5.8） |
+| `world.getSign` | `[x, y, z]` | `{front:[LineValue×4],back:[LineValue×4],waxed:bool}` | signの両面とwaxedを正準形で取得（b6、§5.8.1） |
+| `world.setSign` | `[x, y, z, {front?:[LineSpec×4],back?:[LineSpec×4]}]` | `null` | 指定面を面内no-mergeの厳密4行へ置換（b6、§5.8.1） |
+| `world.updateSignLine` | `[x, y, z, face, line_index, LineSpec]` | `null` | signの一面・一行だけをPATCH（b6、§5.8.1） |
 
 - `chat.post` の message は `params[0]` の1値だけを正とする（DECISIONS `2026-07-01-01`）。
   旧テキストコマンド実装には分割された args を join して複数トークンを1メッセージ化する暗黙挙動があったが、
@@ -355,17 +355,54 @@ player除外、radius／件数／chunk走査をboundedにし、unloaded entity�
 必要なhandle capacityはrequest全体で事前確認し、部分的なhandle発行をしない。`entity.remove`成功時は
 handleを即時失効する。exact params／result shapeはb6 fixtureを実装前に固定する。
 
-sign APIは`world.getSign`、`world.setSign`、`world.updateSignLine`をb6へ配置する。`world.getSign`は現在状態を
-読み取り、`world.setSign`は指定単位の厳密4行を置換し、`world.updateSignLine`は面＋行index＋`LineSpec`一件だけを
-PATCHする。制限componentは色と`bold`／`italic`／`underlined`／`strikethrough`／`obfuscated`の5文字修飾を扱い、
-任意JSON Componentを受理しない。`world.setSign`は全入力を検証してから変更し、更新失敗時は元block stateへ
-rollbackする。`world.updateSignLine`は三層モデルのserver側最小PATCHを試す操作だが、GET＋PUTによるclient／
-ユーザーコードの合成も有効な学習経路として残す（DECISIONS `2026-08-26-03`／`2026-08-26-04`）。
+sign APIは`world.getSign`、`world.setSign`、`world.updateSignLine`をb6へ配置する。三層モデルのread／replace／
+最小PATCHを比較する一組だが、GET＋PUTによるclient／ユーザーコードの合成も有効な学習経路として残す
+（DECISIONS `2026-08-26-03`〜`05`）。exact contractは§5.8.1を正とする。
 
-旧candidate `7b0a2aa05148812bc7997bfd575756d0e07ae15b`は`world.getSign`／`world.setSign`の実装・観測済み比較基準である。
-5修飾と`world.updateSignLine`を含む次candidateのidentity、exact params順、行indexの基数、result、error、
-rollback／競合時意味論、client surfaceはfixture／contract lockで固定し、本節から推測しない。typed particle dataは
-dustとblock stateの有限schemaだけを追加し、任意Java objectの直列化とitem particleはb6へ入れない。
+typed particle dataはdustとblock stateの有限schemaだけを追加し、任意Java objectの直列化とitem particleは
+b6へ入れない。
+
+#### 5.8.1 sign exact contract
+
+signの入力値と正準出力値を次で固定する。
+
+```text
+LineSpec  = string | {text:string, color?:string, decorations?:string[]}
+LineValue = {text:string, color:string, decorations:string[]}
+```
+
+裸の`string`はplain textのshorthandである。`color`はAdventure `NamedTextColor`標準16 token、すなわち
+`black`、`dark_blue`、`dark_green`、`dark_aqua`、`dark_red`、`dark_purple`、`gold`、`gray`、`dark_gray`、
+`blue`、`green`、`aqua`、`red`、`light_purple`、`yellow`、`white`、または`#RRGGBB`を受理する。
+`decorations`は`bold`、`italic`、`underlined`、`strikethrough`、`obfuscated`だけを受理する。任意JSON Component、
+click event等、それ以外のstyleは受理しない。
+
+`LineValue`は全fieldを常に出す。無色は`color:"black"`へ正規化し、`decorations`はtoken名の昇順、すなわち
+`bold`、`italic`、`obfuscated`、`strikethrough`、`underlined`の順で出力する。
+
+| method | params | result | 更新単位 |
+| --- | --- | --- | --- |
+| `world.getSign` | `[x,y,z]` | `{front:[LineValue×4],back:[LineValue×4],waxed:bool}` | 読取りのみ。waxedでも許可 |
+| `world.setSign` | `[x,y,z,{front?:[LineSpec×4],back?:[LineSpec×4]}]` | `null` | 指定した各面を厳密4行で置換。面内no-merge |
+| `world.updateSignLine` | `[x,y,z,face,line_index,LineSpec]` | `null` | `face="front"|"back"`の一行だけ。`line_index`は0始まりの`0..3` |
+
+`world.updateSignLine`は指定した一行以外の同じ面の3行と反対面を保持する。入力型、shape、face、index違反は
+`invalid_params`とし、安全に原因位置を特定できる場合は`data.path`を付ける。文字列だが許可外の色または装飾tokenは
+`invalid_property_value`とし、`data.property`を`"color"`または`"decorations"`、併せて`data.value`と
+`data.allowed`を返す。
+
+readのreasonは`invalid_params`／`not_a_sign`だけとし、waxedでも読み取れる。writeのreasonは
+`invalid_params`／`not_a_sign`／`sign_waxed`／`invalid_property_value`／`sign_update_failed`／
+`permission_denied`／`build_denied`／`backpressure`／`work_limit_exceeded`とする。
+
+writeは全入力とavailabilityを検証してから、sign state全体に対する一つのmutationだけを行う。stale snapshotなら
+書込み前に拒否し、部分変更を残さず`sign_update_failed`を返す。「書いてから元へ戻す」rollbackをcontractにしない。
+現McRemote candidateはPaper `BlockState.update(force=false, applyPhysics=false)`の拒否でこの保証を実装する。
+
+McRemote `codex/b6-set-sign@a34fec0b64a5c939687de4a89fb94e2728d2e116`はpush済みplugin candidateで、129 unit tests、
+Paper 1.21.11 live-auto、5装飾と一行限定更新のlive-human PASSが報告済みである。ただしstale snapshot競合を
+意図的に再現したlive検証と、`updateSignLine`の`sign_waxed` live-humanは未実施。Python／Scratch surface、
+共有横断fixture、artifact統合、releaseも未完であり、局所実装からこれらを推測しない。
 
 ---
 
@@ -564,7 +601,7 @@ protocol 21の文字列`block_state_ref`、`getBlock`文字列result、文字列
 
 > 却下＝カテゴリ別に `catalog.getBlocks`/`getEntities`/`getParticles` を分ける案：往復が増えるだけで、3カテゴリを束ねるコストは低い。却下＝チャンク配送を先に設計する案：未実測のサイズ問題を先回りして複雑化する。却下＝`catalogHash` を素の version 文字列にする案：同一 MC バージョンで mod 構成が異なる場合を区別できない。却下＝world_constants の全表を catalog.get へ折り込む案：mod 非依存の静的 domain fact を毎接続で運ぶ理由がなく、既存 hello 拡張の枠組みと二重管理になる。
 
-### 7.3 エラー設計（確定 `2026-06-27-03`、`2026-07-01-08` で改訂、`2026-07-07-02` で b2 player reason を追加、`2026-08-02-01` で credential reason を追加、`2026-08-02-02` で `data.ref` 規則を改訂）
+### 7.3 エラー設計（確定 `2026-06-27-03`、`2026-07-01-08` で改訂、`2026-07-07-02` で b2 player reason を追加、`2026-08-02-01` で credential reason を追加、`2026-08-02-02` で `data.ref` 規則を改訂、`2026-08-26-05`でsign reasonを追加）
 
 §7③ の b1 部分を画定。**JSON-RPC 標準 error オブジェクトに一本化**（独自封筒を作らない＝`2026-06-26-01` の標準枠原則に忠実）。`code` は JSON-RPC 標準に従い、**意味は `data.reason`（安定 enum）が運ぶ二層**。UI/AI/test は `reason` を分岐 key にし family（code）を意識しなくてよい。
 
@@ -573,17 +610,18 @@ protocol 21の文字列`block_state_ref`、`getBlock`文字列result、文字列
 - **`data.path`**＝原因fieldを一意に特定できる`invalid_params`で任意。rootは`params`、array indexは
   `[n]`、object fieldは`.name`で連結する（例`params[3].state.axis`）。原因が一つに定まらない場合は
   省略し、入力全体の文字列化を代用品にしない。
-- **`data.allowed`**＝`invalid_property_value` で許容値を返せれば返す（**b1 任意 / b2 必須**・catalog 連動）。
+- **`data.allowed`**＝`invalid_property_value` で許容値を返せれば返す（**b1 任意 / b2 必須**）。blockはcatalog、
+  signは§5.8.1の色allowlist＋hex patternまたは装飾allowlistを正とする。
 
 block stateのJSON numberは十進数値としてscale非依存で比較する。`3`、`3.0`、`3e0`は同じnumber、
 string`"3"`は別型とする。BlockValue出力はregistryの正準型を使い、整数stateをJSON integerへ戻す。
 
-| family | code | reason | 意味 | b1 |
+| family | code | reason | 意味 | 導入 |
 | --- | --- | --- | --- | --- |
 | ref 検証（protocol 21履歴） | `-32602`（Invalid params） | `malformed_ref` | 括弧崩れ等のparse失敗。protocol 22では使用しない | b4まで |
 | block検証 | `-32602`（Invalid params） | `unknown_block` | `block_id`がblock不在（無印補完後の未知名含む） | ○ |
 | | | `unknown_property` | property名がそのblockに無い | ○ |
-| | | `invalid_property_value` | 値が許容外。`allowed`を返せる | ○ |
+| property検証 | `-32602`（Invalid params） | `invalid_property_value` | block state、sign色／装飾等の値が許容外。`allowed`を返せる | b1、signはb6 |
 | params 検証 | `-32602`（Invalid params） | `invalid_params` | JSON-RPC params の形・型・座標値が不正 | b2 |
 | | | `unknown_dimension` | 指定DimensionKeyがloaded dimensionとして解決できない | b5／protocol 22 |
 | world-state | `-32000`番台（実装定義域） | `build_denied` | build policy / 範囲 / 認可により操作拒否。返せる場合は `data.bounds` / `data.violating` 等で理由を補足 | ○ |
@@ -591,6 +629,9 @@ string`"3"`は別型とする。BlockValue出力はregistryの正準型を使い
 | | | `player_offline` | token は有効だが paired player がオンラインでない | b2 |
 | | | `teleport_failed` | `player.setPose`等のteleport自体が`permission_denied`／`player_offline`／`unknown_dimension`／`invalid_params`以外の要因で失敗 | b5／protocol 22 |
 | world-query | `-32000`番台（実装定義域） | `height_not_found` | 指定上限以下に「非passableかつ直上passable」のblockが無い | b5 |
+| sign-state | `-32000`番台（実装定義域） | `not_a_sign` | 指定座標のblockがsignでない | b6 |
+| | | `sign_waxed` | waxed signへのwriteを拒否。readは許可 | b6 |
+| | | `sign_update_failed` | mutation時にstale snapshot等を検出し、部分変更なしでwriteを拒否 | b6 |
 | resource-ref | `-32602`（Invalid params） | `unknown_particle` | canonical particle IDがregistryに無い | b5 |
 | | | `particle_data_required` | b5では扱わないtyped data必須particle | b5 |
 | | | `unknown_entity` | canonical entity IDがregistryに無い | b5 |

@@ -520,8 +520,9 @@ b6では単純で最小単位の操作を主軸にしつつ、signについて�
 | `world.setSign` | replace | 指定単位の全体状態を宣言する理解しやすさと、四行をまとめて扱う価値 |
 | `world.updateSignLine` | update／PATCH | 面＋行index＋`LineSpec`一件だけを変える最小操作の見え方とserver側atomicity |
 
-sign lineの制限componentは、色と`bold`／`italic`／`underlined`／`strikethrough`／`obfuscated`の
-5文字修飾を扱う。任意JSON Componentは対象外に保つ。この一組は三層モデルを実証済みにする完成解ではなく、
+sign lineの入力は裸文字列または`{text,color?,decorations?}`とし、`decorations`は`bold`／`italic`／
+`underlined`／`strikethrough`／`obfuscated`の5 tokenを配列で扱う。個別boolean fieldや任意JSON Componentは
+対象外に保つ。この一組は三層モデルを実証済みにする完成解ではなく、
 GET＋PUTで組む経路とserver側PATCHを比べ、Python／Scratchのsurfaceや教材でどう見せるかを判断する材料である。
 
 b6で小さい操作を主にすることも、高級／低級の序列ではない。見え方、見せ方、必要なserver保証、学習上の

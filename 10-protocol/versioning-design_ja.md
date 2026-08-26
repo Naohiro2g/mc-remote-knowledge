@@ -514,6 +514,10 @@ b6 は b5 基盤上の中規模 API 追加に限定し、新しい identity、tr
 - b6 終端での残る未批准legacy wire methodの置換またはregistryからの除去
 - b6 entry gateで試用したIndexedDB基盤と`.sb3`／`.sprite3` fixtureを使うScratch作品／スプライトのブラウザ保存
 
+sign三操作のexact wireは`2026-08-26-05`でcontract lockした。McRemote
+`codex/b6-set-sign@a34fec0b64a5c939687de4a89fb94e2728d2e116`はplugin実装・局所検証済みcandidateである。
+Python／Scratch surface、共有横断fixture、artifact統合、releaseは未完のため、method状態は`candidate`を維持する。
+
 b5 GREEN後にScratch保存の独立entry gateを置く。`.sb3`／`.sprite3`互換fixture、作品全体のIndexedDB
 lifecycle、一覧・復元・削除、quota、破損、migration、`.sb3`への退避を実装・試用する。これはb5 completion
 gateでもb6 protocol API scopeでもない。「b6 API本実装前」は依存と時期の目安で、b6 API完了待ちではない。
