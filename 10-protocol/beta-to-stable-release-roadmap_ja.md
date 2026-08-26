@@ -65,8 +65,9 @@ b6は次を一つのprotocol 23 compatibility setとして閉じます。
   `entity.getPos`／`setPos`、`entity.getRotation`／`setRotation`、`entity.getPitch`／`setPitch`、
   `entity.getYaw`／`setYaw`、`entity.remove`。後続で採用する概念は新contractとして戻す。
 
-McRemoteのsignと`pickaxe_poke`、scratch-editorのbrowser保存と`pickaxe_poke`にはpush済み実装candidateが
-ありますが、横断fixture、exact candidate set、正式evidence、統合artifact、releaseは別gateです。
+McRemoteのsignと`pickaxe_poke`、scratch-editorのbrowser保存と`pickaxe_poke`、Pythonのprotocol 23／
+sign／`pickaxe_poke`／`mcr_eh_`投影にはpush済み実装candidateがあります。ただし横断fixture、exact
+candidate set、正式evidence、統合artifact、releaseは別gateです。
 
 WireScope表示側filterはclient-onlyの独立companionです。b6に間に合わなければb7以降へ送り、b6をHOLDに
 しません。server側`events.poll` filterとは別物です。

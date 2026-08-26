@@ -538,7 +538,11 @@ release gate通過は主張しない。
 
 sign三操作のexact wireは`2026-08-26-05`でcontract lockした。McRemote
 `codex/b6-set-sign@a34fec0b64a5c939687de4a89fb94e2728d2e116`はplugin実装・局所検証済みcandidateである。
-Python／Scratch surface、共有横断fixture、artifact統合、releaseは未完のため、method状態は`candidate`を維持する。
+Python `codex/b6-protocol23-python@69a160aecfc6cd346b3341cdf10007e2903b5207`はprotocol／package
+`23.0.0`／`2300.0.0b6`、`pickaxe_poke`、sign三操作、`mcr_eh_`投影を実装し、unit／deterministic
+237件をPASSしたpush済みcandidateである。Python component surfaceは局所実装済みとなったが、Scratchの
+sign surface、共有横断fixture、live、default branch統合、正式evidence、artifact統合、releaseは未完である。
+したがってb6 method集合全体の状態は`candidate`を維持する。
 
 b5 GREEN後にScratch保存の独立entry gateを置く。`.sb3`／`.sprite3`互換fixture、作品全体のIndexedDB
 lifecycle、一覧・復元・削除、quota、破損、migration、`.sb3`への退避を実装・試用する。これはb5 completion
