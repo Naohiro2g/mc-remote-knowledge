@@ -401,6 +401,19 @@ push済みcandidateである。
 `other`は到達不能である。したがってexact group名／写像、到達不能classを通常switchとして見せるか、
 allowlist外groupを将来用に露出するかは人間未批准であり、本節から確定contractを推測しない。
 
+後続のscratch-editor
+`agent/b6-wirescope-display-filter@46919addc071c3607864672854190c1bbeb7047e`は、内部の
+`ALL_METHOD_GROUPS`／`EVENT_CLASSES`、保存state、default-true、filter判定を変えず、UI描画対象だけを
+`OBSERVABLE_METHOD_GROUPS`／`OBSERVABLE_EVENT_CLASSES`へ分けたpush済みcandidateである。表示から
+`auth`／`catalog` method groupとevent `other`を除き、理由付きdisabled UIは追加しない。method `other`は
+将来または予期しないmethodのcatch-allとして表示に残すため、現行strict method allowlist下では0件のswitchが
+一つ残る。「現時点で観測可能な分類だけ」という説明にはこの例外があり、method `other`を通常switchとして残す
+判断を含め、exact分類契約は引き続き未批准とする。
+
+本後続commitについて、搬送元は`@mc-remote/live` 124件、lint／buildのPASSと、deterministic sourceによる
+実browserで非表示化および既存のswitch連動／件数／and／or検索／`dropped_frames`が変わらないことを確認した。
+実plugin経由のlive-auto／live-human E2Eではない。
+
 搬送元は`@mc-remote/live` 119件、scratch-vm対象404件、scratch-gui source対象13件、変更範囲lint／buildの
 PASSと、deterministic sourceによる実browser確認を報告した。実McRemote plugin経由のlive-human E2E、
 and／or検索の全組合せ、iPad／Safari等の別browser、default branch統合、正式evidence、releaseは未実施・未主張である。
