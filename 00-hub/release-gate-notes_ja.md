@@ -44,6 +44,26 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 ただし旧setの観測事実まで自動的に破棄せず、`2026-08-23-01`のchange coneとPASS再利用条件で再評価します。
 仕様形成中はTier 0〜2を既定とし、人間参加・全回帰・capacity／soakをrelease候補より前へ自動的に持ち込みません。
 
+## 2026-08-27 b6横断release gate（OPEN）
+
+- gate coordinator: knowledge担当session。人間による明示handoffなしに他担当へ移さない
+- human release owner: プロジェクトオーナー
+- current phase: **三componentのsource candidate入力固定**。横断fixture、candidate artifact、shared環境deploy、正式evidence、default branch統合、release判定は未着手
+- contract maturity / required test tier: b6必須集合はcomponent実装candidateが揃った。次はTier 2の共有contract照合とcandidate artifact生成であり、横断`GREEN`やTier 3完了は主張しない
+- knowledge contract: `10-protocol/versioning-design_ja.md` §10.11.4、`10-protocol/wire-format-design_ja.md` §5.4／§5.8、`10-protocol/beta-to-stable-release-roadmap_ja.md` §3.1。DECISIONS `2026-08-26-05`／`2026-08-26-06`／`2026-08-26-08`、knowledge baseline `c461a53a7c17caa5ecd48ac429b500595cd335e1`
+- gate manifest identity: `b6-source-candidate-set-1`。source入力だけを指し、artifact manifestではない
+- exact compatibility set / freeze status: **source入力凍結**。McRemote `codex/b6-protocol23-cleanup@9b8b130808d8e1d1288f038dd04f738a86177e35`、Python `codex/b6-protocol23-python@69a160aecfc6cd346b3341cdf10007e2903b5207`、Scratch `agent/b6-integration@040f06617c80e54cdba9421b6c69445efdf099ba`。2026-08-27にGitHub APIで三branchのremote HEAD一致を確認した。protocol `23.0.0`、予定artifact version `2300.0.0b6`。いずれかのsource identityが変われば本setを失効させる
+- component readiness:
+  - McRemote: sign三操作、`pickaxe_poke`、protocol 23、`mcr_eh_`、未批准legacy entity method除去を含む。`9b8b1308…`はcleanup candidate `af71e564…`へsign契約コメント同期だけを加えたcurrent HEADで、挙動変更はない。cleanup時点のunit／deterministic 133件PASS。current sourceからのcandidate JAR、横断live、正式evidenceは未生成・未実施
+  - Python: protocol／package `23.0.0`／`2300.0.0b6`、sign三操作、`pickaxe_poke`、`mcr_eh_`を含み、unit／deterministic 237件PASS。live-auto／live-human、artifact、横断fixture、default branch統合は未実施・未主張
+  - Scratch: browser保存4 commitとprotocol 23／`pickaxe_poke`／sign／`mcr_eh_`／WireScope系を統合したcomponent candidate。scratch-vmは4217/4220件PASS、残る3件は既知の`vm-state-snapshot.js`並列cascading timeoutで単独118/118件PASS。scratch-vm／scratch-gui build PASS、lint 0 error（既存warningのみ）、`@mc-remote/live` 124/124件PASS。plugin／Pythonとの横断互換、実plugin E2E、exact artifact、default branch統合、releaseは未主張
+- change cone: b6必須はsign三操作、`pickaxe_poke`、Scratch project／sprite browser保存、protocol 23 cleanup。WireScope表示filter／`dropped_frames`／mini配置改善は同じScratch sourceに含まれるclient-only companionであり、server wireを変更しない
+- reused PASS / rationale: 上記component PASSは各申告sourceの局所事実として保持する。共有contract適合、candidate artifact、実plugin接続の代用には使わない。Scratch全体並列実行3件は全件PASSと書き換えず、単独再実行結果と既知flakinessの主張範囲を分けて保持する
+- authorized next action: gate coordinator管理下で、protocol 23、`mcr_eh_`／旧prefix非受理、sign三操作、`pickaxe_poke` DTO、未批准legacy method不在のcanonical case一覧を作り、三sourceの既存fixture／testとの対応とgapを返す。続けてcandidate artifactを生成し、identity／digest／再現性を固定する。shared環境deployと人間参加試験は、artifact exact setを固定した後に別途許可する
+- pending human decision: WireScope表示filterのexact methodグループ名／写像をb6のclient-only UXとして受理するか、b7以降へ送るか。後者でScratch sourceを変更する場合、本source setを失効させて新SHAを再申告する。これはcore b6 protocol contractを変更しない
+- non-claim: 横断fixture PASS、artifact freeze、実plugin接続、formal evidence、default branch統合、b6 `GREEN`／releaseを主張しない
+- rollback: 公開済みb5 exact release set。b6 rollback実操作は未実施
+
 ## 2026-08-21 b5横断release gate（CLOSED）
 
 - gate coordinator: knowledge担当session。人間による明示handoffなしに他担当へ移さない

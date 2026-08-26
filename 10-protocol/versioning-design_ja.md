@@ -569,6 +569,16 @@ plugin／Python／Scratch component surfaceは局所実装済みとなったが�
 正式evidence、artifact統合、releaseは未完である。
 したがってb6 method集合全体の状態は`candidate`を維持する。
 
+2026-08-27にScratchの上記個別実装と作品／スプライトbrowser保存を
+`agent/b6-integration@040f06617c80e54cdba9421b6c69445efdf099ba`へ合流し、b6 Scratch component candidateとして
+申告・変更凍結した。scratch-vmは4217/4220件PASS、残る3件は既知の並列cascading timeoutで単独118/118件PASS、
+scratch-vm／scratch-gui build PASS、lint 0 error（既存warningのみ）、`@mc-remote/live` 124/124件PASSである。
+横断gateのsource入力は、McRemote `codex/b6-protocol23-cleanup@9b8b130808d8e1d1288f038dd04f738a86177e35`、
+Python `codex/b6-protocol23-python@69a160aecfc6cd346b3341cdf10007e2903b5207`、このScratch identityの三つとする。
+これはsource入力の固定であり、共有fixture、candidate artifact、実plugin E2E、正式evidence、default branch統合、
+release完了を意味しない。McRemoteの`9b8b1308…`は`af71e564…`へcontractコメント同期だけを加えたcurrent HEADで、
+cleanupの挙動は変えていない。
+
 b5 GREEN後にScratch保存の独立entry gateを置く。`.sb3`／`.sprite3`互換fixture、作品全体のIndexedDB
 lifecycle、一覧・復元・削除、quota、破損、migration、`.sb3`への退避を実装・試用する。これはb5 completion
 gateでもb6 protocol API scopeでもない。「b6 API本実装前」は依存と時期の目安で、b6 API完了待ちではない。

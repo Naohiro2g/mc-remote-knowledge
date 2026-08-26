@@ -81,6 +81,13 @@ WireScope表示側filterはclient-onlyの独立companionです。b6に間に合�
 `dropped_frames`修正のpush済み実装candidateがあります。filterのexact methodグループ名／写像は人間未批准で、
 本candidateや本表からcontractを推測しません。
 
+2026-08-27時点のScratch b6 component入力は、上記の個別candidateと作品／スプライトbrowser保存を合流した
+`agent/b6-integration@040f06617c80e54cdba9421b6c69445efdf099ba`です。scratch-vmは4217/4220件をPASSし、
+残る3件は既知の並列cascading timeoutとして単独118/118件をPASSしました。scratch-vm／scratch-gui build、
+変更範囲lint、`@mc-remote/live` 124/124件もPASS報告済みです。このidentityをScratch component candidateとして
+変更凍結しましたが、plugin／Pythonとの横断互換、実plugin接続、exact artifact、default branch統合、releaseは
+未実施・未主張です。個別candidateの履歴は実装由来として残し、横断gateの現行Scratch入力には統合identityを使います。
+
 ### 3.2 b7 — direction
 
 次のget／setを分割せず、実装・fixture・教材を一つの縦sliceへ閉じます。
