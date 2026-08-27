@@ -118,8 +118,9 @@ wireやserver filterを変えません（`2026-08-28-01`）。
 実browserの観測範囲は
 [`2026-08-28-b6-scratch-wirescope-live-human`](../14-evidence/records/2026-08-28-b6-scratch-wirescope-live-human_ja.md)
 を正とします。`pickaxe_poke`の一操作一eventと腕振り、Scratch→WireScopeの現行allowlist method、filter安定化は
-PASSしましたが、Scratch sign／browser保存のexact integrated artifact確認、Bridge package境界、default branch統合、
-公開releaseが残るためb6横断gateはOPENです。表示filter／pause単独の未確認はb6 coreのHOLD条件にしません。
+PASSしましたが、Scratch sign／browser保存のexact integrated artifact確認、既決のOCI境界によるBridge candidate生成、
+default branch統合、公開releaseが残るためb6横断gateはOPENです。表示filter／pause単独の未確認はb6 coreのHOLD条件に
+しません。Bridgeの3,052-byte tarは`ws`をexternal importする中間buildであり、release packageへ昇格させません。
 
 ### 3.2 b7 — direction
 

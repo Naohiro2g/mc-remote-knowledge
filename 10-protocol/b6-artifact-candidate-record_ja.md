@@ -147,6 +147,11 @@ archive digest、package／lock identityも表と一致する。set 1／2のdire
 PASSした。後続`24077ef…`の表示一時停止はdeterministic sourceのreal-browserでPASSしたが、set 3のexact ZIPを
 実plugin接続中に再試験したとは主張しない。観測target変更後の自動再開も実browser未確認である。
 
-Bridge tarのproduction dependency非同梱、Scratch sign／browser保存のexact integrated artifact確認、default branch
-統合、正式release artifact freeze、公開releaseは引き続き未完である。WireScope表示filter／停止はclient-only
-companionなので、この二つの未確認だけでb6 coreをHOLDにしない。
+Bridge tarは`dist/config-*.js`からexternal dependency `ws`をimportする中間buildであり、単独deploy可能なrelease
+artifactではない。配布境界は新規設計せず、`2026-07-14-04`と既存Dockerfile／manual workflowどおり、`dist/`、
+`package.json`、lock済み`node_modules/ws/`だけを非root runtimeへ入れるmulti-arch OCIを正とする。したがって残件は
+tarへdependencyを足すことではなく、統合後のexact source identityからOCI index／platform digest、SBOM／provenanceを
+生成・固定し、container smokeを通すことである。
+
+Scratch sign／browser保存のexact integrated artifact確認、Bridge OCI生成、default branch統合、正式release artifact
+freeze、公開releaseは引き続き未完である。WireScope表示filter／停止の未確認だけでb6 coreをHOLDにしない。
