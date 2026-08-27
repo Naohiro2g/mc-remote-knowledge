@@ -588,6 +588,13 @@ identityを含むsource set 1は監査履歴へ送り、McRemote／Pythonの上�
 `b6-source-candidate-set-2`として固定する。ただしMcRemote／Pythonへの同一case投影、横断fixture PASS、
 artifact、live、default branch統合、releaseは未完であり、b6 method集合は`candidate`を維持する。
 
+McRemoteは後続`56b83c0915a5e354704cd86f1bac6c7b00cf137f`、Pythonは
+`0ba22e80b9b1b339dfd11085b1b24cef646599b2`でowner fixture二件をexact bytes配置し、各component testへ
+case IDを接続した。fixture digest、親SHA、変更pathはcoordinatorがGitHub上で照合した。Pythonのhandle長制約は
+`B6-H03`へ整合した。一方、McRemoteのsign `data.allowed`は集合比較でfixtureをPASSしながらproduction順が
+owner順と異なることが判明し、`2026-08-27-03`でowner順をcanonical wire値へ固定した。McRemoteの追補SHAが
+返るまで横断fixture PASSと次のexact source setは固定せず、method集合は`candidate`を維持する。
+
 b5 GREEN後にScratch保存の独立entry gateを置く。`.sb3`／`.sprite3`互換fixture、作品全体のIndexedDB
 lifecycle、一覧・復元・削除、quota、破損、migration、`.sb3`への退避を実装・試用する。これはb5 completion
 gateでもb6 protocol API scopeでもない。「b6 API本実装前」は依存と時期の目安で、b6 API完了待ちではない。

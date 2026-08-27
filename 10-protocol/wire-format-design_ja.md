@@ -649,7 +649,10 @@ protocol 21の文字列`block_state_ref`、`getBlock`文字列result、文字列
   `[n]`、object fieldは`.name`で連結する（例`params[3].state.axis`）。原因が一つに定まらない場合は
   省略し、入力全体の文字列化を代用品にしない。
 - **`data.allowed`**＝`invalid_property_value` で許容値を返せれば返す（**b1 任意 / b2 必須**）。blockはcatalog、
-  signは§5.8.1の色allowlist＋hex patternまたは装飾allowlistを正とする。
+  signは§5.8.1の色allowlist＋hex patternまたは装飾allowlistを正とする。signでは`2026-08-27-03`により
+  配列順もcanonicalである。色はMinecraft／Adventureの慣用16色順
+  （`black`から`white`）の後に`#RRGGBB`、装飾は`bold`／`italic`／`underlined`／
+  `strikethrough`／`obfuscated`の順とする。これは`LineValue.decorations`のtoken名昇順とは別のerror inventory順である。
 
 block stateのJSON numberは十進数値としてscale非依存で比較する。`3`、`3.0`、`3e0`は同じnumber、
 string`"3"`は別型とする。BlockValue出力はregistryの正準型を使い、整数stateをJSON integerへ戻す。

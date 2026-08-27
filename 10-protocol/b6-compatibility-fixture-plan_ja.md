@@ -80,6 +80,11 @@ Scratch v1のwrite blockはstring shorthandだけを公開するため、Scratch
 `B6-S01`不適合としない。ただし`@mc-remote/protocol`のTypeScript contract mirrorは、wireが受理する
 完全な`LineSpec`／`LineValue`を表現しなければならない。
 
+`2026-08-27-03`により、`B6-S06`の`data.allowed`はtoken集合だけでなくfixture記載順までcanonicalとする。
+色はMinecraft／Adventureの慣用16色順＋`#RRGGBB`、装飾は
+`bold`／`italic`／`underlined`／`strikethrough`／`obfuscated`である。component testは配列を集合へ
+変換して差分を隠さない。これは`B6-S02`のcanonical decoration昇順とは別のerror inventory順である。
+
 ### 3.4 `pickaxe_poke`
 
 | case | canonical assertion | fixture／test class |
@@ -201,3 +206,19 @@ set 2を比較基準として次のexact source setへ更新する。
 suffixをclient共通contractにしないため意図的に発行例の長さへ固定していない。Python set 2のvalidatorは
 22文字以上を要求するため、このowner caseを読む投影で差分が表面化する。fixtureを22文字へ合わせて差分を
 隠さず、Python側を`B6-H03`へ整合させる。旧`mceh_`非受理は維持する。
+
+## 8. McRemote／Python投影結果と残差分
+
+McRemoteは`codex/b6-protocol23-cleanup@56b83c0915a5e354704cd86f1bac6c7b00cf137f`、Pythonは
+`codex/b6-protocol23-python@0ba22e80b9b1b339dfd11085b1b24cef646599b2`で、owner fixture二件を
+exact bytesで配置した。coordinatorのGitHub固定SHA再hashでも§7のdigestへ一致した。
+
+- McRemoteはfixture-driven test 10件を追加し、全143/143 PASSを報告した。production変更は
+  `SignCommands.componentFor`をpackage-private test seamへ広げた一件だけで、world mutation等は変えていない
+- Pythonは`test_b6.py`を`B6-I01`／`H01`〜`H03`／`P01`〜`P02`／`S01`〜`S07`へ接続し、
+  handle validator二箇所の22文字以上制約を除いた。対象18/18、全242/242 PASSを報告した
+- いずれもlive、default branch統合、正式evidence、artifact、releaseを未実施・未主張とする
+
+McRemote投影は`B6-S06`の`data.allowed`を集合比較したため、owner fixtureの慣用順とproductionのalphabetical順が
+異なるままPASSした。この観測を受けて人間レビューし、`2026-08-27-03`でowner順をcanonicalに固定した。
+McRemoteがproduction listとtestを順序一致へ直した新SHAを返すまで、三repo横断fixture PASSとはしない。
