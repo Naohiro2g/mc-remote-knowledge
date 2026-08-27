@@ -542,6 +542,24 @@ scratch-gui source対象13件、変更範囲lint／buildをPASSし、determinist
 b6 client-only UX v1として人間批准した。これはwire／server filter／observer allowlistを変更せず、実plugin E2Eや
 b6 release gate通過も意味しない。exact表示挙動は`15-wirescope/wirescope-deployment-design_ja.md` §14を正とする。
 
+Tier 2 real-browserで、tab行miniのdropdownが親panelにclipされる不具合を発見した。GUI source
+`agent/b6-source-refresh@1d1b21d5acdbabdb596476c087c14033d5c33d32`はclipを子要素へ限定し、三tab、折りたたみ、
+palette非干渉、dropdownをPASSした。さらに空振りOFFでもpending `events.poll` requestが一瞬表示され、約1秒周期の
+全table再構築がpayloadの選択／copyを壊す不具合を実plugin接続中に発見した。これはfilterの最終結果だけでなく、
+観察中の操作安定性の問題なので、見た目だけの差として残さなかった。
+
+scratch-editor `agent/b6-wirescope-poll-pair-stability@7b4f71d71e8ecd665d402682e677dc4e425d160f`は、pending
+pollをresponseまで表示保留し、pair完成後に原子的判定する。また、表示frameの`sequence` signatureが変わらない
+snapshotではtable bodyを再構築しない。130/130件、lint／buildをPASSし、実plugin＋local Bridgeのreal-browserで
+空振りpoll中の選択／copy、poke pairの同時表示、player method pairの表示／非表示をPASSした。
+
+後続`24077ef005e4969bf3a7434b45532ae53cefbc28`は各streamへclient-onlyの「表示を一時停止」を追加した。停止中も
+frame収集、poll、`dropped_frames`を継続し、停止snapshotへのfilter／検索、新着badge、最新windowへの一括再開を
+行う。停止stateは保存せず、観測target変更時に破棄する。deterministic sourceのreal-browserと130/130件、lint／buildを
+PASSしたが、実plugin接続中のpauseと観測target変更後の自動再開は未確認である（`2026-08-28-01`）。current WireScope artifactと
+正式な検証境界は[WireScope設計](../15-wirescope/wirescope-deployment-design_ja.md) §14.5／§14.6および
+[formal record](../14-evidence/records/2026-08-28-b6-scratch-wirescope-live-human_ja.md)を参照する。
+
 monitor-driven reporterには、monitor評価のthrottle、同一引数のin-flight request coalescing、
 disconnect時のcache破棄を設ける。明示的なscript callは毎回実行する。対象は
 `world.getHeight`、b8のentity pose／nearby、queue metric等である。`world.getHeight`はoptional引数を

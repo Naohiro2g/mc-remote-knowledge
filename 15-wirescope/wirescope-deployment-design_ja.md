@@ -424,8 +424,10 @@ signを観測対象へ加える場合は、validator／adapter／fixtureの別ch
 ### 14.3 pair、判定、検索、件数
 
 同じstream内の`events.poll` request／responseは`request_id`でpairにし、一つのfilter unitとして同じ表示判定を
-適用する。responseのないorphanは`empty`へ分類せず、event switchによるgateを適用しない。responseが複数typeを
-含む場合は該当classのいずれかがONならpair全体を表示する。非poll frameは一frameで一unitである。
+適用する。sendだけを観測しresponseがまだ無いunitは、空振りか非空かを判定できない**pending request**として、
+method switchやOR検索の一致を含む全条件より先に表示を保留する。response到着後に初めてpair全体を表示判定し、
+空振りOFFなら一度もrequestを先行表示しない。receiveだけのorphanは既に判定材料を持つため防御的表示対象に残す。
+responseが複数typeを含む場合は該当classのいずれかがONならpair全体を表示する。非poll frameは一frameで一unitである。
 
 判定式は次で固定する。
 
@@ -454,7 +456,26 @@ signを観測対象へ加える場合は、validator／adapter／fixtureの別ch
 field単位で既定値へ戻し、壊れたJSON、異なるversion、storage read失敗はfilter UIを壊さず全既定値へ戻す。
 storage write失敗は例外を外へ出さず、現在のmemory上の選好を保ったまま永続化だけを行わない。
 
-### 14.5 実装identityと検証境界
+### 14.5 表示安定化と一時停止
+
+frame tableはsnapshot到着ごとに全DOMを作り直さない。filter後の表示frameを順序付き`sequence`列として比較し、
+表示集合が変わらないsnapshotではtable bodyを置換しない。これにより、非表示のpending／空振りpollが約1秒ごとに
+到着しても、既存payloadの選択範囲とcopy操作を維持する。filter変更とlocale変更は利用者が意図した再投影なので、
+同じ表示signatureでも一回再描画できる。件数、接続状態、`dropped_frames`等の周辺表示更新を、table bodyの
+再構築理由にはしない。
+
+各streamはclient-onlyの「表示を一時停止」／「表示を再開」を持つ。停止時点の保持frame配列を表示snapshotとして
+固定し、その後もsourceからのframe収集、`events.poll`、保持windowのtrim、`dropped_frames`累積を止めない。
+停止中はlive frameとの差から新着件数をbadge表示し、filter／検索は停止時点のsnapshotへ即時適用する。再開時は
+最新の保持windowへ一度だけ切り替え、中間snapshotを再生しない。観測targetが変わるとstream cacheごと停止状態を
+破棄し、通常表示へ戻す。一時停止状態、停止snapshot、frame、payloadは`localStorage`へ保存しない。
+
+この機能を「観測停止」と呼ばない。WireScope source、Scratch observer、Bridge、plugin、server event ring、poll頻度を
+止めるcontrolではなく、read-only observer UIの投影だけを固定する機能だからである。表示停止は§14.3のpending pair
+保留や通常時のDOM安定化の代替ではなく、建築中など表示対象そのものが多い局面で利用者が明示的に静止させる追加UXである
+（`2026-08-28-01`）。
+
+### 14.6 実装identityと検証境界
 
 実装基準はscratch-editor `agent/b6-wirescope-display-filter@c720341a2cee4b01f2b2a227cf6379ac0ac92db2`、
 UI表示集合の後続は`46919addc071c3607864672854190c1bbeb7047e`、b6統合sourceは
@@ -462,3 +483,17 @@ UI表示集合の後続は`46919addc071c3607864672854190c1bbeb7047e`、b6統合s
 lint／build、deterministic sourceによる実browserで、switch表示集合、pair連動、件数、and／or検索、
 `dropped_frames`、reload後の選好復元を確認した。実McRemote plugin E2E、and／or全組合せ、iPad／Safari、
 default branch統合、正式evidence、releaseは未実施・未主張である。
+
+後続のscratch-editor `agent/b6-wirescope-poll-pair-stability@7b4f71d71e8ecd665d402682e677dc4e425d160f`は、
+pending `events.poll` requestを無条件に保留し、pair完成後に原子的表示判定する。また、表示frameの`sequence`列が
+変わらないsnapshotではtable bodyを再構築しない。搬送元は`@mc-remote/live` 130/130件、lint／buildをPASSし、
+実protocol 23 plugin＋local Bridgeのreal-browser確認で、空振りpoll中の選択／copy維持、非空poke pairの同時表示、
+player groupによる`player.getPos` request／responseの一体表示／非表示を確認した。
+
+その子`24077ef005e4969bf3a7434b45532ae53cefbc28`は§14.5の表示停止を追加した。130/130件、lint／buildを維持し、
+deterministic sourceの実browserでtable固定、新着badge、copy、停止snapshotへのfilter／検索、最新windowへの一括再開を
+確認した。観測target変更後の自動再開と、実plugin接続中の表示停止は未確認である。生成した
+`wirescope-app.zip`は79,169 bytes／SHA-256
+`b3d6270299195d2c3db93c9d122938be6ae20d23e0f10e19afe3b0e99e3ca315`、detached manifestは2,321 bytes／
+SHA-256 `5fafdc54af45d8f498cd48b13590797eaaa6316adaf017a40595566f0f507b2e`である。GUI／Bridge、wire、observer
+schemaは変更していない。

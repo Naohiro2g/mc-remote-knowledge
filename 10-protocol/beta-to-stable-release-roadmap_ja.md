@@ -97,13 +97,29 @@ WireScope表示側filterはclient-onlyの独立companionです。b6に間に合�
 変更凍結しました。refreshではprotocol 22/22、対象VM 416/416、build／lintをPASSし、三repo共有fixture gateも
 PASSしました。exact candidate artifactは後続set 1として固定済みですが、実plugin接続、shared環境deploy、
 default branch統合、releaseは未実施・未主張です。
-個別candidateの履歴は実装由来として残し、横断gateの現行Scratch入力にはrefresh identityを使います。
+個別candidateの履歴は実装由来として残し、共有fixture／protocol 23 coreの基準identityにはrefresh identityを使います。
 
 同source setから固定した`b6-artifact-candidate-set-1`は2026-08-27の通常dev Tier 2で、server runtime、
 exact Python wheelのsign三操作／`mcr_eh_`、exact Bridgeのone-shot実plugin一往復までPASSしました。
 [formal record](../14-evidence/records/2026-08-27-b6-tier2-integration-pulse_ja.md)はScratch実ブラウザ、
 WireScope、`pickaxe_poke`を未実施として分離しており、b6横断gateはOPENのままです。Bridgeの`dist/` tarが
 production dependencyを同梱しない点も、公開配布形態のartifact gateへ残しています。
+
+その後のreal-browserで、mini dropdownのclipと、pending `events.poll`の一瞬表示＋全table再構築によるcopy阻害を
+発見しました。前者はGUI source `1d1b21d5acdbabdb596476c087c14033d5c33d32`、後者はWireScope source
+`7b4f71d71e8ecd665d402682e677dc4e425d160f`で閉じ、後者は実plugin接続でも非点滅、copy維持、poke pair、
+player pair切替をPASSしました。さらに`24077ef005e4969bf3a7434b45532ae53cefbc28`でclient-onlyの表示一時停止を
+追加し、deterministic real-browserまでPASSしました。表示停止はframe収集／poll／`dropped_frames`を止めず、
+wireやserver filterを変えません（`2026-08-28-01`）。
+
+現行の未公開artifact入力は`b6-artifact-candidate-set-3`です。McRemote／Python／Bridgeはset 1、GUIはdropdown
+修正版set 2からexact bytesを再利用し、WireScope ZIP／manifestだけを`24077ef…`から生成したbytesへ置換しました。
+完全identityとset 1／2の失敗履歴は[`b6 artifact candidate記録`](b6-artifact-candidate-record_ja.md) §7、
+実browserの観測範囲は
+[`2026-08-28-b6-scratch-wirescope-live-human`](../14-evidence/records/2026-08-28-b6-scratch-wirescope-live-human_ja.md)
+を正とします。`pickaxe_poke`の一操作一eventと腕振り、Scratch→WireScopeの現行allowlist method、filter安定化は
+PASSしましたが、Scratch sign／browser保存のexact integrated artifact確認、Bridge package境界、default branch統合、
+公開releaseが残るためb6横断gateはOPENです。表示filter／pause単独の未確認はb6 coreのHOLD条件にしません。
 
 ### 3.2 b7 — direction
 

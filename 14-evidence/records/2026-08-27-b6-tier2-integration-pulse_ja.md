@@ -16,6 +16,10 @@
 buildを実pluginへ接続した最初のTier 2 pulseを記録する。Scratch GUI／WireScopeの実ブラウザ操作、
 `pickaxe_poke`の一操作一eventと腕振りはまだ行っていないため、b6横断`GREEN`やrelease可とは判定しない。
 
+> 継続: 後続のScratch／WireScope実ブラウザ、`pickaxe_poke`、そこで発見したclient-only修正は
+> [`2026-08-28-b6-scratch-wirescope-live-human`](2026-08-28-b6-scratch-wirescope-live-human_ja.md)へ記録した。
+> 本recordの「未実施」はset 1初回pulse終了時点の事実として残し、後からPASSへ上書きしない。
+
 ## Exact input
 
 | Component | Source | Artifact |

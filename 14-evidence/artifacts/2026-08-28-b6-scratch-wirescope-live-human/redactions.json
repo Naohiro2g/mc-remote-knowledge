@@ -1,0 +1,24 @@
+{
+  "test_id": "2026-08-28-b6-scratch-wirescope-live-human",
+  "content_redactions": [
+    "session token",
+    "private target address",
+    "player UUID",
+    "raw server log",
+    "exact world coordinates"
+  ],
+  "not_collected_as_irrelevant_to_claim": [
+    "pair code",
+    "pairing_id"
+  ],
+  "retained_as_non_secret_evidence": [
+    "protocol and artifact version",
+    "source and artifact digest",
+    "wire method and event type",
+    "canonical item and hand token",
+    "filter count and PASS/FAIL boundary",
+    "WebSocket transport subprotocol"
+  ],
+  "routing_note": "The SSH alias was not a Node-resolvable DNS name. The deployment used a resolved LAN target; its raw address is omitted from public evidence.",
+  "pair_code_note": "Not a mandatory redaction target; omitted because it is unnecessary for this claim."
+}

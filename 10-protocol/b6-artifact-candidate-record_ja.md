@@ -2,6 +2,7 @@
 
 > 2026-08-27時点の`b6-artifact-candidate-set-1`を、人間が照合できる形で固定する記録です。
 > 公開release manifest、machine-readable gate manifest、配布済みartifactの主張ではありません。
+> Tier 2で生じたset 2／3は§7へ追記し、set 1の原記録を上書きしません。
 
 ## 1. 状態と用途
 
@@ -104,3 +105,48 @@ buildによるone-shotから実plugin未認証境界までをPASSした。結果
 
 公開release、tag、registry upload、default branch統合は、このTier 2 pulseの結果をgate coordinatorへ返すまで
 行わない。
+
+## 7. Scratch／WireScope後続set
+
+Tier 2実browserで二件のclient-only UX不具合を観測したため、set 1の観測事実を消さず、Scratch側だけを
+change coneに沿って更新した。
+
+### 7.1 set 2 — mini dropdown修正
+
+`b6-artifact-candidate-set-2`は、Scratch GUIを
+`agent/b6-source-refresh@1d1b21d5acdbabdb596476c087c14033d5c33d32`から生成した
+234,620,525 bytes／SHA-256
+`1757f665b9c327985fdbd101a356a82926daa4a00361694ce5b059f78dda7ef5`へ置換した。tab行へ移したminiの
+dropdownが親panelの`overflow: hidden`でclipされる不具合を直し、Code／Costumes／Sounds、折りたたみ、palette
+非干渉をreal-browserでPASSした。plugin、Python、Bridge、旧WireScope artifactはset 1からexact bytesで再利用した。
+
+set 2の実接続中、空振りOFFでもpending `events.poll` requestが一瞬表示され、約1秒周期の全table再構築がpayloadの
+選択／copyを壊す不具合を観測した。したがってset 2を公開release候補へ進めず、失敗を次setの入力として保持する。
+
+### 7.2 set 3 — poll pair安定化＋表示一時停止
+
+`b6-artifact-candidate-set-3`はset 2からMcRemote、Python、GUI、Bridgeをexact bytesで再利用し、WireScopeだけを
+scratch-editor `agent/b6-wirescope-poll-pair-stability@24077ef005e4969bf3a7434b45532ae53cefbc28`の
+artifactへ置換した。共有fixture、protocol、observer schema、Bridge、Scratch VM／GUI本体は変えていない。
+
+| component | artifact | size（bytes） | SHA-256 | source／再利用 |
+| --- | --- | ---: | --- | --- |
+| McRemote | `mc-remote-1.21.11-2300.0.0b6.jar` | 204,341 | `4e28603caefa4273fabfe325e1c75a28239a6fa9eb44fb5a2b49da7be79870e8` | set 1再利用 |
+| Python | `minecraft_remote_api-2300.0.0b6-py3-none-any.whl` | 173,301 | `0887807f0d00f71fcb543caf16c3963b70580bf073b6a7576d7f274399a1877b` | set 1再利用 |
+| Python | `minecraft_remote_api-2300.0.0b6.tar.gz` | 178,483 | `0507a10cbd6b31c2dd84ebff0034c5f72625ff1142d30f1c0d41e14d0ce2da3b` | set 1再利用 |
+| Scratch | `scratch-gui-build.tar.gz` | 234,620,525 | `1757f665b9c327985fdbd101a356a82926daa4a00361694ce5b059f78dda7ef5` | set 2再利用／GUI source `1d1b21d5ac…` |
+| Bridge | `mc-remote-bridge-dist.tar.gz` | 3,052 | `11199a8e6966e8a5160411104934498657f4befd3d27a8fc25c88f51afa31c72` | set 1再利用 |
+| WireScope | `wirescope-app.zip` | 79,169 | `b3d6270299195d2c3db93c9d122938be6ae20d23e0f10e19afe3b0e99e3ca315` | source `24077ef005…` |
+| WireScope | `wirescope-app.manifest.json` | 2,321 | `5fafdc54af45d8f498cd48b13590797eaaa6316adaf017a40595566f0f507b2e` | source `24077ef005…` |
+
+coordinatorは七fileを新しいdurable stagingへcopyし、全size／SHA-256を再照合した。WireScope manifest内のsource、
+archive digest、package／lock identityも表と一致する。set 1／2のdirectoryとbytesは履歴として残し、上書きしていない。
+
+直前commit `7b4f71d71e8ecd665d402682e677dc4e425d160f`は実plugin＋local Bridgeのreal-browserで、pending pollの
+非点滅、空振りpoll継続中の選択／copy、非空poke pairの原子的表示、player groupのrequest／response一体切替を
+PASSした。後続`24077ef…`の表示一時停止はdeterministic sourceのreal-browserでPASSしたが、set 3のexact ZIPを
+実plugin接続中に再試験したとは主張しない。観測target変更後の自動再開も実browser未確認である。
+
+Bridge tarのproduction dependency非同梱、Scratch sign／browser保存のexact integrated artifact確認、default branch
+統合、正式release artifact freeze、公開releaseは引き続き未完である。WireScope表示filter／停止はclient-only
+companionなので、この二つの未確認だけでb6 coreをHOLDにしない。
