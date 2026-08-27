@@ -99,6 +99,12 @@ PASSしました。exact candidate artifactは後続set 1として固定済み�
 default branch統合、releaseは未実施・未主張です。
 個別candidateの履歴は実装由来として残し、横断gateの現行Scratch入力にはrefresh identityを使います。
 
+同source setから固定した`b6-artifact-candidate-set-1`は2026-08-27の通常dev Tier 2で、server runtime、
+exact Python wheelのsign三操作／`mcr_eh_`、exact Bridgeのone-shot実plugin一往復までPASSしました。
+[formal record](../14-evidence/records/2026-08-27-b6-tier2-integration-pulse_ja.md)はScratch実ブラウザ、
+WireScope、`pickaxe_poke`を未実施として分離しており、b6横断gateはOPENのままです。Bridgeの`dist/` tarが
+production dependencyを同梱しない点も、公開配布形態のartifact gateへ残しています。
+
 ### 3.2 b7 — direction
 
 次のget／setを分割せず、実装・fixture・教材を一つの縦sliceへ閉じます。

@@ -1,0 +1,22 @@
+{
+  "test_id": "2026-08-27-b6-tier2-integration-pulse",
+  "content_redactions": [
+    "session token",
+    "private target address",
+    "player UUID",
+    "raw server log"
+  ],
+  "not_collected_as_irrelevant_to_claim": [
+    "pairing_id",
+    "exact sign coordinates",
+    "spawned entity identity"
+  ],
+  "retained_as_non_secret_evidence": [
+    "protocol and package version",
+    "source and artifact digest",
+    "wire method and error reason",
+    "canonical color and decoration token",
+    "entity handle prefix"
+  ],
+  "pair_code": "Not a mandatory redaction target; omitted because it is unnecessary for this claim."
+}

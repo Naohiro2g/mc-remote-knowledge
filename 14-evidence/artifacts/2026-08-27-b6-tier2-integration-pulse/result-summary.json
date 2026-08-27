@@ -1,0 +1,47 @@
+{
+  "test_id": "2026-08-27-b6-tier2-integration-pulse",
+  "test_class": ["live-auto", "live-human"],
+  "result": "PARTIAL_PASS_GATE_OPEN",
+  "protocol": "23.0.0",
+  "artifact": "2300.0.0b6",
+  "candidate_set": "b6-artifact-candidate-set-1",
+  "runtime": {
+    "minecraft": "1.21.11",
+    "paper": "1.21.11-132",
+    "plugin": "1.21.11-2300.0.0b6",
+    "credential_health": "HEALTHY",
+    "auth_negative_paths": ["auth_required", "token_not_found", "token_invalid"]
+  },
+  "python": {
+    "source": "0ba22e80b9b1b339dfd11085b1b24cef646599b2",
+    "wheel_sha256": "0887807f0d00f71fcb543caf16c3963b70580bf073b6a7576d7f274399a1877b",
+    "installed_python": "3.11.5",
+    "pairing": "human_command_completed",
+    "hello": "PASS",
+    "sign_get_set": "PASS",
+    "sign_update_line": "PASS",
+    "sign_block_restore": "PASS",
+    "entity_handle_prefix": "PASS_mcr_eh_"
+  },
+  "bridge": {
+    "source": "104f194deddc9c244e6e07c4223965c792551f9d",
+    "artifact_sha256": "11199a8e6966e8a5160411104934498657f4befd3d27a8fc25c88f51afa31c72",
+    "production_dependency": "ws@8.18.3_from_exact_source_install",
+    "production_dependency_integrity": "sha512-PEIGCY5tSlUt50cqyMXfCzX+oOPqN0vuGqWzbcJ2xvnkzkq46oOpz7dQaTDBdfICb4N14+GARUDw2XV2N4tvzg==",
+    "source_package_lock_sha256": "98bd8649bef2f16132c680348a342e3bdd5e4e2b430c83036b0defb39919da26",
+    "one_shot_transport": "PASS",
+    "plugin_auth_boundary": "PASS_auth_required",
+    "standalone_dependency_complete_artifact": false
+  },
+  "not_executed": [
+    "scratch_real_browser_pairing_and_sign",
+    "scratch_browser_storage_on_exact_integrated_artifact",
+    "wirescope_real_browser_filter_and_dropped_frames",
+    "pickaxe_poke_one_operation_one_event_and_swing",
+    "rollback",
+    "default_branch_integration",
+    "public_release"
+  ],
+  "candidate_source_changed": false,
+  "candidate_artifact_bytes_changed": false
+}

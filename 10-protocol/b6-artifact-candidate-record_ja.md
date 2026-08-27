@@ -92,9 +92,15 @@ build環境の差だけでbyte列が変わった場合も、既存digestへ一�
 tokenなし／無効token hello否定パスをPASSした。これはserver runtime readinessであり、sign、poke、handle、
 Scratch／WireScopeの製品API横断PASSではない。
 
-runtime readiness後、少なくともhello identity、sign三操作、`pickaxe_poke`の一操作一event、
-`mcr_eh_` handle、WireScope表示filterと`dropped_frames`を実plugin接続で確認する。人間参加結果を
-release根拠へ使う場合は、sanitized formal evidenceを`14-evidence/`へ作る。
+runtime readiness後、exact Python wheelによる認証済みhello、sign三操作、`mcr_eh_` handleと、exact Bridge
+buildによるone-shotから実plugin未認証境界までをPASSした。結果と未実施境界は
+[`2026-08-27-b6-tier2-integration-pulse`](../14-evidence/records/2026-08-27-b6-tier2-integration-pulse_ja.md)
+へ着地した。Bridge tarは`dist/`だけでproduction dependencyを含まないため、Tier 2ではexact source installの
+`ws 8.18.3`を外部runtime入力として固定した。単独deploy可能artifactとは扱わず、公開配布形態のartifact gateで閉じる。
+
+残る最小pulseは、Scratch実ブラウザのpairing／sign／browser保存、WireScope表示filterと`dropped_frames`、
+`pickaxe_poke`の一操作一eventと腕振りである。人間参加結果をrelease根拠へ使う場合は、同recordへsanitized結果を
+追補するか、scopeを分けたformal evidenceを`14-evidence/`へ作る。
 
 公開release、tag、registry upload、default branch統合は、このTier 2 pulseの結果をgate coordinatorへ返すまで
 行わない。
