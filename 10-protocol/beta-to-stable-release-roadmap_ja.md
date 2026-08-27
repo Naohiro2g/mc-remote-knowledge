@@ -67,7 +67,11 @@ b6は次を一つのprotocol 23 compatibility setとして閉じます。
 
 McRemoteのsign、`pickaxe_poke`、`mcr_eh_`化とlegacy entity method除去、scratch-editorのbrowser保存、
 sign、`pickaxe_poke`、Pythonのprotocol 23／sign／`pickaxe_poke`／`mcr_eh_`投影にはpush済み実装candidateが
-あります。ただし横断fixture、exact candidate set、正式evidence、統合artifact、releaseは別gateです。
+あります。2026-08-27に三repoがScratch ownerの`sign-v23.json`／`events-v23.json`をexact bytesで消費し、
+sign errorの`data.allowed`順も`2026-08-27-03`で収束したため、共有fixture gateをPASSしました。現行source setは
+McRemote `88d818703be5e7314bc1e45597a66237796db641`、Python
+`0ba22e80b9b1b339dfd11085b1b24cef646599b2`、Scratch
+`104f194deddc9c244e6e07c4223965c792551f9d`です。正式evidence、統合artifact、releaseは別gateです。
 
 scratch-editor `agent/b6-wirescope-display-filter@3c199b08645306fc77441f59e89d5ebacbb9d836`は、Scratch VM、
 WireScope source adapter、`@mc-remote/live`のhandle検証を`mcr_eh_`へ揃え、旧`mceh_`を受けず、protocol
@@ -83,11 +87,13 @@ WireScope表示側filterはclient-onlyの独立companionです。b6に間に合�
 変更せず、exact表示挙動は`15-wirescope/wirescope-deployment-design_ja.md` §14を正とします。
 
 2026-08-27時点のScratch b6 component入力は、上記の個別candidateと作品／スプライトbrowser保存を合流した
-`agent/b6-integration@040f06617c80e54cdba9421b6c69445efdf099ba`です。scratch-vmは4217/4220件をPASSし、
+`agent/b6-integration@040f06617c80e54cdba9421b6c69445efdf099ba`から、protocol mirror／owner fixture／診断versionを
+補った`agent/b6-source-refresh@104f194deddc9c244e6e07c4223965c792551f9d`へ進みました。統合時点のscratch-vmは4217/4220件をPASSし、
 残る3件は既知の並列cascading timeoutとして単独118/118件をPASSしました。scratch-vm／scratch-gui build、
 変更範囲lint、`@mc-remote/live` 124/124件もPASS報告済みです。このidentityをScratch component candidateとして
-変更凍結しましたが、plugin／Pythonとの横断互換、実plugin接続、exact artifact、default branch統合、releaseは
-未実施・未主張です。個別candidateの履歴は実装由来として残し、横断gateの現行Scratch入力には統合identityを使います。
+変更凍結しました。refreshではprotocol 22/22、対象VM 416/416、build／lintをPASSし、三repo共有fixture gateも
+PASSしましたが、実plugin接続、exact artifact、default branch統合、releaseは未実施・未主張です。
+個別candidateの履歴は実装由来として残し、横断gateの現行Scratch入力にはrefresh identityを使います。
 
 ### 3.2 b7 — direction
 

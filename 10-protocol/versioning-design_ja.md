@@ -595,6 +595,13 @@ case IDを接続した。fixture digest、親SHA、変更pathはcoordinatorがGi
 owner順と異なることが判明し、`2026-08-27-03`でowner順をcanonical wire値へ固定した。McRemoteの追補SHAが
 返るまで横断fixture PASSと次のexact source setは固定せず、method集合は`candidate`を維持する。
 
+McRemoteの追補`88d818703be5e7314bc1e45597a66237796db641`はproduction listとfixture testを
+owner順へ一致させ、全143/143 PASSを報告した。coordinator照合により、McRemoteの本SHA、Python
+`0ba22e80b9b1b339dfd11085b1b24cef646599b2`、Scratch
+`104f194deddc9c244e6e07c4223965c792551f9d`を`b6-source-candidate-set-3`として固定し、三repo共有fixture
+gateをPASSとする。これはsource／fixtureの収束であり、artifact、実plugin E2E、正式evidence、default branch統合、
+release完了ではないため、b6 method集合は引き続き`candidate`である。
+
 b5 GREEN後にScratch保存の独立entry gateを置く。`.sb3`／`.sprite3`互換fixture、作品全体のIndexedDB
 lifecycle、一覧・復元・削除、quota、破損、migration、`.sb3`への退避を実装・試用する。これはb5 completion
 gateでもb6 protocol API scopeでもない。「b6 API本実装前」は依存と時期の目安で、b6 API完了待ちではない。

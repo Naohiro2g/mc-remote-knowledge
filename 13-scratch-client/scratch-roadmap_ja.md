@@ -512,8 +512,16 @@ sign三操作candidate
 `getSign`／`setSign`／`updateSignLine` block、read accessor、面／行／装飾menu、sign固有wire error reason、
 ja／ja-Hira表示を実装した。write commandは既存DEBUG／TRACE／FAST pathを再利用する。搬送元はscratch-vm
 対象375件、scratch-gui l10n 4件、lintを再実行してPASSし、i18n抽出とwebpack buildの先行PASSも報告した。
-plain textだけを入力するwrite blockの絞り込みは実browserで人間承認済みである。一方、実plugin接続による
-sign三操作のlive-auto／live-human、共有fixture、formal evidence、default branch統合、releaseは未実施・未主張である。
+plain textだけを入力するwrite blockの絞り込みは実browserで人間承認済みである。この個別candidate時点では、
+実plugin接続によるsign三操作のlive-auto／live-human、共有fixture、formal evidence、default branch統合、
+releaseは未実施・未主張であった。
+
+後続のb6統合sourceは`agent/b6-source-refresh@104f194deddc9c244e6e07c4223965c792551f9d`である。
+`@mc-remote/protocol`へsign三method／型／reasonをmirrorし、owner fixture
+`sign-v23.json`／`events-v23.json`を発行、VMの診断用versionを`2300.0.0b6`へ揃えた。protocol 22の
+`spawn-v22.json`は履歴のまま保持し、current handle assertionは`mcr_eh_`へ分離した。protocol 22/22、
+対象VM 416/416、build／lintをPASSし、McRemote／Pythonも同じfixture bytesへ接続したため共有fixture gateは
+PASSした。これは実plugin接続、formal evidence、artifact、default branch統合、release完了を意味しない。
 
 後続のscratch-editor
 `agent/b6-wirescope-display-filter@3c199b08645306fc77441f59e89d5ebacbb9d836`はprotocol 23 cleanupとして、

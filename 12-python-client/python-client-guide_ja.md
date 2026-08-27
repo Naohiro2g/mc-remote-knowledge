@@ -414,11 +414,12 @@ b5では`events.poll`、`world.getHeight`、`world.spawnParticle`、`world.spawn
 event filter／clear、typed particleは条件付きb9以降のcandidateである。exact Python method signatureと
 戻り型は共通wire fixtureとplugin実装を入力に固定し、knowledgeだけからkwargsや独自型を推測しない。
 
-Pythonのb6 surfaceは`codex/b6-protocol23-python@69a160aecfc6cd346b3341cdf10007e2903b5207`で
+Pythonのb6 surfaceは`codex/b6-protocol23-python@0ba22e80b9b1b339dfd11085b1b24cef646599b2`で
 push済み実装candidateになった。protocol／packageを`23.0.0`／`2300.0.0b6`へ上げ、`pickaxe_poke`、
-sign三操作、protocol 23の`mcr_eh_` handle検証とobserver／fixture投影を実装し、unit／deterministic
-237件をPASSした。`mceh_`とのaliasは作らない。live-auto／live-human、共有fixtureの横断照合、
-default branch統合、正式evidence、統合artifact／releaseは未完・未主張である。これはPython component
+sign三操作、protocol 23の`mcr_eh_` handle検証とobserver／fixture投影を実装した。Scratch ownerの
+`sign-v23.json`／`events-v23.json`をexact bytesで配置し、handle suffix長をclient共通contractにせず、
+`mceh_`とのaliasは作らない。対象18/18、全242/242件PASSを報告し、三repo共有fixture gateもPASSした。
+live-auto／live-human、default branch統合、正式evidence、統合artifact／releaseは未完・未主張である。これはPython component
 surfaceの局所実装完了であり、b6 method集合全体の`implemented`／`released`状態への昇格ではない。
 
 ただしwire paramsの順序はb5共通fixtureとして先に固定する。`world.spawnParticle`は

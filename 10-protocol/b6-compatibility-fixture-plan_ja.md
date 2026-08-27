@@ -222,3 +222,22 @@ exact bytesで配置した。coordinatorのGitHub固定SHA再hashでも§7のdig
 McRemote投影は`B6-S06`の`data.allowed`を集合比較したため、owner fixtureの慣用順とproductionのalphabetical順が
 異なるままPASSした。この観測を受けて人間レビューし、`2026-08-27-03`でowner順をcanonicalに固定した。
 McRemoteがproduction listとtestを順序一致へ直した新SHAを返すまで、三repo横断fixture PASSとはしない。
+
+## 9. `data.allowed`追補完了とsource set 3
+
+McRemoteは`codex/b6-protocol23-cleanup@88d818703be5e7314bc1e45597a66237796db641`で、
+色／装飾`ALLOWED_*_TOKENS`をowner fixtureのliteral順へ固定し、`B6-S06`をlistのexact比較へ変更した。
+親は§8の`56b83c…`、差分はproductionとfixture testの2 pathだけである。全143/143 PASSを報告し、
+coordinatorがremote HEAD、親、変更path、固定literal、fixture二件のdigest不変をGitHub上で照合した。
+
+これにより三repoが同一fixture bytesとcase IDへ接続し、productionで生成するsign `data.allowed`を含めて
+共有fixture gateをPASSした。次のexact source入力を`b6-source-candidate-set-3`として固定する。
+
+| component | exact source |
+| --- | --- |
+| McRemote | `codex/b6-protocol23-cleanup@88d818703be5e7314bc1e45597a66237796db641` |
+| Python | `codex/b6-protocol23-python@0ba22e80b9b1b339dfd11085b1b24cef646599b2` |
+| Scratch | `agent/b6-source-refresh@104f194deddc9c244e6e07c4223965c792551f9d` |
+
+このPASSはTier 0〜1のsource／fixture収束である。実plugin接続、candidate artifact、formal evidence、
+default branch統合、releaseを完了済みとはしない。
