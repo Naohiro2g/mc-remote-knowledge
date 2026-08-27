@@ -427,6 +427,12 @@ playerはregistryへ収容しない（`2026-08-26-08`）。
 exact bytesで配置してsign／event／handle testへ接続し、`data.allowed`順を含む共有fixtureへ適合した。
 全143 testsはPASS、実serverでのlive-auto／live-humanは未実施・未主張である。
 
+後続のdefault branch統合は`main@4e8f1ff1bd48bfa28c465f2dc24060fbb419317f`で完了した。b6 candidateとの
+機能差分はなく、main側にあったsession token永続化fixを保持する。統合後は149/149 testsとJAR生成をPASSした。
+credential production blobはb4実機PASS済み`3496db9…`、b5修正`2978db5…`、統合後mainで同一である。
+統合JARの報告SHA-256は`0ec8d4c0b105f3034361b260fc39fcb78013e932e684d34d5ca95c9a6c6a87a6`で、
+旧candidate JARとはbyte列が異なるため、最終artifact固定と最小runtime smokeは別gateとする。
+
 ### 10.2.1 DimensionKey resolver（protocol 22）
 
 pluginの公開空間identityはBukkit world nameでなくMinecraft DimensionKeyとする。入力は完全修飾

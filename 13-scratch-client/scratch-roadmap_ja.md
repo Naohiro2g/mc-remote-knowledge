@@ -566,6 +566,13 @@ unwaxed、back index `2`だけのPATCHと他行／他面不変をPASSした。�
 右クリック保存→別tab作品へ追加→削除、同一origin／browserの一覧共有をPASSし、試験用storage recordだけを清掃した。
 signが現行WireScope allowlistへ出ないことも既決境界どおりである。これによりb6 Scratch coreのTier 2実browser項目を閉じる。
 
+後続のdefault branch統合は`develop@df9264ec355dd722a848df46e96d4b0fc9340ca2`で完了した。
+`24077ef005e4969bf3a7434b45532ae53cefbc28`をconflict／手動編集なしでno-ff mergeし、candidateとの機能差分はない。
+protocol 22/22、WireScope 130/130、Bridge 30/30、GUI 471件PASS＋既知1 skip、lint／buildをPASSした。
+scratch-vm aggregateは4003件中3998件PASS、担当が残る2件を既知の並列resource競合としてisolated 283/283件を
+PASSしたと報告した。総数との差にある残り3件のstatus内訳は返却にないため、最終artifact freeze前にexact集計を
+補う。これは現時点で新規regressionを示すものとは扱わず、統合後artifactとrelease完了もまだ主張しない。
+
 monitor-driven reporterには、monitor評価のthrottle、同一引数のin-flight request coalescing、
 disconnect時のcache破棄を設ける。明示的なscript callは毎回実行する。対象は
 `world.getHeight`、b8のentity pose／nearby、queue metric等である。`world.getHeight`はoptional引数を

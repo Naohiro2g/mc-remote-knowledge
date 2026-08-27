@@ -112,15 +112,24 @@ player pair切替をPASSしました。さらに`24077ef005e4969bf3a7434b45532ae
 追加し、実plugin接続browserでtable固定、新着件数、copy、一括再開をPASSしました。表示停止はframe収集／poll／
 `dropped_frames`を止めず、wireやserver filterを変えません（`2026-08-28-01`）。
 
-現行の未公開artifact入力は`b6-artifact-candidate-set-3`です。McRemote／Python／Bridgeはset 1、GUIはdropdown
+Tier 2実証へ投入した未公開artifact入力は`b6-artifact-candidate-set-3`です。McRemote／Python／Bridgeはset 1、GUIはdropdown
 修正版set 2からexact bytesを再利用し、WireScope ZIP／manifestだけを`24077ef…`から生成したbytesへ置換しました。
 完全identityとset 1／2の失敗履歴は[`b6 artifact candidate記録`](b6-artifact-candidate-record_ja.md) §7、
 実browserの観測範囲は
 [`2026-08-28-b6-scratch-wirescope-live-human`](../14-evidence/records/2026-08-28-b6-scratch-wirescope-live-human_ja.md)
 を正とします。`pickaxe_poke`、Scratch sign text-only v1、作品／スプライトbrowser保存、WireScopeの現行allowlist
-method、filter安定化／pauseまでTier 2 requested sliceをPASSしました。既決のOCI境界によるBridge candidate生成、
-default branch統合、公開releaseが残るためb6横断gateはOPENです。観測target変更とlive `dropped_frames`はb6 coreの
+method、filter安定化／pauseまでTier 2 requested sliceをPASSしました。観測target変更とlive `dropped_frames`はb6 coreの
 HOLD条件にしません。Bridgeの3,052-byte tarは`ws`をexternal importする中間buildで、release packageへ昇格させません。
+
+2026-08-28、McRemote `main@4e8f1ff1bd48bfa28c465f2dc24060fbb419317f`、Python
+`main@a30a37b15658da655fe1e3535a73fb0e80c06f56`、scratch-editor
+`develop@df9264ec355dd722a848df46e96d4b0fc9340ca2`へのdefault branch統合を完了し、
+`b6-integrated-source-set-1`として固定しました。Python／Scratchはcandidateとの機能差分がありません。
+McRemoteはmainにあったb4／b5実証済みsession token永続化fixを保持したため、統合JARはset 3のJARと異なる
+SHA-256 `0ec8d4c0b105f3034361b260fc39fcb78013e932e684d34d5ca95c9a6c6a87a6`になりました。
+したがってset 3のTier 2 PASSは消さずに再利用しますが、旧JARを最終artifactへ流用しません。統合sourceからの
+最終artifact固定、McRemote新JARの最小runtime smoke、既決のOCI境界によるBridge生成、公開releaseが残るため、
+b6横断gateはOPENです。詳細は[`b6 artifact candidate記録`](b6-artifact-candidate-record_ja.md) §8を正とします。
 
 ### 3.2 b7 — direction
 

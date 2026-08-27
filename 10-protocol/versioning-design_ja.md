@@ -607,6 +607,15 @@ release完了ではないため、b6 method集合は引き続き`candidate`で�
 [`b6 artifact candidate記録`](b6-artifact-candidate-record_ja.md)を正とする。これはTier 2投入用candidate
 bytesの固定であり、公開release artifact freezeではない。通常dev target選定と実plugin接続は後続gateである。
 
+Tier 2 requested sliceのPASS後、2026-08-28にMcRemote
+`main@4e8f1ff1bd48bfa28c465f2dc24060fbb419317f`、Python
+`main@a30a37b15658da655fe1e3535a73fb0e80c06f56`、scratch-editor
+`develop@df9264ec355dd722a848df46e96d4b0fc9340ca2`へ統合し、`b6-integrated-source-set-1`を固定した。
+Python／Scratchはcandidateとの機能差分がない。McRemoteはmain側のsession token永続化fixを保持したため、
+統合JARは旧candidate JARとbyte列が異なる。したがってmethod集合はsource統合済みだが、最終artifact固定、
+統合JARの最小runtime smoke、Bridge OCI、公開releaseが残る`candidate`状態を維持する。exact境界は
+[`b6 artifact candidate記録`](b6-artifact-candidate-record_ja.md) §8を正とする。
+
 b5 GREEN後にScratch保存の独立entry gateを置く。`.sb3`／`.sprite3`互換fixture、作品全体のIndexedDB
 lifecycle、一覧・復元・削除、quota、破損、migration、`.sb3`への退避を実装・試用する。これはb5 completion
 gateでもb6 protocol API scopeでもない。「b6 API本実装前」は依存と時期の目安で、b6 API完了待ちではない。

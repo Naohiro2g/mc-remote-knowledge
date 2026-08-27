@@ -422,6 +422,11 @@ sign三操作、protocol 23の`mcr_eh_` handle検証とobserver／fixture投影�
 live-auto／live-human、default branch統合、正式evidence、統合artifact／releaseは未完・未主張である。これはPython component
 surfaceの局所実装完了であり、b6 method集合全体の`implemented`／`released`状態への昇格ではない。
 
+後続のdefault branch統合は`main@a30a37b15658da655fe1e3535a73fb0e80c06f56`で完了した。candidateとの
+全source tree差分はなく、clean main tarballで242/242件をPASSした。mainから再生成したwheel／sdistも
+candidate artifactとbyte-for-byte一致した。これはPython componentの統合完了であり、最終横断artifact set、
+公開、b6 releaseの完了を意味しない。
+
 ただしwire paramsの順序はb5共通fixtureとして先に固定する。`world.spawnParticle`は
 `[x,y,z,offset_x,offset_y,offset_z,particle,speed,count,(force)]`、`world.spawnEntity`は
 `[x,y,z,entity]`とする。force省略時は`true`である。Python APIを追加するときもparticle-first／

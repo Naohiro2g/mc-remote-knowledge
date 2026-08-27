@@ -155,3 +155,40 @@ tarへdependencyを足すことではなく、統合後のexact source identity�
 
 Tier 2 requested sliceはPASSした。Bridge OCI生成、default branch統合、正式release artifact freeze、公開releaseは
 引き続き未完である。観測target変更後の自動再開とlive `dropped_frames`はclient-only補足で、b6 coreをHOLDにしない。
+
+## 8. Default branch統合後のsource set
+
+2026-08-28、三repoのcandidateをdefault branchへ統合し、次を`b6-integrated-source-set-1`として固定した。
+これは**source identityの固定**であり、`b6-artifact-candidate-set-4`の成立や公開release artifact freezeを
+意味しない。set 1〜3のbytesとTier 2観測は履歴として保存し、統合後artifactへ黙って読み替えない。
+
+| component | default branch／統合後SHA | candidateとの関係 |
+| --- | --- | --- |
+| McRemote | `main@4e8f1ff1bd48bfa28c465f2dc24060fbb419317f` | `88d818703be5e7314bc1e45597a66237796db641`を包含。b6機能差分なし。main独自のsession token永続化fixを保持 |
+| Python | `main@a30a37b15658da655fe1e3535a73fb0e80c06f56` | `0ba22e80b9b1b339dfd11085b1b24cef646599b2`を包含し、全source tree差分なし |
+| Scratch／Bridge／WireScope | `develop@df9264ec355dd722a848df46e96d4b0fc9340ca2` | `24077ef005e4969bf3a7434b45532ae53cefbc28`をno-ff merge。conflict、手動編集、機能差分なし |
+
+McRemoteのcandidateとの差分は`CredentialService`／`CredentialStore`／`TokenStore`と関連test二件だけである。
+これはPR #6の`2978db56a93301cd85ed0393f1d0b985933d0096`で回復したsession token永続化で、
+`CredentialService.java`のblobは、b4で実機PASSした`3496db9293baa6e1d4f79439cacbd239ba15e2b7`、
+`2978db5…`、統合後mainの三者で同一である。統合後は`./gradlew clean test jar`を149/149件PASSし、
+JAR `mc-remote-1.21.11-2300.0.0b6.jar`のSHA-256
+`0ec8d4c0b105f3034361b260fc39fcb78013e932e684d34d5ca95c9a6c6a87a6`をcomponent担当が報告した。
+set 3のJAR `4e28603c…70e8`とはbyte列が異なるため、旧JARを最終artifactへ再利用しない。この新JARは
+coordinatorのdurable stagingへの返却と実runtime smokeをまだ終えていない。
+
+Pythonはmerge後mainのclean tarballで242/242件をPASSし、wheel／sdistを再生成した。生成物はset 1〜3の
+SHA-256 `0887807f…1877b`／`0507a10c…da3b`とbyte-for-byte一致した。最終setへ収容するときは、統合後mainからの
+再生成事実とbytesを結び直す。
+
+Scratchはprotocol 22/22、WireScope 130/130、Bridge 30/30、GUI 471件PASS＋既知1 skip、各lint／buildを
+PASSした。scratch-vmのaggregate報告は4003件中3998件PASSで、担当は残る2件を既知の並列resource競合、
+isolated 283/283件PASSと判定した。一方、総数との差5件のうち残り3件のstatus内訳が返却にないため、
+最終artifact freeze前にpassed／failed／skipped等のexact集計だけを補う。これは現時点で新規regressionを
+示すものとは扱わない。Scratch／WireScope artifactは統合後developから未生成である。
+
+次のartifact gateは、統合後sourceからJAR、wheel／sdist、GUI、WireScope ZIP／manifestを生成・durable stagingへ
+固定し、Bridgeは既決のmulti-arch OCIとして生成することである。GHCR pushを伴う現行workflowの実行は人間承認を
+待つ。McRemoteはcredential実装の既存PASSをchange cone外として再利用する一方、新JARでserver起動、credential
+`HEALTHY`、期限内session tokenの再起動継続、代表protocol 23呼出しを最小統合smokeする。sign／poke／browser保存／
+WireScopeの全Tier 2試験は繰り返さない。
