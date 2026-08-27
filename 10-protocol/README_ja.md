@@ -14,3 +14,6 @@ protocol は plugin・python-client・scratch-client の3つにまたがる共�
 旧b6 scopeの概念別分割、method成熟状態、Paper 26.x対応、rc／初回stableへの日程は
 [betaから初回stableまでのreleaseロードマップ](beta-to-stable-release-roadmap_ja.md)を参照する
 （DECISIONS `2026-08-26-08`）。
+
+b6 source candidateのTier 2入口で使うcanonical case、三repoの既存test対応、fixture化前のgapは
+[b6 compatibility fixture計画](b6-compatibility-fixture-plan_ja.md)を参照する。
