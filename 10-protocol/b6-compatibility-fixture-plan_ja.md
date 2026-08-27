@@ -1,11 +1,12 @@
 # b6 compatibility fixture 計画
 
-> 状態: 2026-08-27、Tier 2入口のsource監査結果。正本contractは
+> 状態: 2026-08-27、`b6-source-candidate-set-2`固定／owner fixture発行済み、
+> McRemote／Pythonへの同一case投影待ち。正本contractは
 > [wire format設計](wire-format-design_ja.md) §5.4／§5.8.1、
 > [versioning設計](versioning-design_ja.md) §10.11.4、DECISIONS
 > `2026-08-26-05`／`2026-08-26-06`／`2026-08-26-08`を正とし、fixture ownerは
-> `2026-08-27-02`で固定した。本書はcontractを増やさず、
-> `b6-source-candidate-set-1`の既存testとの対応、gap、次のfixture化範囲を示す。
+> `2026-08-27-02`で固定した。本書はcontractを増やさず、set 1の監査履歴、set 2の
+> owner fixture、各component testへの投影範囲を示す。
 
 ## 1. 目的と境界
 
@@ -23,7 +24,7 @@ b6の共有contractを、plugin／Python／Scratchの三実装が同じcaseと�
   **WireScope v1の非必須観測範囲**と扱う。signはScratch APIと実worldで確認し、WireScope E2Eは
   hello／`pickaxe_poke`／現行allowlist method／`dropped_frames`で行う。
 
-## 2. 監査したsource入力
+## 2. set 1で監査したsource入力
 
 | component | exact source | 監査した主なtest／fixture |
 | --- | --- | --- |
@@ -33,6 +34,9 @@ b6の共有contractを、plugin／Python／Scratchの三実装が同じcaseと�
 
 これはGitHub上の固定SHAをread-onlyで照合した結果である。搬送元が報告したPASS件数を
 横断PASSへ読み替えず、各testが何をassertするかだけを対応づけた。
+
+このset 1はgap発見時の比較基準として保持するが、release入力としてはset 2にsupersedeされた。
+set 2のexact sourceは§7を正とする。
 
 ## 3. canonical case 一覧
 
@@ -88,7 +92,7 @@ Scratch v1のwrite blockはstring shorthandだけを公開するため、Scratch
 positive fixtureの`hand`は現行plugin出力とScratch型に合わせ`main`／`off`を使う。現行wire説明が
 invalidなhandの拒否まで独立に固定していないため、このTier 2では未知handのnegative caseを追加しない。
 
-## 4. 現行testとの対応
+## 4. set 1監査時のtest対応
 
 | case群 | McRemote | Python | Scratch | 判定 |
 | --- | --- | --- | --- | --- |
@@ -155,3 +159,45 @@ Scratchの`events-v23.json`はprotocol packageとVMで共有されるが、McRem
 
 この順序を採る理由は、現在見つかった差分がScratch repo内のcontract mirrorとartifact identityに閉じ、
 plugin／Pythonのwire実装やsign contractの再設計を必要としないためである。
+
+## 7. source refresh結果とset 2
+
+Scratch担当はset 1から一commitだけ進めた
+`agent/b6-source-refresh@104f194deddc9c244e6e07c4223965c792551f9d`をpushし、次を閉じた。
+
+- `@mc-remote/protocol`へsign三method、`LineSpec`／`LineValue`、params／result、三つの
+  sign reasonとcode familyを追加した
+- owner fixtureとして`sign-v23.json`へ`B6-S01`〜`S07`、既存`events-v23.json`へ
+  `block_right_click`のlegacy rejection caseを追加した
+- VMの診断用`CLIENT_VERSION`を`2300.0.0b6`へ更新した
+- `spawn-v22.json`は履歴fixtureとして不変のまま、current positive handleを
+  `events-v23.json`の`mcr_eh_`例へ分離した
+
+coordinatorはGitHub上で親commitがset 1のScratch SHAであること、差分が申告された9 pathだけであること、
+fixture bytesと次のSHA-256が一致することを確認した。
+
+| owner fixture | SHA-256 |
+| --- | --- |
+| `mc-remote/protocol/test/fixtures/sign-v23.json` | `7ffb63c264602cba56117eefff1f9604b955df04c5cc655e877772b8ff7cd30e` |
+| `mc-remote/protocol/test/fixtures/events-v23.json` | `31760d267f3c2641042fbe8595fda9c259134a1c05423271a99cb74da1efa9aa` |
+
+Scratchの申告は`@mc-remote/protocol` 22/22、対象VM 416/416、protocol lint／build、
+Scratch VM／GUI build、変更範囲lint PASSである。実plugin E2E、artifact、default branch統合、releaseは
+未実施・未主張のまま維持する。
+
+これによりsource入力を次の`b6-source-candidate-set-2`へ固定する。
+
+| component | exact source |
+| --- | --- |
+| McRemote | `codex/b6-protocol23-cleanup@9b8b130808d8e1d1288f038dd04f738a86177e35` |
+| Python | `codex/b6-protocol23-python@69a160aecfc6cd346b3341cdf10007e2903b5207` |
+| Scratch | `agent/b6-source-refresh@104f194deddc9c244e6e07c4223965c792551f9d` |
+
+set 2はowner fixtureを各componentへ投影する入力であり、横断fixture PASSやartifact freezeではない。
+McRemote／Pythonが同じfixture bytesとcase IDをcomponent testへ投影して新SHAを返した時点で、
+set 2を比較基準として次のexact source setへ更新する。
+
+`events-v23.json`のcurrent handle例`mcr_eh_fixture-1`は、prefixとopaque保持を検査し、pluginの現行22文字
+suffixをclient共通contractにしないため意図的に発行例の長さへ固定していない。Python set 2のvalidatorは
+22文字以上を要求するため、このowner caseを読む投影で差分が表面化する。fixtureを22文字へ合わせて差分を
+隠さず、Python側を`B6-H03`へ整合させる。旧`mceh_`非受理は維持する。

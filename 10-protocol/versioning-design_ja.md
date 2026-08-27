@@ -579,6 +579,15 @@ Python `codex/b6-protocol23-python@69a160aecfc6cd346b3341cdf10007e2903b5207`、�
 release完了を意味しない。McRemoteの`9b8b1308…`は`af71e564…`へcontractコメント同期だけを加えたcurrent HEADで、
 cleanupの挙動は変えていない。
 
+同日のsource監査で見つかったScratch内のsign contract mirror、診断用version、current handle assertionのgapは、
+後続`agent/b6-source-refresh@104f194deddc9c244e6e07c4223965c792551f9d`で閉じた。
+`@mc-remote/protocol`のsign三method／型／reasonと`sign-v23.json`、`events-v23.json`のlegacy event
+rejectionを追加し、`CLIENT_VERSION=2300.0.0b6`、current handleを`mcr_eh_`へ揃えた。owner fixture二件の
+exact digestとScratchの局所PASSは`b6-compatibility-fixture-plan_ja.md` §7を正とする。これにより旧Scratch
+identityを含むsource set 1は監査履歴へ送り、McRemote／Pythonの上記SHAと本Scratch SHAを
+`b6-source-candidate-set-2`として固定する。ただしMcRemote／Pythonへの同一case投影、横断fixture PASS、
+artifact、live、default branch統合、releaseは未完であり、b6 method集合は`candidate`を維持する。
+
 b5 GREEN後にScratch保存の独立entry gateを置く。`.sb3`／`.sprite3`互換fixture、作品全体のIndexedDB
 lifecycle、一覧・復元・削除、quota、破損、migration、`.sb3`への退避を実装・試用する。これはb5 completion
 gateでもb6 protocol API scopeでもない。「b6 API本実装前」は依存と時期の目安で、b6 API完了待ちではない。
