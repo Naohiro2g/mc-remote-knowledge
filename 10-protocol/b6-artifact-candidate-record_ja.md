@@ -87,6 +87,11 @@ build環境の差だけでbyte列が変わった場合も、既存digestへ一�
 既存のPaper `1.21.11-132`、world、config、credential backendを維持し、現行b5 JARをrollback入力として
 `plugins`外へ保持してb6 JARだけを交換する。§3のworkstation側artifactも同じset identityでstageする。
 
+2026-08-27、七artifactをworkstationのdurable gate stagingへ配置して全digestを再照合し、server側は
+上記境界でb6 JAR一件へ交換した。Paper／McRemote version、credential `HEALTHY`、標準port、protocol 23の
+tokenなし／無効token hello否定パスをPASSした。これはserver runtime readinessであり、sign、poke、handle、
+Scratch／WireScopeの製品API横断PASSではない。
+
 runtime readiness後、少なくともhello identity、sign三操作、`pickaxe_poke`の一操作一event、
 `mcr_eh_` handle、WireScope表示filterと`dropped_frames`を実plugin接続で確認する。人間参加結果を
 release根拠へ使う場合は、sanitized formal evidenceを`14-evidence/`へ作る。
