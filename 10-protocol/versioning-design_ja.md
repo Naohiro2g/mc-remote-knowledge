@@ -602,6 +602,11 @@ owner順へ一致させ、全143/143 PASSを報告した。coordinator照合に�
 gateをPASSとする。これはsource／fixtureの収束であり、artifact、実plugin E2E、正式evidence、default branch統合、
 release完了ではないため、b6 method集合は引き続き`candidate`である。
 
+同じsource set 3から七つの未公開artifactを生成し、複数buildのbyte一致と返却物の再hashを経て
+`b6-artifact-candidate-set-1`へ固定した。exact name／size／SHA-256、toolchain、test、non-claimは
+[`b6 artifact candidate記録`](b6-artifact-candidate-record_ja.md)を正とする。これはTier 2投入用candidate
+bytesの固定であり、公開release artifact freezeではない。通常dev target選定と実plugin接続は後続gateである。
+
 b5 GREEN後にScratch保存の独立entry gateを置く。`.sb3`／`.sprite3`互換fixture、作品全体のIndexedDB
 lifecycle、一覧・復元・削除、quota、破損、migration、`.sb3`への退避を実装・試用する。これはb5 completion
 gateでもb6 protocol API scopeでもない。「b6 API本実装前」は依存と時期の目安で、b6 API完了待ちではない。

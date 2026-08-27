@@ -71,7 +71,10 @@ sign、`pickaxe_poke`、Pythonのprotocol 23／sign／`pickaxe_poke`／`mcr_eh_`
 sign errorの`data.allowed`順も`2026-08-27-03`で収束したため、共有fixture gateをPASSしました。現行source setは
 McRemote `88d818703be5e7314bc1e45597a66237796db641`、Python
 `0ba22e80b9b1b339dfd11085b1b24cef646599b2`、Scratch
-`104f194deddc9c244e6e07c4223965c792551f9d`です。正式evidence、統合artifact、releaseは別gateです。
+`104f194deddc9c244e6e07c4223965c792551f9d`です。このsetから未公開の
+`b6-artifact-candidate-set-1`を再現可能なbytesとして固定しました。exact artifact identityは
+[`b6 artifact candidate記録`](b6-artifact-candidate-record_ja.md)を正とします。通常devでの実plugin接続、
+正式evidence、default branch統合、公開releaseは別gateです。
 
 scratch-editor `agent/b6-wirescope-display-filter@3c199b08645306fc77441f59e89d5ebacbb9d836`は、Scratch VM、
 WireScope source adapter、`@mc-remote/live`のhandle検証を`mcr_eh_`へ揃え、旧`mceh_`を受けず、protocol
@@ -92,7 +95,8 @@ WireScope表示側filterはclient-onlyの独立companionです。b6に間に合�
 残る3件は既知の並列cascading timeoutとして単独118/118件をPASSしました。scratch-vm／scratch-gui build、
 変更範囲lint、`@mc-remote/live` 124/124件もPASS報告済みです。このidentityをScratch component candidateとして
 変更凍結しました。refreshではprotocol 22/22、対象VM 416/416、build／lintをPASSし、三repo共有fixture gateも
-PASSしましたが、実plugin接続、exact artifact、default branch統合、releaseは未実施・未主張です。
+PASSしました。exact candidate artifactは後続set 1として固定済みですが、実plugin接続、shared環境deploy、
+default branch統合、releaseは未実施・未主張です。
 個別candidateの履歴は実装由来として残し、横断gateの現行Scratch入力にはrefresh identityを使います。
 
 ### 3.2 b7 — direction

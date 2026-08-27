@@ -241,3 +241,15 @@ coordinatorがremote HEAD、親、変更path、固定literal、fixture二件のd
 
 このPASSはTier 0〜1のsource／fixture収束である。実plugin接続、candidate artifact、formal evidence、
 default branch統合、releaseを完了済みとはしない。
+
+## 10. artifact candidate set 1
+
+三担当はsource set 3を変更せず、McRemote JAR、Python wheel／sdist、Scratch GUI／Bridge／WireScopeを
+生成した。各担当の複数buildでbyte-for-byte一致し、coordinatorが返却された七ファイルのsize／SHA-256と
+埋め込みidentityを照合した。exact値は
+[`b6-artifact-candidate-set-1`](b6-artifact-candidate-record_ja.md)を正とする。
+
+これによりTier 2へ投入するcandidate bytesは固定できた。fixture PASSとartifact再現性は、実world mutation、
+一物理poke一event、腕振り、browser上のfilter／`dropped_frames`を証明しない。通常dev targetを固定し、
+このexact setをstageして実plugin接続pulseを行うまで、横断互換、formal evidence、public artifact freeze、
+default branch統合、releaseは未完である。
