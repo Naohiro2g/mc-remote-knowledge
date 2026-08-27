@@ -144,8 +144,8 @@ archive digest、package／lock identityも表と一致する。set 1／2のdire
 
 直前commit `7b4f71d71e8ecd665d402682e677dc4e425d160f`は実plugin＋local Bridgeのreal-browserで、pending pollの
 非点滅、空振りpoll継続中の選択／copy、非空poke pairの原子的表示、player groupのrequest／response一体切替を
-PASSした。後続`24077ef…`の表示一時停止はdeterministic sourceのreal-browserでPASSしたが、set 3のexact ZIPを
-実plugin接続中に再試験したとは主張しない。観測target変更後の自動再開も実browser未確認である。
+PASSした。後続`24077ef…`のcurrent checkoutでは、表示一時停止、Scratch sign text-only v1、作品／スプライトbrowser
+保存を同じ実plugin接続browserでPASSした。観測target変更後の自動再開とlive `dropped_frames`は未確認である。
 
 Bridge tarは`dist/config-*.js`からexternal dependency `ws`をimportする中間buildであり、単独deploy可能なrelease
 artifactではない。配布境界は新規設計せず、`2026-07-14-04`と既存Dockerfile／manual workflowどおり、`dist/`、
@@ -153,5 +153,5 @@ artifactではない。配布境界は新規設計せず、`2026-07-14-04`と既
 tarへdependencyを足すことではなく、統合後のexact source identityからOCI index／platform digest、SBOM／provenanceを
 生成・固定し、container smokeを通すことである。
 
-Scratch sign／browser保存のexact integrated artifact確認、Bridge OCI生成、default branch統合、正式release artifact
-freeze、公開releaseは引き続き未完である。WireScope表示filter／停止の未確認だけでb6 coreをHOLDにしない。
+Tier 2 requested sliceはPASSした。Bridge OCI生成、default branch統合、正式release artifact freeze、公開releaseは
+引き続き未完である。観測target変更後の自動再開とlive `dropped_frames`はclient-only補足で、b6 coreをHOLDにしない。

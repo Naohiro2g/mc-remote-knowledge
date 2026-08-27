@@ -492,7 +492,8 @@ player groupによる`player.getPos` request／responseの一体表示／非表�
 
 その子`24077ef005e4969bf3a7434b45532ae53cefbc28`は§14.5の表示停止を追加した。130/130件、lint／buildを維持し、
 deterministic sourceの実browserでtable固定、新着badge、copy、停止snapshotへのfilter／検索、最新windowへの一括再開を
-確認した。観測target変更後の自動再開と、実plugin接続中の表示停止は未確認である。生成した
+確認した。後続の実plugin接続browserでもtable固定、新着件数増加、選択／copy維持、最新windowへの一括再開を
+PASSした。観測target変更後の自動再開とlive `dropped_frames`は未確認である。生成した
 `wirescope-app.zip`は79,169 bytes／SHA-256
 `b3d6270299195d2c3db93c9d122938be6ae20d23e0f10e19afe3b0e99e3ca315`、detached manifestは2,321 bytes／
 SHA-256 `5fafdc54af45d8f498cd48b13590797eaaa6316adaf017a40595566f0f507b2e`である。GUI／Bridge、wire、observer

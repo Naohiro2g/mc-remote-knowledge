@@ -555,10 +555,16 @@ snapshotではtable bodyを再構築しない。130/130件、lint／buildをPASS
 
 後続`24077ef005e4969bf3a7434b45532ae53cefbc28`は各streamへclient-onlyの「表示を一時停止」を追加した。停止中も
 frame収集、poll、`dropped_frames`を継続し、停止snapshotへのfilter／検索、新着badge、最新windowへの一括再開を
-行う。停止stateは保存せず、観測target変更時に破棄する。deterministic sourceのreal-browserと130/130件、lint／buildを
-PASSしたが、実plugin接続中のpauseと観測target変更後の自動再開は未確認である（`2026-08-28-01`）。current WireScope artifactと
+行う。停止stateは保存せず、観測target変更時に破棄する。deterministic sourceのreal-browserと130/130件、lint／buildに
+加え、実plugin接続browserでもtable固定、新着件数、選択／copy、一括再開をPASSした。観測target変更後の自動再開と
+live `dropped_frames`は未確認である（`2026-08-28-01`）。current WireScope artifactと
 正式な検証境界は[WireScope設計](../15-wirescope/wirescope-deployment-design_ja.md) §14.5／§14.6および
 [formal record](../14-evidence/records/2026-08-28-b6-scratch-wirescope-live-human_ja.md)を参照する。
+
+同じcurrent checkoutの実browserで、Scratch sign text-only v1はfront四行replace、full readの文字／black／装飾なし／
+unwaxed、back index `2`だけのPATCHと他行／他面不変をPASSした。作品は自動保存→別tab復元→削除、スプライトは
+右クリック保存→別tab作品へ追加→削除、同一origin／browserの一覧共有をPASSし、試験用storage recordだけを清掃した。
+signが現行WireScope allowlistへ出ないことも既決境界どおりである。これによりb6 Scratch coreのTier 2実browser項目を閉じる。
 
 monitor-driven reporterには、monitor評価のthrottle、同一引数のin-flight request coalescing、
 disconnect時のcache破棄を設ける。明示的なscript callは毎回実行する。対象は

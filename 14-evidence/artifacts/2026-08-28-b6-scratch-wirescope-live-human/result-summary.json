@@ -1,7 +1,7 @@
 {
   "test_id": "2026-08-28-b6-scratch-wirescope-live-human",
   "test_class": ["unit/deterministic", "live-human"],
-  "result": "PARTIAL_PASS_GATE_OPEN",
+  "result": "PASS_TIER2_REQUESTED_SLICE_GATE_OPEN",
   "protocol": "23.0.0",
   "artifact": "2300.0.0b6",
   "candidate_set": "b6-artifact-candidate-set-3",
@@ -11,6 +11,7 @@
     "bridge_sha256": "11199a8e6966e8a5160411104934498657f4befd3d27a8fc25c88f51afa31c72"
   },
   "scratch_gui": {
+    "execution_checkout": "24077ef005e4969bf3a7434b45532ae53cefbc28",
     "source": "1d1b21d5acdbabdb596476c087c14033d5c33d32",
     "sha256": "1757f665b9c327985fdbd101a356a82926daa4a00361694ce5b059f78dda7ef5",
     "mini_dropdown": "PASS_REAL_BROWSER"
@@ -33,18 +34,35 @@
     "source": "24077ef005e4969bf3a7434b45532ae53cefbc28",
     "tests": "130_PASS",
     "deterministic_real_browser": "PASS",
-    "live_plugin": "NOT_EXECUTED",
+    "live_plugin": "PASS",
     "target_change_auto_resume": "NOT_EXECUTED_IN_BROWSER"
+  },
+  "scratch_sign": {
+    "set_sign_front_four_lines": "PASS",
+    "get_sign_text_black_no_decoration_unwaxed": "PASS",
+    "update_back_line_index_2_only": "PASS",
+    "other_lines_and_face_unchanged": "PASS",
+    "wirescope_sign_absence_under_current_allowlist": "PASS_EXPECTED"
+  },
+  "browser_storage": {
+    "project_save_list_cross_tab_restore_delete": "PASS",
+    "sprite_save_list_cross_tab_add_delete": "PASS",
+    "same_origin_same_browser_visibility": "PASS",
+    "test_records_deleted": true,
+    "preexisting_records_changed": false
+  },
+  "cleanup": {
+    "temporary_sign": "RETAINED_WITH_HUMAN_APPROVAL",
+    "browser_test_records": "DELETED"
   },
   "wirescope_artifact": {
     "zip_sha256": "b3d6270299195d2c3db93c9d122938be6ae20d23e0f10e19afe3b0e99e3ca315",
     "manifest_sha256": "5fafdc54af45d8f498cd48b13590797eaaa6316adaf017a40595566f0f507b2e"
   },
   "not_executed": [
-    "scratch_sign_real_plugin_round_trip",
-    "browser_storage_on_exact_integrated_gui",
-    "set3_wirescope_pause_with_live_plugin",
-    "bridge_dependency_complete_deployment",
+    "wirescope_target_change_auto_resume",
+    "live_dropped_frames",
+    "bridge_exact_oci_candidate",
     "default_branch_integration",
     "public_release"
   ]

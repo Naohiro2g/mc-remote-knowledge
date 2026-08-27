@@ -5,7 +5,7 @@
 - test ID: `2026-08-28-b6-scratch-wirescope-live-human`
 - test class: `unit/deterministic` + `live-human`
 - observed date: `2026-08-27`〜`2026-08-28` JST
-- result: **PARTIAL PASS / b6横断gateはOPENのまま**
+- result: **PASS（Tier 2 requested slice）／b6横断gateはOPENのまま**
 - protocol: `23.0.0`
 - artifact version: `2300.0.0b6`
 - predecessor: [`2026-08-27-b6-tier2-integration-pulse`](2026-08-27-b6-tier2-integration-pulse_ja.md)
@@ -30,10 +30,10 @@ WireScope sourceが変わったため、旧setのPASSを新artifactのPASSへ読
 | --- | --- | --- |
 | McRemote | source `88d818703be5e7314bc1e45597a66237796db641`／JAR SHA-256 `4e28603c…70e8` | set 1から不変。server runtime、sign／handle PASSを再利用 |
 | Python | source `0ba22e80b9b1b339dfd11085b1b24cef646599b2`／wheel SHA-256 `0887807f…1877b` | 本recordでは操作しない。先行PASSを再利用 |
-| Scratch GUI | source `1d1b21d5acdbabdb596476c087c14033d5c33d32`／GUI SHA-256 `1757f665…7ef5` | mini dropdown修正版 |
+| Scratch GUI | current checkout `24077ef005e4969bf3a7434b45532ae53cefbc28`／再利用GUI source `1d1b21d5acdbabdb596476c087c14033d5c33d32`／SHA-256 `1757f665…7ef5` | mini、sign、browser保存の実browser対象。`104f194d…`以後のGUI差分はmini CSSだけ |
 | Bridge | SHA-256 `11199a8e…31c72` | set 1からexact bytes再利用。local deployment設定だけを修正 |
 | WireScope live fix | source `7b4f71d71e8ecd665d402682e677dc4e425d160f` | 実plugin接続real-browserの観測対象 |
-| WireScope current | source `24077ef005e4969bf3a7434b45532ae53cefbc28` | 表示停止を追加したset 3 artifact。deterministic browserまで |
+| WireScope current | source `24077ef005e4969bf3a7434b45532ae53cefbc28` | 表示停止を追加したset 3 artifact。実plugin接続browserまでPASS |
 
 共有fixture、wire、protocol、plugin、Python、Bridge、Scratch VM API surfaceはchange cone外である。最終七artifactの
 identityは[b6 artifact candidate記録](../../10-protocol/b6-artifact-candidate-record_ja.md) §7.2を正とする。
@@ -66,6 +66,27 @@ private addressは本recordへ収録せず、source／artifact変更には数え
 responseはdimensionと三要素posを持ち、filter summaryは保持100 frame中表示2 frameだった。player groupをOFF／ONすると
 request／responseが一体で消える／戻ることを確認した。
 
+## Scratch signとbrowser保存
+
+current checkout `24077ef005…`のscratch-vm／scratch-gui buildを実pluginへ接続した。`104f194deddc9c244e6e07c4223965c792551f9d`
+からの差分は`mc-remote/live/*`とminiのCSSだけで、sign三操作とbrowser保存実装は変わっていない。試験用の未waxed看板で
+次をPASSした。
+
+- `world.setSign`相当blockでfront四行をplain textへ置換
+- `world.getSign`相当reporterとaccessorで四行、`color=black`、装飾なし、`waxed=false`を確認
+- `world.updateSignLine`相当blockでbackの3行目（wire index `2`）だけを変更
+- 再取得でfront四行とbackの他三行が不変
+- sign frameが現行WireScope allowlistへ出ないことを、既決の非観測境界どおり確認
+
+同じorigin／browserの二tabを使い、試験専用recordで次をPASSした。
+
+- 作品の自動保存、File menu一覧、別tabでの復元、削除
+- スプライト右クリック保存、File menu一覧、別tab作品への追加、削除
+- tab間の一覧共有
+
+試験用project／sprite各一件は削除し、既存保存物は変更しなかった。試験用看板は人間承認によりworldへ残し、原状回復を
+要求しない。
+
 ## pending poll不具合と修正
 
 空振りOFFでも、約1秒ごとの`events.poll` requestがresponse前に一瞬表示され、empty response到着後に消えた。
@@ -88,7 +109,8 @@ frame収集、poll、保持window、`dropped_frames`を止めない。新着件�
 再開時は最新windowへ一度だけ切り替える。停止stateは保存せず、観測target変更時に破棄する。
 
 130/130件、lint／buildをPASSし、deterministic sourceのreal-browserでtable固定、新着badge、copy、filter／検索、
-一括再開をPASSした。観測target変更後の自動再開と、実plugin接続中のpause操作は未実施・未主張である。
+一括再開をPASSした。後続の実plugin接続browserでも、table固定、新着件数増加、選択／copy維持、最新windowへの
+一括再開をPASSした。観測target変更後の自動再開とlive `dropped_frames`は未実施・未主張である。
 
 ## Current WireScope artifact
 
@@ -103,7 +125,7 @@ Bridge／plugin／Pythonを再利用した七fileを`b6-artifact-candidate-set-3
 ## Sanitized artifacts
 
 - [result-summary.json](../artifacts/2026-08-28-b6-scratch-wirescope-live-human/result-summary.json)
-  - SHA-256: `4df2d4ce46e5f7a9242c3a35884cb7e23a42d6aa29aec5d92c8b846ff4a40119`
+  - SHA-256: `119c1765a1fec418857ec56ee3aa5e5ae023245f7fe55cd88e9e11da3a7b1cd9`
 - [redactions.json](../artifacts/2026-08-28-b6-scratch-wirescope-live-human/redactions.json)
   - SHA-256: `a92f9456805153fd1f24f29b61d1696dd62b4e616b9b403218b5dd90aca0d85b`
 
@@ -111,20 +133,19 @@ raw token、pair code、private address、player UUID、server log、実座標�
 
 ## Gate conclusion
 
-`pickaxe_poke`の一操作一eventと腕振り、Scratch→Bridge→plugin→WireScopeの現行allowlist method、player filter、
-pending pollの原子的表示とcopy安定性はPASSした。mini dropdownも修正後GUIでPASSした。これらはb6 core wireを
-戻す差分ではなく、Scratch／WireScope client-only change coneで閉じた。
+`pickaxe_poke`の一操作一eventと腕振り、Scratch sign text-only v1、project／sprite browser保存、
+Scratch→Bridge→plugin→WireScopeの現行allowlist method、player filter、pending pollの原子的表示とcopy安定性、
+表示一時停止をPASSした。mini dropdownも修正後GUIでPASSした。Tier 2で要求したb6 coreの実browser項目は閉じた。
+これらはb6 core wireを戻す差分ではなく、Scratch／WireScope client-only change coneで閉じた。
 
-一方、set 3 exact ZIPの実plugin接続pause、`dropped_frames`の同接続での実値、Scratch text-only sign三操作、
-browser保存のexact integrated artifact操作、Bridge deploy package境界、default branch統合、releaseは未完である。
-表示filter／pauseはb6非blocking companionだが、sign／browser保存とartifact／統合gateが残るため、b6横断gateはOPENを維持する。
+一方、観測target変更後の自動再開とlive `dropped_frames`、Bridge exact OCI生成、default branch統合、最終artifact
+freeze、releaseは未完である。先頭二項目はclient-only補足でb6 core blockerにしないが、artifact／統合gateが残るため、
+b6横断gateはOPENを維持する。
 
 ## Non-claim
 
-- set 3 exact WireScope artifactの実plugin接続pause、観測target変更後の自動再開
-- Scratch sign三操作の実plugin round-trip
-- exact integrated GUIでのproject／sprite browser保存代表操作
+- 観測target変更後の自動再開、live `dropped_frames`
 - `sign_update_failed` stale競合、waxed sign
-- Bridge tar単独のdependency-complete deployment
+- Bridge exact OCI candidateの生成／container smoke
 - iPad／Safari、storage eviction、long soak、capacity
 - rollback実操作、default branch統合、公開artifact、tag、registry upload、b6 release
