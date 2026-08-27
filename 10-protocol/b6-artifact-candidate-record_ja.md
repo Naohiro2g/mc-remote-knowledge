@@ -83,10 +83,13 @@ build環境の差だけでbyte列が変わった場合も、既存digestへ一�
 
 ## 6. 次のgate
 
-通常dev integration targetと配置方法を固定し、§3のexact bytesをその環境へstageする。その後、少なくとも
-hello identity、sign三操作、`pickaxe_poke`の一操作一event、`mcr_eh_` handle、WireScope表示filterと
-`dropped_frames`を実plugin接続で確認する。人間参加結果をrelease根拠へ使う場合は、sanitized formal evidenceを
-`14-evidence/`へ作る。
+人間承認により通常dev integration targetを`m720s2`のhost-native `dev-integration`へ固定した。server側は
+既存のPaper `1.21.11-132`、world、config、credential backendを維持し、現行b5 JARをrollback入力として
+`plugins`外へ保持してb6 JARだけを交換する。§3のworkstation側artifactも同じset identityでstageする。
 
-target未固定のまま特定hostへdeployせず、公開release、tag、registry upload、default branch統合は
-このTier 2 pulseの結果をgate coordinatorへ返すまで行わない。
+runtime readiness後、少なくともhello identity、sign三操作、`pickaxe_poke`の一操作一event、
+`mcr_eh_` handle、WireScope表示filterと`dropped_frames`を実plugin接続で確認する。人間参加結果を
+release根拠へ使う場合は、sanitized formal evidenceを`14-evidence/`へ作る。
+
+公開release、tag、registry upload、default branch統合は、このTier 2 pulseの結果をgate coordinatorへ返すまで
+行わない。
