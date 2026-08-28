@@ -293,6 +293,12 @@ notice pane footerがdeploymentの`release_identity`を人間向けversion label
 `5df50144da13b1a1c8c23b01f2d0138ffd17b953`に当該footer／notice label修正があったため、
 official-public-betaには後続commitから再生成したScratch／Bridge OCIを使用した。
 
+修正はscratch-vmの`CLIENT_VERSION`を`client-version.js`へ切り出し、package top-levelから
+`MCREMOTE_CLIENT_VERSION`として公開する。scratch-guiのnotice overlayはこれを唯一の表示元として
+`McRemote Scratch {CLIENT_VERSION}`を導出し、footerのversionとnotice本文の`{version}` tokenへ使う。
+deployment入力の`release_identity`自体、helloの`client.version`、wire挙動は変更しない。Pages showcaseの
+固定disclaimerには日本語説明も併記した。
+
 | image／artifact | official-public-beta適用identity | set 4との関係 |
 | --- | --- | --- |
 | Scratch index | `ghcr.io/naohiro2g/mc-remote-scratch@sha256:84499b1b9874daa08fde4b485338b42830470f5787ce0ab7d9cc46a2b86e2d95` | sourceを`5df50144…`へ進めた後続修正版 |
@@ -306,6 +312,8 @@ official-public-betaには後続commitから再生成したScratch／Bridge OCI�
 `docker manifest inspect`で照合し、判断経緯と再生成は
 [PR #35](https://github.com/Naohiro2g/mc-remote-stack/pull/35)のcommit履歴、適用記録は
 [PR #36](https://github.com/Naohiro2g/mc-remote-stack/pull/36)のrunbook更新に記録された。
+scratch-editor側は対象unit、lint、scratch-vm／scratch-gui buildをPASSし、localhostとPages workflow
+run `33159351309`後の公開showcaseを人間確認したと報告した。
 
 これは**official-public-beta deploymentの適用時追補**であり、§10の`b6-artifact-candidate-set-4`、§11の
 Scratch tag target `df9264ec…`、GitHub prerelease notes、b6横断gateを後から別identityへ読み替えない。

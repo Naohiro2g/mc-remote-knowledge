@@ -137,6 +137,25 @@ local-bootstrap_ja.md を読んでから、以下の貢献作業票を処理し�
 
 渡さないもの: McRemote の release 期限／McRemote 固有の実装案／private SSOT の設計理由／McRemote でだけ成立する期待挙動。
 
+### 共有workflow／CI基盤へ貢献するときのbase repository境界
+
+共有workflowの問題はsource branchがforkにあるかでなく、**pull requestがどのrepositoryをbaseとしているか**で
+説明する。fork自身をbaseとするPRでは、コピーされたworkflowへScratch Foundationのorganization secretが継承されず、
+Foundation側へ記録するjobを実行できない。一方、forkのbranchからScratch Foundation repositoryをbaseとして送る
+upstream PRでは、公式base側のworkflowとsecret境界が使われ、公式のCLA確認を維持できる。
+
+この種の貢献PRでは、公開venueへ少なくともproblem、base別behavior、non-goals、validation、rollout scopeを記す。
+特に、既存署名、CLA文書／version、secret配布を変えないことと、同型workflowが複数repositoryへ個別配置されていても
+一件のmergeから自動伝播しないことを明示する。maintainerが望むrollout方法を確認する前に同種PRを一斉送信せず、
+McRemote forkへ先行適用して恒久差分にもせず、公式merge後の通常upstream追従という§3の一方向弁を維持する。
+
+公開例はscratchfoundation/scratch-agreements
+[PR #10](https://github.com/scratchfoundation/scratch-agreements/pull/10)と
+[follow-up](https://github.com/scratchfoundation/scratch-agreements/pull/10#issuecomment-5454390025)である。
+2026-08-29観測時点ではopen、head
+`1fd9438c0391469ec1936e6ce139f0323497691e`、mergeable state `clean`で、maintainerの回答とrollout方針を待つ。
+既存version 1署名とCLA文言修正を扱うPR #11は別論点であり、本境界から採否を推測しない。
+
 ### 貢献 → 追従（公式マージ後の戻し）
 
 ```markdown
