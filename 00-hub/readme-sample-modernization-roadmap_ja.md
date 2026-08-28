@@ -48,9 +48,20 @@ build／contribution情報へ明確に接続する。
 | application | 複数APIで意味のある体験を作る | 建築、walkthrough、HUD、3D turtle |
 | reconstruction | 用意された機能を自分のcodeで作り直す | helper、class、module、Scratch定義block |
 
-各sampleは、対象release／protocol、前提、実行方法、期待結果、実worldを変更するかplayerだけの表示か、cleanup、
-利用するMcRemote API、関連するPaper capabilityを短いmetadataまたはREADMEで示す。複数言語で同じsampleを
-機械的に複製せず、その言語で自然な入口と学習目的を明記する。
+各sampleは、最小protocol／client package版、確認したMinecraft／Paper target、前提、実行方法、期待結果、
+実worldを変更するかplayerだけの表示か、cleanup、利用するMcRemote API、実現位置と成熟状態、関連するPaper
+capabilityを短いmetadataまたはREADMEで示す。`DEBUG`／`TRACE`／`FAST`の実行modeと、`REAL`／`PREVIEW`／
+`PYGAME`等の出力先は別fieldにする。複数言語で同じsampleを機械的に複製せず、その言語で自然な入口と学習目的を
+明記する。
+
+昇格済みAPIのsampleは薄い呼出例だけで終えず、必要に応じて小さい操作から同じ機能を作るreconstruction sampleを
+併置する。下流prototypeをpluginへ昇格した後も、旧prototypeを第二のproduction実装として永久保守する必要はない。
+比較教材として残す場合は対象版と非推奨／教材用の状態を明示する。
+
+rcまでのparticle／effect sampleは互換性の差を順に見せる。b6／protocol 23.0から既存の単点
+`world.spawnParticle`、b7／23.1から`strikeLightningEffect`、b8／23.2からreceiver／typed dataを使うPython
+3D graph、b9／23.3を発行した場合だけbatch版を置く。b8の単点版はb9後もreconstruction／性能比較sampleとして
+残せるが、対象protocolと推奨用途を明示する。Scratch版は別trackで追従し、Python版との同時公開を必須にしない。
 
 ## 5. 進め方
 
@@ -62,7 +73,8 @@ build／contribution情報へ明確に接続する。
 
 ### Pass B — b8からAPI freeze
 
-- sign、event、direction／navigation、entity、preview等をconcept sampleへ整理する。
+- sign、event、direction／navigation、entity、lightning、particle／3D graph、preview等をconcept／application
+  sampleへ整理する。b8の単点particle sampleは、条件付きb9 batchを採るか判断する実測入力にもする。
 - Python、Scratch、plugin／wireのどこで実現しているかを、利用者向け説明を壊さない小さな注記で追えるようにする。
 - Stack、knowledgeを含む残READMEの入口とrepo間linkを揃える。
 

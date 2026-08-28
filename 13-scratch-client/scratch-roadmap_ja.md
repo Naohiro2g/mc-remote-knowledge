@@ -477,9 +477,12 @@ b5／b6の横断scopeはDECISIONS `2026-08-16-04`〜`07`／`2026-08-26-06`と
   初期Scratch write surfaceは正式`LineSpec`のplain string shorthandだけを公開し、色／装飾object書込みは
   まだ出さない。これはwire contractの変更や欠落でなく、ブラウザでblock面を確認して人間承認したsurfaceの
   絞り込みである。readはfull `LineValue`を失わない。
-- b7／protocol 23.1はplayer／entity directionのget／set、b8／23.2はnearby／entity pose／removeを
-  get／setで分割しない概念別sliceとする。Scratch blockのexact label、menu、reporter／command形は各wire
-  contract lock後に固定し、raw UUIDやcomma-separated valueを旧実装から持ち込まない。
+- b7／protocol 23.1はplayer／entity directionのget／setと`world.strikeLightningEffect`、b8／23.2は
+  nearby／entity pose／removeとparticle receiver／typed dataを扱う。get／setをbeta間で分割しない。
+  particleのb7 Stage 1はplugin内部の`ParticleBuilder`移行だけなのでScratch surfaceを変えない。b8では
+  protocol mirrorと互換認識を先に揃えられるが、学習者向けparticle blockは別trackで追従し、plugin／Pythonの
+  b8 releaseを自動的にHOLDしない。Scratch blockのexact label、menu、reporter／command形は各wire contract
+  lock後に固定し、raw UUIDやcomma-separated valueを旧実装から持ち込まない。
 
 `world.spawnEntity`のhandleは副作用と同じresponseから原子的に受け取る。共有の`last entity` reporterは
 作らない。副作用reporterをmonitor不能にできるruntimeではreporterを優先し、保証できない場合は
@@ -506,7 +509,7 @@ protocol 23のevent置換candidate `e6b0d35cd2`はpush済みで、`@mc-remote/pr
 PASSしたと報告された。VM integration全1389件中2件は並列実行時だけ失敗し、個別再実行ではPASSしたため、
 本sliceと無関係な環境flakinessという搬送元判定を記録するが、full regression PASSへは数えない。実pluginとの
 live-human、正式evidence、default branch統合、公開artifact／releaseは未実施・未主張である。機能実現の
-三層モデルは本event置換の追加実装を要求せず、既存のplugin API一操作をScratchへ投影する位置づけを維持する。
+位置と昇格モデルは本event置換の追加実装を要求せず、既存のplugin API一操作をScratchへ投影する位置づけを維持する。
 sign三操作candidate
 `agent/b6-pickaxe-poke@9dbdc1aeb00e9873cf0eb4de226c11acb4ea0cb4`は、新規`SignInfoText`、
 `getSign`／`setSign`／`updateSignLine` block、read accessor、面／行／装飾menu、sign固有wire error reason、

@@ -476,6 +476,15 @@ canonical ID、型、値域、permission、capacity、chunk／work admissionを�
 `minecraft:cow`等へfallbackしない。particle-first／entity-firstを型で自動判別する経路やunion handlerを
 作らない（`2026-08-21-01`）。
 
+particle実装は`2026-08-29-02`に従い三段階で移す。b7 Stage 1は同じ検証済みDTOとwire意味論のまま、Paper側の
+実行だけを`ParticleBuilder`へ置換する。receiver、source、data、既定値、result／errorをこのrefactorで変えず、
+1.21.11／26.2の双方で既存particle描画を確認する。b8 Stage 2で初めてreceiver選択と有限typed dataをcontractし、
+明示receiverへ絞る場合はplayerのvanish／visibilityを壊さない`source`の扱いも実装試験する。b9 Stage 3はb8と
+同じspecを使うbounded batchだけを候補とし、builder再利用をwire batchやpacket削減と同義にしない。
+
+`world.strikeLightningEffect`はb7の別methodとして扱う。Paperのdamageなし保証を越えて無副作用とみなさず、
+fire、lightning rod、event、音／可視範囲を実機で観察し、rate／work admissionをeffect実行前に行う。
+
 `backpressure`は副作用前の一時的拒否、`work_limit_exceeded`は入力縮小が必要な拒否、
 `entity_capacity_exhausted`はhandle capacity拒否である。副作用開始後に結果を確定できない場合は
 `internal_error`とし、spawn後のresponse喪失を含めclientへ自動retryを許さない。

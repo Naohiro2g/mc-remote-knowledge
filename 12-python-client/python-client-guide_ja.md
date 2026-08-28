@@ -411,7 +411,10 @@ foreign／unknownをclient側で区別しない。`backpressure`だけを「後�
 b5では`events.poll`、`world.getHeight`、`world.spawnParticle`、`world.spawnEntity`を同じwire contractへ
 薄く投影する。b6は`pickaxe_poke`とsign三操作、b7はplayer／entityのdirection get／set、b8は
 `world.getNearbyEntities`と`entity.getPose`／`setPose`／`remove`を概念別の縦sliceとして追加する。
-event filter／clear、typed particleは条件付きb9以降のcandidateである。exact Python method signatureと
+さらにb7は`world.strikeLightningEffect`を投影し、particleのPaper `ParticleBuilder`内部移行はPython surfaceを
+変えない。b8はreceiver選択と有限typed particle dataをPythonへ追加し、3D graphのapplication sampleを受入入力に
+する。条件付きb9はb8と同じparticle specを使うbounded batchだけを候補とし、単点`FAST`で十分なら追加しない。
+Scratchの学習者向けsurfaceは別trackで追従でき、Python実装の完了条件へ含めない。exact Python method signatureと
 戻り型は共通wire fixtureとplugin実装を入力に固定し、knowledgeだけからkwargsや独自型を推測しない。
 
 Pythonのb6 surfaceは`codex/b6-protocol23-python@0ba22e80b9b1b339dfd11085b1b24cef646599b2`で

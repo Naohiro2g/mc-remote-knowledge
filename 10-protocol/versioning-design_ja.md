@@ -514,10 +514,11 @@ b6 は b5 基盤上の中規模 API 追加に限定し、新しいtransport、qu
 protocol 22を名乗るb5 clientとb6 pluginの混在を黙って壊さないため、b6全体をprotocol 23へ移す。
 b5 tag／JARを差し替えず、22内で同名eventの意味論を狭めない（`2026-08-26-06`）。
 
-機能実現の三層モデルはb6で完成させる対象でなく、実装→カリキュラム策定→実際の学習者との学び→改訂を
-後続releaseへつなぐ長期の評価軸とする。b6では単純／最小単位の操作を主軸にするが、高級／低級の序列や
-高機能packageの一律除外規則にはしない。API文書は実現位置、操作意味論、操作範囲、server保証、想定学習経路を
-区別し、重複実装の中から案内する経路を明示する（`2026-08-26-03`／`2026-08-26-04`）。
+機能実現の位置と昇格モデルは一releaseで完成させず、実装→カリキュラム策定→実際の学習者との学び→改訂を
+後続releaseへつなぐ長期の評価軸とする。Paper API、plugin／wire、client surface、ユーザーコードを固定ownerの
+階層にせず、下流prototypeから共通意味、server保証、性能が必要なものを昇格できる。production実装の常設重複を
+必須にせず、昇格後の構成過程はsample／教材で再構成できる。API文書は実現位置、操作意味論、操作範囲、server保証、
+成熟状態、想定学習経路を区別する（`2026-08-29-01`）。
 
 - `pickaxe_poke`（protocol 22の`block_right_click`を置換。`ITEMS_PICKAXES` gate、旧payload＋`item`）
 - `world.getSign`／`world.setSign`／`world.updateSignLine`（read／replace／面＋行一件のPATCHを比較するsign slice）
@@ -642,13 +643,16 @@ exact ring／handle／poll／particle／work／buffer／timeout上限はruntime 
 実環境で本較正する。OS clipboardによるブロック移送は保存entry gateへ自動追加せず、ブラウザ保存スプライトの
 運用評価後まで`deferred`とする（`2026-08-26-01`）。
 
-b7はprotocol `23.1.0`／artifact `2301.0.0b7`のdirection sliceとし、
-`player.getDirection`／`setDirection`／`entity.getDirection`／`setDirection`を一組で扱う。b8はprotocol
-`23.2.0`／artifact `2302.0.0b8`のentity lifecycle sliceとし、`world.getNearbyEntities`／
-`entity.getPose`／`setPose`／`remove`を一組で扱う。get／setをbeta間で機械的に分割しない。
-条件付きb9はprotocol `23.3.0`／artifact `2303.0.0b9`とし、9月中旬に初回stable必須と判定した
-自己完結slice一つだけへ使う。使わなければ初回stable coreは`2302.0.0`、使えば`2303.0.0`である。
-9月末に新API追加を止め、10月rc、11月初回stableへ進む（`2026-08-26-08`）。
+b7はprotocol `23.1.0`／artifact `2301.0.0b7`とし、direction四methodを一組で扱い、
+`world.strikeLightningEffect`を加える。既存`world.spawnParticle`のPaper `ParticleBuilder`への内部移行はwire不変の
+Stage 1として同梱し、それ自体をprotocol変更理由にしない。b8はprotocol `23.2.0`／artifact `2302.0.0b8`とし、
+entity lifecycle四methodを一組で扱うほか、既存particleの意味を保つ後方互換なreceiver選択／有限typed dataを
+Stage 2として追加し、Python surfaceと3D graph sampleで検証する。get／setをbeta間で機械的に分割しない。
+
+条件付きb9はprotocol `23.3.0`／artifact `2303.0.0b9`とし、b8と同じparticle specを使うbounded batchだけを
+候補にする。b8実測で単点RPCが律速になり初回stable必須と判断した場合だけ使い、追加particle type、追加receiver、
+event filter／clear等の残件を同梱しない。使わなければ初回stable coreは`2302.0.0`、使えば`2303.0.0`である。
+9月末に新API追加を止め、10月rc、11月初回stableへ進む（`2026-08-29-02`）。
 
 ### 10.12 pre-release 状態は明示操作（自動認識は PyPI のみ）
 

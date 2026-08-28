@@ -389,12 +389,24 @@ handle発行をしない。一覧は`handle`／canonical `type`／`pos`を持つ
 個別getterに任せる。`entity.remove`成功時はhandleを即時失効する。exact params／result shapeはb8 contractを
 実装前に固定する。
 
-sign APIは`world.getSign`、`world.setSign`、`world.updateSignLine`をb6へ配置する。三層モデルのread／replace／
+sign APIは`world.getSign`、`world.setSign`、`world.updateSignLine`をb6へ配置する。位置と昇格モデルのread／replace／
 最小PATCHを比較する一組だが、GET＋PUTによるclient／ユーザーコードの合成も有効な学習経路として残す
 （DECISIONS `2026-08-26-03`〜`05`）。exact contractは§5.8.1を正とする。
 
-typed particle dataは条件付きb9以降のcandidateとする。採用時もdustとblock stateの有限schemaだけを扱い、
-任意Java objectの直列化とitem particleを同じsliceへ入れない。
+`world.strikeLightningEffect`はb7／protocol 23.1.0へ置く追加method候補とする。damageなしというPaper APIの
+公開意味だけを採用理由とし、params／result、rate／work limit、fire、lightning rod、event、音／可視範囲は
+contract lockと実機確認まで推測しない。
+
+particleは三段階で進める。b7 Stage 1は既存`world.spawnParticle` handlerをPaper `ParticleBuilder`へ内部移行する
+だけで、§5.7のwire、既定receiver、result／errorを変えない。b8 Stage 2は既存のdata不要particle文字列をshorthand、
+既定receiverをworldのまま保ち、receiverの`self`候補とdust色＋size／block `BlockSpec`の有限typed dataを
+後方互換に追加する。任意player一覧、UUID、任意Java object、item、transition、trail、vibrationを同じsliceへ
+入れない。既存methodの拡張か別methodか、exact `ReceiverSpec`／`ParticleSpec`、result／error／capはb8 contract
+lockで固定し、本節から推測しない。
+
+条件付きb9 Stage 3は、b8と同じspecを複数点へ適用するbounded batchだけを候補とする。全入力の事前検証、
+point／byte／work／receiver fan-out上限、少なくとも`points × receivers`を反映するcost、受理規模を観察できる
+resultを要求する。b8の単点`FAST`＋Python 3D graphで十分ならb9を使わずrc後へ送る。
 
 #### 5.8.1 sign exact contract
 

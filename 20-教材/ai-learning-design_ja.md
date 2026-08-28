@@ -394,30 +394,34 @@ archive link を解決扱いにしない。
 
 ---
 
-## 14. 機能実現の三層モデル
+## 14. 機能実現の位置と昇格モデル
 
 出典: McRemote dev session（`world.setSign`設計対話、2026-08-24〜26）からの文書素材を
-`2026-08-26-03`で確定した。技術側の関連契約は
+`2026-08-26-03`／`2026-08-26-04`で確定した三層モデルを、実装とsampleの関係まで含めて
+`2026-08-29-01`で改訂した。技術側の関連契約は
 [10-protocol/wire-format-design](../10-protocol/wire-format-design_ja.md) §5.8、no-merge方針は
 `2026-08-19-02`。並行実行の教育哲学は §11、3年間カリキュラムのAPI層diagramは §12 を参照する。
 
-### 三層は「どこで実現するか」であり、高級／低級の階段ではない
+### 位置は高級／低級の階段でも、固定ownerの層でもない
 
-同じ機能を、次の三つの実現位置に置ける。
+同じ機能を、次の位置で発見、試作、実装、投影できる。
 
-1. **server／plugin API層**: Paper pluginがwire methodとして実行し、server上で結果を保証する位置。
+1. **Paper API**: Minecraft serverが持つ上流capability。McRemote利用者へ直接公開するsurfaceではなく、
+   plugin実装が使える事実と制約の源である。
+2. **McRemote plugin／wire**: Paper capabilityをwire methodとして実行し、server上で結果を保証する位置。
    認可、atomicity、共有worldの並行更新、有限work、全client共通の正準意味論を所有できる。
-2. **client API層**: Python libraryやScratch extensionが利用者へ公開する位置。単一wire methodの薄い投影も、
+3. **client surface**: Pythonの`mc_remote` moduleやScratch extensionが利用者へ公開する位置。単一wire methodの薄い投影も、
    複数methodの合成、型や表現の変換、学習者向けの語彙も置ける。
-3. **ユーザーコード層**: コードを書く人がPythonの関数／classやScratchのscript／定義blockとして実現する位置。
+4. **ユーザーコード**: コードを書く人がPythonのmodule／class／function／scriptやScratchのscript／定義blockとして実現する位置。
    課題固有の手順、実験、再利用部品、学習者自身のAPIを置ける。
 
-三層は排他的な所有区分ではない。**同じ概念が三層すべてに重複して存在してよい**。用意されたScratch blockで
-全体像を先に掴み、同じ動作をユーザーコードで組み直し、必要ならclient APIやplugin APIの実装へ進む、という
-複数の学習経路を同時に残す。ある層で実現できることは、他の層へ置かない理由にはならない。
+位置は排他的な所有区分ではない。同じ概念が複数位置に一時的または恒久的に存在してよいが、**production実装の
+常設重複を学習価値そのものとして要求しない**。用意されたScratch blockで全体像を先に掴み、同じ動作を
+ユーザーコードで組み直し、必要ならclientやpluginの実装へ進む学習経路は、実装を複製し続けなくてもsample、
+教材、source、test、WireScopeから示せる。
 
-この意味で「API三層」とは呼ばない。ユーザーコードは必ずしもAPIではなく、「三層責務」も機能を一層だけへ
-割り当てる印象を生む。正称を**機能実現の三層モデル**とし、「責務」は各層が保証すべき性質を述べる時だけ使う。
+この意味で「API三層」や「三層責務」とは呼ばない。Paper APIを加えると三層ではなく、sample／教材は実行位置を
+横断する。正称を**機能実現の位置と昇格モデル**とし、「責務」は各位置が保証すべき性質を述べる時だけ使う。
 
 ### 利用者から見える境界
 
@@ -427,13 +431,13 @@ Python利用者に見える`mc.foo()`はclient APIのsurfaceである。その�
 
 Scratchでも、McRemote extensionのblockはclient APIのsurfaceだが、そのblockがpluginへ一回送信するか、
 client内で複数操作を合成するかは初学者から見えなくてよい。Scratchの「ブロック定義」や組み合わせたscriptは
-ユーザーコード層に当たる。実現位置を観察する必要が生じた段階では、教材説明、source、test、WireScopeを使って
+ユーザーコードの位置に当たる。実現位置を観察する必要が生じた段階では、教材説明、source、test、WireScopeを使って
 境界を明らかにし、見た目の記法から推測させない。
 
 ### 操作の粒度・意味のまとまりは別軸
 
 server／client／ユーザーコードという実現位置と、APIの「細かさ」「人間に近い意味」「複合度」は直交する。
-server APIを「原始的」「低級」、client APIやユーザーコードを「高級」とは定義しない。各層に、単一対象の操作、
+server APIを「原始的」「低級」、client APIやユーザーコードを「高級」とは定義しない。各位置に、単一対象の操作、
 複数対象の一括操作、Minecraftの目的語彙、教材や作品固有の語彙が混在し得る。
 
 例えば次は配置を考えるための例であり、同名methodの採用を決める表ではない。
@@ -450,18 +454,20 @@ server APIを「原始的」「低級」、client APIやユーザーコードを
 `setBlocks`のようにserver APIでありながら多数の変更を束ねる操作を説明できない。設計時は少なくとも、
 **実現位置**、**何回・何対象を束ねるか**、**どの利用者概念を名前にするか**を別々に記録する。
 
-### 三層間の関係
+### 位置間の移動と昇格
 
 - **委譲**: client APIが同じ意味のplugin methodを一回呼ぶ。
 - **合成**: client APIまたはユーザーコードが複数操作から新しい意味を作る。
-- **併存**: 用意されたAPIがあっても、学習者が同じ機能を自分で再実装できる。
-- **昇格**: 繰り返し使う合成をclientまたはpluginへ追加する。便利だから自動昇格するのではなく、必要な保証で決める。
+- **prototype**: user／client位置で、名前、粒度、使い方を短く試す。
+- **昇格**: 観察済みの合成をclientまたはpluginへ移し、共通の意味や保証を持たせる。
+- **再構成**: 昇格後の機能をsampleや教材で小さい操作から作り直し、実現過程を学べるようにする。
 
-plugin層へ置く主な理由は、serverでのatomicity、認可、共有状態の競合制御、性能・有限性、全client共通の意味、
-clientからは安全に実現できないcapabilityである。client層へ置く主な理由は、Python／Scratchごとの自然な表現、
-発見しやすさ、定型的な安全な合成、教材上の足場である。ユーザーコードへ置く主な理由は、組み合わせること自体が
-学習対象であること、作品固有であること、まだ共通APIへ固定する段階でないことである。複数の理由が成立すれば、
-複数層へ置いてよい。
+昇格の既定順は規則でなく、**発見→下流prototype→比較・学習→意味の正準化→必要な位置へ昇格→薄い投影→
+再構成sample**である。pluginへ上げる主な理由は、server-only capability、atomicity、認可、共有状態の競合制御、
+性能・有限性、複数言語に共通する意味、共通lifecycle／復旧である。clientへ置く主な理由は、Python／Scratchごとの
+自然な表現、発見しやすさ、素早いprototype、定型的な安全な合成である。ユーザーコードへ置く主な理由は、
+組み合わせ自体が学習対象、作品固有、または共通APIへ固定する前であることだ。便利というだけでは昇格せず、
+複数位置に残す場合は、互換性、段階移行、教材比較など残す理由を明記する。
 
 ### MCPIは出発点であって上限ではない
 
@@ -469,7 +475,7 @@ Raspberry Pi Edition向けMCPIは、小さいMinecraft APIとPython clientを用
 ユーザーコードへ広く委ねた。この簡潔さと、自分で組み立てられる余地はMcRemoteでも重要である。一方、MCPIで
 server APIになかったことだけを理由に、client APIやplugin APIへの追加を退けない。`updateBlock`／`modifyBlock`、
 対象別操作、教材用の語彙を検討することは、歴史からの逸脱ではなく、現在の並行実行、複数client、観察可能性、
-学習経路に合わせて三層の配置を選び直すことである。
+学習経路と必要な保証に合わせて実現位置を選び直すことである。
 
 ### PUTとPATCHという二つの正当なメンタルモデル
 
@@ -481,7 +487,7 @@ GET＋PUTをclient APIまたはユーザーコードで合成すればPATCH的�
 読み書きを理解する題材にもなる。一方、Scratchの並行scriptなどで複数処理が同じ対象を更新すると、GETからPUTまでに
 他の変更を上書きするlost updateが起こり得る。server側PATCHはatomicityと全client共通の意味を持てる。
 
-したがって、PATCHをどの層へ置くかは高級／低級や便利さだけで決めず、学習価値、競合、正準意味論、対象範囲から
+したがって、PATCHをどの位置へ置くかは高級／低級や便利さだけで決めず、学習価値、競合、正準意味論、対象範囲から
 決める。`2026-08-19-02`のno-mergeは`BlockSpec`の入力契約を固定した判断であり、別methodとしてのPATCHを永久に
 禁止する一般原則ではない。
 
@@ -492,18 +498,19 @@ Python学習者は`Door.open`を使うことも、`getBlock`＋`setBlock`から�
 できる。さらに進めばplugin側のatomicityやwire contractを扱える。これは一方向に高級から低級へ降りる階段ではなく、
 同じ概念を異なる実現位置から作り直して理解する経路である。
 
-PUTのみ、GET＋PUT、PATCHという提示順は操作意味論の学習候補であり、三層の順序とは別である。`buildPyramid`、
+PUTのみ、GET＋PUT、PATCHという提示順は操作意味論の学習候補であり、実現位置の順序とは別である。`buildPyramid`、
 `updateSign`、`postToChat`等の語彙も単一の高級／低級尺度へ並べず、学習目標ごとに入口を選ぶ。
 
-### ロードマップは完成表でなく、学習を含む反復の時間軸
+### 実装者も学習過程にあり、実体は過渡状態を持つ
 
-機能実現の三層モデルを完全に解くには、APIを実装するだけでは足りない。**実装→カリキュラム策定→実際の
+機能実現の位置と昇格モデルを完全に解くには、APIを実装するだけでは足りない。**実装→カリキュラム策定→実際の
 学習者との学び→設計改訂**を複数releaseにわたって反復する。releaseはモデルの完成を宣言する節目でなく、
 配置と学習経路の仮説を、使って観察できる形で届ける節目である。したがって、カリキュラム全体の確定や長期の
 学習者観察をb6のcompletion条件にはしない。一方、後で調べられるよう、何を試そうとしたかと非主張を残す。
 
-三層で同じ機能を重複して実現できることは選択肢を増やすが、入口を列挙するだけでは進む道を見えにくくする。
-教材は課題ごとに、少なくとも次の経路から適切な入口と次の移動先を案内する。
+実装者自身も常に学習過程にあり、code、README、sample、教材はその時点の理解を反映する。下流prototype、昇格済み
+method、旧helper、教材用再構成が一時的に混在することを失敗とみなさず、各実体の状態と推奨経路を明示する。
+同じ機能のproduction実装を無目的に重ねると入口を見えにくくするため、教材は課題ごとに次を案内する。
 
 - 用意されたAPIやScratch blockを使い、まずMinecraft上の概念と結果を掴む。
 - 小さい操作からユーザーコードで組み立て、状態、手順、再利用を学ぶ。
@@ -514,8 +521,14 @@ PUTのみ、GET＋PUT、PATCHという提示順は操作意味論の学習候補
 
 API文書と教材では、各機能を名前だけの一覧にせず、少なくとも**実現位置**、**操作意味論**（read／replace／
 update／action／composite等）、**操作範囲**（一行、一対象、複数対象等）、**serverが保証する性質**、
-**想定する学習経路**を構造的に区別する。exactなtag schemaはAPI文書の生成方式とともに後続設計できるが、
+**想定する学習経路**、**成熟状態**（prototype／canonical／thin projection／reconstruction等）を構造的に区別する。
+exactなtag schemaはAPI文書の生成方式とともに後続設計できるが、
 これらの分類を説明文の中へ埋没させない。
+
+sampleは少なくとも、必要なprotocol／client版、確認したMinecraft／Paper target、実現位置、実worldを変えるか
+playerだけの一時表示か、cleanup、期待結果を示す。言語は別軸であり、同じsampleを全言語へ機械複製しない。
+また、`DEBUG`／`TRACE`／`FAST`の実行modeと、`REAL`／`PREVIEW`／`PYGAME`等の出力先を別軸として扱う。
+例えば同じ建築関数をreal world、player限定preview、pygameへ向けられることは、実現位置の重複ではない。
 
 ### b6で置くsignの観察単位
 
@@ -529,18 +542,20 @@ b6では単純で最小単位の操作を主軸にしつつ、signについて�
 
 sign lineの入力は裸文字列または`{text,color?,decorations?}`とし、`decorations`は`bold`／`italic`／
 `underlined`／`strikethrough`／`obfuscated`の5 tokenを配列で扱う。個別boolean fieldや任意JSON Componentは
-対象外に保つ。この一組は三層モデルを実証済みにする完成解ではなく、
+対象外に保つ。この一組は位置と昇格モデルを実証済みにする完成解ではなく、
 GET＋PUTで組む経路とserver側PATCHを比べ、Python／Scratchのsurfaceや教材でどう見せるかを判断する材料である。
 
 b6で小さい操作を主にすることも、高級／低級の序列ではない。見え方、見せ方、必要なserver保証、学習上の
-役割が明確なら、高機能packageを同じreleaseへ含められる。逆に便利そうというだけで三層すべてへ重複実装せず、
+役割が明確なら、高機能packageを同じreleaseへ含められる。逆に便利そうというだけで全位置へ重複実装せず、
 release後の観察を次の配置判断へ戻す。
 
 ### この節が主張しないこと
 
-- すべての機能を三層へ重複実装することを必須にしない。
+- すべての機能を複数位置へ重複実装することを必須にしない。
+- 一度pluginへ昇格した機能を、client／ユーザーコードから再構成してはいけないとはしない。
 - `world.updateBlock`、`world.updateSign`、`Door.open`、`buildPyramid`という具体的APIの採用を確定しない。
 - `mc.`の有無を、plugin実装かclient合成かを判定する規則にしない。
 - PUT／GET＋PUT／PATCHの順を教材progressionへ自動適用しない。
 - sign三操作の採用だけから、Python／Scratchへ同じsurfaceを必須化しない。
-- b6で機能実現の三層モデルが完成または実証済みになるとは主張しない。
+- 実現位置、言語、実行mode、出力先、sample段階を一つの軸へ畳まない。
+- b6で位置と昇格モデルが完成または実証済みになるとは主張しない。

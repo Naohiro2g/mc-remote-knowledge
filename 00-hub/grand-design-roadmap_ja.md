@@ -40,8 +40,8 @@ Scratch固有の現状は[Scratch roadmap](../13-scratch-client/scratch-roadmap_
 | 時期 | product | 並走track |
 | --- | --- | --- |
 | 2026-08末 | b6／protocol 23.0.0公開済み | sign、poke、browser保存を横断統合 |
-| 2026-09前半 | b7／23.1.0のconcept sliceを再固定 | README／sample Pass A、homepage骨格、Paper 26.2 pulse |
-| 2026-09中旬〜後半 | b8／条件付きb9、月末API freeze | README／sample Pass B、ケータリングPC／kitで更新・rollback検証開始 |
+| 2026-09前半 | b7／23.1.0：direction、lightning、ParticleBuilder Stage 1 | README／sample Pass A、homepage骨格、Paper 26.2 pulse |
+| 2026-09中旬〜後半 | b8：entity lifecycle＋particle Stage 2、必要時だけb9 batch、月末API freeze | README／sample Pass B、ケータリングPC／kitで更新・rollback検証開始 |
 | 2026-10 | rc、新API追加停止 | 外部testerへ準備済み環境、手順、検証票、feedback導線を提供 |
 | 2026-11 | 初回stable | stable導入／更新情報と採用Paper 26.x supportを公開 |
 | 2026-12〜2027-01 | stable保守 | 運用手順化、機能実現位置とsampleを使った教材・学習path作成 |
@@ -52,11 +52,13 @@ Scratch固有の現状は[Scratch roadmap](../13-scratch-client/scratch-roadmap_
 ## 4. 現在の横断優先
 
 1. 各public repoのREADMEとsample codeを人間向けに整理するPass Aを、b7設計と並行して直ちに始める。
-2. direction／navigation、entity lifecycle、空間query、player別preview、world effectの候補を、学習pathと実装単位からb7〜b9の縦sliceへ再編する。
-3. b6直後のPaper 26.2 compatibility pulseを行い、wire不変なら影響外client PASSを再利用する。
-4. 9月中旬からケータリングPC／kitでb7→b8→rc→stableの更新、rollback、再pairing、file退避を経験する。
-5. 10月rcから外部testerが会話履歴なしで開始・更新・復旧・feedbackできる入口を用意し、homepage／release情報／技術記事を並走させる。
-6. long-lived credentialの公開gateは閉じたまま、ケータリングで実需要を観察してから再開する。
+2. b7のdirection／lightning／ParticleBuilder内部移行、b8のentity lifecycle／particle receiver・typed data／
+   Python 3D graph、実測で必要な場合だけのb9 particle batchを短い縦sliceとして進める。
+3. `lookAt`、空間query、player別previewは9月末までにcontracted／deferred／removedを選び、無関係な残件をb9へ押し込まない。
+4. b6直後のPaper 26.2 compatibility pulseを行い、wire不変なら影響外client PASSを再利用する。
+5. 9月中旬からケータリングPC／kitでb7→b8→rc→stableの更新、rollback、再pairing、file退避を経験する。
+6. 10月rcから外部testerが会話履歴なしで開始・更新・復旧・feedbackできる入口を用意し、homepage／release情報／技術記事を並走させる。
+7. long-lived credentialの公開gateは閉じたまま、ケータリングで実需要を観察してから再開する。
 
 個別 repo の「次の一手」は保存せず、その repo の NOTES と contract から都度生成します。
 

@@ -1,7 +1,8 @@
 # betaから初回stableまでのreleaseロードマップ
 
 > 2026-08-26確定。DECISIONS `2026-08-26-08`の説明とmethod／surface capability台帳です。
-> `2026-08-28-02`により、b7〜b9のconcept sliceは学習・API候補の観察から組み替えられる計画仮説として扱います。
+> `2026-08-28-02`により短期betaを軽量に反復し、`2026-08-29-02`でb7〜b9のparticle／world effect配置を
+> 精密化しました。
 > 日々の作業記録や実施済みevidenceではありません。exact wireは
 > [wire contract](wire-format-design_ja.md)、release番号と互換性は
 > [versioning design](versioning-design_ja.md)を正とします。
@@ -41,17 +42,18 @@ betaは旧b6へ集めていたAPIを一度に完成させる箱ではなく、co
 
 ## 3. Release train
 
-| release | protocol／artifact core | concept slice | 目標時期 |
+| release | protocol／artifact core | concept slice(s) | 目標時期 |
 | --- | --- | --- | --- |
 | b6 | `23.0.0`／`2300.0.0b6` | sign、`pickaxe_poke`、Scratch browser保存、protocol 23 cleanup | 2026-08-31 |
-| b7 | `23.1.0`／`2301.0.0b7` | direction | 2026-09前半 |
-| b8 | `23.2.0`／`2302.0.0b8` | entity lifecycle | 2026-09後半 |
-| 条件付きb9 | `23.3.0`／`2303.0.0b9` | stable必須の自己完結slice一つだけ | 2026-09末まで |
+| b7 | `23.1.0`／`2301.0.0b7` | direction、`strikeLightningEffect`、ParticleBuilder内部移行 | 2026-09前半 |
+| b8 | `23.2.0`／`2302.0.0b8` | entity lifecycle、particle receiver／typed data、Python surface | 2026-09後半 |
+| 条件付きb9 | `23.3.0`／`2303.0.0b9` | 同じparticle specを使うbounded batch | 2026-09末まで |
 | rc | b8またはb9と同じcore | API freeze、capacity、soak、rollback | 2026-10 |
 | 初回stable | rcと同じcore | 全component mature、配布・運用説明を固定 | 2026-11 |
 
-b9を使わない場合のstable coreは`2302.0.0`、使う場合は`2303.0.0`です。b9はevent filter／clear、typed
-particle、保存、legacy整理の残件箱にしません。9月末で新API追加を止めます。
+b9を使わない場合のstable coreは`2302.0.0`、使う場合は`2303.0.0`です。b9はb8の3D graph prototypeで
+単点RPCが実際の律速になり、batchが初回stableに必要と観察された場合だけ使います。event filter／clear、
+追加particle type、追加receiver、保存、legacy整理の残件箱にしません。9月末で新API追加を止めます。
 
 この表のb7 direction、b8 entity lifecycle、条件付きb9は、2026-08-26時点で概念別縦sliceを作るための
 有力な計画仮説であり、method名を固定した不変のscope freezeではありません。Paper APIとmcpiから見つかるAPI、
@@ -60,8 +62,8 @@ particle、保存、legacy整理の残件箱にしません。9月末で新API�
 見つかった場合は観測を残してchange coneまで戻り、通常は次のbetaへroll forwardします。
 
 組み替え可能であることを、無関係なAPIを一つのbetaへ押し込む理由、b9を残件箱へ戻す理由、9月末のAPI freezeを
-暗黙に後ろへ動かす理由にはしません。新候補は「できる」だけでなく、三層のどこで実現するか、どの学習経路を
-開くか、一つのfixture／実機pulseで閉じられるかを示して採否と配置を決めます。
+暗黙に後ろへ動かす理由にはしません。新候補は「できる」だけでなく、どの位置でprototypeし何をpluginへ
+昇格するか、どの学習経路を開くか、一つのfixture／実機pulseで閉じられるかを示して採否と配置を決めます。
 
 ### 3.1 b6 — sign、poke、保存、cleanup
 
@@ -155,7 +157,7 @@ identityを照合しました。六artifactとOCIを`b6-artifact-candidate-set-4
 prerelease／draft、Latest非対象、McRemote JAR asset、release notes digestをAPIで確認し、b6横断gateをCLOSEDとします。
 公開identityとnon-claimは[`b6 artifact candidate記録`](b6-artifact-candidate-record_ja.md) §10／§11を正とします。
 
-### 3.2 b7 — direction
+### 3.2 b7 — direction、world effect、ParticleBuilder Stage 1
 
 次のget／setを分割せず、実装・fixture・教材を一つの縦sliceへ閉じます。
 
@@ -170,9 +172,19 @@ getは現在の向きを正規化した単位vectorとして返します。set�
 
 `getRotation`／`setRotation`、`getPitch`／`setPitch`、`getYaw`／`setYaw`の六methodは採りません。
 `lookAt(target)`はclient APIまたはユーザーコードで`target - current_position`を組み、`setDirection`へ渡せます。
-これは機能実現の三層モデルを観察する3D turtle graphicsの基礎になります。
+これは機能実現の位置と昇格モデルを観察する3D turtle graphicsの基礎になります。
 
-### 3.3 b8 — entity lifecycle
+同じb7へ`world.strikeLightningEffect`を置きます。座標をdamageなしの視聴覚effectで示す小さいworld actionとして、
+direction／navigation sampleからも利用できます。exact params／result、可視範囲、rate／work limit、fire、
+lightning rod、event、音を含む実副作用はcontract lockと短いlive-humanで固定し、Paper method名だけから無害性を
+広げて推測しません。
+
+既存`world.spawnParticle`のplugin内部実装はPaper `ParticleBuilder`へ移します。これはStage 1であり、wire、
+既定receiver、`particle`／offset／speed／count／force、result、errorを変更しません。Paper APIの置換だけを
+理由にprotocolを上げず、b7が新method追加で`23.1.0`になるreleaseへ内部移行を同梱します。Paper 1.21.11と
+26.2で同じ既存fixtureと代表描画を確認し、Stage 2のreceiver／typed dataを載せる足場にします。
+
+### 3.3 b8 — entity lifecycle、ParticleBuilder Stage 2
 
 次をread／writeへ分けず、handle取得、状態観察、移動、終端まで一つの縦sliceへ閉じます。
 
@@ -186,12 +198,29 @@ nearbyの一覧は、探索後すぐ使えるsnapshotとして少なくともopa
 chunk loadなし、request全体のhandle capacity事前確認を維持します。exact params、radius／件数上限、terminal
 error、set失敗の原子性はb8 contract lockで固定します。
 
-### 3.4 条件付きb9と後続
+particle Stage 2では、既存のdata不要particle文字列とworld全体への既定配送を壊さず、receiver選択と有限なtyped
+dataを後方互換な追加としてcontractします。最初のreceiver候補は既定の`world`と呼出playerだけの`self`に絞り、
+任意player一覧、UUID、距離指定は同じsliceへ入れません。typed data候補はdustの色＋sizeとblock particleの
+`BlockSpec`に絞り、任意Java object、item、transition、trail、vibrationを受けません。exact wire shape、methodを
+既存`world.spawnParticle`の拡張にするか別methodにするか、result／error、capはb8 contract lockで固定します。
 
-`events.poll` filter、`events.clear`、typed particle dataはb9または後続minor候補です。9月中旬に、初回stableの
-学習・運用体験へ不可欠で、かつ一つの自己完結sliceとして閉じられるかを判定します。該当しなければrc後へ送ります。
+Python surfaceと3D graphの小さいapplication sampleをb8 acceptanceへ含めます。receiverが実際に対象playerだけへ
+届く2-player確認、dust／blockの描画、1.21.11／26.2のdual-target pulseをchange coneに入れます。Scratchは
+protocol mirrorと互換認識を先に揃えられますが、学習者向けblockは別trackで追従し、b8 plugin／Python releaseを
+自動的にHOLDしません。
 
-### 3.5 2026-08-28時点の新API候補pool
+### 3.4 条件付きb9 — ParticleBuilder Stage 3
+
+b9は、b8と同じreceiver／typed data specを複数点へ適用するbounded batchだけを候補にします。全入力を検証してから
+一括accept／rejectし、point数、入力byte、work、receiver fan-outを有限にします。costは少なくとも
+`points × receivers`を反映し、成功resultは受理point／配送規模を観察できる方向でcontract lockします。
+新しいparticle typeやreceiver modeをb9へ便乗させません。
+
+b8のPython 3D graphを単点`FAST`で描いて十分ならb9を使わず、Stage 3をrc後へ送って`23.2.0`をfreezeします。
+RPC／再描画負荷が実測上の問題で、bounded batchが初回stableに必要な一つの自己完結sliceと判定できた時だけ
+`23.3.0`として実装します。`events.poll` filter／`events.clear`はこのb9へ入れません。
+
+### 3.5 2026-08-29時点の新API候補pool
 
 次はscope lockでなく、Paper 1.21.11 APIと学習用途から発掘した`candidate`です。b7〜b9へ入れる場合も、exact
 params／result／error、有限性、副作用、client surface、sampleを一つの縦sliceとして人間レビューします。
@@ -200,15 +229,22 @@ params／result／error、有限性、副作用、client surface、sampleを一�
 | --- | --- | --- | --- |
 | `lookAt` | `Entity.lookAt(position, anchor)`／`Player.lookAt(entity, …)` | walkthrough、playerを使う3D turtle、目標点への注視 | 座標targetとhandle targetを一methodにするか、anchor、dimension、AIによる後続変更 |
 | marker／waypoint | server-only `Marker` entity、または別の可視entity | 移動可能な基準点、entity target、後続agentの足場 | 座標`lookAt`の前提にはしない。不可視Markerか可視markerか、spawn／setPos／remove、handle lifecycle、method名 |
-| `rayTraceBlocks` | precise collision shapeを使う`World.rayTraceBlocks` | HUD、照準先、空間理解、相対／絶対座標の橋渡し | max distance、chunkを新規loadしない境界、fluid／passable、miss、hit位置／block／faceの正準result |
+| `rayTraceBlocks` | precise collision shapeを使う`World.rayTraceBlocks` | HUD、照準先、空間理解、相対／絶対座標の橋渡し | max distance、build／query許可範囲、chunk生成cost、fluid／passable、miss、hit位置／block／faceの正準result |
 | block preview | `Player.sendBlockChange`／`sendMultiBlockChange` | 非破壊の建築preview、確認してから実配置 | player限定表示、bounded batch、client view範囲、復元／disconnect／chunk resend、実world stateとの区別 |
-| lightning effect | `World.strikeLightningEffect` | damageなしで座標を強く示す、短い視聴覚feedback | global effectの可視範囲、entity resultを返すか、fire等を含む実副作用のlive確認、rate limit |
+| output target | real world／player別preview／pygame | 同じ建築codeを実配置、非破壊preview、画面描画へ向ける | `DEBUG`／`TRACE`／`FAST`と別軸、preview lifecycle、collisionを伴わないこと、cleanup |
 
 Paper 1.21.11では`Player`も`Entity`から座標指定`lookAt`を継承するため、座標targetだけを理由にmarker entityを
 経由しません。`Marker`はserver内だけに存在し、人間に見える目印ではありません。marker候補は移動するhandleや
-agent／waypointとして別に評価します。`rayTraceBlocks`はPaper API自身がchunk loadの可能性を示すため、McRemoteでは
-距離上限だけでなく既存loaded chunk内に閉じるかを先に決めます。block previewは実worldを変更しないことをmethod名、
-result、sampleで明示します。
+agent／waypointとして別に評価します。`rayTraceBlocks`は一request一rayを基本にし、現行block queryと同じく
+許可された範囲で必要なchunkをload／generateし得ます。必要chunkを見ずに確定missを返す`loaded-only`意味論は
+採りません。v0候補は最大距離100未満かつbuild／query許可範囲内とし、要求distanceをworkへ計上します。多数rayで
+風景画を作る用途はRPCへ押し込まず、bounded `getBlocks`結果を下流で解析します。
+
+block previewは実worldとcollisionを変えないplayer限定描画です。通常clearは触れた座標を記録し、clear時点の
+実`BlockData`を読み直して同じplayerへ再送します。`World.refreshChunk`は全viewerへchunkを再送する重い操作なので
+通常APIにしません。clientがchunk dataを再受信するteleport／dimension change／reconnectで見え方が戻る場合はあっても、
+それを正式なclear契約にしません。実world、preview、pygameの出力先切替は下流prototypeから始め、共通lifecycleや
+性能保証が必要になった時に昇格を検討します。
 
 ### 3.6 初回stable後の3D turtle／agent track
 
