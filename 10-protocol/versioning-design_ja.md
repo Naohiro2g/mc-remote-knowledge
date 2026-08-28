@@ -618,6 +618,12 @@ Scratch／Bridge OCIを除く六artifactのclean再生成と統合JAR smokeはPA
 両OCIを同時にpushするため、残るOCI gateをBridgeだけの操作と読まない。exact境界は
 [`b6 artifact candidate記録`](b6-artifact-candidate-record_ja.md) §8／§9を正とする。
 
+2026-08-28、Scratch／Bridge OCIと三repoのGitHub prerelease identityを固定し、b6横断gateをCLOSEDとした。
+`world.getSign`／`world.setSign`／`world.updateSignLine`、`pickaxe_poke`、protocol 23の`mcr_eh_`と
+legacy method除去は`released`、Scratch作品／スプライトbrowser保存とWireScope client-only UX v1もScratch
+artifact内で`released`である。source、artifact、tag、non-claimは[`b6 artifact candidate記録`](b6-artifact-candidate-record_ja.md)
+§10／§11を正とし、上記candidate形成履歴を現在状態へ読み替えない。
+
 b5 GREEN後にScratch保存の独立entry gateを置く。`.sb3`／`.sprite3`互換fixture、作品全体のIndexedDB
 lifecycle、一覧・復元・削除、quota、破損、migration、`.sb3`への退避を実装・試用する。これはb5 completion
 gateでもb6 protocol API scopeでもない。「b6 API本実装前」は依存と時期の目安で、b6 API完了待ちではない。

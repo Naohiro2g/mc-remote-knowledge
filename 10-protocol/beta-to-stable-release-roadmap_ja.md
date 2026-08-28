@@ -1,6 +1,7 @@
 # betaから初回stableまでのreleaseロードマップ
 
 > 2026-08-26確定。DECISIONS `2026-08-26-08`の説明とmethod／surface capability台帳です。
+> `2026-08-28-02`により、b7〜b9のconcept sliceは学習・API候補の観察から組み替えられる計画仮説として扱います。
 > 日々の作業記録や実施済みevidenceではありません。exact wireは
 > [wire contract](wire-format-design_ja.md)、release番号と互換性は
 > [versioning design](versioning-design_ja.md)を正とします。
@@ -51,6 +52,16 @@ betaは旧b6へ集めていたAPIを一度に完成させる箱ではなく、co
 
 b9を使わない場合のstable coreは`2302.0.0`、使う場合は`2303.0.0`です。b9はevent filter／clear、typed
 particle、保存、legacy整理の残件箱にしません。9月末で新API追加を止めます。
+
+この表のb7 direction、b8 entity lifecycle、条件付きb9は、2026-08-26時点で概念別縦sliceを作るための
+有力な計画仮説であり、method名を固定した不変のscope freezeではありません。Paper APIとmcpiから見つかるAPI、
+3D turtle graphics、agent型建築、別言語展開を学習パスと実装単位の両面で比較し、人間レビューを通してb7〜b9を
+自己完結した縦sliceへ組み替えられます。短期betaは`2026-08-28-02`の軽量release modeで早く公開し、問題が
+見つかった場合は観測を残してchange coneまで戻り、通常は次のbetaへroll forwardします。
+
+組み替え可能であることを、無関係なAPIを一つのbetaへ押し込む理由、b9を残件箱へ戻す理由、9月末のAPI freezeを
+暗黙に後ろへ動かす理由にはしません。新候補は「できる」だけでなく、三層のどこで実現するか、どの学習経路を
+開くか、一つのfixture／実機pulseで閉じられるかを示して採否と配置を決めます。
 
 ### 3.1 b6 — sign、poke、保存、cleanup
 

@@ -1,7 +1,7 @@
 # Release運用と責務分担
 
 この文書は、公開runbook、物理マシン、deployment、横断release gateを、誰がどの正本で
-扱うかを説明する。拘束層は`2026-08-21-03`／`2026-08-21-04`／`2026-08-23-01`、個々のgateの現在地は
+扱うかを説明する。拘束層は`2026-08-21-03`／`2026-08-21-04`／`2026-08-23-01`／`2026-08-28-02`、個々のgateの現在地は
 [release gate notes](release-gate-notes_ja.md)を正とする。
 
 ## 1. 骨格
@@ -202,7 +202,7 @@ Git／provider APIから取得して存在と一致を検証する。
 7. 実機検証：Tier 3はchange cone内の短いlive-autoを先に行い、人間でしか判定できない箇所だけlive-humanを行う。
 8. evidence着地：各担当の素材をknowledgeがformal record／artifactへ収容する。
 9. 横断判定：coordinatorが`GREEN`／`HOLD`／`RED`と未主張範囲を記録する。
-10. release：human release ownerの批准後、各repo担当が指定identityを公開する。
+10. release：human release ownerの批准後、各repo担当またはgate coordinatorが指定identityを公開する。複数repoを一括公開する場合も、tag target、asset、公開範囲を一つの承認対象として先に示す。
 11. close：公開identity、default branch統合／保持先、handoff全件の着地を再確認し、gateを閉じる。
 
 candidate commit、artifact bytes、schema、policyのいずれかが変わった場合、旧exact setを失効させる。change coneの
@@ -246,3 +246,31 @@ releaseの公開だけでcloseとしない。各componentについて次を確�
 - `2026-07-23-01`：deployment／profile／environment／order／lockの分離を維持する。
 - `2026-07-19-05`：主張を証拠のスコープから越境させない。
 - `2026-08-23-01`：単一coordinatorと責務分離を維持し、test tier、change cone、常設dev harness、gate manifest、release closeを追加する。
+
+## 14. 短期betaの軽量release mode
+
+b7〜b9のように短期間で反復できるbetaは、初回stableの完成版を一度で証明する工程でなく、実装を利用可能な
+公開identityへ早く載せ、実使用の問題を次の判断へ返す観察単位として扱う。既知の問題を隠して出す意味ではない。
+
+軽量betaの既定確認は次で足りる。
+
+- 変更componentのtargeted test／build
+- wire変更時の共有fixtureまたは同等のcomponent間shape照合
+- 既存host-native通常dev harnessでの変更slice代表往復
+- Minecraft／browser／UXなど人間でしか判定できない箇所だけの短いlive-human
+- default branch／tag／artifact／release notes identityの公開前後照合
+
+影響外の全回帰、capacity／soak、ケータリング型再構築、Docker化、public deployment、全surfaceで同一試験を
+繰り返すことは自動要求しない。security、credential、永続データ破損、権限、破壊的wire変更など、失敗時の影響が
+beta利用者の観察で回収できない変更は軽量modeだけで閉じず、change coneに応じて検証を強める。
+
+公開後に問題が見つかった場合、公開済みtagを差し替えない。観測を保持し、影響範囲まで遡って修正し、通常は次の
+betaへroll forwardする。緊急性が高ければrelease説明、撤回、hotfixを個別判断する。
+
+knowledge担当がreleaseまでの進行、各開発repoへの指示、exact set固定、最終公開操作を一続きで扱ってよい。
+component担当は実装と局所判断へ集中し、human release ownerは必要なUX確認と公開承認を行う。担当agentのmodel／
+providerはroleの固定条件にせず、今回のようにknowledgeをCodex、開発repoを軽量なClaude modelとする分担も選べる。
+
+repo間搬送は当面、会話で人間が内容を見ながら票を渡す。固定fileと自動収集への移行は、手作業の反復箇所と
+見落とし防止効果が十分観測できた後に判断する。machine-readable manifestや固定搬送fileの未実装だけでbetaを
+HOLDにしない。
