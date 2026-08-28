@@ -1,0 +1,15 @@
+{
+  "source_revision": "df9264ec355dd722a848df46e96d4b0fc9340ca2",
+  "images": {
+    "scratch": {
+      "index": "ghcr.io/naohiro2g/mc-remote-scratch@sha256:fecd0b46b287be37038e7dfa82f926fbc1c55fea6811522ef33539373452d851",
+      "linux_amd64": "sha256:61ea9f2ad719a85e4c39e97f7db30cf9be72b8b87da67bd29e0323ad8cb9f613",
+      "linux_arm64": "sha256:6d5ad4eabdee00c96a2222f47671421501e29191721aedab6ce77116fc68bd38"
+    },
+    "bridge": {
+      "index": "ghcr.io/naohiro2g/mc-remote-bridge@sha256:a115d1e62bcde78580515a88d564b0871049a999386c6cb33703b300389d14f8",
+      "linux_amd64": "sha256:676c960fd1c72a6490cb6a12928c816de0ce19e42f935aaa5e01ea98eae99617",
+      "linux_arm64": "sha256:bd7a40dc94ed6428781c30b7e56a8fa63197d8f415751054404203fd458e0ed6"
+    }
+  }
+}

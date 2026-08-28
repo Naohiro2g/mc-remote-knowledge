@@ -233,3 +233,38 @@ backendはこの訂正で変更していない。この運用観測を製品arti
 
 本identityは**pre-OCI input**である。Scratch ownerのexact test集計、Scratch／Bridge multi-arch OCI、最終artifact set、
 公開releaseはまだ主張しない。
+
+## 10. 統合後OCIと最終artifact candidate
+
+プロジェクトオーナーの明示承認後、scratch-editorのmanual workflow
+[`Build McRemote OCI Images`](https://github.com/Naohiro2g/scratch-editor/actions/runs/33136505029)を、
+統合source `develop@df9264ec355dd722a848df46e96d4b0fc9340ca2`から一回実行した。run
+`33136505029`はScratch／Bridgeのmulti-arch build、source stamp検証、GHCR push、identity JSON生成、
+artifact uploadをすべてPASSした。identity JSONのSHA-256は
+`f7229cf2484858867a52b782f8de89c358b6920532555f06e955f05e08413634`である。
+
+| image | identity |
+| --- | --- |
+| Scratch index | `ghcr.io/naohiro2g/mc-remote-scratch@sha256:fecd0b46b287be37038e7dfa82f926fbc1c55fea6811522ef33539373452d851` |
+| Scratch `linux/amd64` | `sha256:61ea9f2ad719a85e4c39e97f7db30cf9be72b8b87da67bd29e0323ad8cb9f613` |
+| Scratch `linux/arm64` | `sha256:6d5ad4eabdee00c96a2222f47671421501e29191721aedab6ce77116fc68bd38` |
+| Bridge index | `ghcr.io/naohiro2g/mc-remote-bridge@sha256:a115d1e62bcde78580515a88d564b0871049a999386c6cb33703b300389d14f8` |
+| Bridge `linux/amd64` | `sha256:676c960fd1c72a6490cb6a12928c816de0ce19e42f935aaa5e01ea98eae99617` |
+| Bridge `linux/arm64` | `sha256:bd7a40dc94ed6428781c30b7e56a8fa63197d8f415751054404203fd458e0ed6` |
+
+workflow artifactだけでなく、registryに対する独立した`docker buildx imagetools inspect`でも両index、
+platform digest、各platformに付随するattestation manifestの一致を確認した。Docker daemonやMinecraft
+serverの変更は伴わない。
+
+§9の六artifactと本節の二OCI indexを`b6-artifact-candidate-set-4`として固定する。Scratch VMのaggregate
+報告には総数と内訳の表記差が残るため「full suite exact集計PASS」とは主張しない。一方、component担当のpackage別
+PASS、失敗対象のisolated PASS、production build、Tier 2実ブラウザ、統合後sourceからの再現buildは成立しており、
+新規regressionを示す観測はない。この集計表記だけを目的とした再実行はb6 release blockerにしない。
+
+b6の横断機能検証はhost-native通常devと実ブラウザで完了している。OCIはScratch／Bridgeの配布形態であり、
+Minecraft serverをDocker／ケータリング構成へ置き換えて横断試験を反復しない。OCI runtimeを実配備する際の
+start／health／routing確認はdeployment gateで行い、本artifact gateではindex／platform／attestation identityの
+固定までを採用する。これはOCI runtime smokeを実施済みとする主張ではない。
+
+本setは公開前の最終artifact candidateである。Git tag、GitHub prerelease、McRemote JAR asset、release notes、
+公開後identity確認はまだ実施していない。

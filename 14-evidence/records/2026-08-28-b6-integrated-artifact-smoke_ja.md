@@ -10,8 +10,9 @@
 - decision: `2026-08-26-08`／`2026-08-28-01`
 - knowledge baseline: `0d4038888f11ef34f2157cc766b4975647b03d01`
 
-本recordは、三repoのdefault branchへ統合した`b6-integrated-source-set-1`からScratch／Bridge OCIを除く六artifactを
-clean環境で再生成し、McRemote統合JARを通常devへ配置して最小runtime smokeを実施した結果を固定する。
+本recordは、三repoのdefault branchへ統合した`b6-integrated-source-set-1`から六artifactをclean環境で再生成し、
+McRemote統合JARを通常devへ配置して最小runtime smokeを実施した結果を固定する。後続の人間承認済みmanual workflowで
+生成・pushしたScratch／Bridge OCIのregistry identityも追補する。
 sign／`pickaxe_poke`／Scratch browser保存／WireScope UXのTier 2結果は先行recordを再利用し、本試験では
 default branch統合後に追加されたMcRemote session token永続化fixとの結合点へ範囲を絞った。
 
@@ -27,9 +28,8 @@ default branch統合後に追加されたMcRemote session token永続化fixと�
 
 六artifactと入力manifestは`b6-integrated-artifact-input-1`としてcoordinatorのdurable stagingへ固定した。
 入力manifestは2,127 bytes、SHA-256
-`1a3b40fc3747359bd2a206f37aa4b8508989b97aedc6b6d584d8cfd49b3c4a4b`である。Scratch／Bridge OCIをまだ
-含まないため、これを最終artifact setとは呼ばない。既存manual image workflowは同じsource SHAからScratchと
-Bridgeの両multi-arch OCIを一回の実行でpublishする。
+`1a3b40fc3747359bd2a206f37aa4b8508989b97aedc6b6d584d8cfd49b3c4a4b`である。後続OCIを含む最終bindingは
+`10-protocol/b6-artifact-candidate-record_ja.md` §10を正とする。
 
 ## Deterministic result
 
@@ -62,6 +62,22 @@ Bridgeの両multi-arch OCIを一回の実行でpublishする。
 catalogの代表結果はblock 1,166、entity 157、particle 115だった。session再利用試験はauth成功だけでなく、
 再起動後の認証済みmethod callまで到達して判定した。
 
+## OCI identity follow-up
+
+Scratch／Bridgeのmanual workflow run
+[`33136505029`](https://github.com/Naohiro2g/scratch-editor/actions/runs/33136505029)は、source
+`df9264ec355dd722a848df46e96d4b0fc9340ca2`から両imageの`linux/amd64`／`linux/arm64` indexをbuild／pushし、
+identity JSONを生成した。workflowは全step PASSで、registryへの独立inspectもindex／platform／attestation identityと
+一致した。
+
+| Image | Index digest | Result |
+| --- | --- | --- |
+| Scratch | `sha256:fecd0b46b287be3708…39373452d851` | PASS |
+| Bridge | `sha256:a115d1e62bcde78580…b300389d14f8` | PASS |
+
+platformを含む完全値はsanitized artifactとartifact candidate記録§10を正とする。Docker daemonを使ったruntime
+container smoke、Minecraft serverのDocker化、public deploymentは実施していない。
+
 ## Operation observation
 
 既存`run.sh`は自身で名前付きScreen sessionを作る。coordinatorが最初に`run.sh`を別のScreenで包んだ起動は、
@@ -77,6 +93,9 @@ config、credential backendを変えず`run.sh`を直接実行すると起動し
 - [redactions.json](../artifacts/2026-08-28-b6-integrated-artifact-smoke/redactions.json)
   - 579 bytes
   - SHA-256: `1c9960525f8a49d0b8f4ca361c75ab4cabad8703904f23f793f35b53f38e52c0`
+- [oci-image-identities.json](../artifacts/2026-08-28-b6-integrated-artifact-smoke/oci-image-identities.json)
+  - 766 bytes
+  - SHA-256: `f7229cf2484858867a52b782f8de89c358b6920532555f06e955f05e08413634`
 
 pairing code、session token、token hash、player UUID／name、credential UUID、private endpoint、raw logは
 収録しない。Redaction境界は`redactions.json`を正とする。
@@ -85,11 +104,10 @@ pairing code、session token、token hash、player UUID／name、credential UUID
 
 本recordが証明するのは、上記exact integrated source／artifact入力でのclean build、通常devへの統合JAR配置、
 起動、credential health、auth否定パス、新規session、同じJARの通常再起動後の期限内session再利用、認証済み
-代表callである。次は証明しない。
+代表call、およびScratch／Bridge OCIのregistry identityである。次は証明しない。
 
-- Scratch／Bridge multi-arch OCIのbuild／push、digest固定、container smoke
+- Scratch／Bridge OCIのruntime container smokeとdeployment health
 - Scratch testのowner exact passed／failed／skipped集計
-- 最終`b6-artifact-candidate-set-4`
-- public artifact upload、tag、release、b6 `GREEN`
+- GitHub release asset upload、tag、prerelease作成、b6 `GREEN`
 - sign／poke／browser保存／WireScope Tier 2の再実行
 - npm audit noticeの評価またはsecurity clean
