@@ -1,0 +1,91 @@
+{
+  "schema": "mcremote.evidence.result-summary.v1",
+  "test_id": "2026-08-28-b6-integrated-artifact-smoke",
+  "observed_date": "2026-08-28",
+  "result": "PASS",
+  "source_set": {
+    "identity": "b6-integrated-source-set-1",
+    "mcremote": "4e8f1ff1bd48bfa28c465f2dc24060fbb419317f",
+    "python": "a30a37b15658da655fe1e3535a73fb0e80c06f56",
+    "scratch": "df9264ec355dd722a848df46e96d4b0fc9340ca2"
+  },
+  "artifact_input": {
+    "identity": "b6-integrated-artifact-input-1",
+    "status": "pre-oci",
+    "manifest_sha256": "1a3b40fc3747359bd2a206f37aa4b8508989b97aedc6b6d584d8cfd49b3c4a4b",
+    "files": [
+      {
+        "name": "mc-remote-1.21.11-2300.0.0b6.jar",
+        "bytes": 204463,
+        "sha256": "0ec8d4c0b105f3034361b260fc39fcb78013e932e684d34d5ca95c9a6c6a87a6"
+      },
+      {
+        "name": "minecraft_remote_api-2300.0.0b6-py3-none-any.whl",
+        "bytes": 173301,
+        "sha256": "0887807f0d00f71fcb543caf16c3963b70580bf073b6a7576d7f274399a1877b"
+      },
+      {
+        "name": "minecraft_remote_api-2300.0.0b6.tar.gz",
+        "bytes": 178483,
+        "sha256": "0507a10cbd6b31c2dd84ebff0034c5f72625ff1142d30f1c0d41e14d0ce2da3b"
+      },
+      {
+        "name": "scratch-gui-build.tar.gz",
+        "bytes": 234620525,
+        "sha256": "1757f665b9c327985fdbd101a356a82926daa4a00361694ce5b059f78dda7ef5"
+      },
+      {
+        "name": "wirescope-app.zip",
+        "bytes": 79169,
+        "sha256": "b3d6270299195d2c3db93c9d122938be6ae20d23e0f10e19afe3b0e99e3ca315"
+      },
+      {
+        "name": "wirescope-app.manifest.json",
+        "bytes": 2321,
+        "sha256": "8570d3eed8024d32324806a28d4b7a40da1d2774d39e6e95bcb2c43206e6296f"
+      }
+    ]
+  },
+  "deterministic_checks": [
+    "mcremote_clean_test_jar_149_of_149_pass",
+    "python_tests_242_of_242_pass",
+    "python_wheel_and_sdist_match_prior_candidate_bytes",
+    "scratch_isolated_npm_ci_and_all_workspace_production_build_pass",
+    "scratch_gui_tar_matches_prior_candidate_bytes",
+    "wirescope_artifact_two_runs_byte_identical"
+  ],
+  "runtime": {
+    "target": "dev-integration",
+    "minecraft": "1.21.11",
+    "paper": "1.21.11-132",
+    "protocol": "23.0.0",
+    "artifact_version": "2300.0.0b6",
+    "checks": [
+      "online_player_count_zero_before_stop",
+      "normal_stop_and_world_save_complete",
+      "integrated_jar_exact_bytes_deployed",
+      "plugin_version_and_standard_listeners_ready",
+      "credential_domain_healthy",
+      "no_token_auth_required",
+      "unknown_token_token_not_found",
+      "legacy_prefix_token_not_found",
+      "malformed_token_invalid",
+      "new_session_pairing_authenticated_hello_and_catalog_get",
+      "same_integrated_jar_normal_restart",
+      "same_unexpired_session_reused_without_pairing",
+      "post_restart_authenticated_catalog_get"
+    ],
+    "catalog_counts": {
+      "block": 1166,
+      "entity": 157,
+      "particle": 115
+    },
+    "operation_observation": "The existing run.sh already creates the named Screen session. One nested Screen invocation ended before server start and left no listener. The dead outer session was removed and direct run.sh execution passed without changing the JAR, world, config, or credential backend."
+  },
+  "pending": [
+    "scratch_vm_owner_exact_pass_fail_skip_accounting",
+    "bridge_multi_arch_oci_build_push_digest_and_container_smoke",
+    "final_artifact_candidate_set",
+    "public_release"
+  ]
+}

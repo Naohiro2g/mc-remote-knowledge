@@ -175,7 +175,7 @@ McRemoteのcandidateとの差分は`CredentialService`／`CredentialStore`／`To
 JAR `mc-remote-1.21.11-2300.0.0b6.jar`のSHA-256
 `0ec8d4c0b105f3034361b260fc39fcb78013e932e684d34d5ca95c9a6c6a87a6`をcomponent担当が報告した。
 set 3のJAR `4e28603c…70e8`とはbyte列が異なるため、旧JARを最終artifactへ再利用しない。この新JARは
-coordinatorのdurable stagingへの返却と実runtime smokeをまだ終えていない。
+source set固定時点ではcoordinatorのdurable stagingへの返却と実runtime smokeをまだ終えていなかった。
 
 Pythonはmerge後mainのclean tarballで242/242件をPASSし、wheel／sdistを再生成した。生成物はset 1〜3の
 SHA-256 `0887807f…1877b`／`0507a10c…da3b`とbyte-for-byte一致した。最終setへ収容するときは、統合後mainからの
@@ -185,10 +185,51 @@ Scratchはprotocol 22/22、WireScope 130/130、Bridge 30/30、GUI 471件PASS＋�
 PASSした。scratch-vmのaggregate報告は4003件中3998件PASSで、担当は残る2件を既知の並列resource競合、
 isolated 283/283件PASSと判定した。一方、総数との差5件のうち残り3件のstatus内訳が返却にないため、
 最終artifact freeze前にpassed／failed／skipped等のexact集計だけを補う。これは現時点で新規regressionを
-示すものとは扱わない。Scratch／WireScope artifactは統合後developから未生成である。
+示すものとは扱わない。Scratch／WireScope artifactはsource set固定時点では統合後developから未生成だった。
 
 次のartifact gateは、統合後sourceからJAR、wheel／sdist、GUI、WireScope ZIP／manifestを生成・durable stagingへ
 固定し、Bridgeは既決のmulti-arch OCIとして生成することである。GHCR pushを伴う現行workflowの実行は人間承認を
 待つ。McRemoteはcredential実装の既存PASSをchange cone外として再利用する一方、新JARでserver起動、credential
 `HEALTHY`、期限内session tokenの再起動継続、代表protocol 23呼出しを最小統合smokeする。sign／poke／browser保存／
 WireScopeの全Tier 2試験は繰り返さない。
+
+## 9. 統合後artifact入力（pre-OCI）
+
+coordinatorは`b6-integrated-source-set-1`の三default branchを個別のclean export／isolated checkoutへ固定し、
+Bridge OCIを除く次の六artifactを再生成した。これを`b6-integrated-artifact-input-1`としてdurable stagingへ置き、
+全fileをcopy後に再hashした。入力manifestは2,127 bytes、SHA-256
+`1a3b40fc3747359bd2a206f37aa4b8508989b97aedc6b6d584d8cfd49b3c4a4b`である。
+
+| component | artifact | size（bytes） | SHA-256 |
+| --- | --- | ---: | --- |
+| McRemote | `mc-remote-1.21.11-2300.0.0b6.jar` | 204,463 | `0ec8d4c0b105f3034361b260fc39fcb78013e932e684d34d5ca95c9a6c6a87a6` |
+| Python | `minecraft_remote_api-2300.0.0b6-py3-none-any.whl` | 173,301 | `0887807f0d00f71fcb543caf16c3963b70580bf073b6a7576d7f274399a1877b` |
+| Python | `minecraft_remote_api-2300.0.0b6.tar.gz` | 178,483 | `0507a10cbd6b31c2dd84ebff0034c5f72625ff1142d30f1c0d41e14d0ce2da3b` |
+| Scratch | `scratch-gui-build.tar.gz` | 234,620,525 | `1757f665b9c327985fdbd101a356a82926daa4a00361694ce5b059f78dda7ef5` |
+| WireScope | `wirescope-app.zip` | 79,169 | `b3d6270299195d2c3db93c9d122938be6ae20d23e0f10e19afe3b0e99e3ca315` |
+| WireScope | `wirescope-app.manifest.json` | 2,321 | `8570d3eed8024d32324806a28d4b7a40da1d2774d39e6e95bcb2c43206e6296f` |
+
+McRemoteはclean exportで149/149件と`clean test jar`をPASSし、component返却digestを独立再現した。
+Pythonは242/242件をPASSし、wheel／sdistが旧setと同一bytesになることを再確認した。Scratchはisolated checkoutで
+Node `24.19.0`／npm `11.12.1`、`npm ci`、全workspace production buildをPASSした。GUI tarは旧set 3と
+byte-for-byte同一である。WireScope artifact scriptは二回とも同じZIP／manifestを生成し、ZIPは旧setと同一、
+manifestだけがsource commitを統合後`df9264ec…`へ更新したため新digestになった。
+
+coordinatorが追加で実行したscratch-vm full TAPは、assertion-levelの4003件集計を返さず、file-level
+`132 total／11 fail／121 skip`となった。失敗は並列renderer初期化、SIGKILL、timeoutを含み、ownerが報告した
+isolated PASSと同型のrunner／resource診断である。この実行を4003件のPASS／FAIL内訳へ読み替えず、ownerから
+exact passed／failed／skipped集計が返るまで§8の確認事項を維持する。
+
+通常devではオンラインplayer 0、旧candidate JARのrollback入力を確認してからJAR一件だけを統合後bytesへ交換した。
+Paper、world、config、credential backendを維持し、起動、version、標準listener、credential `HEALTHY`、auth否定
+4 path、新規sessionの認証済みhello＋`catalog.get`をPASSした。さらに同じJARを正常停止・再起動し、pairingなしで
+同じ期限内session tokenを再利用して認証済み`catalog.get`をPASSした。正式記録は
+[`2026-08-28-b6-integrated-artifact-smoke`](../14-evidence/records/2026-08-28-b6-integrated-artifact-smoke_ja.md)
+を正とする。
+
+既存`run.sh`が自身で名前付きScreenを作るため、別Screenで包んだ最初の起動操作はserver開始前に終了した。
+listenerは作られず、dead outer sessionを除去して`run.sh`を直接実行するとPASSした。JAR、world、config、credential
+backendはこの訂正で変更していない。この運用観測を製品artifactのFAILへ読み替えない。
+
+本identityは**pre-OCI input**である。Scratch ownerのexact test集計、Bridge multi-arch OCI、最終artifact set、
+公開releaseはまだ主張しない。
