@@ -84,7 +84,7 @@
   },
   "pending": [
     "scratch_vm_owner_exact_pass_fail_skip_accounting",
-    "bridge_multi_arch_oci_build_push_digest_and_container_smoke",
+    "scratch_and_bridge_multi_arch_oci_build_push_digests_and_container_smoke",
     "final_artifact_candidate_set",
     "public_release"
   ]

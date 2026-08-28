@@ -10,7 +10,7 @@
 - decision: `2026-08-26-08`／`2026-08-28-01`
 - knowledge baseline: `0d4038888f11ef34f2157cc766b4975647b03d01`
 
-本recordは、三repoのdefault branchへ統合した`b6-integrated-source-set-1`からBridge OCIを除く六artifactを
+本recordは、三repoのdefault branchへ統合した`b6-integrated-source-set-1`からScratch／Bridge OCIを除く六artifactを
 clean環境で再生成し、McRemote統合JARを通常devへ配置して最小runtime smokeを実施した結果を固定する。
 sign／`pickaxe_poke`／Scratch browser保存／WireScope UXのTier 2結果は先行recordを再利用し、本試験では
 default branch統合後に追加されたMcRemote session token永続化fixとの結合点へ範囲を絞った。
@@ -27,8 +27,9 @@ default branch統合後に追加されたMcRemote session token永続化fixと�
 
 六artifactと入力manifestは`b6-integrated-artifact-input-1`としてcoordinatorのdurable stagingへ固定した。
 入力manifestは2,127 bytes、SHA-256
-`1a3b40fc3747359bd2a206f37aa4b8508989b97aedc6b6d584d8cfd49b3c4a4b`である。Bridge OCIをまだ
-含まないため、これを最終artifact setとは呼ばない。
+`1a3b40fc3747359bd2a206f37aa4b8508989b97aedc6b6d584d8cfd49b3c4a4b`である。Scratch／Bridge OCIをまだ
+含まないため、これを最終artifact setとは呼ばない。既存manual image workflowは同じsource SHAからScratchと
+Bridgeの両multi-arch OCIを一回の実行でpublishする。
 
 ## Deterministic result
 
@@ -71,8 +72,8 @@ config、credential backendを変えず`run.sh`を直接実行すると起動し
 ## Sanitized artifacts
 
 - [result-summary.json](../artifacts/2026-08-28-b6-integrated-artifact-smoke/result-summary.json)
-  - 3,409 bytes
-  - SHA-256: `69ead30c486483125495c29431d3a02a7d6f100dce6691498178f5ab47eedb62`
+  - 3,422 bytes
+  - SHA-256: `990de3984efc9d1c3c9658f57f5614761ff46b58c99d034d2cc4ccc44bdb2b6c`
 - [redactions.json](../artifacts/2026-08-28-b6-integrated-artifact-smoke/redactions.json)
   - 579 bytes
   - SHA-256: `1c9960525f8a49d0b8f4ca361c75ab4cabad8703904f23f793f35b53f38e52c0`
@@ -86,7 +87,7 @@ pairing code、session token、token hash、player UUID／name、credential UUID
 起動、credential health、auth否定パス、新規session、同じJARの通常再起動後の期限内session再利用、認証済み
 代表callである。次は証明しない。
 
-- Bridge multi-arch OCIのbuild／push、digest固定、container smoke
+- Scratch／Bridge multi-arch OCIのbuild／push、digest固定、container smoke
 - Scratch testのowner exact passed／failed／skipped集計
 - 最終`b6-artifact-candidate-set-4`
 - public artifact upload、tag、release、b6 `GREEN`

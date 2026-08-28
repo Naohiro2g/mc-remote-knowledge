@@ -613,8 +613,10 @@ Tier 2 requested sliceのPASS後、2026-08-28にMcRemote
 `develop@df9264ec355dd722a848df46e96d4b0fc9340ca2`へ統合し、`b6-integrated-source-set-1`を固定した。
 Python／Scratchはcandidateとの機能差分がない。McRemoteはmain側のsession token永続化fixを保持したため、
 統合JARは旧candidate JARとbyte列が異なる。したがってmethod集合はsource統合済みだが、最終artifact固定、
-統合JARの最小runtime smoke、Bridge OCI、公開releaseが残る`candidate`状態を維持する。exact境界は
-[`b6 artifact candidate記録`](b6-artifact-candidate-record_ja.md) §8を正とする。
+統合JARの最小runtime smoke、Scratch／Bridge OCI、公開releaseが残る`candidate`状態を維持する。その後、
+Scratch／Bridge OCIを除く六artifactのclean再生成と統合JAR smokeはPASSした。現行manual workflowはScratch／Bridgeの
+両OCIを同時にpushするため、残るOCI gateをBridgeだけの操作と読まない。exact境界は
+[`b6 artifact candidate記録`](b6-artifact-candidate-record_ja.md) §8／§9を正とする。
 
 b5 GREEN後にScratch保存の独立entry gateを置く。`.sb3`／`.sprite3`互換fixture、作品全体のIndexedDB
 lifecycle、一覧・復元・削除、quota、破損、migration、`.sb3`への退避を実装・試用する。これはb5 completion

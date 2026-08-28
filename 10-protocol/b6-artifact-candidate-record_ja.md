@@ -153,7 +153,7 @@ artifactではない。配布境界は新規設計せず、`2026-07-14-04`と既
 tarへdependencyを足すことではなく、統合後のexact source identityからOCI index／platform digest、SBOM／provenanceを
 生成・固定し、container smokeを通すことである。
 
-Tier 2 requested sliceはPASSした。Bridge OCI生成、default branch統合、正式release artifact freeze、公開releaseは
+Tier 2 requested sliceはPASSした。Scratch／Bridge OCI生成、default branch統合、正式release artifact freeze、公開releaseは
 引き続き未完である。観測target変更後の自動再開とlive `dropped_frames`はclient-only補足で、b6 coreをHOLDにしない。
 
 ## 8. Default branch統合後のsource set
@@ -188,7 +188,7 @@ isolated 283/283件PASSと判定した。一方、総数との差5件のうち�
 示すものとは扱わない。Scratch／WireScope artifactはsource set固定時点では統合後developから未生成だった。
 
 次のartifact gateは、統合後sourceからJAR、wheel／sdist、GUI、WireScope ZIP／manifestを生成・durable stagingへ
-固定し、Bridgeは既決のmulti-arch OCIとして生成することである。GHCR pushを伴う現行workflowの実行は人間承認を
+固定し、Scratch／Bridgeは既決のmulti-arch OCIとして生成することである。GHCR pushを伴う現行workflowの実行は人間承認を
 待つ。McRemoteはcredential実装の既存PASSをchange cone外として再利用する一方、新JARでserver起動、credential
 `HEALTHY`、期限内session tokenの再起動継続、代表protocol 23呼出しを最小統合smokeする。sign／poke／browser保存／
 WireScopeの全Tier 2試験は繰り返さない。
@@ -196,7 +196,7 @@ WireScopeの全Tier 2試験は繰り返さない。
 ## 9. 統合後artifact入力（pre-OCI）
 
 coordinatorは`b6-integrated-source-set-1`の三default branchを個別のclean export／isolated checkoutへ固定し、
-Bridge OCIを除く次の六artifactを再生成した。これを`b6-integrated-artifact-input-1`としてdurable stagingへ置き、
+Scratch／Bridge OCIを除く次の六artifactを再生成した。これを`b6-integrated-artifact-input-1`としてdurable stagingへ置き、
 全fileをcopy後に再hashした。入力manifestは2,127 bytes、SHA-256
 `1a3b40fc3747359bd2a206f37aa4b8508989b97aedc6b6d584d8cfd49b3c4a4b`である。
 
@@ -231,5 +231,5 @@ Paper、world、config、credential backendを維持し、起動、version、標
 listenerは作られず、dead outer sessionを除去して`run.sh`を直接実行するとPASSした。JAR、world、config、credential
 backendはこの訂正で変更していない。この運用観測を製品artifactのFAILへ読み替えない。
 
-本identityは**pre-OCI input**である。Scratch ownerのexact test集計、Bridge multi-arch OCI、最終artifact set、
+本identityは**pre-OCI input**である。Scratch ownerのexact test集計、Scratch／Bridge multi-arch OCI、最終artifact set、
 公開releaseはまだ主張しない。
