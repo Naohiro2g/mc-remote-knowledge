@@ -2,7 +2,8 @@
 
 > 2026-08-27時点の`b6-artifact-candidate-set-1`を、人間が照合できる形で固定する記録です。
 > 公開release manifest、machine-readable gate manifest、配布済みartifactの主張ではありません。
-> Tier 2で生じたset 2／3は§7へ追記し、set 1の原記録を上書きしません。
+> Tier 2で生じたset 2／3は§7へ、official-public-beta適用時の後続修正は§12へ追記し、
+> set 1〜4とGitHub prereleaseの原記録を上書きしません。
 
 ## 1. 状態と用途
 
@@ -282,3 +283,33 @@ start／health／routing確認はdeployment gateで行い、本artifact gateで�
 三件とも`prerelease=true`、`draft=false`、Latest非対象である。Pythonのwheel／sdist、ScratchのOCI／GUI／
 WireScopeはrelease notesのdigest declarationを正とし、追加assetを添付しない。PyPI、Modrinth、public server
 deployment、OCI runtime deployment smokeは本公開に含めない。これをもってb6 GitHub prerelease identityを固定する。
+
+## 12. official-public-beta適用時のScratch／Bridge後続修正
+
+2026-08-29、mc-remote-stackの`public-web-paper@8`をofficial-public-betaへ適用する準備中、公開Scratch clientの
+notice pane footerがdeploymentの`release_identity`を人間向けversion labelへ変換せず、OCIのraw
+`sha-<commit>` tagとして表示する不具合を発見した。Scratchの正式GitHub prereleaseとset 4は
+`develop@df9264ec355dd722a848df46e96d4b0fc9340ca2`で既に固定済みだったが、直後の
+`5df50144da13b1a1c8c23b01f2d0138ffd17b953`に当該footer／notice label修正があったため、
+official-public-betaには後続commitから再生成したScratch／Bridge OCIを使用した。
+
+| image／artifact | official-public-beta適用identity | set 4との関係 |
+| --- | --- | --- |
+| Scratch index | `ghcr.io/naohiro2g/mc-remote-scratch@sha256:84499b1b9874daa08fde4b485338b42830470f5787ce0ab7d9cc46a2b86e2d95` | sourceを`5df50144…`へ進めた後続修正版 |
+| Bridge index | `ghcr.io/naohiro2g/mc-remote-bridge@sha256:6641766b3558185ea2af78e3bfdf3e173c990a26ed997bee268e852178edd72b` | Bridge機能差分はないが、同じsource commitから再生成 |
+| WireScope ZIP | SHA-256 `b3d6270299195d2c3db93c9d122938be6ae20d23e0f10e19afe3b0e99e3ca315` | byte-for-byte不変 |
+| WireScope manifest | SHA-256 `cee0c3c852ab719f141ee941e914c451af28fa664af08675d50b658e541df5b1` | source commit stampだけを`5df50144…`へ更新 |
+
+適用presetはmc-remote-stack
+[`main@23521199701ceb2081de8af3ad64ac6da9682a17`](https://github.com/Naohiro2g/mc-remote-stack/commit/23521199701ceb2081de8af3ad64ac6da9682a17)
+の`public-web-paper@8`である。Scratch／Bridge index digestはregistryに対する独立した
+`docker manifest inspect`で照合し、判断経緯と再生成は
+[PR #35](https://github.com/Naohiro2g/mc-remote-stack/pull/35)のcommit履歴、適用記録は
+[PR #36](https://github.com/Naohiro2g/mc-remote-stack/pull/36)のrunbook更新に記録された。
+
+これは**official-public-beta deploymentの適用時追補**であり、§10の`b6-artifact-candidate-set-4`、§11の
+Scratch tag target `df9264ec…`、GitHub prerelease notes、b6横断gateを後から別identityへ読み替えない。
+McRemote JAR、Python artifact、Paper、protocol `23.0.0`、WireScope ZIPのidentityは変わらない。
+却下した案は、set 4のScratch OCIをそのまま適用して公開footerのraw SHA表示を次releaseまで残すことである。
+次のScratch／Bridge releaseでは、後続fixを含むdefault branch SHAから正式candidate／release identityを新たに固定し、
+deployment追補を通常のrelease identityへ収束させる。
