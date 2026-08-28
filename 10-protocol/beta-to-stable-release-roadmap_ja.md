@@ -128,7 +128,7 @@ HOLD条件にしません。Bridgeの3,052-byte tarは`ws`をexternal importす�
 McRemoteはmainにあったb4／b5実証済みsession token永続化fixを保持したため、統合JARはset 3のJARと異なる
 SHA-256 `0ec8d4c0b105f3034361b260fc39fcb78013e932e684d34d5ca95c9a6c6a87a6`になりました。
 したがってset 3のTier 2 PASSは消さずに再利用しますが、旧JARを最終artifactへ流用しません。統合sourceからの
-最終artifact固定、既決のOCI境界によるScratch／Bridge生成、公開releaseが残るため、b6横断gateはOPENです。
+最終artifact固定、既決のOCI境界によるScratch／Bridge生成、公開releaseが残るため、この時点のb6横断gateはOPENでした。
 
 同日、Scratch／Bridge OCIを除く六artifactを`b6-integrated-artifact-input-1`としてclean再生成・durable stagingへ固定しました。
 McRemote統合JARは通常devで起動、credential `HEALTHY`、auth否定4 path、新規session、同じJARの正常再起動後に
@@ -137,6 +137,12 @@ pairingなしで行う期限内session再利用と認証済み`catalog.get`ま�
 を正とします。残件はScratch ownerのexact test集計、明示承認後のScratch／Bridge multi-arch OCI生成／push／container smoke、
 最終artifact set固定、release判定です。artifact identityの詳細は
 [`b6 artifact candidate記録`](b6-artifact-candidate-record_ja.md) §8／§9を正とします。
+
+同日、明示承認後のmanual workflowでScratch／Bridge multi-arch OCIをGHCRへpushし、index／platform／attestation
+identityを照合しました。六artifactとOCIを`b6-artifact-candidate-set-4`として固定し、McRemote
+`v1.21.11-2300.0.0b6`、Python／Scratch `v2300.0.0b6`のGitHub prereleaseを公開しました。三tag target、
+prerelease／draft、Latest非対象、McRemote JAR asset、release notes digestをAPIで確認し、b6横断gateをCLOSEDとします。
+公開identityとnon-claimは[`b6 artifact candidate記録`](b6-artifact-candidate-record_ja.md) §10／§11を正とします。
 
 ### 3.2 b7 — direction
 

@@ -268,3 +268,17 @@ start／health／routing確認はdeployment gateで行い、本artifact gateで�
 
 本setは公開前の最終artifact candidateである。Git tag、GitHub prerelease、McRemote JAR asset、release notes、
 公開後identity確認はまだ実施していない。
+
+## 11. GitHub prerelease identity
+
+2026-08-28のプロジェクトオーナー承認後、set 4を次のGitHub prereleaseへ公開した。
+
+| component | release | tag target | asset／notes identity |
+| --- | --- | --- | --- |
+| McRemote | [`v1.21.11-2300.0.0b6`](https://github.com/Naohiro2g/McRemote/releases/tag/v1.21.11-2300.0.0b6) | `4e8f1ff1bd48bfa28c465f2dc24060fbb419317f` | JAR 204,463 bytes／SHA-256 `0ec8d4c0b105f3034361b260fc39fcb78013e932e684d34d5ca95c9a6c6a87a6`／notes `731f491b8defecad3ecb3f0498646b85747e5bc171deda5eb549be0249a62059` |
+| Python | [`v2300.0.0b6`](https://github.com/Naohiro2g/minecraft-remote-api/releases/tag/v2300.0.0b6) | `a30a37b15658da655fe1e3535a73fb0e80c06f56` | assetsなし／notes `d7e8293cd513e71a376034edcbef781bb0803d02a412f2423e8f73eb317ba55c` |
+| Scratch | [`v2300.0.0b6`](https://github.com/Naohiro2g/scratch-editor/releases/tag/v2300.0.0b6) | `df9264ec355dd722a848df46e96d4b0fc9340ca2` | assetsなし／notes `a81a0bed45edb9c42da01b1483788ca9c5f043ac3e61c4cfd4af24e75752842a` |
+
+三件とも`prerelease=true`、`draft=false`、Latest非対象である。Pythonのwheel／sdist、ScratchのOCI／GUI／
+WireScopeはrelease notesのdigest declarationを正とし、追加assetを添付しない。PyPI、Modrinth、public server
+deployment、OCI runtime deployment smokeは本公開に含めない。これをもってb6 GitHub prerelease identityを固定する。
