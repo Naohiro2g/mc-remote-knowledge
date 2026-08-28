@@ -7,6 +7,7 @@
 - [NOTES_ja.md](NOTES_ja.md) — 未確定の捕捉と archive carry-forward 欠落
 - [knowledge-repo-design_ja.md](knowledge-repo-design_ja.md) — public SSOT の運用設計
 - [grand-design-roadmap_ja.md](grand-design-roadmap_ja.md) — 粗い相マーカーと横断優先
+- [readme-sample-modernization-roadmap_ja.md](readme-sample-modernization-roadmap_ja.md) — 各public repoの人間向け入口と実行可能sampleの整備順
 - [authentication-roadmap_ja.md](authentication-roadmap_ja.md) — b3後の認証現在地、long-lived公開gate、再開順序
 - [dev-repo-protocol_ja.md](dev-repo-protocol_ja.md) — dev agent runtime と固定票三種の正本
 - [claude-ai-guide_ja.md](claude-ai-guide_ja.md) — claude.ai / repository 間の session loop

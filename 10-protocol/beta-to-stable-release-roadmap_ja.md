@@ -191,6 +191,32 @@ error、set失敗の原子性はb8 contract lockで固定します。
 `events.poll` filter、`events.clear`、typed particle dataはb9または後続minor候補です。9月中旬に、初回stableの
 学習・運用体験へ不可欠で、かつ一つの自己完結sliceとして閉じられるかを判定します。該当しなければrc後へ送ります。
 
+### 3.5 2026-08-28時点の新API候補pool
+
+次はscope lockでなく、Paper 1.21.11 APIと学習用途から発掘した`candidate`です。b7〜b9へ入れる場合も、exact
+params／result／error、有限性、副作用、client surface、sampleを一つの縦sliceとして人間レビューします。
+
+| 候補概念 | Paper側の足場 | 主な価値 | contract lock前の中心論点 |
+| --- | --- | --- | --- |
+| `lookAt` | `Entity.lookAt(position, anchor)`／`Player.lookAt(entity, …)` | walkthrough、playerを使う3D turtle、目標点への注視 | 座標targetとhandle targetを一methodにするか、anchor、dimension、AIによる後続変更 |
+| marker／waypoint | server-only `Marker` entity、または別の可視entity | 移動可能な基準点、entity target、後続agentの足場 | 座標`lookAt`の前提にはしない。不可視Markerか可視markerか、spawn／setPos／remove、handle lifecycle、method名 |
+| `rayTraceBlocks` | precise collision shapeを使う`World.rayTraceBlocks` | HUD、照準先、空間理解、相対／絶対座標の橋渡し | max distance、chunkを新規loadしない境界、fluid／passable、miss、hit位置／block／faceの正準result |
+| block preview | `Player.sendBlockChange`／`sendMultiBlockChange` | 非破壊の建築preview、確認してから実配置 | player限定表示、bounded batch、client view範囲、復元／disconnect／chunk resend、実world stateとの区別 |
+| lightning effect | `World.strikeLightningEffect` | damageなしで座標を強く示す、短い視聴覚feedback | global effectの可視範囲、entity resultを返すか、fire等を含む実副作用のlive確認、rate limit |
+
+Paper 1.21.11では`Player`も`Entity`から座標指定`lookAt`を継承するため、座標targetだけを理由にmarker entityを
+経由しません。`Marker`はserver内だけに存在し、人間に見える目印ではありません。marker候補は移動するhandleや
+agent／waypointとして別に評価します。`rayTraceBlocks`はPaper API自身がchunk loadの可能性を示すため、McRemoteでは
+距離上限だけでなく既存loaded chunk内に閉じるかを先に決めます。block previewは実worldを変更しないことをmethod名、
+result、sampleで明示します。
+
+### 3.6 初回stable後の3D turtle／agent track
+
+本格的な3D turtle graphicsは独自Mobと独自AIを使う2027年春以降のtrackとする。教育版Minecraftのagent式建築を
+そのまま複製せず、移動、向き、建築、観察、AIの一部をMcRemoteの学習pathとして再構成する。Scratchでは必要に応じて
+extensionを機能群へ分割し、Python／別言語では同じ概念をその言語に自然なAPIとsampleで示す。この将来trackを
+b7〜b9や初回stableのcompletion条件にはしません。
+
 ## 4. Minecraft／Paper target
 
 b6は1.21.11で閉じ、直後にPaper 26.2 compatibility pulseを独立実施します。Java 25 build、plugin
