@@ -57,14 +57,15 @@ release versionはまだ入れない。
 
 未確定の公開事項は次である。
 
-- Maven Centralの親namespace `club.code2create`の検証完了
 - Maven向けrelease version表記
+- POM metadata／Javadoc JAR／signing／publish手段のexact設定
 
 Maven Centralの[現行namespace規則](https://central.sonatype.org/register/namespace/)ではDNS由来namespaceはdomainを
 exact reverseし、検証済み親namespaceのpublisherはその子groupIdも利用できる。
-したがって`code2create.club`に対応する`club.code2create`をCentral Portalで検証できれば、
-project group `club.code2create.mcremote`を公開に利用できる。親namespaceはCentral Portalで検証中と報告されているが、
-現時点ではverification完了を確認済みとは主張しない。
+`code2create.club`に対応する親namespace `club.code2create`は、2026-08-29にCentral Portalのbadgeが`Verified`であることを
+人間確認した。このnamespace権限により、project group `club.code2create.mcremote`を公開に利用できる。
+`io.github.naohiro2g`も既存のverified namespaceだが、採用済みのproject family identityは変更しない。
+Maven Centralへのdeployment／公開はまだ実施していない。
 
 Pluginは既存package `club.code2create.mcremote`を維持する。Client Libraryはその下の
 `club.code2create.mcremote.client`を使い、同じproject familyを示しながらPluginとのsplit packageを避ける。
