@@ -53,6 +53,21 @@
 protocol 21／b4以前の`build.setWorld`、`world` field、短縮値は履歴語彙であり、protocol 22の現行surfaceへ
 aliasとして持ち込まない（`2026-08-22-02`）。
 
+## Client成果物と公開面
+
+言語別成果物、利用者へ見せるprogramming面、registry上の配布単位を一語へ畳まない
+（`2026-08-29-03`）。
+
+| 正典表記 | 技術的な意味 | ドリフト注意 |
+| --- | --- | --- |
+| Client Library | Python、Java、一般用途TypeScript、C#等で、application／ユーザーcodeからMinecraft Remote Protocolを利用するための言語別library成果物 | 横断成果物を無修飾の`API`、`module`、`SDK`で呼ばない。repository名、distribution／package名、namespace／import名が同じ文字列であることを含意しない |
+| Client API | Client Libraryがconstructors、methods、types、errors等として利用者へ公開するprogramming面。既存の「機能実現の位置と昇格モデル」におけるclient API層は、Scratch extensionのblock等、library以外のclient surfaceも含む位置語 | 成果物であるClient Library、wire上のProtocol contract／method集合と同一視しない。既存の`Client-API`は歴史的な表記変種であり、新規文書ではhyphenなしの`Client API`へ寄せる |
+| SDK | 将来、Client Libraryにtool、sample、generator等を加えたより広い配布単位が必要になった場合の予約語 | Client Library単体の同義語や、現存する製品名として使わない |
+
+Scratch ClientはTypeScript／JavaScriptで実装されていても、Scratch forkへ焼き込まれる独立したclient surfaceであり、
+一般用途のTypeScript Client Libraryとは別成果物である。`Minecraft Remote for TypeScript`や
+`@mc-remote/client`からScratch extensionへの依存を自動的に導かない。
+
 ## WireScope roles
 
 WireScopeでは、実装processや物理hostでなく、観察データ経路上の責務をsource／station／browserの三役で表す
