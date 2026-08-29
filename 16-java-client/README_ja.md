@@ -4,19 +4,20 @@
 
 ## 現在地
 
-`2026-08-29-06`でPhase Aを開始した。
+`2026-08-29-06`でPhase Aを開始し、`2026-08-29-07`で既存McRemote／C2CC配下へJava namespaceを改訂した。
 
 - repository: `Naohiro2g/minecraft-remote-java`
 - bootstrap元commit: `862fa363274e314b28454c662d48b757c8134cee`
 - bootstrap実装commit: `4300c5de42cfb8c731361de463f5e4a8a15f402e`
-- Java root package: `com.mcremote`
-- Gradle logical group: `com.mcremote`
+- C2CC namespace改訂commit: `19ebccbcca2d0eba1d197ab9cb2e7512797907df`
+- Java root package: `club.code2create.mcremote.client`
+- Gradle logical group: `club.code2create.mcremote`
 - build: Gradle wrapper／`java-library`
 - Java target: 21
 - Java bootstrap baseline: protocol 23.0.0／artifact 2300.0.0b6
 
 Gradle clean build、unit test、Java 21 classfile確認と
-[GitHub Actions CI](https://github.com/Naohiro2g/minecraft-remote-java/actions/runs/33248644353)はPASSしている。
+[GitHub Actions CI](https://github.com/Naohiro2g/minecraft-remote-java/actions/runs/33250749563)はPASSしている。
 
 Classic `Naohiro2g/minecraft_remote_java`は現行化せず履歴として温存する。
 
@@ -25,7 +26,8 @@ Classic `Naohiro2g/minecraft_remote_java`は現行化せず履歴として温存
 - wire／versioning／authentication等のProtocol contract: `10-protocol`
 - 多言語展開の進行: `10-protocol/polyglot-client-roadmap_ja.md`
 - Classic温存、baseline、判断順位、最小縦slice: `2026-08-29-04`
-- root package、repository、Phase A開始: `2026-08-29-06`
+- repository、Phase A開始: `2026-08-29-06`
+- C2CC／Minecraft Remote／Client Libraryのnamespace分離: `2026-08-29-07`
 - 実装、build、Javaに閉じるClient API判断: `Naohiro2g/minecraft-remote-java`
 
 Java実装の判断順位は次である。
@@ -45,13 +47,16 @@ bootstrapには`maven-publish`、公開repository、signing、release versionを
 未確定の公開事項は次である。
 
 - artifactId: `minecraft-remote`／`minecraft-remote-client`
-- Maven Centralの`com.mcremote` namespace authority
+- Maven Centralの親namespace `club.code2create`の検証状態
 - Maven向けrelease version表記
 
 Maven Centralの[現行namespace規則](https://central.sonatype.org/register/namespace/)ではDNS由来namespaceはdomainを
-exact reverseし、groupIdとJava package名は分けられる。
-したがって`com.mcremote`のCentral公開には`mcremote.com`のownership確認が必要であり、Java root packageの確定だけから
-公開可能とは推測しない。
+exact reverseし、検証済み親namespaceのpublisherはその子groupIdも利用できる。
+したがって`code2create.club`に対応する`club.code2create`をCentral Portalで検証できれば、
+project group `club.code2create.mcremote`を公開に利用できる。現時点ではownership／Portal verificationを確認済みとは主張しない。
+
+Pluginは既存package `club.code2create.mcremote`を維持する。Client Libraryはその下の
+`club.code2create.mcremote.client`を使い、同じproject familyを示しながらPluginとのsplit packageを避ける。
 
 ## 次の縦slice
 
