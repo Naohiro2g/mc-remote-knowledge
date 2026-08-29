@@ -45,6 +45,7 @@ public 正本世代の入口です。ここに載る path は、このリポ内�
 | `13-scratch-client/scratch-block-value-projection-design_ja.md` | protocol 22 block値のStateText／BlockInfoText／Picker／ErrorText投影 |
 | `13-scratch-client/scratch-project-storage-transfer-design_ja.md` | 作品共有の責任分界、ブラウザ／ファイル保存、スプライト・ブロックの移送モデル |
 | `13-scratch-client/scratch-plan_ja.md` | **原点文書（完全保存・改訂しない）**。再始動の起点。現行 contract の正本ではなく、食い違う場合は 10-protocol が優先（`2026-07-26-01`） |
+| `16-java-client/README_ja.md` | 現行Java Client Libraryのrepository、group／root package、build境界、Java bootstrap baseline、次の縦slice |
 
 ## WireScope
 
