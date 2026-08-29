@@ -4,20 +4,23 @@
 
 ## 現在地
 
-`2026-08-29-06`でPhase Aを開始し、`2026-08-29-07`で既存McRemote／C2CC配下へJava namespaceを改訂した。
+`2026-08-29-06`でPhase Aを開始し、`2026-08-29-07`で既存McRemote／C2CC配下へJava namespaceを改訂、
+`2026-08-29-08`でMaven artifactIdを確定した。
 
 - repository: `Naohiro2g/minecraft-remote-java`
 - bootstrap元commit: `862fa363274e314b28454c662d48b757c8134cee`
 - bootstrap実装commit: `4300c5de42cfb8c731361de463f5e4a8a15f402e`
 - C2CC namespace改訂commit: `19ebccbcca2d0eba1d197ab9cb2e7512797907df`
+- Maven artifactId確定commit: `1c7512ed53550caa55596e0c3caf973efaad7431`
 - Java root package: `club.code2create.mcremote.client`
-- Gradle logical group: `club.code2create.mcremote`
+- Maven / Gradle group: `club.code2create.mcremote`
+- Maven artifactId: `minecraft-remote-client`
 - build: Gradle wrapper／`java-library`
 - Java target: 21
 - Java bootstrap baseline: protocol 23.0.0／artifact 2300.0.0b6
 
-Gradle clean build、unit test、Java 21 classfile確認と
-[GitHub Actions CI](https://github.com/Naohiro2g/minecraft-remote-java/actions/runs/33250749563)はPASSしている。
+Gradle clean build、unit test、Java 21 classfile確認、`minecraft-remote-client.jar`／sources JAR生成と
+[GitHub Actions CI](https://github.com/Naohiro2g/minecraft-remote-java/actions/runs/33253559318)はPASSしている。
 
 Classic `Naohiro2g/minecraft_remote_java`は現行化せず履歴として温存する。
 
@@ -28,6 +31,7 @@ Classic `Naohiro2g/minecraft_remote_java`は現行化せず履歴として温存
 - Classic温存、baseline、判断順位、最小縦slice: `2026-08-29-04`
 - repository、Phase A開始: `2026-08-29-06`
 - C2CC／Minecraft Remote／Client Libraryのnamespace分離: `2026-08-29-07`
+- Maven artifactId: `2026-08-29-08`
 - 実装、build、Javaに閉じるClient API判断: `Naohiro2g/minecraft-remote-java`
 
 Java実装の判断順位は次である。
@@ -41,19 +45,26 @@ escalation sweepでhub `00-hub/NOTES_ja.md`へ運ぶ。
 
 ## Buildとpublicationの境界
 
-Gradle project名`minecraft-remote-java`はrepository／local build identityであり、Maven artifactIdを確定しない。
-bootstrapには`maven-publish`、公開repository、signing、release versionを入れない。
+Gradle project名`minecraft-remote-java`はrepository／local build identityであり、Maven artifactIdとは別である。
+Maven coordinateの確定部分は次とする。
+
+```text
+club.code2create.mcremote:minecraft-remote-client
+```
+
+bootstrap buildではarchive名も`minecraft-remote-client`へ固定するが、`maven-publish`、公開repository、signing、
+release versionはまだ入れない。
 
 未確定の公開事項は次である。
 
-- artifactId: `minecraft-remote`／`minecraft-remote-client`
-- Maven Centralの親namespace `club.code2create`の検証状態
+- Maven Centralの親namespace `club.code2create`の検証完了
 - Maven向けrelease version表記
 
 Maven Centralの[現行namespace規則](https://central.sonatype.org/register/namespace/)ではDNS由来namespaceはdomainを
 exact reverseし、検証済み親namespaceのpublisherはその子groupIdも利用できる。
 したがって`code2create.club`に対応する`club.code2create`をCentral Portalで検証できれば、
-project group `club.code2create.mcremote`を公開に利用できる。現時点ではownership／Portal verificationを確認済みとは主張しない。
+project group `club.code2create.mcremote`を公開に利用できる。親namespaceはCentral Portalで検証中と報告されているが、
+現時点ではverification完了を確認済みとは主張しない。
 
 Pluginは既存package `club.code2create.mcremote`を維持する。Client Libraryはその下の
 `club.code2create.mcremote.client`を使い、同じproject familyを示しながらPluginとのsplit packageを避ける。
