@@ -15,6 +15,11 @@ protocol は plugin・python-client・scratch-client の3つにまたがる共�
 [betaから初回stableまでのreleaseロードマップ](beta-to-stable-release-roadmap_ja.md)を参照する
 （DECISIONS `2026-08-26-08`）。
 
+Java bootstrapを起点に、developer experience評価、Python／Java比較、既存conformance資産の一般化、
+TypeScript／browser／C#展開へ進む横断順序は
+[多言語Client Library / Protocol-firstロードマップ](polyglot-client-roadmap_ja.md)を参照する
+（DECISIONS `2026-08-29-05`）。
+
 b6 source candidateのTier 2入口で使うcanonical case、三repoの既存test対応、fixture化前のgapは
 [b6 compatibility fixture計画](b6-compatibility-fixture-plan_ja.md)を参照する。
 

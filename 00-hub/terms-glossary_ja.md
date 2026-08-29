@@ -92,6 +92,7 @@ roleはdeploymentごとに同じprocessへ融合または複数processへ分離�
 | browser-loopback profile | source、station、browserが同じnetwork namespaceにあり、browserがloopback top-level originを開くprofile | 「個人利用」「localhost一般」「public pageからlocalへ接続」と同義にしない |
 | in-process station | source processがstation roleを同一process内で兼任する梱包 | station roleそのもの、全Python profile、cross-process relayと同一視しない |
 | compatibility set | app artifact、runtime、schema、session／attach／ingress protocol、profile等を互換な一組としてlock・検証する単位 | 各componentを常に同時deployするという意味ではなく、変更後も完全なsetを検証する |
+| Java bootstrap baseline | `2026-08-29-04`が新Java Client Libraryの比較用に固定したprotocol 23.0.0／artifact 2300.0.0b6のexact基線 | 一般概念`compatibility set`の同義語、将来の全Java release基線、その時点の最新互換一式とみなさない |
 
 ## Release運用の役割
 
