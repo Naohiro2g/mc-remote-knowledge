@@ -6,6 +6,12 @@
 
 横断的な影響を持つ決定（複数ワークストリームに波及するもの）は、ここに書くと同時に `00-hub/DECISIONS_ja.md` に1行追記する。
 
+## Client sample
+
+各Client Library開発repoのREADME隣接examplesと、`mc_remote_samples`のconcept-firstな多言語比較面は役割を分ける。
+配置、owner、metadata、WireScopeのread-only境界は
+[Client sampleの配置と多言語学習UX](client-sample-learning-ux_ja.md)を参照する。
+
 ## Scratch作品の提出・共有
 
 McRemoteは一般UGC hostingや独自の提出serviceを持たない。作品の提出・共有を行う場合、保護者、学校、

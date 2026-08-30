@@ -1112,6 +1112,10 @@ Protocol／pluginへ上げる主な理由は、既存の「機能実現の位置
 
 Client Libraryが増えたら、同じconceptを複数言語で実装したsampleを用意できる。
 
+`2026-08-30-01`により、各Client Library開発repoは現行Client APIと一緒にbuild／testするREADME隣接の最小examplesを
+所有し、`mc_remote_samples`はconcept-firstな言語間比較面を所有する。後者は前者を置き換える共通実装repoではない。
+配置と学習UXの正本は[Client sampleの配置と多言語学習UX](../20-教材/client-sample-learning-ux_ja.md)とする。
+
 例:
 
 ```text

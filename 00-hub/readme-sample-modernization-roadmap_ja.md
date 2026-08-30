@@ -16,12 +16,18 @@
 | `McRemote` | plugin repo | 対応Minecraft／Paper、導入、最小接続、permission、release取得 |
 | `minecraft-remote-api` | Python repo | install、最小Python例、接続／pairing、API・examplesへの導線 |
 | `scratch-editor` | Scratch repo | forkの目的、起動方法、接続、保存、WireScope、upstreamとの関係 |
-| `mc_remote_samples` | sample repo | 実行環境、sample一覧、期待結果、変更／cleanup境界 |
+| `minecraft-remote-java` | Java repo | build、接続／pairing、現行Client APIと一緒に検証する最小examples |
+| `mc_remote_samples` | sample repo | concept-firstな言語間比較、実行環境、期待結果、変更／cleanup境界 |
 | `mc-remote-stack` | Stack repo | 対応済みdeployment、最短runbook、更新／rollback、doctor |
 | `mc-remote-knowledge` | knowledge repo | project全体像、各repoへの入口、設計・決定・教材の読み分け |
 
 各repoは自READMEと実行可能codeを所有する。knowledgeは共通の利用者像、語彙、repo間導線、進捗を所有し、本文を
 複製しない。privateなbackstage情報は対象外とする。
+
+各Client Library開発repoは、現行APIと同じcheckoutでbuild／testできるREADME隣接の最小examplesを所有する。
+`mc_remote_samples`はそれらを置き換えず、同じconceptを言語nativeな実装で比較する学習面を所有する。比較面は
+正準exampleへlinkしても、学習目的の独立実装を持ってもよいが、owner不明のcopyを作らない。詳細は
+`2026-08-30-01`と[Client sampleの配置と多言語学習UX](../20-教材/client-sample-learning-ux_ja.md)を正とする。
 
 ## 3. 人間向けREADMEの最小骨格
 
@@ -68,7 +74,8 @@ rcまでのparticle／effect sampleは互換性の差を順に見せる。b6／p
 ### Pass A — 直ちに開始、b7前後
 
 - public repoのtop-level READMEと既存sampleをinventoryし、古いversion、未実装claim、入口欠落を分類する。
-- McRemote／Python／Scratch／`mc_remote_samples`に、現在公開済みb6から動かせる最短経路を一つずつ置く。
+- McRemote／Python／Java／Scratch／`mc_remote_samples`に、現在公開済みb6またはJava bootstrap baselineから
+  動かせる最短経路を一つずつ置く。
 - sample repoに一覧と実行前後のworld変更／cleanup表示を置く。
 
 ### Pass B — b8からAPI freeze

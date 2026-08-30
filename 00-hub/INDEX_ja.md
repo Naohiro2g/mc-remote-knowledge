@@ -60,6 +60,7 @@ public 正本世代の入口です。ここに載る path は、このリポ内�
 | Path | 役割 |
 | --- | --- |
 | `20-教材/ai-learning-design_ja.md` | 学習支援の哲学、AI 委譲境界、Scratch / Python の並列ビークル論 |
+| `20-教材/client-sample-learning-ux_ja.md` | Client repoのREADME隣接examplesと`mc_remote_samples`のconcept-first多言語比較面のowner・学習UX |
 | `20-教材/environment-guide_ja.md` | 教材・OSS の想定実行環境、uv 統一、deployment profile とケータリング型の区別 |
 | `20-教材/jupyter-notes_ja.md` | デモ .ipynb の autoreload / CWD / 実行順序依存の注意点 |
 | `token-hygiene-guide_ja.md` | 情報を失わず context token を減らす運用 |
