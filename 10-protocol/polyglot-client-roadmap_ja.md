@@ -509,6 +509,17 @@ Protocol decision / contract
 - session
 - permissions
 
+#### Session credentialの共通UX
+
+各Client Libraryは、期限内session tokenをtarget単位で再利用し、必要な場合だけ一接続試行につき一度pairingする共通意味を
+持つ。認証reasonでは該当tokenだけを破棄し、`permission_denied`、`protocol_mismatch`、network errorでは温存する。
+
+ただし保存backendや対話UIをcore libraryへ統一しない。native starterは利用可能な保護されたOS資格情報storeを利用者の
+明示同意のもとで使い、利用不能時は平文fileへ自動fallbackせずin-memoryへ縮退する。browser／Scratchはorigin隔離された
+browser保存を使い、projectへtokenを含めない。credential scopeにはclient／application、credential type、transport、targetを
+含め、異なる言語やapplicationが同じtokenを暗黙共有しない。exact API／CLI／backendは各言語へ自然に投影する。横断正本は
+`00-hub/authentication-roadmap_ja.md` §1.1と`2026-08-30-03`である。
+
 ### Catalog
 
 - block

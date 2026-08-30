@@ -1,6 +1,6 @@
 # 認証ロードマップ
 
-> 認証基盤の現在地、long-lived credential の公開 gate、再開条件と実装順序の横断正本。決定 `2026-08-07-01` を人間向けに投影する。
+> 認証基盤の現在地、client-side session credential UX、long-lived credential の公開 gate、再開条件と実装順序の横断正本。決定 `2026-08-07-01`／`2026-08-30-03` を人間向けに投影する。
 
 ## 1. 現在地
 
@@ -17,6 +17,44 @@ credential lifecycle、checkpoint、rollback resistance、reset／災害復旧�
 - Scratch は session token のみを使う。
 - Stack の一般 profile、利用者ガイド、一般利用者向け preset、公開教材へ long-lived 導線を出さない。検証専用の isolated alpha は公開導線と同一視しない。
 - `2026-08-02-01`、`2026-08-02-03`、`2026-08-06-02` の設計、実装、既存 evidence は破棄せず、後続 slice の入力として保持する。
+
+### 1.1 Client-side session credential UX
+
+各Client Libraryは、保存済みsession tokenがあればtarget単位で読み、まずtoken付き`hello`を試す。tokenが無い場合、
+または`auth_required`／`token_expired`／`token_revoked`／`token_not_found`／`token_invalid`を受けた場合は、一接続試行に
+つき一度だけpairingする。認証reasonを受けた保存tokenは該当targetのentryだけ削除する。pairing後のtoken付き`hello`も
+失敗した場合はloopせず呼出元へ返す。
+
+`permission_denied`は認可拒否、`protocol_mismatch`は版不一致、network errorは到達性の問題であり、tokenを削除しない。
+credential backendの利用不能、load／save失敗も認証失敗へ偽装せず、`auth.enforcement=false`へfallbackしない。
+
+責任はsurfaceごとに分ける。
+
+| surface | 責任 |
+| --- | --- |
+| core Client Library | injectableなcredential store SPIと、永続化しないnone／in-memory実装を持つ。OS依存、GUI、prompt、暗黙file作成を持たない |
+| first-party native starter／runner | 利用者の明示同意を得て、macOS Keychain、Windows Credential Manager、Linux Secret Service等の保護されたOS資格情報storeを選ぶ |
+| non-interactive application | promptせず、保存policyまたはcredential storeを明示する。application固有storeへ差し替えられる |
+| browser／Scratch | OS資格情報storeを要求せず、originとtargetで隔離されたbrowser保存境界を使う。tokenをproject fileへ含めない |
+
+native starterは保護されたstoreが利用不能なら、平文fileへ自動fallbackせず、そのprocess内のin-memory利用へ縮退する。
+接続は継続できるが、次回もpairingが必要になることをtokenやprivate endpointを含めず明示する。
+
+初回のinteractive starterでは、保存するかmemoryだけで使うかを既定回答なしで明示選択させる。managedな教材環境は
+事前policyで選べる。ephemeral／no-save操作は既存の永続tokenもreadせず、save／clearもしない。forget操作は選択targetの
+local tokenを削除して接続せず終了する。forgetはserver上のrevoke／logoutではなく、別端末やcopy済みtokenまで無効化した
+とは主張しない。
+
+credential keyの論理scopeには少なくとも、client／application identity、credential type、transport、target identityを
+含める。言語間やapplication間でcredentialを暗黙共有しない。OS backend上のservice／account文字列、canonical target
+encoding、利用libraryは各Client Libraryの実装契約で定める。
+
+token、`pairing_id`、private endpointをsource、project、command argument、通常log、公開artifactへ出さない。pair codeと
+表示用pairing commandは短命な人間操作値として表示できる。保存backendの例外、warning、`toString()`へtokenを含めない。
+
+このUXが保存するのは公開既定のsession tokenであり、long-lived credentialの一般公開gateを開かない。Scratchの既存
+target別`localStorage`とPythonの既存target別file storeを本決定から破壊的に移行しない。Pythonの保護storeへの移行は、
+既存利用者のmigrationと復旧導線を伴う別判断とする。
 
 ## 2. ここからの優先順
 

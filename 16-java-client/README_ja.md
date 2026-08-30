@@ -87,3 +87,23 @@ DEBUG／TRACE／FAST、`connection.flush`、catalog、event、player／entity等
 
 Client repoの最小examplesと`mc_remote_samples`の多言語比較面の役割分離は`2026-08-30-01`および
 `20-教材/client-sample-learning-ux_ja.md`を正とする。
+
+### 次の認証UX slice
+
+Javaの`CredentialStore` SPI、`none()`、`inMemory()`は維持し、core libraryへOS依存、GUI prompt、暗黙のfile作成を
+持ち込まない。その上でstarter／examples向けcomponentに、macOS Keychain、Windows Credential Manager、Linux Secret
+Serviceから利用可能な保護storeを選ぶ実装を加える。利用不能時は平文fileへfallbackせずin-memoryへ戻し、次回もpairingが
+必要になることを秘密なしで警告する。
+
+Java learner runnerの最初の投影は次とする。
+
+- 初回は保存／memoryを既定回答なしで明示選択する
+- `--no-save`は永続storeをread／write／clearせず、今回のprocessだけmemoryで動く
+- `--forget`は選択targetのlocal tokenを削除して接続せず終了し、server revoke／logoutとは呼ばない
+- logical credential scopeへJava application identity、session、TCP、`ServerTarget`を含める
+- exact OS backend library、service／account encodingはJava repoで選定・testする
+
+決定論的testでは保存／別instanceからの再読込、target分離、認証reasonでの該当entry削除、認可／版／network errorでの
+token温存、backend利用不能時のmemory縮退、secret-free warningを確認する。liveでは初回pairing後にprocessを終了し、期限内の
+再実行がpairingなしで成功することを確認する。このsliceはsession tokenの再利用であり、long-lived credentialを公開しない。
+横断意味は`2026-08-30-03`と`00-hub/authentication-roadmap_ja.md` §1.1を正とする。
