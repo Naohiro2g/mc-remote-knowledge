@@ -472,7 +472,12 @@ protocol 23の現行helloはprotocol 22で確定したJSON-RPC／auth／catalog�
 - `protocol` ＝protocol semver `23.0.0`。package版`2300.0.0b6`を載せない。protocol 22／b5以前の版値は履歴である。
 - `sandbox` は **`hello.params` に載せない**。bridge 経由の Sandbox routing は §2 の WSS 接続メタ（例 `?sandbox=...`）が担う。直 TCP 経路では接続先 host/port が routing 情報であり、plugin が受け取る wire payload は bridge 経由でも直 TCP でも同一に保つ。
 - `auth` は **`{ token }` の1モード**（token はサーバで player 束縛）。**ペアリング（token の入手）は hello の前段の独立メソッド `auth.pairBegin` / `auth.pairPoll`**（§6.5・確定 `2026-07-04-06`）＝hello 自体は pair モードを持たない。`build`省略時はdimension=`minecraft:overworld`・原点(200,0,200)。`build.dimension`は§5.1のDimensionRefで、成功resultは正準DimensionKeyを返す。
-- **enforcement トグル連動**（plugin config・§10.11.1 項5）：hello の `auth` 扱いはトグルで変わる。**OFF（開発既定）**＝`auth.token` 欠落/空を許容し**無認証セッション可**（3リポ非同期着地のため・item5）＝この段では最小必須は `{ protocol }`。**ON（リリース既定）**＝`auth` 必須で、欠落→`auth_required`、検証失敗→`token_expired` / `token_revoked` / `token_not_found` / `token_invalid` 等の認証 reason（§6.3）。構文不正・未知形式・検証不能は `token_invalid`。
+- **enforcement トグル連動**（plugin config・§10.11.1 項5・`2026-08-30-02`）：hello の`auth`扱いは
+  トグルで変わる。**OFF（明示的・一時的bypass）**＝`auth.token`欠落／空を許容し**無認証セッション可**。
+  認証障害の診断、移行試験、特殊client検証にだけ使い、通常運用や開発の既定にしない。この段では最小必須は
+  `{ protocol }`。**ON（通常運用・新規設定・欠落時fallback・releaseの既定）**＝`auth`必須で、欠落→
+  `auth_required`、検証失敗→`token_expired`／`token_revoked`／`token_not_found`／`token_invalid`等の認証reason
+  （§6.3）。構文不正・未知形式・検証不能は`token_invalid`。
 
 ### 6.2 応答 `result`
 
@@ -531,7 +536,11 @@ token の入手＝ペアリング。**hello の前段の独立メソッド `auth
 - **token 種別**（`2026-08-02-01` で改名・旧記述は scratch-plan §2.5）：`session_token`（`mcrs_`・約2h・Scratch/一時利用。**`2026-08-02-08` で hash-only record として永続化**＝通常の plugin / server 再起動を跨いで `expires_at` まで再利用でき、socket / stream / build state は再起動で失われて再接続時に新規生成する。§6.6 の管理 wire の対象にはしない）／**`long-lived credential`（`mcrl_`・`token_type: "long_lived"`・サーバ再起動を越えて有効・明示 revoke まで有効・`expires_at = null`・デバイス別・CLI `login`）**。旧称 `player_token` / `mcrp_` は使わない（`player_token` は「player に属する」意味に読めるが session token も player UUID に束縛されるため区別にならない。実際の区別は寿命と失効経路）。**移行**＝新実装は `mcrp_` を新規発行せず、保存済み `mcrp_` は `token_not_found` 等の既存認証 reason で無効化する。client は破棄して一度だけ `mcrl_` を再取得する（`2026-07-04-03` 項3 の破棄側フローに乗る）。**一時的な二重 prefix 発行期間は設けず**、plugin / Python / Scratch の wire 変更は同一互換単位で着地させる。改名を credential 実装から切り離して先行させない（理由と全規則は `11-plugin/platform-design_ja.md` §9.8）。Scratch の標準導線は session のみ。**Python の既定 credential を long-lived へ切り替える公開導線は開いていない**＝gate は versioning-design §10.11.2 が正本で、開放条件は `2026-08-02-03` に置く。サーバは生 token を保存せず SHA-256 hash のみを持ち、認可は常に UUID→LuckPerms。
 - **credential scope**：tokenはopaqueなままとし、channel / Sandbox名をwire tokenへencodeしない。serverごとのcredential storeが未知tokenを拒否し、client storeはcredentialを接続先profile / targetへ紐づけて別channel・別Sandboxへ黙って送らない。将来複数serverがcredential storeを共有する場合だけ、明示的なaudience / scopeをprotocol ratifyする。
 - **PoPは未批准**：公開鍵付きpairing、challenge / nonce、proof、signature errorは現protocolへ追加しない。接続時Proof of Possessionはtoken文字列だけの別端末再利用を抑えるhardening候補だが、b4 / rc / public betaのgateから外した（DECISIONS `2026-07-16-03`）。採用判断までalgorithm、key encoding、canonical bytes、challenge wire shapeを推測で固定しない。Bridgeは採用後もpayload-transparentであるべきだが、これは現時点のwire契約追加ではない。
-- **クライアント契約（reason 駆動・OFF/ON 統一）**：クライアントは**まず `hello`（token を持てば載せる）を試み、`auth_required` が返ったときだけ**本フロー（`pairBegin`→`pairPoll`→再 `hello`）に入る。この1経路が OFF/ON/token 失効を統一する＝**enforcement OFF（開発既定）では token 無し hello が成功し `auth_required` が返らない＝ペアリングは自動的にスキップ**（dev 動線に別コードパス不要・§6.1・item5）。ON では token 欠落時に `auth_required`、token 検証失敗時に §6.3 の認証系 reason が返る。認証系 reason で token を破棄したら同じく先頭（hello 試行）へ戻る。
+- **クライアント契約（reason 駆動・OFF/ON 統一）**：クライアントは**まず`hello`（tokenを持てば載せる）を
+  試み、`auth_required`が返ったときだけ**本フロー（`pairBegin`→`pairPoll`→再`hello`）に入る。この1経路が
+  OFF／ON／token失効を統一する。明示的bypassでenforcement OFFの場合はtoken無しhelloが成功し
+  `auth_required`が返らないためpairingを自動的にスキップする。ONではtoken欠落時に`auth_required`、token検証
+  失敗時に§6.3の認証系reasonが返る。認証系reasonでtokenを破棄したら同じく先頭（hello試行）へ戻る。
 - **非規範（クライアント実装の目安・ratify 対象外）**：poll 間隔 ≈1–2s、poll の timeout は `pairBegin` が返す `expires_in`（`pair_code` TTL・≈120s）で、超過は `pair_expired` として扱う。`pairing_id` はクライアント in-memory 保持でよい（リロードで破棄＝ユーザーは接続ブロックを再実行）。
 
 ### 6.6 credential 管理（確定 `2026-08-02-01`）

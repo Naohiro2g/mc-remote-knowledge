@@ -4,6 +4,15 @@
 
 ## Inbox
 
+- 2026-08-30 [→DEC 2026-08-30-02] [priority] operator-editable configのStack投影残差 / Stack
+  `main@12552c44d9f236b5f1407dcc630ce405e337f5e2`は全現行rendererで再起動時のtemplate強制再適用を止め、
+  seed-once化とdeterministic test／全suite PASSまで実装した。これは過去defaultを毎回上書きする事故を止める
+  第一修正として受理する。一方、現行実装はvolume内`server.properties`／`plugins/<Plugin>/config.yml`の直接編集を
+  ownerとし、McRemote configをStack／host側の編集可能な宣言的入力として管理する経路をまだ持たないため、
+  `2026-08-30-02`の最終lifecycle契約には部分到達である / 再開＝Stackでoperator input schema、秘密分離、
+  projection／merge、default追加／廃止時migration、render／update diff、restart／reload、doctor、rollbackを設計・実装する時 /
+  閉じる＝container内生成configをsole ownerにせず、host側desired configから再現可能に投影し、通常restart、明示更新、
+  version upgrade、rollbackをtestした時。現行public betaへのrenderer適用も未実施で、人間の別applyを要する
 - 2026-08-29 [→DEC 2026-08-29-05] [done] `compatibility set`とJava bootstrap固定基線の語彙分離 / `2026-08-29-04`は固定b6一式をbehavioral comparison baselineとして定める過程で`compatibility set`語も使用したが、既存の横断語彙`compatibility set`とJava bootstrap固有の固定比較基線を区別するため、後続説明では後者を`Java bootstrap baseline`と呼ぶ。既決本文はappend-onlyで維持し、glossary／polyglot roadmap／将来Java spokeでは新称へ寄せる
 - 2026-08-29 [→DEC 2026-08-29-05] [done] 旧「快適な補完環境を提供できなければ言語採用を見送る」方針の現代化 / archiveからcarryした`world-constants-provision-notes_ja.md` §5の自動的な採用見送り規則を、Polyglot developer experience checkpointで評価し、不足時は推奨状態と改善先を明示する規律へ改訂した。不足だけを理由にClient Library／言語を廃棄せず、Pythonの`mc_constants.py`方式を他言語へ強制しない。Javaでの具体的なcatalog／型／IDE／LLM支援は実装時の観察と局所計画へ送る
 - 2026-08-29 [一部→DEC 2026-08-29-06／07／08] [priority] Client Libraryのregistry-native exact name / Javaはroot package=`club.code2create.mcremote.client`、Maven／Gradle group=`club.code2create.mcremote`、artifactId=`minecraft-remote-client`へ確定した。`com.mc_remote`／`com.mcremote`、artifactId=`minecraft-remote`／`client`／`minecraft-remote-java`は現行候補から閉じる。Gradle project名／repository名は`minecraft-remote-java`のままlocal identityとして分離し、bootstrap buildには`maven-publish`を入れない。Maven Centralでは`code2create.club`に対応する親namespace `club.code2create`のbadgeが`Verified`であることを2026-08-29に人間確認済みであり、Javaのnamespace verification gateは閉じた。`io.github.naohiro2g`も既存のverified namespaceだが、採用済みのproject family identityは変更しない。検証済み親namespaceから子groupId `club.code2create.mcremote`を利用する構成とし、この公開準備から確定済みJava G/A／root packageを自動的に戻さない。残るJava公開準備はMaven向けrelease version、POM metadata／Javadoc JAR／signing／publish手段のexact設定、最初のdeploymentである。TypeScript `@mc-remote/client`とNuGet `MinecraftRemote.Client`も第一候補であり公開契約ではない / 再開＝Javaは最初のpublishable Maven設定前、TypeScript／C#は各registry公開準備時 / 閉じる＝Java release version／publish設定、および各ecosystemのexact coordinate／package／namespaceを人間批准して該当Client Libraryへ固定した時

@@ -10,6 +10,8 @@ credential lifecycle、checkpoint、rollback resistance、reset／災害復旧�
 
 公開面は引き続き次の状態を維持する。
 
+- `auth.enforcement`は通常運用、新規設定、欠落時fallback、releaseで`true`を既定とする。`false`は明示的かつ
+  一時的な診断／移行／特殊client検証bypassに限り、自動fallbackにしない（`2026-08-30-02`）。
 - 既定 credential は `session`。
 - Python の既定を `long_lived` へ切り替えない。
 - Scratch は session token のみを使う。

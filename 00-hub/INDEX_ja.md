@@ -35,7 +35,7 @@ public 正本世代の入口です。ここに載る path は、このリポ内�
 | `10-protocol/wire-format-design_ja.md` | wire envelope、hello/auth、command/error の contract |
 | `10-protocol/dimension-key-design_ja.md` | protocol 22のDimensionKey入力／出力、build context、surface投影、protocol 21非互換境界 |
 | `10-protocol/block-value-design_ja.md` | protocol 22の構造化block value、set／get対称性、多言語・Scratch投影の説明正本 |
-| `11-plugin/platform-design_ja.md` | server plugin / loader の設計境界、availability guard、credential 永続化と失効耐性（§9） |
+| `11-plugin/platform-design_ja.md` | server plugin / loader の設計境界、availability guard、認証設定lifecycle、credential 永続化と失効耐性（§9） |
 | `12-python-client/python-client-guide_ja.md` | Python client の公開利用面 |
 | `12-python-client/mc-constants-design_ja.md` | constants / catalog の生成・配布設計 |
 | `13-scratch-client/debug-session-design_ja.md` | debug / observation session の設計 |

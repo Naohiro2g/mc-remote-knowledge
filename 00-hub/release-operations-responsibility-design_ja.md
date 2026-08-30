@@ -103,6 +103,11 @@ coordinatorはcomponent実装、物理hostの実状態、実施していないte
 Stackはhost preflight、profile／order／lock、artifact取得、render／apply／doctor、再適用とdeployment
 evidenceを担当する。backstageは物理hostとprivate inventoryの写像を担当する。
 
+Stackはoperatorが調整する設定をhost側の編集可能な宣言的入力として管理し、review可能なrender／applyでcontainerへ
+投影する。container内でpluginが生成したconfigを、変更不能なdefaultを固定する不透明なdurable stateとして扱わない。
+immutable artifact、operator desired config、world／credential等のruntime dataはowner、更新、backup、rollbackの
+lifecycleを分ける（`2026-08-30-02`）。
+
 一般的なhost準備はexact set凍結前にも進められる。candidate artifactの配置とshared環境でのgate試験は、
 coordinatorがexact setと許可済み操作を示した後に行う。Stack担当はcomponent候補やproduct contractを
 独自に変更しない。

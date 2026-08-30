@@ -187,6 +187,30 @@ spark APIはsoft dependencyにし、利用不能時は固定capで動作を継�
 
 長期player credential storeはworld dataと別lifecycleに置く。通常world restoreで触らず、revoke履歴を含む新しいstoreを復元できないdisaster recoveryでは、古いstoreを信頼するより全credential失効・再pairを既定とする。Proof of Possession用のkey / nonce / signature schemaは未批准であり、現在のplugin data modelへ先行追加しない。**この「revoke履歴」を独立backendとして具体化した実装契約は §9**（`2026-08-02-01`）。
 
+### 8.1 `auth.enforcement`の既定と設定lifecycle（`2026-08-30-02`）
+
+`auth.enforcement`は通常運用、新規生成config、field欠落時のJava fallback、release artifactのすべてで`true`を既定と
+する。`false`は認証障害の診断、移行試験、特殊client検証のため、operatorが意図して選ぶ一時的なbypassである。
+store障害、認証bug、clientの未対応を検出して自動的に`false`へ落とさない。
+
+McRemote `fix/auth-enforcement-default@3ff052eeb532cf1312a7e284af996cb4ef13b52f`は、配布`config.yml`とJava fallbackを
+`true`へ揃え、既定値回帰testを追加した。buildと150／150 tests PASSとの搬送報告を受理する。明示的な既存
+`false`をmigrationで無条件上書きせず、実際の通常deploymentはStackの宣言的設定とdoctorで`true`を保証する。
+
+設定と永続データは同じlifecycleへ畳まない。
+
+| 種別 | ownerと扱い |
+| --- | --- |
+| plugin schema／安全なdefault／validation | McRemote pluginが所有する |
+| operatorが調整するdesired config | Stack／host側の編集可能な宣言的入力が所有し、containerへ投影する |
+| container内で生成された`config.yml` | 投影または初回生成物であり、変更不能なdefaultを固定する正本や不透明なdurable stateにしない |
+| world、credential、revocation authority、log等 | 各data contractに従うruntime data。config投影と同一の更新／rollback単位と推測しない |
+| JAR／OCI image | immutable artifactとしてdigestで固定する |
+
+設定変更は秘密の実値を正本へ書かず、対象field、変更理由、再起動／reload要否、適用先、rollbackをreviewできる形で
+管理する。upgradeやcontainer再作成でoperator選択を黙って初期defaultへ戻さない。default変更を全configの
+編集不能化で守らず、schema／fallback、render validation、effective behaviorを確かめるdoctorで守る。
+
 ---
 
 ## 9. long-lived credential の永続化と失効耐性（確定 `2026-08-02-01`）

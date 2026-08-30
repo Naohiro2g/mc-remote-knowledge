@@ -7,3 +7,7 @@
 このディレクトリは mc-remote-knowledge のスポーク。`00-hub/` の方針（全体計画・理念・全体アーキテクチャ）に従う。
 
 横断的な影響を持つ決定（複数ワークストリームに波及するもの）は、ここに書くと同時に `00-hub/DECISIONS_ja.md` に1行追記する。
+
+`auth.enforcement`の通常既定、一時bypass、operator設定とruntime dataのlifecycle分離は
+`2026-08-30-02`および[platform設計](platform-design_ja.md) §8.1を
+正とする。
