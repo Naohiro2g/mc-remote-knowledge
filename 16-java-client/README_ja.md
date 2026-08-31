@@ -13,6 +13,7 @@
 - C2CC namespace改訂commit: `19ebccbcca2d0eba1d197ab9cb2e7512797907df`
 - Maven artifactId確定commit: `1c7512ed53550caa55596e0c3caf973efaad7431`
 - Phase B／examples commit: `f259b396bfbde6e37e65b3c7916c25af37dc6a29`
+- session credential UX commit: `af95e9ce5202926533d053d9e6d97befc7d006ee`
 - Java root package: `club.code2create.mcremote.client`
 - Maven / Gradle group: `club.code2create.mcremote`
 - Maven artifactId: `minecraft-remote-client`
@@ -88,22 +89,31 @@ DEBUG／TRACE／FAST、`connection.flush`、catalog、event、player／entity等
 Client repoの最小examplesと`mc_remote_samples`の多言語比較面の役割分離は`2026-08-30-01`および
 `20-教材/client-sample-learning-ux_ja.md`を正とする。
 
-### 次の認証UX slice
+### 認証UX slice（実装済み）
 
+`af95e9ce5202926533d053d9e6d97befc7d006ee`で、starter／examples向けsession credential UXを実装した。
 Javaの`CredentialStore` SPI、`none()`、`inMemory()`は維持し、core libraryへOS依存、GUI prompt、暗黙のfile作成を
-持ち込まない。その上でstarter／examples向けcomponentに、macOS Keychain、Windows Credential Manager、Linux Secret
-Serviceから利用可能な保護storeを選ぶ実装を加える。利用不能時は平文fileへfallbackせずin-memoryへ戻し、次回もpairingが
+持ち込まない。OS資格情報store adapterはexamples moduleへ隔離し、macOS Keychain、Windows Credential Manager、Linux
+Secret Serviceから利用可能な保護storeを選ぶ。利用不能時は平文fileへfallbackせずin-memoryへ戻し、次回もpairingが
 必要になることを秘密なしで警告する。
 
-Java learner runnerの最初の投影は次とする。
+Java learner runnerの投影は次である。
 
 - 初回は保存／memoryを既定回答なしで明示選択する
 - `--no-save`は永続storeをread／write／clearせず、今回のprocessだけmemoryで動く
 - `--forget`は選択targetのlocal tokenを削除して接続せず終了し、server revoke／logoutとは呼ばない
 - logical credential scopeへJava application identity、session、TCP、`ServerTarget`を含める
-- exact OS backend library、service／account encodingはJava repoで選定・testする
+- 物理keyはlogical scope全体のSHA-256 hashとし、private targetを通常logやOS backend labelへ露出しない
 
-決定論的testでは保存／別instanceからの再読込、target分離、認証reasonでの該当entry削除、認可／版／network errorでの
-token温存、backend利用不能時のmemory縮退、secret-free warningを確認する。liveでは初回pairing後にprocessを終了し、期限内の
-再実行がpairingなしで成功することを確認する。このsliceはsession tokenの再利用であり、long-lived credentialを公開しない。
-横断意味は`2026-08-30-03`と`00-hub/authentication-roadmap_ja.md` §1.1を正とする。
+OS backendにはMicrosoft `credential-secure-storage` 1.0.3をexamples限定で使う。同libraryはarchive済みであり、古い
+transitive JNA 5.9.0を使わないよう、公式Maven CentralのJNA 5.19.1へ明示固定した。
+
+Gradle wrapperのclean build、core 15件＋examples 12件のunit／deterministic test、
+[GitHub Actions build](https://github.com/Naohiro2g/minecraft-remote-java/actions/runs/33379032295)はPASSした。
+保存／別instanceからの再読込、target分離、認証reasonでの該当entry削除、認可／版／network errorでのtoken温存、
+backend利用不能時のmemory縮退、secret-free warningを確認している。GNOME Secret Service非接続時のread probeもPASSした。
+搬送票では、Minecraft 1.21.11実serverで初回pairing後にOSへ保存し、別processの`--save hello`がpairing表示なしで期限内
+session tokenを再利用して`chat.post`に成功したと報告された。macOS／Windowsの実機確認は未実施・未主張である。
+
+このsliceはsession tokenの再利用であり、long-lived credentialを公開しない。横断意味は`2026-08-30-03`と
+`00-hub/authentication-roadmap_ja.md` §1.1を正とする。
