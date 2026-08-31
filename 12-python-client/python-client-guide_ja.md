@@ -432,6 +432,35 @@ surfaceの局所実装完了であり、b6 method集合全体の`implemented`／
 candidate artifactとbyte-for-byte一致した。これはPython componentの統合完了であり、最終横断artifact set、
 公開、b6 releaseの完了を意味しない。
 
+Pythonのb7 surfaceは`codex/b7-python-pass-a@c9e0c19925a56dbcece409982df1b707d41f51ae`で
+push済みcomponent candidateになった。protocol／packageは`23.1.0`／`2301.0.0b7`で、公開APIは次のexact shapeを持つ。
+
+- `getDirection() -> tuple[int | float, int | float, int | float]`
+- `setDirection(x, y, z) -> tuple[int | float, int | float, int | float]`
+- `getEntityDirection(handle: str) -> tuple[int | float, int | float, int | float]`
+- `setEntityDirection(handle: str, x, y, z) -> tuple[int | float, int | float, int | float]`
+- `strikeLightning(x, y, z) -> None`
+
+`DirectionValue`はimmutableな3要素tupleへdecodeする。serverが返した有限値とnorm toleranceを検証するが、Python側で
+再正規化、再丸め、signed zero置換を行わない。入力も有限性と既存の型境界だけを確認してwireへ渡し、zero vectorを
+別方向へ補正しない。`zero_direction`、`player_offline`、entity handle lifecycle、permission／build、rate／work、
+`internal_error`を含むserver reasonは`McRpcError`で変更せず保持する。`strikeLightningEffect` aliasと新しい自動retry規則は
+持たない。
+
+Scratch owner `agent/b7-protocol-owner-fixture@607cda40588ec4579c503d457c3784385419ac65`の
+`direction-lightning-v23.1.json` 14,179 bytes／SHA-256
+`faad66c93d2c8ee8eb541f6b7297163cb681054b3de05ba3d130ac4288c1046a`をexact bytesで配置し、81 case IDをfixture ledgerとして
+消費する。変更coneはwrapper、DirectionValue decoder、protocol negotiation、Python observer projection、deterministic
+observer fixture、package metadata、README、starterである。b6 `spawnParticle`、receiver／typed data、sign／event fixture
+bytesは変更しない。
+
+担当報告では対象b7／b6／observer 47/47、全252/252、starterのfake roundtrip／direction復元／lightning opt-in、
+lint／format／`git diff --check`、`uv lock --check`、sdist／wheel build、wheel metadataをPASSした。local build artifactは
+wheel SHA-256 `ec0d032d7c75c14ea804b0a7bca4c723458a1224b8b8b00a4b9b50869f24caf2`、sdist SHA-256
+`05547cd1fdbb1a448758c13f5793ae10563a65bee1101da242ebe72cf001d7b2`と報告されたが、durable artifact／公開releaseとは
+扱わない。実plugin代表往復、live-auto／live-human、shared deploy、bundled WireScopeのb7 real-browser E2E、tag／releaseは
+未実施・未主張である。
+
 ただしwire paramsの順序はb5共通fixtureとして先に固定する。`world.spawnParticle`は
 `[x,y,z,offset_x,offset_y,offset_z,particle,speed,count,(force)]`、`world.spawnEntity`は
 `[x,y,z,entity]`とする。force省略時は`true`である。Python APIを追加するときもparticle-first／

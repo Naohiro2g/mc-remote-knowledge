@@ -578,10 +578,15 @@ McRemoteは後続`codex/b7-direction-lightning-particle@9db95e8af0bcc9feaf66c1bb
 owner fixture targeted、Paper 1.21.11全195 tests、Paper 26.2／Java 25 targeted compatibilityのPASSが報告された。
 Particle case用のsession surface／resolver注入は通常runtimeのPaper registry resolverを維持し、wireを変えない。
 
-これによりprotocol owner／McRemote間の同一fixture消費gateはCLOSEDである。b7全体の横断fixture gateはPython等の
-対象client消費待ちであり、Scratch学習者向けblockはその開始条件にしない。Bridge／WireScope、server
-live-auto／live-human、正式evidence、現headのJAR／公開artifact／releaseは未完。damage、fire、rod、copper、
-CUSTOM cause、event cancellation、entity変化、視覚／音響範囲、shared環境結果は引き続き未検証・未主張とする。
+これによりprotocol owner／McRemote間の同一fixture消費gateはCLOSEDである。Pythonは
+`codex/b7-python-pass-a@c9e0c19925a56dbcece409982df1b707d41f51ae`で同じ81 case fixtureをexact bytesで消費し、
+direction四method、full lightning、protocol `23.1.0`／package `2301.0.0b7`、observer／README／starter投影まで
+component candidateへ到達した。fixture SHA-256一致、remote head、17変更path、API shapeをknowledge側で照合し、
+対象b7／b6／observer 47/47、全252/252、starter fake roundtrip、lint／format、lock、sdist／wheel buildのPASSが
+報告された。これによりPythonのfixture消費gateもCLOSEDである。Scratch学習者向けblockはserver／Pythonの開始条件に
+しない。Bridge／WireScopeのb7 real-browser、server／Pythonのlive-auto／live-human、正式evidence、統合artifact／
+公開releaseは未完。damage、fire、rod、copper、CUSTOM cause、event cancellation、entity変化、視覚／音響範囲、
+shared環境結果は引き続き未検証・未主張とする。
 
 ---
 

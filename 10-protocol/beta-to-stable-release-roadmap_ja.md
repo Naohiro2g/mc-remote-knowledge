@@ -192,8 +192,11 @@ server-side `implemented` candidateへ到達した。Paper 1.21.11全189 tests�
 `agent/b7-protocol-owner-fixture@607cda40588ec4579c503d457c3784385419ac65`で81 caseのfixtureを発行済みで、
 SHA-256は`faad66c93d2c8ee8eb541f6b7297163cb681054b3de05ba3d130ac4288c1046a`である。McRemote
 `9db95e8af0bcc9feaf66c1bbbffc05b9fb8304e0`は同じfixture bytesを消費し81 caseをproduction pathへ対応付けたため、
-protocol owner／server間の横断shape確認はCLOSEDである。Python等の対象clientは同fixtureを入力に並行実装し、
-Scratch学習者向けsurfaceを待たない。次のserver gateはcoordinatorが許可したtargetでの短いlive-auto／live-humanである。
+protocol owner／server間の横断shape確認はCLOSEDである。Pythonも
+`codex/b7-python-pass-a@c9e0c19925a56dbcece409982df1b707d41f51ae`でfixture exact bytesと81 case ledgerを消費し、
+direction四method、full lightning、observer、README／starterを含むcomponent candidateへ到達した。対象47/47、全252/252、
+buildとmetadataのPASSが報告され、Pythonのfixture消費gateもCLOSEDである。Scratch学習者向けsurfaceを待たない。次のserver
+gateはcoordinatorが許可したtargetでの短いlive-auto／live-humanであり、Python実plugin代表往復は同じexact setへ接続する。
 candidate sourceとfixtureだけからdamage／fire／entity変化等のlive結果、学習者向けclient surface、artifact統合、
 公開releaseを推測しない。
 
