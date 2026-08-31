@@ -551,10 +551,21 @@ b7 owner fixtureは少なくとも次を固定する。
 
 Paper 1.21.11／26.2のlive-autoではdamage／entity変化／fire／rod／copper、CUSTOM cause、cancel、後続tick、handle失効を
 対象にする。visual／audioの近距離／遠距離とclient設定差はlive-humanだけで観察する。これらはcoordinatorのtarget／
-identity／許可が出てから実施し、現時点では未実施である。搬送元McRemote
-`codex/b7-direction-lightning-particle@5065e04812ad831f4866ea7b956a96998708ca8a`はremoteに存在し、祖先
-`a79cd08b3664e6a29b12130a744990fe4af36dce`にParticleBuilder Stage 1実装があるが、direction／full lightning handler、
-shared fixture、live、artifact、releaseは未実装・未検証・未主張である。
+identity／許可が出てから実施し、現時点では未実施である。
+
+McRemote `codex/b7-direction-lightning-particle@893baa917500770b00119dbfe85ccf236f5755af`は本節を入力に、
+direction四method、handle初回availability後の失効、full lightning、`mcr.lightning`、専用rate、work 256、chunk、
+protocol `23.1.0`／artifact `2301.0.0b7`を実装したserver-side candidateである。旧
+`world.strikeLightningEffect`はregistryに無く、祖先`a79cd08b3664e6a29b12130a744990fe4af36dce`のParticleBuilder
+Stage 1を維持する。remote branch head一致と29変更fileを照合し、Paper 1.21.11全189 testsをcacheなしで再実行、
+Gradle build、Paper 26.2／Java 25 compileとdirection／lightning／handle／ParticleBuilder targeted 41 tests、
+`git diff --check`をPASSした。local candidate JAR
+`mc-remote-1.21.11-2301.0.0b7.jar`のSHA-256は
+`719908715b1935668519ed3a8587643c8c55c0044f45d9b8e94f00300299ed4d`である。
+
+これは`implemented` candidate到達の記録であり、owner shared fixtureの代替ではない。shared fixture消費、
+server live-auto／live-human、正式evidence、公開artifact／releaseは未完である。damage、fire、rod、copper、
+CUSTOM cause、event cancellation、entity変化、視覚／音響範囲、shared環境結果は引き続き未検証・未主張とする。
 
 ---
 

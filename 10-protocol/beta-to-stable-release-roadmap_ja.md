@@ -186,6 +186,12 @@ damage-capableなPaper full lightningをorigin相対のexact targetへ要求し�
 理由にprotocolを上げず、b7が新method追加で`23.1.0`になるreleaseへ内部移行を同梱します。Paper 1.21.11と
 26.2で同じ既存fixtureと代表描画を確認し、Stage 2のreceiver／typed dataを載せる足場にします。
 
+McRemote `codex/b7-direction-lightning-particle@893baa917500770b00119dbfe85ccf236f5755af`は2026-09-01に
+server-side `implemented` candidateへ到達した。Paper 1.21.11全189 tests、build、Paper 26.2／Java 25 compileと
+対象41 tests、candidate JAR digestをknowledge側でも再照合した。次のgateはowner shared fixtureを同じbytesで消費する
+横断shape確認と、coordinatorが許可したtargetでの短いlive-auto／live-humanである。candidate sourceだけから
+damage／fire／entity変化等のlive結果、client surface、artifact統合、公開releaseを推測しない。
+
 ### 3.3 b8 — entity lifecycle、ParticleBuilder Stage 2
 
 次をread／writeへ分けず、handle取得、状態観察、移動、終端まで一つの縦sliceへ閉じます。
