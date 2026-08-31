@@ -13,6 +13,7 @@ public 正本世代の入口です。ここに載る path は、このリポ内�
 | `00-hub/grand-design-roadmap_ja.md` | 低 drift な粗い相マーカーと横断優先 |
 | `00-hub/readme-sample-modernization-roadmap_ja.md` | 各public repoの人間向けREADMEと実行可能sampleをb7〜stableへ整える横断track |
 | `00-hub/authentication-roadmap_ja.md` | 認証現在地、Client Library共通session credential UX、long-lived公開gate、credential-lifecycle再開順序 |
+| `00-hub/deployment-interface-design_ja.md` | Scratch product/runtime config、Scratch–Stack contract handoff、一order＋apply／doctorの通常deployment経路 |
 | `00-hub/dev-repo-protocol_ja.md` | 4 dev リポの bootstrap、runtime marker、固定票三種 |
 | `00-hub/claude-ai-guide_ja.md` | session loop と surface 間の着地方法 |
 | `00-hub/claude-ai-instructions_ja.md` | claude.ai instructions |

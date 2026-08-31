@@ -3,6 +3,11 @@
 > Scratch の現在地、直近 release scope、後続の作業束を置く現行 SSOT。
 > 原点と経緯は [scratch-plan_ja.md](scratch-plan_ja.md) に完全保存するが、現行 scope は本書と
 > [DECISIONS](../00-hub/DECISIONS_ja.md) から決める。
+>
+> `2026-08-31-01`以後、product Notice／homepageとdeployment runtime configの所有境界、Stackへの
+> handoff、container配信契約は
+> [Scratch–Stack deployment interface設計](../00-hub/deployment-interface-design_ja.md)を正とする。
+> 本書§2に残るb3当時の単一runtime config、`release_identity`、showcase Notice注入は実装履歴として読む。
 
 ## 1. 現在地
 

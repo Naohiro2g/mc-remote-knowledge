@@ -4,6 +4,7 @@
 
 ## Inbox
 
+- 2026-08-31 [→DEC 2026-08-31-01] [priority] Scratch–Stack deployment interface実装・移行 / 正本は`00-hub/deployment-interface-design_ja.md`。順序は①Scratchがproduct/runtime config分離、contract directory、mount、fail-close、imageを完成しhandoff ②Stackがhandoffだけを入力に一order、共通renderer、create/updateを隠す`apply`、最小`doctor`を実装 ③exact artifact setでalpha縦sliceを実施。scratch-editorのcontainer内merge／environment matrix探索変更とStackの`home-server@7`／`compose@15`探索変更は採用済みとみなさず、test／調査素材だけを選別する。旧公式VPS経路には移行完了まで新機能を足さず、world等のpersistent dataは本移行で削除・巻戻ししない / 閉じる＝両repoのhandoff、unit／deterministic、image、one-target alphaのapply／doctor／pairing／block write-readがPASSし、Stack公開READMEが一file・二commandから始まる状態になった時
 - 2026-08-30 [→DEC 2026-08-30-02] [priority] operator-editable configのStack投影残差 / Stack
   `main@12552c44d9f236b5f1407dcc630ce405e337f5e2`は全現行rendererで再起動時のtemplate強制再適用を止め、
   seed-once化とdeterministic test／全suite PASSまで実装した。これは過去defaultを毎回上書きする事故を止める

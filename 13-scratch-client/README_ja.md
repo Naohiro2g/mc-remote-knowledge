@@ -10,6 +10,10 @@
 [scratch-roadmap_ja.md](scratch-roadmap_ja.md) を正本とする。
 [scratch-plan_ja.md](scratch-plan_ja.md) は原点文書であり、現行 scope の根拠には使わない。
 
+Scratch imageのproduct config、deployment runtime config、Stackへのcontract handoff、通常operator経路は
+[Scratch–Stack deployment interface設計](../00-hub/deployment-interface-design_ja.md)を正とする。Scratch担当は
+Stack内部を調査せず、Stack担当はscratch-editorが公開するcontract directoryだけを入力にする。
+
 作品共有の責任分界、ブラウザ保存作品／スプライト、`.sb3`／`.sprite3`、OS clipboardによる
 ブロック移送は [Scratch作品の保存・移送設計](scratch-project-storage-transfer-design_ja.md) を参照する。
 McRemoteは一般UGC hostingと一般利用者accountを所有しない（`2026-08-16-01`〜`03`）。
