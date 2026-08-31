@@ -563,9 +563,17 @@ Gradle build、Paper 26.2／Java 25 compileとdirection／lightning／handle／P
 `mc-remote-1.21.11-2301.0.0b7.jar`のSHA-256は
 `719908715b1935668519ed3a8587643c8c55c0044f45d9b8e94f00300299ed4d`である。
 
-これは`implemented` candidate到達の記録であり、owner shared fixtureの代替ではない。shared fixture消費、
-server live-auto／live-human、正式evidence、公開artifact／releaseは未完である。damage、fire、rod、copper、
-CUSTOM cause、event cancellation、entity変化、視覚／音響範囲、shared環境結果は引き続き未検証・未主張とする。
+Scratch ownerは`agent/b7-protocol-owner-fixture@607cda40588ec4579c503d457c3784385419ac65`
+（parent=`develop@5df50144da13b1a1c8c23b01f2d0138ffd17b953`）で`@mc-remote/protocol`の23.1 mirrorと
+81 caseの`direction-lightning-v23.1.json`を発行した。fixture SHA-256は
+`faad66c93d2c8ee8eb541f6b7297163cb681054b3de05ba3d130ac4288c1046a`で、remote branch、parent、7変更path、
+fixture bytesをknowledge側で照合した。owner報告ではprotocol test、lint／Prettier、Vitest 27/27、buildがPASSし、
+旧22／23.0 fixtureは変更していない。
+
+McRemote server candidateはまだowner fixtureと同じbytesを消費していないため、横断fixture gateはOPENである。
+Scratch学習者向けblock、Bridge／WireScope、server live-auto／live-human、正式evidence、公開artifact／releaseは未完。
+damage、fire、rod、copper、CUSTOM cause、event cancellation、entity変化、視覚／音響範囲、shared環境結果は
+引き続き未検証・未主張とする。
 
 ---
 

@@ -188,9 +188,12 @@ damage-capableなPaper full lightningをorigin相対のexact targetへ要求し�
 
 McRemote `codex/b7-direction-lightning-particle@893baa917500770b00119dbfe85ccf236f5755af`は2026-09-01に
 server-side `implemented` candidateへ到達した。Paper 1.21.11全189 tests、build、Paper 26.2／Java 25 compileと
-対象41 tests、candidate JAR digestをknowledge側でも再照合した。次のgateはowner shared fixtureを同じbytesで消費する
-横断shape確認と、coordinatorが許可したtargetでの短いlive-auto／live-humanである。candidate sourceだけから
-damage／fire／entity変化等のlive結果、client surface、artifact統合、公開releaseを推測しない。
+対象41 tests、candidate JAR digestをknowledge側でも再照合した。Scratch ownerは
+`agent/b7-protocol-owner-fixture@607cda40588ec4579c503d457c3784385419ac65`で81 caseのfixtureを発行済みで、
+SHA-256は`faad66c93d2c8ee8eb541f6b7297163cb681054b3de05ba3d130ac4288c1046a`である。次のgateはMcRemoteが
+この同じfixture bytesを消費する横断shape確認であり、独自fixtureへ転記しない。その後にcoordinatorが許可したtargetで
+短いlive-auto／live-humanを行う。candidate sourceとowner fixtureだけからdamage／fire／entity変化等のlive結果、
+学習者向けclient surface、artifact統合、公開releaseを推測しない。
 
 ### 3.3 b8 — entity lifecycle、ParticleBuilder Stage 2
 
