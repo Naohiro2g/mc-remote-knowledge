@@ -20,6 +20,16 @@ python3 -m unittest tools/test_check_decisions.py
 - `起案` / `保留` が未確定 dashboard 外に残ること
 - 再開 trigger のない `保留`
 
+## dev agent runtime block checker
+
+```bash
+python3 -m unittest tools/test_dev_repo_protocol.py
+```
+
+`00-hub/dev-repo-protocol_ja.md` の marker 間だけを抽出し、dev リポへ実際に渡る runtime block に
+ローカル `CLAUDE.md`／`NOTES_ja.md` の非追跡境界が含まれることを検査します。marker 外の説明にだけ
+規則が存在する bootstrap 欠落を防ぎます。
+
 ### `--meta`（局面の宣言候補）
 
 ```bash

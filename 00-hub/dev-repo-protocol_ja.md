@@ -109,6 +109,14 @@ Claude Code は `AGENTS.md` を自動では読まないため、各開発リポ�
 - 全体地図: 00-hub/INDEX_ja.md ／ 横断決定ログ: 00-hub/DECISIONS_ja.md
 - このリポの関連スポークは、呼び出し元リポの `AGENTS.md` を正とする。
 
+## ローカル限定の作業状態
+- devリポ直下の`CLAUDE.md`と`NOTES_ja.md`は運用者ローカル限定であり、`.gitignore`へ追加して
+  追跡しない。stage、commit、pushしない。
+- 着地確認後の`NOTES_ja.md`更新もローカル作業である。横断して残す内容はknowledgeのhub
+  `NOTES_ja.md`／`DECISIONS_ja.md`へ搬送し、devリポの公開履歴へ複製しない。
+- `CLAUDE.md`または`NOTES_ja.md`が追跡、stage、ローカルcommitされていることを発見した場合は、
+  push前に停止して状態を報告する。既存commitを推測で書き換えない。
+
 ## セッションプロトコル（on-demand 参照）
 - 設計・決定の根拠が要るときは INDEX を入口に、関連スポークの該当ファイルだけ読む。知識リポを丸読みしない。
 - 人間が「セッションループの現在地は？」「今どの step/status？」と聞いたら、knowledge リポ
