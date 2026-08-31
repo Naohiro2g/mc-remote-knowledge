@@ -570,10 +570,18 @@ Scratch ownerは`agent/b7-protocol-owner-fixture@607cda40588ec4579c503d457c37843
 fixture bytesをknowledge側で照合した。owner報告ではprotocol test、lint／Prettier、Vitest 27/27、buildがPASSし、
 旧22／23.0 fixtureは変更していない。
 
-McRemote server candidateはまだowner fixtureと同じbytesを消費していないため、横断fixture gateはOPENである。
-Scratch学習者向けblock、Bridge／WireScope、server live-auto／live-human、正式evidence、公開artifact／releaseは未完。
-damage、fire、rod、copper、CUSTOM cause、event cancellation、entity変化、視覚／音響範囲、shared環境結果は
-引き続き未検証・未主張とする。
+McRemoteは後続`codex/b7-direction-lightning-particle@9db95e8af0bcc9feaf66c1bbbffc05b9fb8304e0`
+（parent=`893baa917500770b00119dbfe85ccf236f5755af`）でowner fixtureを
+`src/test/resources/fixtures/direction-lightning-v23.1.json`へ同一bytesで配置した。14,179 bytes／SHA-256
+`faad66c93d2c8ee8eb541f6b7297163cb681054b3de05ba3d130ac4288c1046a`の一致、remote head、5変更path、
+`git diff --check`をknowledge側で照合した。fixture testは81 unique IDを再帰収集し未対応pathを拒否する構成で、
+owner fixture targeted、Paper 1.21.11全195 tests、Paper 26.2／Java 25 targeted compatibilityのPASSが報告された。
+Particle case用のsession surface／resolver注入は通常runtimeのPaper registry resolverを維持し、wireを変えない。
+
+これによりprotocol owner／McRemote間の同一fixture消費gateはCLOSEDである。b7全体の横断fixture gateはPython等の
+対象client消費待ちであり、Scratch学習者向けblockはその開始条件にしない。Bridge／WireScope、server
+live-auto／live-human、正式evidence、現headのJAR／公開artifact／releaseは未完。damage、fire、rod、copper、
+CUSTOM cause、event cancellation、entity変化、視覚／音響範囲、shared環境結果は引き続き未検証・未主張とする。
 
 ---
 
