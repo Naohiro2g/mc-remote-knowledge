@@ -482,7 +482,7 @@ b5／b6の横断scopeはDECISIONS `2026-08-16-04`〜`07`／`2026-08-26-06`と
   初期Scratch write surfaceは正式`LineSpec`のplain string shorthandだけを公開し、色／装飾object書込みは
   まだ出さない。これはwire contractの変更や欠落でなく、ブラウザでblock面を確認して人間承認したsurfaceの
   絞り込みである。readはfull `LineValue`を失わない。
-- b7／protocol 23.1はplayer／entity directionのget／setと`world.strikeLightningEffect`、b8／23.2は
+- b7／protocol 23.1はplayer／entity directionのget／setとdamage-capableな`world.strikeLightning`、b8／23.2は
   nearby／entity pose／removeとparticle receiver／typed dataを扱う。get／setをbeta間で分割しない。
   particleのb7 Stage 1はplugin内部の`ParticleBuilder`移行だけなのでScratch surfaceを変えない。b8では
   protocol mirrorと互換認識を先に揃えられるが、学習者向けparticle blockは別trackで追従し、plugin／Pythonの

@@ -411,7 +411,9 @@ foreign／unknownをclient側で区別しない。`backpressure`だけを「後�
 b5では`events.poll`、`world.getHeight`、`world.spawnParticle`、`world.spawnEntity`を同じwire contractへ
 薄く投影する。b6は`pickaxe_poke`とsign三操作、b7はplayer／entityのdirection get／set、b8は
 `world.getNearbyEntities`と`entity.getPose`／`setPose`／`remove`を概念別の縦sliceとして追加する。
-さらにb7は`world.strikeLightningEffect`を投影し、particleのPaper `ParticleBuilder`内部移行はPython surfaceを
+さらにb7はdamage-capableな`world.strikeLightning`を投影し、旧`world.strikeLightningEffect`は公開しない。
+clientは専用rate値をローカル保証として複製せず、`backpressure`を既存の一時拒否として扱い、非冪等な
+`internal_error`を自動retryしない。particleのPaper `ParticleBuilder`内部移行はPython surfaceを
 変えない。b8はreceiver選択と有限typed particle dataをPythonへ追加し、3D graphのapplication sampleを受入入力に
 する。条件付きb9はb8と同じparticle specを使うbounded batchだけを候補とし、単点`FAST`で十分なら追加しない。
 Scratchの学習者向けsurfaceは別trackで追従でき、Python実装の完了条件へ含めない。exact Python method signatureと

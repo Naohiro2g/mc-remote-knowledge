@@ -65,7 +65,7 @@ capabilityを短いmetadataまたはREADMEで示す。`DEBUG`／`TRACE`／`FAST`
 比較教材として残す場合は対象版と非推奨／教材用の状態を明示する。
 
 rcまでのparticle／effect sampleは互換性の差を順に見せる。b6／protocol 23.0から既存の単点
-`world.spawnParticle`、b7／23.1から`strikeLightningEffect`、b8／23.2からreceiver／typed dataを使うPython
+`world.spawnParticle`、b7／23.1からdamage-capableな`world.strikeLightning`、b8／23.2からreceiver／typed dataを使うPython
 3D graph、b9／23.3を発行した場合だけbatch版を置く。b8の単点版はb9後もreconstruction／性能比較sampleとして
 残せるが、対象protocolと推奨用途を明示する。Scratch版は別trackで追従し、Python版との同時公開を必須にしない。
 

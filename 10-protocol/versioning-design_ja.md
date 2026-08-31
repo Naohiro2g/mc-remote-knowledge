@@ -644,7 +644,9 @@ exact ring／handle／poll／particle／work／buffer／timeout上限はruntime 
 運用評価後まで`deferred`とする（`2026-08-26-01`）。
 
 b7はprotocol `23.1.0`／artifact `2301.0.0b7`とし、direction四methodを一組で扱い、
-`world.strikeLightningEffect`を加える。既存`world.spawnParticle`のPaper `ParticleBuilder`への内部移行はwire不変の
+damage-capableな`world.strikeLightning`を加える。旧`world.strikeLightningEffect`候補は実装入力から除外する。
+directionの数値／handle lifecycleとfull lightningのpermission／rate／work／副作用境界はwire §5.8.2でlock済みである。
+既存`world.spawnParticle`のPaper `ParticleBuilder`への内部移行はwire不変の
 Stage 1として同梱し、それ自体をprotocol変更理由にしない。b8はprotocol `23.2.0`／artifact `2302.0.0b8`とし、
 entity lifecycle四methodを一組で扱うほか、既存particleの意味を保つ後方互換なreceiver選択／有限typed dataを
 Stage 2として追加し、Python surfaceと3D graph sampleで検証する。get／setをbeta間で機械的に分割しない。

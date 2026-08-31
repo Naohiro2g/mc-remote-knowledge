@@ -140,10 +140,11 @@ lockへ記録し、b8実装後・API freeze前の負荷較正でruntime policy�
 | `world.getHeight` | `[x, z]`または`[x, z, max_y]` | あり | origin相対の最上面block高を返す（b5、§5.6） |
 | `world.spawnParticle` | `[x, y, z, offset_x, offset_y, offset_z, particle, speed, count, (force)]` | あり | 9／10 params、`force`省略時`true`。b5はdata不要particleのみ（§5.7） |
 | `world.spawnEntity` | `[x, y, z, entity]` | あり | entityを生成しepoch-scoped handleを返す（b5、§5.7） |
-| `player.getDirection` | b7 contractで固定 | あり | paired playerの向きを単位vectorで返すcandidate（b7、§5.8） |
-| `player.setDirection` | b7 contractで固定 | あり | 非zero vectorを向きへ正規化して適用するcandidate（b7、§5.8） |
-| `entity.getDirection` | b7 contractで固定 | あり | handle対象の向きを単位vectorで返すcandidate（b7、§5.8） |
-| `entity.setDirection` | b7 contractで固定 | あり | 非zero vectorをhandle対象の向きへ適用するcandidate（b7、§5.8） |
+| `player.getDirection` | `[]` | `DirectionValue` | paired playerの現在方向を返す（b7、§5.8.2） |
+| `player.setDirection` | `[x,y,z]` | 適用後の`DirectionValue` | 非zero vectorを正規化してpaired playerの向きだけを変える（b7、§5.8.2） |
+| `entity.getDirection` | `[handle]` | `DirectionValue` | handle対象の現在方向を返す（b7、§5.8.2） |
+| `entity.setDirection` | `[handle,x,y,z]` | 適用後の`DirectionValue` | 非zero vectorを正規化してhandle対象の向きだけを変える（b7、§5.8.2） |
+| `world.strikeLightning` | `[x,y,z]` | `null` | current dimensionのorigin相対位置へdamage-capableなfull lightningを要求する（b7、§5.8.2） |
 | `world.getNearbyEntities` | b8 contractで固定 | あり | boundedな近傍entity検索。playerを除外（b8、§5.8） |
 | `entity.getPose` | b8 contractで固定 | あり | handle対象のposeを返す（b8、§5.8） |
 | `entity.setPose` | b8 contractで固定 | あり | handle対象のposeを一体更新（b8、§5.8） |
@@ -375,12 +376,11 @@ availability reasonは追加の`retryable` fieldを作らず、次の意味を�
 - `permission_denied`: permission変更までretryしない。
 - `internal_error`: 結果不明。非冪等操作を自動retryしない。
 
-### 5.8 b6 signとb7 direction／b8 entity lifecycle
+### 5.8 b6 signとb7 direction／full lightning／b8 entity lifecycle
 
-b7 directionは`player.getDirection`／`setDirection`／`entity.getDirection`／`setDirection`を一組にする。
-getは向きを正規化した単位vector、setは有限な非zero vectorの大きさを捨てて向きだけへ正規化し、位置と
-dimensionを変更せず適用する。zero vector error、exact params／result、出力精度はb7 contract lockまで
-推測しない。rotation／pitch／yawを個別にget／setする六methodは採らない。
+b7 directionは`player.getDirection`／`setDirection`／`entity.getDirection`／`setDirection`を一組にし、
+同じb7へdamage-capableな`world.strikeLightning`を置く。exact contractは§5.8.2を正とする。
+rotation／pitch／yawを個別にget／setする六methodは採らない。
 
 b8 entity lifecycleはprotocol 22で固定したpose shape `{dimension,pos,yaw,pitch}`と§5.0.1の出力正準形を
 protocol 23へcarryする。nearby検索はstream dimension内、player除外、radius／件数／chunk走査をboundedにし、
@@ -392,10 +392,6 @@ handle発行をしない。一覧は`handle`／canonical `type`／`pos`を持つ
 sign APIは`world.getSign`、`world.setSign`、`world.updateSignLine`をb6へ配置する。位置と昇格モデルのread／replace／
 最小PATCHを比較する一組だが、GET＋PUTによるclient／ユーザーコードの合成も有効な学習経路として残す
 （DECISIONS `2026-08-26-03`〜`05`）。exact contractは§5.8.1を正とする。
-
-`world.strikeLightningEffect`はb7／protocol 23.1.0へ置く追加method候補とする。damageなしというPaper APIの
-公開意味だけを採用理由とし、params／result、rate／work limit、fire、lightning rod、event、音／可視範囲は
-contract lockと実機確認まで推測しない。
 
 particleは三段階で進める。b7 Stage 1は既存`world.spawnParticle` handlerをPaper `ParticleBuilder`へ内部移行する
 だけで、§5.7のwire、既定receiver、result／errorを変えない。b8 Stage 2は既存のdata不要particle文字列をshorthand、
@@ -453,6 +449,112 @@ Paper 1.21.11 live-auto、5装飾と一行限定更新のlive-human PASSが報�
 Scratchはreadでfull `LineValue`を保持し、writeでは`LineSpec`のstring shorthandだけを公開する。このsurface
 絞り込みはobject形式のwire受理を狭めず、Scratchから色／装飾を書けるとは主張しない。共有横断fixture、
 実pluginとScratchのsign live、artifact統合、releaseは未完であり、局所実装からこれらを推測しない。
+
+#### 5.8.2 b7 direction／full lightning exact contract
+
+本節はDECISIONS `2026-09-01-01`のexact contractである。旧候補`world.strikeLightningEffect`は実装入力から
+除外し、alias、tombstone、同時公開を行わない。b7の新規world actionはdamage-capableな
+`world.strikeLightning`だけとする。ParticleBuilder Stage 1はwire不変の独立refactorであり、本節の新methodと
+意味を共有しない。
+
+##### DirectionValueと四method
+
+`DirectionValue`は位置配列`[x,y,z]`で、3要素はいずれも有限なJSON numberである。入力は表示桁へ事前丸めせず、
+`m=max(abs(x),abs(y),abs(z))`でscaleした後に正規化する。これによりsubnormalから`Double.MAX_VALUE`までの
+同方向vectorを同じ向きとして扱う。全成分が正または負のzeroなら`-32602`／`zero_direction`、要素数、型、
+NaN／Infinity等の違反は`-32602`／`invalid_params`とする。
+
+出力はPaperからpost-readした方向を再正規化し、各成分を小数第6位まで十進`HALF_UP`で表す。末尾zeroを要求せず、
+丸め後の`-0`は`0`へ正規化する。丸め前は単位vectorであり、wire値のEuclidean normは`1 ± 1.5e-6`を許容する。
+§5.0.1の位置3桁／角度2桁規則をDirectionValueへ流用しない。`[1,2,3]`と`[10,20,30]`は同じ結果になり、
+正負の各axisを含むfixtureでPaper座標系との対応を固定する。
+
+| method | params | result | Paper副作用 |
+| --- | --- | --- | --- |
+| `player.getDirection` | `[]` | `DirectionValue` | なし |
+| `player.setDirection` | `[x,y,z]` | post-read `DirectionValue` | paired playerへ`Entity#setRotation`を1回。位置／dimension不変 |
+| `entity.getDirection` | `[handle]` | `DirectionValue` | なし |
+| `entity.setDirection` | `[handle,x,y,z]` | post-read `DirectionValue` | handle対象へ`Entity#setRotation`を1回。位置／dimension不変 |
+
+setは正規化したvectorをPaperのyaw／pitch規約へ変換してrotationだけを適用する。teleport、origin変更、dimension変更、
+入力vectorの事前丸め、方向lockを行わない。成功値は入力echoでなく適用後の再読取りであり、AIや他pluginが後から
+方向を変えることを妨げない。
+
+player methodはplayer-boundな認証済みsessionとonline playerを要求し、既存のonline construction permissionを使う。
+未束縛は`auth_required`、offlineは`player_offline`、拒否は`permission_denied`である。getはworkを消費しない。
+setの順序はparams検証→permission→WorkAdmission固定cost `1`→`setRotation`→post-readで、到達可能な一時的
+admission拒否は`backpressure`とする。
+
+entityの`handle`がstringでなければ`invalid_params`とする。空文字、foreign／unknown、旧epoch、旧形式を含む
+現在epochで解決不能なstringはすべて`entity_not_found`へ畳み、parse情報や存在差を返さない。解決済みhandleの
+対象が最初にremoved／unloaded／invalidと判明した呼出しは`entity_unavailable`、issued dimensionから移動した
+呼出しは`entity_dimension_changed`を返し、その場でhandleをinvalidate／releaseする。同じhandleの後続呼出しは
+`entity_not_found`である。getはworkを消費せず、setはparams検証→permission→handle解決→WorkAdmission固定cost
+`1`→`setRotation`→post-readの順とする。予期しないPaper呼出しまたはpost-read失敗は`internal_error`で、
+非冪等なsetを自動retryしない。
+
+##### `world.strikeLightning`
+
+paramsはcurrent stream origin相対のexact `[x,y,z]`で、各値は有限なJSON numberである。事前丸めをせず、
+`target=origin+[x,y,z]`をcurrent dimensionで計算する。absolute計算後に非有限となる入力も`invalid_params`とする。
+serverはlightning rodやentityを探索してtargetを移さない。id付き成功responseは`null`、notificationも許可し、
+LightningStrike、UUID、handle、影響entity／block一覧は返さない。
+
+認可はplayer-boundな認証済みsessionを要求する。未束縛は`auth_required`。bound playerがonlineなら`mcr.online`、
+offlineなら`mcr.offline`を既存construction permissionとして使い、どちらの場合も専用`mcr.lightning`を追加で要求する。
+LuckPermsは既存の`server=global` contextを使い、いずれかの拒否を`permission_denied`へ畳む。`mcr.lightning`の
+plugin defaultはopである。build rangeはtargetのX／Zを両端込みで検査し、Yはrange判定から除外する。違反は
+`build_denied`で、副次効果がrange外へ及ばないことまでは保証しない。
+
+副作用前の順序を、params shape／finite／absolute overflow→bound identity→online/offline construction permission→
+`mcr.lightning`→build range→専用rate admission→WorkAdmission→chunk→Paper full strike、と固定する。
+専用rateの配布既定とfixture値は、connection epochごと20 tickに1回、同じbound playerを全connection横断で20 tickに
+1回、globalは同一tickに2回かつrolling 20 tickに8回で、すべてatomicに判定する。tick `T`の受理後は`T+20`で
+再受理し、rolling windowは`[T-19,T]`、同一tickは先行受理数`<2`、rollingは先行受理数`<8`で受理する。超過は
+すべて`backpressure`である。rateを通過した時点で全slotを消費し、後続のwork／chunk／event cancellation／Paper失敗で
+払い戻さない。clock／tick sourceはfixtureへ注入可能にする。これらの数値は変更可能なruntime policyであり、
+protocol定数やclient側の送信保証へ昇格させない。
+
+WorkAdmission costは固定`256`で、既存のper-session／player／global per-tick budgetへ副作用前に計上する。一時拒否は
+`backpressure`、`max_work_per_request < 256`なら`work_limit_exceeded`である。配布既定`4096`では後者へ到達しないが、
+operatorがpolicyを下げられる。rateと同様、work受理後に後続失敗があっても払い戻さない。id付きrequestの
+`backpressure`／`work_limit_exceeded`はerrorで終端する。notificationの一時的`backpressure`はconnection FIFO先頭で
+延期し、後続を追越させない。permanentな`work_limit_exceeded` notificationはresponseなしで消費し、再実行しない。
+
+target chunkが未loadなら`loadChunk(..., true)`を最大1回呼ぶ。load／generation失敗は`backpressure`、
+`World#strikeLightning`呼出し0回とするが、先に消費したrate／workは戻さず、chunk側の部分変化はあり得る。
+準備成功後は`World#strikeLightning(exactTarget)`をexactly once呼び、`strikeLightningEffect`、rod／entity retarget、
+独自damage／entity変更、fallbackを行わない。通常returnでは返されたLightningStrikeを捨てて`null`を返す。
+Paper event cancellationは尊重するがresponseへ投影せず、例外は`internal_error`とする。例外までに部分的なworld effectが
+起きた可能性があるためclientは自動retryせず、notificationもpost-gate失敗後に再実行しない。
+
+server保証は「exact targetへPaperのdamage-capableなfull lightningを一度要求する」までである。通常のdamage、fire、
+copper、lightning rod、entity変化、`LightningStrikeEvent.Cause.CUSTOM`は起こり得るが、個々の発生、対象、件数、順序、
+後続tickでの収束を保証しない。視覚／音響はvanilla full lightningに委ね、可視／可聴距離、client設定、packet半径を
+exact claimにしない。handler returnや`connection.flush`は後続tick effect、chunk保存、client描画のbarrierではない。
+変化したentityへhandleを移さず、既存handleは上記availability規則に従う。cleanup、custom packet、custom damage、
+world effectのrollback、server側のrod一block上補正は行わない。client／sampleがrodを狙う場合は一block上を自ら指定する。
+
+##### fixture／live境界
+
+b7 owner fixtureは少なくとも次を固定する。
+
+- direction: 正負6 axis、対角、倍率同値、subnormal、`Double.MAX_VALUE`、signed zero、NaN／Infinity、型／個数違反、
+  6桁HALF_UP／negative zero／norm tolerance、post-read、位置／dimension不変。
+- player／entity: auth、online／offline、permission、getのwork 0、set cost 1と順序、handleのforeign／unknown／旧epoch／
+  旧形式／emptyの同値化、unavailable／dimension changeの初回errorと即時失効、Paper例外／post-read失敗。
+- lightning: exact params／null／notification、absolute overflow、online／offline construction permissionと
+  `mcr.lightning`、X／Z inclusive range、`T`／`T+19`／`T+20`、same-tick 2／3、rolling 8／9、connection／player／globalの
+  atomic admission、cost 256／policy 4096／`<256`、rate／work非返却、idとnotificationのFIFO差、loaded／generated／
+  load失敗、full strike exactly once、effect API 0回、CUSTOM cause、cancel、Paper例外、部分副作用non-retry。
+- regression: §5.7の`world.spawnParticle` wire、既定receiver、result／error、代表描画をParticleBuilder Stage 1後も維持する。
+
+Paper 1.21.11／26.2のlive-autoではdamage／entity変化／fire／rod／copper、CUSTOM cause、cancel、後続tick、handle失効を
+対象にする。visual／audioの近距離／遠距離とclient設定差はlive-humanだけで観察する。これらはcoordinatorのtarget／
+identity／許可が出てから実施し、現時点では未実施である。搬送元McRemote
+`codex/b7-direction-lightning-particle@5065e04812ad831f4866ea7b956a96998708ca8a`はremoteに存在し、祖先
+`a79cd08b3664e6a29b12130a744990fe4af36dce`にParticleBuilder Stage 1実装があるが、direction／full lightning handler、
+shared fixture、live、artifact、releaseは未実装・未検証・未主張である。
 
 ---
 
@@ -660,7 +762,7 @@ protocol 21の文字列`block_state_ref`、`getBlock`文字列result、文字列
 
 > 却下＝カテゴリ別に `catalog.getBlocks`/`getEntities`/`getParticles` を分ける案：往復が増えるだけで、3カテゴリを束ねるコストは低い。却下＝チャンク配送を先に設計する案：未実測のサイズ問題を先回りして複雑化する。却下＝`catalogHash` を素の version 文字列にする案：同一 MC バージョンで mod 構成が異なる場合を区別できない。却下＝world_constants の全表を catalog.get へ折り込む案：mod 非依存の静的 domain fact を毎接続で運ぶ理由がなく、既存 hello 拡張の枠組みと二重管理になる。
 
-### 7.3 エラー設計（確定 `2026-06-27-03`、`2026-07-01-08` で改訂、`2026-07-07-02` で b2 player reason を追加、`2026-08-02-01` で credential reason を追加、`2026-08-02-02` で `data.ref` 規則を改訂、`2026-08-26-05`でsign reasonを追加）
+### 7.3 エラー設計（確定 `2026-06-27-03`、`2026-07-01-08` で改訂、`2026-07-07-02` で b2 player reason を追加、`2026-08-02-01` で credential reason を追加、`2026-08-02-02` で `data.ref` 規則を改訂、`2026-08-26-05`でsign reason、`2026-09-01-01`でb7 reasonを追加）
 
 §7③ の b1 部分を画定。**JSON-RPC 標準 error オブジェクトに一本化**（独自封筒を作らない＝`2026-06-26-01` の標準枠原則に忠実）。`code` は JSON-RPC 標準に従い、**意味は `data.reason`（安定 enum）が運ぶ二層**。UI/AI/test は `reason` を分岐 key にし family（code）を意識しなくてよい。
 
@@ -685,6 +787,7 @@ string`"3"`は別型とする。BlockValue出力はregistryの正準型を使い
 | | | `unknown_property` | property名がそのblockに無い | ○ |
 | property検証 | `-32602`（Invalid params） | `invalid_property_value` | block state、sign色／装飾等の値が許容外。`allowed`を返せる | b1、signはb6 |
 | params 検証 | `-32602`（Invalid params） | `invalid_params` | JSON-RPC params の形・型・座標値が不正 | b2 |
+| | | `zero_direction` | directionの3成分がsigned zeroだけで向きを定義できない | b7 |
 | | | `unknown_dimension` | 指定DimensionKeyがloaded dimensionとして解決できない | b5／protocol 22 |
 | world-state | `-32000`番台（実装定義域） | `build_denied` | build policy / 範囲 / 認可により操作拒否。返せる場合は `data.bounds` / `data.violating` 等で理由を補足 | ○ |
 | player-state | `-32000`番台（実装定義域） | `permission_denied` | LuckPerms 等の認可により操作拒否。token は温存 | b2 |
@@ -704,8 +807,10 @@ string`"3"`は別型とする。BlockValue出力はregistryの正準型を使い
 | entity-state | `-32000`番台（実装定義域） | `entity_handle_not_found` | foreign／unknown handle。存在差を公開しない | b5 |
 | | | `entity_removed` | known handleの対象entityが除去済み | b5 |
 | | | `entity_unloaded` | known handleの対象entityがunloadされ現在操作不能 | b5 |
-| | | `entity_dimension_changed` | 対象entityが外部要因でissued dimensionから移動 | b5 |
+| | | `entity_dimension_changed` | 対象entityが外部要因でissued dimensionから移動。b7 directionでは初回検出時にhandleを失効 | b5、b7 |
 | | | `entity_spawn_failed` | admission後のspawn自体が失敗 | b5 |
+| | | `entity_not_found` | b7 directionでempty／foreign／unknown／旧epoch／旧形式、または失効後のhandleを同値化 | b7 |
+| | | `entity_unavailable` | b7 directionでknown handleの対象が最初にremoved／unloaded／invalidと判明し、その場で失効 | b7 |
 | server-state | `-32603`（Internal error） | `internal_error` | 結果が確定できない。非冪等操作を自動retryしない | b5 |
 | params 検証 | `-32602`（Invalid params） | `credential_not_found` | `auth.revoke` で指定した `credential_id` が要求元 UUID の active credential に無い（他 player の ID と存在しない ID を同値へ畳んで存在を隠す）。**caller の token は温存**し、`ref` に `credential_id` を返す | bN |
 | credential-state | `-32000`番台（実装定義域） | `credential_limit_reached` | UUID ごとの active long-lived credential 上限に到達。`data.type` / `data.limit` / `data.active` を返す。古い credential を自動失効させず、ユーザーが list / revoke する | bN |

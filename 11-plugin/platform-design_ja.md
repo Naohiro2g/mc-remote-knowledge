@@ -137,6 +137,10 @@ PermissionProvider
   hello の `permissions.buildRange` と実際の build guard は、この同じ `PermissionProvider` の値解決経路を使う。
   `QueryOptions` の既存 `server=global` context、meta key `luckperm_permissions.build.range`、meta 欠落または整数 parse 失敗時の `0`、
   LuckPerms 不在時の `FallbackPermissionManager` は維持する。負値の契約は本決定で追加・変更しない。
+- **b7 full lightningは専用`mcr.lightning`を持つ**（`2026-09-01-01`）。playerがonlineなら既存`mcr.online`、
+  offlineなら既存`mcr.offline`に加えて`mcr.lightning`を要求し、どちらかの拒否もwireでは
+  `permission_denied`へ畳む。LuckPermsは既存の`server=global` contextを使い、plugin defaultはopとする。
+  build range permissionとlightning capabilityを一つのnodeへ兼用しない。
 
 ---
 
@@ -176,6 +180,13 @@ Phase 3: Forge 1.20.1 / Fabric 各踊り場へ展開
 - Minecraft workload: block変更数、entity生成、chunk load/generation、explosion/TNT、tickへ投入した実時間。
 
 bulk APIは「大きいから拒否」だけにせず、bounded queueへ受け、Paper APIでmain threadの仕事を複数tickへ分割する。session間をfairに回し、上限超過はreasonとretry可能性を返す。connectionを閉じるべきprotocol abuseと、一時的backpressureを区別する。exact capはalphaの授業相当scenario / TNT / buggy loop / reconnect floodで較正し、実装前に推測で固定しない。
+
+`world.strikeLightning`だけはfull lightning固有のburstを既存の汎用work budgetだけへ委ねず、専用rate admissionを
+先に持つ。配布既定／fixtureはconnection epoch 1回/20 tick、同じbound playerの全connection横断1回/20 tick、
+global同一tick 2回かつrolling 20 tick 8回である。続くWorkAdmission costは256、配布既定
+`max_work_per_request=4096`。rate／work通過後はchunk loadやPaper呼出しが失敗してもslotを戻さない。
+数値はoperatorが変更できるruntime policyであり、clientやprotocol versionに焼き込まない。exact判定窓、FIFOと
+notification、chunk／Paper副作用境界はwire §5.8.2を正とする。
 
 観測は次の責務分担にする。
 
@@ -506,8 +517,13 @@ particle実装は`2026-08-29-02`に従い三段階で移す。b7 Stage 1は同�
 明示receiverへ絞る場合はplayerのvanish／visibilityを壊さない`source`の扱いも実装試験する。b9 Stage 3はb8と
 同じspecを使うbounded batchだけを候補とし、builder再利用をwire batchやpacket削減と同義にしない。
 
-`world.strikeLightningEffect`はb7の別methodとして扱う。Paperのdamageなし保証を越えて無副作用とみなさず、
-fire、lightning rod、event、音／可視範囲を実機で観察し、rate／work admissionをeffect実行前に行う。
+`world.strikeLightning`はb7のdamage-capableなfull lightning methodとして扱う。旧候補
+`world.strikeLightningEffect`はhandler、alias、fallbackへ入れない。params／identity／permission／range／rate／
+workを副作用前に検証し、必要なchunkを最大1回load／generateした後、Paper
+`World#strikeLightning(exactTarget)`をexactly once呼ぶ。返されたLightningStrikeをhandle化せず、通常returnは
+`null`である。event cancellationを尊重し、例外は部分副作用の可能性を持つ`internal_error`として自動retryさせない。
+damage、fire、rod、copper、entity変化、音／可視範囲、後続tickはserverが独自保証・rollbackしない
+（DECISIONS `2026-09-01-01`、wire §5.8.2）。
 
 `backpressure`は副作用前の一時的拒否、`work_limit_exceeded`は入力縮小が必要な拒否、
 `entity_capacity_exhausted`はhandle capacity拒否である。副作用開始後に結果を確定できない場合は

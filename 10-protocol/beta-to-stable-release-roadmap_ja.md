@@ -45,7 +45,7 @@ betaは旧b6へ集めていたAPIを一度に完成させる箱ではなく、co
 | release | protocol／artifact core | concept slice(s) | 目標時期 |
 | --- | --- | --- | --- |
 | b6 | `23.0.0`／`2300.0.0b6` | sign、`pickaxe_poke`、Scratch browser保存、protocol 23 cleanup | 2026-08-31 |
-| b7 | `23.1.0`／`2301.0.0b7` | direction、`strikeLightningEffect`、ParticleBuilder内部移行 | 2026-09前半 |
+| b7 | `23.1.0`／`2301.0.0b7` | direction、damage-capableな`world.strikeLightning`、ParticleBuilder内部移行 | 2026-09前半 |
 | b8 | `23.2.0`／`2302.0.0b8` | entity lifecycle、particle receiver／typed data、Python surface | 2026-09後半 |
 | 条件付きb9 | `23.3.0`／`2303.0.0b9` | 同じparticle specを使うbounded batch | 2026-09末まで |
 | rc | b8またはb9と同じcore | API freeze、capacity、soak、rollback | 2026-10 |
@@ -166,18 +166,20 @@ prerelease／draft、Latest非対象、McRemote JAR asset、release notes digest
 - `entity.getDirection`
 - `entity.setDirection`
 
-getは現在の向きを正規化した単位vectorとして返します。setは有限な非zero vectorを受け、その大きさを
-捨てて向きだけへ正規化して適用します。位置とdimensionは変更しません。entity AI等が後から向きを変え得るため、
-方向lockとは説明しません。exact params、result shape、zero vector error、出力精度はcontract lockで固定します。
+getは現在の向きを正規化した`[x,y,z]`として返します。setは有限な非zero vectorをscale-safeに正規化し、
+位置とdimensionを変えずrotationだけへ適用してpost-read値を返します。zeroは`zero_direction`、出力は最大6桁
+`HALF_UP`、wire norm toleranceは`1.5e-6`です。entity AI等が後から向きを変え得るため方向lockとは説明しません。
+params／result、handle lifecycle、work順序を含むexact contractはwire §5.8.2を正とします。
 
 `getRotation`／`setRotation`、`getPitch`／`setPitch`、`getYaw`／`setYaw`の六methodは採りません。
 `lookAt(target)`はclient APIまたはユーザーコードで`target - current_position`を組み、`setDirection`へ渡せます。
 これは機能実現の位置と昇格モデルを観察する3D turtle graphicsの基礎になります。
 
-同じb7へ`world.strikeLightningEffect`を置きます。座標をdamageなしの視聴覚effectで示す小さいworld actionとして、
-direction／navigation sampleからも利用できます。exact params／result、可視範囲、rate／work limit、fire、
-lightning rod、event、音を含む実副作用はcontract lockと短いlive-humanで固定し、Paper method名だけから無害性を
-広げて推測しません。
+同じb7へ`world.strikeLightning`を置きます。旧`world.strikeLightningEffect`候補は実装入力から除外し、
+damage-capableなPaper full lightningをorigin相対のexact targetへ要求します。専用`mcr.lightning`、X／Z build range、
+専用rate、cost 256のwork admission、chunk load、`World#strikeLightning` exactly onceまでを副作用順として固定し、
+成功resultは`null`です。damage／fire／rod／copper／entity変化は起こり得ますが個別結果を返さず、視覚／音響や
+後続tickもbarrier保証しません。exact contract、fixture、live／non-claimはwire §5.8.2を正とします。
 
 既存`world.spawnParticle`のplugin内部実装はPaper `ParticleBuilder`へ移します。これはStage 1であり、wire、
 既定receiver、`particle`／offset／speed／count／force、result、errorを変更しません。Paper APIの置換だけを
