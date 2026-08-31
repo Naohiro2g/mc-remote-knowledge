@@ -14,6 +14,7 @@
 - Maven artifactId確定commit: `1c7512ed53550caa55596e0c3caf973efaad7431`
 - Phase B／examples commit: `f259b396bfbde6e37e65b3c7916c25af37dc6a29`
 - session credential UX commit: `af95e9ce5202926533d053d9e6d97befc7d006ee`
+- Phase C代表capability commit: `20c47bd2c862b100084ef713ee52f72759fa2d0e`
 - Java root package: `club.code2create.mcremote.client`
 - Maven / Gradle group: `club.code2create.mcremote`
 - Maven artifactId: `minecraft-remote-client`
@@ -81,13 +82,50 @@ Pluginは既存package `club.code2create.mcremote`を維持する。Client Libra
 
 Phase Bの最小縦sliceは`f259b396bfbde6e37e65b3c7916c25af37dc6a29`で成立した。
 
-次はPhase Cとして、単独利用可能なClient Libraryへsurfaceを広げる。追加順序はJava repoの局所計画で決め、
+Phase Cとして、単独利用可能なClient Libraryへsurfaceを広げる。追加順序はJava repoの局所計画で決め、
 Pythonのmethod数を機械的に埋めず、Protocol capabilityとJavaに自然なAPIを較正する。
 
 DEBUG／TRACE／FAST、`connection.flush`、catalog、event、player／entity等の追加順序は、この縦slice後にJava側で決める。
 
 Client repoの最小examplesと`mc_remote_samples`の多言語比較面の役割分離は`2026-08-30-01`および
 `20-教材/client-sample-learning-ux_ja.md`を正とする。
+
+### Phase C代表capability projection（実装済み）
+
+`20c47bd2c862b100084ef713ee52f72759fa2d0e`で、Javaに自然な型付きAPIとして次を代表投影した。
+
+- server-authoritativeな`catalog.get`
+- `player.getPose`／`player.setPose`
+- protocol 23 event unionと`events.poll`
+- `world.spawnParticle`
+- 二面signの`world.getSign`／`world.setSign`／`world.updateSignLine`
+
+Demo 02 Protocol 23 Tourは、catalog、player pose、有限event pollをterminalへ表示し、signとparticleをMinecraftで
+観察できる入口を持つ。demoは`player.setPose`を実行して学習者を不意にteleportせず、event監視を自動常駐させない。
+
+Java wire testは、Scratch owner commit `df9264ec355dd722a848df46e96d4b0fc9340ca2`の
+`mc-remote/protocol/test/fixtures/`から次のfixtureをbyte-for-byteで取り込み、SHA-256を固定して消費する。
+
+| fixture | SHA-256 |
+| --- | --- |
+| `events-v23.json` | `31760d267f3c2641042fbe8595fda9c259134a1c05423271a99cb74da1efa9aa` |
+| `sign-v23.json` | `7ffb63c264602cba56117eefff1f9604b955df04c5cc655e877772b8ff7cd30e` |
+| `spawn-v22.json` | `1120e6c8d41b05b65c916fa96f496b02884123ec7ef59b0a226eea48bebf3abd` |
+
+fixture copyはtest入力であり、新しいProtocol正本ではない。protocol 22のparticle shapeはprotocol 23でも変更せず使う。
+
+Gradle wrapperのclean build、core 20件＋examples 12件のunit／deterministic test、Javadoc生成、Java 21 classfile
+major 65、[GitHub Actions build](https://github.com/Naohiro2g/minecraft-remote-java/actions/runs/33386956086)はPASSした。
+搬送票では、Minecraft 1.21.11／protocol 23.0.0実serverへ保存済みsession tokenからpairingなしで接続し、catalog
+blocks 1166／entities 157／particles 115とhash、player pose read、sign set→line update→get、particle
+accepted 30、空event ringの`events.poll`を確認したと報告された。看板はtest worldの絶対座標`(304,96,304)`に残し、
+[live-human追補画像](https://github.com/Naohiro2g/mc-remote-knowledge/issues/3#issuecomment-5477701392)でfront faceの4行、
+gold＋bold、aquaを含むtext／color／decoration投影を確認した。particleは一時表示のため画像から追加主張しない。
+`player.setPose`はdeterministic testだけで確認し、live playerを移動していない。
+
+この到達はPhase Cの代表projectionであり、Phase C／Milestone C全体の完了を意味しない。Java bootstrap baselineの
+protocol 23.0.0／artifact 2300.0.0b6を維持し、b7以降のdirection、Protocol wire、Python／Scratch API、artifact
+coordinate、公開version／publish flowを変更しない。
 
 ### 認証UX slice（実装済み）
 
