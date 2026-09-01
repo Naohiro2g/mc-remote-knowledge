@@ -1,35 +1,46 @@
 # b7 live gate追補指示書
 
-> status: 人間レビュー前のMcRemote担当向け指示案。
+> status: `2026-09-01-02`批准済み。McRemote担当への確定指示。
 
 ## 目的
 
-McRemote `9db95e8af0bcc9feaf66c1bbbffc05b9fb8304e0`のb7 live gateで見つかった、外部dimension移動後の
-handle reason不一致を修正する。lightning、direction、ParticleBuilder Stage 1のcontractを変更せず、gate再開に必要な
-artifactとtargeted evidenceを返す。
+McRemote `9db95e8af0bcc9feaf66c1bbbffc05b9fb8304e0`のb7 live gateで見つかった二つのblocker、外部dimension移動後の
+handle reason不一致とconstruction permissionの不整合を修正する。direction、full lightningのrate／work／副作用境界、
+ParticleBuilder Stage 1は変えず、gate再開に必要なartifactとtargeted evidenceを返す。
 
 ## 固定入力
 
-- knowledge: `73b850c3a10d35425564c8caec0008427000300d`
 - exact contract: `10-protocol/wire-format-design_ja.md` §5.8.2
-- decision: `2026-09-01-01`
+- decisions: `2026-09-01-01`、`2026-09-01-02`
 - base candidate: `9db95e8af0bcc9feaf66c1bbbffc05b9fb8304e0`
 - live runner／probe: `51f4304da0c6bbf7185454644807729faca4b3c3`
-- fixture SHA-256: `faad66c93d2c8ee8eb541f6b7297163cb681054b3de05ba3d130ac4288c1046a`
-- observed mismatch: 別dimensionへの外部teleport成功後、初回`entity.getDirection(handle)`が
+- predecessor fixture SHA-256: `faad66c93d2c8ee8eb541f6b7297163cb681054b3de05ba3d130ac4288c1046a`
+  （旧permission contractの履歴。successor fixtureの代替にしない）
+- observed handle mismatch: 別dimensionへの外部teleport成功後、初回`entity.getDirection(handle)`が
   expected `entity_dimension_changed`に対してactual `entity_unavailable`
+- observed permission mismatch: stable b6とb7 candidateはhello／handler間でconstruction permissionの判定が一貫せず、
+  b7 candidateはさらに孤立した`mcr.lightning`を要求する
 
 ## Product修正
 
-1. `EntityHandleRegistry`が、登録済みentityの現在dimensionを識別できる場合、一般的なunavailable判定より先に
+1. `EntityHandleRegistry`が登録済みentityの現在dimensionを識別できる場合、一般的なunavailable判定より先に
    `entity_dimension_changed`を返せるよう原因を確定する。
 2. 初回terminal reasonを返した時点でhandleを即時失効し、二回目以降を`entity_not_found`とする既契約を維持する。
 3. remove、dead、invalid、unloaded等の`entity_unavailable`をdimension変更へ誤分類しない。
-4. direction四method、`world.strikeLightning`、rate／work、ParticleBuilder、registry method集合、protocol
+4. auth enforcement ONのplayer-bound helloで、paired UUIDの`mcr.online`、`mcr.offline`、build rangeを
+   `server=global` contextから一度解決し、sessionへ`onlineAllowed`／`offlineAllowed`／`buildRange`として保存する。
+5. 現在onlineなら`onlineAllowed`、offlineなら`offlineAllowed`をhello成功条件にする。二permissionは独立で、片方を
+   他方の包含として扱わない。
+6. online-only sessionは`PlayerQuitEvent`、offline-only sessionは`PlayerJoinEvent`で閉じる。両方trueなら状態遷移を
+   またいで継続する。permission／range変更は再接続時に反映し、即時停止は既存session／credential revokeを使う。
+7. handlerごとのLuckPerms再load／再照合を削除し、全construction methodが同じsession snapshotとbuild rangeを使う。
+8. `mcr.lightning`をconfig、PermissionProvider、plugin permission宣言、handler、test、fixture、READMEから削除する。
+   代替のmethod固有permissionを追加しない。
+9. direction四method、`world.strikeLightning`、rate／work、ParticleBuilder、registry method集合、protocol
    `23.1.0`、artifact `2301.0.0b7`を変更しない。
-5. `world.strikeLightningEffect`を追加しない。
+10. `world.strikeLightningEffect`を追加しない。
 
-候補原因は、dimension照合より先にnull／dead／invalid／world所属を評価しているresolve順である。これは指示時点では
+handleの候補原因は、dimension照合より先にnull／dead／invalid／world所属を評価しているresolve順である。これは指示時点の
 source inspectionによる仮説であり、実装者がPaper上のentity参照状態とtestで確定する。
 
 ## Deterministic verification
@@ -37,8 +48,15 @@ source inspectionによる仮説であり、実装者がPaper上のentity参照�
 - 外部dimension移動: `entity_dimension_changed`→即時`entity_not_found`
 - 外部remove／dead／invalid／unavailable: `entity_unavailable`→即時`entity_not_found`
 - foreign／unknown／旧epoch／旧形式handleの既存同値化
+- online／offlineそれぞれについて、permissionなし、onlineのみ、offlineのみ、両方のhello admission matrix
+- online-only quit、offline-only joinでsession close、両permissionでjoin／quit後もsession継続
+- permission／build range変更が既存sessionへ途中反映されず、再接続後に反映されること
+- session／credential revokeによる即時停止
+- player、entity、block、sign、height、spawn、particle、direction、lightning等の全construction handlerが同じsession
+  snapshotを使い、handler固有のLuckPerms照合へ戻らないこと
+- `mcr.lightning`設定／node／runtime参照が0件で、online playerの`mcr.online` sessionからlightning admissionへ進めること
 - player／entity directionの位置・dimension不変、post-read
-- 共有fixture 81 caseのexact bytesと全対応
+- protocol ownerが発行するsuccessor fixtureのexact bytesと全対応。旧81 case fixtureだけのPASSを完成根拠にしない
 - Paper 1.21.11全suite
 - Paper 26.2／Java 25 targeted compatibility compile／test
 - `./gradlew build`、`git diff --check`
@@ -67,10 +85,11 @@ product修正と分離できる場合は別commitにする。runnerは人間の�
 - deterministic test名と件数、全suite結果
 - Paper 1.21.11／26.2 compatibility結果
 - candidate JAR filename、bytes、SHA-256
-- fixture path、bytes、SHA-256
+- successor fixture owner branch／commit、path、bytes、SHA-256、case対応表
 - protocol／artifact／method registry不変の照合
 - live non-claimと、coordinatorが再実行すべきtargeted case
 
-shared serverへの配置、live実行、tag、releaseはMcRemote担当の作業範囲外とする。coordinatorが返却artifactを固定してから、
-外部dimension移動caseと最小representative smokeを実行する。handle解決順だけのchange coneで閉じる場合、追加
-live-humanはb7 close条件にしない。
+shared serverへの配置、live実行、tag、releaseはMcRemote担当の作業範囲外とする。successor fixtureが未発行でも、
+permission実装とlocal testは並行して進めてよいが、最終のexact fixture PASSはfixture着地後に返す。coordinatorが
+返却artifactを固定してから、外部dimension移動、online-only lightning、session状態遷移をtargeted live-autoで実行する。
+今回のchange coneにvisual／audio変更はないため、追加live-humanはb7 close条件にしない。

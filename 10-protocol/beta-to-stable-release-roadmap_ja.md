@@ -176,8 +176,8 @@ params／result、handle lifecycle、work順序を含むexact contractはwire §
 これは機能実現の位置と昇格モデルを観察する3D turtle graphicsの基礎になります。
 
 同じb7へ`world.strikeLightning`を置きます。旧`world.strikeLightningEffect`候補は実装入力から除外し、
-damage-capableなPaper full lightningをorigin相対のexact targetへ要求します。専用`mcr.lightning`、X／Z build range、
-専用rate、cost 256のwork admission、chunk load、`World#strikeLightning` exactly onceまでを副作用順として固定し、
+damage-capableなPaper full lightningをorigin相対のexact targetへ要求します。hello時のsession admission snapshot、
+X／Z build range、専用rate、cost 256のwork admission、chunk load、`World#strikeLightning` exactly onceまでを副作用順として固定し、
 成功resultは`null`です。damage／fire／rod／copper／entity変化は起こり得ますが個別結果を返さず、視覚／音響や
 後続tickもbarrier保証しません。exact contract、fixture、live／non-claimはwire §5.8.2を正とします。
 
@@ -199,6 +199,14 @@ buildとmetadataのPASSが報告され、Pythonのfixture消費gateもCLOSEDで�
 gateはcoordinatorが許可したtargetでの短いlive-auto／live-humanであり、Python実plugin代表往復は同じexact setへ接続する。
 candidate sourceとfixtureだけからdamage／fire／entity変化等のlive結果、学習者向けclient surface、artifact統合、
 公開releaseを推測しない。
+
+その後のliveで、外部dimension移動後のhandle reason不一致と、online playerに`mcr.online`があっても旧
+`mcr.lightning`不足で拒否する権限設計の問題を確認した。`2026-09-01-02`は後者を改訂し、`mcr.online`／
+`mcr.offline`を独立した状態別permissionとしてhello時に一度snapshotし、個別`mcr.lightning`を削除する。
+したがって上記fixture SHA-256 `faad66c93d2c8ee8eb541f6b7297163cb681054b3de05ba3d130ac4288c1046a`と
+三componentの消費PASSは旧contractを満たした履歴であり、新contractの完成根拠ではない。b7 gateは、successor owner
+fixture、McRemoteのsession admission／handle reason修正、各consumerのexact fixture再消費、対象live-autoが揃うまで
+**HOLD**とする。Scratch学習者向けsurfaceは引き続き開始条件にしない。
 
 ### 3.3 b8 — entity lifecycle、ParticleBuilder Stage 2
 

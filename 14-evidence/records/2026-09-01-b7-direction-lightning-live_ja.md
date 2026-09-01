@@ -1,17 +1,17 @@
 # b7 direction／lightning live gate evidence
 
-> status: 人間レビュー前のrecord案。現時点では正式着地・gate closeを主張しない。
+> status: 人間確認済み。後続decision `2026-09-01-02`を反映した正式record。
 
 ## Record
 
 - test ID: `2026-09-01-b7-direction-lightning-live`
 - test class: `live-auto` + `live-human`
 - observed date: `2026-09-01` JST
-- result: **HOLD（要求slice内に製品FAIL 1件、観測方法不足2件）**
+- result: **HOLD（製品／contract blocker 2件、観測方法不足2件）**
 - protocol: `23.1.0`
 - artifact version: `2301.0.0b7`
 - contract: `10-protocol/wire-format-design_ja.md` §5.8.2
-- decision: `2026-09-01-01`
+- decisions: `2026-09-01-01`、`2026-09-01-02`
 - knowledge execution snapshot: `73b850c3a10d35425564c8caec0008427000300d`
 - target: host-native `dev-integration`／Minecraft `1.21.11`／Paper `1.21.11-132`
   SHA-256 `5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba`／Java `21.0.12`
@@ -29,7 +29,7 @@ runner／説明手順の不足を製品FAILへ混ぜず、再試験可能な形�
 | McRemote JAR | `mc-remote-1.21.11-2301.0.0b7.jar`、222,313 bytes、SHA-256 `f47e08f1c6c2d0754b2d9f59a3e5a80fdf7307c5d011582c455fb10895f7b3ef` | deployed test artifact |
 | live runner／probe | `agent/b7-live-auto-runner@51f4304da0c6bbf7185454644807729faca4b3c3` | product source／registry差分なし |
 | probe JAR | `mc-remote-b7-live-probe-23.1.0-b7.jar`、13,444 bytes、SHA-256 `641a7bf12190e7f73d008689918427f92a1cf7592cb9ee48367997fc0f486e70` | test-only plugin |
-| shared fixture | owner `scratch-editor@607cda40588ec4579c503d457c3784385419ac65`、SHA-256 `faad66c93d2c8ee8eb541f6b7297163cb681054b3de05ba3d130ac4288c1046a` | 81 caseのdeterministic基線 |
+| shared fixture | owner `scratch-editor@607cda40588ec4579c503d457c3784385419ac65`、SHA-256 `faad66c93d2c8ee8eb541f6b7297163cb681054b3de05ba3d130ac4288c1046a` | 旧permission contractの81 case基線。successor fixtureが必要 |
 
 private endpoint、token、pairing identity、player UUID、実座標は収録しない。test worldは人間の明示判断により
 使い捨てとし、world snapshot復元を要求しない。
@@ -71,8 +71,17 @@ source inspectionでは、handle resolveがdimension照合より先にnull／dea
 - cancellation: exact target、対象event 1件、`CUSTOM`、final cancelled、RPC `result:null`: **PASS**
 - 既存9-param `world.spawnParticle`: accepted count `1`: **PASS**
 
-最初の通常落雷runはtest playerへの`mcr.lightning`付与漏れで`permission_denied`となり、雷を発生させず停止した。
-権限付与後のrunを製品判定へ使う。これは環境設定FAILであり、製品FAILへ数えない。
+最初の通常落雷runは、online test playerが`mcr.online`を持っていても旧candidateが別途`mcr.lightning`を要求したため
+`permission_denied`となり、雷を発生させず停止した。これは旧`2026-09-01-01`とcandidateの一致だけを見れば想定どおりの
+拒否だが、live-humanの運用で孤立した個別permissionの不自然さが明確になった。継続観測のため一時的にnodeを付与したことは、
+その要求を批准したことを意味しない。
+
+後続source auditでは、公開stable b6 `4e8f1ff1bd48bfa28c465f2dc24060fbb419317f`も、helloがplayer状態を見ず
+`mcr.online OR mcr.offline`で通す一方、`setBlock`／`setBlocks`は以後construction permissionを再確認せず、他handlerは
+異なるタイミングで再確認していた。online-only権限のoffline sessionが基本block setterへ到達でき、offline-only権限の
+online sessionはmethodごとに結果が分かれる。よってこれは単なる環境設定漏れではなく、session admission contractと実装の
+不整合である。`2026-09-01-02`で二permissionを独立した状態別snapshotへ統一し、`mcr.lightning`を削除したため、旧candidateと
+旧fixtureは修正対象とする。
 
 ## Live-human結果
 
@@ -128,18 +137,21 @@ runnerはlightning rodを設置し、その1 block上をexplicit targetにした
 direction、外部remove、full lightning、CUSTOM event、cancellation、変身後handle失効、既存particle代表描画、
 近／中距離の光と音は要求範囲でPASSした。
 
-一方、外部dimension移動後の初回reasonがexact contractと異なるため、**b7 gateはHOLD**とする。McRemote担当は
-`entity_dimension_changed`を先に判定できるよう原因を確定し、deterministic test、Paper 1.21.11 targeted live、
-Paper 26.2／Java 25 compatibility pulseを返す。修正版でproduct JAR identityが変わるため、coordinatorは新JARを固定し、
-change coneに限定したlive-autoを行う。
+一方、外部dimension移動後の初回reasonがexact contractと異なり、construction permissionも一貫したsession admissionに
+なっていないため、**b7 gateは二blockerでHOLD**とする。protocol ownerは`2026-09-01-02`を含むsuccessor fixtureを発行し、
+McRemote担当は`entity_dimension_changed`の判定順、permission snapshot、join／quit closure、snapshot build range、
+`mcr.lightning`削除を実装してdeterministic test、Paper 1.21.11、Paper 26.2／Java 25 compatibility pulseを返す。
+修正版でproduct JAR identityが変わるため、coordinatorは新JARを固定し、外部dimension移動、online-only lightning、
+session状態遷移に限定したlive-autoを行う。
 
 rod／copperと96 block単発はcontract blockerではなく、試験方法不足による未判定である。visual／audio、個別副作用の
-件数・順序・収束は元のnon-claimを維持する。修正がhandle解決順だけに閉じる場合、追加live-humanはb7 close条件にしない。
+件数・順序・収束は元のnon-claimを維持する。今回の二修正はvisual／audio surfaceを変えないため、追加live-humanは
+b7 close条件にしない。
 
 ## Sanitized artifact
 
 - [result-summary.json](../artifacts/2026-09-01-b7-direction-lightning-live/result-summary.json)
-  - SHA-256: `2780d6ed19a3b0edc07166cac00dd85f2ea31a2af3d7a9398310656bb9af2396`
+  - SHA-256: `1b785b8a95c6aff27d6ae59280b8629818f5e26a4456b03e13741adee18ec1a0`
 
 artifactは判定、固定source／JAR、公開可能な環境identity、case別結果だけを収録する。token、private endpoint、
 pairing identity、player UUID、実座標、raw server logは収録しない。

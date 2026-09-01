@@ -134,13 +134,18 @@ PermissionProvider
 - **build range は paired UUID から load した LuckPerms User の effective meta として解決する**（`2026-08-06-01`）。`LuckPermsPermissionManager` は既存の `QueryOptions` を使い、
   `user.getCachedData().getMetaData(queryOptions).getMetaValue(buildRangeMetaKey)` の結果を整数化して返す。
   primary group の `Group#getCachedData()` だけを直接読まず、user node・継承 group・context・weight・meta stacking の優先順位を McRemote 側で再実装しない。
-  hello の `permissions.buildRange` と実際の build guard は、この同じ `PermissionProvider` の値解決経路を使う。
+  hello の `permissions.buildRange` と実際の build guard は、この同じ `PermissionProvider` の値解決経路でhello時に
+  一度解決したsession snapshotを使う（解決時点は`2026-09-01-02`で改訂）。
   `QueryOptions` の既存 `server=global` context、meta key `luckperm_permissions.build.range`、meta 欠落または整数 parse 失敗時の `0`、
   LuckPerms 不在時の `FallbackPermissionManager` は維持する。負値の契約は本決定で追加・変更しない。
-- **b7 full lightningは専用`mcr.lightning`を持つ**（`2026-09-01-01`）。playerがonlineなら既存`mcr.online`、
-  offlineなら既存`mcr.offline`に加えて`mcr.lightning`を要求し、どちらかの拒否もwireでは
-  `permission_denied`へ畳む。LuckPermsは既存の`server=global` contextを使い、plugin defaultはopとする。
-  build range permissionとlightning capabilityを一つのnodeへ兼用しない。
+- **construction permissionはsession admission snapshotへ統一する**（`2026-09-01-02`）。`mcr.online`と
+  `mcr.offline`は状態別の独立permissionで、互いを包含しない。auth enforcement ONのhelloで両方とbuild rangeを
+  一度解決し、現在onlineならonline、offlineならofflineがtrueの場合だけsessionを開始する。以後handlerごとに
+  LuckPermsを再照合せず、online-onlyはquit、offline-onlyはjoinで閉じ、両方なら状態遷移をまたげる。permission／
+  range変更は原則再接続時に反映し、即時停止はsession／credential revokeを使う。
+- `2026-09-01-01`で導入した専用`mcr.lightning`は、体系のない個別permissionとして削除する。config、
+  `PermissionProvider`、handler、fixtureから除外し、full lightningも同じsession admission、build range、rate、workを使う。
+  全commandの個別permission体系を別途批准するまで、新しいmethod固有nodeを追加しない。
 
 ---
 

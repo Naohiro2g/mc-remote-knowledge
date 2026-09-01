@@ -1,10 +1,11 @@
 {
   "test_id": "2026-09-01-b7-direction-lightning-live",
   "test_class": ["live-auto", "live-human"],
-  "result": "HOLD_PRODUCT_FAIL_1_METHOD_GAP_2",
+  "result": "HOLD_PRODUCT_OR_CONTRACT_FAIL_2_METHOD_GAP_2",
   "protocol": "23.1.0",
   "artifact_version": "2301.0.0b7",
   "knowledge_execution_snapshot": "73b850c3a10d35425564c8caec0008427000300d",
+  "decisions": ["2026-09-01-01", "2026-09-01-02"],
   "candidate": {
     "source": "9db95e8af0bcc9feaf66c1bbbffc05b9fb8304e0",
     "jar_bytes": 222313,
@@ -34,6 +35,13 @@
       "actual_first_reason": "entity_unavailable",
       "second_read": "NOT_EXECUTED_AFTER_ASSERTION"
     },
+    "permission_contract": {
+      "status": "FAIL_REVISED_BY_DECISION_2026_09_01_02",
+      "observation": "ONLINE_PLAYER_WITH_MCR_ONLINE_DENIED_BY_OLD_MCR_LIGHTNING_GATE",
+      "old_candidate_vs_old_contract": "MATCH",
+      "classification": "CONTRACT_DESIGN_AND_CROSS_HANDLER_IMPLEMENTATION_FAIL",
+      "revised_model": "INDEPENDENT_STATE_PERMISSIONS_SNAPSHOTTED_AT_HELLO_NO_METHOD_SPECIFIC_LIGHTNING_PERMISSION"
+    },
     "full_lightning_exact_event": "PASS_RESULT_NULL_CUSTOM_ONE_NOT_CANCELLED",
     "full_lightning_observed_effects": ["pig_transformation", "fire", "damage_target_absent_later"],
     "transformed_old_handle": "PASS_UNAVAILABLE_THEN_NOT_FOUND",
@@ -56,14 +64,24 @@
       "automatic_move_no_overlay": "GOOD"
     }
   },
+  "post_live_source_audit": {
+    "stable_b6_source": "4e8f1ff1bd48bfa28c465f2dc24060fbb419317f",
+    "hello": "MCR_ONLINE_OR_MCR_OFFLINE_WITHOUT_CURRENT_STATE_MATCH",
+    "basic_block_setters": "NO_POST_HELLO_CONSTRUCTION_PERMISSION_RECHECK",
+    "other_handlers": "INCONSISTENT_PER_HANDLER_RECHECK",
+    "classification": "NOT_A_COHERENT_SESSION_SNAPSHOT_OR_PER_COMMAND_AUTHORIZATION_MODEL"
+  },
   "excluded_from_product_failures": [
-    "initial_missing_mcr_lightning_permission",
     "runner_cli_run_id_argument_error_before_strike",
     "player_set_pos_missing_dimension_argument_before_strike"
   ],
   "gate": {
     "status": "HOLD",
-    "blocking_reason": "entity_dimension_changed_contract_mismatch",
-    "additional_live_human_required_after_handle_only_fix": false
+    "blocking_reasons": [
+      "entity_dimension_changed_contract_mismatch",
+      "session_permission_snapshot_contract_not_implemented"
+    ],
+    "successor_owner_fixture_required": true,
+    "additional_live_human_required_after_targeted_fixes": false
   }
 }

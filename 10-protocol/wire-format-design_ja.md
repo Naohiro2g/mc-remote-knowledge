@@ -480,9 +480,9 @@ setは正規化したvectorをPaperのyaw／pitch規約へ変換してrotation�
 入力vectorの事前丸め、方向lockを行わない。成功値は入力echoでなく適用後の再読取りであり、AIや他pluginが後から
 方向を変えることを妨げない。
 
-player methodはplayer-boundな認証済みsessionとonline playerを要求し、既存のonline construction permissionを使う。
-未束縛は`auth_required`、offlineは`player_offline`、拒否は`permission_denied`である。getはworkを消費しない。
-setの順序はparams検証→permission→WorkAdmission固定cost `1`→`setRotation`→post-readで、到達可能な一時的
+player methodは§6.2のpermission snapshotを持つplayer-boundな認証済みsessionとonline playerを要求する。
+未束縛は`auth_required`、offlineは`player_offline`であり、handlerはLuckPermsを再照合しない。getはworkを消費しない。
+setの順序はparams検証→session admission→WorkAdmission固定cost `1`→`setRotation`→post-readで、到達可能な一時的
 admission拒否は`backpressure`とする。
 
 entityの`handle`がstringでなければ`invalid_params`とする。空文字、foreign／unknown、旧epoch、旧形式を含む
@@ -500,14 +500,13 @@ paramsはcurrent stream origin相対のexact `[x,y,z]`で、各値は有限なJS
 serverはlightning rodやentityを探索してtargetを移さない。id付き成功responseは`null`、notificationも許可し、
 LightningStrike、UUID、handle、影響entity／block一覧は返さない。
 
-認可はplayer-boundな認証済みsessionを要求する。未束縛は`auth_required`。bound playerがonlineなら`mcr.online`、
-offlineなら`mcr.offline`を既存construction permissionとして使い、どちらの場合も専用`mcr.lightning`を追加で要求する。
-LuckPermsは既存の`server=global` contextを使い、いずれかの拒否を`permission_denied`へ畳む。`mcr.lightning`の
-plugin defaultはopである。build rangeはtargetのX／Zを両端込みで検査し、Yはrange判定から除外する。違反は
-`build_denied`で、副次効果がrange外へ及ばないことまでは保証しない。
+認可は§6.2のpermission snapshotを持つplayer-boundな認証済みsessionを要求する。未束縛は`auth_required`。
+`world.strikeLightning`だけの個別permissionは持たず、旧`mcr.lightning`をconfig、PermissionProvider、実行gate、
+fixtureから除外する。build rangeはsession snapshotを使いtargetのX／Zを両端込みで検査し、Yはrange判定から除外する。
+違反は`build_denied`で、副次効果がrange外へ及ばないことまでは保証しない。
 
-副作用前の順序を、params shape／finite／absolute overflow→bound identity→online/offline construction permission→
-`mcr.lightning`→build range→専用rate admission→WorkAdmission→chunk→Paper full strike、と固定する。
+副作用前の順序を、params shape／finite／absolute overflow→bound session admission→snapshot build range→専用rate
+admission→WorkAdmission→chunk→Paper full strike、と固定する。
 専用rateの配布既定とfixture値は、connection epochごと20 tickに1回、同じbound playerを全connection横断で20 tickに
 1回、globalは同一tickに2回かつrolling 20 tickに8回で、すべてatomicに判定する。tick `T`の受理後は`T+20`で
 再受理し、rolling windowは`[T-19,T]`、同一tickは先行受理数`<2`、rollingは先行受理数`<8`で受理する。超過は
@@ -543,8 +542,10 @@ b7 owner fixtureは少なくとも次を固定する。
   6桁HALF_UP／negative zero／norm tolerance、post-read、位置／dimension不変。
 - player／entity: auth、online／offline、permission、getのwork 0、set cost 1と順序、handleのforeign／unknown／旧epoch／
   旧形式／emptyの同値化、unavailable／dimension changeの初回errorと即時失効、Paper例外／post-read失敗。
-- lightning: exact params／null／notification、absolute overflow、online／offline construction permissionと
-  `mcr.lightning`、X／Z inclusive range、`T`／`T+19`／`T+20`、same-tick 2／3、rolling 8／9、connection／player／globalの
+- permission: hello時のonline／offline四組、現在状態との一致、二permissionの非包含、snapshot range、online-only quit、
+  offline-only join、両permissionでの状態遷移継続、再接続までLuckPerms変更非反映、旧`mcr.lightning`不参照。
+- lightning: exact params／null／notification、absolute overflow、session admission、X／Z inclusive range、
+  `T`／`T+19`／`T+20`、same-tick 2／3、rolling 8／9、connection／player／globalの
   atomic admission、cost 256／policy 4096／`<256`、rate／work非返却、idとnotificationのFIFO差、loaded／generated／
   load失敗、full strike exactly once、effect API 0回、CUSTOM cause、cancel、Paper例外、部分副作用non-retry。
 - regression: §5.7の`world.spawnParticle` wire、既定receiver、result／error、代表描画をParticleBuilder Stage 1後も維持する。
@@ -553,8 +554,8 @@ Paper 1.21.11／26.2のlive-autoではdamage／entity変化／fire／rod／coppe
 対象にする。visual／audioの近距離／遠距離とclient設定差はlive-humanだけで観察する。これらはcoordinatorのtarget／
 identity／許可が出てから実施し、現時点では未実施である。
 
-McRemote `codex/b7-direction-lightning-particle@893baa917500770b00119dbfe85ccf236f5755af`は本節を入力に、
-direction四method、handle初回availability後の失効、full lightning、`mcr.lightning`、専用rate、work 256、chunk、
+McRemote `codex/b7-direction-lightning-particle@893baa917500770b00119dbfe85ccf236f5755af`は`2026-09-01-01`時点の本節を入力に、
+direction四method、handle初回availability後の失効、full lightning、旧`mcr.lightning`、専用rate、work 256、chunk、
 protocol `23.1.0`／artifact `2301.0.0b7`を実装したserver-side candidateである。旧
 `world.strikeLightningEffect`はregistryに無く、祖先`a79cd08b3664e6a29b12130a744990fe4af36dce`のParticleBuilder
 Stage 1を維持する。remote branch head一致と29変更fileを照合し、Paper 1.21.11全189 testsをcacheなしで再実行、
@@ -562,6 +563,9 @@ Gradle build、Paper 26.2／Java 25 compileとdirection／lightning／handle／P
 `git diff --check`をPASSした。local candidate JAR
 `mc-remote-1.21.11-2301.0.0b7.jar`のSHA-256は
 `719908715b1935668519ed3a8587643c8c55c0044f45d9b8e94f00300299ed4d`である。
+
+後続`2026-09-01-02`はこのcandidateのpermission実装を改訂し、旧fixture digestを新contractの完成根拠から外した。
+同candidateはhandle dimension reasonとsession admission snapshotの二点で修正が必要であり、b7 release gateはHOLDである。
 
 Scratch ownerは`agent/b7-protocol-owner-fixture@607cda40588ec4579c503d457c3784385419ac65`
 （parent=`develop@5df50144da13b1a1c8c23b01f2d0138ffd17b953`）で`@mc-remote/protocol`の23.1 mirrorと
@@ -633,7 +637,15 @@ protocol 23の現行helloはprotocol 22で確定したJSON-RPC／auth／catalog�
 
 - **protocol 23安定形**：protocol 22のhello shapeを変更せずcarryし、版値だけ`23.0.0`へ上げる。応答は`{protocol,mc_version,supported_mc_versions,catalogHash}`にsession／player／`dimension`／origin／permissionsを加える。`dimension`はserverが解決した完全修飾DimensionKeyで、clientは要求値で上書きしない。world/profile情報定数は`world_constants` bucketへ束ねる。`catalogHash`と`world_constants`の既存規律は維持する。
 - **§8 整合**：versioning-design §8.1 が要求する `mc_version` / `supported_mc_versions`（踊り場リスト）を応答に含める（§8.1 必須ゆえ省けない）。互換判定は §8 のメジャー一致則に従う。
-- **`permissions.buildRange` の意味論**（確定 `2026-08-06-01`）：hello が返す整数値と server の実際の build guard は、paired UUID に対する同じ `PermissionProvider` の値解決経路を使う。LuckPerms 使用時は、既存 `QueryOptions` における User の effective meta を正本とし、McRemote が primary group だけを直接読んだり、user node・継承・context・weight・meta stacking の優先順位を再実装したりしない。meta key、context、meta 欠落または整数 parse 失敗時の `0`、LuckPerms 不在時の fallback は既存どおり。これは既存 field の値解決修正であり、wire field 名・shape・protocol `21.0.0` を変更しない。負値の意味論は別判断とする。
+- **permission snapshot**（確定 `2026-09-01-02`）：auth enforcement ONのplayer-bound helloは、paired UUIDに対する
+  `mcr.online`、`mcr.offline`、build rangeを既存`server=global` contextのeffective値から一度だけ解決する。
+  playerがonlineなら`online=true`、offlineなら`offline=true`を要求し、現在状態と一致しないpermissionだけでは
+  `permission_denied`である。二permissionは独立で、どちらも他方を包含しない。成功sessionは
+  `onlineAllowed`／`offlineAllowed`／`buildRange`をsnapshotとして保持し、commandごとにLuckPermsを再照合しない。
+  online-only sessionは`PlayerQuitEvent`、offline-only sessionは`PlayerJoinEvent`で閉じ、両方trueなら状態遷移を
+  またげる。permission／range変更は原則再接続時に反映し、即時停止はsession／credential revokeを使う。
+  helloの`permissions` objectはこのsnapshotを返す。auth enforcement OFFの明示bypassは`2026-08-30-02`のままである。
+- **`permissions.buildRange` の意味論**（確定 `2026-08-06-01`、解決時点を`2026-09-01-02`で改訂）：hello が返す整数値と server の実際の build guard は、paired UUID に対する同じ `PermissionProvider` の値解決経路でhello時に一度解決した同じsnapshotを使う。LuckPerms 使用時は、既存 `QueryOptions` における User の effective meta を正本とし、McRemote が primary group だけを直接読んだり、user node・継承・context・weight・meta stacking の優先順位を再実装したりしない。meta key、context、meta 欠落または整数 parse 失敗時の `0`、LuckPerms 不在時の fallback は既存どおり。これは既存 field の値解決修正であり、wire field 名・shape・protocol `21.0.0` を変更しない。負値の意味論は別判断とする。
 - **`catalogHash`**（確定 `2026-06-26-03`・§7.2）：ブロック等カタログのキャッシュ識別子＝`mc_version`/`supported_mc_versions` 広告に**紐づくレジストリ指紋**（重複フィールドにしない）。クライアントは `catalogHash` が実値で、その hash に一致する cache を持たない場合にだけ本体を取得する。`catalogHash` が null なら本体を取得しない（b1 は無認証ゆえ常に null）。**クライアント別の非同梱・利用規則は §7.2 に従う**（`2026-08-02-05` / `2026-08-02-07` で「同梱既定版 fallback」は Python・Scratch とも廃止済み）。
 - **`world_constants`**（確定 `2026-07-02-02`）：world/profile 依存の情報定数を束ねる object。b1 では object と `y_sea` key の存在だけを確認対象にする。wire key は `y_sea`、値は `number | null`。Python 生成定数名として `Y_SEA` を使うのは可。`y_sea` は座標式には使わず、完全な意味論、superflat 判定、full `world_constants.json` 配送、multi-version switching は bN / domain knowledge 側へ送る。**値は `world.getSeaLevel() - 1`（最上段の水ブロックの標高）**とする（`2026-07-30-01`）。`getSeaLevel()` 自体は `00-hub/world-constants-facts_ja.md` の `y_ground`（水面直上・地表の配置基準）に当たり、`y_sea` とは1ブロック異なる。
 

@@ -37,13 +37,16 @@ public 正本世代の入口です。ここに載る path は、このリポ内�
 | `10-protocol/dimension-key-design_ja.md` | protocol 22のDimensionKey入力／出力、build context、surface投影、protocol 21非互換境界 |
 | `10-protocol/block-value-design_ja.md` | protocol 22の構造化block value、set／get対称性、多言語・Scratch投影の説明正本 |
 | `11-plugin/platform-design_ja.md` | server plugin / loader の設計境界、availability guard、認証設定lifecycle、credential 永続化と失効耐性（§9） |
+| `11-plugin/b7-live-gate-followup-instructions_ja.md` | b7 handle reason／session permission修正とtargeted再検証のMcRemote担当向け確定指示 |
 | `12-python-client/python-client-guide_ja.md` | Python client の公開利用面 |
+| `12-python-client/b7-permission-contract-followup-instructions_ja.md` | b7 successor fixtureとpermission説明へ追従するPython担当向け確定指示 |
 | `12-python-client/mc-constants-design_ja.md` | constants / catalog の生成・配布設計 |
 | `13-scratch-client/debug-session-design_ja.md` | debug / observation session の設計 |
 | `13-scratch-client/scratch-execution-model-design_ja.md` | Scratch 実行モデルと stream の前提 |
 | `13-scratch-client/scratch-upstream-design_ja.md` | upstream 追従と contribution の一方向弁 |
 | `13-scratch-client/scratch-roadmap_ja.md` | Scratch の現行 release scope、検収基線、R3 作業束 |
 | `13-scratch-client/scratch-block-value-projection-design_ja.md` | protocol 22 block値のStateText／BlockInfoText／Picker／ErrorText投影 |
+| `13-scratch-client/b7-permission-fixture-amendment-instructions_ja.md` | b7 session permission contractのsuccessor fixtureを発行するScratch protocol owner向け確定指示 |
 | `13-scratch-client/scratch-project-storage-transfer-design_ja.md` | 作品共有の責任分界、ブラウザ／ファイル保存、スプライト・ブロックの移送モデル |
 | `13-scratch-client/scratch-plan_ja.md` | **原点文書（完全保存・改訂しない）**。再始動の起点。現行 contract の正本ではなく、食い違う場合は 10-protocol が優先（`2026-07-26-01`） |
 | `16-java-client/README_ja.md` | 現行Java Client Libraryのrepository、group／root package、build境界、Java bootstrap baseline、次の縦slice |
