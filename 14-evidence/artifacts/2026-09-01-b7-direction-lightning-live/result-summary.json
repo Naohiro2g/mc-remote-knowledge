@@ -1,0 +1,69 @@
+{
+  "test_id": "2026-09-01-b7-direction-lightning-live",
+  "test_class": ["live-auto", "live-human"],
+  "result": "HOLD_PRODUCT_FAIL_1_METHOD_GAP_2",
+  "protocol": "23.1.0",
+  "artifact_version": "2301.0.0b7",
+  "knowledge_execution_snapshot": "73b850c3a10d35425564c8caec0008427000300d",
+  "candidate": {
+    "source": "9db95e8af0bcc9feaf66c1bbbffc05b9fb8304e0",
+    "jar_bytes": 222313,
+    "jar_sha256": "f47e08f1c6c2d0754b2d9f59a3e5a80fdf7307c5d011582c455fb10895f7b3ef"
+  },
+  "probe": {
+    "source": "51f4304da0c6bbf7185454644807729faca4b3c3",
+    "jar_bytes": 13444,
+    "jar_sha256": "641a7bf12190e7f73d008689918427f92a1cf7592cb9ee48367997fc0f486e70"
+  },
+  "fixture_sha256": "faad66c93d2c8ee8eb541f6b7297163cb681054b3de05ba3d130ac4288c1046a",
+  "environment": {
+    "runtime": "host-native dev-integration",
+    "minecraft": "1.21.11",
+    "paper": "1.21.11-132",
+    "paper_jar_sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+    "java": "21.0.12",
+    "world": "DISPOSABLE_NO_ROLLBACK_REQUIRED"
+  },
+  "results": {
+    "player_direction": "PASS",
+    "entity_direction": "PASS",
+    "handle_external_remove": "PASS_UNAVAILABLE_THEN_NOT_FOUND",
+    "handle_external_dimension_move": {
+      "status": "FAIL",
+      "expected_first_reason": "entity_dimension_changed",
+      "actual_first_reason": "entity_unavailable",
+      "second_read": "NOT_EXECUTED_AFTER_ASSERTION"
+    },
+    "full_lightning_exact_event": "PASS_RESULT_NULL_CUSTOM_ONE_NOT_CANCELLED",
+    "full_lightning_observed_effects": ["pig_transformation", "fire", "damage_target_absent_later"],
+    "transformed_old_handle": "PASS_UNAVAILABLE_THEN_NOT_FOUND",
+    "cancelled_lightning": "PASS_EVENT_CANCELLED_NO_ACTUAL_LIGHTNING_HUMAN",
+    "particle": "PASS_ACCEPTED_ONE_AND_VISIBLE_HUMAN_METHOD_WEAK",
+    "rod": "INCONCLUSIVE_POWERED_STATE_NOT_CAPTURED",
+    "copper": "NO_CHANGE_OBSERVED_NOT_A_PRODUCT_FAILURE",
+    "far_single_96_blocks": "INCONCLUSIVE_PROCEDURE_AND_DISTANCE_SELECTION",
+    "near_medium_triple": {
+      "status": "PASS",
+      "near_distance_blocks": 20,
+      "medium_distance_blocks": 48,
+      "requests_each": 3,
+      "actual_interval_seconds_approx": 1.05,
+      "rpc_successes": 6,
+      "rate_rejections": 0,
+      "near_visual_audio": "CLEAR",
+      "medium_visual_audio": "CLEAR_SOUND_DIFFERENCE_SMALL",
+      "comparison_vs_single": "CLEARER",
+      "automatic_move_no_overlay": "GOOD"
+    }
+  },
+  "excluded_from_product_failures": [
+    "initial_missing_mcr_lightning_permission",
+    "runner_cli_run_id_argument_error_before_strike",
+    "player_set_pos_missing_dimension_argument_before_strike"
+  ],
+  "gate": {
+    "status": "HOLD",
+    "blocking_reason": "entity_dimension_changed_contract_mismatch",
+    "additional_live_human_required_after_handle_only_fix": false
+  }
+}
