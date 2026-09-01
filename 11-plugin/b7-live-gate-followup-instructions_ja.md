@@ -109,6 +109,9 @@ coordinatorはremote commit／base、McRemote配置fixtureのexact bytesと93 ID
 successor fixture、method registry、clean build、`git diff --check`がPASSした。これによりproduct修正と
 deterministic gateはCLOSEDである。
 
-JAR identityは担当local buildの報告値であり、coordinatorが取得可能なdurable artifactまたはshared配置の証拠ではない。
-残作業は、このexact sourceから得たJARをcoordinatorが取得・再照合して、外部dimension移動、online-only sessionからの
-lightning、join／quit状態遷移をtargeted live-autoで再実行することだけである。追加live-humanは要求しない。
+JARは既存gate用durable staging
+`/home/tsuji/.local/share/mc-remote/gates/b7-mcremote-candidate-3d5f710/mc-remote-1.21.11-2301.0.0b7.jar`
+へ固定された。coordinatorは222,951 bytes、mode `0444`、SHA-256
+`f08388cf393e02db1eb605e707dfaec890792e7a475de5a51caacbc940028ee9`を実体から再照合した。shared配置は未実施である。
+残作業は、外部dimension移動、online-only sessionからのlightning、join／quit状態遷移をtargeted live-autoで
+再実行することだけである。追加live-humanは要求しない。

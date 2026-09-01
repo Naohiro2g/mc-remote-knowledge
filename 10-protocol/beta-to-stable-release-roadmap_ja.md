@@ -217,7 +217,10 @@ successor owner fixtureはScratch
 SHA-256 `586d24bf40136eec31f1827f23ef5b317f15100a17a635d7fe9f165e0af40dce`をcoordinatorが照合した。
 McRemoteも`agent/b7-live-gate-blockers@3d5f710db97f4b14613f7e0abaafd535701d1906`で同じbytesを消費し、
 handle reasonとpermission snapshotを修正した。これによりowner fixtureとserver deterministic gateはCLOSEDである。
-残るb7 gateはPythonの93 case再消費、exact JARの取得／固定、対象live-autoである。Stackにsource変更は要求せず、
+Pythonは`codex/b7-permission-contract-followup@8f4bc4b96ae74fb5370a3d804676cd07e5352346`で93 caseを
+exact再消費し、remote／fixtureをcoordinatorが照合した。McRemote JARもdurable stagingで222,951 bytes、
+SHA-256 `f08388cf393e02db1eb605e707dfaec890792e7a475de5a51caacbc940028ee9`へ固定した。これによりPython
+componentとartifact acquisition gateはCLOSEDである。残るb7 gateは対象live-autoだけである。Stackにsource変更は要求せず、
 Java clientはprotocol 23.0 baselineのままb7完了依存にしない。追加live-humanも要求しない。
 
 ### 3.3 b8 — entity lifecycle、ParticleBuilder Stage 2

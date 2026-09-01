@@ -1,6 +1,7 @@
 # b7 permission contract追従指示書（Python）
 
-> status: successor fixture固定済み。Python担当の最終exact fixture gateを解除する。
+> status: 完了。`codex/b7-permission-contract-followup@8f4bc4b96ae74fb5370a3d804676cd07e5352346`を
+> coordinatorがremote／exact fixture照合済み。
 
 Python API shape、reason透過、observer、retry方針は変更しない。Scratch protocol ownerがsuccessor fixtureを発行した後、
 そのexact bytesを取得してfixture ledgerを再実行し、README／starter／observerに旧`mcr.lightning`前提があれば削除する。
@@ -22,3 +23,18 @@ Python clientはLuckPermsを解決せず、hello responseのpermission snapshot�
 
 coordinatorはsuccessorのremote commit／parent、exact bytes、blob、digest、93 IDのunique性を照合済みである。
 旧81 case fixtureや値の転記を使わず、上記owner pathからexact bytesを取得して作業を再開する。
+
+## 完了identity
+
+- branch／commit: `codex/b7-permission-contract-followup@8f4bc4b96ae74fb5370a3d804676cd07e5352346`
+- parent: `c9e0c19925a56dbcece409982df1b707d41f51ae`
+- fixture: successor 20,367 bytes、SHA-256
+  `586d24bf40136eec31f1827f23ef5b317f15100a17a635d7fe9f165e0af40dce`、93/93 unique IDs
+- candidate artifacts: wheel SHA-256
+  `cc5842b79501fd103f1e7d2e3a4ea1cc72029e6969265591f60c9324338d3094`、sdist SHA-256
+  `6be3db058cc1aff7cf5375b58dc11737e5d471f0f67a6cdaa28a869d0c12c236`
+
+coordinatorはremote HEAD／parent、変更3 path、fixture digest、93 IDのunique性、`mcr.lightning`残存0件を照合した。
+担当報告ではtargeted 48件、全253件、lock check、sdist／wheel build、package metadataがPASSした。Python
+component gateはCLOSEDである。artifact digestは担当local buildのcandidate identityであり、公開artifactまたは
+実plugin live結果の主張ではない。

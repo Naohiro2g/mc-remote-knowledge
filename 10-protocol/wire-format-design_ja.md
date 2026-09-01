@@ -605,8 +605,12 @@ McRemoteは`agent/b7-live-gate-blockers@3d5f710db97f4b14613f7e0abaafd535701d1906
 （base=`9db95e8af0bcc9feaf66c1bbbffc05b9fb8304e0`）でsuccessorのexact bytesを消費し、外部dimension移動の
 terminal reason順序とhello時permission／build-range snapshotを修正した。coordinatorは両remote identity、fixtureの
 blob／bytes／digest、93 ID、McRemote production側の`mcr.lightning` 0件を照合した。owner fixtureとMcRemoteの
-product／deterministic gateはCLOSEDである。Pythonの93 case exact再消費、candidate JARの取得／固定、外部dimension移動、
-online-only lightning、join／quit状態遷移のtargeted live-autoは未完であり、b7全体は引き続きHOLDとする。
+product／deterministic gateはCLOSEDである。Pythonは
+`codex/b7-permission-contract-followup@8f4bc4b96ae74fb5370a3d804676cd07e5352346`で同じfixtureを93/93
+exact再消費し、remote HEAD／parent／fixture digestをcoordinatorが照合した。McRemote JARもdurable stagingで
+222,951 bytes、SHA-256 `f08388cf393e02db1eb605e707dfaec890792e7a475de5a51caacbc940028ee9`へ固定・再照合した。
+これによりPython componentとartifact acquisition gateもCLOSEDである。外部dimension移動、online-only lightning、
+join／quit状態遷移のtargeted live-autoは未完であり、b7全体は引き続きHOLDとする。
 
 ---
 
