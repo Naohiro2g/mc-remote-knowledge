@@ -1,6 +1,9 @@
 # Protocol／WireScope／Bridge移管評価計画
 
 > 状態: `2026-09-01-03`でpark。b7 release後に再開し、b8前に実施するかb8後へ送るかを人間レビューで決める。
+>
+> 人間向けの意味、非許可境界、再開手順は
+> [人間向け固定文](protocol-tooling-migration-human-guide_ja.md)をそのまま確認する。b7完了は自動開始条件ではない。
 
 ## 現在地
 
@@ -83,6 +86,10 @@ Protocol projection／fixtureとobserver productを別repositoryへ置き、そ�
 
 b7 release後に、b8の規模と開始時期を見て「b8前に実施」または「b8後へ送る」を人間が決める。公開bootstrapの存在や
 投入済み工数だけで前者を選ばない。
+
+b7完了は検討再開の最早時点であって、repository操作、source移動、owner変更、distribution変更の実行許可ではない。
+coordinatorは実装／依存、候補、推奨、工数、影響repository、外部操作、knowledge決定文を先に会話へ提示し、exactな方向と
+実行範囲の人間批准後にだけ作業へ進む。
 
 移管を選ぶ場合の完了は、SSOT改訂、target topology、package／artifact取得、owner test、全consumer切替、Scratch側の旧owner
 撤去、provenance、rollback、CIを一組で確認した時点とする。repository作成またはcopy一致だけをcutover完了と呼ばない。

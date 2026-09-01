@@ -34,6 +34,7 @@ public 正本世代の入口です。ここに載る path は、このリポ内�
 | `10-protocol/beta-to-stable-release-roadmap_ja.md` | method成熟状態、b6 sign／b7 direction／b8 entity lifecycle、WireScope companion、Paper 26.x pulse、初回stableまでの現行roadmap |
 | `10-protocol/polyglot-client-roadmap_ja.md` | Java bootstrapを起点に、developer experience評価、Python／Java比較、既存conformance資産の一般化、TypeScript／browser／C#展開へ進む多言語Client Libraryロードマップ |
 | `10-protocol/protocol-tooling-migration-plan_ja.md` | b7後に再開するProtocol／WireScope／Bridge／TCP接続の移管評価、monorepo・分離・hybrid候補、park境界 |
+| `10-protocol/protocol-tooling-migration-human-guide_ja.md` | 同移管計画の人間向けverbatim版。自動開始を禁止するhard gate、再開前の提示事項、未決範囲 |
 | `10-protocol/wire-format-design_ja.md` | wire envelope、hello/auth、command/error の contract |
 | `10-protocol/dimension-key-design_ja.md` | protocol 22のDimensionKey入力／出力、build context、surface投影、protocol 21非互換境界 |
 | `10-protocol/block-value-design_ja.md` | protocol 22の構造化block value、set／get対称性、多言語・Scratch投影の説明正本 |
