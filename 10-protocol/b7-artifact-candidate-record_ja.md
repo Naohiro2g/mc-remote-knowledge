@@ -1,7 +1,8 @@
 # b7 artifact candidate記録
 
-> 状態: `b7-integrated-source-set-1`とOCI前入力`b7-integrated-artifact-input-1`を固定済み。
-> Scratch／Bridge OCI、最終artifact set、tag、公開releaseは未完。
+> 状態: `b7-integrated-source-set-1`固定済み。`ec7a233…`で記録したcoordinator生成の
+> `b7-integrated-artifact-input-1`はowner artifactでないため正式gate入力から失効。
+> Scratch owner artifact、Scratch／Bridge OCI、最終artifact set、tag、公開releaseは未完。
 
 ## 1. 統合source set
 
@@ -50,20 +51,24 @@ deterministic／targeted live evidenceは、統合defaultがcandidateとexact co
 
 ## 5. 次gate
 
-coordinatorは三default SHAから新しい`b7-integrated-artifact-set-1`を生成する。McRemote JARとPython wheel／sdistは
-統合sourceから再現して上表とのbyte一致を確認する。Scratch系はb7で変更したprotocol mirrorが実際に入るconsumerだけを
-source graphから確定し、GUI、WireScope、Bridge／OCIの再生成／b6 artifact再利用を区別する。再利用は「source差分がない」
-だけで決めず、artifact inputとsource stampを照合する。
+各component ownerがdefault branchからartifactを生成してidentityを返し、coordinatorはsource、fixture、artifact digest、
+検証報告を横断照合して新しい`b7-integrated-artifact-set-1`を固定する。coordinator自身の再buildをowner artifactの代替にしない。
+Scratch ownerの実行内容は
+[`b7 Scratch owner artifact生成指示書`](../13-scratch-client/b7-owner-artifact-generation-instructions_ja.md)を正とする。
 
 artifact set、manifest、最小統合smokeが固定されるまで、tag、GitHub prerelease、PyPI、npm、OCI push、Stack pin、
 shared deploymentを行わない。Java Clientはprotocol 23.0／b6 baselineのまま今回のartifact setへ含めない。
 
-## 6. 統合後artifact入力（pre-OCI）
+## 6. 失効したcoordinator参考build（pre-OCI）
 
-coordinatorは三default branchのisolated checkoutから成果物を再生成し、Scratch／Bridge OCIを除く六artifactを
-`b7-integrated-artifact-input-1`としてdurable stagingへ固定した。全fileはcopy後に再hashし、mode `0444`を確認した。
+coordinatorは役割境界を誤り、三default branchのisolated checkoutから自ら成果物を再生成し、Scratch／Bridge OCIを除く
+六artifactを`b7-integrated-artifact-input-1`としてdurable stagingへ置いた。全fileはcopy後に再hashし、mode `0444`を確認した。
 入力manifestは3,206 bytes、SHA-256
 `f77242b5430322f311b2ff6104c02959d374b46e9472d042bcc4d698252a1de8`である。
+
+bytesと検証結果は参考観測として保持するが、Scratch担当が生成・返却したowner artifactではない。したがってこのdirectory、
+manifest、下表を正式pre-OCI入力、artifact candidate、release provenanceとして使わない。削除や履歴改変はせず、失敗経緯と
+比較材料として残す。
 
 | component | artifact | size（bytes） | SHA-256 |
 | --- | --- | ---: | --- |
@@ -98,9 +103,12 @@ lock／sourceを変更するため本gateへ混ぜず、既存dependency riskと
 bundled WireScope appが残り、今回固定したcommon WireScope ZIPとは別物である。これはcandidate時点のnon-claimどおり、
 b7 real-browser E2Eを主張しない。tag前に別artifactへ無断置換せず、release判定で既存境界として明示する。
 
-## 7. 現在のgate
+## 7. 訂正後のgate
 
-pre-OCI入力は固定済みであり、source／fixture／JAR／Python package／GUI／common WireScopeのidentityは揃った。
-まだ`b7-artifact-candidate-set-1`または公開releaseとは呼ばない。残件は、既決の配布境界でScratch／Bridge multi-arch OCIを
-生成してindex／platform／attestation identityとcontainer smokeを固定すること、その後に六artifactとOCIを一組へ束ね、
-人間のrelease承認を受けることである。OCI push、tag、GitHub prerelease、PyPI／npm、Stack pin、shared deployは未実施である。
+source setとfixtureは固定済みで、McRemote／Python担当のartifact identityも返却済みである。一方、Scratch GUI、Bridge、
+common WireScopeの正式owner artifactは未返却であるため、pre-OCI artifact入力は未成立である。次はScratch担当が
+`develop@773e298…`から指示書どおり生成・検証し、四成果物のdurable identityを返す。coordinatorはその返却物を再buildせず、
+remote source／fixture／manifest／digestと照合する。
+
+owner artifact照合前にScratch／Bridge OCI、最終artifact set、tag、GitHub prereleaseへ進まない。OCI push、PyPI／npm、
+Stack pin、shared deployも未実施である。Python wheel内bundled WireScopeの扱いは別のrelease判定事項として維持する。

@@ -48,15 +48,15 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 
 - gate coordinator: knowledge担当session。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
-- current phase: **default branch統合とpre-OCI artifact入力固定まで完了**。tag、公開release、OCI pushは未実施
+- current phase: **default branch統合完了／Scratch owner artifact待ち**。`ec7a233…`のcoordinator参考buildは正式pre-OCI入力から失効。tag、公開release、OCI pushは未実施
 - contract: protocol `23.1.0`／artifact `2301.0.0b7`、`10-protocol/wire-format-design_ja.md` §5.8.2、DECISIONS `2026-09-01-01`／`2026-09-01-02`。permission改訂はhello時snapshot、`mcr.online`／`mcr.offline`独立、状態不一致session close、`mcr.lightning`削除
 - exact source set: `b7-integrated-source-set-1`。McRemote `main@3d5f710db97f4b14613f7e0abaafd535701d1906`、Python `main@8f4bc4b96ae74fb5370a3d804676cd07e5352346`、Scratch `develop@773e2984132d82bb6e740d6458107fe42ef68a0a`
 - shared fixture: 20,367 bytes、93/93 unique、SHA-256 `586d24bf40136eec31f1827f23ef5b317f15100a17a635d7fe9f165e0af40dce`。三default branchでexact一致。ownerはpark判断どおりScratch内`@mc-remote/protocol`を維持
-- gate manifest identity: OCI前六artifactを`b7-integrated-artifact-input-1`としてdurable stagingへ固定。manifestは3,206 bytes、SHA-256 `f77242b5430322f311b2ff6104c02959d374b46e9472d042bcc4d698252a1de8`。人間可読のbindingは`10-protocol/b7-artifact-candidate-record_ja.md` §6／§7
-- verification: McRemote 203/203、Python 253/253、protocol 28/28、Bridge 30/30、WireScope 130/130と各buildをisolated checkoutでPASS。JAR、wheel、sdistは統合担当artifactとexact一致。JARは先行live PASS物ともexact一致。GUIはb6後のrelease-label修正`5df50144…`を含む新bytes。Bridge中間tarとWireScope ZIPはb6 exact bytes、WireScope manifestだけsource stamp更新
-- authorized next action: Scratch／Bridge multi-arch OCIを既決のworkflow／Dockerfile境界から生成し、index／platform／attestation identityとcontainer smokeを固定する。registry pushを伴うため、実行前にhuman release ownerへ内容と外部変更を明示して承認を得る。その後に最終artifact setとrelease判定へ進む
+- gate manifest identity: 正式pre-OCI manifestは未成立。coordinator生成`b7-integrated-artifact-input-1`／manifest SHA-256 `f77242b5…1de8`は参考観測として履歴保持するが、owner provenanceを欠くためgate入力へ使わない
+- verification: McRemote／Python担当の統合artifact返却は維持する。coordinator参考buildでMcRemote 203/203、Python 253/253、protocol 28/28、Bridge 30/30、WireScope 130/130と各buildを観測したが、Scratch owner verificationへ読み替えない
+- authorized next action: Scratch担当が`develop@773e2984132d82bb6e740d6458107fe42ef68a0a`からGUI、Bridge中間tar、common WireScope ZIP／manifestを独立生成し、durable path、bytes、digest、検証結果を返す。coordinatorは再buildせず横断照合する。指示書=`13-scratch-client/b7-owner-artifact-generation-instructions_ja.md`
 - non-claim: OCI candidate、container smoke、tag、GitHub prerelease、PyPI／npm、Stack pin、shared deploy、Python wheel内bundled WireScopeのb7 real-browser E2E。`npm ci`が報告した既存audit 83件をb7 source修正で自動変更していない
-- gate result: **OPEN — pre-OCI artifact入力PASS。外部registry操作と公開releaseは未承認・未実施**
+- gate result: **OPEN — source set PASS／Scratch owner artifact待ち。pre-OCI入力、外部registry操作、公開releaseは未成立**
 
 ## 2026-08-27 b6横断release gate（CLOSED）
 
