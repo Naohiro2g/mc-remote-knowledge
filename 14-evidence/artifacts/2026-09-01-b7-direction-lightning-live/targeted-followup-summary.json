@@ -1,0 +1,72 @@
+{
+  "test_id": "2026-09-01-b7-direction-lightning-targeted-followup",
+  "test_class": [
+    "live-auto",
+    "live-human-pairing-only"
+  ],
+  "result": "PASS_TWO_REVISED_BLOCKERS_CLOSED",
+  "protocol": "23.1.0",
+  "artifact_version": "2301.0.0b7",
+  "knowledge_execution_snapshot": "4182097d9734e739238fa9c4b3ec3b4c7d25deb1",
+  "candidate": {
+    "source": "3d5f710db97f4b14613f7e0abaafd535701d1906",
+    "jar_bytes": 222951,
+    "jar_sha256": "f08388cf393e02db1eb605e707dfaec890792e7a475de5a51caacbc940028ee9"
+  },
+  "successor_fixture": {
+    "owner": "773e2984132d82bb6e740d6458107fe42ef68a0a",
+    "bytes": 20367,
+    "case_count": 93,
+    "sha256": "586d24bf40136eec31f1827f23ef5b317f15100a17a635d7fe9f165e0af40dce"
+  },
+  "probe": {
+    "source": "51f4304da0c6bbf7185454644807729faca4b3c3",
+    "jar_bytes": 13444,
+    "jar_sha256": "641a7bf12190e7f73d008689918427f92a1cf7592cb9ee48367997fc0f486e70"
+  },
+  "targeted_runner": {
+    "sha256": "cf926d6b0a558796d19a23700a6a0137520698a113ce74f23adad54107b2b336",
+    "side_effecting_retry": false
+  },
+  "environment": {
+    "runtime": "host-native dev-integration",
+    "minecraft": "1.21.11",
+    "paper": "1.21.11-132",
+    "paper_jar_sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+    "java": "21.0.12",
+    "world": "DISPOSABLE_NO_ROLLBACK_REQUESTED"
+  },
+  "preconditions": {
+    "online_players_in_world": 1,
+    "permission_snapshot": {
+      "online": true,
+      "offline": false
+    },
+    "method_specific_lightning_permission": "NOT_CONFIGURED_OR_REQUIRED"
+  },
+  "results": {
+    "hello_online_only_snapshot": "PASS_ONLINE_TRUE_OFFLINE_FALSE",
+    "handle_external_dimension_move": "PASS_DIMENSION_CHANGED_THEN_NOT_FOUND",
+    "online_only_lightning": "PASS_RESULT_NULL_EXACT_TARGET_ONE_CUSTOM_NOT_CANCELLED"
+  },
+  "cleanup": {
+    "temporary_permission_overrides": "REMOVED_EFFECTIVE_GROUP_INHERITANCE_RESTORED",
+    "shared_plugin": "RESTORED_B6",
+    "restored_b6_jar_sha256": "0ec8d4c0b105f3034361b260fc39fcb78013e932e684d34d5ca95c9a6c6a87a6",
+    "probe_removed": true,
+    "server_ready": true,
+    "world_rollback": "NOT_PERFORMED_BY_USER_DIRECTION"
+  },
+  "gate": {
+    "status": "REVISED_BLOCKERS_CLOSED",
+    "additional_live_human_required": false,
+    "release_integration_tag_artifacts_pending": true
+  },
+  "non_claims": [
+    "offline-only join live behavior",
+    "Paper 26.2 live behavior",
+    "visual or audio behavior",
+    "world rollback or complete world cleanup",
+    "default branch integration, public artifact, tag, or release"
+  ]
+}

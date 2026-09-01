@@ -1,7 +1,6 @@
 # b7 live gate追補指示書
 
-> status: product／deterministic完了。`agent/b7-live-gate-blockers@3d5f710db97f4b14613f7e0abaafd535701d1906`を
-> coordinatorがremote／successor fixture照合済み。targeted live-autoとreleaseは未完。
+> status: product／deterministic／targeted live-auto完了。release統合は未完。
 
 ## 目的
 
@@ -113,5 +112,7 @@ JARは既存gate用durable staging
 `/home/tsuji/.local/share/mc-remote/gates/b7-mcremote-candidate-3d5f710/mc-remote-1.21.11-2301.0.0b7.jar`
 へ固定された。coordinatorは222,951 bytes、mode `0444`、SHA-256
 `f08388cf393e02db1eb605e707dfaec890792e7a475de5a51caacbc940028ee9`を実体から再照合した。shared配置は未実施である。
-残作業は、外部dimension移動、online-only sessionからのlightning、join／quit状態遷移をtargeted live-autoで
-再実行することだけである。追加live-humanは要求しない。
+外部dimension移動とonline-only sessionからのlightningはtargeted live-autoでPASSした。join／quit状態遷移は
+successor fixtureとPaper deterministic suiteで閉じ、追加のplayer再接続をlive gateへ要求しない。追加live-humanも
+要求しない。product／contract blockerはCLOSEDであり、残作業はdefault branch統合、release candidate artifact set、tag、
+公開releaseである。

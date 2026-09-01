@@ -609,8 +609,11 @@ product／deterministic gateはCLOSEDである。Pythonは
 `codex/b7-permission-contract-followup@8f4bc4b96ae74fb5370a3d804676cd07e5352346`で同じfixtureを93/93
 exact再消費し、remote HEAD／parent／fixture digestをcoordinatorが照合した。McRemote JARもdurable stagingで
 222,951 bytes、SHA-256 `f08388cf393e02db1eb605e707dfaec890792e7a475de5a51caacbc940028ee9`へ固定・再照合した。
-これによりPython componentとartifact acquisition gateもCLOSEDである。外部dimension移動、online-only lightning、
-join／quit状態遷移のtargeted live-autoは未完であり、b7全体は引き続きHOLDとする。
+これによりPython componentとartifact acquisition gateもCLOSEDである。後続targeted live-autoで、外部dimension移動の
+`entity_dimension_changed`→`entity_not_found`と、online-only hello snapshotからの`world.strikeLightning`
+`result:null`／exact target 1件／`CUSTOM`をPASSした。join／quit closureはsuccessor fixtureとPaper deterministic suiteで
+閉じ、追加のplayer再接続をlive gateへ要求しない。b7のproduct／contract blockerはCLOSEDである。default branch統合、
+release candidate artifact set、tag／公開releaseは未完である。
 
 ---
 

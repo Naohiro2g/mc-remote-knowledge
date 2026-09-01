@@ -1,6 +1,6 @@
 # b7 direction／lightning live gate evidence
 
-> status: 人間確認済み。後続decision `2026-09-01-02`を反映した正式record。
+> status: 人間確認済み。後続decision `2026-09-01-02`とtargeted follow-upを反映した正式record。
 
 ## Record
 
@@ -167,3 +167,45 @@ pairing identity、player UUID、実座標、raw server logは収録しない。
 - 変身後entityの新handle取得
 - world cleanup／snapshot rollback
 - default branch統合、公開artifact、tag、release
+
+## Addendum — revised blocker targeted follow-up
+
+`2026-09-01-02`追従後のMcRemote
+`agent/b7-live-gate-blockers@3d5f710db97f4b14613f7e0abaafd535701d1906`を、同じ
+host-native `dev-integration`のPaper `1.21.11-132`／Java `21.0.12`へ配置し、元recordで見つかった二blockerだけを
+再実行した。candidate JARは222,951 bytes、SHA-256
+`f08388cf393e02db1eb605e707dfaec890792e7a475de5a51caacbc940028ee9`で、配置前後に照合した。
+
+### 意図、方法、予測
+
+| 試験 | 意図 | 方法 | 予測 |
+| --- | --- | --- | --- |
+| 外部dimension移動 | 移動を一般的なunavailableへ誤分類した修正を確認 | armor standのhandleを発行し、probeでNetherへ移動後に2回読む | 初回`entity_dimension_changed`、直後`entity_not_found` |
+| online-only lightning | online建築に孤立した`mcr.lightning`が不要であることを確認 | hello前にtest userを一時的に`online=true`／`offline=false`とし、strikeを1回だけ送る | hello snapshot一致、`result:null`、exact target 1件、`CUSTOM`、非cancel |
+
+人間はpairingだけを行い、結果判定や視聴覚観察には参加していない。runnerは雷を1回だけ送り、失敗時も自動retryしない。
+rod、copper、cancel、particle、追加のvisual／audio sequenceは実行していない。
+
+### 実結果
+
+- hello permission snapshot: `online=true`、`offline=false`: **PASS**
+- 外部dimension移動の初回: `entity_dimension_changed`: **PASS**
+- 同handleの直後: `entity_not_found`: **PASS**
+- online-only `world.strikeLightning`: `result:null`: **PASS**
+- probe event: exact target 1件、cause `CUSTOM`、非cancel: **PASS**
+
+これにより元recordの二blockerは**CLOSED**である。join／quit closureとpermission／rangeの再接続更新はsuccessor fixtureと
+Paper deterministic suiteの根拠を使い、追加のplayer再接続をlive gateへ要求しない。これはoffline-only joinのlive結果を
+主張するものではない。
+
+試験後、一時permission overrideをunsetし、元のgroup継承によるeffective `online=true`／`offline=true`へ戻した。
+b7 candidateとprobeをgate stagingへ退避し、shared serverはb6 JAR SHA-256
+`0ec8d4c0b105f3034361b260fc39fcb78013e932e684d34d5ca95c9a6c6a87a6`へ復旧して正常起動を確認した。
+worldは人間の事前指示どおり使い捨てとし、rollbackしていない。Netherへ移動したarmor standと雷副作用の完全cleanupは
+主張しない。
+
+このaddendumでb7のproduct／contract blocker再確認は完了した。default branch統合、release candidate artifact set、tag、
+公開releaseは次gateであり、まだ完了していない。
+
+- [targeted-followup-summary.json](../artifacts/2026-09-01-b7-direction-lightning-live/targeted-followup-summary.json)
+  - SHA-256: `1912986455ea8fb5f809068b8a728239dc8fe810ec0a893c7dc85bc2ce413bbe`

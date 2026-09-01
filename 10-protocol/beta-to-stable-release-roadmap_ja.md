@@ -220,8 +220,12 @@ handle reasonとpermission snapshotを修正した。これによりowner fixtur
 Pythonは`codex/b7-permission-contract-followup@8f4bc4b96ae74fb5370a3d804676cd07e5352346`で93 caseを
 exact再消費し、remote／fixtureをcoordinatorが照合した。McRemote JARもdurable stagingで222,951 bytes、
 SHA-256 `f08388cf393e02db1eb605e707dfaec890792e7a475de5a51caacbc940028ee9`へ固定した。これによりPython
-componentとartifact acquisition gateはCLOSEDである。残るb7 gateは対象live-autoだけである。Stackにsource変更は要求せず、
-Java clientはprotocol 23.0 baselineのままb7完了依存にしない。追加live-humanも要求しない。
+componentとartifact acquisition gateはCLOSEDである。後続targeted live-autoでは、外部dimension移動が
+`entity_dimension_changed`→`entity_not_found`、online-only helloが`online=true`／`offline=false`、
+`world.strikeLightning`が`result:null`かつexact target 1件／`CUSTOM`としてPASSした。これによりb7の
+product／contract blockerはCLOSEDである。Stackにsource変更は要求せず、Java clientはprotocol 23.0 baselineのまま
+b7完了依存にしない。追加live-humanも要求しない。次は各専用branchのdefault branch統合、release candidate artifact set、
+tag／公開releaseを分離して進める。
 
 ### 3.3 b8 — entity lifecycle、ParticleBuilder Stage 2
 
