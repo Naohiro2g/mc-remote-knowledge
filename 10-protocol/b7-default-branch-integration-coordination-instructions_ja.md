@@ -1,8 +1,8 @@
 # b7 default branch統合 coordinator指示書
 
 > status: 完了。三default branchを`b7-integrated-source-set-1`として固定済み。
-> 訂正: 当初の「coordinatorがartifactを生成する」という記述は役割境界を誤っていた。各ownerが生成し、
-> coordinatorは返却identityを照合する。
+> 訂正: 当初の「coordinatorがartifactを生成する」という記述は役割境界を誤っていた。release change coneへ入る
+> componentだけを各ownerが生成し、coordinatorは返却identityを照合する。fixture ownerをproduct artifact参加者とみなさない。
 
 ## 目的
 
@@ -18,7 +18,8 @@ tag、GitHub release、PyPI／npm／OCI公開、shared deploymentを同時に行
 1. Scratch owner fixtureを`develop`へfast-forwardする。
 2. McRemote product candidateを`main`へfast-forwardする。
 3. Python component candidateを`main`へfast-forwardする。
-4. 各component ownerが統合sourceからartifactを生成して返却し、coordinatorが三default SHAとartifact identityを横断照合する。
+4. release change coneへ入るcomponent ownerが統合sourceからartifactを生成して返却し、coordinatorがdefault SHAとartifact
+   identityを横断照合する。fixture evidenceだけを持つrepoへproduct artifact生成を自動要求しない。
 
 順序は正本fixture、server、consumerの着地関係を読みやすくするためであり、前componentの公開releaseを次componentの
 開始条件にはしない。
@@ -51,9 +52,9 @@ tag、GitHub release、PyPI／npm／OCI公開、shared deploymentを同時に行
 ## 統合後gate
 
 三default branchのremote SHA、candidateとのtree／commit関係、clean checkoutでの再検証を受領してから、coordinatorが
-`b7-integrated-source-set-1`を固定する。その後、McRemote、Python、Scratchの各ownerが統合SHAから担当artifactを生成し、
-durable identityと検証結果を返す。coordinatorは不足artifactを自らbuildせず、source、fixture、manifest、digestを照合して
-artifact setを固定する。tag／GitHub prereleaseはartifact setと最小統合smokeの後に別承認で行う。
+`b7-integrated-source-set-1`を固定する。その後、release参加componentをsource graphから確定し、そのownerだけが統合SHAから
+担当artifactを生成してdurable identityと検証結果を返す。coordinatorは不足artifactを自らbuildせず、fixture ownerという
+理由だけでGUI／Bridge／WireScope等を追加しない。tag／GitHub prereleaseはartifact setと最小統合smokeの後に別承認で行う。
 
 ## 完了結果
 

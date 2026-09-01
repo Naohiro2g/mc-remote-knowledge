@@ -1,7 +1,7 @@
 # b7 Scratch owner artifact生成指示書
 
-> status: set 1実行完了。owner provenance／bytes／検証はPASSしたが、sourceのScratch Client versionがb6のままと判明し、
-> b7 release artifactとして失効。follow-up後に新defaultからset 2を生成する。
+> status: set 1実行完了。owner provenance／bytes／検証はPASS。後続version blocker判断は撤回し、Scratch runtime artifactが
+> b7 release参加componentかを再監査中。Scratch担当はfollow-upでも全buildを再実行済みのため追加buildを要求しない。
 
 ## 目的
 
@@ -86,6 +86,7 @@ Protocol owner移管、Python bundled WireScope更新、OCI push、tag／release
 owner staging `b7-scratch-owner-artifact-set-1`へ四成果物を生成し、source／tree、size／mode／digest、archive inventory、
 WireScope manifest、fixture、test／build結果をcoordinatorが再buildなしで照合した。返却値は一致した。
 
-ただし`MCREMOTE_CLIENT_VERSION=2300.0.0b6`がhelloとGUI noticeへ実投影されることを確認したため、set 1をb7 artifactとして
-採用しない。修正入力は
-[`b7 Scratch client version follow-up指示書`](b7-client-version-followup-instructions_ja.md)を正とする。
+`MCREMOTE_CLIENT_VERSION=2300.0.0b6`は実Scratch Clientのprotocol 23.0.0／b6 surfaceと整合する。これをb7 blockerとした
+後続判断は撤回した。set 1をb7へ採用するか否かはversion値でなく、Scratch runtime自体がb7 release change coneへ入るかを
+先に決める。現行引継ぎは
+[`b7 release coordination — Claude Code引継ぎ`](../10-protocol/b7-release-coordination-handoff_ja.md)を正とする。

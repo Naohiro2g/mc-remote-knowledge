@@ -2,8 +2,8 @@
 
 > 状態: `b7-integrated-source-set-1`固定済み。`ec7a233…`で記録したcoordinator生成の
 > `b7-integrated-artifact-input-1`はowner artifactでないため正式gate入力から失効。
-> Scratch owner set 1はprovenance PASS後にb6 client version残存で失効。version follow-up、set 2、
-> Scratch／Bridge OCI、最終artifact set、tag、公開releaseは未完。
+> Scratch owner set 1と誤version follow-upの全buildは完了済み。Scratch runtime artifactをb7参加対象とした前提を撤回し、
+> component scope再監査へ戻る。最終artifact set、tag、公開releaseは未完。
 
 ## 1. 統合source set
 
@@ -113,7 +113,7 @@ Scratch Client versionがb6のままなのでb7 artifactとして受理せず、
 owner artifact照合前にScratch／Bridge OCI、最終artifact set、tag、GitHub prereleaseへ進まない。OCI push、PyPI／npm、
 Stack pin、shared deployも未実施である。Python wheel内bundled WireScopeの扱いは別のrelease判定事項として維持する。
 
-## 8. Scratch owner set 1とversion blocker
+## 8. Scratch owner set 1と当時のversion blocker判断（§9で撤回）
 
 Scratch ownerは`develop@773e2984132d82bb6e740d6458107fe42ef68a0a`から専用staging
 `b7-scratch-owner-artifact-set-1`へ次を生成した。coordinator参考buildを入力にせず、copy前後一致とmode `0444`を確認している。
@@ -131,8 +131,26 @@ source／archive／toolchain／recipe、fixture 20,367 bytes／93件を照合し
 WireScope ZIPの一致、manifest source更新も説明と整合する。npm auditのowner観測は85件で、自動fixしていない。advisory dataの
 時点差をartifact identityへ混ぜず、coordinator参考build時の83件へ一致させる操作はしない。
 
+以下はset 1直後の当時判断であり、§9で撤回した。
+
 一方、sourceの`packages/scratch-vm/src/extensions/scratch3_mcremote/client-version.js`は`2300.0.0b6`で、hello
 `params.client.version`とGUI notice／About labelへ投影される。protocol 23.1.0のb7 artifactが自身をb6と名乗るため、set 1を
 正式pre-OCI入力へ昇格しない。次は
 [`b7 Scratch client version follow-up指示書`](../13-scratch-client/b7-client-version-followup-instructions_ja.md)により三file／
 7箇所だけを`2301.0.0b7`へ直し、専用branchで検証・pushする。default branch統合後、ownerがset 2を再生成する。
+
+## 9. §8判断の撤回とcoordinator引継ぎ
+
+§8末尾の判断は誤りである。Scratch repository内の`mc-remote/protocol`は23.1 fixture mirrorだが、実Scratch Clientは
+`packages/scratch-vm`のprotocol 23.0.0／b6 surfaceであり、b7 direction／lightningを実装していない。両surface間にruntime
+importもない。したがって`MCREMOTE_CLIENT_VERSION=2300.0.0b6`は取り残しでなく実装範囲と整合し、versionだけをb7へ
+上げる方が誤表示になる。
+
+誤指示branch `agent/b7-client-version-followup@57e28850165feb8813529766fad882ad0463612b`はparent `773e298…`、
+tree `88a68c3ef307f63bc46a5036a83e62b9e92e70c4`で、versionと対応testの3fileだけを変更する。Scratch担当は指示された
+全buildを既に再実行した。追加buildを要求せず、このbranchをdefaultへ統合しない。
+
+set 1のowner provenance／検証事実は保持するが、Scratch runtime artifactをb7 release入力とするか自体が未確定である。
+fixture owner commitからGUI、Bridge、WireScope、Scratch tag／OCIを自動的に導かない。次のcoordinatorは
+[`b7 release coordination — Claude Code引継ぎ`](b7-release-coordination-handoff_ja.md)に従い、McRemote／Python／Scratch／
+Java／Stackのrelease参加scopeをsource graphから再監査し、人間レビュー後に本記録を精密化する。

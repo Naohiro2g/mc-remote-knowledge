@@ -48,15 +48,15 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 
 - gate coordinator: knowledge担当session。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
-- current phase: **default branch統合完了／Scratch client version follow-up待ち**。coordinator参考buildはprovenance不足、Scratch owner set 1はb6 client version残存により正式pre-OCI入力から失効。tag、公開release、OCI pushは未実施
+- current phase: **default branch統合完了／coordinator交代・component scope再監査**。Scratch runtime artifactをb7参加対象とした前提とclient version follow-upを撤回。tag、公開release、OCI pushは未実施
 - contract: protocol `23.1.0`／artifact `2301.0.0b7`、`10-protocol/wire-format-design_ja.md` §5.8.2、DECISIONS `2026-09-01-01`／`2026-09-01-02`。permission改訂はhello時snapshot、`mcr.online`／`mcr.offline`独立、状態不一致session close、`mcr.lightning`削除
 - exact source set: `b7-integrated-source-set-1`。McRemote `main@3d5f710db97f4b14613f7e0abaafd535701d1906`、Python `main@8f4bc4b96ae74fb5370a3d804676cd07e5352346`、Scratch `develop@773e2984132d82bb6e740d6458107fe42ef68a0a`
 - shared fixture: 20,367 bytes、93/93 unique、SHA-256 `586d24bf40136eec31f1827f23ef5b317f15100a17a635d7fe9f165e0af40dce`。三default branchでexact一致。ownerはpark判断どおりScratch内`@mc-remote/protocol`を維持
 - gate manifest identity: 正式pre-OCI manifestは未成立。coordinator生成`b7-integrated-artifact-input-1`／manifest SHA-256 `f77242b5…1de8`は参考観測として履歴保持するが、owner provenanceを欠くためgate入力へ使わない
-- verification: McRemote／Python担当の統合artifact返却は維持する。Scratch owner set 1のsource／tree、四artifactのsize／mode／digest、archive inventory、manifest、fixture、protocol 28件／Bridge 30件／WireScope 130件／root buildを再buildなしで照合し一致。ただし`MCREMOTE_CLIENT_VERSION=2300.0.0b6`がhelloとGUI noticeへ投影されるためb7 artifactとしてFAIL
-- authorized next action: Scratch担当が`agent/b7-client-version-followup`で三file／7箇所だけを`2301.0.0b7`へ更新し、targeted test、protocol、root buildをPASSしてpushする。指示書=`13-scratch-client/b7-client-version-followup-instructions_ja.md`。coordinator照合・default統合後にowner set 2を生成する
+- verification: McRemote／Python担当の統合artifact返却は維持する。Scratch owner set 1のsource／artifact／test／build返却も照合済みで、Scratch担当は誤version follow-upでも全buildを再実行済み。ただしScratch Protocol leaf 23.1とruntime Client 23.0／b6は別surfaceでruntime importがなく、version bump判断は誤り
+- authorized next action: Claude Code coordinatorが`10-protocol/b7-release-coordination-handoff_ja.md`から再開し、b7参加componentをsource graphとSSOTから表にして人間レビューへ出す。Scratchへ追加buildを依頼せず、`57e288…`を統合せず、scope確定前にartifact／OCI／tagへ進まない
 - non-claim: OCI candidate、container smoke、tag、GitHub prerelease、PyPI／npm、Stack pin、shared deploy、Python wheel内bundled WireScopeのb7 real-browser E2E。`npm ci`が報告した既存audit 83件をb7 source修正で自動変更していない
-- gate result: **OPEN — source set PASS／Scratch version blocker修正待ち。pre-OCI入力、外部registry操作、公開releaseは未成立**
+- gate result: **OPEN — source set PASS／artifact scope再監査。pre-OCI入力、外部registry操作、公開releaseは未成立**
 
 ## 2026-08-27 b6横断release gate（CLOSED）
 

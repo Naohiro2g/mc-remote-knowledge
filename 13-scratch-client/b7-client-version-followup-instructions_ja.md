@@ -1,6 +1,7 @@
 # b7 Scratch client version follow-up指示書
 
-> status: 実行待ち。最初のowner artifactで発見したb6表示identityをb7へ揃える。
+> status: **撤回**。Scratch Protocol fixture ownerとScratch runtime Clientを混同した誤指示。
+> branch `agent/b7-client-version-followup@57e28850165feb8813529766fad882ad0463612b`はmergeしない。
 
 ## 発見と判断
 
@@ -11,8 +12,10 @@ Scratch owner artifact set 1はsource、digest、archive、test結果の返却�
 - hello `params.client.version`
 - Scratch GUI noticeのversion／running表示とAbout link label
 
-protocol `23.1.0`を使うb7 Scratch Clientが自分をb6と送信・表示するため、non-claimでは受理しない。owner artifact set 1は
-bytesと検証履歴を保持するが、b7 release artifactとして失効する。
+この段落の前提は誤りだった。`mc-remote/protocol`のfixture mirrorは23.1.0だが、実Scratch Clientはprotocol 23.0.0の
+b6 surfaceで、b7 direction／lightningを実装していない。したがって`2300.0.0b6`は実装範囲と整合し、versionだけを上げると
+未実装のb7対応を名乗る。owner artifact set 1をversion理由で失効させる判断も撤回し、そもそもScratch runtime artifactが
+b7 release参加componentかを先に監査する。
 
 ## 固定入力
 
@@ -51,6 +54,9 @@ base上の`2300.0.0b6`は上記三file、7箇所である。履歴文書や別ve
 baseから専用branchを作り、上記三fileだけをcommit／pushする。`develop`へ直接push／mergeしない。既存dirty worktreeを
 変更、stash、cleanしない。
 
+この作業は誤指示により既に実行され、`57e288…`がpushされた。Scratch担当は関連buildを全てやり直し済みである。
+追加buildやartifact再生成を要求しない。このbranchをdefaultへ統合せず、監査痕跡として保持する。
+
 ## 返却
 
 - branch／commit／parent／remote一致／clean状態
@@ -60,5 +66,5 @@ baseから専用branchを作り、上記三fileだけをcommit／pushする。`d
 - production build内のb7表示／hello投影確認
 - source、lockfile、Protocol、Bridge、WireScope、runtime config、OCI、Pagesを変更していないnon-claim
 
-このfollow-upではowner artifactを正式固定しない。candidateがcoordinator照合後にdefault branchへfast-forwardされたら、
-Scratch ownerが新default commitからartifact生成指示書を再実行し、artifact set 2を返す。
+このfollow-upからdefault統合、artifact set 2、Scratch b7 tag／OCIへ進まない。現行引継ぎは
+[`b7 release coordination — Claude Code引継ぎ`](../10-protocol/b7-release-coordination-handoff_ja.md)を正とする。

@@ -4,6 +4,7 @@
 
 ## Inbox
 
+- 2026-09-02 [priority] b7 release coordinator交代・artifact scope再監査 / 前coordinatorがScratch fixture ownerをScratch runtime artifact参加と誤認し、coordinator代理build、Scratch owner全build、誤ったclient version bumpと再度の全buildまで発生させた。Scratch担当への追加buildは禁止し、誤branch `agent/b7-client-version-followup@57e28850165feb8813529766fad882ad0463612b`は統合しない。Claude Codeは`10-protocol/b7-release-coordination-handoff_ja.md`を入口に、Protocol leaf 23.1とScratch runtime Client 23.0／b6を分離し、McRemote／Python／Scratch／Java／Stackのb7参加scopeをsource graphから表にして人間レビューへ戻す / 再開＝直ちにcoordinator引継ぎ / 閉じる＝参加component、artifact、tag／OCI要否を人間批准し、誤ったrelease gate／roadmap／artifact recordを現行正本へ訂正した時
 - 2026-08-31 [→DEC 2026-08-31-01] [priority] Scratch–Stack deployment interface実装・移行 / 正本は`00-hub/deployment-interface-design_ja.md`。順序は①Scratchがproduct/runtime config分離、contract directory、mount、fail-close、imageを完成しhandoff ②Stackがhandoffだけを入力に一order、共通renderer、create/updateを隠す`apply`、最小`doctor`を実装 ③exact artifact setでalpha縦sliceを実施。scratch-editorのcontainer内merge／environment matrix探索変更とStackの`home-server@7`／`compose@15`探索変更は採用済みとみなさず、test／調査素材だけを選別する。旧公式VPS経路には移行完了まで新機能を足さず、world等のpersistent dataは本移行で削除・巻戻ししない / 閉じる＝両repoのhandoff、unit／deterministic、image、one-target alphaのapply／doctor／pairing／block write-readがPASSし、Stack公開READMEが一file・二commandから始まる状態になった時
 - 2026-08-30 [→DEC 2026-08-30-02] [priority] operator-editable configのStack投影残差 / Stack
   `main@12552c44d9f236b5f1407dcc630ce405e337f5e2`は全現行rendererで再起動時のtemplate強制再適用を止め、

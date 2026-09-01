@@ -237,11 +237,13 @@ coordinatorは返却identityを再buildせず横断照合する。指示書は
 訂正履歴とnon-claimは[`b7 artifact candidate記録`](b7-artifact-candidate-record_ja.md) §6／§7を正とする。
 残るgateはScratch owner artifact、pre-OCI入力、Scratch／Bridge OCI、最終artifact set、tag／公開releaseである。
 
-Scratch owner set 1は四artifactを独立生成し、source／digest／archive／manifest／test／buildの返却条件を満たした。しかし
-`MCREMOTE_CLIENT_VERSION`が`2300.0.0b6`のままhelloとGUI noticeへ投影されるため、b7 release artifactとしては失効した。
-次は三file／7箇所だけを`2301.0.0b7`へ揃える専用follow-upをdefaultへ着地し、owner set 2を再生成する。これはwire／fixture／
-GUI UXの追加変更でなくrelease identity整合であり、詳細は
-[`b7 artifact candidate記録`](b7-artifact-candidate-record_ja.md) §8を正とする。
+Scratch owner set 1は四artifactを独立生成し、source／digest／archive／manifest／test／buildの返却条件を満たした。続いて
+coordinatorは`MCREMOTE_CLIENT_VERSION=2300.0.0b6`をb7 blockerと誤認してversion follow-upを指示したが、これを撤回する。
+Scratch Protocol leafの23.1 mirrorと実Scratch Clientの23.0／b6 surfaceは別で、後者はb7 direction／lightningを未実装である。
+versionだけを上げると未実装対応を名乗る。Scratch担当は誤指示に従い全buildを再実行済みなので追加実行を要求しない。
+次はScratch runtime artifact自体がb7 release参加componentかを、source graphと本roadmapのchange coneから再監査する。詳細は
+[`b7 artifact candidate記録`](b7-artifact-candidate-record_ja.md) §9と
+[`Claude Code引継ぎ`](b7-release-coordination-handoff_ja.md)を正とする。
 
 ### 3.3 b8 — entity lifecycle、ParticleBuilder Stage 2
 
