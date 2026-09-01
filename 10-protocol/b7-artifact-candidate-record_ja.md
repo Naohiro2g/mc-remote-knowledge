@@ -2,7 +2,8 @@
 
 > 状態: `b7-integrated-source-set-1`固定済み。`ec7a233…`で記録したcoordinator生成の
 > `b7-integrated-artifact-input-1`はowner artifactでないため正式gate入力から失効。
-> Scratch owner artifact、Scratch／Bridge OCI、最終artifact set、tag、公開releaseは未完。
+> Scratch owner set 1はprovenance PASS後にb6 client version残存で失効。version follow-up、set 2、
+> Scratch／Bridge OCI、最終artifact set、tag、公開releaseは未完。
 
 ## 1. 統合source set
 
@@ -105,10 +106,33 @@ b7 real-browser E2Eを主張しない。tag前に別artifactへ無断置換せ�
 
 ## 7. 訂正後のgate
 
-source setとfixtureは固定済みで、McRemote／Python担当のartifact identityも返却済みである。一方、Scratch GUI、Bridge、
-common WireScopeの正式owner artifactは未返却であるため、pre-OCI artifact入力は未成立である。次はScratch担当が
-`develop@773e298…`から指示書どおり生成・検証し、四成果物のdurable identityを返す。coordinatorはその返却物を再buildせず、
-remote source／fixture／manifest／digestと照合する。
+source setとfixtureは固定済みで、McRemote／Python担当のartifact identityも返却済みである。Scratch owner set 1も返却され、
+coordinatorは再buildせずsource／tree、四fileのsize／mode／digest、archive inventory、WireScope manifestを照合した。しかし
+Scratch Client versionがb6のままなのでb7 artifactとして受理せず、§8のfollow-upへ戻す。
 
 owner artifact照合前にScratch／Bridge OCI、最終artifact set、tag、GitHub prereleaseへ進まない。OCI push、PyPI／npm、
 Stack pin、shared deployも未実施である。Python wheel内bundled WireScopeの扱いは別のrelease判定事項として維持する。
+
+## 8. Scratch owner set 1とversion blocker
+
+Scratch ownerは`develop@773e2984132d82bb6e740d6458107fe42ef68a0a`から専用staging
+`b7-scratch-owner-artifact-set-1`へ次を生成した。coordinator参考buildを入力にせず、copy前後一致とmode `0444`を確認している。
+
+| artifact | size（bytes） | SHA-256 |
+| --- | ---: | --- |
+| `scratch-gui-build-b7.tar.gz` | 234,630,336 | `dd3361255b3d0a507c209e0c1e5781ed13f405ffb5c4ca7d32ebe2d63c89c52f` |
+| `mc-remote-bridge-dist-b7.tar.gz` | 3,052 | `11199a8e6966e8a5160411104934498657f4befd3d27a8fc25c88f51afa31c72` |
+| `wirescope-app.zip` | 79,169 | `b3d6270299195d2c3db93c9d122938be6ae20d23e0f10e19afe3b0e99e3ca315` |
+| `wirescope-app.manifest.json` | 2,321 | `4f3debeedc0db1d4749b609c2693d27bf944453e14b767b0730476f48f0ca1` |
+
+remote `develop`／tree、GUI 3,449 filesと必須entry、Bridge inventory、ZIP／gzip／tar integrity、WireScope manifestの
+source／archive／toolchain／recipe、fixture 20,367 bytes／93件を照合し返却と一致した。owner検証はprotocol 28件、Bridge
+30件、WireScope 130件、root production build PASSである。GUIのb6との差はrelease-label修正`5df50144…`、Bridge tar／
+WireScope ZIPの一致、manifest source更新も説明と整合する。npm auditのowner観測は85件で、自動fixしていない。advisory dataの
+時点差をartifact identityへ混ぜず、coordinator参考build時の83件へ一致させる操作はしない。
+
+一方、sourceの`packages/scratch-vm/src/extensions/scratch3_mcremote/client-version.js`は`2300.0.0b6`で、hello
+`params.client.version`とGUI notice／About labelへ投影される。protocol 23.1.0のb7 artifactが自身をb6と名乗るため、set 1を
+正式pre-OCI入力へ昇格しない。次は
+[`b7 Scratch client version follow-up指示書`](../13-scratch-client/b7-client-version-followup-instructions_ja.md)により三file／
+7箇所だけを`2301.0.0b7`へ直し、専用branchで検証・pushする。default branch統合後、ownerがset 2を再生成する。

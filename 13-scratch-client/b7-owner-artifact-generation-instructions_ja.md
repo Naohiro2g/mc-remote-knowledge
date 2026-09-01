@@ -1,6 +1,7 @@
 # b7 Scratch owner artifact生成指示書
 
-> status: 実行待ち。coordinator参考buildを正式artifactとして使わず、Scratch ownerが生成して返却する。
+> status: set 1実行完了。owner provenance／bytes／検証はPASSしたが、sourceのScratch Client versionがb6のままと判明し、
+> b7 release artifactとして失効。follow-up後に新defaultからset 2を生成する。
 
 ## 目的
 
@@ -79,3 +80,12 @@ coordinatorが作成した
 artifact生成中にsource、lockfile、version、runtime config、fixtureを修正しない。`npm audit fix`、依存更新、GUI UX修正、
 Protocol owner移管、Python bundled WireScope更新、OCI push、tag／releaseを混ぜない。生成不能またはidentity不一致なら、
 原因と観測値を返して停止する。
+
+## Set 1結果
+
+owner staging `b7-scratch-owner-artifact-set-1`へ四成果物を生成し、source／tree、size／mode／digest、archive inventory、
+WireScope manifest、fixture、test／build結果をcoordinatorが再buildなしで照合した。返却値は一致した。
+
+ただし`MCREMOTE_CLIENT_VERSION=2300.0.0b6`がhelloとGUI noticeへ実投影されることを確認したため、set 1をb7 artifactとして
+採用しない。修正入力は
+[`b7 Scratch client version follow-up指示書`](b7-client-version-followup-instructions_ja.md)を正とする。

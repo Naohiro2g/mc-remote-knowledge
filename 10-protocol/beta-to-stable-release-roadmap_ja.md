@@ -237,6 +237,12 @@ coordinatorは返却identityを再buildせず横断照合する。指示書は
 訂正履歴とnon-claimは[`b7 artifact candidate記録`](b7-artifact-candidate-record_ja.md) §6／§7を正とする。
 残るgateはScratch owner artifact、pre-OCI入力、Scratch／Bridge OCI、最終artifact set、tag／公開releaseである。
 
+Scratch owner set 1は四artifactを独立生成し、source／digest／archive／manifest／test／buildの返却条件を満たした。しかし
+`MCREMOTE_CLIENT_VERSION`が`2300.0.0b6`のままhelloとGUI noticeへ投影されるため、b7 release artifactとしては失効した。
+次は三file／7箇所だけを`2301.0.0b7`へ揃える専用follow-upをdefaultへ着地し、owner set 2を再生成する。これはwire／fixture／
+GUI UXの追加変更でなくrelease identity整合であり、詳細は
+[`b7 artifact candidate記録`](b7-artifact-candidate-record_ja.md) §8を正とする。
+
 ### 3.3 b8 — entity lifecycle、ParticleBuilder Stage 2
 
 次をread／writeへ分けず、handle取得、状態観察、移動、終端まで一つの縦sliceへ閉じます。
