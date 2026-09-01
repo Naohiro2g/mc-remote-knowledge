@@ -1,6 +1,7 @@
 # b7 artifact candidate記録
 
-> 状態: `b7-integrated-source-set-1`固定済み。統合artifact set、tag、公開releaseは未完。
+> 状態: `b7-integrated-source-set-1`とOCI前入力`b7-integrated-artifact-input-1`を固定済み。
+> Scratch／Bridge OCI、最終artifact set、tag、公開releaseは未完。
 
 ## 1. 統合source set
 
@@ -45,8 +46,7 @@ deterministic／targeted live evidenceは、統合defaultがcandidateとexact co
 | Python | `minecraft_remote_api-2301.0.0b7-py3-none-any.whl` | 177,243 | `cc5842b79501fd103f1e7d2e3a4ea1cc72029e6969265591f60c9324338d3094` | main再生成物がcandidateとbyte一致。担当local artifact |
 | Python | `minecraft_remote_api-2301.0.0b7.tar.gz` | 183,908 | `6be3db058cc1aff7cf5375b58dc11737e5d471f0f67a6cdaa28a869d0c12c236` | main再生成物がcandidateとbyte一致。担当local artifact |
 
-McRemote JARは既存durable stagingにある。Python二artifactはdigest報告であり、coordinator用durable stagingへの収容を
-まだ主張しない。Scratch GUI、WireScope、Bridge／Scratch OCIは統合developから未生成である。
+この表はdefault branch統合直後の入力だった。後続のcoordinator再生成とdurable staging固定は§6を正とする。
 
 ## 5. 次gate
 
@@ -57,3 +57,50 @@ source graphから確定し、GUI、WireScope、Bridge／OCIの再生成／b6 ar
 
 artifact set、manifest、最小統合smokeが固定されるまで、tag、GitHub prerelease、PyPI、npm、OCI push、Stack pin、
 shared deploymentを行わない。Java Clientはprotocol 23.0／b6 baselineのまま今回のartifact setへ含めない。
+
+## 6. 統合後artifact入力（pre-OCI）
+
+coordinatorは三default branchのisolated checkoutから成果物を再生成し、Scratch／Bridge OCIを除く六artifactを
+`b7-integrated-artifact-input-1`としてdurable stagingへ固定した。全fileはcopy後に再hashし、mode `0444`を確認した。
+入力manifestは3,206 bytes、SHA-256
+`f77242b5430322f311b2ff6104c02959d374b46e9472d042bcc4d698252a1de8`である。
+
+| component | artifact | size（bytes） | SHA-256 |
+| --- | --- | ---: | --- |
+| McRemote | `mc-remote-1.21.11-2301.0.0b7.jar` | 222,951 | `f08388cf393e02db1eb605e707dfaec890792e7a475de5a51caacbc940028ee9` |
+| Python | `minecraft_remote_api-2301.0.0b7-py3-none-any.whl` | 177,243 | `cc5842b79501fd103f1e7d2e3a4ea1cc72029e6969265591f60c9324338d3094` |
+| Python | `minecraft_remote_api-2301.0.0b7.tar.gz` | 183,908 | `6be3db058cc1aff7cf5375b58dc11737e5d471f0f67a6cdaa28a869d0c12c236` |
+| Scratch | `scratch-gui-build-b7.tar.gz` | 234,630,336 | `dd3361255b3d0a507c209e0c1e5781ed13f405ffb5c4ca7d32ebe2d63c89c52f` |
+| WireScope | `wirescope-app.zip` | 79,169 | `b3d6270299195d2c3db93c9d122938be6ae20d23e0f10e19afe3b0e99e3ca315` |
+| WireScope | `wirescope-app.manifest.json` | 2,321 | `4f3debeedc0dbcb1d4749b609c2693d27bf944453e14b767b0730476f48f0ca1` |
+
+McRemoteはJava 21のclean buildと203/203件をPASSし、JARはdefault branch担当生成物、live PASS物、既存durable
+candidateとbyte-for-byte一致した。Pythonは`PUBLISHING.md`記載の`uv run --with pytest`で253/253件と`uv build`を
+PASSし、wheel／sdistは担当生成物とbyte-for-byte一致した。最初のplain `uv run pytest`はpytestがproject dependencyに
+ないため起動前に失敗したが、文書化済みの一時tool解決手順で再実行した。これを製品test FAILへ数えない。
+最小artifact smokeではJAR内`plugin.yml`のversion／API／permission宣言、wheelのMETADATAとb7五API、wheel／WireScope
+ZIPのCRC、sdist／GUI／Bridge tar inventory、GUI runtime configとWireScope manifestのJSON parseをPASSした。
+
+ScratchはNode `24.19.0`／npm `11.12.1`のisolated checkoutで`npm ci`、全workspace production buildをPASSした。
+protocolはESLint／Prettier、Vitest 28/28、build、BridgeはESLint／Prettier、Vitest 30/30、build、WireScopeは
+ESLint／Prettier、Vitest 130/130、artifact buildをPASSした。Bridge testの最初のsandbox内実行はloopback listenが
+`EPERM`となったが、network namespace制約外の同一sourceで30/30件をPASSしたため製品FAILではない。
+
+GUI tarがb6と異なるのはb7 fixtureの混入ではない。b6統合source `df9264ec…`から今回のb7 base `5df50144…`までに、
+release labelを固定文言から現在値の表示へ直すGUI commit `5df50144…`が入っている。fixture二commitはprotocol配下だけで、
+GUI／VM／Bridge／WireScopeから`@mc-remote/protocol`へのruntime importはない。したがってGUIは新bytesとして採用した。
+一方、Bridgeの決定論的中間tarは3,052 bytes／SHA-256
+`11199a8e6966e8a5160411104934498657f4befd3d27a8fc25c88f51afa31c72`でb6とexact一致し、WireScope ZIPもb6と
+exact一致した。WireScope manifestだけがScratch source stampを`773e298…`へ更新したため新digestになった。
+
+`npm ci`のaudit表示は既存依存に83件（low 6、moderate 30、high 38、critical 9）を報告した。自動`npm audit fix`は
+lock／sourceを変更するため本gateへ混ぜず、既存dependency riskとして保持する。Python wheel内にはb5時点の独立した
+bundled WireScope appが残り、今回固定したcommon WireScope ZIPとは別物である。これはcandidate時点のnon-claimどおり、
+b7 real-browser E2Eを主張しない。tag前に別artifactへ無断置換せず、release判定で既存境界として明示する。
+
+## 7. 現在のgate
+
+pre-OCI入力は固定済みであり、source／fixture／JAR／Python package／GUI／common WireScopeのidentityは揃った。
+まだ`b7-artifact-candidate-set-1`または公開releaseとは呼ばない。残件は、既決の配布境界でScratch／Bridge multi-arch OCIを
+生成してindex／platform／attestation identityとcontainer smokeを固定すること、その後に六artifactとOCIを一組へ束ね、
+人間のrelease承認を受けることである。OCI push、tag、GitHub prerelease、PyPI／npm、Stack pin、shared deployは未実施である。

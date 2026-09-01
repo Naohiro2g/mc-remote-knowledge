@@ -228,7 +228,13 @@ b7完了依存にしない。追加live-humanも要求しない。後続default 
 `develop@773e2984132d82bb6e740d6458107fe42ef68a0a`、McRemote
 `main@3d5f710db97f4b14613f7e0abaafd535701d1906`、Python
 `main@8f4bc4b96ae74fb5370a3d804676cd07e5352346`で完了し、三fixture exact bytesも一致した。これを
-`b7-integrated-source-set-1`として固定する。残るgateは統合artifact set、最小smoke、tag／公開releaseである。
+`b7-integrated-source-set-1`として固定する。さらに同日、isolated checkoutからJAR、wheel／sdist、GUI、common
+WireScope ZIP／manifestを再生成し、`b7-integrated-artifact-input-1`としてdurable stagingへ固定した。入力manifestは
+SHA-256 `f77242b5430322f311b2ff6104c02959d374b46e9472d042bcc4d698252a1de8`である。McRemote 203件、Python 253件、
+protocol 28件、Bridge 30件、WireScope 130件と各build／archive検査をPASSした。GUIはb7 fixtureによらず、b6後の
+release-label修正`5df50144…`を含むため新bytesとし、Bridge中間tarとWireScope ZIP本体はb6 exact bytesを再現した。
+残るgateはScratch／Bridge OCI、最終artifact set、tag／公開releaseである。詳細とnon-claimは
+[`b7 artifact candidate記録`](b7-artifact-candidate-record_ja.md) §6／§7を正とする。
 
 ### 3.3 b8 — entity lifecycle、ParticleBuilder Stage 2
 
