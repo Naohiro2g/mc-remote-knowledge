@@ -872,7 +872,7 @@ Client Libraryの内部構造を一致させることをconformanceとは呼ば�
 
 ---
 
-## 20. Protocol専用repositoryは急いで作らない
+## 20. Protocol／WireScope／Bridgeの移管評価はb7後に行う
 
 Protocol SSOTは現在`mc-remote-knowledge/10-protocol`にある。
 
@@ -883,15 +883,20 @@ machine-readable shared fixture等を持つ実行可能なProtocol投影／限�
 
 しかし、knowledge SSOTそのものや、全Protocol version／全contractの包括ownerを置き換えるものではない。
 
-将来、
+2026-09-01に公開repository `Naohiro2g/minecraft-remote-protocol`のbootstrapが先行作成されたが、owner移管は批准せずparkした。
+現行ownerはscratch-editorのままとし、b7 successor fixture、consumer参照、release gateをbootstrapへ切り替えない。
 
-- Maven
-- npm
-- NuGet
-- CI
-- 外部contributor
+b7 release後、b8前に実施するかb8後へ送るかを判断する独立した横断programとして、次を一体で評価する。
 
-から共通Protocol artifactを直接取得する必要が強くなった場合は、生成artifactや独立distributionを検討できる。
+- Protocol projection／fixtureの完全移管
+- Scratch／Python／将来のJava、TypeScript、C#が共用するWireScope appのowner
+- Bridgeの維持、一般化、置換、廃止と、browser／TCP接続の扱い
+- Protocol、conformance、共通TypeScript toolingを一repositoryへ置くmonorepo案
+- ProtocolとWireScopeを別repositoryへ置く案、および移行期間だけのhybrid
+
+移管する場合はScratchへ共通基盤の編集可能なowner copyを残さず、Scratch固有実装とconsumer接続だけを残す完全移行を
+第一候補とする。ただし最終的にmonorepoとするかWireScopeを分離するかは、依存、version、artifact、security、将来の
+言語別source adapterを比較して再批准する。
 
 正本を二つにはしない。
 

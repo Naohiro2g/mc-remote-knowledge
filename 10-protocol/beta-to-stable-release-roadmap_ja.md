@@ -208,6 +208,10 @@ candidate sourceとfixtureだけからdamage／fire／entity変化等のlive結�
 fixture、McRemoteのsession admission／handle reason修正、各consumerのexact fixture再消費、対象live-autoが揃うまで
 **HOLD**とする。Scratch学習者向けsurfaceは引き続き開始条件にしない。
 
+`2026-09-01-03`は公開Protocol bootstrapをparkし、owner移管をb7後の独立した横断評価へ送った。したがってb7のfixture
+ownerとsuccessor発行先はscratch-editorのままであり、bootstrap repositoryをrelease inputまたは新しいgateにしない。
+Protocol／WireScope／Bridge／TCP接続の配置評価をb7完了条件へ追加せず、b7 release後にb8前実施またはb8後送りを判断する。
+
 ### 3.3 b8 — entity lifecycle、ParticleBuilder Stage 2
 
 次をread／writeへ分けず、handle取得、状態観察、移動、終端まで一つの縦sliceへ閉じます。
