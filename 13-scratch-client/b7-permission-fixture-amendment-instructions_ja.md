@@ -1,6 +1,7 @@
 # b7 permission fixture改訂指示書
 
-> status: `2026-09-01-02`批准済み。Scratch protocol ownerへの確定指示。
+> status: 完了。`agent/b7-permission-fixture-amendment@773e2984132d82bb6e740d6458107fe42ef68a0a`を
+> coordinatorがremote／exact bytes照合済み。develop未統合。
 
 ## 目的
 
@@ -44,3 +45,20 @@ case IDは既存IDを意味違いのまま再利用しない。削除・置換�
 
 専用branchへpushし、developへ直接pushしない。coordinatorがexact bytesをknowledgeへ着地した後、McRemoteとPythonへ同じ
 fixture identityを搬送する。
+
+## 完了identity
+
+- branch／commit: `agent/b7-permission-fixture-amendment@773e2984132d82bb6e740d6458107fe42ef68a0a`
+- parent: `607cda40588ec4579c503d457c3784385419ac65`
+- path: `mc-remote/protocol/test/fixtures/direction-lightning-v23.1.json`
+- bytes: `20367`
+- Git blob: `7371787ca6484a45dec0c7893608339961ae6fcf`
+- SHA-256: `586d24bf40136eec31f1827f23ef5b317f15100a17a635d7fe9f165e0af40dce`
+- case: 93件、93 unique ID
+
+predecessor 81件から4件を削除し16件を追加、77件はobject単位で不変である。旧`B7-L14`の
+`mcr.lightning`拒否caseは後継なしで削除し、`B7-A01`、`B7-A10`〜`A17`、`B7-A20`〜`A23`、
+`B7-A30`〜`A32`へpermission snapshotと状態遷移を固定した。coordinatorはremote branch／parent、fixtureの
+blob／bytes／digest、93 IDのunique性、protocol配下の`mcr.lightning` 0件を照合した。owner報告ではlint、
+Prettier、Vitest 28件、build、predecessor／successor比較がPASSした。Scratch学習者向けblock、Bridge、
+WireScope、live、artifact、develop統合は未実施・未主張である。

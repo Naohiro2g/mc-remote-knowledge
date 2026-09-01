@@ -1,6 +1,7 @@
 # b7 live gate追補指示書
 
-> status: `2026-09-01-02`批准済み。McRemote担当への確定指示。
+> status: product／deterministic完了。`agent/b7-live-gate-blockers@3d5f710db97f4b14613f7e0abaafd535701d1906`を
+> coordinatorがremote／successor fixture照合済み。targeted live-autoとreleaseは未完。
 
 ## 目的
 
@@ -93,3 +94,21 @@ shared serverへの配置、live実行、tag、releaseはMcRemote担当の作業
 permission実装とlocal testは並行して進めてよいが、最終のexact fixture PASSはfixture着地後に返す。coordinatorが
 返却artifactを固定してから、外部dimension移動、online-only lightning、session状態遷移をtargeted live-autoで実行する。
 今回のchange coneにvisual／audio変更はないため、追加live-humanはb7 close条件にしない。
+
+## 完了identityと残作業
+
+- branch／commit: `agent/b7-live-gate-blockers@3d5f710db97f4b14613f7e0abaafd535701d1906`
+- base: `9db95e8af0bcc9feaf66c1bbbffc05b9fb8304e0`
+- successor fixture: 20,367 bytes、Git blob `7371787ca6484a45dec0c7893608339961ae6fcf`、
+  SHA-256 `586d24bf40136eec31f1827f23ef5b317f15100a17a635d7fe9f165e0af40dce`、93 unique cases
+- 担当報告のlocal JAR: `mc-remote-1.21.11-2301.0.0b7.jar`、222,951 bytes、
+  SHA-256 `f08388cf393e02db1eb605e707dfaec890792e7a475de5a51caacbc940028ee9`
+
+coordinatorはremote commit／base、McRemote配置fixtureのexact bytesと93 ID、production／README配下の
+`mcr.lightning` 0件を照合した。担当報告ではPaper 1.21.11全203 tests、Paper 26.2／Java 25 compatibility、
+successor fixture、method registry、clean build、`git diff --check`がPASSした。これによりproduct修正と
+deterministic gateはCLOSEDである。
+
+JAR identityは担当local buildの報告値であり、coordinatorが取得可能なdurable artifactまたはshared配置の証拠ではない。
+残作業は、このexact sourceから得たJARをcoordinatorが取得・再照合して、外部dimension移動、online-only sessionからの
+lightning、join／quit状態遷移をtargeted live-autoで再実行することだけである。追加live-humanは要求しない。

@@ -212,6 +212,14 @@ fixture、McRemoteのsession admission／handle reason修正、各consumerのexa
 ownerとsuccessor発行先はscratch-editorのままであり、bootstrap repositoryをrelease inputまたは新しいgateにしない。
 Protocol／WireScope／Bridge／TCP接続の配置評価をb7完了条件へ追加せず、b7 release後にb8前実施またはb8後送りを判断する。
 
+successor owner fixtureはScratch
+`agent/b7-permission-fixture-amendment@773e2984132d82bb6e740d6458107fe42ef68a0a`で発行され、20,367 bytes／93件、
+SHA-256 `586d24bf40136eec31f1827f23ef5b317f15100a17a635d7fe9f165e0af40dce`をcoordinatorが照合した。
+McRemoteも`agent/b7-live-gate-blockers@3d5f710db97f4b14613f7e0abaafd535701d1906`で同じbytesを消費し、
+handle reasonとpermission snapshotを修正した。これによりowner fixtureとserver deterministic gateはCLOSEDである。
+残るb7 gateはPythonの93 case再消費、exact JARの取得／固定、対象live-autoである。Stackにsource変更は要求せず、
+Java clientはprotocol 23.0 baselineのままb7完了依存にしない。追加live-humanも要求しない。
+
 ### 3.3 b8 — entity lifecycle、ParticleBuilder Stage 2
 
 次をread／writeへ分けず、handle取得、状態観察、移動、終端まで一つの縦sliceへ閉じます。

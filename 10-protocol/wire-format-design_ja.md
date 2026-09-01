@@ -592,6 +592,22 @@ component candidateへ到達した。fixture SHA-256一致、remote head、17変
 公開releaseは未完。damage、fire、rod、copper、CUSTOM cause、event cancellation、entity変化、視覚／音響範囲、
 shared環境結果は引き続き未検証・未主張とする。
 
+`2026-09-01-02`のsuccessorはScratch
+`agent/b7-permission-fixture-amendment@773e2984132d82bb6e740d6458107fe42ef68a0a`
+（parent=`607cda40588ec4579c503d457c3784385419ac65`）で発行された。pathは
+`mc-remote/protocol/test/fixtures/direction-lightning-v23.1.json`、20,367 bytes、Git blob
+`7371787ca6484a45dec0c7893608339961ae6fcf`、SHA-256
+`586d24bf40136eec31f1827f23ef5b317f15100a17a635d7fe9f165e0af40dce`、93 unique casesである。
+predecessor 81件のうち77件はobject単位で不変、旧permission 4件を削除し、hello snapshot／admission matrix／
+join・quit／reconnect更新の16件を追加した。`mcr.lightning` caseは後継なしで削除した。
+
+McRemoteは`agent/b7-live-gate-blockers@3d5f710db97f4b14613f7e0abaafd535701d1906`
+（base=`9db95e8af0bcc9feaf66c1bbbffc05b9fb8304e0`）でsuccessorのexact bytesを消費し、外部dimension移動の
+terminal reason順序とhello時permission／build-range snapshotを修正した。coordinatorは両remote identity、fixtureの
+blob／bytes／digest、93 ID、McRemote production側の`mcr.lightning` 0件を照合した。owner fixtureとMcRemoteの
+product／deterministic gateはCLOSEDである。Pythonの93 case exact再消費、candidate JARの取得／固定、外部dimension移動、
+online-only lightning、join／quit状態遷移のtargeted live-autoは未完であり、b7全体は引き続きHOLDとする。
+
 ---
 
 ## 6. helloペイロード
