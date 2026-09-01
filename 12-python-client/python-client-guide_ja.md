@@ -461,6 +461,13 @@ wheel SHA-256 `ec0d032d7c75c14ea804b0a7bca4c723458a1224b8b8b00a4b9b50869f24caf2`
 扱わない。実plugin代表往復、live-auto／live-human、shared deploy、bundled WireScopeのb7 real-browser E2E、tag／releaseは
 未実施・未主張である。
 
+後続`codex/b7-permission-contract-followup@8f4bc4b96ae74fb5370a3d804676cd07e5352346`はsuccessor fixture
+20,367 bytes／93件をexact再消費し、`mcr.lightning`前提を除去した。targeted 48件、全253件、build／metadataが
+PASSし、wheel／sdistはSHA-256 `cc5842b79501fd103f1e7d2e3a4ea1cc72029e6969265591f60c9324338d3094`／
+`6be3db058cc1aff7cf5375b58dc11737e5d471f0f67a6cdaa28a869d0c12c236`になった。同commitへ`main`をstrict
+fast-forwardし、統合後main再生成物もcandidateとbyte一致した。これによりPython b7 source integrationは完了した。
+公開artifact、tag、GitHub release、PyPI公開は未完である。
+
 ただしwire paramsの順序はb5共通fixtureとして先に固定する。`world.spawnParticle`は
 `[x,y,z,offset_x,offset_y,offset_z,particle,speed,count,(force)]`、`world.spawnEntity`は
 `[x,y,z,entity]`とする。force省略時は`true`である。Python APIを追加するときもparticle-first／

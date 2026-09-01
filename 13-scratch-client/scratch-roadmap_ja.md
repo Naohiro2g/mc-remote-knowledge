@@ -489,6 +489,11 @@ b5／b6の横断scopeはDECISIONS `2026-08-16-04`〜`07`／`2026-08-26-06`と
   b8 releaseを自動的にHOLDしない。Scratch blockのexact label、menu、reporter／command形は各wire contract
   lock後に固定し、raw UUIDやcomma-separated valueを旧実装から持ち込まない。
 
+b7では学習者向けblockを追加せず、protocol ownerとして`develop@773e2984132d82bb6e740d6458107fe42ef68a0a`へ
+23.1 mirrorとsuccessor fixtureをstrict fast-forwardした。fixtureは20,367 bytes、93件、SHA-256
+`586d24bf40136eec31f1827f23ef5b317f15100a17a635d7fe9f165e0af40dce`で、McRemote／Pythonのdefault branch配置物と
+exact一致する。Scratch GUI、Bridge、WireScope、Pages、OCI、tag／releaseはこのsource統合から主張しない。
+
 `world.spawnEntity`のhandleは副作用と同じresponseから原子的に受け取る。共有の`last entity` reporterは
 作らない。副作用reporterをmonitor不能にできるruntimeではreporterを優先し、保証できない場合は
 出力変数付きcommand blockへ確定する。この選択はScratch runtimeのprototype結果を待つ。

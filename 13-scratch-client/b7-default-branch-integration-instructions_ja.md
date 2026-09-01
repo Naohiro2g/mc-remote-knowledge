@@ -1,6 +1,6 @@
 # b7 default branch統合指示書（Scratch protocol owner）
 
-> status: 実行可。fixture ownerを`develop`へ着地する。tag／releaseは禁止。
+> status: 完了。`develop@773e2984132d82bb6e740d6458107fe42ef68a0a`へstrict fast-forward済み。
 
 ## 固定入力
 

@@ -224,8 +224,11 @@ componentとartifact acquisition gateはCLOSEDである。後続targeted live-au
 `entity_dimension_changed`→`entity_not_found`、online-only helloが`online=true`／`offline=false`、
 `world.strikeLightning`が`result:null`かつexact target 1件／`CUSTOM`としてPASSした。これによりb7の
 product／contract blockerはCLOSEDである。Stackにsource変更は要求せず、Java clientはprotocol 23.0 baselineのまま
-b7完了依存にしない。追加live-humanも要求しない。次は各専用branchのdefault branch統合、release candidate artifact set、
-tag／公開releaseを分離して進める。
+b7完了依存にしない。追加live-humanも要求しない。後続default branch統合はScratch
+`develop@773e2984132d82bb6e740d6458107fe42ef68a0a`、McRemote
+`main@3d5f710db97f4b14613f7e0abaafd535701d1906`、Python
+`main@8f4bc4b96ae74fb5370a3d804676cd07e5352346`で完了し、三fixture exact bytesも一致した。これを
+`b7-integrated-source-set-1`として固定する。残るgateは統合artifact set、最小smoke、tag／公開releaseである。
 
 ### 3.3 b8 — entity lifecycle、ParticleBuilder Stage 2
 

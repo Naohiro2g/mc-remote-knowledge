@@ -1,6 +1,6 @@
 # b7 default branch統合指示書（Python）
 
-> status: 実行可。component candidateを`main`へ着地する。tag／release／PyPI公開は禁止。
+> status: 完了。`main@8f4bc4b96ae74fb5370a3d804676cd07e5352346`へstrict fast-forward済み。
 
 ## 固定入力
 

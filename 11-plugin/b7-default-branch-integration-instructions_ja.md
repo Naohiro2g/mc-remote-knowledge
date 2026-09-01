@@ -1,6 +1,6 @@
 # b7 default branch統合指示書（McRemote）
 
-> status: 実行可。product candidateを`main`へ着地する。tag／release／deployは禁止。
+> status: 完了。`main@3d5f710db97f4b14613f7e0abaafd535701d1906`へstrict fast-forward済み。
 
 ## 固定入力
 

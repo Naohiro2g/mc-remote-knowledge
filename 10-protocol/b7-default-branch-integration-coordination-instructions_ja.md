@@ -1,6 +1,6 @@
 # b7 default branch統合 coordinator指示書
 
-> status: b7 product／contract／fixture／deterministic／targeted live gate完了。default branch統合を開始する。
+> status: 完了。三default branchを`b7-integrated-source-set-1`として固定済み。
 
 ## 目的
 
@@ -51,3 +51,13 @@ tag、GitHub release、PyPI／npm／OCI公開、shared deploymentを同時に行
 三default branchのremote SHA、candidateとのtree／commit関係、clean checkoutでの再検証を受領してから、coordinatorが
 `b7-integrated-source-set-1`を固定する。その後、統合SHAからJAR、wheel／sdist、Scratch系artifactを新しいdurable stagingへ
 生成し、candidate artifactとの差を明示する。tag／GitHub prereleaseはartifact setと最小統合smokeの後に別承認で行う。
+
+## 完了結果
+
+- Scratch: `develop@773e2984132d82bb6e740d6458107fe42ef68a0a`
+- McRemote: `main@3d5f710db97f4b14613f7e0abaafd535701d1906`
+- Python: `main@8f4bc4b96ae74fb5370a3d804676cd07e5352346`
+
+三者ともcandidate exact commit／treeへのstrict fast-forwardである。計画したScratch先行に対し、実際には少なくとも
+McRemoteがScratchより先に着地したが、三fixed base、最終tree、fixture bytesに影響しないため巻き戻さない。詳細は
+[`b7 artifact candidate記録`](b7-artifact-candidate-record_ja.md)を正とする。

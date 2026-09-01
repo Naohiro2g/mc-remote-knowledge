@@ -530,6 +530,12 @@ workを副作用前に検証し、必要なchunkを最大1回load／generateし�
 damage、fire、rod、copper、entity変化、音／可視範囲、後続tickはserverが独自保証・rollbackしない
 （DECISIONS `2026-09-01-01`、wire §5.8.2）。
 
+このb7 surfaceとpermission snapshot／handle reason修正は
+`main@3d5f710db97f4b14613f7e0abaafd535701d1906`へstrict fast-forward済みである。統合後mainのPaper
+1.21.11全203件、Paper 26.2／Java 25対象61件がPASSし、生成JAR 222,951 bytes／SHA-256
+`f08388cf393e02db1eb605e707dfaec890792e7a475de5a51caacbc940028ee9`はtargeted live PASS JARとbyte一致した。
+これはsource統合とJAR再現の完了であり、tag／GitHub release／shared deploy完了を意味しない。
+
 `backpressure`は副作用前の一時的拒否、`work_limit_exceeded`は入力縮小が必要な拒否、
 `entity_capacity_exhausted`はhandle capacity拒否である。副作用開始後に結果を確定できない場合は
 `internal_error`とし、spawn後のresponse喪失を含めclientへ自動retryを許さない。

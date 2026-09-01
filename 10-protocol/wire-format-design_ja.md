@@ -612,8 +612,11 @@ exact再消費し、remote HEAD／parent／fixture digestをcoordinatorが照合
 これによりPython componentとartifact acquisition gateもCLOSEDである。後続targeted live-autoで、外部dimension移動の
 `entity_dimension_changed`→`entity_not_found`と、online-only hello snapshotからの`world.strikeLightning`
 `result:null`／exact target 1件／`CUSTOM`をPASSした。join／quit closureはsuccessor fixtureとPaper deterministic suiteで
-閉じ、追加のplayer再接続をlive gateへ要求しない。b7のproduct／contract blockerはCLOSEDである。default branch統合、
-release candidate artifact set、tag／公開releaseは未完である。
+閉じ、追加のplayer再接続をlive gateへ要求しない。b7のproduct／contract blockerはCLOSEDである。後続default branch統合は
+Scratch `develop@773e2984132d82bb6e740d6458107fe42ef68a0a`、McRemote
+`main@3d5f710db97f4b14613f7e0abaafd535701d1906`、Python
+`main@8f4bc4b96ae74fb5370a3d804676cd07e5352346`で完了し、三者のfixture exact bytesも一致した。
+これを`b7-integrated-source-set-1`として固定する。release candidate artifact set、tag／公開releaseは未完である。
 
 ---
 
