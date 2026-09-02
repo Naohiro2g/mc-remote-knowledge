@@ -44,11 +44,11 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 ただし旧setの観測事実まで自動的に破棄せず、`2026-08-23-01`のchange coneとPASS再利用条件で再評価します。
 仕様形成中はTier 0〜2を既定とし、人間参加・全回帰・capacity／soakをrelease候補より前へ自動的に持ち込みません。
 
-## 2026-09-02 b7横断release gate（OPEN）
+## 2026-09-02 b7横断release gate（CLOSED）
 
 - gate coordinator: knowledge担当session。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
-- current phase: **b7横断技術gate完了／human release ownerのtag承認待ち**。McRemote／Python／Scratch／WireScope四component参加、Java／Stackは今回動かさない。tag、公開release、OCI pushは未実施
+- current phase: **GitHub prerelease公開完了／b7 gate close**。McRemote／Python／Scratchの3リポをdefault branch（main／main／develop）へ統合し、`v1.21.11-2301.0.0b7`／`v2301.0.0b7`／`v2301.0.0b7`をprerelease公開した。Java／Stackは今回動かさない。OCI pushは未実施
 - contract: protocol `23.1.0`／artifact `2301.0.0b7`、`10-protocol/wire-format-design_ja.md` §5.8.2、DECISIONS `2026-09-01-01`／`2026-09-01-02`。permission改訂はhello時snapshot、`mcr.online`／`mcr.offline`独立、状態不一致session close、`mcr.lightning`削除
 - exact source set: `b7-integrated-source-set-1`。McRemote `main@3d5f710db97f4b14613f7e0abaafd535701d1906`、Python `main@8f4bc4b96ae74fb5370a3d804676cd07e5352346`、Scratch `develop@773e2984132d82bb6e740d6458107fe42ef68a0a`
 - shared fixture: 20,367 bytes、93/93 unique、SHA-256 `586d24bf40136eec31f1827f23ef5b317f15100a17a635d7fe9f165e0af40dce`。三default branchでexact一致。ownerはpark判断どおりScratch内`@mc-remote/protocol`を維持
@@ -72,8 +72,11 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   Java／Stackはこのsetに含めない（b6 baseline維持）。source／artifact identityが一つでも変われば本freezeは失効する
 - live-human結果: `2026-09-03-b7-direction-lightning-live`。Python segment PASS（direction／entity direction／lightning、視聴覚確認）、Scratch／WireScope segment PASS（同5 method、real-browser視聴覚確認）。McRemote plugin側blockerは`2026-09-01-b7-direction-lightning-live`のaddendumで既にCLOSED。四component全てのlive-human完了。証跡: [`14-evidence/records/2026-09-03-b7-direction-lightning-live_ja.md`](../14-evidence/records/2026-09-03-b7-direction-lightning-live_ja.md)
 - release後是正候補（b7 candidateは変更せず搬送）: WireScope保持windowの空振り占有、Scratch数値入力欄のCtrl+C不動作、server backpressureをclient切断と誤案内するGUI表示。詳細は上記evidence record
-- gate result: **GREEN — b7横断技術gate完了（source set／artifact identity／live-human）**。tag／GitHub prerelease／公開releaseはhuman release ownerの別承認が必要
-- authorized next action: human release ownerの承認後、McRemote／Python／Scratch三component（Javaは対象外）のtag・GitHub prerelease作成へ進む。b6と同様prerelease ON／draft OFF／Latest非対象、tag target・asset・release notes digestを公開後にAPIで確認する
+- gate result: **GREEN — b7横断技術gate完了／GitHub prerelease公開identity確認完了**
+- release authorization: プロジェクトオーナーの明示承認（2026-09-03）。McRemote `v1.21.11-2301.0.0b7`を`3d5f710db97f4b14613f7e0abaafd535701d1906`（既存default）へ、Pythonは`v2301.0.0b7`を`91a25d317c95570fd9d92b5e63a5f585a856eda3`へ、Scratchは`v2301.0.0b7`を`0be46fcfaca409a5ede10f592520d93e7c59ba15`へ固定。Python `main`とScratch `develop`はcoordinatorがScratch担当の分岐なし確認後、これらcandidateへstrict fast-forward統合してから公開した。各releaseはprerelease ON、draft OFF、Latest非対象
+- release identity verification: McRemote [v1.21.11-2301.0.0b7](https://github.com/Naohiro2g/McRemote/releases/tag/v1.21.11-2301.0.0b7)はtag target `3d5f710db97f4b14613f7e0abaafd535701d1906`、JAR asset 222,951 bytes／SHA-256 `f08388cf393e02db1eb605e707dfaec890792e7a475de5a51caacbc940028ee9`。Python [v2301.0.0b7](https://github.com/Naohiro2g/minecraft-remote-api/releases/tag/v2301.0.0b7)はtag target `91a25d317c95570fd9d92b5e63a5f585a856eda3`、assetsなし、release notesにwheel／sdist digest記載。Scratch [v2301.0.0b7](https://github.com/Naohiro2g/scratch-editor/releases/tag/v2301.0.0b7)はtag target `0be46fcfaca409a5ede10f592520d93e7c59ba15`、assetsなし、release notesにGUI／Bridge／WireScope digest記載。三件ともprerelease=true、draft=false、既存stable Latest（McRemote `v1.21.8-1.4.0`、Python `v1214.10.11`、Scratchはlatestなし）を変更していないことをGitHub APIで確認した
+- authorized next action: default branch統合とrelease identity確認をもってb7 gateをcloseする。PyPI／TestPyPI、registry publish、public deploy、runtime／server変更、b8実装はこのrelease確認に含めない
+- non-claim: PyPI／TestPyPI、npm、Modrinth、public server deploy、通常dev環境runbook改訂を主張しない
 
 ## 2026-08-27 b6横断release gate（CLOSED）
 
