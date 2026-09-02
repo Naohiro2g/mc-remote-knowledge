@@ -616,7 +616,11 @@ exact再消費し、remote HEAD／parent／fixture digestをcoordinatorが照合
 Scratch `develop@773e2984132d82bb6e740d6458107fe42ef68a0a`、McRemote
 `main@3d5f710db97f4b14613f7e0abaafd535701d1906`、Python
 `main@8f4bc4b96ae74fb5370a3d804676cd07e5352346`で完了し、三者のfixture exact bytesも一致した。
-これを`b7-integrated-source-set-1`として固定する。release candidate artifact set、tag／公開releaseは未完である。
+これを`b7-integrated-source-set-1`として固定した。その後Scratch／WireScopeがb7 release対象へ確定し、Python同梱
+WireScopeをScratch owner set 2へ差し替えたためPython `main`は`91a25d317c95570fd9d92b5e63a5f585a856eda3`、
+Scratch `develop`は`0be46fcfaca409a5ede10f592520d93e7c59ba15`へ更新統合された。McRemote／Python／Scratch三repoの
+GitHub prerelease（`v1.21.11-2301.0.0b7`／`v2301.0.0b7`／`v2301.0.0b7`）は2026-09-03に公開済み。詳細は
+`00-hub/release-gate-notes_ja.md` 2026-09-02 b7横断release gate節（CLOSED）を正とする。
 
 ---
 

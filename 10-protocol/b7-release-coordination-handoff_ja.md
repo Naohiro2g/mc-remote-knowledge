@@ -1,6 +1,11 @@
 # b7 release coordination — Claude Code引継ぎ
 
-> 状態: coordinator交代。以下を読んでからb7 release scopeを再監査する。
+> 状態: **superseded・historical**。本票はcoordinator交代時点（2026-09-02）の引継ぎであり、b7 gateは
+> その後完了・CLOSEDした（`00-hub/release-gate-notes_ja.md` 2026-09-02 b7横断release gate節、
+> `release-operations-responsibility-design_ja.md` §4.1「coordinatorが行わない行為」も本票の教訓から新設）。
+> 現在地の参照先ではなく、誤り訂正の経緯を保持する履歴として残す。
+>
+> 状態（原文）: coordinator交代。以下を読んでからb7 release scopeを再監査する。
 > 本票はrelease承認ではなく、誤った進行を止めて検証可能な現在地を渡すための引継ぎである。
 
 ## 1. 最優先の訂正

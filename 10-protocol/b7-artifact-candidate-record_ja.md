@@ -1,9 +1,10 @@
 # b7 artifact candidate記録
 
-> 状態: `2026-09-02-01`によりScratch／WireScopeもb7 release対象と確定。Python owner artifactは
-> Scratch set 2 WireScope pairへ差し替えた新identity（`codex/b7-wirescope-set2@91a25d3…`）へ更新済み、旧wheel/sdistは失効。
-> McRemote／Scratch owner set 2／Python新identityの四component分identityをcoordinatorがGit／local staging照合済み。
-> 次はexact set凍結。最終artifact set、tag、公開releaseは未完。
+> 状態: **released・historical**。本記録が対象とした四component分artifact identityは`b7-integrated-artifact-set-1`として
+> 凍結され、live-human（`14-evidence/records/2026-09-03-b7-direction-lightning-live_ja.md`）とGitHub prerelease公開
+> （McRemote `v1.21.11-2301.0.0b7`／Python `v2301.0.0b7`／Scratch `v2301.0.0b7`、2026-09-03）まで完了した。
+> 最新の現在地は`00-hub/release-gate-notes_ja.md` 2026-09-02 b7横断release gate節（CLOSED）を正とする。
+> 本記録は着地までの経緯（coordinator誤り、Scratch owner set 1／2、Python再artifact）を保持する履歴として残す。
 
 ## 1. 統合source set
 
