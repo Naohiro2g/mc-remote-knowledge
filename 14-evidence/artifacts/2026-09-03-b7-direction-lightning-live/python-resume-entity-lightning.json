@@ -1,0 +1,165 @@
+{
+  "test_id": "2026-09-03-b7-direction-lightning-live",
+  "segment": "python-resume-entity-lightning",
+  "target": "m720s2-dev-integration",
+  "endpoint": "redacted",
+  "protocol": "23.1.0",
+  "package": "2301.0.0b7",
+  "side_effecting_retry": false,
+  "repeated_completed_methods": false,
+  "status": "PASS",
+  "hello": {
+    "protocol": "23.1.0",
+    "mc_version": "1.21.11",
+    "dimension": "minecraft:overworld",
+    "permissions": {
+      "online": true,
+      "offline": true,
+      "buildRange": 1000
+    }
+  },
+  "results": {
+    "entity": {
+      "handle": "mcr_eh_flHD6HMGOQ1KrwUiJlw28g",
+      "spawn_position": [
+        55.108,
+        121,
+        0.883
+      ],
+      "get_before": [
+        0,
+        0,
+        1
+      ],
+      "set": [
+        1,
+        0,
+        0
+      ],
+      "get_after": [
+        1,
+        0,
+        0
+      ]
+    },
+    "lightning": {
+      "target": [
+        58.108,
+        121,
+        0.883
+      ],
+      "result": null
+    }
+  },
+  "frames": [
+    {
+      "direction": "send",
+      "id": 2,
+      "method": "player.getPos",
+      "params": []
+    },
+    {
+      "direction": "receive",
+      "id": 2,
+      "method": "player.getPos",
+      "result": {
+        "dimension": "minecraft:overworld",
+        "pos": [
+          52.108,
+          121,
+          0.883
+        ]
+      }
+    },
+    {
+      "direction": "send",
+      "id": 3,
+      "method": "world.spawnEntity",
+      "params": [
+        55.108,
+        121,
+        0.883,
+        "minecraft:armor_stand"
+      ]
+    },
+    {
+      "direction": "receive",
+      "id": 3,
+      "method": "world.spawnEntity",
+      "result": "mcr_eh_flHD6HMGOQ1KrwUiJlw28g"
+    },
+    {
+      "direction": "send",
+      "id": 4,
+      "method": "entity.getDirection",
+      "params": [
+        "mcr_eh_flHD6HMGOQ1KrwUiJlw28g"
+      ]
+    },
+    {
+      "direction": "receive",
+      "id": 4,
+      "method": "entity.getDirection",
+      "result": [
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "direction": "send",
+      "id": 5,
+      "method": "entity.setDirection",
+      "params": [
+        "mcr_eh_flHD6HMGOQ1KrwUiJlw28g",
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "direction": "receive",
+      "id": 5,
+      "method": "entity.setDirection",
+      "result": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "direction": "send",
+      "id": 6,
+      "method": "entity.getDirection",
+      "params": [
+        "mcr_eh_flHD6HMGOQ1KrwUiJlw28g"
+      ]
+    },
+    {
+      "direction": "receive",
+      "id": 6,
+      "method": "entity.getDirection",
+      "result": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "direction": "send",
+      "id": 7,
+      "method": "world.strikeLightning",
+      "params": [
+        58.108,
+        121,
+        0.883
+      ]
+    },
+    {
+      "direction": "receive",
+      "id": 7,
+      "method": "world.strikeLightning",
+      "result": null
+    }
+  ]
+}

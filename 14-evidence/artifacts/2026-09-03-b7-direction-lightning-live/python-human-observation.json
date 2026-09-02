@@ -1,0 +1,37 @@
+{
+  "test_id": "2026-09-03-b7-direction-lightning-live",
+  "segment": "python-live-human-observation",
+  "candidate": {
+    "commit": "91a25d317c95570fd9d92b5e63a5f585a856eda3",
+    "wheel_bytes": 196970,
+    "wheel_sha256": "81540d22b1ee05d7b24bd2e6c9270a37a194c6c1ddc868148a8263624826d2ba"
+  },
+  "direction": {
+    "rpc": "PASS_SET_AND_POST_READ",
+    "initial_attempt": {
+      "before": [0.946624, 0.238533, 0.216805],
+      "requested": [1, 0, 0],
+      "result": [1, 0, 0],
+      "human_observation": "NO_VISIBLE_CHANGE",
+      "classification": "INCONCLUSIVE_OBSERVATION_METHOD"
+    },
+    "authorized_rerun": {
+      "before": [0.805134, -0.187381, 0.562714],
+      "requested": [-1, 0, 0],
+      "result": [-1, 0, 0],
+      "post_read": [-1, 0, 0],
+      "human_observation": "CLEAR_VISIBLE_CHANGE",
+      "classification": "PASS_VISUAL"
+    },
+    "classification": "PASS",
+    "method_improvement": "For a future run, rotate in 30-degree increments and use lightning at the same fixed location. This is non-blocking for this run."
+  },
+  "lightning": {
+    "rpc": "PASS_RESULT_NULL",
+    "human_observation": ["flash", "sound"],
+    "classification": "PASS_VISUAL_AUDIO"
+  },
+  "overall_python_live_human": "PASS",
+  "automatic_retry": false,
+  "authorized_direction_rerun": true
+}

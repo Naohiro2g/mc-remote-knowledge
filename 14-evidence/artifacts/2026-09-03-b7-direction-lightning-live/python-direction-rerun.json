@@ -1,0 +1,86 @@
+{
+  "test_id": "2026-09-03-b7-direction-lightning-live",
+  "segment": "python-player-direction-visual-rerun",
+  "target": "m720s2-dev-integration",
+  "endpoint": "redacted",
+  "protocol": "23.1.0",
+  "package": "2301.0.0b7",
+  "requested": [
+    -1,
+    0,
+    0
+  ],
+  "automatic_retry": false,
+  "status": "PASS",
+  "result": {
+    "before": [
+      0.805134,
+      -0.187381,
+      0.562714
+    ],
+    "set": [
+      -1,
+      0,
+      0
+    ],
+    "after": [
+      -1,
+      0,
+      0
+    ]
+  },
+  "frames": [
+    {
+      "direction": "send",
+      "id": 2,
+      "method": "player.getDirection",
+      "params": []
+    },
+    {
+      "direction": "receive",
+      "id": 2,
+      "method": "player.getDirection",
+      "result": [
+        0.805134,
+        -0.187381,
+        0.562714
+      ]
+    },
+    {
+      "direction": "send",
+      "id": 3,
+      "method": "player.setDirection",
+      "params": [
+        -1,
+        0,
+        0
+      ]
+    },
+    {
+      "direction": "receive",
+      "id": 3,
+      "method": "player.setDirection",
+      "result": [
+        -1,
+        0,
+        0
+      ]
+    },
+    {
+      "direction": "send",
+      "id": 4,
+      "method": "player.getDirection",
+      "params": []
+    },
+    {
+      "direction": "receive",
+      "id": 4,
+      "method": "player.getDirection",
+      "result": [
+        -1,
+        0,
+        0
+      ]
+    }
+  ]
+}

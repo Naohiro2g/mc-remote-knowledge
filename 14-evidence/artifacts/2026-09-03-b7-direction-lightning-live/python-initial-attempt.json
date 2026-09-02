@@ -1,0 +1,120 @@
+{
+  "test_id": "2026-09-03-b7-direction-lightning-live",
+  "segment": "python",
+  "target": "m720s2-dev-integration",
+  "endpoint": "redacted",
+  "protocol": "23.1.0",
+  "package": "2301.0.0b7",
+  "side_effecting_retry": false,
+  "status": "FAIL",
+  "hello": {
+    "protocol": "23.1.0",
+    "mc_version": "1.21.11",
+    "dimension": "minecraft:overworld",
+    "permissions": {
+      "online": true,
+      "offline": true,
+      "buildRange": 1000
+    }
+  },
+  "failure": {
+    "type": "KeyError",
+    "message": "0",
+    "reason": null
+  },
+  "frames": [
+    {
+      "direction": "send",
+      "id": 2,
+      "method": "player.getDirection",
+      "params": []
+    },
+    {
+      "direction": "receive",
+      "id": 2,
+      "method": "player.getDirection",
+      "result": [
+        0.946624,
+        0.238533,
+        0.216805
+      ]
+    },
+    {
+      "direction": "send",
+      "id": 3,
+      "method": "player.setDirection",
+      "params": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "direction": "receive",
+      "id": 3,
+      "method": "player.setDirection",
+      "result": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "direction": "send",
+      "id": 4,
+      "method": "player.getDirection",
+      "params": []
+    },
+    {
+      "direction": "receive",
+      "id": 4,
+      "method": "player.getDirection",
+      "result": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "direction": "send",
+      "id": 5,
+      "method": "player.setDirection",
+      "params": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "direction": "receive",
+      "id": 5,
+      "method": "player.setDirection",
+      "error": {
+        "code": -32602,
+        "message": "zero_direction",
+        "data": {
+          "reason": "zero_direction"
+        }
+      }
+    },
+    {
+      "direction": "send",
+      "id": 6,
+      "method": "player.getPos",
+      "params": []
+    },
+    {
+      "direction": "receive",
+      "id": 6,
+      "method": "player.getPos",
+      "result": {
+        "dimension": "minecraft:overworld",
+        "pos": [
+          52.108,
+          121,
+          0.883
+        ]
+      }
+    }
+  ]
+}
