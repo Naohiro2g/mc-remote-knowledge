@@ -1,9 +1,9 @@
 # b7 artifact candidate記録
 
-> 状態: `2026-09-02-01`によりScratch／WireScopeもb7 release対象と確定（前回の非参加判断を撤回）。
-> McRemote／Python owner artifact、Scratch owner artifact set 2（`agent/b7-scratch-wirescope@0be46fcfaca409a5ede10f592520d93e7c59ba15`、
-> direction／lightning learner block実装込み）の四component分identityがcoordinator照合済み。次はexact set凍結。
-> 最終artifact set、tag、公開releaseは未完。詳細は`13-scratch-client/b7-owner-artifact-generation-instructions_ja.md`。
+> 状態: `2026-09-02-01`によりScratch／WireScopeもb7 release対象と確定。Python owner artifactは
+> Scratch set 2 WireScope pairへ差し替えた新identity（`codex/b7-wirescope-set2@91a25d3…`）へ更新済み、旧wheel/sdistは失効。
+> McRemote／Scratch owner set 2／Python新identityの四component分identityをcoordinatorがGit／local staging照合済み。
+> 次はexact set凍結。最終artifact set、tag、公開releaseは未完。
 
 ## 1. 統合source set
 
@@ -45,10 +45,17 @@ deterministic／targeted live evidenceは、統合defaultがcandidateとexact co
 | component | artifact | bytes | SHA-256 | 状態 |
 | --- | --- | ---: | --- | --- |
 | McRemote | `mc-remote-1.21.11-2301.0.0b7.jar` | 222,951 | `f08388cf393e02db1eb605e707dfaec890792e7a475de5a51caacbc940028ee9` | main再生成物がlive PASS／durable candidateとbyte一致 |
-| Python | `minecraft_remote_api-2301.0.0b7-py3-none-any.whl` | 177,243 | `cc5842b79501fd103f1e7d2e3a4ea1cc72029e6969265591f60c9324338d3094` | main再生成物がcandidateとbyte一致。担当local artifact |
-| Python | `minecraft_remote_api-2301.0.0b7.tar.gz` | 183,908 | `6be3db058cc1aff7cf5375b58dc11737e5d471f0f67a6cdaa28a869d0c12c236` | main再生成物がcandidateとbyte一致。担当local artifact |
+| Python（旧、失効） | `minecraft_remote_api-2301.0.0b7-py3-none-any.whl` | 177,243 | `cc5842b79501fd103f1e7d2e3a4ea1cc72029e6969265591f60c9324338d3094` | b5時点bundled WireScopeを含むためb7最終候補として失効。§9参照 |
+| Python（旧、失効） | `minecraft_remote_api-2301.0.0b7.tar.gz` | 183,908 | `6be3db058cc1aff7cf5375b58dc11737e5d471f0f67a6cdaa28a869d0c12c236` | 同上 |
+| Scratch owner GUI | `scratch-gui-build-b7.tar.gz` | 234,651,616 | `d6a569f1f315ca06a24f9d7a987129e824f5df60eb32d226dd6d776f47d20b8c` | set 2、`0be46fcfa…`。coordinator local staging照合済み |
+| Scratch owner Bridge中間 | `mc-remote-bridge-dist-b7.tar.gz` | 3,052 | `11199a8e6966e8a5160411104934498657f4befd3d27a8fc25c88f51afa31c72` | set 2。b6と一致（Bridge無変更） |
+| Scratch owner WireScope | `wirescope-app.zip` | 79,418 | `98d684dc15f369f6568d249357d8fd3af11893859d3c07c2554295df19a263b8` | set 2。coordinator local staging照合済み |
+| Scratch owner WireScope manifest | `wirescope-app.manifest.json` | 2,321 | `7498e32150884aec8c3d562b454d8b042032aa21893ae7fe886c06df2baf028f` | set 2。coordinator local staging照合済み |
+| Python（新、現行） | `minecraft_remote_api-2301.0.0b7-py3-none-any.whl` | 196,970 | `81540d22b1ee05d7b24bd2e6c9270a37a194c6c1ddc868148a8263624826d2ba` | branch`codex/b7-wirescope-set2@91a25d317c95570fd9d92b5e63a5f585a856eda3`。同梱WireScope pairをcoordinatorがGit blobで照合、Scratch set 2と一致 |
+| Python（新、現行） | `minecraft_remote_api-2301.0.0b7.tar.gz` | 203,313 | `55a9915b7607e35e2c1f335561b65fcd38deff90fe49f5b56c65122665b37a0b` | 同上 |
 
 この表はdefault branch統合直後の入力だった。後続のcoordinator再生成とdurable staging固定は§6を正とする。
+Python新wheel／sdist bytes自体はcoordinator未再build（owner報告。同梱WireScope pairのみGit blobで独立照合済み）。
 
 ## 5. 次gate
 
