@@ -48,7 +48,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 
 - gate coordinator: knowledge担当session。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
-- current phase: **component scope確定（McRemote／Python／Scratch／WireScope参加、Java／Stackは今回動かさない）／全component owner artifact identity返却済み／exact set凍結前**。`2026-09-02-01`によりScratch／WireScope非参加としたcoordinator判断を撤回。Scratchはdirection／lightning learner block実装込みのbranch`agent/b7-scratch-wirescope@0be46fcfaca409a5ede10f592520d93e7c59ba15`からowner artifact set 2を返却、coordinatorがidentity照合済み。tag、公開release、OCI pushは未実施
+- current phase: **exact set凍結完了（`b7-integrated-artifact-set-1`）／統一実施票・live-human待ち**。McRemote／Python／Scratch／WireScope四component参加、Java／Stackは今回動かさない。tag、公開release、OCI pushは未実施
 - contract: protocol `23.1.0`／artifact `2301.0.0b7`、`10-protocol/wire-format-design_ja.md` §5.8.2、DECISIONS `2026-09-01-01`／`2026-09-01-02`。permission改訂はhello時snapshot、`mcr.online`／`mcr.offline`独立、状態不一致session close、`mcr.lightning`削除
 - exact source set: `b7-integrated-source-set-1`。McRemote `main@3d5f710db97f4b14613f7e0abaafd535701d1906`、Python `main@8f4bc4b96ae74fb5370a3d804676cd07e5352346`、Scratch `develop@773e2984132d82bb6e740d6458107fe42ef68a0a`
 - shared fixture: 20,367 bytes、93/93 unique、SHA-256 `586d24bf40136eec31f1827f23ef5b317f15100a17a635d7fe9f165e0af40dce`。三default branchでexact一致。ownerはpark判断どおりScratch内`@mc-remote/protocol`を維持
@@ -56,9 +56,21 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - verification: McRemote／Python担当の統合artifact返却は維持する。Scratch owner set 2（`0be46fcfa…`、direction／lightning learner block実装込み）の四成果物をcoordinatorがlocal stagingでbytes／SHA-256照合し一致。branch実在・HEAD一致・lineage ancestry（`773e298`→`57e2885`→`3d5142f`→`31ca03c`→`0be46fc`）もGitで確認済み。旧「Scratch非参加」判断は`2026-09-02-01`で撤回
 - component artifact identity（`b7-scratch-owner-artifact-set-2`、詳細は`13-scratch-client/b7-owner-artifact-generation-instructions_ja.md`）: GUI tar 234,651,616 bytes／SHA-256`d6a569f1…20b8c`、Bridge中間tar 3,052 bytes／SHA-256`11199a8e…31c72`（b6と一致）、WireScope ZIP 79,418 bytes／SHA-256`98d684dc…a263b8`、manifest 2,321 bytes／SHA-256`7498e321…f028f`。test: Protocol28/28、Bridge30/30、WireScope134/134、GUI unit476/1skip、integration127/7skip、Playwright8/8
 - component artifact identity（Python更新版）: `codex/b7-wirescope-set2@91a25d317c95570fd9d92b5e63a5f585a856eda3`（parent`8f4bc4b9…`、coordinatorがancestryとbundled WireScope pair一致をGitで確認）。wheel 196,970 bytes／SHA-256`81540d22…6d2ba`、sdist 203,313 bytes／SHA-256`55a9915b…b37a0b`。旧wheel/sdist（177,243／183,908 bytes）はb5時点bundled WireScopeを含むため失効。全回帰253 passed、targeted WireScope/b7 112 passed
-- authorized next action: 四component（McRemote／Python新identity／Scratch／WireScope）のowner artifact identityが揃ったので、coordinatorが`b7-integrated-artifact-set-1`として横断照合・凍結し、統一実施票（Tier 2軽量横断pulse、`release-operations-responsibility-design_ja.md` §14）を人間へ示してから実機検証へ進む。tag／OCI／公開releaseはexact set凍結後の別承認
+- authorized next action: exact set凍結済み（上記）。次はcoordinatorが統一実施票（§14既定：McRemote host-native通常dev harnessでdirection四method＋lightningの代表往復、real-browser WireScopeで5 methodのrequest/response表示、必要な場合のerror）を一票で示し、人間参加のlive-humanを実施する。tag／OCI／公開releaseはこの後の別承認
 - non-claim: OCI candidate、container smoke、tag、GitHub prerelease、PyPI／npm、Stack pin、shared deploy、Python wheel内bundled WireScopeのb7 real-browser E2E。`npm ci`が報告した既存audit件数をb7 source修正で自動変更していない
-- gate result: **OPEN — 四component owner artifact identity返却済み／exact set凍結前**
+- **exact set凍結（`b7-integrated-artifact-set-1`）**: protocol `23.1.0`／artifact `2301.0.0b7`。
+  McRemote `main@3d5f710db97f4b14613f7e0abaafd535701d1906`／JAR 222,951 bytes SHA-256`f08388cf393e02db1eb605e707dfaec890792e7a475de5a51caacbc940028ee9`。
+  Python `codex/b7-wirescope-set2@91a25d317c95570fd9d92b5e63a5f585a856eda3`（parent`8f4bc4b96ae74fb5370a3d804676cd07e5352346`）／
+  wheel 196,970 bytes SHA-256`81540d22b1ee05d7b24bd2e6c9270a37a194c6c1ddc868148a8263624826d2ba`／
+  sdist 203,313 bytes SHA-256`55a9915b7607e35e2c1f335561b65fcd38deff90fe49f5b56c65122665b37a0b`。
+  Scratch `agent/b7-scratch-wirescope@0be46fcfaca409a5ede10f592520d93e7c59ba15`／
+  GUI 234,651,616 bytes SHA-256`d6a569f1f315ca06a24f9d7a987129e824f5df60eb32d226dd6d776f47d20b8c`／
+  Bridge中間 3,052 bytes SHA-256`11199a8e6966e8a5160411104934498657f4befd3d27a8fc25c88f51afa31c72`／
+  WireScope ZIP 79,418 bytes SHA-256`98d684dc15f369f6568d249357d8fd3af11893859d3c07c2554295df19a263b8`／
+  manifest 2,321 bytes SHA-256`7498e32150884aec8c3d562b454d8b042032aa21893ae7fe886c06df2baf028f`。
+  shared fixture 20,367 bytes／93 cases SHA-256`586d24bf40136eec31f1827f23ef5b317f15100a17a635d7fe9f165e0af40dce`。
+  Java／Stackはこのsetに含めない（b6 baseline維持）。source／artifact identityが一つでも変われば本freezeは失効する
+- gate result: **HOLD — exact set凍結済み／Tier 2軽量横断pulse（統一実施票）待ち**
 
 ## 2026-08-27 b6横断release gate（CLOSED）
 
