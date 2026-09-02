@@ -1,9 +1,9 @@
 # b7 artifact candidate記録
 
-> 状態: `b7-integrated-source-set-1`固定済み。`ec7a233…`で記録したcoordinator生成の
-> `b7-integrated-artifact-input-1`はowner artifactでないため正式gate入力から失効。
-> Scratch owner set 1と誤version follow-upの全buildは完了済み。Scratch runtime artifactをb7参加対象とした前提を撤回し、
-> component scope再監査へ戻る。最終artifact set、tag、公開releaseは未完。
+> 状態: `2026-09-02-01`によりScratch／WireScopeもb7 release対象と確定（前回の非参加判断を撤回）。
+> McRemote／Python owner artifact、Scratch owner artifact set 2（`agent/b7-scratch-wirescope@0be46fcfaca409a5ede10f592520d93e7c59ba15`、
+> direction／lightning learner block実装込み）の四component分identityがcoordinator照合済み。次はexact set凍結。
+> 最終artifact set、tag、公開releaseは未完。詳細は`13-scratch-client/b7-owner-artifact-generation-instructions_ja.md`。
 
 ## 1. 統合source set
 

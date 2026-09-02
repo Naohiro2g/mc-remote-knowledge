@@ -48,15 +48,16 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 
 - gate coordinator: knowledge担当session。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
-- current phase: **default branch統合完了／coordinator交代・component scope再監査**。Scratch runtime artifactをb7参加対象とした前提とclient version follow-upを撤回。tag、公開release、OCI pushは未実施
+- current phase: **component scope確定（McRemote／Python／Scratch／WireScope参加、Java／Stackは今回動かさない）／全component owner artifact identity返却済み／exact set凍結前**。`2026-09-02-01`によりScratch／WireScope非参加としたcoordinator判断を撤回。Scratchはdirection／lightning learner block実装込みのbranch`agent/b7-scratch-wirescope@0be46fcfaca409a5ede10f592520d93e7c59ba15`からowner artifact set 2を返却、coordinatorがidentity照合済み。tag、公開release、OCI pushは未実施
 - contract: protocol `23.1.0`／artifact `2301.0.0b7`、`10-protocol/wire-format-design_ja.md` §5.8.2、DECISIONS `2026-09-01-01`／`2026-09-01-02`。permission改訂はhello時snapshot、`mcr.online`／`mcr.offline`独立、状態不一致session close、`mcr.lightning`削除
 - exact source set: `b7-integrated-source-set-1`。McRemote `main@3d5f710db97f4b14613f7e0abaafd535701d1906`、Python `main@8f4bc4b96ae74fb5370a3d804676cd07e5352346`、Scratch `develop@773e2984132d82bb6e740d6458107fe42ef68a0a`
 - shared fixture: 20,367 bytes、93/93 unique、SHA-256 `586d24bf40136eec31f1827f23ef5b317f15100a17a635d7fe9f165e0af40dce`。三default branchでexact一致。ownerはpark判断どおりScratch内`@mc-remote/protocol`を維持
 - gate manifest identity: 正式pre-OCI manifestは未成立。coordinator生成`b7-integrated-artifact-input-1`／manifest SHA-256 `f77242b5…1de8`は参考観測として履歴保持するが、owner provenanceを欠くためgate入力へ使わない
-- verification: McRemote／Python担当の統合artifact返却は維持する。Scratch owner set 1のsource／artifact／test／build返却も照合済みで、Scratch担当は誤version follow-upでも全buildを再実行済み。ただしScratch Protocol leaf 23.1とruntime Client 23.0／b6は別surfaceでruntime importがなく、version bump判断は誤り
-- authorized next action: Claude Code coordinatorが`10-protocol/b7-release-coordination-handoff_ja.md`から再開し、b7参加componentをsource graphとSSOTから表にして人間レビューへ出す。Scratchへ追加buildを依頼せず、`57e288…`を統合せず、scope確定前にartifact／OCI／tagへ進まない
-- non-claim: OCI candidate、container smoke、tag、GitHub prerelease、PyPI／npm、Stack pin、shared deploy、Python wheel内bundled WireScopeのb7 real-browser E2E。`npm ci`が報告した既存audit 83件をb7 source修正で自動変更していない
-- gate result: **OPEN — source set PASS／artifact scope再監査。pre-OCI入力、外部registry操作、公開releaseは未成立**
+- verification: McRemote／Python担当の統合artifact返却は維持する。Scratch owner set 2（`0be46fcfa…`、direction／lightning learner block実装込み）の四成果物をcoordinatorがlocal stagingでbytes／SHA-256照合し一致。branch実在・HEAD一致・lineage ancestry（`773e298`→`57e2885`→`3d5142f`→`31ca03c`→`0be46fc`）もGitで確認済み。旧「Scratch非参加」判断は`2026-09-02-01`で撤回
+- component artifact identity（`b7-scratch-owner-artifact-set-2`、詳細は`13-scratch-client/b7-owner-artifact-generation-instructions_ja.md`）: GUI tar 234,651,616 bytes／SHA-256`d6a569f1…20b8c`、Bridge中間tar 3,052 bytes／SHA-256`11199a8e…31c72`（b6と一致）、WireScope ZIP 79,418 bytes／SHA-256`98d684dc…a263b8`、manifest 2,321 bytes／SHA-256`7498e321…f028f`。test: Protocol28/28、Bridge30/30、WireScope134/134、GUI unit476/1skip、integration127/7skip、Playwright8/8
+- authorized next action: 四component（McRemote／Python／Scratch／WireScope）のowner artifact identityが揃ったので、coordinatorが`b7-integrated-artifact-set-1`として横断照合・凍結し、統一実施票（Tier 2軽量横断pulse、`release-operations-responsibility-design_ja.md` §14）を人間へ示してから実機検証へ進む。tag／OCI／公開releaseはexact set凍結後の別承認
+- non-claim: OCI candidate、container smoke、tag、GitHub prerelease、PyPI／npm、Stack pin、shared deploy、Python wheel内bundled WireScopeのb7 real-browser E2E。`npm ci`が報告した既存audit件数をb7 source修正で自動変更していない
+- gate result: **OPEN — 四component owner artifact identity返却済み／exact set凍結前**
 
 ## 2026-08-27 b6横断release gate（CLOSED）
 
