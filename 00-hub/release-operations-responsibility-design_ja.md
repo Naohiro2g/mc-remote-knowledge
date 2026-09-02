@@ -58,6 +58,12 @@ private inventoryとprivate evidenceはbackstage、秘密実値を含むrawはGi
 別workstationから接続するかもtest topologyが決める。GUI、browser、Minecraft clientをserver hostへ
 常に導入する一般則は持たない。
 
+backstage管理下でshared／dev-integration用途に使う物理hostは、LAN内mDNS（avahi）でhostname解決できることを
+標準とする。新規hostを追加した時、またはgate coordinatorが接続先解決failureを発見した時、backstageの
+server-environment-inventoryへ解決可否・確認方法・確認日を記録する。実際のavahi-daemon設定・確認作業は
+backstageの実行境界であり、knowledge側のcoordinatorはこの標準を定め、inventoryを読んで指示票へ接続先を
+含める（§4）役割にとどまる（`2026-09-03-04`）。
+
 一つのStack担当がStackとbackstageを一続きで扱える。ただし両repoのcommit／PRを分け、backstageの
 実値をStackへ複製しない。管理者権限や対話認証が必要な操作は人間の実行境界として明示する。
 
