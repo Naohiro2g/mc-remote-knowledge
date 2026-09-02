@@ -138,9 +138,9 @@ Claude Code は `AGENTS.md` を自動では読まないため、各開発リポ�
   未記入の票は仮記入扱い。
 
 - shared環境（`dev-integration`等）への接続先（host／IP／port）はSSOTに存在しない。物理hostのSSH aliasだけは
-  `release-operations-responsibility-design_ja.md` §3で公開参照するが、実IPはprivate（backstage所有）であり、
-  公開SSOTを探しても出てこない。dev repoのlocal gitignore済み設定（例: Python `param_mc_remote.py`）へ
-  自力で値を推測して埋めず、backstageへも直接アクセスせず、human release ownerへ値を尋ねて停止する。
+  `release-operations-responsibility-design_ja.md` §3で公開参照するが、実IPはprivate（backstage所有）である。
+  component担当はSSOTを探し続けず、backstageへも直接アクセスせず、gate coordinatorが指示票／確認票へ含めて
+  渡す接続先を使う（`2026-09-03-03`）。coordinatorから接続先が渡されていない場合はcoordinatorへ確認する。
 
 - 横断release gateでは、`release-gate-notes_ja.md`に記録された一人のgate coordinatorだけが、repo間の依存順、
   exact compatibility set、shared環境へのcandidate deploy、人間参加試験、横断`GREEN`／`HOLD`／`RED`を進行する。

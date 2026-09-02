@@ -18,7 +18,9 @@
   境界を散文だけへ置かず DECISIONS、glossary、schema、fixture 等の拘束層へ錨を持たせる
   （`2026-08-10-01`、正本は `00-hub/document-style-guide_ja.md`）。
 - 会話の生ログや秘密の実値を置かない。
-- private archive / backstage を通常参照せず、公開 contributor にアクセスを要求しない。
+- private archive / backstage を通常参照せず、公開 contributor にアクセスを要求しない。例外：横断release gate進行中、gate
+  coordinatorはbackstageのserver-environment-inventoryからshared環境接続先（host／IP／port）だけを読み、指示票／確認票へ
+  含めてcomponent担当へ渡してよい（`2026-09-03-03`）。component担当自身はbackstageへ直接アクセスしない。
 - archive を例外参照したら `00-hub/NOTES_ja.md` に carry-forward 欠落として記録し、このリポだけで判断できる状態にして閉じる（`2026-07-21-01`）。
 
 ## 最優先の価値：判断理由を残す
