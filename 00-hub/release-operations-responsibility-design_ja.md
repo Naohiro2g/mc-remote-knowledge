@@ -111,6 +111,27 @@ gate coordinatorは次を所有する。
 coordinatorはcomponent実装、物理hostの実状態、実施していないtestを推測しない。進行責任は、すべてを
 自分で実行する責任ではない。
 
+### 4.1 coordinatorが行わない行為（明示禁止）
+
+b5〜b7の失敗はいずれも「責務の量」ではなく、coordinatorが他repoの内部事情について自ら推論・断定したことに
+起因する（`2026-09-03`人間指摘）。次を明示的に禁止する。手順文書の追記だけでは同じ事故が再発するため、
+これは推奨でなく禁止行為として扱う。
+
+- 他repoの実装状況・完了有無・意図を、自分でsource codeを読んで判定しない。確認票／確定搬送票で
+  component担当へ聞く。
+- 他repoの実装を代理で書く・build・修正しない。
+- component参加scope（どのcomponentがreleaseへ入るか）を、fixture所有関係等の間接的signalから推論して
+  決定しない。human release ownerへ確認する。
+- 他repoへの書き込み（branchのfast-forward、tag作成、tag push、GitHub release作成等）を直接実行しない。
+  指示票で依頼し、component担当が自分の手で実行する。coordinatorはpush後にGitHub APIでread-only照合するに
+  とどまる（`2026-09-03-06`の直接実行はこの回だけの例外とし、以降は適用しない）。
+
+例外は次の2つに限る。
+
+- read-only照合：Git／GitHub API上のbranch・commit・tree・artifact bytesの存在と一致確認（実装の正しさや
+  完了有無の判定ではなく、申告identityの裏取りだけ）。
+- backstageからのshared環境接続先の限定的読み取り（`2026-09-03-03`）。
+
 ## 5. 担当別の実行境界
 
 ### Component担当
@@ -230,7 +251,10 @@ Git／provider APIから取得して存在と一致を検証する。
 7. 実機検証：Tier 3はchange cone内の短いlive-autoを先に行い、人間でしか判定できない箇所だけlive-humanを行う。
 8. evidence着地：各担当の素材をknowledgeがformal record／artifactへ収容する。
 9. 横断判定：coordinatorが`GREEN`／`HOLD`／`RED`と未主張範囲を記録する。
-10. release：human release ownerの批准後、各repo担当またはgate coordinatorが指定identityを公開する。複数repoを一括公開する場合も、tag target、asset、公開範囲を一つの承認対象として先に示す。
+10. release：human release ownerの批准後、coordinatorが指示票（source SHA、tag名、release notes内容、asset）を示し、
+    各repo担当が自分の手でbranch統合・tag作成・push・GitHub release作成を実行する（§4.1）。coordinatorは公開後に
+    tag target、prerelease／draft、asset digestをGitHub APIでread-only照合する。複数repoを一括公開する場合も、
+    tag target、asset、公開範囲を一つの承認対象として先に示す。
 11. close：公開identity、default branch統合／保持先、handoff全件の着地を再確認し、gateを閉じる。
 
 candidate commit、artifact bytes、schema、policyのいずれかが変わった場合、旧exact setを失効させる。change coneの
