@@ -18,6 +18,23 @@ McRemoteのrelease運用には、次の役割がある。
 
 一人の担当が複数roleを兼ねてもよい。兼任しても、正本、証拠、判定権限は混ぜない。
 
+### 1.1 三者の橋渡し（private情報のhandoff）
+
+「大枠＝knowledge、machine＝Stack、private情報＝backstage」の三分割自体は`2026-07-21-03`で確定しているが、
+三者をまたぐ作業の実行者が体系化されていなかった。次を標準とする（`2026-09-03-05`）。
+
+- private実値の**記録**はbackstageだけが行う。knowledgeもStackも自らのrepoへprivate実値をcommitしない。
+- private実値を使う物理host上の**実行**（設定変更、deploy、doctor等の機械的操作）はdeployment担当（Stack）が行う。
+  gate coordinatorもbackstage担当自身も、物理hostへ変更を加えない。
+- private実値への**限定的な読み取り**は、目的を明示したnarrow exceptionとして次の2箇所だけに許可する。
+  - gate coordinator: shared環境接続先を指示票／確認票へ含めるためだけに読む（`2026-09-03-03`）
+  - Stack operator: deploy／doctorの入力として使うためだけに読む
+  - component担当（各dev repo）はいかなる場合もbackstageへ直接アクセスしない。private repoへの
+    個別アクセス付与はrepo数だけ露出面を増やすため行わない。
+- knowledgeとbackstageの間で見つかった機械的なgap（例：hostname解決の欠落）は、knowledgeが標準／方針として
+  記録し、backstageが現状の私的事実として記録し、実行はStackへ引き継ぐ。三者いずれかで「引き継ぎ先が不明」
+  という状態になったら、この節へ戻って役割を再確認する。
+
 ## 2. 公開runbookは作業日誌ではない
 
 公開deployment packageと運用runbookのSSOTは`mc-remote-stack`である。runbook専用repoを
