@@ -26,11 +26,19 @@ McRemoteのrelease運用には、次の役割がある。
 - private実値の**記録**はbackstageだけが行う。knowledgeもStackも自らのrepoへprivate実値をcommitしない。
 - private実値を使う物理host上の**実行**（設定変更、deploy、doctor等の機械的操作）はdeployment担当（Stack）が行う。
   gate coordinatorもbackstage担当自身も、物理hostへ変更を加えない。
-- private実値への**限定的な読み取り**は、目的を明示したnarrow exceptionとして次の2箇所だけに許可する。
+- private実値への**限定的な読み取り**は、次の2箇所を標準作業入力として許可する。
   - gate coordinator: shared環境接続先を指示票／確認票へ含めるためだけに読む（`2026-09-03-03`）
-  - Stack operator: deploy／doctorの入力として使うためだけに読む
+  - Stack operator: target deploymentの解決、read-only preflight、deploy／doctorの入力として読む。
+    この範囲の読み取りは都度承認を要しない。アクセス手段が無ければ、Stack operatorが
+    human operatorへ必要な読み取りaccessを申請する。
   - component担当（各dev repo）はいかなる場合もbackstageへ直接アクセスしない。private repoへの
     個別アクセス付与はrepo数だけ露出面を増やすため行わない。
+- backstageへの**書き込み**は、Stackが確定搬送票を返し、private operations担当が反映するのを標準とする。
+  human operatorが明示的に許可した場合だけ、Stack operatorは指定されたrepo／path／host／PR／taskの
+  範囲で一時的に反映してよい。Stackの変更とcommit／PRを分け、その作業の完了とともに一時許可は終了する。
+- backstage inventoryの読み取りは実機の現状を保証しない。Stackは変更前に実機のread-only preflightを行い、
+  差分をdeploy判定に使う。差分のprivate実値はStack／knowledgeへ複製せず、backstageの更新対象とする。
+- backstageへの書き込み許可と、物理hostへ変更を加える実行許可は別である。一方から他方を推論しない。
 - knowledgeとbackstageの間で見つかった機械的なgap（例：hostname解決の欠落）は、knowledgeが標準／方針として
   記録し、backstageが現状の私的事実として記録し、実行はStackへ引き継ぐ。三者いずれかで「引き継ぎ先が不明」
   という状態になったら、この節へ戻って役割を再確認する。
