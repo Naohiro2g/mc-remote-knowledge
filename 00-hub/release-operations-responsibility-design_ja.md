@@ -256,6 +256,10 @@ Git／provider APIから取得して存在と一致を検証する。
     tag target、prerelease／draft、asset digestをGitHub APIでread-only照合する。複数repoを一括公開する場合も、
     tag target、asset、公開範囲を一つの承認対象として先に示す。
 11. close：公開identity、default branch統合／保持先、handoff全件の着地を再確認し、gateを閉じる。
+12. 優先backlog確認：hub `NOTES_ja.md`の`[priority]`のうち今回のgateと無関係な項目を確認する。着手指令
+    （確認票／指示票）を出すか、着手しない場合はその理由と再開条件をNOTESへ明記する。`[priority]`のtagは
+    目印にすぎず、gate closeという空白期間を逃すと着手session自体が発生しないため、この確認をgate close手順の
+    一部として固定する（`2026-09-03`人間指摘）。
 
 candidate commit、artifact bytes、schema、policyのいずれかが変わった場合、旧exact setを失効させる。change coneの
 影響段階まで戻って再凍結・必要な場合だけ再deployする。shared環境へ未push worktreeや一時buildを差し込まない。
