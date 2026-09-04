@@ -234,6 +234,41 @@ Bridge config
 当面は`{id, label, sandbox}`を維持する。browser selector、gameplay address、Bridge upstreamを別modelへ
 分解するのは、現行modelで表現できない実deploymentが現れた場合の別判断とする。
 
+### 6.1 配置topologyとbrowser TLS
+
+同じrelease setでも、Scratch／BridgeとMinecraft／McRemoteを置く場所により、証明書の要否と運用負担が変わる。
+次の三形を既知のtopologyとして扱い、毎回ゼロから選択肢を調査しない。
+
+| topology | Scratch／Bridge | Minecraft／McRemote | browser TLS |
+| --- | --- | --- | --- |
+| 通常dev | 開発者workstationのloopback | LAN内server host | server hostの証明書は不要。HTTP loopback pageからWS loopback Bridgeへ接続する開発用例外を使う |
+| 一体型ケータリング | deployment host | 同じdeployment host | browserから見てloopbackでなければHTTPS／WSSが必要 |
+| Web edge／Sandbox分離型 | Internet到達可能なedge host | 外部のMinecraft host | edgeでHTTPS／WSSを終端し、BridgeからMcRemoteへTCP接続する |
+
+一体型ケータリングをprivate networkだけで使う場合も、非loopback browser surfaceには信頼済みTLSが必要である。
+選択肢は次の二つとする。
+
+- Caddy等のinternal CAでLAN内証明書を発行し、利用するPC／tabletへroot CAを信頼させる。Internetからの到達は
+  不要だが、利用端末ごとのtrust配布を運用対象にする。
+- 公開DNS名とpublic CAを使う。ACME HTTP-01ならInternetから80／443へ到達できることを必要条件とする。
+  DNS-01等を使う場合は、DNS provider、credential、Caddy buildを別途確定する。
+
+通常devはこの問題をserver側で解いているのではない。Scratch browserとBridgeをworkstationのloopbackへ置き、
+Minecraft／McRemoteだけをLAN serverへ置くため、server hostにWeb証明書を配備しない。
+
+Web edge／Sandbox分離型では、Bridge allowlistをorderのtarget一件へ閉じ、外部McRemote portへの到達性、認証強制を
+必須とする。backendが対応する場合はMcRemote portの接続元をedge hostへ制限する。現行contractでは
+browser→edgeだけをTLSで保護し、edge→McRemoteの平文TCPは採用時に明示して受容するresidual riskである。
+source制限を提供しないmanaged game hostをbackendに使う場合も、この制約と認証強制を確認した条件付きtopologyとして
+扱える。
+
+`alpha`／`dev`は非公開規定を既定とするが、明示的な公開設定と承認があれば公開できる。channel名から公開surfaceや
+証明書方式を推論せず、orderと対象environmentの規定から決める。
+
+最初の`classroom@1`縦sliceは同一Compose network内へMinecraftを置く一体型である。Web edge／Sandbox分離型は
+利用可能な設計選択肢だが、Stackが対応profile／presetと外部到達を検査するdoctorを実装するまでは、既存presetへ
+hostnameだけを差し替えて適用しない。
+
 ## 7. Stackのrender、apply、doctor
 
 Stackの意味は次の一文で表す。
