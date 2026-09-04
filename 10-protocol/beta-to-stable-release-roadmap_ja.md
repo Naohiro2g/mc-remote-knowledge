@@ -247,6 +247,10 @@ versionだけを上げると未実装対応を名乗る。Scratch担当は誤指
 
 ### 3.3 b8 — entity lifecycle、ParticleBuilder Stage 2
 
+**HOLD（2026-09-04）**: b8の実装／release作業は、release済みb6／b7 setのdeployment経路を整理する間は
+開始しない。Stack担当が短いdeployment依頼を受け、Backstage確認、実機preflight、preset／order／lock確定、
+apply、doctorまでを一続きで完了できる状態を確認した後に再開する。以下のb8 scopeは取り消さず保持する。
+
 次をread／writeへ分けず、handle取得、状態観察、移動、終端まで一つの縦sliceへ閉じます。
 
 - `world.getNearbyEntities`

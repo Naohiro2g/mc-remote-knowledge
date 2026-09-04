@@ -51,12 +51,14 @@ Scratch固有の現状は[Scratch roadmap](../13-scratch-client/scratch-roadmap_
 
 ## 4. 現在の横断優先
 
-1. 各public repoのREADMEとsample codeを人間向けに整理するPass Aを、b7設計と並行して直ちに始める。
-2. b7のdirection／lightning／ParticleBuilder内部移行、b8のentity lifecycle／particle receiver・typed data／
-   Python 3D graph、実測で必要な場合だけのb9 particle batchを短い縦sliceとして進める。
-3. `lookAt`、空間query、player別previewは9月末までにcontracted／deferred／removedを選び、無関係な残件をb9へ押し込まない。
-4. b6直後のPaper 26.2 compatibility pulseを行い、wire不変なら影響外client PASSを再利用する。
-5. 9月中旬からケータリングPC／kitでb7→b8→rc→stableの更新、rollback、再pairing、file退避を経験する。
+1. b8の実装／release作業をholdし、release済みb6／b7 setのdeployment経路をStack責任で再構築する。
+2. 「release set、target、構築方式」を伝える短い依頼から、StackがBackstage確認、実機preflight、
+   preset／order／lock確定、apply、doctorまで進められる状態にする。
+3. b6のVPS deploymentとb7のdev deployment（通常型／ケータリング型）を現行経路で扱い、そこで見つかった
+   artifact収集とprofileの不足をStackの正準runbook／dataへ反映する。
+4. deployment経路の成立後にb8を再開し、entity lifecycle／particle receiver・typed data／Python 3D graphを
+   短い縦sliceとして進める。必要な場合だけb9 particle batchを使う。
+5. `lookAt`、空間query、player別previewはAPI freezeまでにcontracted／deferred／removedを選び、無関係な残件をb9へ押し込まない。
 6. 10月rcから外部testerが会話履歴なしで開始・更新・復旧・feedbackできる入口を用意し、homepage／release情報／技術記事を並走させる。
 7. long-lived credentialの公開gateは閉じたまま、ケータリングで実需要を観察してから再開する。
 

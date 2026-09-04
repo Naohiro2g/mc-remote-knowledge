@@ -1,7 +1,8 @@
 # Release運用と責務分担
 
 この文書は、公開runbook、物理マシン、deployment、横断release gateを、誰がどの正本で
-扱うかを説明する。拘束層は`2026-08-21-03`／`2026-08-21-04`／`2026-08-23-01`／`2026-08-28-02`、個々のgateの現在地は
+扱うかを説明する。拘束層は`2026-08-21-03`／`2026-08-21-04`／`2026-08-23-01`／`2026-08-28-02`／
+`2026-09-04-04`、個々のgateの現在地は
 [release gate notes](release-gate-notes_ja.md)を正とする。
 
 ## 1. 骨格
@@ -63,6 +64,12 @@ Stackのrunbookは、実際の作業者が会話履歴なしで利用する、�
 exact artifactと非秘密のdesired stateはorder／lock、公開可能な高再現コストの結果は`14-evidence/`、
 private inventoryとprivate evidenceはbackstage、秘密実値を含むrawはGit外へ置く。
 
+通常deploymentの入口は人間の短い依頼でよい。Stack担当が会話、Backstage inventory、実機観測をつなぎ、
+`Backstage確認 → read-only preflight → preset／order／lock確定 → apply → doctor`の順で完了させる。
+実行command、`uv`等の導入方法、障害時の具体的な戻り方はStack runbookだけを正本とし、knowledgeへ複製しない。
+依頼に合うpresetが無ければ、Stack担当が確認済みartifact setから作成して進める。Stackがcomponent候補を独自に
+選ぶことや、host名等から全入力を自動推論することは要求しない。
+
 同じ失敗が繰り返された場合は注意書きを積むだけで終えず、preflight、doctor、CLI、validation、runbookの
 どこで作業者の判断や手戻りを減らせるかを直す。未実装のupdate、rollback、restore等を対応済みと説明せず、
 そのrelease gateでどこまでを必須にするかはgate定義へ戻す。
@@ -93,11 +100,15 @@ backstageの実行境界であり、knowledge側のcoordinatorはこの標準を
 実値をStackへ複製しない。管理者権限や対話認証が必要な操作は人間の実行境界として明示する。
 
 backstageの管理下へ置いた物理hostでは、稼働service、listen port、所有者、用途、期待状態をprivate
-inventoryで把握する。所有者または用途を説明できないservice／listenerは通常状態として受容せず、変更や
-candidate deployの前に停止または正当なmanaged stateへ写像する。完全なprivate実値を公開Stackへ複製する
-ことは要求せず、公開側にはpreflight可能なdesired stateと不整合の有無だけを投影する。
+inventoryで把握する。変更前のpreflightは同名Compose projectだけでなく、host-native process、別Compose project、
+対象topologyが使う全TCP／UDP portのlistenerと所有者を確認する。衝突または対象deploymentへの影響が無いserviceを
+一律に停止・写像することは要求しない。完全なprivate実値を公開Stackへ複製することは要求せず、公開側には
+preflight可能なdesired stateと不整合の有無だけを投影する。
 
 ## 4. 横断release gateは一人が進行する
+
+この節は未release candidateを横断判定するgateにだけ適用する。release済みsetの通常deploymentは、Knowledgeの
+coordinatorを経由せず、Stack担当が§2の入口からdoctorまでを所有する。
 
 各横断release gateには、人間が一人のgate coordinatorを指定する。指定が無い場合の既定は、当該gateを
 扱うknowledge担当sessionである。同時に複数のcoordinatorを置かない。交代時は現在phase、exact set、
@@ -163,6 +174,11 @@ lifecycleを分ける（`2026-08-30-02`）。
 一般的なhost準備はexact set凍結前にも進められる。candidate artifactの配置とshared環境でのgate試験は、
 coordinatorがexact setと許可済み操作を示した後に行う。Stack担当はcomponent候補やproduct contractを
 独自に変更しない。
+
+一方、release済みsetの通常deploymentでは、利用者との会話で確定したrelease、target、構築方式をStackが
+orderへ具体化し、必要なら確認済みartifact setからpresetを作成する。artifactを取得するか生成するかに一律の
+禁止は置かず、採用したexact identityをpreset／lockへ残す。既存worldを引き継ぐupdateでMinecraft releaseを
+後退させる場合だけ拒否し、独立した新規deployment／新規worldへ一般化しない。
 
 ### 人間参加者
 
