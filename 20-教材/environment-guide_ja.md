@@ -71,4 +71,9 @@ mDNS名はbest effortで、必ず数値IP fallbackを用意する。HTTP＋same-
 使えるが、camera、microphone、Web Crypto等のsecure-context機能が制限される可能性を案内する。HTTPSを
 求める場合は端末へのlocal CA導入か、実domain＋DNS-01＋local DNSを選ぶ。
 
+簡易modeはtopology上の許容であり、全releaseのScratchが実装済みという意味ではない。b7 Scratch runtime contractは
+平文WSをHTTP loopback page／loopback Bridgeの組だけに制限するため、非loopbackのLAN簡易modeを受理しない。
+b7の`classroom-all-in-one`相当を動かす場合はHTTPS／WSSを選ぶか、後続Scratchでsame-origin簡易modeを実装・検証して
+から使う。
+
 Minecraft identityを守るため`online-mode=true`を維持し、school Ethernet、USB tether等をInternet upstreamに使う。USB Wi-Fi adapterは製品名だけでなくchipset / VID:PID / Ubuntu 24.04 driver / AP mode / 想定台数 / suspend / 発熱を検証済み機材として固定する。学校network上の無許可APにしない。
