@@ -31,6 +31,9 @@
 
 説明文書に禁止・必須・field・lifecycle・capability 境界を書くときは、対応する拘束層を確認する。
 
+不要な禁止ルールを作らない。誤りと判明したルールは、元の判断履歴を消さずに撤回／改訂先を接続した上で、
+現行の説明、runbook、schema、fixture、validationから除く（`2026-09-04-05`）。
+
 - 既に拘束層にある場合：完全 ID、section、schema／fixture 名を参照する。
 - 新しい横断判断である場合：人間レビュー後に DECISIONS へ置く。
 - 局所 contract である場合：owner の schema、fixture、不変条件節等へ置く。

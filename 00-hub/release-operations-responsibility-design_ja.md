@@ -2,7 +2,7 @@
 
 この文書は、公開runbook、物理マシン、deployment、横断release gateを、誰がどの正本で
 扱うかを説明する。拘束層は`2026-08-21-03`／`2026-08-21-04`／`2026-08-23-01`／`2026-08-28-02`／
-`2026-09-04-04`、個々のgateの現在地は
+`2026-09-04-04`／`2026-09-04-05`、個々のgateの現在地は
 [release gate notes](release-gate-notes_ja.md)を正とする。
 
 ## 1. 骨格
@@ -176,9 +176,9 @@ coordinatorがexact setと許可済み操作を示した後に行う。Stack担�
 独自に変更しない。
 
 一方、release済みsetの通常deploymentでは、利用者との会話で確定したrelease、target、構築方式をStackが
-orderへ具体化し、必要なら確認済みartifact setからpresetを作成する。artifactを取得するか生成するかに一律の
-禁止は置かず、採用したexact identityをpreset／lockへ残す。既存worldを引き継ぐupdateでMinecraft releaseを
-後退させる場合だけ拒否し、独立した新規deployment／新規worldへ一般化しない。
+orderへ具体化し、必要なら確認済みartifact setからpresetを作成する。採用したexact identityをpreset／lockへ残す。
+既存worldを引き継ぐupdateでMinecraft releaseを後退させる場合だけ拒否し、独立した新規deployment／新規worldへ
+一般化しない。
 
 ### 人間参加者
 

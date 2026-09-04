@@ -3,7 +3,7 @@
 > Scratch担当、Stack担当、OSS管理者が、相手componentの内部や過去のdeployment経緯を調べずに
 > 作業できるための横断contract。
 >
-> 拘束は `2026-08-31-01`／`2026-09-04-04`、Scratchが公開する機械可読schema／fixtureはscratch-editor、
+> 拘束は `2026-08-31-01`／`2026-09-04-04`／`2026-09-04-05`、Scratchが公開する機械可読schema／fixtureはscratch-editor、
 > operator向けcommand／runbookはmc-remote-stackを正本とする。
 
 ## 1. 管理者から見える通常経路
@@ -219,8 +219,8 @@ presetは名前付きのimmutable revisionであり、movingな`latest`や未固
 具体的な運用要求が現れるまで通常surfaceへ追加しない。
 
 依頼に合うpresetが無い場合、Stack担当は会話で確認されたcomponent／artifact setと構築方式から新しいimmutable
-presetを作成して進める。これはStack担当がcomponent候補を独自選定するという意味ではない。artifactの取得・生成方法を
-一律には制限せず、実際に使うidentityをpreset／lockへ固定する。
+presetを作成して進める。これはStack担当がcomponent候補を独自選定するという意味ではない。実際に使うartifactの
+identityをpreset／lockへ固定する。
 
 ## 6. 一つのtargetから導出する
 
@@ -296,8 +296,8 @@ Stackの意味は次の一文で表す。
 > immutableなpresetと一つのoperator orderから、exact artifact setとcomponent設定を生成し、環境を起動して
 > 実際の到達性を確認するdeployment tool。
 
-rendererはpresetごとに全体を複製せず、共通pipelineをpreset dataとorderで駆動する。deployment hostで
-buildするか既成artifactを取得するかは一律の禁止規則にしない。解決したartifactとimageはidentity／digestでlockする。
+rendererはpresetごとに全体を複製せず、共通pipelineをpreset dataとorderで駆動する。解決したartifactとimageは
+identity／digestでlockする。
 
 通常commandは次の二つである。
 
