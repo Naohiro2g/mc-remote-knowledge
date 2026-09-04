@@ -3,23 +3,28 @@
 > Scratch担当、Stack担当、OSS管理者が、相手componentの内部や過去のdeployment経緯を調べずに
 > 作業できるための横断contract。
 >
-> 拘束は `2026-08-31-01`、Scratchが公開する機械可読schema／fixtureはscratch-editor、
+> 拘束は `2026-08-31-01`／`2026-09-04-04`、Scratchが公開する機械可読schema／fixtureはscratch-editor、
 > operator向けcommand／runbookはmc-remote-stackを正本とする。
 
 ## 1. 管理者から見える通常経路
 
-通常の管理者操作は次の四段階である。
+通常経路の入口は、「b6セットをVPSへ」「b7セットをdevへケータリング型で」のような人間の依頼である。
+Stack担当は、それまでのsessionと追加対話を使ってrelease、target、構築方式を確定し、次の順で完了まで進める。
 
 ```text
-1. 検証済みpresetを選ぶ
-2. 一つのmc-remote.tomlへURLとMinecraft接続先を書く
-3. applyする
-4. doctorで確認する
+1. Backstage inventoryを確認する
+2. 対象hostをread-only preflightする
+3. preset／order／lockを確定する
+4. applyする
+5. doctorで確認する
 ```
 
-管理者が編集する入力は原則として`mc-remote.toml`一つだけとする。Stack内部のvalidate、preset解決、
-artifact lock、render、preflight、起動は`apply`が進める。新規deploymentか既存deploymentの更新かも
-`apply`が判定し、通常経路へbootstrap専用commandとupdate専用commandを露出しない。
+物理host写像はBackstage、exact artifactはpreset／lock、構築方式はprofileやhostと独立して管理する。
+分離した入力を完全自動resolverで推測することは要求しない。Stack担当が会話とinventoryの既知情報を
+一つの論理desired stateであるorderへ具体化する。利用者が最初から`mc-remote.toml`を用意する必要はない。
+
+Stack内部のvalidate、preset解決、artifact lock、render、起動は通常経路が引き受ける。新規deploymentか
+既存deploymentの更新かもStackが判定し、通常経路へbootstrap専用手順とupdate専用手順を露出しない。
 
 `doctor`は実際に配信・接続されている結果を確認する。render済みJSON、Compose、Bridge allowlistは
 生成物であり、管理者が個別編集する入力ではない。
@@ -213,6 +218,10 @@ operatorに通常指定させない値はpresetが所有する。
 presetは名前付きのimmutable revisionであり、movingな`latest`や未固定branchを含めない。component単位overrideは
 具体的な運用要求が現れるまで通常surfaceへ追加しない。
 
+依頼に合うpresetが無い場合、Stack担当は会話で確認されたcomponent／artifact setと構築方式から新しいimmutable
+presetを作成して進める。これはStack担当がcomponent候補を独自選定するという意味ではない。artifactの取得・生成方法を
+一律には制限せず、実際に使うidentityをpreset／lockへ固定する。
+
 ## 6. 一つのtargetから導出する
 
 targetはorderへ一度だけ書く。`default=true`は正確に一件とし、0件または複数件はorder errorにする。
@@ -288,7 +297,7 @@ Stackの意味は次の一文で表す。
 > 実際の到達性を確認するdeployment tool。
 
 rendererはpresetごとに全体を複製せず、共通pipelineをpreset dataとorderで駆動する。deployment hostで
-Scratch、Bridge、Pluginをbuildしない。解決したimageはdigestでlockする。
+buildするか既成artifactを取得するかは一律の禁止規則にしない。解決したartifactとimageはidentity／digestでlockする。
 
 通常commandは次の二つである。
 
@@ -300,6 +309,13 @@ doctor <deployment>
 `apply`はdeploymentの有無からcreate／updateを判定し、通常利用者へ別のbootstrap／update手順を要求しない。
 同じorder、preset revision、artifact setは意味的に同じcomponent設定を生成する。timestampや絶対pathまでの
 byte一致は要求しない。
+
+`apply`前のread-only preflightは、同名Compose projectだけでなく、host-native process、別Compose project、
+対象topologyが使用する全TCP／UDP portのlistenerと所有者を確認する。対象deploymentと衝突しない無関係なserviceを
+停止することは通常経路の前提にしない。
+
+Minecraft releaseの後退拒否は、既存worldを引き継ぐupdateで旧versionへ戻そうとする場合に適用する。独立した
+新規deploymentや新規worldは、同じhost上に新しいidentityと非衝突資源で作る限り、この拒否の対象にしない。
 
 `doctor`は最低限、次を実環境から確認する。
 
