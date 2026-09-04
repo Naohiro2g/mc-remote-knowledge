@@ -36,6 +36,8 @@ version、artifact、securityの判断が伴う。公開bootstrapが存在する
 - npm、Git commit pin、source vendor、generated artifactの取得方式
 - consumerごとのexact commit／path／bytes／digest固定
 - Scratchから編集可能なowner copyを除く完全移行と、一時hybridの終了条件
+- owner移管の成否に依存せず、現ownerの人間可読contract、批准済みmetadata、production registry／surface、共有fixtureから、
+  release別API referenceの人間可読版と機械可読版を同じ入力で生成できるか
 
 ### WireScope
 
@@ -93,3 +95,6 @@ coordinatorは実装／依存、候補、推奨、工数、影響repository、�
 
 移管を選ぶ場合の完了は、SSOT改訂、target topology、package／artifact取得、owner test、全consumer切替、Scratch側の旧owner
 撤去、provenance、rollback、CIを一組で確認した時点とする。repository作成またはcopy一致だけをcutover完了と呼ばない。
+
+release別API referenceの生成はowner移管の実行許可や完了条件ではない。移管を選ばなくても現ownerから生成できることを
+評価し、移管待ちをreference提供の前提にしない（`2026-09-04-06`）。

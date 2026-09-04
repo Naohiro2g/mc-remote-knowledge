@@ -89,7 +89,11 @@ rcまでのparticle／effect sampleは互換性の差を順に見せる。b6／p
 
 - install、update、rollback、既知制約、対応platformをstable candidateへ固定する。
 - cold readerが会話履歴なしで最初の成功、sample選択、失敗時の戻り先へ到達できるか確認する。
-- API reference／release noteの生成や半自動化は、手書きREADMEの役割が見えてから導入する。
+- 開始対象に選んだrelease以降の各公開releaseについて、利用可能なAPIを俯瞰・検索できるimmutableなAPI referenceを生成する。
+  人間可読版とLLM／tooling向け機械可読版は同じ批准済み入力から生成し、可変な`latest`は現行releaseへの
+  参照として分離する。referenceは生成投影であり、独立した意味のSSOTにしない。
+- API reference／release noteの生成や半自動化は、手書きREADMEの役割が見えてから導入する。exact schema、
+  generator／hostingのowner、site技術、公開URL、b7を遡及生成するかb8以降から始めるかは後続設計で決める。
 
 Pass Aはb7 API実装の開始を止めるprotocol gateではないが、同時に着手する最優先companionとする。Pass Cは
 初回stable readinessの重要入力とし、正式なHOLD条件はRC gate定義時に人間確認する。
@@ -101,3 +105,4 @@ Pass Aはb7 API実装の開始を止めるprotocol gateではないが、同時�
 - READMEのversion／support claimがrelease identityと一致する。
 - sampleが実world変更と一時的なplayer表示を混同しない。
 - READMEとsampleが独立した第二のcontractにならず、正本へ辿れる。
+- release別API referenceの人間可読版と機械可読版が同じ入力とrelease identityへ辿れる。

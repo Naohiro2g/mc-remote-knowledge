@@ -714,6 +714,16 @@ McRemote Plugin
 
 を見えるようにすることである。
 
+Protocol Inventoryはsurface間の意味ownerと投影状態を比較する内部の横断inventoryである。開始対象以降の公開releaseごとに生成する
+API referenceとは役割が異なる。release別referenceは、そのreleaseで利用可能なwire／Client APIの集合、signature、
+result shape等を版固定で俯瞰・検索する生成投影であり、人間可読版とLLM／tooling向け機械可読版を同じ批准済み入力から
+作る。各言語native surfaceの差を保ち、同じ説明やsampleを全言語へ機械複製しない。
+
+referenceの入力は、人間可読contract、批准済みmachine-readable metadata、production registry／公開surface、共有fixtureを
+組み合わせる。handler sourceやdocstringだけから意味論全体を推測せず、生成物を独立SSOTにしない。release別artifactは
+immutableとし、可変な`latest`は現行releaseへの参照として分離する。exact schema、生成owner、site generator、hosting、
+公開URL、開始releaseは後続設計で決める（`2026-09-04-06`）。
+
 ---
 
 ## 16. Phase F — 既存executable contractを一般化する

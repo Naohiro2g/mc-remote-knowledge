@@ -525,6 +525,11 @@ update／action／composite等）、**操作範囲**（一行、一対象、複�
 exactなtag schemaはAPI文書の生成方式とともに後続設計できるが、
 これらの分類を説明文の中へ埋没させない。
 
+release別API referenceは、現行APIの俯瞰、検索、実装確認、LLM groundingに使う投影面であり、学習者へ端から読むことを
+要求する主導線ではない。学習入口はREADME、minimum sample、concept／application／reconstruction sampleに置き、
+referenceから対象releaseと各surfaceの正確な形へ戻れるようにする。人間可読版と機械可読版は同じ批准済み入力から
+生成し、独立した意味のSSOTにしない（`2026-09-04-06`）。
+
 sampleは少なくとも、必要なprotocol／client版、確認したMinecraft／Paper target、実現位置、実worldを変えるか
 playerだけの一時表示か、cleanup、期待結果を示す。言語は別軸であり、同じsampleを全言語へ機械複製しない。
 また、`DEBUG`／`TRACE`／`FAST`の実行modeと、`REAL`／`PREVIEW`／`PYGAME`等の出力先を別軸として扱う。
