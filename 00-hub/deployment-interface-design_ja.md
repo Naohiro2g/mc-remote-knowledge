@@ -239,31 +239,42 @@ Bridge config
 同じrelease setでも、Scratch／BridgeとMinecraft／McRemoteを置く場所により、証明書の要否と運用負担が変わる。
 次の三形を既知のtopologyとして扱い、毎回ゼロから選択肢を調査しない。
 
-| topology | Scratch／Bridge | Minecraft／McRemote | browser TLS |
+| topology | Scratch／Bridge | Minecraft／McRemote | browser transport |
 | --- | --- | --- | --- |
 | 通常dev | 開発者workstationのloopback | LAN内server host | server hostの証明書は不要。HTTP loopback pageからWS loopback Bridgeへ接続する開発用例外を使う |
-| 一体型ケータリング | deployment host | 同じdeployment host | browserから見てloopbackでなければHTTPS／WSSが必要 |
+| 一体型 | deployment host | 同じdeployment host | 明示profile内のHTTP＋same-origin WS簡易mode、または信頼済みHTTPS／WSSを選ぶ |
 | Web edge／Sandbox分離型 | Internet到達可能なedge host | 外部のMinecraft host | edgeでHTTPS／WSSを終端し、BridgeからMcRemoteへTCP接続する |
 
-一体型ケータリングをprivate networkだけで使う場合も、非loopback browser surfaceには信頼済みTLSが必要である。
-選択肢は次の二つとする。
+ケータリング型はpreset、order、lock、artifactを用いる構築方式であり、上表のtopology名ではない。通常dev、一体型、
+Web edge／Sandbox分離型のいずれも、対応profileとartifactがあればケータリング型で構築できる。
 
+一体型をprivate networkだけで使う場合は、次の三つからbrowser transportを選ぶ。
+
+- `classroom-all-in-one`等の明示profileに限り、HTTP＋same-origin WS簡易modeを使える。このmodeではMcRemoteを
+  利用できるが、camera、microphone、Web Crypto等のsecure-context機能が制限され得ることを利用者へ表示する。
+  b7 Scratch runtime contractは平文WSをHTTP loopback page／loopback Bridgeの組だけに制限しており、非loopbackの
+  LAN簡易modeは未実装である。このためb7一体型では、Scratchを変更して同modeを実装・検証するまではHTTPS／WSSを使う。
 - Caddy等のinternal CAでLAN内証明書を発行し、利用するPC／tabletへroot CAを信頼させる。Internetからの到達は
   不要だが、利用端末ごとのtrust配布を運用対象にする。
-- 公開DNS名とpublic CAを使う。ACME HTTP-01ならInternetから80／443へ到達できることを必要条件とする。
-  DNS-01等を使う場合は、DNS provider、credential、Caddy buildを別途確定する。
+- 公開DNS名とpublic CAを使う。ACME HTTP-01のvalidationにはInternetからTCP/80への到達が必要であり、
+  公開HTTPS surfaceの提供には別にTCP/443への到達が必要である。DNS-01等を使う場合は、DNS provider、credential、
+  Caddy buildを別途確定する。
 
 通常devはこの問題をserver側で解いているのではない。Scratch browserとBridgeをworkstationのloopbackへ置き、
 Minecraft／McRemoteだけをLAN serverへ置くため、server hostにWeb証明書を配備しない。
 
-Web edge／Sandbox分離型では、Bridge allowlistをorderのtarget一件へ閉じ、外部McRemote portへの到達性、認証強制を
-必須とする。backendが対応する場合はMcRemote portの接続元をedge hostへ制限する。現行contractでは
+Web edge／Sandbox分離型では、Bridge allowlistをorderのtarget集合と完全一致させ、外部McRemote portへの到達性、
+認証強制を必須とする。初期presetがtarget一件だけを扱う場合は、そのpresetの制約として明示する。backendが対応する
+場合はMcRemote portの接続元をedge hostへ制限する。現行contractでは
 browser→edgeだけをTLSで保護し、edge→McRemoteの平文TCPは採用時に明示して受容するresidual riskである。
 source制限を提供しないmanaged game hostをbackendに使う場合も、この制約と認証強制を確認した条件付きtopologyとして
 扱える。
 
-`alpha`／`dev`は非公開規定を既定とするが、明示的な公開設定と承認があれば公開できる。channel名から公開surfaceや
-証明書方式を推論せず、orderと対象environmentの規定から決める。
+channelとexposureは`2026-07-23-01`どおり独立であり、`alpha`／`dev`というchannel名から公開／非公開を導出しない。
+非公開規定を持つenvironmentを公開するには、orderへ`exposure=public`を明示し、human ownerの公開承認をapply入力として
+記録し、profile／purpose／security policyとのcross-field validationを通す。compact deployment interface v1は
+exposureと公開承認をまだorder／lockへ表現しないため、この組合せを許可せず、対応schemaとvalidationの実装まで
+public `alpha`／`dev` applyをfail closedとする。
 
 最初の`classroom@1`縦sliceは同一Compose network内へMinecraftを置く一体型である。Web edge／Sandbox分離型は
 利用可能な設計選択肢だが、Stackが対応profile／presetと外部到達を検査するdoctorを実装するまでは、既存presetへ
