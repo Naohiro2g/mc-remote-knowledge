@@ -317,6 +317,7 @@ releaseの公開だけでcloseとしない。各componentについて次を確�
 - `handoff-materials/`を「正式evidenceへ昇格」「後続slice／担当へ引継ぎ」「失効・破棄」のいずれかへ全件分類した。
 - 引継ぎは引継ぎ先、参照identity、次の一手が特定できる。破棄は他の正本／evidenceから非参照であることを確認してから行う。
 - gate manifest、release gate notes、NOTESの現在地が次のmilestoneと矛盾しない。
+- change coneに入るcomponentのdesign文書が、公開／確定に関する未達成条件（real-browser E2E、license／artifact配布gate等）を持つ場合、component担当はそれを確認票の「未検証の境界」欄へ明示し、coordinatorは未達成のまま進める場合の再開条件をここへ記録する。component設計文書自体にrelease判定条件を書かない（`2026-09-06-01`）。
 
 ## 13. 既存決定との関係
 

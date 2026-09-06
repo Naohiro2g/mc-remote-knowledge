@@ -232,7 +232,8 @@ wirescope-app.manifest.json
 別のwrapper archiveへ再包装せず、Scratch側で第三のgenerated lock fileを加えない。receiving distributionが
 両file hashの外側pinとpackage inventory検証を所有し、Python wheelでは2 fileを個別package dataとして
 `RECORD`で検証する。一時handoff directoryとその人間可読manifestは搬送手段であり、public artifact channel／
-release identityではない。公開channelはreal-browser E2Eとlicense／artifact配布gateより前に確定しない。
+release identityではない。公開channel確定の判定条件は`release-operations-responsibility-design_ja.md`§12の
+release close確認へ集約する（`2026-09-06-01`）。本書はcomponent設計事実（下記§10の実装進捗）だけを保持する。
 
 delivery contractのScratch実装は
 `agent/wirescope-artifact-delivery@09ccd563c93048f8a1d0a3dc1cee2d1f0ffb4681`へ固定した。clean source
