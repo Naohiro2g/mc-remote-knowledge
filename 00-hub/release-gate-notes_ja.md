@@ -44,23 +44,31 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 ただし旧setの観測事実まで自動的に破棄せず、`2026-08-23-01`のchange coneとPASS再利用条件で再評価します。
 仕様形成中はTier 0〜2を既定とし、人間参加・全回帰・capacity／soakをrelease候補より前へ自動的に持ち込みません。
 
-## 2026-09-07 b7.post2（manifest.json導入・収集経路ランスルー／OPEN）
+## 2026-09-07 b7.post2（manifest.json導入・収集経路ランスルー／完走）
 
 - gate coordinator: knowledge担当session。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
-- current phase: **準備中**。mc-remote-stackのCodexセッションで、収集からdeploymentまでを実作業でなぞるランスルーを実施する段階
+- current phase: **ランスルー完走**。mc-remote-stackのCodexセッションが2026-09-07に収集→preset／order／lock確定→apply→doctorを実作業で通し、発見2件をStack側で手当てして完了した
 - 目的: `2026-09-06-02`〜`2026-09-06-04`で確定したmanifest.json方式を実装し、release closeから収集・preset／order／lock確定・apply・doctorまでの経路を実際に通して検証する。protocol／APIは変更しない
 - release mode: 軽量mode（`release-operations-responsibility-design_ja.md` §14）。protocol `23.1.0`／artifact `2301.0.0b7`のpost-releaseであり、新API、wire変更、b8実装を含まない
 - version／tag表記: `.postN`（ドット区切り）を使う（`2026-09-07-03`）。Scratch `v2301.0.0b7.post2`、McRemote `v1.21.11-2301.0.0b7.post2`、Python `2301.0.0b7.post2`。既に公開済みの`v2301.0.0b7-post1`は差し替えない
 - manifest contract: top-levelへ`schema`（`"mc-remote.release-manifest"`）、`schema_version`（整数）、`release_tag`、`source_commit`。`artifacts[]`は`kind`を必ず明示し、`kind:oci`は`locator`＋`digest`、`kind:https-file`は`file`＋`sha256`を持つ。WireScopeは`wirescope`（zip）と`wirescope-manifest`（detached manifest）の2件を個別に載せる。contractsは`contracts.tar.gz`（role `contracts`）。Pythonは`bundled_wirescope_source_commit`をtop-levelへ持つ。manifestはrepo単位で生成し各repo自身のReleaseへ添付する（横断統合manifestは作らない）
-- 参加component: **未確定**。human release ownerが指定する。coordinatorは間接的signalから推論しない（`2026-09-03-07`）
-- exact set: **未固定**。各repoのmanifest.json publish後に、そこから確定する
+- 参加component: McRemote／Python client／Scratch editor（Bridge・WireScopeはScratch releaseへ同梱）。human release ownerの指定により実施した
+- 公開されたrelease（coordinatorがGitHub APIでread-only照合）:
+  - Scratch `v2301.0.0b7.post2`（source `f133fc95ed7b23109cc1908dc4f0dae066510258`）。manifest roleは`scratch`（oci `ghcr.io/naohiro2g/mc-remote-scratch@sha256:738dae72…`）／`bridge`（oci `ghcr.io/naohiro2g/mc-remote-bridge@sha256:099d24d5…`）／`wirescope`／`wirescope-manifest`／`contracts`の5件
+  - Python client `v2301.0.0b7.post2`（source `b94af23404d3f197b37060c0a272a1a1cd972f7d`）。role`wheel`／`sdist`、`bundled_wirescope_source_commit`＝`0be46fcfaca409a5ede10f592520d93e7c59ba15`
+  - McRemote `v1.21.11-2301.0.0b7.post2`（source `f99ee8046e1a000699e6c38a4d8625f9918832c5`）。role`jar`
+- manifest schema適合: 3件とも`schema`＝`mc-remote.release-manifest`／`schema_version`＝`1`を持ち、全artifactが`kind`を明示していた。tagは3件とも`.postN`ドット表記（`2026-09-06-04`／`2026-09-07-03`のとおり）
 - 成功基準（ランスルーの観測対象）: release close直後に開始し、収集がrelease tag 1件の指定だけで完結すること。人間またはagentが個別のcommit／digestを会話やhandoffテキストから思い出す場面が発生しないこと。通常（非ケータリング）でserver起動まで10分未満、ケータリング型でも小幅な追加に収まること（`2026-09-06-02`）
+- ランスルーの発見と手当（いずれもStack側でmerge済み。coordinatorはPR本文の申告を受理し、実装の正しさを独自に判定しない）:
+  - 非対話SSHで`uv`がPATHに無く、runbook stepが`command not found`で止まった。call siteごとの回避でなく、pinned `uv`を`/usr/local/bin`へsymlinkして解決（mc-remote-stack PR #49）
+  - 前presetのprojectから持ち越されたoperator noticeが、対象releaseのScratch product configが既に表示している内容と重複した。`plan`／`apply`／`doctor`はいずれもPASSしている——operatorとproduct noticeの重複は意図的に行う場合があり、機械には持ち越し事故と区別できないため`doctor`の検査対象にしない。収集直後に人間へkeep／edit／add／deleteを問うcheckpointをrunbookへ置く手当てとした（mc-remote-stack PR #50）
+- 成功基準に対する観測: 収集段階で個別のcommit／digestを会話やhandoffから思い出す場面は報告されなかった。発見2件はいずれもidentity解決ではなく、環境bootstrapと人間判断の欠落だった。所要時間は未計測のため10分基準の達成可否は主張しない
 - 未検証の境界: WireScopeの横断real-browser E2E（同一artifactをPython／Scratch両sourceで順に使う）とhome alphaが未完で、Stack後続gateの再判定も未了（`15-wirescope/wirescope-station-attach-design_ja.md` §10 step 7／step 9）。`2026-09-06-01`によりrelease判定条件はこの欄で扱い、未達のまま進める場合は再開条件をここへ記録する
 - 既知の前提: b7以前の公開済みreleaseにはmanifestが無い。既存releaseのartifact identityは本ファイルの凍結済みexact setを正本とする（`deployment-interface-design_ja.md` §4）
 - authorized next action: mc-remote-stack担当（Codexセッション）が、収集→preset／order／lock確定→apply→doctorのランスルーを実施し、観測を返す。target host、exact set、実施範囲はhuman release ownerとcoordinatorが指定するまで拡張しない。実行commandの正本はStack runbookに置き、本ファイルへ複製しない（`2026-09-04-04`）
 - 返却してほしいもの: 実際に使ったrelease tagとmanifest identity、収集で手が止まった箇所（会話やhandoffから値を思い出す必要が生じた箇所）、各段階の所要時間、doctorの結果、未実施範囲、non-claim
-- gate result: **未判定**。GREEN／HOLD／REDのいずれも主張しない
+- gate result: **ランスルーの目的（収集経路が実作業で通ること）は達成**。coordinatorが確認したのはGitHub API上のrelease identityとmanifest schema適合までで、実機のapply／doctor結果はStack担当の報告として受理した（`2026-09-03-07`）。横断release gateとしてのGREENは主張しない
 - non-claim: b8実装、protocol変更、public deployの可否、初回stable互換は本gateに含めない
 
 ## 2026-09-02 b7横断release gate（CLOSED）
