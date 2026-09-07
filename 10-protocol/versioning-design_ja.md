@@ -296,6 +296,14 @@ artifact の `bN` / `rcN` / `N` と、deployment 環境の `beta` / `stable` は
 
 - 正準接尾辞は **`b1` / `rc1`**（PEP 440 一本化）。plugin/api は §2 の番号対称性（§9.2 で再掲）を pre-release 段でも保ち、**core 番号＋接尾辞**（例 `2100.0.0b1`）を揃える。Git tag / artifact 名の全文字列は各 surface の責務に合わせる（plugin は §10.12.1）。
 - **なぜ `-beta.1` でなく `b1` か（強制選択）**：api は PyPI で配るため PEP 440 の正規化が**不可避かつ正準**で、何を書いても PyPI は `-beta.1` を `b1` に畳んで保存する＝`b1` 側は動かせない地面。一方 GitHub の pre-release は文字列と無関係な明示フラグ（どの表記でも手で立てる＝柔らかい側）。よって**動かせない側（PyPI=`b1`）に錨を下ろし、柔らかい側（GitHub）は手で扱う**のが筋。`-beta.1` を選ぶと PyPI 正準（`b1`）とタグ表示（`-beta.1`）が二文字列に割れ、core 番号＋接尾辞の揃いが壊れる。
+- **post-release 接尾辞は `.postN`（ドット区切り）**：同じ artifact scope のまま公開物を差し替える場合の後置番号は
+  `2301.0.0b7.post2` と書き、`-post2` を使わない。PEP 440 は `.postN` を正準形とし、`-post2` / `_post2` / `post2` を
+  すべて `.post2` へ畳む。よって `-post2` と宣言しても Python の wheel / sdist 名と metadata は `.post2` になり、
+  tag 表示と実 artifact identity が二文字列へ割れる。前項と同じ**動かせない側（PEP 440）に錨を下ろす**適用であり、
+  `manifest.json` の `release_tag` が収集の一次 key になった（`2026-09-06-02`〜`2026-09-06-04`）以上、この割れは
+  収集の入力そのものを壊す。Git tag も同じ文字列を使う（Scratch `v2301.0.0b7.post2`、McRemote
+  `v1.21.11-2301.0.0b7.post2`＝Minecraft 版と artifact 版を区切るハイフンは §10.12.1 のままで対象外）。公開済みの
+  `v2301.0.0b7-post1` は差し替えず、本表記は post2 以降へ適用する（`2026-09-07-03`）。
 - **core 番号＋接尾辞を揃える射程**：割れるのは pre-release 接尾辞だけで、**安定版の core 番号 `2100.0.0` は全エコシステムで同一**（ただの数字、どのレジストリも受理）。`b1` で揃えるのは**現状2チャンネル限定の便宜**であって普遍法則ではない――他言語レジストリ（npm/crates.io=`-beta.1`、RubyGems=`.beta1`、Maven=`-beta1`…）は各自の正準形を強制し、**全てを満たす単一の pre-release 接尾辞は存在しない**。相互運用は文字列でなく protocol（§3）が保証するので suffix が割れても interop は不変。将来の他言語クライアント方針は §10.13。
 - **段名 `rc` と Modrinth チャンネル名 `beta` は意図的に一致しない**：Modrinth に rc チャンネルが無いため、rc ビルドは Modrinth の `beta` channel に載せる。既知マッピングであり不整合ではない（Modrinth 仕様が変わるまで固定）。
 - **成熟度は版文字列に焼かない**（`rc1-gh` 等は不採用、§10.8）。命名は内容軸（API 凍結度）だけを表し、機構モードは版に乗らない。
