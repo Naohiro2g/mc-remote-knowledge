@@ -167,17 +167,12 @@ product configのschema／fixtureはScratch内部contractとして、隣接す�
 packages/scratch-gui/contracts/product-config/
 ```
 
-Stack担当へ渡す正式な入力は次だけである。
+Stack担当への正式な入力は、Scratch GitHub Releaseへ添付された`manifest.json`と`contracts.tar.gz`（同等のcontracts
+archiveを含む）である。manifestはrelease tag、source commit、role別artifact identity（Scratch／Bridge image
+digest等）を一括で確定するため、Stack担当は個別項目を会話やhandoffテキストから聞き出さない（`2026-09-06-02`〜
+`2026-09-06-04`）。
 
-```text
-scratch contract commit
-runtime-config contract directory path
-container mount path
-Scratch image digest
-実行したtestと結果
-```
-
-Stack担当はこのdirectory以外のScratch sourceからfieldを発掘しない。
+Stack担当はこのcontracts archive以外のScratch sourceからfieldを発掘しない。
 
 ## 5. Stackのorder
 
@@ -218,9 +213,9 @@ operatorに通常指定させない値はpresetが所有する。
 presetは名前付きのimmutable revisionであり、movingな`latest`や未固定branchを含めない。component単位overrideは
 具体的な運用要求が現れるまで通常surfaceへ追加しない。
 
-依頼に合うpresetが無い場合、Stack担当は会話で確認されたcomponent／artifact setと構築方式から新しいimmutable
-presetを作成して進める。これはStack担当がcomponent候補を独自選定するという意味ではない。実際に使うartifactの
-identityをpreset／lockへ固定する。
+依頼に合うpresetが無い場合、Stack担当は人間が指定したrelease tagについて各component Releaseに添付された
+`manifest.json`から確定したcomponent／artifact setと構築方式から新しいimmutable presetを作成して進める。これは
+Stack担当がcomponent候補を独自選定するという意味ではない。実際に使うartifactのidentityをpreset／lockへ固定する。
 
 ## 6. 一つのtargetから導出する
 
