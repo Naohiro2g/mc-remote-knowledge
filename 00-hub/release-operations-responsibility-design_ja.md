@@ -176,7 +176,8 @@ coordinatorがexact setと許可済み操作を示した後に行う。Stack担�
 独自に変更しない。
 
 一方、release済みsetの通常deploymentでは、利用者との会話で確定したrelease、target、構築方式をStackが
-orderへ具体化し、必要なら確認済みartifact setからpresetを作成する。採用したexact identityをpreset／lockへ残す。
+orderへ具体化し、必要ならそのrelease tagのmanifest.jsonで確定したartifact setからpresetを作成する。採用した
+exact identityをpreset／lockへ残す。
 既存worldを引き継ぐupdateでMinecraft releaseを後退させる場合だけ拒否し、独立した新規deployment／新規worldへ
 一般化しない。
 
@@ -275,10 +276,12 @@ Git／provider APIから取得して存在と一致を検証する。
 7. 実機検証：Tier 3はchange cone内の短いlive-autoを先に行い、人間でしか判定できない箇所だけlive-humanを行う。
 8. evidence着地：各担当の素材をknowledgeがformal record／artifactへ収容する。
 9. 横断判定：coordinatorが`GREEN`／`HOLD`／`RED`と未主張範囲を記録する。
-10. release：human release ownerの批准後、coordinatorが指示票（source SHA、tag名、release notes内容、asset）を示し、
-    各repo担当が自分の手でbranch統合・tag作成・push・GitHub release作成を実行する（§4.1）。coordinatorは公開後に
-    tag target、prerelease／draft、asset digestをGitHub APIでread-only照合する。複数repoを一括公開する場合も、
-    tag target、asset、公開範囲を一つの承認対象として先に示す。
+10. release：human release ownerの批准後、coordinatorが指示票（source SHA、tag名、release notes内容）を示し、
+    各repo担当が自分の手でbranch統合・tag作成・push・GitHub release公開を実行する（§4.1、`2026-09-03-07`）。
+    asset添付と`manifest.json`生成は指示票へ列挙せず、公開をtriggerとする各repoの
+    固定workflowが承認済みcommitから毎回同じ手順で自動実行する（`2026-09-06-02`〜`2026-09-06-04`）。coordinatorは
+    公開後にtag target、prerelease／draft、manifest.jsonのartifact identityをGitHub APIでread-only照合する。複数
+    repoを一括公開する場合も、tag target、manifest、公開範囲を一つの承認対象として先に示す。
 11. close：公開identity、default branch統合／保持先、handoff全件の着地を再確認し、gateを閉じる。
 12. 優先backlog確認：hub `NOTES_ja.md`の`[priority]`のうち今回のgateと無関係な項目を確認する。着手指令
     （確認票／指示票）を出すか、着手しない場合はその理由と再開条件をNOTESへ明記する。`[priority]`のtagは
@@ -352,6 +355,5 @@ knowledge担当がreleaseまでの進行、各開発repoへの指示、exact set
 component担当は実装と局所判断へ集中し、human release ownerは必要なUX確認と公開承認を行う。担当agentのmodel／
 providerはroleの固定条件にせず、今回のようにknowledgeをCodex、開発repoを軽量なClaude modelとする分担も選べる。
 
-repo間搬送は当面、会話で人間が内容を見ながら票を渡す。固定fileと自動収集への移行は、手作業の反復箇所と
-見落とし防止効果が十分観測できた後に判断する。machine-readable manifestや固定搬送fileの未実装だけでbetaを
-HOLDにしない。
+`manifest.json`と固定workflowは`2026-09-06-02`〜`2026-09-06-04`で確定した目標形だが、各repoでの実装は順次進む。
+未実装であることだけを理由にbetaをHOLDにしない。
