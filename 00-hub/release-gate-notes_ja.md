@@ -44,6 +44,25 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 ただし旧setの観測事実まで自動的に破棄せず、`2026-08-23-01`のchange coneとPASS再利用条件で再評価します。
 仕様形成中はTier 0〜2を既定とし、人間参加・全回帰・capacity／soakをrelease候補より前へ自動的に持ち込みません。
 
+## 2026-09-07 b7.post2（manifest.json導入・収集経路ランスルー／OPEN）
+
+- gate coordinator: knowledge担当session。人間による明示handoffなしに他担当へ移さない
+- human release owner: プロジェクトオーナー
+- current phase: **準備中**。mc-remote-stackのCodexセッションで、収集からdeploymentまでを実作業でなぞるランスルーを実施する段階
+- 目的: `2026-09-06-02`〜`2026-09-06-04`で確定したmanifest.json方式を実装し、release closeから収集・preset／order／lock確定・apply・doctorまでの経路を実際に通して検証する。protocol／APIは変更しない
+- release mode: 軽量mode（`release-operations-responsibility-design_ja.md` §14）。protocol `23.1.0`／artifact `2301.0.0b7`のpost-releaseであり、新API、wire変更、b8実装を含まない
+- version／tag表記: `.postN`（ドット区切り）を使う（`2026-09-07-03`）。Scratch `v2301.0.0b7.post2`、McRemote `v1.21.11-2301.0.0b7.post2`、Python `2301.0.0b7.post2`。既に公開済みの`v2301.0.0b7-post1`は差し替えない
+- manifest contract: top-levelへ`schema`（`"mc-remote.release-manifest"`）、`schema_version`（整数）、`release_tag`、`source_commit`。`artifacts[]`は`kind`を必ず明示し、`kind:oci`は`locator`＋`digest`、`kind:https-file`は`file`＋`sha256`を持つ。WireScopeは`wirescope`（zip）と`wirescope-manifest`（detached manifest）の2件を個別に載せる。contractsは`contracts.tar.gz`（role `contracts`）。Pythonは`bundled_wirescope_source_commit`をtop-levelへ持つ。manifestはrepo単位で生成し各repo自身のReleaseへ添付する（横断統合manifestは作らない）
+- 参加component: **未確定**。human release ownerが指定する。coordinatorは間接的signalから推論しない（`2026-09-03-07`）
+- exact set: **未固定**。各repoのmanifest.json publish後に、そこから確定する
+- 成功基準（ランスルーの観測対象）: release close直後に開始し、収集がrelease tag 1件の指定だけで完結すること。人間またはagentが個別のcommit／digestを会話やhandoffテキストから思い出す場面が発生しないこと。通常（非ケータリング）でserver起動まで10分未満、ケータリング型でも小幅な追加に収まること（`2026-09-06-02`）
+- 未検証の境界: WireScopeの横断real-browser E2E（同一artifactをPython／Scratch両sourceで順に使う）とhome alphaが未完で、Stack後続gateの再判定も未了（`15-wirescope/wirescope-station-attach-design_ja.md` §10 step 7／step 9）。`2026-09-06-01`によりrelease判定条件はこの欄で扱い、未達のまま進める場合は再開条件をここへ記録する
+- 既知の前提: b7以前の公開済みreleaseにはmanifestが無い。既存releaseのartifact identityは本ファイルの凍結済みexact setを正本とする（`deployment-interface-design_ja.md` §4）
+- authorized next action: mc-remote-stack担当（Codexセッション）が、収集→preset／order／lock確定→apply→doctorのランスルーを実施し、観測を返す。target host、exact set、実施範囲はhuman release ownerとcoordinatorが指定するまで拡張しない。実行commandの正本はStack runbookに置き、本ファイルへ複製しない（`2026-09-04-04`）
+- 返却してほしいもの: 実際に使ったrelease tagとmanifest identity、収集で手が止まった箇所（会話やhandoffから値を思い出す必要が生じた箇所）、各段階の所要時間、doctorの結果、未実施範囲、non-claim
+- gate result: **未判定**。GREEN／HOLD／REDのいずれも主張しない
+- non-claim: b8実装、protocol変更、public deployの可否、初回stable互換は本gateに含めない
+
 ## 2026-09-02 b7横断release gate（CLOSED）
 
 - gate coordinator: knowledge担当session。人間による明示handoffなしに他担当へ移さない
