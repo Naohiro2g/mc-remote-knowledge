@@ -176,7 +176,8 @@ coordinatorがexact setと許可済み操作を示した後に行う。Stack担�
 独自に変更しない。
 
 一方、release済みsetの通常deploymentでは、利用者との会話で確定したrelease、target、構築方式をStackが
-orderへ具体化し、必要なら確認済みartifact setからpresetを作成する。採用したexact identityをpreset／lockへ残す。
+orderへ具体化し、必要ならそのrelease tagのmanifest.jsonで確定したartifact setからpresetを作成する。採用した
+exact identityをpreset／lockへ残す。
 既存worldを引き継ぐupdateでMinecraft releaseを後退させる場合だけ拒否し、独立した新規deployment／新規worldへ
 一般化しない。
 
@@ -275,8 +276,9 @@ Git／provider APIから取得して存在と一致を検証する。
 7. 実機検証：Tier 3はchange cone内の短いlive-autoを先に行い、人間でしか判定できない箇所だけlive-humanを行う。
 8. evidence着地：各担当の素材をknowledgeがformal record／artifactへ収容する。
 9. 横断判定：coordinatorが`GREEN`／`HOLD`／`RED`と未主張範囲を記録する。
-10. release：human release ownerが対象commitとtag名を批准すると、各repo担当がbranch統合・tag作成・GitHub release
-    公開を実行する（§4.1）。asset添付と`manifest.json`生成は手作業の指示票に頼らず、公開をtriggerとする各repoの
+10. release：human release ownerの批准後、coordinatorが指示票（source SHA、tag名、release notes内容）を示し、
+    各repo担当が自分の手でbranch統合・tag作成・push・GitHub release公開を実行する（§4.1、`2026-09-03-07`）。
+    asset添付と`manifest.json`生成は指示票へ列挙せず、公開をtriggerとする各repoの
     固定workflowが承認済みcommitから毎回同じ手順で自動実行する（`2026-09-06-02`〜`2026-09-06-04`）。coordinatorは
     公開後にtag target、prerelease／draft、manifest.jsonのartifact identityをGitHub APIでread-only照合する。複数
     repoを一括公開する場合も、tag target、manifest、公開範囲を一つの承認対象として先に示す。
@@ -352,3 +354,6 @@ betaへroll forwardする。緊急性が高ければrelease説明、撤回、hot
 knowledge担当がreleaseまでの進行、各開発repoへの指示、exact set固定、最終公開操作を一続きで扱ってよい。
 component担当は実装と局所判断へ集中し、human release ownerは必要なUX確認と公開承認を行う。担当agentのmodel／
 providerはroleの固定条件にせず、今回のようにknowledgeをCodex、開発repoを軽量なClaude modelとする分担も選べる。
+
+`manifest.json`と固定workflowは`2026-09-06-02`〜`2026-09-06-04`で確定した目標形だが、各repoでの実装は順次進む。
+未実装であることだけを理由にbetaをHOLDにしない。

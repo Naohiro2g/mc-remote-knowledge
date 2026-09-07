@@ -174,6 +174,13 @@ digest等）を一括で確定するため、Stack担当は個別項目を会話
 
 Stack担当はこのcontracts archive以外のScratch sourceからfieldを発掘しない。
 
+正式なReleaseがまだ無い候補段階では、contract directoryを`git archive`またはGitHub Git Data APIで対象commitから
+直接取得する経路を維持する。候補段階の参照を公式releaseの完了待ちでblockしない（`2026-09-06-02`）。
+
+`manifest.json`は、各repoの固定workflowがそれを生成するrelease以降で利用できる。それ以前に公開済みのrelease
+（b7以前）にはmanifestが無いため、artifact identityの正本は[release gate notes](release-gate-notes_ja.md)の
+凍結済みexact setとする。
+
 ## 5. Stackのorder
 
 通常orderの外形は次とする。
