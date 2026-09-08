@@ -12,6 +12,7 @@ public 正本世代の入口です。ここに載る path は、このリポ内�
 | `00-hub/document-style-guide_ja.md` | 拘束／説明／投影の三層と、骨格→柵→拘束層への錨という説明文書の様式 |
 | `00-hub/grand-design-roadmap_ja.md` | 低 drift な粗い相マーカーと横断優先 |
 | `00-hub/readme-sample-modernization-roadmap_ja.md` | 各public repoの人間向けREADMEと実行可能sampleをb7〜stableへ整える横断track |
+| `00-hub/language-policy_ja.md` | 日本語SSOTへの一本化、従来の英語優先からの転換理由、Issue/PRの多言語対応方針（`LANGUAGE_POLICY.md`） |
 | `00-hub/authentication-roadmap_ja.md` | 認証現在地、Client Library共通session credential UX、long-lived公開gate、credential-lifecycle再開順序 |
 | `00-hub/deployment-interface-design_ja.md` | Scratch product/runtime config、Scratch–Stack contract handoff、一order＋apply／doctorの通常deployment経路 |
 | `00-hub/dev-repo-protocol_ja.md` | 4 dev リポの bootstrap、runtime marker、固定票三種 |

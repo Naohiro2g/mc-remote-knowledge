@@ -3,6 +3,11 @@
 Knowledge base of Minecraft Remote Project for learning/working along with LLM  
 （Naohiro2g/mc-remote-knowledge）
 
+> [!NOTE]
+> **🌐 言語方針について / Language Policy**  
+> 本プロジェクトは、一次情報（SSOT）の鮮度と正確性を保つため、リポジトリ全体を日本語で記述しています。従来の英語優先から方針転換した背景や、Issue/PRにおける多言語参加については [主要言語についての方針転換 / Language Policy](LANGUAGE_POLICY.md)（または [00-hub/language-policy_ja.md](00-hub/language-policy_ja.md)）をご覧ください。  
+> *This repository is maintained in Japanese as its primary Single Source of Truth (SSOT). For the background behind this policy change and our open support for multi-language contributions, please see our [Language Policy](LANGUAGE_POLICY.md).*
+
 > **人間とLLMが「学びながら開発し、共創する」ためのナレッジベース型開発システム**
 
 マイクラリモコン（mc-remote / Code2CreateClub）は、Minecraft（Java版）をScratchやPythonからプログラミング・遠隔操作できるオープンソース環境です。
@@ -79,6 +84,7 @@ Knowledge base of Minecraft Remote Project for learning/working along with LLM
 - [NOTES](00-hub/NOTES_ja.md) — 未確定の芽・未解決の課題
 - [グランドデザイン](00-hub/grand-design-roadmap_ja.md) — プロジェクト全体の長期展望
 - [README・sample近代化ロードマップ](00-hub/readme-sample-modernization-roadmap_ja.md) — 各リポの人間向け入口整備方針
+- [LANGUAGE_POLICY](LANGUAGE_POLICY.md) — 主要言語についての方針転換（日英併記）
 - [CONTRIBUTING](CONTRIBUTING.md) — コントリビューションの手引き
 - [SECURITY](SECURITY.md) — セキュリティ報告窓口
 
