@@ -77,6 +77,7 @@ public 正本世代の入口です。ここに載る path は、このリポ内�
 | Path | 役割 |
 | --- | --- |
 | `30-広告宣伝/README_ja.md` | homepage、半自動release notes、技術記事とproduct gateの境界 |
+| `30-広告宣伝/homepage-architecture-design_ja.md` | 公式ホームページ（mc-remote.com）の情報アーキテクチャ、導線設計、先人の功績継承、SSOT連携 |
 
 ## Evidence
 

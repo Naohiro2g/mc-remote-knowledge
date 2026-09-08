@@ -13,12 +13,13 @@
 
 ### Homepage
 
-2026年9月から次を段階的に整えます。
+2026年9月から次を段階的に整えます。設計正本および情報アーキテクチャは [公式ホームページ情報アーキテクチャ・導線設計](homepage-architecture-design_ja.md) を参照します。
 
-- 基本情報: McRemoteとは何か、対象者、できること、できないこと
-- project詳細: 構成component、Python／Scratch、WireScope、機能実現の三層モデル
+- 基本情報: McRemoteとは何か、対象者、できること、できないこと、先人の功績と学びの支援ミッション
+- project詳細: 構成component、Python／Scratch、WireScope、エコシステム案内
+- curriculum: 使う側からOSSツール自体の開発・貢献側へ至るステップアップ
 - roadmap: beta／rc／stable、Minecraft／Paper対応、2027年4月までの粗い時間軸
-- release情報: exact version、対応版、導入、update／rollback、既知制約、feedback入口
+- release情報: exact version、対応版、導入、update／rollback、既知制約、過去のb1〜b6変遷
 
 10月rcの外部test開始時点では、少なくともrelease情報と検証参加導線を会話履歴なしで辿れる状態にします。
 homepage全体の完成、SEO、記事本数はrc／stable blockerにしません。
