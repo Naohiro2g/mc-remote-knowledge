@@ -1,74 +1,100 @@
-# mc-remote-knowledge
+# マイクラリモコン (mc-remote) ナレッジベース
 
-Knowledge base of Minecraft Remote Project for learning/working along with LLM
+> **人間とLLMが「学びながら開発し、共創する」ためのナレッジベース型開発システム**
 
-マイクラリモコン（mc-remote / Code2CreateClub）の設計記録、横断決定、現行 contract を公開する knowledge repository です。実装は各 dev repository に置き、このリポは「何を、なぜ、どの境界で決めたか」の SSOT を担います。
+マイクラリモコン（mc-remote / Code2CreateClub）は、Minecraft（Java版）をScratchやPythonからプログラミング・遠隔操作できるオープンソース環境です。
 
-マイクラリモコンは、人間とLLMが「学びながら開発し、共創する」ための **LLM支援ナレッジベース型開発システム** の適用インスタンスです。ここでいう「システム」は単一のリポジトリやソフトウェアではなく、人間、LLMサーフェス、ナレッジリポ、開発リポ、教材・運用成果物を、判断履歴・証跡・投影によって接続する開発の仕組み全体を指します。
+このリポジトリ（`mc-remote-knowledge`）は、プロジェクト全体の**設計記録、横断決定、現行規約を公開・管理する唯一の真実の源（SSOT: Single Source of Truth）**です。実装コードは各開発リポジトリに置き、このリポでは「何を、なぜ、どの境界で決めたか」を記録しています。
 
-## 最上位の動作原理
+また、マイクラリモコンは**「LLM支援ナレッジベース型開発システム」**の実践例でもあります。ソフトウェアを使う学習者だけでなく、**「人間とAIがどう協調して大規模なシステムを破綻なく共創・学習していくか」という開発システム自体も学習パス（学びの対象）**として位置づけられています。
 
-- 教材開発、実装、検証、運用を、同じ観察と自己判定の原理でつなぐ。
-- 学びと開発は **観察 → 痕跡を残す → 言語化 → 比較・検証 → 自己判定 → 共有・再検証** の順で進める。言語化を最初の入場条件にせず、観察前に原因説明を要求しない。
-- AI / agent は支援役であり実行者でもあるが、未検証の正しさや設計判断を人間に代わって確定しない。
-- 生成を委譲しても、判断・検証・統合は人間が握る。主張のスコープを証拠のスコープから越境させない。
-- 結論だけでなく、理由と却下案を残す。後から変えるときも古い判断を消さない。
-- 現在の SSOT を最優先に扱いながら、SSOT 自体を改善の対象として扱う。
-- 不要な禁止ルールを作らない。誤りと判明したルールは、判断履歴を残したまま現行の拘束から明示的に外す。
+---
 
-### メタ判断
+## 🚀 あなたの目的に合わせた最短入口
 
-現在の SSOT を最優先にすることと、SSOT 自体を改善することは緊張関係にある。これは解消すべき矛盾ではなく本質なので、統一規則で片付けず、その都度その場で突き合わせて決める。
+### 1. マイクラをプログラミングで動かしたい（学習者・子ども・教育関係者）
+- 🐱 **Scratchで動かす**: ブラウザから即座にブロックプログラミングでマイクラの世界を動かせます。  
+  👉 [scratch-editor (GitHub)](https://github.com/Naohiro2g/scratch-editor) / [Web版エディタ](https://scratch-beta.mc-remote.com/)
+- 🐍 **Pythonで動かす**: わずか3行のコードでブロック設置やチャット送信ができます。  
+  👉 [minecraft-remote-api (GitHub)](https://github.com/Naohiro2g/minecraft-remote-api)
+- 🎮 **作品サンプル・作例を見る**: 建築、ドット絵、ミニゲームなどの動くコード集。  
+  👉 [mc_remote_samples (GitHub)](https://github.com/Naohiro2g/mc_remote_samples)
+- 🏰 **サーバーを立てたい**: 教室や自宅でサーバーを構築・運用するパッケージ。  
+  👉 [mc-remote-stack (GitHub)](https://github.com/Naohiro2g/mc-remote-stack) / [McRemote Plugin (GitHub)](https://github.com/Naohiro2g/McRemote)
 
-確定済みの決定にも、十分に吟味されていないもの、時間の経過や要素間の関係によって最適解が動いたものが混ざる。新しい判断が過去の決定に引きずられる傾向は、人間にも LLM にもある基本的な性質である。判断履歴を保存し追記只進で積む仕組みは、それ自体では履歴を疑う契機を持たない。だから外から挟み込む。
+### 2. 人間×LLMの開発システムを学びたい（エンジニア・開発者・AI共創学習者）
+「AIに丸投げして破綻するのではなく、人間が意思決定の主権を握りながら、LLMの爆発的な推論・実装力を活かす仕組み」を学べます。
+- 📖 **学習と開発の思想**: なぜ言語化より先に「観察」から入るのか？  
+  👉 [AIアシストと学習支援 (ai-learning-design_ja.md)](20-教材/ai-learning-design_ja.md)
+- 🏗️ **ナレッジベース構造**: ハブ＆スポーク構造、文書三層モデル（拘束・説明・投影）  
+  👉 [ナレッジリポジトリ設計 (knowledge-repo-design_ja.md)](00-hub/knowledge-repo-design_ja.md)
+- 📜 **意思決定の記録（SSOT）**: 結論・理由・却下案を消さずに残す「追記只進」の規律  
+  👉 [横断決定ログ (DECISIONS_ja.md)](00-hub/DECISIONS_ja.md)
+- 🧭 **ドキュメントの書き方**: 「文書は説明し、台帳が拘束する」  
+  👉 [説明文書の様式ガイド (document-style-guide_ja.md)](00-hub/document-style-guide_ja.md)
 
-過去の決定を持ち出す場面——carry-in するとき、改訂するとき、参照して新しい決定を書くとき——に、**その決定が今も最適か**を一度問う。判断材料が手元に揃っているのはこの瞬間である。答えが「今も有効」であっても、問うたことを判断履歴に残す。archive からの carry-in に限らない。現行 SSOT の確定行を参照する場合も同じである。
+---
 
-判断履歴を残すことは、間違ったルールを現行手順へ残すことではない。誤りと判明したルールは、元の決定に
-撤回／改訂先を示し、現行の説明、runbook、schema、検査から除く。履歴は何をどう判断したかを伝え、
-現行SSOTは今どう動くかを伝える。
+## 💡 システムの最上位動作原理（エッセンス）
 
-持ち出される決定だけでは足りない。影響範囲が広い決定、中長期に効く決定、重要と指定された決定は、誰も触らないまま古びる。ただし過去の決定へ重みの札を貼らない。札は過去を重く見せ、疑う契機をかえって奪う。判定するのは**いま下そうとしている決定が重いかどうか**であり、これは吟味の深さを決めるゲートである。検討の浅い確定を連発し改訂を積み重ねると、決定群は肥大化して純度が下がる。確定は速さでなく重みに応じた吟味で出す。
+本システムは、教材開発から実開発・検証・運用まで、一貫して以下の原理で運用されています。
 
-重い決定には、**有効な局面**を書く。期日ではなく局面で示す。この局面では確定度も優先度も高いが、ある時点を過ぎれば価値を失う決定がある。局面が変わったときに何を失うかまで書いておく。
+1. **正典順序：観察 → 痕跡を残す → 言語化 → 比較・検証 → 自己判定 → 共有・再検証**  
+   言語化を最初の入場条件にしません。まず動かし、観察し、痕跡を残すことから始めます。
+2. **委譲と責任：未検証の正しさや設計判断をLLMに代行させない**  
+   コード生成はAIに委譲しても、判断・検証・統合の責任は人間が握ります。証拠のスコープを超えて確約しません。
+3. **判断理由を残す：結論・理由・却下案をセットで記録する**  
+   方針変更時も過去の判断を上書きで消さず、新しい決定を追記して参照で繋ぎます。
+4. **メタ判断と跳躍：疑う規律と跳ぶ直感の両方を置く**  
+   過去の決定が今も最適かを常に問い直す（メタ判断）と同時に、根拠が薄くても直感で踏み出す跳躍を排除しません。
+5. **不要な禁止ルールを作らない（`2026-09-04-05`）**  
+   局所最適による禁止ルールの増殖を防ぎ、誤りと判明したルールは判断履歴を残したまま現行拘束から外します。
 
-決定を持ち出す契機を待たず、領域を指定して丸ごと再吟味する**随意棚卸し**を正式な手段として持つ。epoch の切替のような破壊的なジャンプは、失うものが大きい一方で大胆な整理の機会でもある。そこを棚卸しの好機として使う。
+> より深い運用哲学や設計背景は [knowledge repository design](00-hub/knowledge-repo-design_ja.md) および [CLAUDE.md](CLAUDE.md) を参照してください。
 
-### 跳躍
+---
 
-メタ判断が「疑う」側なら、跳躍は「跳ぶ」側である。両方を置く。片方だけを制度化すると、残った方は規律違反に見えるようになる。
+## 📂 リポジトリの構造（ハブ & スポーク）
 
-やってみないと分からない領域がある。**根拠が薄くても、言語化が足りなくても、確定させるべきことがある。**分かりきったことの積み上げでも良いものは作れるが、それだけでは届かない範囲があり、そこへ踏み出すのは人間の側の仕事である。
+```text
+00-hub/            全体原理・索引・横断決定・開発プロトコル
+10-protocol/       サーバープラグインとクライアント間の通信仕様（Protocol）
+11-plugin/         Paper サーバープラグイン（McRemote）の設計
+12-python-client/  Python クライアントライブラリの設計
+13-scratch-client/ Scratch エディタ拡張・Bridge の設計
+14-evidence/       実機テスト・検証ログ
+15-wirescope/      通信パケットをリアルタイム可視化する観察UI
+16-java-client/    Java クライアントライブラリの設計
+20-教材/           学習支援・教育設計・チュートリアル設計
+30-広告宣伝/        公開戦略・発信
+```
 
-**跳躍に反証条件を要求しない。**跳ぶ前に見えるなら跳躍ではない。事後に観測を残すことはできるが、それは正当化ではなく記録である。跳んだ判断には、根拠が薄いことを隠さずに書く。書けない直感を理由に落とすと、判断理由の欠落を作る。
+## 🗺️ 主な案内（入口）
 
-速度そのものは目的ではない。よく練らずに速度優先で進むと、決定と改訂が積み上がって人間の認知容量を超え、判断力が落ちる。改訂は重く、ノイズになる。**進行を意図的に止め、マイクラリモコンと mind-size へ分解し直すことは、遅延ではなく正当な手段である。**
+- [INDEX](00-hub/INDEX_ja.md) — 全ドキュメントの総合目録
+- [DECISIONS](00-hub/DECISIONS_ja.md) — プロジェクトの横断決定ログ（SSOT）
+- [NOTES](00-hub/NOTES_ja.md) — 未確定の芽・未解決の課題
+- [グランドデザイン](00-hub/grand-design-roadmap_ja.md) — プロジェクト全体の長期展望
+- [README・sample近代化ロードマップ](00-hub/readme-sample-modernization-roadmap_ja.md) — 各リポの人間向け入口整備方針
+- [CONTRIBUTING](CONTRIBUTING.md) — コントリビューションの手引き
+- [SECURITY](SECURITY.md) — セキュリティ報告窓口
 
-跳ぶ方向と強度は、対話で決めてよい。ナレッジ全体を俯瞰して構想する面と、リポを所有して着地させる面は別で、後者は着地の義務があるぶん跳躍の相談相手として構造的に不利である。
+---
 
-教育観の詳説は [AIアシストと学習支援](20-教材/ai-learning-design_ja.md)、運用原理は [knowledge repository design](00-hub/knowledge-repo-design_ja.md) を参照してください。
+## 📦 関連リポジトリ一覧
 
-## 入口
+| リポジトリ | 役割 | リンク |
+| --- | --- | --- |
+| **`minecraft-remote-api`** | Python クライアント（`pip install minecraft-remote-api`） | [GitHub](https://github.com/Naohiro2g/minecraft-remote-api) |
+| **`scratch-editor`** | Scratch 3.0 ベースのマイクラプログラミング環境 | [GitHub](https://github.com/Naohiro2g/scratch-editor) |
+| **`mc_remote_samples`** | 多言語対応の作例・サンプルコード集 | [GitHub](https://github.com/Naohiro2g/mc_remote_samples) |
+| **`McRemote`** | Minecraft Paper サーバー用プラグイン | [GitHub](https://github.com/Naohiro2g/McRemote) |
+| **`mc-remote-stack`** | サーバー環境デプロイ・Dockerパッケージ | [GitHub](https://github.com/Naohiro2g/mc-remote-stack) |
+| **`minecraft-remote-java`** | Java 向けクライアントライブラリ | [GitHub](https://github.com/Naohiro2g/minecraft-remote-java) |
 
-- [INDEX](00-hub/INDEX_ja.md) — 現行文書の地図
-- [DECISIONS](00-hub/DECISIONS_ja.md) — 横断決定ログ
-- [NOTES](00-hub/NOTES_ja.md) — 未確定の芽と archive carry-forward 欠落
-- [dev-repo protocol](00-hub/dev-repo-protocol_ja.md) — 4 dev リポが on-demand 取得する runtime contract
-- [CONTRIBUTING](CONTRIBUTING.md) — contribution の入口
-- [SECURITY](SECURITY.md) — security-sensitive な報告
-
-## 正本世代
-
-この public リポは、private 履歴を継承せず 2026-07-21 に開始した新しい正本世代です。旧リポは `mc-remote-knowledge-archive` として private / frozen に保管されますが、通常作業や contribution に archive へのアクセスは要りません。archive を例外参照して欠落が見つかった場合は、[NOTES](00-hub/NOTES_ja.md) に記録し、この public リポだけで同じ判断ができる状態まで carry-forward して閉じます（決定 `2026-07-21-01`）。
-
-## 関連リポ
-
-- `McRemote` — Paper plugin
-- `minecraft-remote-api` — Python client
-- `scratch-editor` — McRemote extension を含む Scratch editor fork
-- `mc-remote-stack` — 公開 server package / bootstrap / runbook の SSOT
-- `mc-remote-backstage` — private ops の SSOT。公開 contributor は参照しません
+---
 
 ## ライセンス
 
-オリジナルの文書・図・教育資料は CC BY-SA 4.0、プロジェクト所有codeは原則MITです。Scratch Editor／WireScope等にcomponent固有のライセンスがある場合は、そのcomponentの`LICENSE`とartifact manifestを正とします。第三者由来のものは原ライセンスに従います。詳細は [LICENSE.md](LICENSE.md) と `LICENSES/` を参照してください。
+オリジナルの文書・図・教育資料は [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)、プロジェクト所有コードは原則 [MIT License](LICENSE.md) です。
+Scratch Editor や WireScope 等の個別コンポーネント固有のライセンスについては各リポジトリの `LICENSE` を参照してください。詳細は [LICENSE.md](LICENSE.md) を確認してください。
