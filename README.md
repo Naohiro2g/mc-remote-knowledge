@@ -1,5 +1,8 @@
 # マイクラリモコン (mc-remote) ナレッジベース
 
+Knowledge base of Minecraft Remote Project for learning/working along with LLM  
+（Naohiro2g/mc-remote-knowledge）
+
 > **人間とLLMが「学びながら開発し、共創する」ためのナレッジベース型開発システム**
 
 マイクラリモコン（mc-remote / Code2CreateClub）は、Minecraft（Java版）をScratchやPythonからプログラミング・遠隔操作できるオープンソース環境です。
