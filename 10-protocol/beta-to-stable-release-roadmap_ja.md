@@ -210,7 +210,7 @@ fixture、McRemoteのsession admission／handle reason修正、各consumerのexa
 
 `2026-09-01-03`は公開Protocol bootstrapをparkし、owner移管をb7後の独立した横断評価へ送った。したがってb7のfixture
 ownerとsuccessor発行先はscratch-editorのままであり、bootstrap repositoryをrelease inputまたは新しいgateにしない。
-Protocol／WireScope／Bridge／TCP接続の配置評価をb7完了条件へ追加せず、b7 release後にb8前実施またはb8後送りを判断する。
+b7後の評価において、B8の変更と共通tooling ownership変更を同一change coneへ重ねないため、Protocol／WireScope／Bridge／TCP接続の配置評価・移管はb8後へ送ることを確定した（`2026-09-13-02`）。B8期間中は現行ownerと依存方向を維持し、shared fixtureはScratch側がownerを継続する。
 
 successor owner fixtureはScratch
 `agent/b7-permission-fixture-amendment@773e2984132d82bb6e740d6458107fe42ef68a0a`で発行され、20,367 bytes／93件、

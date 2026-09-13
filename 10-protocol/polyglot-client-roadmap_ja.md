@@ -895,8 +895,9 @@ machine-readable shared fixture等を持つ実行可能なProtocol投影／限�
 
 2026-09-01に公開repository `Naohiro2g/minecraft-remote-protocol`のbootstrapが先行作成されたが、owner移管は批准せずparkした。
 現行ownerはscratch-editorのままとし、b7 successor fixture、consumer参照、release gateをbootstrapへ切り替えない。
+b7 release後の評価において、B8の変更と共通tooling ownership変更を同一change coneへ重ねないため、移管はb8後へ送ることを確定した（`2026-09-13-02`）。
 
-b7 release後、b8前に実施するかb8後へ送るかを判断する独立した横断programとして、次を一体で評価する。
+b8後、独立した横断programとして、次を一体で評価する。
 
 - Protocol projection／fixtureの完全移管
 - Scratch／Python／将来のJava、TypeScript、C#が共用するWireScope appのowner
