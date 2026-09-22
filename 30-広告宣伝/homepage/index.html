@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Cache-Control" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<meta name="robots" content="index, follow" />
+	<meta name="description"
+		content="マインクラフトの世界をプログラムで動かすオープンソースプロジェクト「マイクラリモコン（mc-remote）」の公式ポータルです。ブラウザ版Scratch、Python API、サーバープラグインを提供します。" />
+	<title>マイクラリモコン (mc-remote) — Minecraft Remote Project</title>
+	<link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+	<!-- Header -->
+	<header>
+		<div class="container nav-container">
+			<a href="#" class="brand-group">
+				<img src="images/mc-remote_com_logo.png" alt="Minecraft Remote" class="brand-logo" />
+				<!-- <span class="brand-title">mc-remote</span> -->
+			</a>
+			<nav>
+				<ul>
+					<li><a href="#quickstart">はじめる</a></li>
+					<li><a href="#about">理念・起源</a></li>
+					<!-- <li><a href="#curriculum">カリキュラム</a></li> -->
+					<li><a href="#ecosystem">エコシステム</a></li>
+					<li><a href="#roadmap">ロードマップ</a></li>
+					<li><a href="#releases">リリース</a></li>
+					<li><a href="https://discord.gg/xUqhhqWsuS" target="_blank" rel="noopener">Discord</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+
+	<!-- Hero Section -->
+	<div class="hero">
+		<div class="container">
+			<span class="hero-badge">Minecraft Remote Official Portal</span>
+			<!-- <h1>マインクラフトの世界を、コードで動かそう。</h1> -->
+			<h1>コーディングでマイクラ世界を動かす。学び方を学ぶ。</h1>
+			<div class="sub-line">
+				<img src="images/hacking_codeing_tinkering.png" alt="hacking, coding, tinkering"
+					class="sub-line-image" />
+				<div class="sub-line-text">
+					「マイクラリモコン」は、コーディングを通じて<strong>学び方を学ぶツール</strong>。
+					コーディングってなんなの？？という人から、各種言語の習熟者、オープンソース開発の入門者まで、8歳―80歳までの自律的な探究学習を強力に支援します。<br /><br />
+
+					一本道のカリキュラムではなく、Scratchによるマイクラ世界へのブロック配置、Pythonなど各種言語での自動建築、マイクラリモコン自体の改造など、いろいろな入口から入れて自由に探索できます。<strong>AIアシスト前提の学び／開発も開発者自身が模索中です。</strong>
+				</div>
+			</div>
+			<p></p>
+
+			<div class="thoughts-content">
+				<details class="thoughts-section">
+					<summary>
+						<h2>💡 開発チームが考えていること</h2>
+					</summary>
+
+					<div class="thoughts-inner">
+						<details class="thoughts-entry" open>
+							<summary>
+								<h3>なぜ、今さら、マイクラをリモコン？</h3>
+							</summary>
+							<div class="thoughts-body">
+								<p>「マイクラをリモコンする」これは、公式のRconに始まり、マイクラアプリの代わりにプロトコルをシミュレートするものまで、様々なアプローチがすでにあるのに、なぜ、今さら「マイクラリモコン」なのか。
+								</p>
+								<div>
+									<ul>
+										<li>真の目的は<strong>「学び方を学ぶ」</strong>ツールを提供し、初学者の自学学習アプローチ獲得をガイドすることだから。</li>
+										<li><strong>本物のScratch、本物のPython、Git/GitHub.comを使いたかった</strong>から。これらはオープンソース開発につながっているから。</li>
+										<li>その環境に慣れ親しむためのステージ、箱庭として選んだのが、マインクラフトだが、レゴ、Scratch、にも共通するタンジブルな「ブロック」、これも重要な要素である。</li>
+									</ul>
+								</div>
+							</div>
+								<!-- <div class="highlight-quote">
+									<strong>『教育（EDUCATION）』</strong>ではなく、学習者が自ら探究し創り出す<strong>『学びの支援（SUPPORT
+										LEARNING)』</strong>
+								</div> -->
+						</details>
+
+						<details class="thoughts-entry">
+							<summary>
+								<h3>なぜ、今さら、コーディング？？　生成AI時代には無用では？</h3>
+							</summary>
+							<div class="thoughts-body">
+								<p>2026年、生成AIのレベルが爆発的に向上し、<strong>アプリを書いたことがある、は価値を失ってしまった</strong>ように見える。むしろ、「アプリ」の存在意義さえ疑われ始めている。今までアプリを使ってやっていた作業は、生成AIによってその場で生成された使い捨てアプリによって完了してしまうからだ。<strong>コーディングをこれから学ぶ意味、ある？</strong></p><p></p>
+
+								<ul>
+									<li>価値は成果物（アプリ）ではなく、作る過程で学ぶ人に起きる変化にある。アプリやアプリ制作の価値が下がっても、この価値は下がらない。</li>
+									<li>AIの出力を「良い／違う」と判断する目は、自分で素材に触れ、変えて、観察した経験からしか育たない。</li>
+									<li>ここで言うコーディングとは、文法を覚えて構文を打つことではなく、観察・評価・変更のループを自分で回すこと。AIはそのループの強力な相棒になれるが、ループの主体を代わってはくれない。</li>
+									<li>コードは、意図と現象のあいだをつなぐ、言語化された「読める層」。困ったときに一段降りて確かめられることが大事。</li>
+									<li>「コーディング」と「プログラミング」の違いについては、また別の場所で。</li>
+								</ul>
+							</div>
+						</details>
+
+						<!-- <div class="thoughts-subsection">
+							<h4>探究の題材として獲得する3つの力</h4>
+						</div>
+
+						<div class="thoughts-subsection">
+							<h4>自立的な学びのモチベーションを保つ仕掛け</h4>
+						</div> -->
+					</div>
+				</details>
+			</div>
+
+
+			<details class="connect-guide" style="margin-top: 10px; text-align: left;">
+				<summary>
+					<h2>🌍 マルチプレイ可能なアカウントで、マイクラリモコン対応サーバーに接続してみよう！</h2>
+				</summary>
+				<div class="connect-guide-body">
+					<div>
+						もちろん、自分で建てたサーバーで使うこともできますが、まずは、マイクラリモコン公式の箱庭サーバーに、持っているマイクラアプリ（＝クライアント）で接続してみましょう。<strong>年齢によっては、マルチプレイを可能にするために、保護者の方の操作が必要になることがあります。</strong>なお、この箱庭（サンドボックス、sb）サーバーは、定期的にリセットするため、ものすごい作品をコツコツ作る、などはやめたほうが良いです。公園の砂場と同じです。コードがあればいつでも再現できる、で行こう！
+					</div>
+					<p></p>
+					<ul>
+						<li><strong>接続先マインクラフトサーバー</strong></li>
+						<ul>
+							<li><strong>サーバー名</strong>: <strong><code>sb-beta.mc-remote.com</code></strong>　（マイクラリモコン 公式 箱庭サーバー ベータ版）
+							</li>
+							<li>サーバーの種類: Paper（Java、プラグインサーバー）</li>
+							<li>バージョン: <strong>1.21.11</strong>（RC移行後は最新版に追従する予定。）</li>
+						</ul>
+						<li><strong>Java版クライアント (PC)</strong></li>
+						<ul>
+							<li>バージョン: ほぼ、なんでもオッケー。（プラグインViaVersion / ViaBackwards使用。）</li>
+							<li><strong>ポート番号</strong>: <strong><code>25565</code></strong>（デフォルトなので省略可能。）</li>
+						</ul>
+						<li><strong>統合版クライアント（PC / タブレット / スマホ等）</strong>:
+							<ul>
+								<li>バージョン: 自動的に最新版になる。公式アップデート直後は要注意。</li>
+								<li><strong>ポート番号</strong>:
+									<strong><code>25565</code></strong>（デフォルトの<strong><code>19132</code></strong>ではないので注意。）
+								</li>
+							</ul>
+						</li>
+					</ul>
+					<div class="warning-note">
+						⚠️ <strong>統合版利用時の注意</strong>:
+						マインクラフト統合版の公式大型アップデート直後は、接続用プラグインのGeyser/Floodgateの追従待ちのため、数日間接続できなくなる場合があります。
+					</div>
+				</div>
+			</details>
+
+			<div class="action-cards" id="quickstart">
+				<!-- Scratch Card -->
+				<div class="card">
+					<div class="card-tag scratch">8歳からのビジュアルコーディング</div>
+					<h2>🎮 Scratchで今すぐ始める</h2>
+					<p>面倒なインストールは一切不要。PC／タブレット／スマホで開いたマイクラと、PC／タブレットのブラウザを使います。ブラウザのScratchで直感的にマイクラの世界を遠隔操作できます。</p>
+					<a href="https://scratch-beta.mc-remote.com/?extension=mcremote" target="_blank" rel="noopener"
+						class="btn btn-scratch">👉 Web版Scratchエディタ（ベータ版）を開く</a>
+					<p></p>
+					<div class="server-guide-box">
+						<h4>🔑 マイクラサーバーとの接続とペアリング</h4>
+						<p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0;">WireScope miniに表示される
+							ペアリングコマンド <code>/mcremote pair NNN-NNN</code>
+							をゲーム内チャットに貼り付けてEnterを押すと認証が完了します。コマンド先頭にスペースがあると無効なので注意。</p>
+
+						<img src="images/scratch-MC-connect.png" width="90%" alt="scratch MC connection" />
+
+					</div>
+					<p></p>
+					<span>Scratchのはじめの一歩</span>
+					<img src="images/scratch-stack.png" width="100%" alt="scratch first step" />
+
+
+				</div>
+
+				<!-- Python Card -->
+				<div class="card">
+					<div class="card-tag python">オープンソース開発への第一歩</div>
+					<h2>🐍 PythonでのHello, world!</h2>
+					<p>VS Codeなどのエディタでは自動補完でブロックIDなどが入力できる公式Pythonライブラリ。最新マインクラフトの世界へ向けて、自分のアイデアを自由にコード化できます。</p>
+					<p>まずは、ターミナルを使って簡単にPythonモジュールをインストールして、チャットメッセージの表示、きれいに輝くシーランタンブロックの配置など、試してみましょう。</p>
+
+					<div style="margin-top: 8px;">
+						<p style="font-size: 0.85rem; margin-bottom: 4px; color: var(--text-muted);">Pythonモジュール（クライアント/ API）のインストール:</p>
+						<pre><code>pip install minecraft-remote-api</code></pre>
+					</div>
+
+					<div style="margin-top: 8px;">
+						<p style="font-size: 0.85rem; margin-bottom: 4px; color: var(--text-muted);">
+							最小コード（<code>hello.py</code>）:</p>
+						<pre><code>from mc_remote import Minecraft
+# 公式箱庭サーバー（ベータ）に接続
+mc = Minecraft.create(address="sb-beta.mc-remote.com", port=25575)
+
+# 建築原点とプレイヤー位置の設定
+mc.setBuildOrigin(200, 0, 200)
+mc.setPos(200, 100, 200)
+
+# チャット送信とブロック設置
+# （原点からの相対座標で (205, 67, 205) に置かれます）
+mc.postToChat("Hello, Minecraft from Python!")
+mc.setBlock(5, 67, 5, "sea_lantern")
+print("マインクラフトの世界にブロックを置きました！")</code></pre>
+					</div>
+
+					<div class="server-guide-box" style="margin-top: 10px;">
+						<h4>🔑 実行とペアリング</h4>
+						<p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0;">
+							<code>python hello.py</code> を実行後、ターミナルに表示される <code>/mcremote pair NNN-NNN</code>
+							をゲーム内チャットに貼り付けてEnterを押すと認証が完了します。認証は2時間有効。
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- About & Mission Section -->
+	<section id="about">
+		<div class="container">
+			<h2 class="section-title">プロジェクトの起源とミッション</h2>
+			<p class="section-desc">先人たちの功績を受け継ぎ、従来の「教育」から「学びの支援」へ。</p>
+
+			<div class="about-content">
+				<h3>About the Minecraft Remote Project（先人の功績と起源）</h3>
+				<p>Minecraft Remote（mc-remote /
+					マイクラリモコン）は、マインクラフトを外部からプログラムで遠隔操作するためのオープンソースシステムです。PaperMCサーバー上で動作する専用プラグイン（<code>McRemote</code>）と、利用者のコードを仲介するクライアントAPI（各言語版）から構成されています。
+				</p>
+				<p>本プロジェクトは、<strong>RaspberryJuice</strong>（zhuowei氏）、<strong>mcpi</strong>（Martin
+					O'Hanlon氏）、<strong>JuicyraspberryPie</strong>（wensheng氏）といった先人たちの先駆的な功績と、コミュニティの英知を受け継ぎ、最新のマインクラフト環境へ向けて再構築したものです。
+				</p>
+
+				<div class="highlight-quote">
+					「私たちは、知識を一方的に注入する従来の<strong>『教育（EDUCATION）』</strong>ではなく、学習者が自ら探究し創り出す<strong>『学びの支援（SUPPORT
+						LEARNING）』</strong>を目指しています。この思想は、MITメディアラボ ライフロング・キンダーガーテン（Dr. Mitchel
+					Resnick）の精神に強く影響を受けています。」
+				</div>
+
+				<p>先人たちのプロジェクトリファレンス:</p>
+				<ul>
+					<li><a href="https://github.com/zhuowei/RaspberryJuice" target="_blank"
+							rel="noopener">RaspberryJuice by zhuowei</a></li>
+					<li><a href="https://github.com/martinohanlon/mcpi" target="_blank" rel="noopener">mcpi by Martin
+							O'Hanlon</a></li>
+					<li><a href="https://github.com/wensheng/JuicyraspberryPie" target="_blank"
+							rel="noopener">JuicyraspberryPie by wensheng</a></li>
+					<li><a href="https://www.media.mit.edu/groups/lifelong-kindergarten" target="_blank"
+							rel="noopener">MIT Media Lab Lifelong Kindergarten</a></li>
+				</ul>
+
+				<h3>The Clear Mission（明確なミッション）</h3>
+				<p><strong>初学者が自学自習アプローチ（Self-Learning Approach）を獲得できるよう支援すること。</strong>
+					単なるプログラミング言語の文法や技術スキルの習得にとどまらず、「自分で課題を発見し、試し、学ぶ姿勢」を育むことを最上位の目的としています。コーディング「を」学ぶ、ではなく、<strong>コーディング「で」学ぶ。</strong></p>
+
+				<h4 class="section-subheading">（結果的に）獲得される3つの技術スキル
+				</h4>
+				<ul>
+					<li><strong>コーディングの本質的な概念と技術</strong></li>
+					<li><strong>Git/GitHubを活用した実践的なオープンソース（OSS）開発技術</strong></li>
+					<li><strong>自分のアイデアを形にし、世界に表現する技術</strong></li>
+				</ul>
+
+				<h4 class="section-subheading">自立的な学びのモチベーションを保つ仕掛け</h4>
+				<ul>
+					<li>魅力的な実験場（Sandbox）として<strong>最新版マインクラフト</strong>を常に利用可能にする</li>
+					<li>過去のプロジェクトで培われたコード資産を活用・再利用できるようにする</li>
+					<li>Scratch、Python、Java、TypeScript / JavaScript、C#（Unity）など、幅広い言語と環境へ展開できる</li>
+					<li>マインクラフトの世界にとどまらず、BlenderやHoudini等の3D環境、デジタルと現実を結ぶ入出力、AI技術（コンピュータビジョン・機械学習との連携）へ発展できる</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<!-- Ecosystem Section -->
+	<section id="ecosystem">
+		<div class="container">
+			<h2 class="section-title">エコシステム・各リポジトリ案内</h2>
+			<p class="section-desc">マイクラリモコンを構成する公式オープンソースリポジトリ群です。</p>
+
+			<div class="ecosystem-grid">
+				<div class="repo-card">
+					<h3>🔌 McRemote</h3>
+					<h4>（プラグイン／mc-remoteサーバー）</h4>
+					<p>PaperMCサーバー上で動作する専用プラグイン。JSON-RPC 2.0プロトコルによる高速・安全な接続エンジン。mc-remote（マイクラリモコン）サーバーとして動作。</p>
+					<a href="https://github.com/Naohiro2g/McRemote" target="_blank" rel="noopener" class="repo-link">GitHubで見る →</a>
+				</div>
+
+				<div class="repo-card">
+					<h3>🐱 scratch-editor</h3>
+					<h4>（mc-remoteクライアント）</h4>
+					<p>ブラウザだけで動くWeb版Scratchエディタ（Scratch 3.0 フォーク＝改造版）。インストール不要で、IndexedDBによる作品自動保存にも対応。</p>
+					<a href="https://github.com/Naohiro2g/scratch-editor" target="_blank" rel="noopener" class="repo-link">GitHubで見る →</a>
+				</div>
+
+				<div class="repo-card">
+					<h3>🐍 minecraft-remote-api</h3>
+					<h4>（mc-remoteクライアント）</h4>
+					<p>標準APIを備えた公式Pythonクライアントパッケージ。ブロックID、エンティティIDのカタログ補完機能を提供。</p>
+					<a href="https://github.com/Naohiro2g/minecraft-remote-api" target="_blank" rel="noopener" class="repo-link">GitHubで見る →</a>
+				</div>
+
+				<div class="repo-card">
+					<h3>🔍 WireScope</h3>
+					<h4>（ワイヤースコープ / ライブ画面）</h4>
+					<p>クライアントとサーバーの間を行き来する通信内容（ワイヤメッセージ）をリアルタイムに覗き見できる観察・学習ツール。現在、ScratchやPythonクライアントと連携可能。</p>
+					<a href="https://wirescope-beta.mc-remote.com/" target="_blank" rel="noopener" class="repo-link">WireScope Betaを開く →</a>
+				</div>
+
+				<div class="repo-card">
+					<h3>☕ minecraft-remote-java</h3>
+					<h4>（mc-remoteクライアント）</h4>
+					<p>Java環境からmc-remoteサーバーに接続して制御するためのJavaクライアントライブラリ。</p>
+					<a href="https://github.com/Naohiro2g/minecraft-remote-java" target="_blank" rel="noopener" class="repo-link">GitHubで見る →</a>
+				</div>
+
+				<div class="repo-card">
+					<h3>🎮 minecraft_remote_unity</h3>
+					<h4>（サーバー／クライアント）</h4>
+					<p>Unityで利用可能なC#サーバー／クライアント。mc-remoteサーバー／クライアントとの相互接続で、Pythonで書いてUnity世界に建築、C#でマイクラ世界に建築、などが可能。（※旧プロトコル対応）</p>
+					<a href="https://github.com/Naohiro2g/minecraft_remote_unity" target="_blank" rel="noopener" class="repo-link">GitHubで見る →</a>
+				</div>
+
+				<div class="repo-card">
+					<h3>📦 mc-remote-stack</h3>
+					<h4>（デプロイツール）</h4>
+					<p>マイクラサーバー・Bridge・Scratch・WireScopeの一括構築・運用を支援する公式パッケージ。</p>
+					<a href="https://github.com/Naohiro2g/mc-remote-stack" target="_blank" rel="noopener" class="repo-link">GitHubで見る →</a>
+				</div>
+
+				<div class="repo-card">
+					<h3>📖 mc-remote-knowledge</h3>
+					<h4>（知識データベース）</h4>
+					<p>システム全体のアーキテクチャ、決定ログ（DECISIONS）、プロトコル契約、設計思想を管理する真実の源（SSOT）。<strong>LLM支援前提のナレッジベース型開発支援システム</strong>の根幹。</p>
+					<a href="https://github.com/Naohiro2g/mc-remote-knowledge" target="_blank" rel="noopener" class="repo-link">GitHubで見る →</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Roadmap Section -->
+	<section id="roadmap">
+		<div class="container">
+			<h2 class="section-title">開発ロードマップ & 進捗状況</h2>
+			<p class="section-desc">2027年春の教室本番導入に向けた、透明性のある公開ロードマップです。</p>
+
+			<div class="roadmap-box">
+				<div class="current-status">
+					<span>●</span> 現在地: <strong>R3（学べる・教えられる）進行中 / b7 公開中</strong>
+				</div>
+
+				<ul class="timeline-list">
+					<li class="timeline-item">
+						<div class="timeline-date">2026年8月末【完了】</div>
+						<div class="timeline-desc"><strong>b6 / Protocol 23.0.0</strong>:
+							看板（Sign）API、ツルハシ叩き（poke）イベント、ブラウザ内自動保存の統合。</div>
+					</li>
+					<li class="timeline-item">
+						<div class="timeline-date">2026年9月前半【現在地】</div>
+						<div class="timeline-desc"><strong>b7 / Protocol 23.1.0</strong>:
+							プレイヤーおよびエンティティの方向（direction）操作、落雷（lightning）、WireScope detached
+							ZIP同梱。ホームページ骨格・README近代化（Pass A）。</div>
+					</li>
+					<li class="timeline-item">
+						<div class="timeline-date">2026年9月中旬〜後半</div>
+						<div class="timeline-desc"><strong>b8 / Protocol 23.2.0</strong>: エンティティライフサイクル、パーティクルStage
+							2、月末APIフリーズ。更新・ロールバック検証。</div>
+					</li>
+					<li class="timeline-item">
+						<div class="timeline-date">2026年10月</div>
+						<div class="timeline-desc"><strong>RC (Release Candidate)</strong>: 新API追加停止。外部テスターによる実機検証、Paper
+							26.2/26.3対応。</div>
+					</li>
+					<li class="timeline-item">
+						<div class="timeline-date">2026年11月</div>
+						<div class="timeline-desc"><strong>初回 Stable リリース</strong>: 安定導入手順と公式サポート版の公開。</div>
+					</li>
+					<li class="timeline-item">
+						<div class="timeline-date">2027年春（4月）</div>
+						<div class="timeline-desc"><strong>新学年・教室本番導入</strong>:
+							確定したStable環境での教材運用開始。独自Mobやエージェント型建築カリキュラムへの発展。</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<!-- Releases & Matrix Section -->
+	<section id="releases">
+		<div class="container">
+			<h2 class="section-title">横断リリースノート & 互換性情報</h2>
+			<p class="section-desc">各コンポーネントの動作確認済みバージョン対応表です。</p>
+
+			<table class="matrix-table">
+				<thead>
+					<tr>
+						<th>コンポーネント</th>
+						<th>最新バージョン</th>
+						<th>プロトコル</th>
+						<th>マインクラフトバージョン / 備考</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><strong>McRemote（Plugin、ベータ）</strong></td>
+						<td><code>2301.0.0b7.post2</code></td>
+						<td>23.1.0</td>
+						<td>Paper 1.21.11</td>
+					</tr>
+					<tr>
+						<td><strong>McRemote（Plugin）</strong></td>
+						<td><code>v1.21.8-1.4.0</code></td>
+						<td>旧プロトコル</td>
+						<td>Paper 1.21.11</td>
+					</tr>
+					<tr>
+						<td><strong>minecraft-remote-api (Python)</strong></td>
+						<td><code>2301.0.0b7.post2</code></td>
+						<td>23.1.0</td>
+						<td>Python 3.10以上対応。PyPI安定版は旧プロトコル</td>
+					</tr>
+					<tr>
+						<td><strong>scratch-editor (Scratch)</strong></td>
+						<td><code>2301.0.0b7.post2</code></td>
+						<td>23.1.0</td>
+						<td>ブラウザ完結（Chrome, Safari, Edge等）</td>
+					</tr>
+					<tr>
+						<td><strong>WireScope</strong></td>
+						<td><code>2301.0.0b7.post2</code></td>
+						<td>23.1.0</td>
+						<td>共通パケット観察Webアプリ</td>
+					</tr>
+					<tr>
+						<td><strong>公式箱庭サーバー（ベータ）</strong></td>
+						<td><code>sb-beta.mc-remote.com</code></td>
+						<td>23.1.0</td>
+						<td>1.21.11、Java版：TCP25565 / 統合版：UDP25565</td>
+					</tr>
+					<tr>
+						<td><strong>公式箱庭サーバー</strong></td>
+						<td><code>sb-beta.mc-remote.com</code></td>
+						<td>旧プロトコル</td>
+						<td>1.21.11、Java版：TCP25565 / 統合版：UDP25565</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<!-- Past History Collapsible -->
+			<details>
+				<summary>📜 過去のリリース履歴を展開して確認する（b1 〜 b6 の変遷）</summary>
+				<ul class="history-timeline" style="margin-top: 14px;">
+					<li>
+						<span class="history-tag">Protocol 23.0.0 (b6)</span>
+						看板操作（<code>getSign</code>, <code>setSign</code>,
+						<code>updateSignLine</code>）、ツルハシによるブロック叩きイベント（<code>pickaxe_poke</code>）、ブラウザ内自動保存（IndexedDB）の導入。
+					</li>
+					<li>
+						<span class="history-tag">Protocol 22.0.0 (b5)</span>
+						構造化ブロック値（ブロックIDとブロック状態 <code>state</code> の分離）、空間識別子の Minecraft DimensionKey への統一、高速建築モード（DEBUG,
+						TRACE, FAST）の整備。
+					</li>
+					<li>
+						<span class="history-tag">Protocol 21.0.0 (b4)</span>
+						建築状態（ワールド＋原点）とプレイヤー識別の完全分離（<code>setPlayer</code> 廃止、<code>setWorld</code> /
+						<code>setBuildOrigin</code> 導入）、向きを含むプレイヤー姿勢（<code>getPose</code> / <code>setPose</code>）の追加。
+					</li>
+					<li>
+						<span class="history-tag">Protocol 21.0.0 (b3)</span>
+						生きたブロック／アイテム／パーティクルカタログの自動取得（<code>catalog.get</code>）と、型補完アーティファクト（<code>mc_constants</code>）の生成機構。
+					</li>
+					<li>
+						<span class="history-tag">Protocol 21.0.0 (b2)</span>
+						安全なトークン認証およびワンタイム・ペアリング機構（<code>/mcremote pair</code> コマンド）の確立。
+					</li>
+					<li>
+						<span class="history-tag">Protocol 21.0.0 (b1)</span>
+						通信ワイヤ形式を JSON-RPC 2.0 エンベロープへ全面刷新。多言語クライアント共通の基盤を確定。
+					</li>
+				</ul>
+			</details>
+		</div>
+	</section>
+
+	<!-- Footer -->
+	<footer>
+		<div class="container">
+			<div class="footer-links">
+				<a href="#quickstart">はじめる</a>
+				<a href="#about">プロジェクト理念</a>
+				<!-- <a href="#curriculum">カリキュラム</a> -->
+				<a href="#ecosystem">リポジトリ一覧</a>
+				<a href="https://github.com/Naohiro2g/mc-remote-knowledge/blob/main/LANGUAGE_POLICY.md" target="_blank"
+					rel="noopener">言語方針 (Language Policy)</a>
+				<a href="https://discord.gg/xUqhhqWsuS" target="_blank" rel="noopener">Discordコミュニティ</a>
+			</div>
+
+			<div class="footer-images">
+				<img src="images/MinecraftRemote-blue.png" alt="Minecraft Remote Logo" />
+				<img src="images/maikura_rimokon-logo.png" alt="マイクラ リモコン ロゴ" />
+				<!-- <img src="images/TNT.png" alt="TNT" /> -->
+			</div>
+
+			<p style="margin-top: 12px; font-size: 0.85rem;">
+				Minecraft Remote Project &mdash; Run by Code2CreateClub.<br />
+				Minecraft is a trademark of Mojang Synergies AB. This project is not affiliated with or endorsed by
+				Mojang or Microsoft.
+			</p>
+			<p style="margin-top: 8px; font-size: 0.8rem; color: #94a3b8;">
+				Copyright &copy; Code2CreateClub All Rights Reserved.
+			</p>
+		</div>
+	</footer>
+
+</body>
+
+</html>
