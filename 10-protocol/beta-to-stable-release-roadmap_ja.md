@@ -45,13 +45,15 @@ betaは旧b6へ集めていたAPIを一度に完成させる箱ではなく、co
 | release | protocol／artifact core | concept slice(s) | 目標時期 |
 | --- | --- | --- | --- |
 | b6 | `23.0.0`／`2300.0.0b6` | sign、`pickaxe_poke`、Scratch browser保存、protocol 23 cleanup | 2026-08-31 |
-| b7 | `23.1.0`／`2301.0.0b7` | direction、damage-capableな`world.strikeLightning`、ParticleBuilder内部移行 | 2026-09前半 |
-| b8 | `23.2.0`／`2302.0.0b8` | entity lifecycle、particle receiver／typed data、Python surface | 2026-09後半 |
-| 条件付きb9 | `23.3.0`／`2303.0.0b9` | 同じparticle specを使うbounded batch | 2026-09末まで |
+| b7 | `23.1.0`／`2301.0.0b7`（公開済みfold誤採番） | direction、damage-capableな`world.strikeLightning`、ParticleBuilder内部移行 | 2026-09前半 |
+| b8 | `23.2.0`／`2320.0.0b8` | entity lifecycle、particle receiver／typed data、Python surface | 2026-09後半 |
+| 条件付きb9 | `23.3.0`／`2330.0.0b9` | 同じparticle specを使うbounded batch | 2026-09末まで |
 | rc | b8またはb9と同じcore | API freeze、capacity、soak、rollback | 2026-10 |
 | 初回stable | rcと同じcore | 全component mature、配布・運用説明を固定 | 2026-11 |
 
-b9を使わない場合のstable coreは`2302.0.0`、使う場合は`2303.0.0`です。b9はb8の3D graph prototypeで
+b7の`2301.0.0b7`は公開済みidentityとして保持しますが、protocol `23.1.0`の§9.3どおりのfoldは`2310`です。
+この誤採番を後続へ連鎖させず、b8以降はprotocol digitsを同じ順序で連結します。b9を使わない場合のstable coreは
+`2320.0.0`、使う場合は`2330.0.0`です。b9はb8の3D graph prototypeで
 単点RPCが実際の律速になり、batchが初回stableに必要と観察された場合だけ使います。event filter／clear、
 追加particle type、追加receiver、保存、legacy整理の残件箱にしません。9月末で新API追加を止めます。
 

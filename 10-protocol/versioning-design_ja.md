@@ -242,9 +242,14 @@ semver の意味づけ（§3）に従って突き合わせる。
 
 ### 9.3 fold（畳み込み）規則の確認
 
-- protocol `X.Y.Z` → 数字を連結して plugin/api のメジャー番号にする（例 20.0.0 → `2000`）。
+- protocol `X.Y.Z` → 数字を同じ順序で連結して plugin/api のメジャー番号にする
+  （例 20.0.0 → `2000`、23.1.0 → `2310`、23.2.0 → `2320`）。
 - パースは**右から patch・minor を各1桁**、**残り全部がメジャー**。
 - 不変条件：**メジャーは多桁可**（20〜99 は4桁の 2000〜9999 に収まる。100 以上で桁が伸びるが右からのパースは崩れない）。**minor と patch は 0–9 を維持**する（10 以上にすると連結が曖昧になる）。
+
+公開済みb7のartifact `2301.0.0b7`は、protocol `23.1.0`のminorとpatchの位置を取り違えた
+歴史的な誤採番である。公開済みtag、artifact、post-release、manifestは既存identityのまま保持し、
+削除、差し替え、retag、遡及改名を行わない。このidentityを後続版のfold先例にはしない。
 
 ---
 
@@ -256,9 +261,18 @@ DECISIONS `2026-06-25-02`（ラダー）・`2026-06-25-03`（初版 retro-mark�
 
 各段は「次に広い聴衆へ artifact を開く」こと。**境界の本体は段名ではなく遷移ゲート**であり、「段に入る条件（内容イベント）」と「段を出る条件（公開イベント）」は別の遷移＝**段境界の上下の縁**に割り当てる（1ラベルに二軸を overload しない）。この単調拡大は artifact の凍結度と既定取得可能性の説明であり、実行環境の価値、利用者の習熟度、公式提供の優先順位を表さない（`2026-07-22-01`）。
 
-ラダー（聴衆×内容）に直交して、運用側の**リリース機構の成熟度**という第2軸がある（§10.9）。段は版ごとに毎回昇る不変構造、成熟度はプロジェクト全体の一度きりの片道遷移で、版番号には乗らない。
+ラダー（聴衆×内容）に直交して、運用側の**リリース機構の成熟度**という第2軸がある（§10.9）。段はrelease trainごとに昇る不変構造、成熟度はプロジェクト全体の一度きりの片道遷移で、版番号には乗らない。
 
 > 用語：本節は「段（rung）」に統一する。聴衆×内容で区切られた1つの帯域を指す（旧稿の「帯」「rung」は同義）。
+
+`bN`の数値は、直前のfinal release以降に公開するbetaの通番である。初回stable前はbootstrap release trainの
+通番とする。active train中はprotocolのmajor／minor／patch、または§9.3でfoldしたartifact coreが変わっても
+`b1`へ戻さない。final releaseが無ければresetせず、finalを公開した時点でtrainを閉じ、その後の最初のbetaを
+`b1`とする。一度公開したbeta番号は再利用しない。`bN`は公開順を示すだけで、接続互換性はprotocol versionが担う。
+
+したがって`2100.0.0b1`〜`b4`、`2200.0.0b5`、`2300.0.0b6`、公開済み
+`2301.0.0b7`のbeta通番は同じbootstrap trainとして連続する。最後のartifact coreだけは§9.3に反する
+誤採番であり、beta通番`b7`の継続自体は誤りではない。
 
 ### 10.2 段・聴衆・チャンネル
 
@@ -651,17 +665,19 @@ exact ring／handle／poll／particle／work／buffer／timeout上限はruntime 
 実環境で本較正する。OS clipboardによるブロック移送は保存entry gateへ自動追加せず、ブラウザ保存スプライトの
 運用評価後まで`deferred`とする（`2026-08-26-01`）。
 
-b7はprotocol `23.1.0`／artifact `2301.0.0b7`とし、direction四methodを一組で扱い、
+b7はprotocol `23.1.0`／公開artifact `2301.0.0b7`とし、direction四methodを一組で扱った。
+artifact番号は§9.3の正しいfoldなら`2310.0.0b7`だったが、公開済みidentityは変更しない。
 damage-capableな`world.strikeLightning`を加える。旧`world.strikeLightningEffect`候補は実装入力から除外する。
 directionの数値／handle lifecycleとfull lightningのpermission／rate／work／副作用境界はwire §5.8.2でlock済みである。
 既存`world.spawnParticle`のPaper `ParticleBuilder`への内部移行はwire不変の
-Stage 1として同梱し、それ自体をprotocol変更理由にしない。b8はprotocol `23.2.0`／artifact `2302.0.0b8`とし、
+Stage 1として同梱し、それ自体をprotocol変更理由にしない。b8は計画どおりprotocol `23.2.0`なら
+artifact `2320.0.0b8`とし、
 entity lifecycle四methodを一組で扱うほか、既存particleの意味を保つ後方互換なreceiver選択／有限typed dataを
 Stage 2として追加し、Python surfaceと3D graph sampleで検証する。get／setをbeta間で機械的に分割しない。
 
-条件付きb9はprotocol `23.3.0`／artifact `2303.0.0b9`とし、b8と同じparticle specを使うbounded batchだけを
+条件付きb9はprotocol `23.3.0`／artifact `2330.0.0b9`とし、b8と同じparticle specを使うbounded batchだけを
 候補にする。b8実測で単点RPCが律速になり初回stable必須と判断した場合だけ使い、追加particle type、追加receiver、
-event filter／clear等の残件を同梱しない。使わなければ初回stable coreは`2302.0.0`、使えば`2303.0.0`である。
+event filter／clear等の残件を同梱しない。使わなければ初回stable coreは`2320.0.0`、使えば`2330.0.0`である。
 9月末に新API追加を止め、10月rc、11月初回stableへ進む（`2026-08-29-02`）。
 
 ### 10.12 pre-release 状態は明示操作（自動認識は PyPI のみ）
