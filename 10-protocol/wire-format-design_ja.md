@@ -138,17 +138,17 @@ lockへ記録し、b8実装後・API freeze前の負荷較正でruntime policy�
 | `events.poll` | `[after_sequence]`／`[after_sequence, {max_events}]` | あり | epoch-scoped event ringを非破壊取得。filterは条件付きb9以降のcandidate（§5.4） |
 | `events.clear` | 後続contractで固定 | あり | retained eventの明示破棄候補。条件付きb9以降（§5.4） |
 | `world.getHeight` | `[x, z]`または`[x, z, max_y]` | あり | origin相対の最上面block高を返す（b5、§5.6） |
-| `world.spawnParticle` | `[x, y, z, offset_x, offset_y, offset_z, particle, speed, count, (force)]` | あり | 9／10 params、`force`省略時`true`。b5はdata不要particleのみ（§5.7） |
+| `world.spawnParticle` | `[x, y, z, offset_x, offset_y, offset_z, particle, speed, count, (force)]` | あり | 9／10 params、`force`省略時`true`。b8で`particle`にobject形`ParticleSpec`を追加（§5.7／§5.8.3） |
 | `world.spawnEntity` | `[x, y, z, entity]` | あり | entityを生成しepoch-scoped handleを返す（b5、§5.7） |
 | `player.getDirection` | `[]` | `DirectionValue` | paired playerの現在方向を返す（b7、§5.8.2） |
 | `player.setDirection` | `[x,y,z]` | 適用後の`DirectionValue` | 非zero vectorを正規化してpaired playerの向きだけを変える（b7、§5.8.2） |
 | `entity.getDirection` | `[handle]` | `DirectionValue` | handle対象の現在方向を返す（b7、§5.8.2） |
 | `entity.setDirection` | `[handle,x,y,z]` | 適用後の`DirectionValue` | 非zero vectorを正規化してhandle対象の向きだけを変える（b7、§5.8.2） |
 | `world.strikeLightning` | `[x,y,z]` | `null` | current dimensionのorigin相対位置へdamage-capableなfull lightningを要求する（b7、§5.8.2） |
-| `world.getNearbyEntities` | b8 contractで固定 | あり | boundedな近傍entity検索。playerを除外（b8、§5.8） |
-| `entity.getPose` | b8 contractで固定 | あり | handle対象のposeを返す（b8、§5.8） |
-| `entity.setPose` | b8 contractで固定 | あり | handle対象のposeを一体更新（b8、§5.8） |
-| `entity.remove` | b8 contractで固定 | あり | entityを除去しhandleを即時失効（b8、§5.8） |
+| `world.getNearbyEntities` | exact paramsは別途固定 | あり | boundedな近傍entity検索。playerを除外（b8、§5.8.3） |
+| `entity.getPose` | exact paramsは別途固定 | あり | handle対象のposeを返す（b8、§5.8） |
+| `entity.setPose` | exact paramsは別途固定 | あり | handle対象のposeを一体更新（b8、§5.8） |
+| `entity.remove` | exact paramsは別途固定 | あり | entityを除去しhandleを即時失効（b8、§5.8） |
 | `world.getSign` | `[x, y, z]` | `{front:[LineValue×4],back:[LineValue×4],waxed:bool}` | signの両面とwaxedを正準形で取得（b6、§5.8.1） |
 | `world.setSign` | `[x, y, z, {front?:[LineSpec×4],back?:[LineSpec×4]}]` | `null` | 指定面を面内no-mergeの厳密4行へ置換（b6、§5.8.1） |
 | `world.updateSignLine` | `[x, y, z, face, line_index, LineSpec]` | `null` | signの一面・一行だけをPATCH（b6、§5.8.1） |
@@ -384,10 +384,9 @@ rotation／pitch／yawを個別にget／setする六methodは採らない。
 
 b8 entity lifecycleはprotocol 22で固定したpose shape `{dimension,pos,yaw,pitch}`と§5.0.1の出力正準形を
 protocol 23へcarryする。nearby検索はstream dimension内、player除外、radius／件数／chunk走査をboundedにし、
-unloaded entityを探すためのchunk loadを行わない。必要なhandle capacityはrequest全体で事前確認し、部分的な
-handle発行をしない。一覧は`handle`／canonical `type`／`pos`を持つsnapshot方向とし、direction／full poseは
-個別getterに任せる。`entity.remove`成功時はhandleを即時失効する。exact params／result shapeはb8 contractを
-実装前に固定する。
+unloaded entityを探すためのchunk loadを行わない。一覧は`handle`／canonical `type`／`pos`を持つsnapshotとし、
+direction／full poseは個別getterに任せる。`entity.remove`成功時はhandleを即時失効する。nearbyの探索・work・
+handle transactionの確定事項は§5.8.3を正とする。
 
 sign APIは`world.getSign`、`world.setSign`、`world.updateSignLine`をb6へ配置する。位置と昇格モデルのread／replace／
 最小PATCHを比較する一組だが、GET＋PUTによるclient／ユーザーコードの合成も有効な学習経路として残す
@@ -395,10 +394,8 @@ sign APIは`world.getSign`、`world.setSign`、`world.updateSignLine`をb6へ配
 
 particleは三段階で進める。b7 Stage 1は既存`world.spawnParticle` handlerをPaper `ParticleBuilder`へ内部移行する
 だけで、§5.7のwire、既定receiver、result／errorを変えない。b8 Stage 2は既存のdata不要particle文字列をshorthand、
-既定receiverをworldのまま保ち、receiverの`self`候補とdust色＋size／block `BlockSpec`の有限typed dataを
-後方互換に追加する。任意player一覧、UUID、任意Java object、item、transition、trail、vibrationを同じsliceへ
-入れない。既存methodの拡張か別methodか、exact `ReceiverSpec`／`ParticleSpec`、result／error／capはb8 contract
-lockで固定し、本節から推測しない。
+既定receiverをworldのまま保ち、receiverの`self`とdust色＋size／block `BlockSpec`の有限typed dataを
+後方互換に追加する。`ParticleSpec`のshapeと検証順は§5.8.3を正とする。
 
 条件付きb9 Stage 3は、b8と同じspecを複数点へ適用するbounded batchだけを候補とする。全入力の事前検証、
 point／byte／work／receiver fan-out上限、少なくとも`points × receivers`を反映するcost、受理規模を観察できる
@@ -621,6 +618,68 @@ WireScopeをScratch owner set 2へ差し替えたためPython `main`は`91a25d31
 Scratch `develop`は`0be46fcfaca409a5ede10f592520d93e7c59ba15`へ更新統合された。McRemote／Python／Scratch三repoの
 GitHub prerelease（`v1.21.11-2301.0.0b7`／`v2301.0.0b7`／`v2301.0.0b7`）は2026-09-03に公開済み。詳細は
 `00-hub/release-gate-notes_ja.md` 2026-09-02 b7横断release gate節（CLOSED）を正とする。
+
+#### 5.8.3 b8 nearby／particle Stage 2 の確定境界（`2026-09-23-01`）
+
+本節はprotocol `23.2.0`のB8 contract lockに向け、Scratchレビューの確定搬送票で固定した境界である。
+`world.getNearbyEntities`の未記載のpositional params、radius／件数cap、他のentity lifecycle methodのexact shape、
+particleの未記載の上限やerror reasonを、この節だけから補完しない。
+
+##### `world.getNearbyEntities`の探索とWorkAdmission
+
+現在stream dimensionの候補にplayer／dimension／validity filterをかけ、UUIDで重複排除する。球への包含判定は
+丸め前のabsolute座標で`dx² + dy² + dz² <= radius²`（境界を含む）とする。同じ丸め前の二乗距離で昇順にsortし、
+同距離ではcanonical lowercase UUID文字列のUnicode code point昇順を使う。Javaの`UUID.compareTo()`は使わない。
+その後`max_entities`でtruncateし、選ばれた候補を`issueAll()`へ渡す。
+
+work costは`intersecting_chunk_columns + max_entities`とする。chunk column数は球を内包するX/Z bounding squareから
+幾何的に求め、loaded状態や実entity数には依存させない。整数計算ではoverflowを検出する。
+
+```text
+minChunkX = floorDiv(floor(absX - radius), 16)
+maxChunkX = floorDiv(floor(absX + radius), 16)
+minChunkZ = floorDiv(floor(absZ - radius), 16)
+maxChunkZ = floorDiv(floor(absZ + radius), 16)
+intersecting_chunk_columns =
+  (maxChunkX - minChunkX + 1) × (maxChunkZ - minChunkZ + 1)
+work_cost = intersecting_chunk_columns + max_entities
+```
+
+順序はparams／absolute座標／runtime policy cap→permission／build range→work cost計算→WorkAdmission→
+candidate検索→filter／sort／truncate→`issueAll()`とする。`cost > max_work_per_request`は`work_limit_exceeded`、
+session／player／global budget不足は`backpressure`。work拒否時はPaper検索、handle解決、handle発行を行わない。
+work受理後はcapacity不足やentity状態変化が起きても払い戻さない。
+
+##### `issueAll()`のtransaction
+
+外部dimension移動後に同じdimensionの既存handleを持つentityがnearbyへ再登場した場合は、そのhandleを再利用する。
+dimensionが異なる既存handleは、旧handleの失効と新handleの発行を同じtransactionへstageする。capacityは
+`現在のhandle数 − transaction内で失効するhandle数 ＋ 新規handle数 ＋ open中のspawn reservation数`という
+projected stateで判定する。成功時に一括commitし、capacity失敗時は旧handleを含むregistryを変更しない。
+成功後に失効した旧handleの使用は`entity_not_found`とする。
+
+filter後にremoved／unloaded／invalidとなったentityはそのentityだけ結果から除き、既存handleの失効もtransactionへ
+stageする。truncate後に消失しても次候補を補充せず、残りだけで成功し、全件消えれば`[]`を返す。後続のcapacity
+失敗等ではstaged失効を含め全変更をrollbackする。このsnapshot queryでは一entityの消失をrequest全体の
+`entity_unavailable`にせず、同reasonはclientがhandleを明示して操作した場合に限定する。
+
+##### `ParticleSpec`と検証順
+
+既存のdata不要particle文字列を引き続き受ける。object形の`ParticleSpec`はtop-levelでexactly
+`particle_id`／`receiver`／`data`だけを許可し、未知fieldを全階層で拒否する。`receiver`省略は`"world"`、
+`data`省略はdata指定なしを意味し、`"data": null`は`invalid_params`とする。Dust dataはexactly
+`color`／`size`、Block dataは既存`BlockSpec`のexact schemaを使う。
+
+`world.spawnParticle`の検証と副作用の順序は、(1) 既存9／10 paramsとscalar、(2) count runtime policy、
+(3) particle引数のstring／object shape、(4) `ParticleSpec` top-levelと`particle_id`抽出、
+(5) particle ID解決、(6) data有無・型・schema整合、(7) receiver構文・`self` player解決、
+(8) permission／build range、(9) WorkAdmission、(10) chunk準備、(11) `ParticleBuilder` spawnとする。
+未知particleと未認証`self`の併発は`unknown_particle`、正しいparticleと不正dataと未認証`self`の併発はdata側の
+error、正しいparticle／dataと未認証`self`の併発は`auth_required`を優先する。`receiver:"self"`でも既存`force`を
+受理し、変更せず`ParticleBuilder`へ渡す。work受理後のchunk／spawn失敗でもworkを払い戻さない。
+
+WireScopeのprotocol `23.2.0`認識をB8 compatibility setへ含める。validator、method認識、sanitizer、
+shared fixture接続を対象とし、Scratch learner blockは別trackの非blockerとする。
 
 ---
 
