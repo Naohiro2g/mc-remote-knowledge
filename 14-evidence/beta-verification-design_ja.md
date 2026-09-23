@@ -81,10 +81,23 @@ protocol不変定数や最終運用値と主張しません。
 - `world.spawnEntity`の座標先行4 params、旧順序拒否、unknownでCOW等を生成しないこと、player／
   spawn不能type、capacity拒否時の副作用不在、epoch-scoped handle、結果不明時retry禁止。
 - b7 directionのunit vector出力、非zero vector入力、位置／dimension不変。
-- b8 nearbyに対するbounded scan／player除外／partial handle禁止、remove失効。
-- b6 signの4行／面／state検証とrollback。typed particle採用時は有限schema。
+- b8 nearbyのplayer／dimension／validity filter→UUID重複排除→丸め前absolute座標の球境界（`<= radius²`）→
+  二乗距離／canonical lowercase UUIDのUnicode code point順→`max_entities` truncate→`issueAll()`。
+  正負座標、chunk境界、同距離UUID、丸めで順序が変わる値をshared fixtureで固定する（`2026-09-23-01`）。
+- b8 nearbyの幾何的X/Z bounding squareによるchunk column数＋`max_entities`のwork cost、整数overflow、
+  `max_work_per_request`境界とsession／player／global budget境界、work拒否時のPaper検索／handle解決／発行0回、
+  受理後失敗での非返却。loaded chunk数や実entity数をcostへ使わない。
+- b8 `issueAll()`の同dimension handle再利用、dimension不一致時の旧handle失効＋新handle発行、spawn reservationを
+  含むprojected capacity、成功時一括commitとcapacity失敗時rollback。filter後／truncate後の候補消失では
+  補充せず残存候補または`[]`で成功し、staged失効は後続失敗時にrollbackする。snapshot query中の一entity消失を
+  request全体の`entity_unavailable`にせず、明示handle操作のreasonと区別する。`entity.remove`失効も照合する。
+- b6 signの4行／面／state検証とrollback。b8 `ParticleSpec`のreceiver／data省略、明示`data:null`、
+  top-level／Dust／BlockSpec各階層のstrict schema、未知particle＋未認証`self`、不正data＋未認証`self`、
+  正しいparticle／data＋未認証`self`の優先reason、既存forceの`self`時pass-through、work受理後の非返却を固定する。
 - Python cursor／retry／handle投影、Scratch thread-local event context／monitor guard。
-- WireScope schema v1／compatibility revision v1.1 validatorとartifact set。
+- WireScope schema v1／compatibility revision v1.1 validatorとartifact set。b8はprotocol `23.2.0` validator、
+  entity lifecycle／particle Stage 2のmethod認識、sanitizer、shared fixture消費をcompatibility setで照合する。
+  Scratch learner blockは非blockerとする。
 - bounded thread-safe connection FIFO、notificationの無言drop禁止、backpressure中の順序維持。
 - 正常／拒否notificationから`connection.flush`までのbarrier、後続command非包含、epoch非跨越、
   flushが個別成功を集約しないこと。
@@ -110,8 +123,9 @@ plugin実装完了をblockしないが、release gateの正式根拠に使う場
 6. event後にbuild dimension／originを変更してもDTOが変わらず、clientの不一致guardが作動する。
 7. `overworld`入力後もhello／setter result／player／eventが`minecraft:overworld`で一致し、一般namespaceの
    loaded dimensionも同じgrammarで往復する。Bukkit world nameをidentityとして返さない。
-8. b5ではentityのunload／外部dimension移動、b7ではdirection、b8ではremove／`entity.setPose` dimension移動を実Paper挙動と照合する。
-9. b5ではspawn、particle、heightをwork limit境界の内外で確認し、b6でsign、b8でnearbyを追加する。spawn系はfractionalな
+8. b5ではentityのunload／外部dimension移動、b7ではdirection、b8ではnearby中の候補消失・handle transaction、remove／`entity.setPose` dimension移動を実Paper挙動と照合する。
+9. b5ではspawn、particle、heightをwork limit境界の内外で確認し、b6でsign、b8でnearbyのchunk column costと
+   particle Stage 2のreceiver／typed dataを追加する。spawn系はfractionalな
    origin相対座標を事前roundせず、座標先行paramsでplugin／Python／Scratch／WireScopeが一致すること、
    particleのforce省略時`true`と未知entityの副作用不在も確認する。
 10. WireScopeへScratch／Pythonの両sourceを順に接続し、b5 method／result／error／lossを同じUIで確認する。

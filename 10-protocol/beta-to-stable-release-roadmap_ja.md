@@ -249,9 +249,10 @@ versionだけを上げると未実装対応を名乗る。Scratch担当は誤指
 
 ### 3.3 b8 — entity lifecycle、ParticleBuilder Stage 2
 
-**HOLD（2026-09-04）**: b8の実装／release作業は、release済みb6／b7 setのdeployment経路を整理する間は
-開始しない。Stack担当が短いdeployment依頼を受け、Backstage確認、実機preflight、preset／order／lock確定、
-apply、doctorまでを一続きで完了できる状態を確認した後に再開する。以下のb8 scopeは取り消さず保持する。
+2026-09-04のB8 HOLD（`2026-09-04-04`）は、2026-09-07のb7.post2 deploymentランスルーで再開条件を
+満たした。収集→preset／order／lock確定→apply→doctorの完走記録は
+[release gate notes](../00-hub/release-gate-notes_ja.md)を正とする。B8 contract lockと実装は再開可能である。
+この再開はB8 release GREEN、public deploy、shared環境変更の許可を意味しない（`2026-09-23-02`）。
 
 次をread／writeへ分けず、handle取得、状態観察、移動、終端まで一つの縦sliceへ閉じます。
 
@@ -260,16 +261,18 @@ apply、doctorまでを一続きで完了できる状態を確認した後に再
 - `entity.setPose`
 - `entity.remove`
 
-nearbyの一覧は、探索後すぐ使えるsnapshotとして少なくともopaque `handle`、canonical `type`、`pos`を返す
-方向とします。yaw／pitch／direction／full poseは一覧へ重ねず個別getterに任せます。player除外、bounded検索、
-chunk loadなし、request全体のhandle capacity事前確認を維持します。exact params、radius／件数上限、terminal
-error、set失敗の原子性はb8 contract lockで固定します。
+nearbyの一覧は、探索後すぐ使えるsnapshotとしてopaque `handle`、canonical `type`、`pos`を返します。
+yaw／pitch／direction／full poseは一覧へ重ねず個別getterに任せます。player除外、bounded検索、chunk loadなし、
+transaction単位のhandle capacity判定を維持します。球境界、丸め前の二乗距離とcanonical UUIDによる順序、
+幾何的chunk column数＋`max_entities`のwork cost、WorkAdmission前の検索・handle副作用不在、候補消失時の
+部分成功とhandle transaction／rollbackは`2026-09-23-01`／[wire §5.8.3](wire-format-design_ja.md)を正とします。
+未記載のparams／cap／他のentity methodのexact shapeは別途固定します。
 
-particle Stage 2では、既存のdata不要particle文字列とworld全体への既定配送を壊さず、receiver選択と有限なtyped
-dataを後方互換な追加としてcontractします。最初のreceiver候補は既定の`world`と呼出playerだけの`self`に絞り、
-任意player一覧、UUID、距離指定は同じsliceへ入れません。typed data候補はdustの色＋sizeとblock particleの
-`BlockSpec`に絞り、任意Java object、item、transition、trail、vibrationを受けません。exact wire shape、methodを
-既存`world.spawnParticle`の拡張にするか別methodにするか、result／error、capはb8 contract lockで固定します。
+particle Stage 2では、既存のdata不要particle文字列とworld全体への既定配送を保ち、`world.spawnParticle`の
+object形`ParticleSpec`へ`receiver`と有限なtyped dataを追加します。`receiver`省略は`world`、`data`省略は
+data指定なしで、明示`null`は`invalid_params`です。receiverは`world`／`self`、dataはdustの`color`／`size`と
+blockの既存`BlockSpec`を対象とし、全階層で未知fieldを拒否します。粒子ID→data→receiver→permission→work→
+chunk→spawnの検証・副作用順と複合errorの優先順は`2026-09-23-01`／wire §5.8.3を正とします。
 
 Python surfaceと3D graphの小さいapplication sampleをb8 acceptanceへ含めます。receiverが実際に対象playerだけへ
 届く2-player確認、dust／blockの描画、1.21.11／26.2のdual-target pulseをchange coneに入れます。Scratchは
