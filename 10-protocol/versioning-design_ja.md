@@ -247,9 +247,8 @@ semver の意味づけ（§3）に従って突き合わせる。
 - パースは**右から patch・minor を各1桁**、**残り全部がメジャー**。
 - 不変条件：**メジャーは多桁可**（20〜99 は4桁の 2000〜9999 に収まる。100 以上で桁が伸びるが右からのパースは崩れない）。**minor と patch は 0–9 を維持**する（10 以上にすると連結が曖昧になる）。
 
-公開済みb7のartifact `2301.0.0b7`は、protocol `23.1.0`のminorとpatchの位置を取り違えた
-歴史的な誤採番である。公開済みtag、artifact、post-release、manifestは既存identityのまま保持し、
-削除、差し替え、retag、遡及改名を行わない。このidentityを後続版のfold先例にはしない。
+公開済みb7のartifact `2301.0.0b7`は、protocol `23.1.0`のminorとpatchを取り違えた誤採番である。
+公開済みtag／artifact／post-release／manifestはそのidentityを維持し、以後は上記fold規則に従う。
 
 ---
 
@@ -265,14 +264,9 @@ DECISIONS `2026-06-25-02`（ラダー）・`2026-06-25-03`（初版 retro-mark�
 
 > 用語：本節は「段（rung）」に統一する。聴衆×内容で区切られた1つの帯域を指す（旧稿の「帯」「rung」は同義）。
 
-`bN`の数値は、直前のfinal release以降に公開するbetaの通番である。初回stable前はbootstrap release trainの
-通番とする。active train中はprotocolのmajor／minor／patch、または§9.3でfoldしたartifact coreが変わっても
-`b1`へ戻さない。final releaseが無ければresetせず、finalを公開した時点でtrainを閉じ、その後の最初のbetaを
-`b1`とする。一度公開したbeta番号は再利用しない。`bN`は公開順を示すだけで、接続互換性はprotocol versionが担う。
-
-したがって`2100.0.0b1`〜`b4`、`2200.0.0b5`、`2300.0.0b6`、公開済み
-`2301.0.0b7`のbeta通番は同じbootstrap trainとして連続する。最後のartifact coreだけは§9.3に反する
-誤採番であり、beta通番`b7`の継続自体は誤りではない。
+`bN`は直前の安定版（final release）以降のbeta通番とする。開発中にprotocol versionやfold後の
+artifact coreが変わっても通番を維持し、final公開後の次のbetaを`b1`から始める。初回stable前の
+`b1`〜`b7`も同じtrainであり、b7のfold誤採番とは別の判断である（`2026-09-23-03`）。
 
 ### 10.2 段・聴衆・チャンネル
 
@@ -490,7 +484,7 @@ long-lived公開、credential checkpoint／doctor、world backup／restoreはpos
 構造化block valueが`world.setBlock`／`setBlocks`のparamsと`world.getBlock`のresultを
 破壊的に変更するため、b5からprotocolを`22.0.0`へ上げる。b5 artifactは`2200.0.0b5`で閉じる。
 さらに既存event typeを削除・置換するb6はprotocol `23.0.0`、artifact `2300.0.0b6`とする。
-beta番号はrelease train上の段名を維持して`b1`へ戻さない。protocol 21の最終artifactは
+beta番号は初回stableまで通番で維持する（`2026-09-23-03`）。protocol 21で最後に公開したbeta artifactは
 `2100.0.0b4`である（DECISIONS `2026-08-16-04`を`2026-08-19-02`／`2026-08-26-06`で改訂）。
 
 protocol 21／22／23のメジャーが異なるclient／plugin混在はhelloで`protocol_mismatch`として拒否する。
@@ -665,15 +659,15 @@ exact ring／handle／poll／particle／work／buffer／timeout上限はruntime 
 実環境で本較正する。OS clipboardによるブロック移送は保存entry gateへ自動追加せず、ブラウザ保存スプライトの
 運用評価後まで`deferred`とする（`2026-08-26-01`）。
 
-b7はprotocol `23.1.0`／公開artifact `2301.0.0b7`とし、direction四methodを一組で扱った。
-artifact番号は§9.3の正しいfoldなら`2310.0.0b7`だったが、公開済みidentityは変更しない。
-damage-capableな`world.strikeLightning`を加える。旧`world.strikeLightningEffect`候補は実装入力から除外する。
+b7はprotocol `23.1.0`／公開artifact `2301.0.0b7`とし、direction四methodと
+damage-capableな`world.strikeLightning`を一組で扱った。b7のfold誤採番は§9.3のとおり公開済み
+identityを維持する。旧`world.strikeLightningEffect`候補は実装入力から除外する。
 directionの数値／handle lifecycleとfull lightningのpermission／rate／work／副作用境界はwire §5.8.2でlock済みである。
 既存`world.spawnParticle`のPaper `ParticleBuilder`への内部移行はwire不変の
 Stage 1として同梱し、それ自体をprotocol変更理由にしない。b8は計画どおりprotocol `23.2.0`なら
-artifact `2320.0.0b8`とし、
-entity lifecycle四methodを一組で扱うほか、既存particleの意味を保つ後方互換なreceiver選択／有限typed dataを
-Stage 2として追加し、Python surfaceと3D graph sampleで検証する。get／setをbeta間で機械的に分割しない。
+artifact `2320.0.0b8`とし、entity lifecycle四methodを一組で扱うほか、既存particleの意味を保つ
+後方互換なreceiver選択／有限typed dataをStage 2として追加し、Python surfaceと3D graph sampleで検証する。
+get／setをbeta間で機械的に分割しない。
 
 条件付きb9はprotocol `23.3.0`／artifact `2330.0.0b9`とし、b8と同じparticle specを使うbounded batchだけを
 候補にする。b8実測で単点RPCが律速になり初回stable必須と判断した場合だけ使い、追加particle type、追加receiver、

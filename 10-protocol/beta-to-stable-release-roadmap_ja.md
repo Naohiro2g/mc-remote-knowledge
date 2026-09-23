@@ -51,9 +51,9 @@ betaは旧b6へ集めていたAPIを一度に完成させる箱ではなく、co
 | rc | b8またはb9と同じcore | API freeze、capacity、soak、rollback | 2026-10 |
 | 初回stable | rcと同じcore | 全component mature、配布・運用説明を固定 | 2026-11 |
 
-b7の`2301.0.0b7`は公開済みidentityとして保持しますが、protocol `23.1.0`の§9.3どおりのfoldは`2310`です。
-この誤採番を後続へ連鎖させず、b8以降はprotocol digitsを同じ順序で連結します。b9を使わない場合のstable coreは
-`2320.0.0`、使う場合は`2330.0.0`です。b9はb8の3D graph prototypeで
+公開済みb7の`2301.0.0b7`はidentityを維持します。正しいfoldは`2310`であり、b8以降は
+[versioning §9.3](versioning-design_ja.md)に従います。b9を使わない場合のstable coreは`2320.0.0`、
+使う場合は`2330.0.0`です。b9はb8の3D graph prototypeで
 単点RPCが実際の律速になり、batchが初回stableに必要と観察された場合だけ使います。event filter／clear、
 追加particle type、追加receiver、保存、legacy整理の残件箱にしません。9月末で新API追加を止めます。
 
