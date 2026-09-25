@@ -285,14 +285,15 @@ authority は manifest を持つ。
 }
 ```
 
-### 9.2 domain 整合と fail close
+### 9.2 domain 整合と起動時の欠落（`2026-09-25-01`）
 
-- 未知 `schema_version`、authority の欠落・破損、snapshot と authority の `credential_domain_id` 不一致は、いずれも**空 store 扱いにせず fail closed** とする。
+- 通常起動時に snapshot または authority manifest が存在しなければ、両方無い場合も片方だけ無い場合も、plugin が**新しい credential domain と空 snapshot／authority を生成する**。残っている旧 backend は新 domain の認証に使わず、旧 `mcrs_`／`mcrl_` token はすべて無効となり、利用者は再ペアリングする。旧 backend を復元して継続性を推測しない。
+- 起動ログへ、どちらが欠けていたか、新 domain への初期化結果、旧 token の失効と再ペアリングの必要性を明示する。秘密の実値は記録しない。初期化が完了しなければ認証を受け付けず、`auth.enforcement` を OFF へ落とさない。
+- I/O 障害などで存在を確認できない状態は欠落とみなさず、認証を停止して原因を起動ログへ出す。
+- 未知 `schema_version`、backend の破損・読み取り不能、snapshot と authority の `credential_domain_id` 不一致は**fail closed** とする。存在する旧 backend を「空」と解釈して認証を継続しない。
 - snapshot record 側にも domain を重複保持する場合、header との不一致を corruption として fail closed にする。
-- store を読めない場合、**空 store として通常起動しない**。store 障害で auth enforcement を OFF へ落とさない（`2026-07-04-03` 項5 の「トグルは開発順序の道具、リリース既定は enforced」と同旨）。
-- 起動時に snapshot と authority の双方が無い場合も、空 state を自動生成しない（§9.5）。
 - 起動時に `credential_id` と `token_hash` の重複・矛盾を検査する。
-- 可用性は認証を緩めることでなく、授業前 doctor・bootstrap 完了確認・domain health 確認・mount / path preflight・明示 reset 導線で確保する。**自動的な無認証 fallback は行わない。**
+- 可用性は認証を緩めることでなく、起動時の欠落初期化と domain health 確認で確保する。**自動的な無認証 fallback は行わない。**
 
 ### 9.3 revoke の線形化点
 
@@ -327,21 +328,20 @@ step 4 以降は credential が失効済みであり、**step 6 が失敗して�
 
 保存 path と serialization は plugin 内部実装であり **wire 契約にしない**。別 backend（SQLite 等）へ交換しても、同じ線形化・create-only / idempotency・domain 整合・durable-before-success を保証する。
 
-### 9.5 bootstrap / reset の所有境界
+### 9.5 初期化 / reset の所有境界
 
-- **stack**：`CredentialStore` と `RevocationAuthority` の保存 resource を profile に従って用意・mount し、明示 bootstrap / reset の operator 承認と transaction を管理する。
+- **stack**：`CredentialStore` と `RevocationAuthority` の保存 resource を profile に従って用意・mount し、明示 reset の operator 操作を管理する。
 - **plugin**：domain ID 生成、manifest、snapshot、tombstone の形式と生成処理の正本を持つ。
-- stack は plugin 内部 JSON を独自生成せず、plugin 所有の明示管理 surface を呼ぶ。
-- 二 backend を atomic commit できないため、途中失敗は domain 欠落・不一致として fail closed にする。
-- bootstrap の再試行は、双方が空、または plugin 所有の同一 bootstrap transaction の安全な途中状態と検証でき、credential record / tombstone がまだ無い場合だけ許可する。
-- **reset は通常起動時の自動修復ではない。** 全 credential 失効を伴う明示操作とする。
+- plugin は§9.2の欠落を通常起動時に初期化する。stack は plugin 内部 JSON を独自生成しない。
+- 初期化が完了するまで新 domain を認証可能にせず、途中失敗は fail closed とする。
+- **既存の両 backend が揃っている domain の reset は明示操作**とし、破損や domain 不一致を通常起動時に自動修復しない。
 
 ### 9.6 rollback / disaster recovery
 
 - world restore と credential snapshot restore は **revocation authority を書き戻さない**。
 - snapshot が revoke 前へ戻っても、authority tombstone により旧 credential を拒否する。
-- authority を読めない・信頼できない・snapshot と domain が一致しない場合は fail closed にする。
-- host 全損等で current authority を回収できなければ、古い snapshot を昇格せず、**新 domain ＋ 空 snapshot で全 credential 失効・再ペアリング**とする（§8 末尾および `2026-07-16-03` の安全側既定）。ただしこれは**明示的な restore / recovery 操作に限る**＝通常起動時の store 破損を検出して黙って空 store へ置換してはいけない。
+- 存在する authority を読めない・信頼できない、または snapshot と domain が一致しない場合は fail closed にする。backend の欠落は§9.2の起動時初期化を適用する。
+- host 全損等で current authority を回収できなければ、古い snapshot を昇格せず、**新 domain ＋ 空 snapshot で全 credential 失効・再ペアリング**とする（§8 末尾および `2026-07-16-03` の安全側既定）。通常起動時の欠落も§9.2に従って新 domain とする。存在する store の破損を検出した場合は、黙って空 store へ置換しない。
 - offline catering では cloud authority を必須にせず、local 分離により通常 rollback だけを保護する。
 - VPS で host 全損後の credential 継続を保証する場合は、revoke 線形化前に off-host authority の durable commit まで同期完了させる。非同期複製だけで継続性を主張せず、remote freshness を証明できない復旧は全失効へ倒す。
 
@@ -349,7 +349,7 @@ step 4 以降は credential が失効済みであり、**step 6 が失敗して�
 
 rollback domain は物理 volume の個数ではなく、**ある rollback 操作が何を書き戻すかという write set** で決まる。同一 filesystem でも snapshot path だけを戻す操作なら別 domain として機能し、逆に別 volume でも VM snapshot や storage 全体を同時点へ戻せば両方が戻る。plugin から物理的な保護強度は判定できない。したがって契約を二層に分ける。
 
-**plugin が保証する**：`CredentialStore` と `RevocationAuthority` が別 backend 境界であること、保存先を独立して設定できること、snapshot header と authority manifest の domain 検証、create-only tombstone、authority durable commit を revoke 線形化点にすること、authority の欠落・破損・domain mismatch での fail closed、authority と snapshot を同じものとして扱わないこと。加えて plugin が検証できる範囲として、同一 canonical path の拒否、一方が他方の配下になる設定の拒否、同一 backend identity を判定できる場合の拒否。**「別 volume であること」「VM snapshot から独立していること」は検証も保証もしない。**
+**plugin が保証する**：`CredentialStore` と `RevocationAuthority` が別 backend 境界であること、保存先を独立して設定できること、snapshot header と authority manifest の domain 検証、create-only tombstone、authority durable commit を revoke 線形化点にすること、起動時の欠落では新 domain を生成して旧 token を無効にし、破損・domain mismatch では fail closed にすること、authority と snapshot を同じものとして扱わないこと。加えて plugin が検証できる範囲として、同一 canonical path の拒否、一方が他方の配下になる設定の拒否、同一 backend identity を判定できる場合の拒否。**「別 volume であること」「VM snapshot から独立していること」は検証も保証もしない。**
 
 **deployment が保証する**：authority を保護対象 rollback の write set から外すこと、profile ごとの同一 filesystem / 別 volume / off-host の選択、その構成でどの障害まで保護できるかの宣言、backup / restore / doctor による構成の検証。
 
@@ -382,7 +382,7 @@ credential health projection は常駐 telemetry ではなく、**Stack doctor �
 - schema v1 の top-level は `schema`（固定値 `mcremote.credential-health`）、`schema_version`（`1`）、`emitted_at`、`checkpoint_id`、`health`、`reasons`、`credential_snapshot`、`revocation_authority`、`domain_consistency`、`reconcile_pending` とする。credential record、token / token hash、player UUID、device label を projection へ含めない。
 - `credential_snapshot`、`revocation_authority`、`domain_consistency` の nested object shape と enum vocabulary は McRemote と Stack が同じ schema revision の fixture で固定し、双方の parser / writer test を通してから利用可能とする。未確定の値を Stack が寛容に推測しない。
 
-checkpoint は観測 surface であり、§9.5 の bootstrap / reset transaction ではない。外部 transaction ID を checkpoint へ流用せず、doctor、通常起動、restore から bootstrap / reset を自動実行しない。bootstrap / reset の冪等再試行と transaction 所有権は未確定の別論点として残す。
+checkpoint は観測 surface であり、§9.5 の初期化 / reset transaction ではない。外部 transaction ID を checkpoint へ流用せず、doctor や restore を契機に初期化 / reset しない。通常起動時の backend 欠落だけは§9.2に従う。
 
 #### 9.9.2 Stack consumer 境界
 
@@ -398,7 +398,7 @@ Stack doctor は次を満たす。
 
 #### 9.9.3 公開 gate
 
-実装の検証項目と、公開導線を開く gate の開放条件は `2026-08-02-03`（DECISIONS 未確定節）が持つ。Stack 側の world restore と recovery archive import が credential を書き戻さない deterministic write-set 試験は実施済み。credential checkpoint は同条件 (6) の doctor 観測契約を具体化するが、**契約確定だけでは gate を開かない**。`RevocationAuthority` 本体、二 backend profile、checkpoint の両 repo test、runtime UID / GID の再現可能性、plugin live test、live restore 後の authority 継続が正式証跡として揃うまで gate は閉じたままとする。
+実装の検証項目と、公開導線を開く gate の開放条件は `2026-08-02-03`（DECISIONS 未確定節）が持ち、同条件 (5) の欠落時挙動は `2026-09-25-01` が改訂する。Stack 側の world restore と recovery archive import が credential を書き戻さない deterministic write-set 試験は実施済み。credential checkpoint は同条件 (6) の doctor 観測契約を具体化するが、**契約確定だけでは gate を開かない**。`RevocationAuthority` 本体、二 backend profile、checkpoint の両 repo test、runtime UID / GID の再現可能性、plugin live test、live restore 後の authority 継続が正式証跡として揃うまで gate は閉じたままとする。
 
 ### 9.10 b3後の停止点と再開順序（`2026-08-07-01`）
 

@@ -30,6 +30,8 @@
 
 > `2026-08-02-03` 補足（`2026-08-07-01`）: 同行の再開トリガと完了条件は、long-lived 公開 gate を再判定するための安全条件として維持する。credential-lifecycle の開発へ再着手するスケジューリング上のトリガには、`2026-08-07-01` が実利用での需要確認を追加した。公開には需要確認と既存安全条件の双方が必要であり、需要だけで gate を開かない。
 
+> `2026-08-02-03` 補足（`2026-09-25-01`）: 完了条件 (5) の「欠落が空 store へ fallback しない」は、欠落時に旧 domain の token を認証しない意味へ改訂する。通常起動時の snapshot／authority 欠落では新 domain を自動生成し、旧 token を失効させる。破損・読み取り不能・domain 不一致の fail closed は維持する。long-lived の公開 gate は引き続き閉じる。
+
 ---
 
 ## 2026-06-11
@@ -771,3 +773,8 @@ worktreeである。35 unit tests、build、実asset再現性、Scratch regressi
 | 2026-09-23-02 | **2026-09-04のB8 HOLDは2026-09-07 b7.post2 deploymentランスルーで再開条件を満たしたと判定し、B8 contract lockと実装を再開可能とする**。この判定はB8 release GREEN、public deploy、shared環境変更の許可を含まない。ランスルーの実作業完走と「目的達成」は`00-hub/release-gate-notes_ja.md`の2026-09-07欄を根拠とし、横断release GREENは主張しない | 確定（2026-09-23の同搬送票。`2026-09-04-04`のHOLD再開条件を既存観測に照らして判定。局面＝deployment経路の再構築を理由に止めていたB8の仕様・実装作業を再開する時点。B8 release候補のexact set／evidence／環境操作へ進む局面では、各gateの許可と根拠を別に判定する） | なぜ＝HOLD条件と後日の達成記録を現在の作業可能範囲へ接続し、contract／実装再開とrelease／deployment許可の境界を分ける。却下＝①旧HOLDを無期限に残す ②b7.post2ランスルー完走をB8 release GREENへ読み替える | `2026-09-04-04`の再開条件充足／`10-protocol/beta-to-stable-release-roadmap_ja.md` §3.3／`00-hub/release-gate-notes_ja.md` |
 | 2026-09-23-03 | **beta番号`bN`は直前の安定版（final release）から次の安定版まで通番で維持する**。protocol versionやfold後のartifact coreが途中で変わっても`b1`へ戻さず、final公開後の次のbetaを`b1`から始める。protocol `X.Y.Z`のfoldは数字を同じ順序で連結し、右からpatch／minorを各1桁として復元する。したがって`23.1.0`→`2310`、`23.2.0`→`2320`である。公開済みb7の`2301.0.0b7`はfold誤採番として既存tag／artifact／post-release／manifestのidentityを維持し、後続は正しいfoldを用いる | 確定（human ownerが[PR #14](https://github.com/Naohiro2g/mc-remote-knowledge/pull/14)の概要をcommit後に改稿し、2026-09-23にその趣旨でのレビュー・着地を指示。`2026-06-19-04`のfold規則と`2026-08-26-08`のbeta配置を現局面で再吟味し、foldの適用ミスだけを訂正する。局面＝初回stableのprotocolがbeta開発中に変わり得る段階。final公開後は新しいbeta通番を始める） | なぜ＝初回stableへの継続したbeta過程では、protocol変更によって目指すstable coreが動いてもrelease train自体は続く。foldの誤採番とbeta通番の継続を分ければ、公開済みb7のidentityを保ちながら後続の番号を一貫して付けられる。却下＝①protocol／artifact core変更ごとの`b1` reset ②b7の`2301`を後続foldの先例にする ③公開済みb7 identityの遡及改名 | `10-protocol/versioning-design_ja.md` §9.3／§10.1／§10.11.4、`10-protocol/beta-to-stable-release-roadmap_ja.md` §3、B8以降のartifact採番。実装／公開済みidentityは変更しない |
 
+## 2026-09-25
+
+| ID | 決定 | 状態 | なぜ / 却下案 | 影響 |
+| --- | --- | --- | --- | --- |
+| 2026-09-25-01 | **通常起動時にcredential snapshotまたはrevocation authority manifestが存在しなければ、pluginが新しいcredential domainを自動生成する**。両方欠けた新規サーバーも、片方だけ欠けたサーバーも対象とする。残った旧backendは新domainの認証に使わず、旧session token／long-lived credentialはすべて無効として再ペアリングする。起動ログに欠落箇所、新domainへの初期化結果、旧tokenの失効と再ペアリングの必要性を明示する。初期化できなければ認証を受け付けない。破損・読み取り不能・domain不一致は従来どおりfail closedとし、`auth.enforcement`をOFFへ落とさない。`2026-08-02-01`の欠落時停止、`2026-08-02-03`の公開gate条件(5)、11-plugin §9.2／§9.5／§9.6の通常起動時bootstrap禁止をこの範囲で改訂する。long-livedの一般公開gateは開かない | 確定（human ownerの2026-09-25判断。McRemote現行実装は未変更であり、実装・起動時ログ・新規／片側欠落／破損の検証が必要） | なぜ＝新規サーバーの認証開始に管理コマンドを必須にする必要はなく、片側が失われたときに旧状態を戻して継続性を推測する方が危険。新domainで旧tokenを失効させれば、認証を緩めずに通常起動から再ペアリングへ進める。却下＝①欠落時に認証を停止したまま明示bootstrapを要求する ②残った片側や古いbackupで旧tokenの継続を試みる ③欠落を理由に無認証へ切り替える | `11-plugin/platform-design_ja.md` §9／McRemote起動処理・ログ・試験／Stack初期構築／`2026-08-02-01`・`2026-08-02-03` |

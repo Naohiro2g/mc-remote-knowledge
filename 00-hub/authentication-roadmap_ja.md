@@ -18,6 +18,8 @@ credential lifecycle、checkpoint、rollback resistance、reset／災害復旧�
 - Stack の一般 profile、利用者ガイド、一般利用者向け preset、公開教材へ long-lived 導線を出さない。検証専用の isolated alpha は公開導線と同一視しない。
 - `2026-08-02-01`、`2026-08-02-03`、`2026-08-06-02` の設計、実装、既存 evidence は破棄せず、後続 slice の入力として保持する。
 
+`2026-09-25-01`により、通常起動時にcredential snapshot／revocation authorityの一方または双方が欠けていれば、新domainを自動生成して旧tokenを失効させる方針を確定した。McRemoteの現行実装はまだこの変更を含まず、実装と起動時ログの検証を要する。long-livedの一般公開gateは引き続き閉じる。
+
 ### 1.1 Client-side session credential UX
 
 各Client Libraryは、保存済みsession tokenがあればtarget単位で読み、まずtoken付き`hello`を試す。tokenが無い場合、
