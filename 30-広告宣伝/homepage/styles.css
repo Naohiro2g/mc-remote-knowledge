@@ -55,6 +55,11 @@ a:hover {
   margin: 0 auto;
   padding: 0 24px;
 }
+.container-image {
+  width: 30%;
+  height: auto;
+  flex-shrink: 0;
+}
 
 header {
   background: #ffffff;
@@ -554,7 +559,7 @@ section {
 
 .thoughts-body p {
   color: var(--text-muted);
-  margin: 0px 20px 0px 50px;
+  margin: 12px 20px 12px 50px;
   font-size: 1.00rem;
 }
 .thoughts-body li {
@@ -846,6 +851,7 @@ footer {
 
 .footer-images img {
   max-height: 48px;
+  max-width: 100%;
   width: auto;
   opacity: 0.85;
 }

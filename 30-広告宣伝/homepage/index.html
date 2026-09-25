@@ -73,7 +73,7 @@
 									<ul>
 										<li>真の目的は<strong>「学び方を学ぶ」</strong>ツールを提供し、初学者の自学学習アプローチ獲得をガイドすることだから。</li>
 										<li><strong>本物のScratch、本物のPython、Git/GitHub.comを使いたかった</strong>から。これらはオープンソース開発につながっているから。</li>
-										<li>その環境に慣れ親しむためのステージ、箱庭として選んだのが、マインクラフトだが、レゴ、Scratch、にも共通するタンジブルな「ブロック」、これも重要な要素である。</li>
+										<li>その環境に慣れ親しむためのステージ、箱庭として選んだのが、マインクラフトだが、レゴ、Scratch、にも共通する手触り感のある、タンジブルな「ブロック」、これも重要な要素である。</li>
 									</ul>
 								</div>
 							</div>
@@ -88,15 +88,11 @@
 								<h3>なぜ、今さら、コーディング？？　生成AI時代には無用では？</h3>
 							</summary>
 							<div class="thoughts-body">
-								<p>2026年、生成AIのレベルが爆発的に向上し、<strong>アプリを書いたことがある、は価値を失ってしまった</strong>ように見える。むしろ、「アプリ」の存在意義さえ疑われ始めている。今までアプリを使ってやっていた作業は、生成AIによってその場で生成された使い捨てアプリによって完了してしまうからだ。<strong>コーディングをこれから学ぶ意味、ある？</strong></p><p></p>
-
-								<ul>
-									<li>価値は成果物（アプリ）ではなく、作る過程で学ぶ人に起きる変化にある。アプリやアプリ制作の価値が下がっても、この価値は下がらない。</li>
-									<li>AIの出力を「良い／違う」と判断する目は、自分で素材に触れ、変えて、観察した経験からしか育たない。</li>
-									<li>ここで言うコーディングとは、文法を覚えて構文を打つことではなく、観察・評価・変更のループを自分で回すこと。AIはそのループの強力な相棒になれるが、ループの主体を代わってはくれない。</li>
-									<li>コードは、意図と現象のあいだをつなぐ、言語化された「読める層」。困ったときに一段降りて確かめられることが大事。</li>
-									<li>「コーディング」と「プログラミング」の違いについては、また別の場所で。</li>
-								</ul>
+								<p>2026年、生成AIは「マイクラみたいなアプリ」さえ作る。使い捨てアプリが目の前で生まれる今、「アプリを作ったことがある」の価値も、「アプリ」の存在意義さえも揺らいでいる。「ほとんどコードを書いていない」と公言するプログラマーも増えた。<strong>さて、コーディングをこれから学ぶ意味、ある？</strong></p>
+								<p>2017年、コーディングを「コードを触って・変えて・観察して・判断するループの中で、創造性を引き出す行為」と捉えた。（<a href="https://speakerdeck.com/naohiro2g/coding-vs-dot-programming-scratch-meetup-tokyo-august-2017" target="_blank" rel="noopener">「Coding vs. Programming（Scratch Meetup Tokyo, 2017）」</a>、<a href="20170801-Scratch-Meetup-Tokyo.pdf" target="_blank" rel="noopener">PDF</a>）小さく試し、組み合わせ、分解して直す。ブロック遊びにも似た、この手触りにこそ創造性が宿る。</p>
+ 								<p>生成AIの時代に、この解釈はむしろ重みを増している。<strong>生成、打ち込みは任せていい。判断は人間が握る。</strong>「要求仕様書は満たしています」というだけの使えないアプリが量産されてきたように、元々、コードを書くだけではダメだったのだ。</p>
+								<p>だから、もちろん、学ぶ意味がある。ただ、学ぶ中身が変わる。消えるのは暗記と打ち込みの労力で、<strong>消えないのは判断のための足場だ。その足場は、目の前のTODOから始まり、ビジョンを越え、ミッションまで続いている。</strong>コードは、意図と現象をつなぐ「読める層」。AIとの協働が進むほど、相手の仕事を読めることが前提になる。マイクラの世界なら、コードを変えた結果を目で見ながら試せる。マイクラリモコンは、「手触り感のある試行錯誤」の道具を目指している。</p>
+								<p><a href="thoughts/why-coding.html">全文を読む</a></p>
 							</div>
 						</details>
 
@@ -163,16 +159,16 @@
 						<h4>🔑 マイクラサーバーとの接続とペアリング</h4>
 						<p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0;">WireScope miniに表示される
 							ペアリングコマンド <code>/mcremote pair NNN-NNN</code>
-							をゲーム内チャットに貼り付けてEnterを押すと認証が完了します。コマンド先頭にスペースがあると無効なので注意。</p>
-
+							をゲーム内チャットに貼り付け、Enterを押すと認証が完了。コマンド先頭にスペースがあると無効なので注意。</p>
 						<img src="images/scratch-MC-connect.png" width="90%" alt="scratch MC connection" />
-
 					</div>
 					<p></p>
 					<span>Scratchのはじめの一歩</span>
 					<img src="images/scratch-stack.png" width="100%" alt="scratch first step" />
-
-
+					<div class="server-guide-box">
+						<h4>📍 建築原点とは？</h4>
+						マイクラリモコン内の座標は、全て建築原点からの相対計算になります。そのため、建築コードを共有したとき、原点さえずらせば、ピラミッドの横に大寺院を共存させられたり、同じワールドにたくさんの参加者が入った場合にも、独立した自由な建築、あるいは同じ領域でのコラボレーションが可能になります。例えば、上の例のように建築原点(200, 0, 200)で（5, 67, 5）を指定すると、実際には（205, 67, 205）にブロックが置かれます。
+					</div>
 				</div>
 
 				<!-- Python Card -->
@@ -183,9 +179,14 @@
 					<p>まずは、ターミナルを使って簡単にPythonモジュールをインストールして、チャットメッセージの表示、きれいに輝くシーランタンブロックの配置など、試してみましょう。</p>
 
 					<div style="margin-top: 8px;">
-						<p style="font-size: 0.85rem; margin-bottom: 4px; color: var(--text-muted);">Pythonモジュール（クライアント/ API）のインストール:</p>
-						<pre><code>pip install minecraft-remote-api</code></pre>
+						<p style="font-size: 0.85rem; margin-bottom: 4px; color: var(--text-muted);">Pythonモジュール（クライアント/ API）のインストール:
+						</p>
+						<pre><code>pip install minecraft-remote-api -U</code></pre>
+						<p style="font-size: 0.85rem; margin-bottom: 4px; color: var(--text-muted);">希望のリリースタグを指定すれば、PyPIに登録されている安定版ではなく、GitHub.comの最新版などを使うことができます。</p>
+						<pre><code>pip install -U git+https://github.com/Naohiro2g/minecraft-remote-api.git@v2301.0.0b7.post2</code></pre>
 					</div>
+
+					<p>ここから先は、VS CodeのJupyter Notebookで、一行ずつ実行するのもオススメ。</p>
 
 					<div style="margin-top: 8px;">
 						<p style="font-size: 0.85rem; margin-bottom: 4px; color: var(--text-muted);">
@@ -194,22 +195,26 @@
 # 公式箱庭サーバー（ベータ）に接続
 mc = Minecraft.create(address="sb-beta.mc-remote.com", port=25575)
 
-# 建築原点とプレイヤー位置の設定
+# 建築原点の設定
 mc.setBuildOrigin(200, 0, 200)
-mc.setPos(200, 100, 200)
 
-# チャット送信とブロック設置
-# （原点からの相対座標で (205, 67, 205) に置かれます）
+# チャット送信
 mc.postToChat("Hello, Minecraft from Python!")
-mc.setBlock(5, 67, 5, "sea_lantern")
-print("マインクラフトの世界にブロックを置きました！")</code></pre>
+
+# プレイヤー位置、向きの設定
+mc.setPos(30, 120, 30)  # (230, 120, 230) に移動
+mc.setPose(-1, -2, -1)
+
+# ブロック設置
+# 建築原点からの相対座標で (205, 67, 205) に置かれます
+mc.setBlock(5, 67, 5, "sea_lantern")</code></pre>
 					</div>
 
 					<div class="server-guide-box" style="margin-top: 10px;">
 						<h4>🔑 実行とペアリング</h4>
 						<p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0;">
 							<code>python hello.py</code> を実行後、ターミナルに表示される <code>/mcremote pair NNN-NNN</code>
-							をゲーム内チャットに貼り付けてEnterを押すと認証が完了します。認証は2時間有効。
+							をゲーム内チャットに貼り付け、Enterを押すと認証が完了します。認証は2時間有効。
 						</p>
 					</div>
 				</div>
@@ -277,7 +282,8 @@ print("マインクラフトの世界にブロックを置きました！")</cod
 	<section id="ecosystem">
 		<div class="container">
 			<h2 class="section-title">エコシステム・各リポジトリ案内</h2>
-			<p class="section-desc">マイクラリモコンを構成する公式オープンソースリポジトリ群です。</p>
+			<img src="images/TNT.png" alt="Explosion" style="height: 200px;" class="container-image"/>
+			<div class="section-desc">マイクラリモコンを構成するオープンソースリポジトリ群です。</div>
 
 			<div class="ecosystem-grid">
 				<div class="repo-card">
@@ -433,14 +439,14 @@ print("マインクラフトの世界にブロックを置きました！")</cod
 						<td>共通パケット観察Webアプリ</td>
 					</tr>
 					<tr>
-						<td><strong>公式箱庭サーバー（ベータ）</strong></td>
+						<td><strong>公式箱庭マイクラサーバー（ベータ）</strong></td>
 						<td><code>sb-beta.mc-remote.com</code></td>
 						<td>23.1.0</td>
 						<td>1.21.11、Java版：TCP25565 / 統合版：UDP25565</td>
 					</tr>
 					<tr>
-						<td><strong>公式箱庭サーバー</strong></td>
-						<td><code>sb-beta.mc-remote.com</code></td>
+						<td><strong>公式箱庭マイクラサーバー</strong></td>
+						<td><code>sb.mc-remote.com</code></td>
 						<td>旧プロトコル</td>
 						<td>1.21.11、Java版：TCP25565 / 統合版：UDP25565</td>
 					</tr>
