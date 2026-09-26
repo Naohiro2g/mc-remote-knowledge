@@ -281,6 +281,22 @@ nav a:hover {
   font-size: 0.9rem;
 }
 
+.scratch-connect-image,
+.scratch-stack-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 10px auto 0;
+}
+
+.scratch-connect-image {
+  max-width: 300px;
+}
+
+.scratch-stack-image {
+  max-width: 360px;
+}
+
 .server-guide-box h4 {
   font-size: 0.95rem;
   margin-bottom: 8px;
