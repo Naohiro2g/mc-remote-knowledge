@@ -55,10 +55,22 @@ a:hover {
   margin: 0 auto;
   padding: 0 24px;
 }
-.container-image {
-  width: 30%;
+.tnt-image {
+  width: 120px;
   height: auto;
   flex-shrink: 0;
+}
+
+.ecosystem-intro {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.ecosystem-intro .section-desc {
+  flex: 1;
+  margin-bottom: 0;
 }
 
 header {
@@ -108,12 +120,13 @@ nav ul {
 nav a {
   color: var(--text-muted);
   font-size: 0.95rem;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 nav a:hover {
   color: var(--primary-color);
   text-decoration: none;
+  font-weight: 900;
 }
 
 .sub-line {
@@ -863,5 +876,17 @@ footer {
 
   .action-cards {
     grid-template-columns: 1fr;
+  }
+
+  .ecosystem-intro {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .ecosystem-intro .tnt-image {
+    width: 100%;
+    max-width: 180px;
+    align-self: center;
   }
 }
