@@ -8,6 +8,8 @@
 成熟段階、b6／b7／b8／rc／stableはproduct release列、ケータリング／教材／広報はreleaseをまたぐ
 並走trackであり、別の軸です（`2026-08-26-09`）。
 
+機構モード（versioning-design §10.9）：Python API＝**soak**（TestPyPIで予行）、McRemote＝**bootstrap**（GitHub留め）（`2026-09-26-03`）。
+
 この節は R1／R2／R3 の粗い現在地を保持します。相を見直すときは理由を DECISIONS に残して反映します（`2026-09-26-01`）。
 
 ## 1. 戦略姿勢

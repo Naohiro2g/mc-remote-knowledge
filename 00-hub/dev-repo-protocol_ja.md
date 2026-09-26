@@ -264,7 +264,7 @@ release branchを閉じるときは、tagがあることだけで完了としな
 ## README・公開ドキュメントの言語と境界（`2026-09-08-01`／`2026-09-08-02`）
 - **第一言語（日本語）単一SSOT**: 各リポの公開READMEおよびドキュメントは日本語を正本とし、英語優先や同一ファイル内での日英パラレル並記を行わない。多言語対応方針の正本はナレッジリポの [`LANGUAGE_POLICY.md`](https://github.com/Naohiro2g/mc-remote-knowledge/blob/main/LANGUAGE_POLICY.md) とする。
 - **README冒頭の言語方針アラート**: 各リポの `README.md` 冒頭には、ナレッジリポの `LANGUAGE_POLICY.md` へのリンクを含む標準Noteアラート（`> [!NOTE]`）を配置し、各リポへ方針本文を複製しない。
-- **初学者向けフロントエンドと内部事情の隔離（Deep-hiding）**: READMEファーストビューは「3行・3ステップ」の最短手順に徹し、ハッシュ値（SHA-256）、ライセンス弁明、過渡期のバージョン地層、プロトコル仕様を冒頭に置かない（`00-hub/readme-sample-modernization-roadmap_ja.md`）。三層モデルの実現位置注記はREADMEに露出させず教材発展編（reconstruction sample）へ閉じる。
+- **初学者向けフロントエンドと内部事情の隔離（Deep-hiding）**: READMEファーストビューは「3行・3ステップ」を目安とした最短手順を優先し（再現性のために省けない環境構築はステップ数を超えてよい、`2026-09-26-04`）、ハッシュ値（SHA-256）、ライセンス弁明、過渡期のバージョン地層、プロトコル仕様を冒頭に置かない（`00-hub/readme-sample-modernization-roadmap_ja.md`）。三層モデルの実現位置注記はREADMEに露出させず教材発展編（reconstruction sample）へ閉じる。
 
 ## 実行境界（できないこと＋返し方）
 dev リポ所有の実行サーフェスの能力境界。「できるところまでやって」で手順を渡されたときの既定。

@@ -176,7 +176,7 @@
 					<img src="images/scratch-MC-connect.png" alt="scratch MC connection"
 						class="scratch-connect-image" />
 				</div>
-				<h4>Scratchのはじめの一歩</h4>
+				<h4>Scratchのはじめの一歩：</h4>
 				<img src="images/scratch-stack.png" alt="scratch first step" class="scratch-stack-image" />
 				<div class="server-guide-box">
 					<h4>📍 建築原点とは？</h4>
@@ -190,20 +190,20 @@
 				<div class="card-tag python">オープンソース開発への第一歩</div>
 				<h2>🐍 PythonでのHello, world!</h2>
 				<p>VS Codeなどのエディタでは自動補完でブロックIDなどが入力できる公式Pythonライブラリ。最新マインクラフトの世界へ向けて、自分のアイデアを自由にコード化できます。</p>
-				<p>まずは、ターミナルを使って簡単にPythonモジュールをインストールして、チャットメッセージの表示、きれいに輝くシーランタンブロックの配置など、試してみましょう。</p>
+				<p>まずは、ターミナルを使って簡単にPythonモジュールをインストールしてみましょう。</p>
 
 				<div style="margin-top: 8px;">
-					<h4>Pythonモジュール（クライアント/API）のインストール:</h4>
-					<!-- <pre><code>pip install minecraft-remote-api -U</code></pre>
-						<p></p> -->
-					<p>現在は、新プロトコルの安定版がPyPIに未登録なので、GitHub.comのリリース版を使います。</p>
-					<pre><code>pip install -U git+https://github.com/Naohiro2g/minecraft-remote-api.git@v2301.0.0b7.post2</code></pre>
+					<h4>Pythonモジュール（クライアント/API）のインストール：</h4>
+					<p><a href="https://docs.astral.sh/uv/getting-started/installation/" target="_blank" rel="noopener">uv</a>をインストールしたら、プロジェクトを作ってモジュールを追加します。現在は、新プロトコル版がPyPIに未登録なので、GitHub.comのリリース版を使います。</p>
+					<pre><code>uv init mc-hello
+cd mc-hello
+uv add "minecraft-remote-api @ git+https://github.com/Naohiro2g/minecraft-remote-api.git@v2301.0.0b7.post2"</code></pre>
 				</div>
 				<p></p>
-				<p>ここから先は、VS CodeのJupyter Notebookで、一行ずつ実行するのもオススメ。</p>
+				<p>VS CodeのJupyter Notebookで一行ずつ実行するのもオススメ。手順は<a href="https://github.com/Naohiro2g/minecraft-remote-api#readme" target="_blank" rel="noopener">minecraft-remote-apiのREADME</a>へ。</p>
 
 				<div style="margin-top: 8px;">
-					<h4>最小コード（<code>hello.py</code>）:</h4>
+					<h4>最小コード（<code>hello.py</code>）：</h4>
 					<pre><code>from mc_remote import Minecraft
 # 公式箱庭サーバー（ベータ）に接続
 mc = Minecraft.create(address="sb-beta.mc-remote.com", port=25575)
@@ -226,7 +226,7 @@ mc.setBlock(5, 67, 5, "sea_lantern")</code></pre>
 				<div class="server-guide-box" style="margin-top: 10px;">
 					<h4>🔑 実行とペアリング</h4>
 					<p>
-						<code>python hello.py</code> を実行後、ターミナルに表示される <code>/mcremote pair NNN-NNN</code>
+						<code>uv run hello.py</code> を実行後、ターミナルに表示される <code>/mcremote pair NNN-NNN</code>
 						をゲーム内チャットに貼り付け、Enterを押すと認証が完了します。認証は2時間有効。
 					</p>
 				</div>

@@ -339,9 +339,10 @@ setWorld/setBuildOrigin 分割は**コマンド署名の非互換変更＝§3 �
 **機構モード**は「公開チャンネルへ安全に publish できる運用成熟度」を表すプロジェクト状態。ラダーの段ではなく、段に直交する第2軸。正本は `grand-design-roadmap`（相マーカー流＝低 drift で1行保持、`2026-06-24-03`）。
 
 - **bootstrap**：beta / rcをGitHub留め（pre-release）。今Modrinth/PyPIへ出すのに二の足を踏む状態は「未熟だから劣る」ではなく「bootstrapモードだからGitHub留めが正準」。
+- **soak**：本番の公開チャンネルへ出す前の予行。beta を公開チャンネルごとの予行用チャンネルへ出し（PyPI なら TestPyPI。Modrinth の予行先は plugin が soak に入るときに決める）、下の遷移ゲート①〜④を実際に回す。本番の公開チャンネルにはまだ出さない。human owner が回した結果を見て mature へ移す（`2026-09-26-03`）。
 - **mature**：beta / rcを公開チャンネル（Modrinth beta ch / PyPI pre）へ。
 
-**mode 遷移ゲート（bootstrap→mature）**：①公開チャンネルへのpublishが再現可能（手作業一発勝負でなく手順書／`gh` / `uv publish`で反復可能）②soak / yankの運用を最低1サイクル通した ③退避手順を確認済み（PyPI yank・Modrinth channel変更/版削除で戻せる）④**exact-pin runbookを利用目的ごとに検証済み**（選んだbeta / rcを取得する明示手順と、stableの無指定取得を混同しない）。
+**mode 遷移ゲート（bootstrap→soak→mature。soak で①〜④を回し、通れば mature）**：①公開チャンネルへのpublishが再現可能（手作業一発勝負でなく手順書／`gh` / `uv publish`で反復可能）②soak / yankの運用を最低1サイクル通した ③退避手順を確認済み（PyPI yank・Modrinth channel変更/版削除で戻せる）④**exact-pin runbookを利用目的ごとに検証済み**（選んだbeta / rcを取得する明示手順と、stableの無指定取得を混同しない）。
 
 **非対称成熟（コンポーネント別 mode）**：api 側はクライアントが今後増え（他言語・ブリッジ等）、成熟タイミングは多岐にずれる。よって **mode は plugin/api 別に持つ**（`plugin=bootstrap / api=mature` 等を許す）。「PyPI は出せるが Modrinth はまだ」を待たせず表現するため。
 
