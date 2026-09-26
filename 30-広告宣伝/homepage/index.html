@@ -195,16 +195,16 @@
 				<div style="margin-top: 8px;">
 					<h4>Pythonモジュール（クライアント/API）のインストール：</h4>
 					<p><a href="https://docs.astral.sh/uv/getting-started/installation/" target="_blank" rel="noopener">uv</a>をインストールしたら、プロジェクトを作ってモジュールを追加します。現在は、新プロトコル版がPyPIに未登録なので、GitHub.comのリリース版を使います。</p>
-					<pre><code>uv init mc-hello
+					<pre><code>uv init --python 3.13 mc-hello
 cd mc-hello
 uv add "minecraft-remote-api @ git+https://github.com/Naohiro2g/minecraft-remote-api.git@v2301.0.0b7.post2"</code></pre>
 				</div>
 				<p></p>
-				<p>VS CodeのJupyter Notebookで一行ずつ実行するのもオススメ。手順は<a href="https://github.com/Naohiro2g/minecraft-remote-api#readme" target="_blank" rel="noopener">minecraft-remote-apiのREADME</a>へ。</p>
+				<p>VS CodeのJupyter Notebookで一行ずつ実行するのもオススメ。手順は<a href="https://github.com/Naohiro2g/minecraft-remote-api#jupyter" target="_blank" rel="noopener">minecraft-remote-apiのREADME</a>へ。</p>
 
 				<div style="margin-top: 8px;">
 					<h4>最小コード（<code>hello.py</code>）：</h4>
-					<pre><code>from mc_remote import Minecraft
+					<pre><code>from mc_remote.minecraft import Minecraft
 # 公式箱庭サーバー（ベータ）に接続
 mc = Minecraft.create(address="sb-beta.mc-remote.com", port=25575)
 
@@ -215,7 +215,7 @@ mc.setBuildOrigin(200, 0, 200)
 mc.postToChat("Hello, Minecraft from Python!")
 
 # プレイヤー位置、視線方向の設定
-mc.setPos(30, 120, 30)  # (230, 120, 230) に移動
+mc.setPos("overworld", 30, 120, 30)  # (230, 120, 230) に移動
 mc.setDirection(-1, -2, -1)
 
 # ブロック設置
