@@ -845,11 +845,22 @@ details[open] summary {
   color: var(--text-muted);
 }
 
-.history-tag {
-  display: inline-block;
+.history-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 3px;
+}
+
+.history-date,
+.history-version {
   font-weight: 700;
   color: var(--text-main);
-  margin-right: 6px;
+}
+
+.history-description {
+  margin-left: 18px;
 }
 
 footer {
