@@ -13,7 +13,7 @@
 
 ### Homepage
 
-2026年9月から次を段階的に整えます。設計正本および情報アーキテクチャは [公式ホームページ情報アーキテクチャ・導線設計](homepage-architecture-design_ja.md) を参照します。公開HTML/CSS/アセット実体は [homepage/](homepage/) に収容し、本リポジトリでGit管理します（`2026-09-13-01`）。
+2026年9月から次を段階的に整えます。位置づけ・デプロイ契約・反ドリフト規律は [公式ホームページ情報アーキテクチャ・導線設計](homepage-architecture-design_ja.md) を参照します。ページの文言・構成の正本は [homepage/](homepage/) 自体です（`2026-09-26-02`）。公開HTML/CSS/アセット実体は [homepage/](homepage/) に収容し、本リポジトリでGit管理します（`2026-09-13-01`）。
 
 - 基本情報: McRemoteとは何か、対象者、できること、できないこと、先人の功績と学びの支援ミッション
 - project詳細: 構成component、Python／Scratch（対等な並列ビークル）、WireScope、エコシステム案内
