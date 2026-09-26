@@ -43,6 +43,7 @@ public 正本世代の入口です。ここに載る path は、このリポ内�
 | `11-plugin/b7-live-gate-followup-instructions_ja.md` | b7 handle reason／session permission修正とtargeted再検証のMcRemote担当向け確定指示 |
 | `12-python-client/python-client-guide_ja.md` | Python client の公開利用面 |
 | `12-python-client/b7-permission-contract-followup-instructions_ja.md` | b7 successor fixtureとpermission説明へ追従するPython担当向け確定指示 |
+| `12-python-client/pypi-soak-uv-readme-instructions_ja.md` | TestPyPI soak（遷移ゲート①〜④）とuv前提README／移行ガイド再構築のPython担当向け指示（`2026-09-26-03`） |
 | `12-python-client/mc-constants-design_ja.md` | constants / catalog の生成・配布設計 |
 | `13-scratch-client/debug-session-design_ja.md` | debug / observation session の設計 |
 | `13-scratch-client/scratch-execution-model-design_ja.md` | Scratch 実行モデルと stream の前提 |
