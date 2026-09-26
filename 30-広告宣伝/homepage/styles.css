@@ -870,12 +870,146 @@ footer {
 }
 
 @media (max-width: 640px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
+  .nav-container {
+    padding-top: 6px;
+    padding-bottom: 0;
+    gap: 4px;
+  }
+
+  .brand-logo {
+    height: 44px;
+  }
+
+  nav {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  nav ul {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 16px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  nav ul::-webkit-scrollbar {
+    display: none;
+  }
+
+  nav a {
+    white-space: nowrap;
+    font-size: 0.88rem;
+  }
+
+  .hero {
+    padding: 28px 0 24px;
+  }
+
+  .hero-badge {
+    max-width: 100%;
+    padding: 2px 14px;
+    font-size: 0.82rem;
+  }
+
   .hero h1 {
-    font-size: 1.8rem;
+    font-size: 1.55rem;
+    line-height: 1.4;
+    letter-spacing: 0;
+  }
+
+  .sub-line {
+    flex-direction: column;
+    gap: 16px;
+    padding: 0;
+  }
+
+  .sub-line-image {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .sub-line-text {
+    width: 100%;
+    font-size: 0.95rem;
+    text-align: left;
+  }
+
+  section {
+    padding: 32px 0;
+  }
+
+  .section-title {
+    font-size: 1.45rem;
+    line-height: 1.35;
+  }
+
+  .section-desc {
+    font-size: 0.95rem;
+    margin-bottom: 20px;
   }
 
   .action-cards {
     grid-template-columns: 1fr;
+  }
+
+  .card,
+  .about-content,
+  .roadmap-box {
+    padding: 18px;
+  }
+
+  .thoughts-section summary,
+  .connect-guide summary {
+    padding: 10px 12px;
+  }
+
+  .thoughts-section summary h2,
+  .connect-guide summary h2 {
+    font-size: 1.05rem;
+    line-height: 1.4;
+  }
+
+  .thoughts-entry summary h3 {
+    font-size: 1.05rem;
+    line-height: 1.4;
+  }
+
+  .thoughts-body {
+    padding: 0 12px;
+    font-size: 0.95rem;
+  }
+
+  .thoughts-body p {
+    margin: 12px 0;
+    font-size: 0.95rem;
+  }
+
+  .thoughts-body li {
+    margin: 10px 0 0 20px;
+    padding: 0;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 12px 16px;
+  }
+
+  .matrix-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
   }
 
   .ecosystem-intro {
