@@ -707,7 +707,10 @@ plugin は Git tag / GitHub release title / JAR artifact 名を分離する（DE
 
 `mc-target` は plugin が実際に対象にする Minecraft/Paper 系列で、確認票で固定する。これは単純な patch increment では推測しない。たとえば Paper 26.2 stable へ移る場合は `26.2` を使い、`1.21.11` の次を `1.21.12` として扱わない。
 
-PythonAPI は repo-local tag `v<mc-remote-version>`（例 `v2100.0.0b2`）と package `minecraft-remote-api==<mc-remote-version>` を使う。Scratch editor も b2 以降は repo-local tag `v<mc-remote-version>` を使う。plugin だけは対応 MC バージョンを tag から特定する必要があるため、上表の `v<mc-target>-<mc-remote-version>` とする。scratch-editor b1 の `scratch-editor-2100.0.0b1` は既存 release identity として変更しない（DECISIONS `2026-07-11-02`）。
+PythonAPI は repo-local tag `v<mc-remote-version>`（例 `v2100.0.0b2`）と package `minecraft-remote-api==<mc-remote-version>` を使う。Scratch editor も b2 以降は repo-local tag `v<mc-remote-version>` を使う。
+
+GitHub release title は、PythonAPI が `minecraft-remote-api <mc-remote-version>`、Scratch editor が `mc-remote Scratch <mc-remote-version>` とする。Scratch の title に plugin 名の `McRemote` を使わない。`<mc-remote-version>` は tag から先頭の `v` を除いた文字列で、公開済み `v2301.0.0b7-post1` の title は `mc-remote Scratch 2301.0.0b7-post1` とする（`2026-09-27-03`）。
+plugin だけは対応 MC バージョンを tag から特定する必要があるため、上表の `v<mc-target>-<mc-remote-version>` とする。scratch-editor b1 の `scratch-editor-2100.0.0b1` は既存 release identity として変更しない（DECISIONS `2026-07-11-02`）。
 
 ### 10.12.2 bN の mc-target 束縛（床値規則）
 
