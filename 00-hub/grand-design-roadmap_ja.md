@@ -8,7 +8,7 @@
 成熟段階、b6／b7／b8／rc／stableはproduct release列、ケータリング／教材／広報はreleaseをまたぐ
 並走trackであり、別の軸です（`2026-08-26-09`）。
 
-この行は低 drift な粗い相だけを保持します。相を越えるときは DECISIONS 流で更新します（`2026-06-24-03`）。
+この節は R1／R2／R3 の粗い現在地を保持します。相を見直すときは理由を DECISIONS に残して反映します（`2026-09-26-01`）。
 
 ## 1. 戦略姿勢
 
@@ -51,16 +51,11 @@ Scratch固有の現状は[Scratch roadmap](../13-scratch-client/scratch-roadmap_
 
 ## 4. 現在の横断優先
 
-1. b8の実装／release作業をholdし、release済みb6／b7 setのdeployment経路をStack責任で再構築する。
-2. 「release set、target、構築方式」を伝える短い依頼から、StackがBackstage確認、実機preflight、
-   preset／order／lock確定、apply、doctorまで進められる状態にする。
-3. b6のVPS deploymentとb7のdev deployment（通常型／ケータリング型）を現行経路で扱い、そこで見つかった
-   artifact収集とprofileの不足をStackの正準runbook／dataへ反映する。
-4. deployment経路の成立後にb8を再開し、entity lifecycle／particle receiver・typed data／Python 3D graphを
-   短い縦sliceとして進める。必要な場合だけb9 particle batchを使う。
-5. `lookAt`、空間query、player別previewはAPI freezeまでにcontracted／deferred／removedを選び、無関係な残件をb9へ押し込まない。
-6. 10月rcから外部testerが会話履歴なしで開始・更新・復旧・feedbackできる入口を用意し、homepage／release情報／技術記事を並走させる。
-7. long-lived credentialの公開gateは閉じたまま、ケータリングで実需要を観察してから再開する。
+1. b7.post2の収集→preset／order／lock確定→apply→doctorランスルー完走を基線とし、B8のcontract lockと実装を進める。B8のrelease／deployment可否は別のgateで判定する。
+2. B8／protocol `23.2.0`のshared fixtureと必要なconsumer実装を揃え、entity lifecycle／particle receiver・typed data／Python 3D graphを短い縦sliceとして進める。nearbyとParticle Stage 2の契約は`2026-09-23-01`を正とし、必要な場合だけb9 particle batchを使う。
+3. `lookAt`、空間query、player別previewはAPI freezeまでにcontracted／deferred／removedを選び、無関係な残件をb9へ押し込まない。
+4. 10月rcから外部testerが会話履歴なしで開始・更新・復旧・feedbackできる入口を用意し、homepage／release情報／技術記事を並走させる。
+5. long-lived credentialの公開gateは閉じたまま、ケータリングで実需要を観察してから再開する。
 
 個別 repo の「次の一手」は保存せず、その repo の NOTES と contract から都度生成します。
 
