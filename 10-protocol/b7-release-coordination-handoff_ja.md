@@ -65,7 +65,7 @@ Scratch runtime 23.1対応、GUI b7 artifact、Scratch b7 tag／OCIを導いて�
 ## 4. Scratchが既に完了した作業
 
 Scratch ownerは`develop@773e298…`から全buildをやり直し、owner staging
-`/home/tsuji/.local/share/mc-remote/gates/b7-scratch-owner-artifact-set-1/`へ次を置いた。
+`~/.local/share/mc-remote/gates/b7-scratch-owner-artifact-set-1/`へ次を置いた。
 
 | artifact | bytes | SHA-256 |
 | --- | ---: | --- |

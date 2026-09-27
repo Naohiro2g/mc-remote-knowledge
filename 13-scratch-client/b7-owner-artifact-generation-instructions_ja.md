@@ -70,7 +70,7 @@ artifactを生成し、source commitとartifact bytesを結び付けてcoordinat
 - `wirescope-app.manifest.json`
 
 coordinatorが作成した
-`/home/tsuji/.local/share/mc-remote/gates/b7-integrated-artifact-input-1/`のfileをcopy、再label、入力比較元として
+`~/.local/share/mc-remote/gates/b7-integrated-artifact-input-1/`のfileをcopy、再label、入力比較元として
 使わない。owner自身のexact checkoutから独立生成する。
 
 ## 必須照合
