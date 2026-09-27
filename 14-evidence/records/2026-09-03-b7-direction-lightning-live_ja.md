@@ -14,7 +14,7 @@
 - artifact version: `2301.0.0b7`
 - contract: `10-protocol/wire-format-design_ja.md` §5.8.2
 - decisions: `2026-09-01-01`、`2026-09-01-02`、`2026-09-02-01`、`2026-09-02-02`
-- target: `m720s2-dev-integration`（host-native、既存稼働中）
+- target: `home-host-2-dev-integration`（ホームサーバー上のhost-native、既存稼働中）
 - exact set: `b7-integrated-artifact-set-1`（`release-gate-notes_ja.md` 2026-09-02 b7節）
 
 ## Fixed input（Python segment）
@@ -50,11 +50,11 @@ direction／lightning contract blocker（外部dimension移動時のreason誤判
 ## Sanitized artifact
 
 - [python-initial-attempt.json](../artifacts/2026-09-03-b7-direction-lightning-live/python-initial-attempt.json)
-  - SHA-256: `8f87d4bfad2fc707866d411ee92873996cd28c691292a51ba12245428ffe7732`
+  - SHA-256: `678c2c7754c0b033ad9fb5350825e10cdcc7357ddb0c0040e1adefebc3b688b5`
 - [python-direction-rerun.json](../artifacts/2026-09-03-b7-direction-lightning-live/python-direction-rerun.json)
-  - SHA-256: `25f3f54161715438af9e4380ee0ae089badbd7c0834b1d27915bbdea98ea97d1`
+  - SHA-256: `32b7f77f635150ce8f792d666f342563855a065f45d1aafcebf09f08c2660e98`
 - [python-resume-entity-lightning.json](../artifacts/2026-09-03-b7-direction-lightning-live/python-resume-entity-lightning.json)
-  - SHA-256: `f09b822f56ab493780b75371b916ad38ccf2deb2435bfbaec8ad486e37e04d41`
+  - SHA-256: `fb1a88dca367769fd38a03be7f428e2a09ac33e75a2fc5503af117feb12d5966`
 - [python-human-observation.json](../artifacts/2026-09-03-b7-direction-lightning-live/python-human-observation.json)
   - SHA-256: `36a4bf0d5a7fce19e981caf7236ebd94d303c2e2593d01c205f23795c0e8bc1d`
 
@@ -98,3 +98,5 @@ private endpoint、pairing identity、player UUIDは収録しない。
 - 全回帰、default branch統合、tag、公開release
 - Python test harnessの`KeyError`修正自体（follow-upとして別途扱う）
 - 上記3件のリリース後是正候補の実装・修正
+
+> 2026-09-27 sanitize：物理host名を論理名`home-host-2`へ置換した。artifact 3件（initial-attempt、direction-rerun、resume-entity-lightning）の`target`値を置換し、上のSHA-256は置換後の値へ更新した。観測内容は変えていない。

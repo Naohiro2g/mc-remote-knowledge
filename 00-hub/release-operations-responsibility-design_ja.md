@@ -80,7 +80,7 @@ private inventoryとprivate evidenceはbackstage、秘密実値を含むrawはGi
 
 | 対象 | 例 | 所有者 |
 | --- | --- | --- |
-| 物理host／SSH alias | `m720s2` | backstage |
+| 物理host／SSH alias | ホームサーバー`home-host-2`（公開文書では論理名。実hostnameとの対応はbackstage） | backstage |
 | deployment／environment identity | `dev-integration` | Stackのorder／lock。実host写像はbackstage |
 | topology／policy | 通常dev、home server等のprofile | Stack |
 | exact component | source commit、JAR、wheel、browser artifact | preset／order／lockとgate exact set |

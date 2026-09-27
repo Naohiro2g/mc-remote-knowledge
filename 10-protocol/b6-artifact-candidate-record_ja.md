@@ -85,7 +85,7 @@ build環境の差だけでbyte列が変わった場合も、既存digestへ一�
 
 ## 6. 次のgate
 
-人間承認により通常dev integration targetを`m720s2`のhost-native `dev-integration`へ固定した。server側は
+人間承認により通常dev integration targetをホームサーバー`home-host-2`のhost-native `dev-integration`へ固定した。server側は
 既存のPaper `1.21.11-132`、world、config、credential backendを維持し、現行b5 JARをrollback入力として
 `plugins`外へ保持してb6 JARだけを交換する。§3のworkstation側artifactも同じset identityでstageする。
 

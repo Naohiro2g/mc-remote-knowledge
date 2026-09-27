@@ -1,7 +1,7 @@
 {
   "test_id": "2026-09-03-b7-direction-lightning-live",
   "segment": "python",
-  "target": "m720s2-dev-integration",
+  "target": "home-host-2-dev-integration",
   "endpoint": "redacted",
   "protocol": "23.1.0",
   "package": "2301.0.0b7",
