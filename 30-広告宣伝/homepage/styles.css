@@ -912,7 +912,9 @@ footer {
   }
 
   .brand-logo {
-    height: 44px;
+    width: 220px;
+    max-width: 100%;
+    height: auto;
   }
 
   nav {
@@ -987,7 +989,11 @@ footer {
   }
 
   .action-cards {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .card {
+    min-width: 0;
   }
 
   .card,
@@ -1039,6 +1045,12 @@ footer {
     -webkit-overflow-scrolling: touch;
   }
 
+  .matrix-table th,
+  .matrix-table td {
+    padding: 8px 10px;
+    font-size: 0.78rem;
+  }
+
   .ecosystem-intro {
     flex-direction: column;
     align-items: stretch;
@@ -1049,5 +1061,13 @@ footer {
     width: 100%;
     max-width: 180px;
     align-self: center;
+  }
+
+  .ecosystem-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .repo-card {
+    min-width: 0;
   }
 }
