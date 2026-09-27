@@ -238,7 +238,7 @@ semver の意味づけ（§3）に従って突き合わせる。
 
 - **epoch（`minecraft-remote-api==1!100.0.0`）**：PEP 440 標準で技術的には最善だが、`1!` 記法が馴染み薄く取り違えやすいので不採用。
 - **パッケージ改名**：`minecraft-remote-api`（配布名）と `mc_remote`（import 名）は、`mc-remote`/`mc_remote` の取り違え事故を避けるため**意図的に遠ざけている**。改名はこの設計を壊し移行コストも高いので不採用。
-- **protocol は 1.0.0 のまま番号だけ盛る案**：protocol semver は正直になるが、plugin/api の番号と protocol の「同じ数で揃う」対称性（§2）が消えるため不採用。
+- **protocol は 1.0.0 のまま番号だけ盛る案**：protocol semver は正直になるが、版のメジャーを protocol から畳む対応（§9.3）が消えるため不採用。
 
 ### 9.3 fold（畳み込み）規則の確認
 
@@ -302,8 +302,8 @@ artifact の `bN` / `rcN` / `N` と、deployment 環境の `beta` / `stable` は
 
 ### 10.5 接尾辞と表記
 
-- 正準接尾辞は **`b1` / `rc1`**（PEP 440 一本化）。plugin/api は §2 の番号対称性（§9.2 で再掲）を pre-release 段でも保ち、**core 番号＋接尾辞**（例 `2100.0.0b1`）を揃える。Git tag / artifact 名の全文字列は各 surface の責務に合わせる（plugin は §10.12.1）。
-- **なぜ `-beta.1` でなく `b1` か（強制選択）**：api は PyPI で配るため PEP 440 の正規化が**不可避かつ正準**で、何を書いても PyPI は `-beta.1` を `b1` に畳んで保存する＝`b1` 側は動かせない地面。一方 GitHub の pre-release は文字列と無関係な明示フラグ（どの表記でも手で立てる＝柔らかい側）。よって**動かせない側（PyPI=`b1`）に錨を下ろし、柔らかい側（GitHub）は手で扱う**のが筋。`-beta.1` を選ぶと PyPI 正準（`b1`）とタグ表示（`-beta.1`）が二文字列に割れ、core 番号＋接尾辞の揃いが壊れる。
+- 正準接尾辞は **`b1` / `rc1`**（PEP 440 一本化）。版のメジャーは protocol から畳む（§9.3）ので、同じ protocol の component は同じメジャーを持つ。protocol が変わる更新（API 追加など）は横断 release になり、メジャーが揃って変わる。protocol を変えない更新の minor、patch、`bN`、`.postN` は component ごとに進み、揃っていることを正準としない。横断 release で同じ文字列になるのは、同時に出した結果である（`2026-09-27-06`）。Git tag / artifact 名の全文字列は各 surface の責務に合わせる（plugin は §10.12.1）。
+- **なぜ `-beta.1` でなく `b1` か（強制選択）**：api は PyPI で配るため PEP 440 の正規化が**不可避かつ正準**で、何を書いても PyPI は `-beta.1` を `b1` に畳んで保存する＝`b1` 側は動かせない地面。一方 GitHub の pre-release は文字列と無関係な明示フラグ（どの表記でも手で立てる＝柔らかい側）。よって**動かせない側（PyPI=`b1`）に錨を下ろし、柔らかい側（GitHub）は手で扱う**のが筋。`-beta.1` を選ぶと PyPI 正準（`b1`）とタグ表示（`-beta.1`）が二文字列に割れ、一つの版が二つの文字列を持つ。
 - **post-release 接尾辞は `.postN`（ドット区切り）**：同じ artifact scope のまま公開物を差し替える場合の後置番号は
   `2301.0.0b7.post2` と書き、`-post2` を使わない。PEP 440 は `.postN` を正準形とし、`-post2` / `_post2` / `post2` を
   すべて `.post2` へ畳む。よって `-post2` と宣言しても Python の wheel / sdist 名と metadata は `.post2` になり、
@@ -312,8 +312,7 @@ artifact の `bN` / `rcN` / `N` と、deployment 環境の `beta` / `stable` は
   収集の入力そのものを壊す。Git tag も同じ文字列を使う（Scratch `v2301.0.0b7.post2`、McRemote
   `v1.21.11-2301.0.0b7.post2`＝Minecraft 版と artifact 版を区切るハイフンは §10.12.1 のままで対象外）。公開済みの
   `v2301.0.0b7-post1` は差し替えず、本表記は post2 以降へ適用する（`2026-09-07-03`）。
-- **単独更新でのずれ**：一つの component だけを更新する release（release運用と責務分担 §15）では、その component だけが版を進めてよい。揃えは次の横断 release で戻す（`2026-09-27-05`）。
-- **core 番号＋接尾辞を揃える射程**：割れるのは pre-release 接尾辞だけで、**安定版の core 番号 `2100.0.0` は全エコシステムで同一**（ただの数字、どのレジストリも受理）。`b1` で揃えるのは**現状2チャンネル限定の便宜**であって普遍法則ではない――他言語レジストリ（npm/crates.io=`-beta.1`、RubyGems=`.beta1`、Maven=`-beta1`…）は各自の正準形を強制し、**全てを満たす単一の pre-release 接尾辞は存在しない**。相互運用は文字列でなく protocol（§3）が保証するので suffix が割れても interop は不変。将来の他言語クライアント方針は §10.13。
+- **接尾辞表記の射程**：割れるのは pre-release 接尾辞だけで、**安定版の core 番号 `2100.0.0` は全エコシステムで同一**（ただの数字、どのレジストリも受理）。`b1` 表記に一本化するのは**現状2チャンネル限定の便宜**であって普遍法則ではない――他言語レジストリ（npm/crates.io=`-beta.1`、RubyGems=`.beta1`、Maven=`-beta1`…）は各自の正準形を強制し、**全てを満たす単一の pre-release 接尾辞は存在しない**。相互運用は文字列でなく protocol（§3）が保証するので suffix が割れても interop は不変。将来の他言語クライアント方針は §10.13。
 - **段名 `rc` と Modrinth チャンネル名 `beta` は意図的に一致しない**：Modrinth に rc チャンネルが無いため、rc ビルドは Modrinth の `beta` channel に載せる。既知マッピングであり不整合ではない（Modrinth 仕様が変わるまで固定）。
 - **成熟度は版文字列に焼かない**（`rc1-gh` 等は不採用、§10.8）。命名は内容軸（API 凍結度）だけを表し、機構モードは版に乗らない。
 
@@ -347,7 +346,7 @@ setWorld/setBuildOrigin 分割は**コマンド署名の非互換変更＝§3 �
 
 **非対称成熟（コンポーネント別 mode）**：api 側はクライアントが今後増え（他言語・ブリッジ等）、成熟タイミングは多岐にずれる。よって **mode は plugin/api 別に持つ**（`plugin=bootstrap / api=mature` 等を許す）。「PyPI は出せるが Modrinth はまだ」を待たせず表現するため。
 
-**合わせ込みは命名でなく stable 昇格ゲートに置く（AND 律速）**：同一 protocol の plugin/api は「同じ番号なら混在可」が契約（§3）。命名 `b1`/`rc1` は一本化（§10.5）し版に成熟度を焼かないので、命名の一本化とmodeの多値化は同じ層で衝突しない。beta / rcの公開先はcomponentごとに成熟でき、残る合わせ込みは **rc→N 昇格の足並み**に集約：
+**合わせ込みは命名でなく stable 昇格ゲートに置く（AND 律速）**：plugin/api は「同じ protocol なら混在可」が契約（§3）。命名 `b1`/`rc1` は一本化（§10.5）し版に成熟度を焼かないので、命名の一本化とmodeの多値化は同じ層で衝突しない。beta / rcの公開先はcomponentごとに成熟でき、残る合わせ込みは **rc→N 昇格の足並み**に集約：
 
 | protocol N の状態 | plugin mode | api mode | その protocol の最大到達段 |
 | --- | --- | --- | --- |
@@ -357,7 +356,7 @@ setWorld/setBuildOrigin 分割は**コマンド署名の非互換変更＝§3 �
 
 **stable 昇格＝全コンポーネント mature ＋ soak の AND 律速**（最遅コンポーネントに律速）。それまで「公開済みは rc 止まり・遅れている側は GitHub 留め rc」で揃える。
 
-却下＝mode 単一強制（非対称成熟を表現できず出せる側を待たせる）／stable をコンポーネント別に先行昇格（番号同一・混在可契約 §3 が崩れ「plugin stable・api rc」をユーザーが踏む）。
+却下＝mode 単一強制（非対称成熟を表現できず出せる側を待たせる）／stable をコンポーネント別に先行昇格（同じ protocol で混在可という契約の下で、成熟度だけが割れた「plugin stable・api rc」の組をユーザーが踏む）。
 
 ### 10.10 緊急避難：final の pre-release ダウングレード（チャンネル別 demotion）
 
@@ -386,7 +385,7 @@ protocol 21.0.0 を載せる配布系列は `2100.0.0b1` から始まり、旧�
 
 **束ねの根拠**：メジャーに束ねること＝一度に凍結すること、ではない。beta は凍結前に内容を積み上げる機構なので、1メジャー内でも build model を先・認証を後に置け、分割が認証の安定化に人質を取られない。R2 はリリース節目であって protocol メジャー境界ではなく、1つの R2 が1メジャーを beta 段階構築で運べる。当時却下した「認証だけを22へ分離」は引き続き不採用である。後のprotocol 22は認証分離ではなく、既存set/get shapeの破壊的変更をhelloで拒否するための新境界である（`2026-08-19-02`）。
 
-**足並み**：plugin/api は同一 protocol を名乗る限り混在可（§3）。core 番号＋接尾辞は揃える（§2）＝plugin は version `2100.0.0b1`、PythonAPI は `minecraft-remote-api==2100.0.0b1`。plugin の Git tag / release title / JAR artifact 名は §10.12.1 で分離し、`mc-target` は plugin 確認票で固定する。scratch-editor の b1 GitHub tag は component prefix を付けて `scratch-editor-2100.0.0b1` とする（DECISIONS `2026-07-02-04`）。hello 互換はメジャー一致必須（§8）ゆえ分割は両側同時実装。bN はbootstrap中GitHub限定、component成熟後はPyPI/Modrinthのpre-release面へも同じ版を出せる（§10.9）。
+**足並み**：plugin/api は同一 protocol を名乗る限り混在可（§3）。b1 は両者を同時に出したので、plugin は version `2100.0.0b1`、PythonAPI は `minecraft-remote-api==2100.0.0b1` と同じ版になった。揃えは規則ではない（`2026-09-27-06`）。plugin の Git tag / release title / JAR artifact 名は §10.12.1 で分離し、`mc-target` は plugin 確認票で固定する。scratch-editor の b1 GitHub tag は component prefix を付けて `scratch-editor-2100.0.0b1` とする（DECISIONS `2026-07-02-04`）。hello 互換はメジャー一致必須（§8）ゆえ分割は両側同時実装。bN はbootstrap中GitHub限定、component成熟後はPyPI/Modrinthのpre-release面へも同じ版を出せる（§10.9）。
 
 **`setPlayer` の終い方**：b1 でクリーン除去（互換エイリアス無し）。identity は pair/hello が持ち（`2026-06-15-02`）、旧 `setPlayer(name,x,y,z)` は name 無意味・y 規約変化で忠実エミュ不能。protocol メジャー不一致は接続拒否（§8）ゆえ in-band 互換は interop に無益。移行窓は legacy 1214.x ライン（EOL ポリシー §7.2＝現行＋直前1メジャー active）。
 
@@ -678,7 +677,7 @@ event filter／clear等の残件を同梱しない。使わなければ初回sta
 
 ### 10.12 pre-release 状態は明示操作（自動認識は PyPI のみ）
 
-版文字列から pre-release 状態が**自動認識される面**と、**明示操作が要る面**を分ける（DECISIONS `2026-06-25-06`）。§10.5／`2026-06-25-02` が core 番号＋接尾辞（PEP 440 `b1`）を揃える方針を選んだ帰結。
+版文字列から pre-release 状態が**自動認識される面**と、**明示操作が要る面**を分ける（DECISIONS `2026-06-25-06`）。§10.5／`2026-06-25-02` が接尾辞を PEP 440 の `b1` 表記へ一本化した帰結。
 
 | 面 | pre-release の決まり方 | `2100.0.0b1` の扱い |
 | --- | --- | --- |
@@ -694,7 +693,7 @@ event filter／clear等の残件を同梱しない。使わなければ初回sta
 - 開発・運用体制がbootstrapの間、McRemote pluginのreleaseはGitHub release / JAR asset作成までとし、server deploymentをtag push / release workflowから分離する。beta環境はtag済みrelease assetを入力にする別工程とし、現在の`2100.0.0b2`を最初の対象にする。Modrinth / PyPI publishはcomponentのmature gate通過後に広げる（DECISIONS `2026-07-16-01`）。
 - Modrinthへ出すbeta / rcは **`beta` channel**、stableは **`release` channel**を明示指定する。
 
-自動認識を効かせるために SemVer ハイフン形（`2100.0.0-beta.1`）へ変える案は、**§10.5 で既に却下済み**（PyPI正規化で`b1`に畳まれ表示が割れ§2対称性が壊れる）＝結論は同じで、ここでは「自動認識のため」と動機が増えるだけ。GitHub prerelease flagもModrinth channelも版番号から自動導出せず、配布先ごとに明示する。
+自動認識を効かせるために SemVer ハイフン形（`2100.0.0-beta.1`）へ変える案は、**§10.5 で既に却下済み**（PyPI正規化で`b1`に畳まれ、PyPIとタグで表示が割れる）＝結論は同じで、ここでは「自動認識のため」と動機が増えるだけ。GitHub prerelease flagもModrinth channelも版番号から自動導出せず、配布先ごとに明示する。
 
 ### 10.12.1 plugin の tag / release / artifact 名
 
@@ -733,7 +732,7 @@ api はクライアントが今後増える（他言語・ブリッジ、`2026-0
 
 **不変条件（割れない部分）**：
 
-- **core 番号 `2100.0.0` は全エコシステム共通**（安定版は同一文字列）。
+- **一つの版の core 番号（例 `2100.0.0`）は、どのエコシステムでも同じ文字列で表す**（安定版は同一文字列）。component 間で版を揃える意味ではない（`2026-09-27-06`）。
 - **相互運用は protocol（§3）で保証**＝pre-release 文字列が割れても interop は不変。
 - SSOT は論理版（protocol N ＋ 段）＋ core 番号。pre-release 接尾辞は**各エコシステムのネイティブ表記でレンダリングする派生物**。
 

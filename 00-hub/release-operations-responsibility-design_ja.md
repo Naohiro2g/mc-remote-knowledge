@@ -370,5 +370,4 @@ providerはroleの固定条件にせず、今回のようにknowledgeをCodex、
 3. gateを通過する。coordinatorはknowledge担当とし、全体を見て判定する。公開はhuman release ownerが承認する。
 
 結果は`release-gate-notes_ja.md`へ「基準set＋差し替え」として1件書く。DECISIONSとStack lockには書かず、
-apply時にツールで照合しない（`2026-09-27-04`）。更新したcomponentだけが版を進めてよく、plugin／apiの番号の
-揃え（versioning-design §10.5）は次の横断releaseで戻す。tagとrelease titleの規則は変わらない。
+apply時にツールで照合しない（`2026-09-27-04`）。
