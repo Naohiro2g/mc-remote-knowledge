@@ -283,7 +283,7 @@ artifact coreが変わっても通番を維持し、final公開後の次のbeta�
 
 artifact の `bN` / `rcN` / `N` と、deployment 環境の `beta` / `stable` は関係するが別軸である。`stable` は凍結・soak 済みの再現性と低摩擦な入口、`beta` は tag 済み preview を用いた観察・検証・学習・貢献の主活動面を担う。これは品質・重要度・習熟度の上下関係ではなく、教室では目的に応じて選択・切替できる。教材・案内・広告宣伝の正面は対象者・目的・beta の安定度・必要な支援量で選ぶ。現状の公式提供は beta 優先で、運用資源上両立できない場合は beta を優先する（`2026-07-22-01`）。
 
-環境は単一の全体版番号ではなく、互換性を検証したcomponent構成である。profileはtopology / policyを選び、献立（preset）とlockがplugin・API・Scratch等のexact artifact、必要なdigest、検証根拠を選ぶ。環境identityやchannelからcomponent版を機械的に導出せず、全componentが同じ`bN`で進むことも恒久条件にしない。現在の同期はbootstrap期の状態であり、安定期にはcomponentごとの更新周期と各環境の採用構成が分岐し得る。ここでは互換性・再現性・exact選択だけを不変条件とし、具体的な組合せの正本は`mc-remote-stack`のpreset / order / lock定義に置く（`2026-07-23-01`）。
+環境は単一の全体版番号ではなく、互換性を検証したcomponent構成である。profileはtopology / policyを選び、献立（preset）とlockがplugin・API・Scratch等のexact artifactと必要なdigestを選ぶ。互換性の検証根拠はrelease gateのexact compatibility setと`14-evidence/`に置き、lockには持たせない（`2026-09-27-04`）。環境identityやchannelからcomponent版を機械的に導出せず、全componentが同じ`bN`で進むことも恒久条件にしない。現在の同期はbootstrap期の状態であり、安定期にはcomponentごとの更新周期と各環境の採用構成が分岐し得る。ここでは互換性・再現性・exact選択だけを不変条件とし、具体的な組合せの正本は`mc-remote-stack`のpreset / order / lock定義に置く（`2026-07-23-01`）。
 
 公式環境も一般利用者へ公開するものと同じモジュール・artifact・profile / preset / order / lock機構で組み立て、公式専用の非公開forkやartifactを通常成立条件にしない。ただし、特定profile、component構成、物理配置、host、常設形態まで利用者環境と同一にする規則ではない。目的に応じた構成選択とprivateな運用overlayを許し、公開contractと構成機構をdogfoodingする（`2026-07-22-03` / `2026-07-23-01`）。
 
