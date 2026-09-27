@@ -108,6 +108,7 @@ release運用では、物理host、deployment、実装、進行、最終批准�
 | human release owner | 公開tag、release、registry publish、public deploy等の最終外部操作を批准する人間role | componentの自己申告だけで技術gateをGREENにするroleではない |
 | test tier | 仕様成熟度と必要な主張に応じて、targeted testからRC総合受入までを0〜4に分ける進行段階 | `unit/deterministic`／`live-auto`／`live-human`というtest classと同義にしない |
 | change cone | 一つの変更からrelease主張へ至る、contract・component・artifact・environment・assertionの影響範囲 | exact set失効を、過去の全PASSが無条件に失効することと混同しない |
+| 単独更新のrelease gate | change coneが一つのcomponent内で閉じるreleaseを、横断gateを開かずに判定する形。結果は「基準set＋差し替え」として記録する | 横断release gateの省略版ではない。影響が他componentへ及べば横断gateにする |
 | 通常dev integration harness | 人間とagentが代表的な横断確認に共用する、必要時起動・対話的・再利用可能なserver暖機 | public deployment、ケータリングprofile、特定host、Docker／systemdと同義にしない |
 | gate manifest | knowledge commit、component／artifact identity、maturity、change cone、必要tier、再利用PASS、環境、許可済み操作を一gateへ束ねる機械可読投影 | DECISIONS、component source、Stack lock、formal evidenceに代わる新しい二重正本にしない |
 

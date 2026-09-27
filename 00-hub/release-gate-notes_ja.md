@@ -44,6 +44,32 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 ただし旧setの観測事実まで自動的に破棄せず、`2026-08-23-01`のchange coneとPASS再利用条件で再評価します。
 仕様形成中はTier 0〜2を既定とし、人間参加・全回帰・capacity／soakをrelease候補より前へ自動的に持ち込みません。
 
+## 単独更新の記録書式
+
+単独更新のrelease gate（release運用と責務分担 §15、`2026-09-27-05`）は、次の1件で記録します。
+
+```markdown
+## YYYY-MM-DD 単独更新 <component> <version>
+
+- 基準set:
+- 差し替え: <component> <旧版> → <新版>
+- change cone:
+- 実施した確認:
+- 再利用したPASSと理由:
+- non-claim:
+- coordinator判定／human release owner承認:
+```
+
+## 2026-09-27 単独更新 minecraft-remote-api 2301.0.0b7.post3
+
+- 基準set: b7.post2（2026-09-07）
+- 差し替え: minecraft-remote-api `2301.0.0b7.post2` → `2301.0.0b7.post3`
+- change cone: docs／metadata（README、`requires-python`、classifiers、CI、release workflow）。Python担当の報告ではコードはpost2と同一（coordinator未照合）
+- 実施した確認: 公開前（未実施）
+- 再利用したPASSと理由: McRemote、Scratch、WireScopeはpost2のまま。wireとコードに変更がないため
+- non-claim: PyPI.orgへの公開はしない。TestPyPIでのsoakは`2026-09-26-03`／`2026-09-27-01`
+- coordinator判定／human release owner承認: human ownerがpost2のsetへの組み入れを判定（2026-09-26、`2026-09-27-01`）。公開後にidentityを照合して閉じる
+
 ## 2026-09-07 b7.post2（manifest.json導入・収集経路ランスルー／完走）
 
 - gate coordinator: knowledge担当session。人間による明示handoffなしに他担当へ移さない

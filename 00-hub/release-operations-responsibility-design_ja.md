@@ -357,3 +357,18 @@ providerはroleの固定条件にせず、今回のようにknowledgeをCodex、
 
 `manifest.json`と固定workflowは`2026-09-06-02`〜`2026-09-06-04`で確定した目標形だが、各repoでの実装は順次進む。
 未実装であることだけを理由にbetaをHOLDにしない。
+
+## 15. 単独更新のrelease gate
+
+一つのcomponentだけを更新するreleaseは、横断release gate（§4）を開かず、単独更新のrelease gateで判定する
+（`2026-09-27-05`）。例は、Pythonだけの版の差し替え、PythonだけのAPI分割／統合／変更である。
+
+1. 影響範囲を確認する。change cone（§7）が更新するcomponentの中で閉じていれば単独更新にする。wire、protocol
+   version、共有fixture、他componentが読む形、security、credential、権限、永続データに触れる場合は横断gateにする。
+2. 必要な検証を通す。§14の既定と、§7の表で再実施が要るものを行う。影響の外にある他componentのPASSは§7の
+   条件で再利用する。
+3. gateを通過する。coordinatorはknowledge担当とし、全体を見て判定する。公開はhuman release ownerが承認する。
+
+結果は`release-gate-notes_ja.md`へ「基準set＋差し替え」として1件書く。DECISIONSとStack lockには書かず、
+apply時にツールで照合しない（`2026-09-27-04`）。更新したcomponentだけが版を進めてよく、plugin／apiの番号の
+揃え（versioning-design §10.5）は次の横断releaseで戻す。tagとrelease titleの規則は変わらない。
