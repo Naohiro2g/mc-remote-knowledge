@@ -31,6 +31,23 @@ coordinatorはRelease assetとTestPyPIのdigestが一致することを2026-09-2
 3. **退避手順**：`PUBLISHING.md` §5.3（yankでも版番号は消費されたまま、`==`なら取得可、出し直しは`.postN`、確認は範囲指定と`--prerelease allow`）。TestPyPIの2FAは確認済み（2026-09-26）。ownerは`nao2g`の1名で、2人目のmaintainerはいない（human owner記入、2026-09-28）。
 4. **利用目的ごとのexact-pin**：学習者はRelease wheel URLと`--dev jupyterlab`（agentがLinux、humanがUbuntuで確認）。beta testerはTestPyPIのindex設定（explicitとsources、依存はPyPI.orgから取得、agentとhumanが確認）。OSS開発者はtagをclone→`uv sync --frozen`→pytest 253/253。PyPI.orgの無指定取得は`1214.10.13`のまま（2026-09-26、2026-09-28）。**未検証**：Windows（クリーンインストール直後からの手順とあわせて検証する予定）。
 
+## Artifacts
+
+「後から再現できない一次観測」（yankの状態、保持期限のあるrun log）だけを収録した。Python担当がsanitizeし（一時フォルダのパスを`<scratch>`へ置換、抜粋ログのBOMを除去）、coordinatorが全文を読んでSHA-256を照合した（2026-09-28）。run log全体、`manifest.json`（Releaseから再取得可）、dev側のMANIFESTは収録しない。
+
+| file | 内容 | SHA-256 |
+| --- | --- | --- |
+| [dispatch-run-36357356599-publish-excerpt.log](../artifacts/2026-09-28-python-testpypi-soak-gates/dispatch-run-36357356599-publish-excerpt.log) | ①：mainからの再実行で2 fileとも`already exists, skipping` | `f01f76d83ea242b93d28546d730e35812f5801fd0b524558d0730a2bd2a9ca4a` |
+| [g2-default-testpypi.log](../artifacts/2026-09-28-python-testpypi-soak-gates/g2-default-testpypi.log) | ②：TestPyPIから無指定で取ると`1214.10.2` | `bda8dbd5dd21df2e23644ceb279eab79efb206820f0bd0fe49ff6e62494f2428` |
+| [g2-exact-unyanked.log](../artifacts/2026-09-28-python-testpypi-soak-gates/g2-exact-unyanked.log) | ②：unyank後、exact-pinは警告なしで取得 | `23ace346b37194626006b0349248578c2bfaa900931cb6d4067d75ec46159e41` |
+| [g2-range-unyanked.log](../artifacts/2026-09-28-python-testpypi-soak-gates/g2-range-unyanked.log) | ②：unyank後、範囲指定でpost3に解決 | `5488447bc61b0972f9f0752929a778ca69b75f60736e813a897c6d63e4fb2f89` |
+| [g2-yanked-exact-pin.log](../artifacts/2026-09-28-python-testpypi-soak-gates/g2-yanked-exact-pin.log) | ②：yank中、exact-pinは警告付きで取得 | `7c2533d5ad462b6eba66088681037a47513b730b2dd9477b6d2183853515eb8c` |
+| [g2-yanked-range-prerelease.log](../artifacts/2026-09-28-python-testpypi-soak-gates/g2-yanked-range-prerelease.log) | ②：yank中、範囲指定＋`--prerelease allow`で解決に失敗 | `9b7d3cbb8b22e3b5d46b3acd02701ca5fd8d292b05c305b251635dccf50a8cf0` |
+| [testpypi-simple-post3-unyanked-2026-09-28T0807JST.json](../artifacts/2026-09-28-python-testpypi-soak-gates/testpypi-simple-post3-unyanked-2026-09-28T0807JST.json) | ②：unyank後のsimple index（serial `8372336`） | `f5b1127c321c622fd426315b410682cf6404e51cf47fc0d423eaa12209e8c640` |
+| [testpypi-simple-post3-yanked-2026-09-28T0803JST.json](../artifacts/2026-09-28-python-testpypi-soak-gates/testpypi-simple-post3-yanked-2026-09-28T0803JST.json) | ②：yank中のsimple index（該当file分の抜粋） | `01ed05786d4758a678f50e14f1810f7835125e4a6b4385998267a050872dcd19` |
+
+`g2-yanked-exact-pin.log`には、このときの必須依存`pygame-ce`が現れる（`2026-09-28-02`でb8に外す前の状態）。
+
 ## non-claim
 
 - PyPI.orgへのpublishはしていない。

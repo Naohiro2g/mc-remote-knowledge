@@ -1,0 +1,34 @@
+[
+  {
+    "core-metadata": {
+      "sha256": "5ab5b0e343ed618dd06ace027fccbe65ca8e652216469526fc57a89026b56ff0"
+    },
+    "data-dist-info-metadata": {
+      "sha256": "5ab5b0e343ed618dd06ace027fccbe65ca8e652216469526fc57a89026b56ff0"
+    },
+    "filename": "minecraft_remote_api-2301.0.0b7.post3-py3-none-any.whl",
+    "hashes": {
+      "sha256": "76e56f9eacbddcdee0c7a5558d7a941f2c735f48c93866de955a3ad03b55fc62"
+    },
+    "provenance": null,
+    "requires-python": ">=3.10",
+    "size": 184468,
+    "upload-time": "2026-09-27T00:45:26.604810Z",
+    "url": "https://test-files.pythonhosted.org/packages/47/07/689c96032e8168c3f43d138db0e8fba60572d77b7a117987ef5028056eed/minecraft_remote_api-2301.0.0b7.post3-py3-none-any.whl",
+    "yanked": "てすと"
+  },
+  {
+    "core-metadata": false,
+    "data-dist-info-metadata": false,
+    "filename": "minecraft_remote_api-2301.0.0b7.post3.tar.gz",
+    "hashes": {
+      "sha256": "c883b2764698a0035cc0fe3f4bec0a381af29ed9f3639da5265277209e8dec0b"
+    },
+    "provenance": null,
+    "requires-python": ">=3.10",
+    "size": 178281,
+    "upload-time": "2026-09-27T00:45:28.206349Z",
+    "url": "https://test-files.pythonhosted.org/packages/5c/06/9b4b4126cbc883ced90031a1cbd77bc1032364095a54488b74c925de1c35/minecraft_remote_api-2301.0.0b7.post3.tar.gz",
+    "yanked": "てすと"
+  }
+]
