@@ -36,7 +36,7 @@ PyPI.org への公開、McRemote、mature への移行判定はこの指示に�
 ホームページの Python 手順（knowledge `d5a7e92`、`30-広告宣伝/homepage/index.html`）を正とし、README はそれに追従する。
 
 1. ファーストビュー：uv の導入 → `uv init` → `uv add` → `uv run hello.py`。`uv add` の対象は、現在は git tag（`minecraft-remote-api @ git+…@v2301.0.0b7.post2`）とし、post3 の公開後は GitHub Release の wheel URL、PyPI に載った後は exact-pin に差し替える。「3行・3ステップ」は目安で、再現性のために省けない手順は残す（`2026-09-26-04`）。Deep-hiding と冒頭の言語方針 Note は従来どおり（`2026-09-08-01`／`2026-09-08-02`）。
-2. Jupyter の節：`uv add --dev ipykernel`、VS Code でカーネルに `.venv` を選ぶ手順、JupyterLab を使う場合（`uv add --dev jupyterlab`、`uv run jupyter lab`）。自作の .py や `mc_remote` 自体を書き換えたら、カーネルを再起動してから import し直すことを明確に案内する。autoreload は勧めない（構造の変更に追従しきれず、原因の見えない不具合になる）。見出しには安定したアンカーを付け、そのアンカーを返す。返却された `#jupyter` をホームページのリンク先にした。
+2. Jupyter の節：`uv add --dev ipykernel`、VS Code でカーネルに `.venv` を選ぶ手順、JupyterLab を使う場合（`uv add --dev jupyterlab`、`uv run jupyter lab`）。自作の .py や `mc_remote` 自体を書き換えたら、カーネルを再起動してから import し直すことを案内する。autoreload は勧めない（構造の変更に追従しきれず、原因の見えない不具合になる）。案内は最低限にし、全セルの実行は勧めない（`20-教材/jupyter-notes_ja.md` §1、PR #11）。見出しには安定したアンカーを付け、そのアンカーを返す。返却された `#jupyter` をホームページのリンク先にした。
 3. pyenv／pip／Poetry から uv への移行ガイド：README 本文から外した文書（`docs/` など）として作る。旧コマンドとの対応表、既存の venv や `requirements.txt`／Poetry project からの移り方を含める。移行ツールを使うかどうかは担当が確認して決める。
 
 ### 返却物
