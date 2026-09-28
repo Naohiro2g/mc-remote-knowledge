@@ -65,10 +65,11 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - 基準set: b7.post2（2026-09-07）
 - 差し替え: minecraft-remote-api `2301.0.0b7.post2` → `2301.0.0b7.post3`
 - change cone: docs／metadata（README、`requires-python`、classifiers、CI、release workflow）。Python担当の報告ではコードはpost2と同一（coordinator未照合）
-- 実施した確認: 公開前（未実施）
-- 再利用したPASSと理由: McRemote、Scratch、WireScopeはpost2のまま。wireとコードに変更がないため
-- non-claim: PyPI.orgへの公開はしない。TestPyPIでのsoakは`2026-09-26-03`／`2026-09-27-01`
-- coordinator判定／human release owner承認: human ownerがpost2のsetへの組み入れを判定（2026-09-26、`2026-09-27-01`）。公開後にidentityを照合して閉じる
+- 公開identity: tag `v2301.0.0b7.post3`（annotated、`1ea043b`）、Release「minecraft-remote-api 2301.0.0b7.post3」（prerelease）。wheel SHA-256 `76e56f9eacbddcdee0c7a5558d7a941f2c735f48c93866de955a3ad03b55fc62`、sdist SHA-256 `c883b2764698a0035cc0fe3f4bec0a381af29ed9f3639da5265277209e8dec0b`。coordinatorがRelease assetとTestPyPIのdigest一致を照合済み（2026-09-28）
+- 実施した確認: pytest 253/253（CI 3.10〜3.13）。TestPyPIからexact-pinで入れたpost3で、sb-betaへのhello.pyとpairingが成功（human、報告ベース）。詳細は`14-evidence/records/2026-09-28-python-testpypi-soak-gates_ja.md`
+- 再利用したPASSと理由: McRemote、Scratch、WireScopeはpost2のまま。post2からの変更はREADME、docs、PUBLISHING、pyprojectのmetadata、CI、release workflowだけで、wire、protocol、共有fixture、他componentが読む形、認証まわりに触れていない（Python担当の報告）
+- non-claim: PyPI.orgへの公開はしない。mature判定はしない。Windowsでは検証していない
+- coordinator判定／human release owner承認: human ownerがpost2のsetへの組み入れを判定（2026-09-26、`2026-09-27-01`）。coordinatorはchange coneが閉じていることを確認し、単独更新gateを通過とする（2026-09-28）。**CLOSED**
 
 ## 2026-09-07 b7.post2（manifest.json導入・収集経路ランスルー／完走）
 

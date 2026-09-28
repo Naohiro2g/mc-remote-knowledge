@@ -1,7 +1,7 @@
 # TestPyPI soak と uv 前提 README 再構築の指示書（Python）
 
-> status: 実施中。根拠は `2026-09-26-03`（機構モード soak）、`2026-09-26-04`（README の目安）、`2026-09-27-01`（soak の対象を post3 へ）、`2026-09-27-02`（Python 対応範囲）。
-> Python 担当の搬送票（2026-09-26、`docs/uv-readme@09c8b28`／`release/b7-post3-testpypi@19787fc`、未 merge）を受けて A-2 と A-3② を改訂した。
+> status: A（TestPyPI soak）はWindows検証を除き返却済み、B（README）は完了（2026-09-28、`main@c213674`）。mature判定はhuman owner。
+> 根拠は `2026-09-26-03`、`2026-09-26-04`、`2026-09-27-01`、`2026-09-27-02`。返却内容は末尾の「返却（2026-09-28）」。
 
 minecraft-remote-api を機構モード soak へ入れる（versioning-design §10.9）。`2301.0.0b7.post3` を TestPyPI へ出して遷移ゲート①〜④を実際に回し、並行して README を uv 前提へ作り直す。
 PyPI.org への公開、McRemote、mature への移行判定はこの指示に含めない。mature への移行は human owner が soak の記録を見て判定する。
@@ -44,3 +44,15 @@ PyPI.org への公開、McRemote、mature への移行判定はこの指示に�
 - 変更した branch／commit と path
 - Jupyter の節のアンカー
 - README の手順どおりに fresh 環境で `uv run hello.py` まで通した記録（接続先と日時）
+
+## 返却（2026-09-28）
+
+Python担当の搬送票（`main@c213674`、tag `v2301.0.0b7.post3`→`1ea043b`）による。記録は
+[`14-evidence/records/2026-09-28-python-testpypi-soak-gates_ja.md`](../14-evidence/records/2026-09-28-python-testpypi-soak-gates_ja.md)。
+
+- A-①：固定trigger run `36283409414`でpromoteとpublish-testpypiがsuccess。mainからの再実行（run `36357356599`）は2 fileとも`already exists, skipping`。runbookは`PUBLISHING.md` §1〜§4。
+- A-②：human がTestPyPIからexact-pinで入れたpost3でsb-betaのhello.pyとpairingに成功し、yank／unyankを操作した。agentはyank中に範囲指定と`--prerelease allow`で解決が失敗し、exact-pinは警告付きで取得できること、unyank後に範囲指定でpost3へ解決することを観測した。
+- A-③：`PUBLISHING.md` §5.3。ownerは`nao2g`の1名で、2人目のmaintainerはいない（human owner記入、2026-09-28）。
+- A-④：学習者（Release wheel URL＋`--dev jupyterlab`、Linux／Ubuntu）、beta tester（TestPyPIのindex設定、依存はPyPI.org）、OSS開発者（tagをclone→`uv sync --frozen`→pytest 253/253）。PyPI.orgの無指定取得は`1214.10.13`のまま。**未完**：Windows（クリーンインストール直後からの手順とあわせて検証する予定）。
+- B：README（PR #8、#9）、Jupyterの節は`#jupyter`、移行ガイドは`docs/migrate-to-uv_ja.md`。
+- dev側の`handoff-materials/2026-09-28-python-testpypi-soak-gates/`は、着地後にdev側で「正式evidenceへ昇格」か「失効として破棄」に分類する。
