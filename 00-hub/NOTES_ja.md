@@ -4,6 +4,8 @@
 
 ## Inbox
 
+- 2026-09-28 [park] deploy関係の役割分担の見直し / McRemote搬送票（2026-09-27）の付記。Stack／backstageの実行境界（release-operations §1.1）、deploy周りで続いている混乱、直近のlockの件（`2026-09-27-04`）を棚卸しし、LAN内の近い環境をbackstageへ寄せる案を検討する
+- 2026-09-28 [park] McRemoteのhelloの`supported_mc_versions`をbuildではなく`config.yml`から読んでいる / McRemote搬送票（2026-09-27）の付記。単一artifact化（MC版をまたぐ1つのJAR）を検討するときの論点
 - 2026-09-28 [→DEC 2026-09-28-02] minecraft-remote-apiの依存から`pygame-ce`を外す / b8で必須依存から外し、optional extra `pygame`として宣言する。教材ではuvでの追加体験の一つにする
 - 2026-09-28 [park] WindowsでのPython導入の2ルート（rc中に確認） / Python担当の搬送票。Git for Windowsを標準とする方針は変えない。通常ルート＝Windows 11の初期状態からGit for Windowsの導入とTerminal・VS Codeの設定までを一行スクリプトで行い、uv → `uv init --python 3.13` → `uv add <Release wheel URL>` → `uv add --dev jupyterlab` → `uv run jupyter lab`。入口ルート＝Git for Windowsを避けたい人向けに、PowerShellでuvの公式1行 → ターミナルを開き直す → 同じuvの手順（wheel URLならgit不要）。課題＝公式インストーラーは設定画面が多く、winget／UniGetUIは既定の設定で入る可能性がある。検証材料（記憶ベース、未検証）＝インストーラーの`/VERYSILENT /LOADINF=<設定ファイル>`（`/SAVEINF`で作る）、`winget install Git.Git --override`。human ownerが以前作った一行スクリプトは所在未確認。前提のホームページwheel URL化は2026-09-28に着地済み。Windowsの検証は、クリーンインストール直後からの手順とあわせて行う予定 / 影響＝`20-教材`、ホームページ、`12-python-client`
 - 2026-09-27 [park] iPadのPython経路：Pythonista待ちとCarnets検証 / Python下限3.10はPythonista 3（3.10）のために残した（`2026-09-27-02`）。human ownerはPythonista Labのbeta testerに応募済み（2026-09-27）。Carnets（作者Nicolas Holzschuch、a-Shellと同系。最新版はPython 3.13、pure Pythonなら`%pip install`可、App Store記載）は別途検証する。確認点＝依存がすべてpure Pythonか、`git+`でなくRelease wheel URLで入るか、sb-betaへの外向きTCP接続とpairingが通るか / 閉じる＝Pythonistaの3.13系リリースかCarnets実機PASSで下限引き上げを再判定した時 / 2026-09-28追記：依存のうち`pygame-ce`だけがC拡張で、Carnetsなど iPad アプリへの導入を塞いでいる（Python担当の報告）。b8で外す候補（`2026-09-28-02`でb8に外すと確定）

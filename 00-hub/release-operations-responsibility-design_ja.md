@@ -96,6 +96,10 @@ server-environment-inventoryへ解決可否・確認方法・確認日を記録�
 backstageの実行境界であり、knowledge側のcoordinatorはこの標準を定め、inventoryを読んで指示票へ接続先を
 含める（§4）役割にとどまる（`2026-09-03-04`）。
 
+MC版ごとのdeploymentは、`dev-integration`と同格の論理deploymentとして並べる。同じ実行環境では一度に
+一つだけを稼働させ、どのMC版でも接続先とoperator configの構造は同じにする。どの物理hostにどう配置するかは
+backstageとStackが扱い、knowledgeには書かない（`2026-09-28-03`）。
+
 一つのStack担当がStackとbackstageを一続きで扱える。ただし両repoのcommit／PRを分け、backstageの
 実値をStackへ複製しない。管理者権限や対話認証が必要な操作は人間の実行境界として明示する。
 
@@ -211,6 +215,10 @@ Tier 2の軽量横断pulseは、少なくともauthenticated hello、変更slice
 仕様形成中はTier 0〜2を反復する。合意済みcontractと共有fixtureが収束した後にのみ
 Tier 3へ入る。beta番号やartifact versionが存在することだけでTier 3と見なさない。
 
+live試験（`live-auto`と`live-human`、全component）は、指示されたMC版をhelloの`mc_version`と照合し、
+一致しなければ試験本体を実行せずFAILにする。どのdeploymentが動いているかを、人の注意に頼らず確かめる
+ためである（`2026-09-28-03`）。
+
 ## 7. Change coneとPASSの再利用
 
 candidateのsource／artifact identityが変わったらexact setは失効する。ただし、これは過去の観測事実を
@@ -244,6 +252,7 @@ candidateを扱う暖機である。必要時に起動し、終了後は次のte
 - Paper起動、plugin起動、credential health、listenerの個別readiness
 - 二重起動、port競合、別runtimeへの誤配置の防止
 - 人間がconsoleを直接確認し、detach／reattachできること
+- MC版ごとのdeploymentの切替と、稼働中deploymentのidentity（MC版、Paperのexact build、Java版、McRemote JARのSHA-256）を示す`status`（`2026-09-28-03`）
 
 container、system service、特定process supervisorを一律の既定にしない。現在の通常devが`run.sh`と
 名前付きScreenを使う事実はbackstageのhost写像とStack runbookで扱い、論理contractを特定hostのpathや
