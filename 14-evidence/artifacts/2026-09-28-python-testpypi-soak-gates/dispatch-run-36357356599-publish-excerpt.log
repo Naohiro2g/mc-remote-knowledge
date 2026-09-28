@@ -1,0 +1,4 @@
+2026-09-27T23:03:06.7237633Z ##[group]Run set -euo pipefail
+2026-09-27T23:03:06.7469102Z Publishing 2 files to https://test.pypi.org/legacy/
+2026-09-27T23:03:07.8581041Z File minecraft_remote_api-2301.0.0b7.post3-py3-none-any.whl already exists, skipping
+2026-09-27T23:03:07.8802045Z File minecraft_remote_api-2301.0.0b7.post3.tar.gz already exists, skipping

@@ -1,5 +1,7 @@
 /dist/
 *.log
+# sanitized evidence artifacts may be logs
+!/14-evidence/artifacts/**/*.log
 __pycache__/
 *.py[cod]
 /.obsidian/

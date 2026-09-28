@@ -1,0 +1,11 @@
+Using CPython 3.13.13
+Creating virtual environment at: .venv
+error: Failed to add dependencies
+  cause: No solution found when resolving dependencies
+  cause: Because minecraft-remote-api==2301.0.0b7.post3 was yanked (reason: てすと) and only the following versions of minecraft-remote-api are available:
+             minecraft-remote-api<2301.0.0b0
+             minecraft-remote-api==2301.0.0b7.post3
+         we can conclude that minecraft-remote-api>=2301.0.0b0 cannot be used.
+         And because your project depends on minecraft-remote-api>=2301.0.0b0, we can conclude that your project's requirements are unsatisfiable.
+
+hint: If you want to add the package regardless of the failed resolution, provide the `--frozen` flag to skip locking and syncing

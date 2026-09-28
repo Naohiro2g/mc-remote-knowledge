@@ -1,0 +1,7 @@
+Resolved 3 packages in 217ms
+   Building y @ file://<scratch>/g2/y
+      Built y @ file://<scratch>/g2/y
+Prepared 1 package in 7ms
+Uninstalled 1 package in 0.51ms
+Installed 1 package in 2ms
+ ~ y==0.1.0 (from file://<scratch>/g2/y)

@@ -1,0 +1,9 @@
+Resolved 2 packages in 635ms
+   Building y @ file://<scratch>/g2/y
+      Built y @ file://<scratch>/g2/y
+Prepared 2 packages in 496ms
+Uninstalled 2 packages in 1ms
+Installed 2 packages in 2ms
+ - minecraft-remote-api==2301.0.0b7.post3
+ + minecraft-remote-api==1214.10.2
+ ~ y==0.1.0 (from file://<scratch>/g2/y)
