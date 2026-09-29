@@ -102,6 +102,7 @@ release運用では、物理host、deployment、実装、進行、最終批准�
 | 正典表記 | 技術的な意味 | ドリフト注意 |
 | --- | --- | --- |
 | 物理host | 実在するmachineと、backstageで管理するinventory／SSH aliasのidentity | deployment、environment、profile、channelをhost名から推測しない |
+| private opsリポ | 利用者が自分のprivateな運用情報（handoff値、deployment project、inventoryの記述など）を置く非公開リポ。Stackの仕組みで立ち上げる。公式運用では`mc-remote-backstage`がこれにあたる（`2026-09-29-01`） | 公開テンプレートリポから複製するものではない。`backstage`を一般名詞として使わない |
 | component担当 | 一つの開発repoで実装、決定論的test、push済みcandidate、artifact、事実票を所有するrole | 他repoの着手、shared環境deploy、横断GREENを所有しない |
 | deployment担当 | Stackのprofile／order／lock、artifact取得、apply、doctor、deployment evidenceを所有するrole | component候補やproduct contractを独自に選ばない |
 | gate coordinator | 一つの横断release gateでscope、依存順、exact set、統一実施票、evidence集約、横断判定を一人で進行するrole | 全実装・全操作の実行者、human release owner、複数repoのcomponent担当と同義にしない |

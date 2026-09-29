@@ -12,8 +12,8 @@ McRemoteのrelease運用には、次の役割がある。
 | 役割 | 主な正本 | 所有するもの |
 | --- | --- | --- |
 | component担当 | 各開発repo | 実装、局所fixture、build、candidate artifact |
-| deployment担当 | `mc-remote-stack` | 公開runbook、profile、preset、order、lock、deploy、doctor |
-| private operations担当 | `mc-remote-backstage` | 物理host、実環境inventory、privateな運営状態、secret参照 |
+| deployment担当 | `mc-remote-stack` | マシンの構築と運営の方式（ケータリング型、通常方式など）、公開runbook、profile、preset、order、lock、deploy、doctor、private opsリポの立ち上げの仕組み。方式が確立していくまでは運用の実務も持つ |
+| private operations担当 | `mc-remote-backstage` | 物理host、実環境inventory、privateな運営状態、secret参照。方式が確立した環境ではprivate領域の実務を担う |
 | gate coordinator | `mc-remote-knowledge`のgate状態 | 横断scope、依存順、exact set、統一試験票、横断判定 |
 | human release owner | 人間の批准 | 公開release、tag、外部deploy等の最終承認 |
 
@@ -21,28 +21,39 @@ McRemoteのrelease運用には、次の役割がある。
 
 ### 1.1 三者の橋渡し（private情報のhandoff）
 
-「大枠＝knowledge、machine＝Stack、private情報＝backstage」の三分割自体は`2026-07-21-03`で確定しているが、
-三者をまたぐ作業の実行者が体系化されていなかった。次を標準とする（`2026-09-03-05`）。
+「大枠＝knowledge、machine＝Stack、private情報＝backstage」の三分割は`2026-07-21-03`で確定している。
+Stackとbackstageの分担は局面で変わり、両者は基本的に協調して働く（`2026-09-29-01`）。
 
-- private実値の**記録**はbackstageだけが行う。knowledgeもStackも自らのrepoへprivate実値をcommitしない。
-- private実値を使う物理host上の**実行**（設定変更、deploy、doctor等の機械的操作）はdeployment担当（Stack）が行う。
-  gate coordinatorもbackstage担当自身も、物理hostへ変更を加えない。
-- private実値への**限定的な読み取り**は、次の2箇所を標準作業入力として許可する。
-  - gate coordinator: shared環境接続先を指示票／確認票へ含めるためだけに読む（`2026-09-03-03`）
-  - Stack operator: target deploymentの解決、read-only preflight、deploy／doctorの入力として読む。
-    この範囲の読み取りは都度承認を要しない。アクセス手段が無ければ、Stack operatorが
-    human operatorへ必要な読み取りaccessを申請する。
-  - component担当（各dev repo）はいかなる場合もbackstageへ直接アクセスしない。private repoへの
-    個別アクセス付与はrepo数だけ露出面を増やすため行わない。
-- backstageへの**書き込み**は、Stackが確定搬送票を返し、private operations担当が反映するのを標準とする。
-  human operatorが明示的に許可した場合だけ、Stack operatorは指定されたrepo／path／host／PR／taskの
-  範囲で一時的に反映してよい。Stackの変更とcommit／PRを分け、その作業の完了とともに一時許可は終了する。
-- backstage inventoryの読み取りは実機の現状を保証しない。Stackは変更前に実機のread-only preflightを行い、
-  差分をdeploy判定に使う。差分のprivate実値はStack／knowledgeへ複製せず、backstageの更新対象とする。
-- backstageへの書き込み許可と、物理hostへ変更を加える実行許可は別である。一方から他方を推論しない。
-- knowledgeとbackstageの間で見つかった機械的なgap（例：hostname解決の欠落）は、knowledgeが標準／方針として
-  記録し、backstageが現状の私的事実として記録し、実行はStackへ引き継ぐ。三者いずれかで「引き継ぎ先が不明」
-  という状態になったら、この節へ戻って役割を再確認する。
+- 各方式のデプロイが各環境で確立していくまでは、Stackが主導し、運用の実務も持つ。方式が確立した環境では、
+  private領域の実務はbackstageが担い、Stackは方式と公開runbookの責務を続ける。確立したかどうかは曖昧で、
+  相互関係でも変わるので、厳密に判定・運用しない。
+- private実値は公開リポ（knowledge、Stack）へcommitしない。記録はbackstage（OSS利用者は自分のprivate opsリポ）に置く。
+  StackとbackstageのcommitとPRはrepoごとに分ける。
+- gate coordinatorは物理hostへ変更を加えない。shared環境接続先を指示票／確認票へ含めるためだけに
+  backstageを読む（`2026-09-03-03`）。
+- component担当（各dev repo）はbackstageへ直接アクセスしない。private repoへの個別アクセス付与は
+  repo数だけ露出面を増やすため行わない。
+- backstage inventoryの読み取りは実機の現状を保証しない。変更前に実機のread-only preflightを行い、
+  差分をdeploy判定に使う。差分のprivate実値はbackstageの更新対象とし、公開リポへ複製しない。
+- 三者のあいだで機械的なgap（例：hostname解決の欠落）が見つかったら、knowledgeは標準／方針として、
+  backstageは現状の私的事実として記録し、どちらが直すかはStackとbackstageが協調して決める。
+
+### 1.2 private opsリポ（OSS利用者と公式）
+
+OSS利用者は、公式の`mc-remote-backstage`に相当するprivate opsリポを自分で持つ。立ち上げ（リポとローカルの
+clone環境）はStackの仕組みで行い、公開テンプレートリポは使わない。公式のbackstageも同じ仕組みへ移す
+（`2026-09-29-01`）。`backstage`はリポの固有名であり、一般名詞には使わない。
+
+- 構成は、Stackが読んで検証する契約部分と、Stackが関知しない自由部分に分ける。
+  - 契約部分：runbookが求めるhandoff値（SSH接続先、deployment project、Stack commit、exact profile／presetなど）を
+    組み立てるための値、deployment project、構成の版、`.gitignore`、agent向けの境界ルール（秘密の実値をGitに
+    置かない、raw logはGitの外へ）。
+  - 自由部分：providerと費用、incident、inventoryの記述など。
+- 次はStackが設計で決める。push先がprivateかを確認できない場合の扱い、push前の秘密値の検出、契約の版の名前と
+  移行の手段、hostの接続情報の形式、既存のdeployment projectの取り込み手順、`mcrctl init`とopsリポ内の配置の
+  関係、deployment projectをhostへ届ける経路とhostに与える権限の範囲（hostがprivate opsリポをcloneする方式では、
+  hostが侵害されたときにprivate情報全体を読まれる。管理端末から必要な部分だけを送る方式と比べる）。
+- 実施はStackの整理の後に別のPRで行い、runbookのhandoff表の書き直しもそのPRで一緒に行う。順序はStackが決める。
 
 ## 2. 公開runbookは作業日誌ではない
 
