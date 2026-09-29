@@ -294,7 +294,7 @@ authority は manifest を持つ。
 - snapshot record 側にも domain を重複保持する場合、header との不一致を corruption として fail closed にする。
 - 起動時に `credential_id` と `token_hash` の重複・矛盾を検査する。
 - 可用性は認証を緩めることでなく、起動時の欠落初期化と domain health 確認で確保する。**自動的な無認証 fallback は行わない。**
-- 実装到達点（McRemote `fix/credential-backend-auto-init@e60b1942889c8814d9e5d4f0a952c47ba8404a9f`、未 merge、2026-09-29）：欠落時は残った backend を sibling へ退避してから新 domain を作る。起動ログには欠落箇所、新 domain、退避先、旧 token の失効、再ペアリングの必要性を出す。既存の**空の** authority ディレクトリは退避せず、その場で初期化する（authority ディレクトリが volume の mount point そのものでも新規構築できるようにするため）。`./gradlew test` 207件 PASS。Docker と実際の compose@5 での確認、JAR build、deploy、live-auto／live-human は未実施（担当報告、coordinator は照合していない）。
+- 実装到達点（McRemote `main@d6441fc90653ee593936b9206ef4a28cb544b30d`、PR #8 で `fix/credential-backend-auto-init@e60b1942889c8814d9e5d4f0a952c47ba8404a9f` を merge、2026-09-29）：欠落時は残った backend を sibling へ退避してから新 domain を作る。起動ログには欠落箇所、新 domain、退避先、旧 token の失効、再ペアリングの必要性を出す。既存の**空の** authority ディレクトリは退避せず、その場で初期化する（authority ディレクトリが volume の mount point そのものでも新規構築できるようにするため）。`./gradlew test` 207件 PASS。Docker と実際の compose@5 での確認、JAR build、deploy、live-auto／live-human は未実施（担当報告、coordinator は照合していない）。
 
 ### 9.3 revoke の線形化点
 
