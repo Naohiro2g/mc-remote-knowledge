@@ -10,7 +10,20 @@ Knowledge base of Minecraft Remote Project for learning/working along with LLM
 
 > **人間とLLMが「学びながら開発し、共創する」ためのナレッジベース型開発システム**
 
-マイクラリモコン（mc-remote / Code2CreateClub）は、Minecraft（Java版）をScratchやPythonからプログラミング・遠隔操作できるオープンソース環境です。
+## マイクラリモコンとは
+
+マイクラリモコンは、コーディングでマイクラの世界を動かしながら「学び方を学ぶ」ためのオープンソースのツール群です。
+Scratch や Python などで書いたプログラムから、マインクラフトのサーバーへブロックを置いたり、プレイヤーを動かしたりできます。
+マイクラのアプリは Java 版でも統合版でも接続できます。
+
+- サーバーのプラグイン（McRemote）
+- 各言語のクライアント（Scratch、Python、Java など）
+- 通信の中身を観察する WireScope
+- サーバーの構築・運用パッケージ（mc-remote-stack）
+
+はじめかた、考え方、ロードマップは公式ホームページへ：<https://mc-remote.com/>
+
+## このリポジトリについて
 
 このリポジトリ（`mc-remote-knowledge`）は、プロジェクト全体の **設計記録、横断決定、現行規約を公開・管理する唯一の真実の源（SSOT: Single Source of Truth）** です。実装コードは各開発リポジトリに置き、このリポでは「何を、なぜ、どの境界で決めたか」を記録しています。
 
@@ -21,6 +34,8 @@ Knowledge base of Minecraft Remote Project for learning/working along with LLM
 ## 🚀 あなたの目的に合わせた最短入口
 
 ### 1. マイクラをプログラミングで動かしたい（学習者・子ども・教育関係者）
+- 🌐 **まずはホームページへ**: はじめかたと接続先の案内をまとめています。  
+  👉 [mc-remote.com](https://mc-remote.com/)
 - 🐱 **Scratchで動かす**: ブラウザから即座にブロックプログラミングでマイクラの世界を動かせます。  
   👉 [scratch-editor (GitHub)](https://github.com/Naohiro2g/scratch-editor) / [Web版エディタ](https://scratch-beta.mc-remote.com/)
 - 🐍 **Pythonで動かす**: わずか3行のコードでブロック設置やチャット送信ができます。  
