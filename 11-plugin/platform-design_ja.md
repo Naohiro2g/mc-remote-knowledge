@@ -294,6 +294,7 @@ authority は manifest を持つ。
 - snapshot record 側にも domain を重複保持する場合、header との不一致を corruption として fail closed にする。
 - 起動時に `credential_id` と `token_hash` の重複・矛盾を検査する。
 - 可用性は認証を緩めることでなく、起動時の欠落初期化と domain health 確認で確保する。**自動的な無認証 fallback は行わない。**
+- 実装到達点（McRemote `fix/credential-backend-auto-init@e60b1942889c8814d9e5d4f0a952c47ba8404a9f`、未 merge、2026-09-29）：欠落時は残った backend を sibling へ退避してから新 domain を作る。起動ログには欠落箇所、新 domain、退避先、旧 token の失効、再ペアリングの必要性を出す。既存の**空の** authority ディレクトリは退避せず、その場で初期化する（authority ディレクトリが volume の mount point そのものでも新規構築できるようにするため）。`./gradlew test` 207件 PASS。Docker と実際の compose@5 での確認、JAR build、deploy、live-auto／live-human は未実施（担当報告、coordinator は照合していない）。
 
 ### 9.3 revoke の線形化点
 
@@ -335,6 +336,7 @@ step 4 以降は credential が失効済みであり、**step 6 が失敗して�
 - plugin は§9.2の欠落を通常起動時に初期化する。stack は plugin 内部 JSON を独自生成しない。
 - 初期化が完了するまで新 domain を認証可能にせず、途中失敗は fail closed とする。
 - **既存の両 backend が揃っている domain の reset は明示操作**とし、破損や domain 不一致を通常起動時に自動修復しない。
+- **既知の制約**：authority ディレクトリが volume の mount point そのもので、中身が残っている場合（片側欠落、明示 reset）は、ディレクトリを rename できないため、初期化も reset も fail closed になる。運用者が中身を手で退避してから再起動する（エラー文に対処を示す）。該当するのは mount point そのものを authority path にする profile（home-server@3／@5、compose@5）だけで、片側欠落は Stack 外の手作業でしか起きず、明示 reset は現行 runbook に無いため、format や他 repo を変えず既知の制約として持つ。却下＝authority 内の `retired-*/` へ退避する（§9.4 の「authority 内の非 regular file は corruption」の改訂が要る）／Stack が volume を親ディレクトリに mount する（既存 deployment の移行と、今後の配置形態への暗黙の制約を Stack に負わせる）／残った旧 backend を削除する（取り返しがつかず、誤判定時の調査と復旧の材料を失う）。**見直す条件**：mount point そのものを authority path にする profile を長く使い続けることになった場合、または明示 reset が runbook に入った場合、`retired-*/` への退避を再検討する。
 
 ### 9.6 rollback / disaster recovery
 
