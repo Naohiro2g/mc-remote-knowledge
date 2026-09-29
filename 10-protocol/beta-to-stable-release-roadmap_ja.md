@@ -282,16 +282,19 @@ Python surfaceと3D graphの小さいapplication sampleをb8 acceptanceへ含め
 protocol mirrorと互換認識を先に揃えられますが、学習者向けblockは別trackで追従し、b8 plugin／Python releaseを
 自動的にHOLDしません。
 
-### 3.4 条件付きb9 — ParticleBuilder Stage 3
+### 3.4 b9 — API freeze（範囲はb8の後に決める）
 
-b9は、b8と同じreceiver／typed data specを複数点へ適用するbounded batchだけを候補にします。全入力を検証してから
+b9は10月10日にAPI freezeの版として必ず出し、範囲とprotocol版はb8の後に決めます（`2026-09-29-02`）。
+以下のParticleBuilder Stage 3（bounded batch）は、その候補の一つとして当初立てた計画です。
+
+Stage 3は、b8と同じreceiver／typed data specを複数点へ適用するbounded batchです。全入力を検証してから
 一括accept／rejectし、point数、入力byte、work、receiver fan-outを有限にします。costは少なくとも
 `points × receivers`を反映し、成功resultは受理point／配送規模を観察できる方向でcontract lockします。
 新しいparticle typeやreceiver modeをb9へ便乗させません。
 
-b8のPython 3D graphを単点`FAST`で描いて十分ならb9を使わず、Stage 3をrc後へ送って`23.2.0`をfreezeします。
-RPC／再描画負荷が実測上の問題で、bounded batchが初回stableに必要な一つの自己完結sliceと判定できた時だけ
-`23.3.0`として実装します。`events.poll` filter／`events.clear`はこのb9へ入れません。
+b8のPython 3D graphを単点`FAST`で描いて十分なら、Stage 3はb9に入れずrc後へ送ります。RPC／再描画負荷が
+実測上の問題で、bounded batchが初回stableに必要な一つの自己完結sliceと判定できた時にb9へ入れ、protocolを
+`23.3.0`とします。`events.poll` filter／`events.clear`を入れるかも、b9の範囲とあわせて決めます。
 
 ### 3.5 2026-08-29時点の新API候補pool
 

@@ -415,7 +415,7 @@ b5では`events.poll`、`world.getHeight`、`world.spawnParticle`、`world.spawn
 clientは専用rate値をローカル保証として複製せず、`backpressure`を既存の一時拒否として扱い、非冪等な
 `internal_error`を自動retryしない。particleのPaper `ParticleBuilder`内部移行はPython surfaceを
 変えない。b8はreceiver選択と有限typed particle dataをPythonへ追加し、3D graphのapplication sampleを受入入力に
-する。条件付きb9はb8と同じparticle specを使うbounded batchだけを候補とし、単点`FAST`で十分なら追加しない。
+する。b9はAPI freezeの版として必ず出し、範囲はb8の後に決める（`2026-09-29-02`）。b8と同じparticle specを複数点へ適用するbounded batchは、その候補の一つである。
 Scratchの学習者向けsurfaceは別trackで追従でき、Python実装の完了条件へ含めない。exact Python method signatureと
 戻り型は共通wire fixtureとplugin実装を入力に固定し、knowledgeだけからkwargsや独自型を推測しない。
 

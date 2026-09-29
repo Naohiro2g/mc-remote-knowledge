@@ -670,10 +670,10 @@ artifact `2320.0.0b8`とし、entity lifecycle四methodを一組で扱うほか�
 後方互換なreceiver選択／有限typed dataをStage 2として追加し、Python surfaceと3D graph sampleで検証する。
 get／setをbeta間で機械的に分割しない。
 
-条件付きb9はprotocol `23.3.0`／artifact `2330.0.0b9`とし、b8と同じparticle specを使うbounded batchだけを
-候補にする。b8実測で単点RPCが律速になり初回stable必須と判断した場合だけ使い、追加particle type、追加receiver、
-event filter／clear等の残件を同梱しない。使わなければ初回stable coreは`2320.0.0`、使えば`2330.0.0`である。
-9月末に新API追加を止め、10月rc、11月初回stableへ進む（`2026-08-29-02`）。
+b9は10月10日にAPI freezeの版として必ず出し、範囲とprotocol版はb8の後に決める。b8と同じparticle specを
+使うbounded batchはその候補の一つで、入れる場合はprotocol `23.3.0`／artifact `2330.0.0b9`とする。初回stable
+coreは、b9でfreezeしたprotocolから決まる。rc1は10月24日まで（必要ならb10、b11の後）、初回stableは11月1日
+とする（`2026-09-29-02`。`2026-08-29-02`の「9月末に新API追加を止め、10月rc、11月初回stable」を改訂）。
 
 ### 10.12 pre-release 状態は明示操作（自動認識は PyPI のみ）
 

@@ -136,7 +136,7 @@ lockへ記録し、b8実装後・API freeze前の負荷較正でruntime policy�
 | `player.getPose` | `[]` | あり | paired playerの現在dimension・位置・向きをstream origin相対で返す（§5.3） |
 | `player.setPose` | `[dimension_ref, x, y, z, yaw, pitch]` | あり | 指定dimensionへ位置・向きを1回のteleportで一体反映する（§5.3） |
 | `events.poll` | `[after_sequence]`／`[after_sequence, {max_events}]` | あり | epoch-scoped event ringを非破壊取得。filterは条件付きb9以降のcandidate（§5.4） |
-| `events.clear` | 後続contractで固定 | あり | retained eventの明示破棄候補。条件付きb9以降（§5.4） |
+| `events.clear` | 後続contractで固定 | あり | retained eventの明示破棄候補。b9以降の候補（§5.4） |
 | `world.getHeight` | `[x, z]`または`[x, z, max_y]` | あり | origin相対の最上面block高を返す（b5、§5.6） |
 | `world.spawnParticle` | `[x, y, z, offset_x, offset_y, offset_z, particle, speed, count, (force)]` | あり | 9／10 params、`force`省略時`true`。b8で`particle`にobject形`ParticleSpec`を追加（§5.7／§5.8.3） |
 | `world.spawnEntity` | `[x, y, z, entity]` | あり | entityを生成しepoch-scoped handleを返す（b5、§5.7） |
@@ -397,9 +397,10 @@ particleは三段階で進める。b7 Stage 1は既存`world.spawnParticle` hand
 既定receiverをworldのまま保ち、receiverの`self`とdust色＋size／block `BlockSpec`の有限typed dataを
 後方互換に追加する。`ParticleSpec`のshapeと検証順は§5.8.3を正とする。
 
-条件付きb9 Stage 3は、b8と同じspecを複数点へ適用するbounded batchだけを候補とする。全入力の事前検証、
-point／byte／work／receiver fan-out上限、少なくとも`points × receivers`を反映するcost、受理規模を観察できる
-resultを要求する。b8の単点`FAST`＋Python 3D graphで十分ならb9を使わずrc後へ送る。
+Stage 3（b8と同じspecを複数点へ適用するbounded batch）はb9の候補の一つである。b9の範囲はb8の後に決める
+（`2026-09-29-02`）。採る場合は、全入力の事前検証、point／byte／work／receiver fan-out上限、少なくとも
+`points × receivers`を反映するcost、受理規模を観察できるresultを要求する。b8の単点`FAST`＋Python 3D graphで
+十分ならrc後へ送る。
 
 #### 5.8.1 sign exact contract
 
