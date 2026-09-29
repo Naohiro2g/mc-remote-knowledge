@@ -9,6 +9,8 @@ python3 tools/check-decisions.py
 python3 -m unittest tools/test_check_decisions.py
 ```
 
+GitHub Actions（`.github/workflows/knowledge-checks.yml`）が、`main`へのpushとpull requestのたびに、この検査と`tools`のtestを走らせます。手で走らせ忘れても、pushの後に失敗として見えます。
+
 次を検査します。
 
 - decision ID の重複
