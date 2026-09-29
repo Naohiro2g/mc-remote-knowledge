@@ -269,12 +269,12 @@ yaw／pitch／direction／full poseは一覧へ重ねず個別getterに任せま
 transaction単位のhandle capacity判定を維持します。球境界、丸め前の二乗距離とcanonical UUIDによる順序、
 幾何的chunk column数＋`max_entities`のwork cost、WorkAdmission前の検索・handle副作用不在、候補消失時の
 部分成功とhandle transaction／rollbackは`2026-09-23-01`／[wire §5.8.3](wire-format-design_ja.md)を正とします。
-未記載のparams／cap／他のentity methodのexact shapeは別途固定します。
+params、上限（radius 0〜64、`max_entities` 1〜64）、`entity.getPose`／`setPose`／`remove`のexact shapeは`2026-09-30-01`／wire §5.8.3で固定しました。
 
 particle Stage 2では、既存のdata不要particle文字列とworld全体への既定配送を保ち、`world.spawnParticle`の
 object形`ParticleSpec`へ`receiver`と有限なtyped dataを追加します。`receiver`省略は`world`、`data`省略は
 data指定なしで、明示`null`は`invalid_params`です。receiverは`world`／`self`、dataはdustの`color`／`size`と
-blockの既存`BlockSpec`を対象とし、全階層で未知fieldを拒否します。粒子ID→data→receiver→permission→work→
+blockの既存`BlockSpec`を対象とし、全階層で未知fieldを拒否します。Dustの範囲（RGB 0〜255、size 0.01〜4.0）と、未対応typed dataの`particle_data_unsupported`は`2026-09-30-01`で固定しました。粒子ID→data→receiver→permission→work→
 chunk→spawnの検証・副作用順と複合errorの優先順は`2026-09-23-01`／wire §5.8.3を正とします。
 
 Python surfaceと3D graphの小さいapplication sampleをb8 acceptanceへ含めます。receiverが実際に対象playerだけへ

@@ -91,9 +91,16 @@ protocol不変定数や最終運用値と主張しません。
   含むprojected capacity、成功時一括commitとcapacity失敗時rollback。filter後／truncate後の候補消失では
   補充せず残存候補または`[]`で成功し、staged失効は後続失敗時にrollbackする。snapshot query中の一entity消失を
   request全体の`entity_unavailable`にせず、明示handle操作のreasonと区別する。`entity.remove`失効も照合する。
+- b8 nearbyの上限と境界（`2026-09-30-01`）：radius 0、球面境界、radius 64／`max_entities` 64の上限と超過時の
+  `invalid_params`（切り詰めない）、chunk境界、chunk indexへ変換できない座標、work拒否。build rangeは探索する
+  X/Z bounding square全体で判定する。
+- b8 entity lifecycle（`2026-09-30-01`）：`entity.setPose`のdimension移動とissued dimension更新、再読取りしたpose、
+  `teleport_failed`、`entity.remove`後のhandle、work cost（get 0、set／remove 1）、setの検証順。
 - b6 signの4行／面／state検証とrollback。b8 `ParticleSpec`のreceiver／data省略、明示`data:null`、
   top-level／Dust／BlockSpec各階層のstrict schema、未知particle＋未認証`self`、不正data＋未認証`self`、
   正しいparticle／data＋未認証`self`の優先reason、既存forceの`self`時pass-through、work受理後の非返却を固定する。
+  Dust dataの欠落／`null`／範囲端（RGB 0と255、size 0.01と4.0）／範囲外、未対応typed dataの
+  `particle_data_unsupported`と文字列shorthandの`particle_data_required`の区別を加える（`2026-09-30-01`）。
 - Python cursor／retry／handle投影、Scratch thread-local event context／monitor guard。
 - WireScope schema v1／compatibility revision v1.1 validatorとartifact set。b8はprotocol `23.2.0` validator、
   entity lifecycle／particle Stage 2のmethod認識、sanitizer、shared fixture消費をcompatibility setで照合する。

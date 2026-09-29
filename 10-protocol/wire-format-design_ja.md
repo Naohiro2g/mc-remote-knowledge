@@ -145,10 +145,10 @@ lockへ記録し、b8実装後・API freeze前の負荷較正でruntime policy�
 | `entity.getDirection` | `[handle]` | `DirectionValue` | handle対象の現在方向を返す（b7、§5.8.2） |
 | `entity.setDirection` | `[handle,x,y,z]` | 適用後の`DirectionValue` | 非zero vectorを正規化してhandle対象の向きだけを変える（b7、§5.8.2） |
 | `world.strikeLightning` | `[x,y,z]` | `null` | current dimensionのorigin相対位置へdamage-capableなfull lightningを要求する（b7、§5.8.2） |
-| `world.getNearbyEntities` | exact paramsは別途固定 | あり | boundedな近傍entity検索。playerを除外（b8、§5.8.3） |
-| `entity.getPose` | exact paramsは別途固定 | あり | handle対象のposeを返す（b8、§5.8） |
-| `entity.setPose` | exact paramsは別途固定 | あり | handle対象のposeを一体更新（b8、§5.8） |
-| `entity.remove` | exact paramsは別途固定 | あり | entityを除去しhandleを即時失効（b8、§5.8） |
+| `world.getNearbyEntities` | `[x, y, z, radius, max_entities]` | あり | boundedな近傍entity検索。playerを除外。`[{handle,type,pos}, ...]`、0件は`[]`（b8、§5.8.3） |
+| `entity.getPose` | `[handle]` | あり | handle対象のpose `{dimension,pos,yaw,pitch}`を返す（b8、§5.8.3） |
+| `entity.setPose` | `[handle, dimension_ref, x, y, z, yaw, pitch]` | あり | 1回のteleportでposeを一体更新し、再読取りしたposeを返す（b8、§5.8.3） |
+| `entity.remove` | `[handle]` | あり | entityを除去しhandleを即時失効。成功時`null`（b8、§5.8.3） |
 | `world.getSign` | `[x, y, z]` | `{front:[LineValue×4],back:[LineValue×4],waxed:bool}` | signの両面とwaxedを正準形で取得（b6、§5.8.1） |
 | `world.setSign` | `[x, y, z, {front?:[LineSpec×4],back?:[LineSpec×4]}]` | `null` | 指定面を面内no-mergeの厳密4行へ置換（b6、§5.8.1） |
 | `world.updateSignLine` | `[x, y, z, face, line_index, LineSpec]` | `null` | signの一面・一行だけをPATCH（b6、§5.8.1） |
@@ -621,9 +621,9 @@ GitHub prerelease（`v1.21.11-2301.0.0b7`／`v2301.0.0b7`／`v2301.0.0b7`）は2
 
 #### 5.8.3 b8 nearby／particle Stage 2 の確定境界（`2026-09-23-01`）
 
-本節はprotocol `23.2.0`のB8 contract lockに向け、Scratchレビューの確定搬送票で固定した境界である。
-`world.getNearbyEntities`の未記載のpositional params、radius／件数cap、他のentity lifecycle methodのexact shape、
-particleの未記載の上限やerror reasonを、この節だけから補完しない。
+本節はprotocol `23.2.0`のB8 contract lockに向け、Scratchレビューの確定搬送票で固定した境界である
+（`2026-09-23-01`）。params、上限、entity lifecycleのexact shape、Dust dataの範囲は`2026-09-30-01`で埋めた
+（末尾の「exact params、上限、entity lifecycle、Dust data」）。
 
 ##### `world.getNearbyEntities`の探索とWorkAdmission
 
@@ -680,6 +680,31 @@ error、正しいparticle／dataと未認証`self`の併発は`auth_required`を
 
 WireScopeのprotocol `23.2.0`認識をB8 compatibility setへ含める。validator、method認識、sanitizer、
 shared fixture接続を対象とし、Scratch learner blockは別trackの非blockerとする。
+
+##### exact params、上限、entity lifecycle、Dust data（`2026-09-30-01`）
+
+`world.getNearbyEntities`は必須の`[x, y, z, radius, max_entities]`をとる。座標はstream origin相対の有限数値、
+`radius`は有限数値で0〜64、`max_entities`は整数で1〜64とし、64／64を配布時のruntime policy既定値にする。
+64はprotocolの上限で、runtime policyはこれより下げられるが上げられない。policyを超える値は切り詰めず`invalid_params`とする。結果は`[{handle, type, pos}, ...]`、0件は`[]`。build rangeは
+探索するX/Z bounding square全体で判定し、超過は`build_denied`。chunk indexへ変換できない座標は`invalid_params`、
+work costの整数overflowは`work_limit_exceeded`とする。半径64ではchunk columnは最大81、`max_entities=64`の
+work costは最大145である。
+
+`entity.getPose [handle]`は既存の`{dimension, pos, yaw, pitch}`を返し、work cost 0。
+`entity.setPose [handle, dimension_ref, x, y, z, yaw, pitch]`は1回のteleport後にposeを再読取りして返し、
+work cost 1。成功したdimension移動では、同じhandleのissued dimensionを更新する。`entity.remove [handle]`は
+成功時`null`、work cost 1で、handleを即時失効させる。poseの数値規則は既存の`player.*Pose`、handleの失敗理由は
+b7 entity direction（§5.8.2）に揃える。setの順序は入力→permission→handle→対象dimension／build range→
+WorkAdmission→Paper操作とし、teleportが`false`なら`teleport_failed`とする。
+
+`ParticleSpec`のDust dataはちょうど`{"color": [R, G, B], "size": number}`とする。RGBは各0〜255の整数、`size`は
+有限数値で0.01〜4.0（両端を含む）。この範囲はPaperの保証値ではなく、B8の入力policyである。Block dataは既存の
+exact `BlockSpec`。typed dataの対象IDは`minecraft:dust`と`minecraft:block`。data欠落は`particle_data_required`、
+型・範囲・余分なfieldの違反は`invalid_params`、`BlockSpec`内の違反は既存のblock系reasonとする。登録済みでも
+B8でdata型に対応しないparticleに、objectでdataを指定して要求した場合は`particle_data_unsupported`とする。
+既存の文字列shorthandでdataを欠く場合は、従来どおり`particle_data_required`。既存のcount上限1000は維持する。
+
+上限超過時の暗黙の切り詰め、探索領域の暗黙の切り取り、未対応typed dataに対する成功時fallbackは行わない。
 
 ---
 
@@ -925,13 +950,14 @@ string`"3"`は別型とする。BlockValue出力はregistryの正準型を使い
 | world-state | `-32000`番台（実装定義域） | `build_denied` | build policy / 範囲 / 認可により操作拒否。返せる場合は `data.bounds` / `data.violating` 等で理由を補足 | ○ |
 | player-state | `-32000`番台（実装定義域） | `permission_denied` | LuckPerms 等の認可により操作拒否。token は温存 | b2 |
 | | | `player_offline` | token は有効だが paired player がオンラインでない | b2 |
-| | | `teleport_failed` | `player.setPose`等のteleport自体が`permission_denied`／`player_offline`／`unknown_dimension`／`invalid_params`以外の要因で失敗 | b5／protocol 22 |
+| | | `teleport_failed` | `player.setPose`、`entity.setPose`等のteleport自体が`permission_denied`／`player_offline`／`unknown_dimension`／`invalid_params`以外の要因で失敗 | b5／protocol 22、`entity.setPose`はb8 |
 | world-query | `-32000`番台（実装定義域） | `height_not_found` | 指定上限以下に「非passableかつ直上passable」のblockが無い | b5 |
 | sign-state | `-32000`番台（実装定義域） | `not_a_sign` | 指定座標のblockがsignでない | b6 |
 | | | `sign_waxed` | waxed signへのwriteを拒否。readは許可 | b6 |
 | | | `sign_update_failed` | mutation時にstale snapshot等を検出し、部分変更なしでwriteを拒否 | b6 |
 | resource-ref | `-32602`（Invalid params） | `unknown_particle` | canonical particle IDがregistryに無い | b5 |
-| | | `particle_data_required` | b5では扱わないtyped data必須particle | b5 |
+| | | `particle_data_required` | typed data必須particleでdataが欠落（文字列shorthandを含む） | b5、b8で意味を精密化 |
+| | | `particle_data_unsupported` | 登録済みだが、B8でdata型に対応しないparticleへ、objectでdataを指定して要求 | b8 |
 | | | `unknown_entity` | canonical entity IDがregistryに無い | b5 |
 | | | `entity_not_spawnable` | playerまたはspawnを許可しないentity type | b5 |
 | availability | `-32000`番台（実装定義域） | `backpressure` | 副作用開始前の一時的な処理能力超過。同一要求を後でretry可能 | b5 |
