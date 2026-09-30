@@ -110,5 +110,6 @@ release別API referenceの生成はowner移管の実行許可や完了条件で�
 Javaはb8にもb9にも含めない。b9までは、移管とfreezeに役立つ準備を先に進める。契約の疑問点の棚卸しとfreeze前の
 返却、consumerとしての依存の明示、再現できる検証の入口、README／examples／対応範囲の整合である。
 
-初回stableの後、Javaは新しいownerと取得経路で実装を追従し、移管の再検証を担う。Scratchに一度も依存したことの
-ないconsumerが新しいownerだけから組み上がるかを確かめる。
+初回stableの後、Javaは新しいownerと取得経路で実装を追従し、移管の再検証を担う。Scratchのruntime／buildに依存しない
+Java consumerが、新しいownerと取得経路だけから実装・検証できるかを確かめる（いまのJavaのtest fixtureはScratchの
+owner由来なので、「Scratchに一度も依存していない」とは書かない。Java着地確認の指摘、2026-09-30）。

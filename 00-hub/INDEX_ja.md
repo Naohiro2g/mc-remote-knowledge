@@ -41,6 +41,7 @@ public 正本世代の入口です。ここに載る path は、このリポ内�
 | `10-protocol/dimension-key-design_ja.md` | protocol 22のDimensionKey入力／出力、build context、surface投影、protocol 21非互換境界 |
 | `10-protocol/block-value-design_ja.md` | protocol 22の構造化block value、set／get対称性、多言語・Scratch投影の説明正本 |
 | `10-protocol/catalog-block-tags-design_ja.md` | catalogのblockへのタグ（`2026-09-30-08`で採用、実装は初回stable後）の仕様案と担当別作業案 |
+| `10-protocol/sound-extension-notes_ja.md` | 初回stable後のサウンド拡張（シーケンス演奏、イベント登録、後続の候補）の検討メモ。Paperのサウンドの事実とScratchの音のブロックとの対応を含む |
 | `11-plugin/platform-design_ja.md` | server plugin / loader の設計境界、availability guard、認証設定lifecycle、credential 永続化と失効耐性（§9） |
 | `11-plugin/b7-live-gate-followup-instructions_ja.md` | b7 handle reason／session permission修正とtargeted再検証のMcRemote担当向け確定指示 |
 | `12-python-client/python-client-guide_ja.md` | Python client の公開利用面 |

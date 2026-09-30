@@ -95,7 +95,9 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   - live試験のMC版照合: `2026-09-28-03`
   - 日程とWindows検証: `2026-09-29-02`
   - shared fixtureのownerはScratchのまま（`2026-09-13-02`）
-- knowledge contract commit: `2d0830a741997573248ee94e945c719316a0c299`（`2026-09-30-02`〜`-10`を着地したcommit）
+- knowledge contract commit: `2d0830a741997573248ee94e945c719316a0c299`（`2026-09-30-02`〜`-10`を着地したcommit）。
+  gateの節と確認票依頼は`16668c5e5152d593c4b184939c9a9e723529d6e9`で加えた（wireとDECISIONSは同一）。確認票依頼に
+  `2d0830a`とだけ書いたのはcoordinatorの誤りで、Pythonは参照先にgateの節が無いと返した。依頼を訂正した
 - 基準set: b7.post2（McRemote `v1.21.11-2301.0.0b7.post2`、Scratch `v2301.0.0b7.post2`）＋Python `2301.0.0b7.post3`
 - 参加component:
   - McRemote: entity lifecycle四method、Particle Stage 2、サウンド2 method、resource IDの無印の受け入れ、b8必須是正
@@ -126,7 +128,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   5. サウンド: 実際に聞こえる、定位と距離による減衰、`self`は本人にだけ聞こえる
   6. Python 3D graphの小さいsample
   7. 1.21.11での代表往復。live試験の開始時にhelloの`mc_version`を照合し、違えば本体を実行せずFAIL
-  8. Windowsでの導入手順の検証（human）: 関心は、いちばんハードルの低い入口ルート（クリーンインストールのWindows 11から、
+  8. Windowsでの導入手順の検証（human ownerが行う）: 関心は、いちばんハードルの低い入口ルート（クリーンインストールのWindows 11から、
      Gitなしでuvだけ、Release wheelのURL、Jupyterまで）で通るか。通らなければ正準の通常ルート（Git for Windows）へ進む
   9. McRemoteの認証／credentialの強化分（上の変更範囲）
 - 再利用するPASS: b7のdirection／lightning／particle Stage 1のlive PASSは、B8で意味を変えない範囲で再利用する。
@@ -138,13 +140,69 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   b8で扱うか再開条件を置くかをgate中に決める。NOTES `[priority]` b7 release後の是正候補3件（Scratch／WireScope）も、
   Scratchの確認票で状態を聞いてから扱いを決める
 - exact compatibility set / freeze status: **未凍結**
-- target deployment: 論理deployment `dev-integration`（1.21.11、ホームサーバー`home-host-2`、host-native）
+- target deployment: 論理deployment `dev-integration`（1.21.11、ホームサーバー`home-host-2`、host-native）の通常環境で行う
+  （human owner 2026-09-30）。2026-09-30時点では公開済みb7（`mc-remote-1.21.11-2301.0.0b7.jar`）が稼働している（human ownerの
+  console log）。Stackの配置経路が無いので、Stack担当が一回限りの許可で読むだけの事前確認をし、exact setの凍結後に別の
+  指示でJARを一件だけ差し替える。作り直しはb8の後
 - gate manifest identity: 未成立。公開後は各repoのrelease `manifest.json`をread-onlyで照合する
 - gateを開くときのpark確認（`2026-09-30-09`）: `tools/list-reopen-conditions.py --release-tied`の16行を見た。b8に関わる
   行（ピッカーの多言語metadata、browser検証能力、b7公開後のScratch 3件、WireScopeのpublic deploy後続、Stackの
   2026-07-23の行、Windowsの導入2ルート）は、確認票の質問と統一実施票へ入れた。iPad（Carnets）はb8の公開後に扱う
-- authorized next action: [確認票依頼](b8-gate-confirmation-instructions_ja.md)をMcRemote／Python／Scratch／Stackの
-  各担当へ出す。shared環境へのcandidate deploy、人間参加の試験、tag／releaseの公開はまだ許可しない
+- 確認票の返却（2026-09-30。担当報告、coordinatorは実装の正しさを判定しない）:
+  - McRemote: candidate `feat/b8-entity-lifecycle-particle@b3b3ba805fbf8413e22407c087b6abe4f201707b`（PR #12、未merge。
+    coordinatorがGitHub APIでbranchの先頭と一致を確認）。JAR `mc-remote-1.21.11-2320.0.0b8.jar` 261,025 bytes／SHA-256
+    `7ab24fa1ff6c20513e46cbf3629f1f4860365acbf3a7e191e48a4e75af1677fb`（担当が2回のclean buildで一致を確認）。unit 271件PASS。
+    live-autoはローカルPaper 1.21.11で`f48a18e`（53行）と`5c4d558`（60行、サウンド含む）がPASS、`b3b3ba8`は未実施。
+    b8必須是正（`4d39362`／`6f8d69d`）とcredentialの自動初期化（`e60b194`）は祖先にある。B8共有fixtureは
+    `entity-particle-v23.2.json`（Scratch `0735a9c957d069f719bee9c91e8be0f9322f4920`、20,967 bytes、SHA-256
+    `09c1565bf81d33c92d6282e6e20d926559168cb9d780c07d30ad2f9f5895640e`、59 case）を使用。サウンドとresource IDのcaseは未受領。
+    未検証: fresh installでの認証ON既定、b7.post2からのupgradeで実tokenが続くこと、live-human
+  - McRemoteの訂正予告: 旧`b5.`／`b7.`キーは、実装（`366f363`）では起動時に値を新キーへ移して旧キーを削除している。
+    上の変更範囲の「読み替えと警告」と`2026-09-03-02`の状態欄「起動時にoperatorの`config.yml`を自動で書き換えない」は
+    実装と合わない。McRemoteがb8の実装報告の搬送票で訂正を出す。この結果、b8で起動した後にb7.post2のJARへ戻すと、
+    運用者が変えていた値が効かなくなる（hub NOTESのpark「rc1のrollbackの範囲」）
+  - Python: B8の実装は`codex/b8-python-entity-particle`（HEAD `70596ed5fc96d826d5107f2033354a59cccfc2e6`）の上の未commit差分で、
+    candidateは未固定。entity lifecycle四method、ParticleSpec、3D graphのsampleは実装済み。サウンド、短いimport、`pygame` extraは
+    未実装。particle／entityの無印IDをclient側で拒否している（`2026-09-30-06`への修正が要る）。同梱WireScopeはScratch
+    `5aaa9c5`から作り、サウンドとresource IDには未追従。10/3に間に合うとは確約できない
+  - browserの操作: McRemote（Claude Code CLI）、Python（browser skillの初期化に失敗）、Stackは実browserを操作できない。
+    Scratchは独立のChromiumでlocalhostの表示、DOM、click／type、screenshotを実測済み（内蔵のBrowserは接続エラー）。
+    real-browserのWireScope確認は、Scratch担当と人間で行える
+  - Windows: Pythonの担当agentはLinuxで、Windows実機の試験はできない。試験担当は未割当
+  - README再編: McRemoteは冒頭から設定解説まで済み、capabilityの一覧（b7／b8の機能）とsmoke testのprotocolの例が残る。
+    Pythonはstarter READMEの旧記述、更新・rollbackの導線、Windows、cold-readerの確認が残る
+  - Stack（main `68832e0`）: b8のchange coneは無い。公開VPS（official-public-beta）はb7.post2のlock
+    `sha256:8de1c89b158727a610a42dbd5222f53c6ce8cbda86f3358068d03e5eb09d1e07`のままで、PR #55〜#60の内部整理の後もdoctorは全項目OK、
+    renderは不変。**dev-integration（1.21.11、ホームサーバー`home-host-2`、host-native）はStackの仕組みの外にあり**、host-nativeの
+    旧runbookも削除済み。human ownerの判断（2026-09-28）で作り直す予定。このためStackの経路ではb8のcandidateを置けず、置くなら
+    人の手作業でJARを差し替えることになる。稼働中deploymentのidentityを示す専用の`status`は無い（`mcrctl plan`はlockの中身と
+    SHA-256を出すが、MC版・Paperのbuild・Java版は出さない。`mcrctl doctor`は認証が有効なため`mc_version`を出さない）。
+    public側のWireScopeはbetaのVPSで配信済み
+  - Scratch（`agent/b8-compatibility@5aaa9c59acc393cd0a0de5cb45a5e619a5e87abe`＋未commit差分）: Protocol 35/35、WireScope 137/137、
+    VM 119 subtests／485 assertionsがPASS。B8共有fixtureは`0735a9c`（59 case）で、サウンドのcaseとresource種別ごとの
+    無印・完全修飾・非正準形のcaseは未収録。Protocol mirrorとWireScopeは23.2.0のentity lifecycleとtyped particleに対応済みで、
+    `world.playSound`／`world.playBlockSound`／`unknown_sound`は未対応。**Scratchからの観測では、B8 entityの4 method、typed particle、
+    particleのFAST通知がScratch側のallowlistで落ちる**（再現済み。独立WireScopeの対応だけでは観測が完成しない）。VMは無印の
+    resource IDをそのまま送るが、WireScopeのvalidatorはparticle／entityの無印を拒否する（`2026-09-30-06`への修正が要る）。
+    カタログID一覧ブロック、entity／particleの9ブロック、pickerの変更は実装済みで未commit。サウンドのlearner blockは未実装
+    （非blocker）。pickerは日本語名・英語名・IDの表示とAND検索ができ、公式の言語データから開発時に抽出した最小の辞書を
+    GUIの版別JSONへ同梱する（言語ファイル全体は持たない。`2026-09-30-10`どおり）。b7 release後の是正候補3件とpost-b7の
+    park 2件は未着手。移管の準備では、Protocolは依存なし、VM／WireScope／BridgeはProtocolをruntime importせず、testが共有
+    JSONを相対pathで読む。release manifestの`contracts`はGUIのproduct／runtime config schemaとfixturesで、B8のprotocol
+    fixtureは含まない。現時点ではrelease可能と返せない
+  - Pythonの追記（同日）: `codex/b8-python-entity-particle@fc6c700b1588a1d052499314f47e8e7e5b06ae27`をpush（coordinatorがGitHub APIで
+    branchの先頭と一致、CI run `36718297434`がこのcommitでsuccessを確認）。無印IDの受け入れ、サウンド2 method、observerの追従、
+    読み直しに対応した短いimport、`pygame` extraを実装し、ローカル588件PASS、CIはPython 3.10〜3.13とbuildが成功（担当報告）。
+    CI成果物は、wheel 192,394 bytes／SHA-256 `8ce5382381091a54c739b78e695b85a52a3b0485ef10dc20671b90c0049510a8`、sdist 185,422 bytes／
+    SHA-256 `90242c9922750a0338139cb884823fbe17e1ead0b3c5deb317080cb4c95e64b4`。同梱WireScopeは引き続きScratch `5aaa9c5`から作っており、
+    Scratchのsuccessor fixture／WireScopeの取り込みが残る。Windowsの入口手順（Python repoの`docs/windows-b8-entry_ja.md`）を用意済み
+  - 全担当の返却がそろった（2026-09-30）
+- authorized next action: 確認票の返却はそろった。b8のblockerと非blockerの線引き、依存順（Scratchのfixtureとobserver → McRemote／
+  Pythonの取り込み → exact setの凍結 → 実機試験）、日程の見通しをhuman ownerと決めてから、各担当へ着手依頼を出す。
+  Stack担当は、dev-integrationの読むだけの事前確認をしてよい（稼働中のMC版、Paperのbuild、Java版、McRemote JARの
+  SHA-256、listener、credential domainのhealth。変更しない）。ケータリング方式のセットアップは、b8の公開後にStackの
+  別作業として、b8のrelease tagを材料に行う（新規セットアップを1日で仕上げるのが目標。hub NOTESのpark）。このgateの根拠には使わない。shared環境へのcandidate deploy、人間参加の試験、tag／releaseの
+  公開はまだ許可しない
 - non-claim: PyPI.orgへの公開とAPI freeze（b9）、capacity／soak／rollback（rc1。rollbackの範囲案はhub NOTESにpark）、public deploy、Scratch learner block、
   サウンド以外の新API（`2026-09-30-03`で初回stable後）、tooling移管（b9）、26.x（`2026-09-30-07`）、Java、
   初回stableの互換
