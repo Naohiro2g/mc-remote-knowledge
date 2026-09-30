@@ -71,6 +71,84 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - non-claim: PyPI.orgへの公開はしない。mature判定はしない。Windowsでは検証していない
 - coordinator判定／human release owner承認: human ownerがpost2のsetへの組み入れを判定（2026-09-26、`2026-09-27-01`）。coordinatorはchange coneが閉じていることを確認し、単独更新gateを通過とする（2026-09-28）。**CLOSED**
 
+## 2026-09-30 b8横断release gate（OPEN）
+
+- gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
+- human release owner: プロジェクトオーナー
+- current phase: **横断接続の前**。McRemote、Python、Scratchの実装は人間確認の直前まで進んでいる（human owner申告、
+  2026-09-30）。McRemoteからはサウンドの照会への回答でcandidate `feat/b8-entity-lifecycle-particle@b3b3ba8`（PR #12、
+  未merge、271件PASS）を受け取った（担当報告、coordinator未照合）。Python、Scratchのidentityはまだ受け取っていない。
+  次は確認票でidentityを受け取り、Tier 2の横断接続 → exact setの凍結 → live-humanへ進む
+- 目標日: 2026-10-03 release（`2026-09-29-02`）
+- release mode: 軽量mode（release運用と責務分担 §14、`2026-08-28-02`）。McRemoteの変更範囲に認証の既定値と
+  credentialの自動初期化（`2026-09-03-01`、`2026-09-25-01`）が入るため、その部分は§14の但し書きにより検証を強める
+- contract: protocol `23.2.0`／artifact `2320.0.0b8`（foldは`2026-09-23-03`）。wire §5.0.2、§5.8.3、method表、error表
+  - B8 API: `2026-09-23-01`／`2026-09-30-01`／`2026-09-30-02`（サウンド）
+  - resource IDの補い方: `2026-09-30-06`
+  - 初回stableまでのAPI範囲とb9: `2026-09-30-03`
+  - Java: `2026-09-30-04`
+  - pickerの名前データ: `2026-09-30-10`
+  - gate開閉時のpark確認: `2026-09-30-09`
+  - MC target（b8は1.21.11だけ、26.xは26.3を対象）: `2026-09-30-07`
+  - McRemoteの是正: `2026-09-03-01`／`2026-09-03-02`／`2026-09-25-01`
+  - Python surface: `2026-09-28-01`（`from mc_remote import Minecraft`）／`2026-09-28-02`（`pygame-ce`をoptional extraへ）
+  - live試験のMC版照合: `2026-09-28-03`
+  - 日程とWindows検証: `2026-09-29-02`
+  - shared fixtureのownerはScratchのまま（`2026-09-13-02`）
+- knowledge contract commit: `2d0830a741997573248ee94e945c719316a0c299`（`2026-09-30-02`〜`-10`を着地したcommit）
+- 基準set: b7.post2（McRemote `v1.21.11-2301.0.0b7.post2`、Scratch `v2301.0.0b7.post2`）＋Python `2301.0.0b7.post3`
+- 参加component:
+  - McRemote: entity lifecycle四method、Particle Stage 2、サウンド2 method、resource IDの無印の受け入れ、b8必須是正
+    （auth三点、意味別config、READMEの設定解説）、credentialの自動初期化。MC targetは1.21.11だけ
+  - Python client: B8のPython surface（entity lifecycle、ParticleSpec、サウンド）、短いimport、`pygame` extra、
+    3D graphの小さいsample、同梱WireScopeの23.2.0対応
+  - Scratch editor（Bridge・WireScope同梱）: B8共有fixtureの発行（サウンドとresource IDのcaseを含む）、
+    `@mc-remote/protocol` 23.2.0のmirror、WireScopeのvalidator／method認識／sanitizer。learner block（カタログの
+    ID一覧をリストへ入れるブロックを含む）は非blocker
+  - 不参加: Java（`2026-09-30-04`により、b8にもb9にも含めず、公開releaseへ後から追従する）。Stackはdeploymentの
+    準備で関わり、component releaseはしない
+- 変更範囲（change cone）:
+  - wire（6 methodの追加、`world.spawnParticle`のobject形、新reason `particle_data_unsupported`／`unknown_sound`／
+    `no_block`）→ plugin codec、Python adapter、WireScope validator、共有fixture、代表往復
+  - resource IDの無印の受け入れ（particle、entityは拒否から受け入れへ、soundは新規。`2026-09-30-06`）→ plugin、
+    Python／Scratchの送り方、WireScope validatorの表示、共有fixtureのcase
+  - 認証の既定値／credentialの自動初期化／configの再編 → fresh installでauth ON、両方欠落・片方欠落の自動初期化、
+    b7.post2のcredential domainからのupgradeでsession tokenが続くこと、旧`b5.`／`b7.`キーの読み替えと警告
+  - Pythonのpackaging（extra、短いimport）→ 再現性、metadata、依存解決、importと読み直しの挙動
+- required tier: 横断接続まではTier 2。exact set凍結後にTier 3（変更範囲内の短いlive-auto、人間でしか判定できない
+  箇所だけlive-human）
+- acceptance:
+  1. B8共有fixtureをMcRemote／Python／WireScopeが同じbytesで使う
+  2. resource IDのfixture caseが、無印を拒否していた旧McRemote（公開済みb7のJAR）では意図どおり落ち、b8 candidateでは
+     通ることを一度確かめる
+  3. receiverが対象のplayerだけへ届く2-player確認（particleとサウンドを同じ回で見る）
+  4. dust／blockの描画
+  5. サウンド: 実際に聞こえる、定位と距離による減衰、`self`は本人にだけ聞こえる
+  6. Python 3D graphの小さいsample
+  7. 1.21.11での代表往復。live試験の開始時にhelloの`mc_version`を照合し、違えば本体を実行せずFAIL
+  8. Windowsでの導入手順の検証（human）: 関心は、いちばんハードルの低い入口ルート（クリーンインストールのWindows 11から、
+     Gitなしでuvだけ、Release wheelのURL、Jupyterまで）で通るか。通らなければ正準の通常ルート（Git for Windows）へ進む
+  9. McRemoteの認証／credentialの強化分（上の変更範囲）
+- 再利用するPASS: b7のdirection／lightning／particle Stage 1のlive PASSは、B8で意味を変えない範囲で再利用する。
+  McRemoteのJARは変わるので、代表往復だけ取り直す。Python post3のsoak gate ①〜③と④（Windowsを除く）は再利用する
+- 移管の準備（`2026-09-30-03`）: b8 release時点でScratchが持つprotocol packageと全共有fixtureの一覧（file、bytes、
+  SHA-256、case数、protocol version）をこの欄に記録し、b9の移管の起点とrollback先にする。各consumerの取り込み方は
+  確認票で返してもらう。b8の間はrepositoryの操作、sourceの移動、owner・配布の変更をしない（`2026-09-13-02`）
+- 持ち越し: b7.post2欄の未検証の境界（WireScopeの横断real-browser E2E、home alpha、Stack後続gateの再判定）は、
+  b8で扱うか再開条件を置くかをgate中に決める。NOTES `[priority]` b7 release後の是正候補3件（Scratch／WireScope）も、
+  Scratchの確認票で状態を聞いてから扱いを決める
+- exact compatibility set / freeze status: **未凍結**
+- target deployment: 論理deployment `dev-integration`（1.21.11、ホームサーバー`home-host-2`、host-native）
+- gate manifest identity: 未成立。公開後は各repoのrelease `manifest.json`をread-onlyで照合する
+- gateを開くときのpark確認（`2026-09-30-09`）: `tools/list-reopen-conditions.py --release-tied`の16行を見た。b8に関わる
+  行（ピッカーの多言語metadata、browser検証能力、b7公開後のScratch 3件、WireScopeのpublic deploy後続、Stackの
+  2026-07-23の行、Windowsの導入2ルート）は、確認票の質問と統一実施票へ入れた。iPad（Carnets）はb8の公開後に扱う
+- authorized next action: [確認票依頼](b8-gate-confirmation-instructions_ja.md)をMcRemote／Python／Scratch／Stackの
+  各担当へ出す。shared環境へのcandidate deploy、人間参加の試験、tag／releaseの公開はまだ許可しない
+- non-claim: PyPI.orgへの公開とAPI freeze（b9）、capacity／soak／rollback（rc1。rollbackの範囲案はhub NOTESにpark）、public deploy、Scratch learner block、
+  サウンド以外の新API（`2026-09-30-03`で初回stable後）、tooling移管（b9）、26.x（`2026-09-30-07`）、Java、
+  初回stableの互換
+
 ## 2026-09-07 b7.post2（manifest.json導入・収集経路ランスルー／完走）
 
 - gate coordinator: knowledge担当session。人間による明示handoffなしに他担当へ移さない

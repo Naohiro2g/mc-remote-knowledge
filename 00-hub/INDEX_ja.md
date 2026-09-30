@@ -21,6 +21,7 @@ public 正本世代の入口です。ここに載る path は、このリポ内�
 | `00-hub/llm-agent-boundary-guide_ja.md` | agent の権限・実行・検証境界 |
 | `00-hub/release-operations-responsibility-design_ja.md` | 公開runbook、物理host、deployment、component担当、gate coordinator、人間release ownerの責務、test tier／change cone／常設dev harness／gate manifest／release close |
 | `00-hub/release-gate-notes_ja.md` | 公開release gateの確認票、coordinator、phase、exact set、許可済み次操作の状態集約 |
+| `00-hub/b8-gate-confirmation-instructions_ja.md` | b8横断release gateを開いたときにMcRemote／Python／Scratch／Stackへ出す確認票依頼 |
 | `00-hub/terms-glossary_ja.md` | 横断語彙 |
 | `00-hub/external-facts_ja.md` | 決定が `F-<topic>` で参照する外部事実の生きた台帳（調査日・状態・次回確認を更新する） |
 | `00-hub/domain-knowledge-modules-design_ja.md` | 起案。領域知識を domain knowledge module として分離する方式（`2026-07-02-01` の起案正本） |
