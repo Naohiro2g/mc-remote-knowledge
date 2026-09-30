@@ -22,6 +22,23 @@ GitHub Actions（`.github/workflows/knowledge-checks.yml`）が、`main`へのpu
 - `起案` / `保留` が未確定 dashboard 外に残ること
 - 再開 trigger のない `保留`
 
+## NOTES再開条件の一覧
+
+```bash
+python3 tools/list-reopen-conditions.py
+python3 tools/list-reopen-conditions.py --release-tied
+python3 -m unittest tools/test_list_reopen_conditions.py
+```
+
+hub NOTESの「Inbox」の未着地の行（`[park]`／`[priority]`／`[candidate]`／`[future]`）と、「Archive carry-forward
+gaps」の`[ ]`の行から、見出しと再開条件（「再開＝」）を抜き出して一覧にします。再開条件がrelease、component、
+gateに結びついていそうな行（`bN`、`rc`、`stable`、`gate`、`tag`、`release`、公開、実装などを含む）には`*`を付け、
+`--release-tied`でそれだけを出します。
+
+gateを開くときと閉じるときに、coordinatorがこの一覧を見て、条件が来ているのに拾われていない行を探します
+（`2026-09-30-09`、release運用と責務分担 §10の12）。**判定はしません**。出来事が起きたかは文面から機械的に
+分からないためで、exit codeは常に0です。
+
 ## dev agent runtime block checker
 
 ```bash

@@ -307,6 +307,10 @@ Git／provider APIから取得して存在と一致を検証する。
     （確認票／指示票）を出すか、着手しない場合はその理由と再開条件をNOTESへ明記する。`[priority]`のtagは
     目印にすぎず、gate closeという空白期間を逃すと着手session自体が発生しないため、この確認をgate close手順の
     一部として固定する（`2026-09-03`人間指摘）。
+    同じ確認を、gateを開くとき（step 2）にも行う。対象は`[priority]`に加えて、再開条件がrelease、component、
+    gateに結びついた`[park]`の行とする。`tools/list-reopen-conditions.py`で一覧を出し、条件が来ているのに
+    拾われていない行を、確認票への追加、着手指令、閉じる、再開条件の付け直しのいずれかで扱う。scriptは一覧を
+    出すだけで、条件が来たかは人とcoordinatorが判定する（`2026-09-30-09`）。
 
 candidate commit、artifact bytes、schema、policyのいずれかが変わった場合、旧exact setを失効させる。change coneの
 影響段階まで戻って再凍結・必要な場合だけ再deployする。shared環境へ未push worktreeや一時buildを差し込まない。
