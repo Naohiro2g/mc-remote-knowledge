@@ -197,8 +197,21 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     SHA-256 `90242c9922750a0338139cb884823fbe17e1ead0b3c5deb317080cb4c95e64b4`。同梱WireScopeは引き続きScratch `5aaa9c5`から作っており、
     Scratchのsuccessor fixture／WireScopeの取り込みが残る。Windowsの入口手順（Python repoの`docs/windows-b8-entry_ja.md`）を用意済み
   - 全担当の返却がそろった（2026-09-30）
-- authorized next action: 確認票の返却はそろった。b8のblockerと非blockerの線引き、依存順（Scratchのfixtureとobserver → McRemote／
-  Pythonの取り込み → exact setの凍結 → 実機試験）、日程の見通しをhuman ownerと決めてから、各担当へ着手依頼を出す。
+- blockerと非blocker（human owner 2026-09-30了承）:
+  - blocker: Scratchのfixture successor（サウンドのcase、resource種別ごとの無印・完全修飾・非正準形のcase）、Protocol mirror
+    とWireScopeのサウンド対応と無印の受け入れ、Scratchからの観測のallowlistの修正。McRemote／Pythonによる取り込み（Pythonは
+    同梱WireScopeの作り直しを含む）。McRemoteのcandidateでのlive-autoと、fresh installでの認証ON既定の確認、無印のcaseが
+    公開済みb7のJARで落ちることの確認。exact setの凍結後の通常devでの実機試験（代表往復と`mc_version`の照合、2-playerの
+    receiver確認をparticleとサウンドで、dust／blockの描画、音が聞こえること・定位、b7からb8へJARを差し替えたときに実tokenの
+    まま再接続できること）
+  - 非blocker（b9のgateを開くときに扱う）: Scratchのサウンドのlearner block、pickerのalias、b7 release後の是正候補3件、post-b7の
+    park 2件、各repoのREADMEの残り。Scratchのentity／particleの9ブロック、カタログID一覧ブロック、pickerの日本語名と検索は
+    実装済みなのでcandidateに入れるが、blockerにはしない
+  - Windowsの入口ルートは、b8の公開直後にhuman ownerがRelease wheelのURLで確かめる。releaseを止める条件にはせず、結果を
+    b9のPyPI登録の判断材料にする
+- 日程: 目標は10/3。確認点は10/1の終わりで、Scratchのblockerがそろったかを見る。そろわなければ、その時点で日程を相談する。
+  10/2に取り込みと凍結、10/2〜10/3に実機試験
+- authorized next action: [着手依頼](b8-gate-work-instructions_ja.md)を各担当へ出す。
   Stack担当は、dev-integrationの読むだけの事前確認をしてよい（稼働中のMC版、Paperのbuild、Java版、McRemote JARの
   SHA-256、listener、credential domainのhealth。変更しない）。ケータリング方式のセットアップは、b8の公開後にStackの
   別作業として、b8のrelease tagを材料に行う（新規セットアップを1日で仕上げるのが目標。hub NOTESのpark）。このgateの根拠には使わない。shared環境へのcandidate deploy、人間参加の試験、tag／releaseの
