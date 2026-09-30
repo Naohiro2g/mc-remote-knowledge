@@ -78,6 +78,16 @@ Maven Centralへのdeployment／公開はまだ実施していない。
 Pluginは既存package `club.code2create.mcremote`を維持する。Client Libraryはその下の
 `club.code2create.mcremote.client`を使い、同じproject familyを示しながらPluginとのsplit packageを避ける。
 
+## release trainとの関係（`2026-09-30-04`）
+
+Javaは横断release trainへ同期せず、公開済みのreleaseを固定して追従する。追従の対象は公開tag／commit、protocol
+version、fixture／artifact identityで固定する。Javaの機能充足、同期release、Maven公開、Java公開API全体のfreezeを、
+横断releaseの完了条件にしない。b8にもb9にもJavaを含めない。
+
+b9までは、freezeと移管に役立つ準備を先に進める。契約の疑問点の棚卸しとb9 freeze前の返却、consumerとしての依存の
+明示、再現できる検証の入口、README／examples／対応範囲の整合である。初回stable（GitHubのLatest）の後、b9で移管した
+新しいownerと取得経路で実装を追従し、移管を再検証する（[移管評価計画](../10-protocol/protocol-tooling-migration-plan_ja.md)）。
+
 ## Phase B後の進行
 
 Phase Bの最小縦sliceは`f259b396bfbde6e37e65b3c7916c25af37dc6a29`で成立した。

@@ -46,10 +46,10 @@ betaは旧b6へ集めていたAPIを一度に完成させる箱ではなく、co
 | --- | --- | --- | --- |
 | b6 | `23.0.0`／`2300.0.0b6` | sign、`pickaxe_poke`、Scratch browser保存、protocol 23 cleanup | 2026-08-31 |
 | b7 | `23.1.0`／`2301.0.0b7`（公開済みfold誤採番） | direction、damage-capableな`world.strikeLightning`、ParticleBuilder内部移行 | 2026-09前半 |
-| b8 | `23.2.0`／`2320.0.0b8` | entity lifecycle、particle receiver／typed data、Python surface、Windowsでの検証 | 2026-10-03 |
-| b9 | b8の後に決める | API freeze、Python APIのPyPI登録（範囲はb8の後に決める） | 2026-10-10 |
-| b10、b11 | b9と同じcore | 必要な場合だけ。freeze後の修正 | rc1の前 |
-| rc1 | b9と同じcore | capacity、soak、rollback | 2026-10-24まで |
+| b8 | `23.2.0`／`2320.0.0b8` | entity lifecycle、particle receiver／typed data、サウンド（`world.playSound`／`world.playBlockSound`）、Python surface、Windowsでの検証。MC targetは1.21.11だけ | 2026-10-03 |
+| b9 | `23.2.0`／`2320.0.0b9` | API freeze（APIは変えない）、Protocol／WireScope／Bridgeの移管、Python APIのPyPI登録 | 2026-10-10 |
+| b10、b11 | b9と同じcore | 基本線は挟まない。追加が要る場合は理由を示して再判断する | rc1の前 |
+| rc1 | b9と同じcore | capacity、soak、rollback。Paper 26.3がstableなら26.3対応（見込み） | 2026-10-24まで |
 | 初回stable | rcと同じcore | 全component mature、配布・運用説明を固定 | 2026-11-01 |
 
 公開済みb7の`2301.0.0b7`はidentityを維持します。正しいfoldは`2310`であり、b8以降は
@@ -59,6 +59,8 @@ betaは旧b6へ集めていたAPIを一度に完成させる箱ではなく、co
 追加particle type、追加receiver、保存、legacy整理の残件箱にしません。9月末で新API追加を止めます。
 
 > 2026-09-29 改訂（`2026-09-29-02`）：日程を改めた。b8は10月3日、b9は10月10日でAPI freeze、rc1は10月24日まで（必要ならb10、b11の後）、初回stableは11月1日。b9はAPI freezeの版として必ず出し、範囲はb8の後に決める。この節に残る「条件付きb9」「9月末で新API追加を止める」「9月末のAPI freeze」は、この改訂で置き換えた。
+>
+> 2026-09-30 改訂（`2026-09-30-03`、`2026-09-30-07`）：初回stableまでに足すAPIはb8のサウンド2 methodまでとし、他の新API候補は初回stable後へ送る。b9はAPIを変えずにfreezeし、移管とPyPI登録に集中する。b9のprotocolは`23.2.0`のままなので、上の「b9を使う場合のstable coreは`2330.0.0`」は当てはまらず、初回stableのcoreは`2320.0.0`になる。rc1へはb10を挟まずに進むのが基本線。初回stableでsupportする26.xは26.3とし、Paper 26.3がstableになっていれば対応する（§4）。
 
 この表のb7 direction、b8 entity lifecycle、条件付きb9は、2026-08-26時点で概念別縦sliceを作るための
 有力な計画仮説であり、method名を固定した不変のscope freezeではありません。Paper APIとmcpiから見つかるAPI、
@@ -250,7 +252,7 @@ versionだけを上げると未実装対応を名乗る。Scratch担当は誤指
 [`b7 artifact candidate記録`](b7-artifact-candidate-record_ja.md) §9と
 [`Claude Code引継ぎ`](b7-release-coordination-handoff_ja.md)を正とする。
 
-### 3.3 b8 — entity lifecycle、ParticleBuilder Stage 2
+### 3.3 b8 — entity lifecycle、ParticleBuilder Stage 2、サウンド
 
 2026-09-04のB8 HOLD（`2026-09-04-04`）は、2026-09-07のb7.post2 deploymentランスルーで再開条件を
 満たした。収集→preset／order／lock確定→apply→doctorの完走記録は
@@ -277,26 +279,38 @@ data指定なしで、明示`null`は`invalid_params`です。receiverは`world`
 blockの既存`BlockSpec`を対象とし、全階層で未知fieldを拒否します。Dustの範囲（RGB 0〜255、size 0.01〜4.0）と、未対応typed dataの`particle_data_unsupported`は`2026-09-30-01`で固定しました。粒子ID→data→receiver→permission→work→
 chunk→spawnの検証・副作用順と複合errorの優先順は`2026-09-23-01`／wire §5.8.3を正とします。
 
+サウンドは、位置から鳴らす`world.playSound`とblockの音を鳴らす`world.playBlockSound`の2 methodをb8へ入れます
+（`2026-09-30-02`）。receiverはparticleと同じ`world`／`self`で、高さは`pitch`（倍率）か`note`（25段階）の
+どちらか一方です。音量の種類は固定し、後から足すものはoptionsへまとめます。exact contractはwire §5.8.3「サウンド」、
+シーケンス演奏やイベント登録などの拡張は初回stable後です（`2026-09-30-03`）。
+
 Python surfaceと3D graphの小さいapplication sampleをb8 acceptanceへ含めます。receiverが実際に対象playerだけへ
-届く2-player確認、dust／blockの描画、1.21.11／26.2のdual-target pulseをchange coneに入れます。Scratchは
+届く2-player確認（particleとサウンド）、dust／blockの描画、音が聞こえること・定位・距離による減衰をchange coneに
+入れます。MC targetは1.21.11だけで、26.xは26.3へ切り替えてPaper 26.3のstableの後に扱います（`2026-09-30-07`）。Scratchは
 protocol mirrorと互換認識を先に揃えられますが、学習者向けblockは別trackで追従し、b8 plugin／Python releaseを
 自動的にHOLDしません。
 
-### 3.4 b9 — API freeze（範囲はb8の後に決める）
+### 3.4 b9 — API freeze、移管、PyPI登録（APIは変えない）
 
-b9は10月10日にAPI freezeの版として必ず出し、範囲とprotocol版はb8の後に決めます（`2026-09-29-02`）。
-以下のParticleBuilder Stage 3（bounded batch）は、その候補の一つとして当初立てた計画です。
+b9は10月10日にAPI freezeの版として出し、APIを変えません。protocolは`23.2.0`のままで、artifactは`2320.0.0b9`です。
+b9ではProtocol／WireScope／Bridgeの移管とPython APIのPyPI登録に集中します（`2026-09-30-03`）。移管はJava以外の
+consumer（McRemote、Python、Scratch）を切り替えて行い、初回stableの後にJavaが追従して再検証します（`2026-09-30-04`、
+[移管評価計画](protocol-tooling-migration-plan_ja.md)）。
+
+以下のParticleBuilder Stage 3（bounded batch）は、b9の候補の一つとして当初立てた計画です。`2026-09-30-03`により
+初回stable後の候補になりました。
 
 Stage 3は、b8と同じreceiver／typed data specを複数点へ適用するbounded batchです。全入力を検証してから
 一括accept／rejectし、point数、入力byte、work、receiver fan-outを有限にします。costは少なくとも
 `points × receivers`を反映し、成功resultは受理point／配送規模を観察できる方向でcontract lockします。
 新しいparticle typeやreceiver modeをb9へ便乗させません。
 
-b8のPython 3D graphを単点`FAST`で描いて十分なら、Stage 3はb9に入れずrc後へ送ります。RPC／再描画負荷が
-実測上の問題で、bounded batchが初回stableに必要な一つの自己完結sliceと判定できた時にb9へ入れ、protocolを
-`23.3.0`とします。`events.poll` filter／`events.clear`を入れるかも、b9の範囲とあわせて決めます。
+b8のPython 3D graphを単点`FAST`で描いたときのRPC／再描画負荷は、初回stable後にStage 3を検討するときの材料に
+します。`events.poll` filter／`events.clear`も初回stable後の候補です（`2026-09-30-03`）。
 
 ### 3.5 2026-08-29時点の新API候補pool
+
+> 2026-09-30：この表の候補はすべて初回stable後へ送った（`2026-09-30-03`）。以下は当時の検討として残す。
 
 次はscope lockでなく、Paper 1.21.11 APIと学習用途から発掘した`candidate`です。b7〜b9へ入れる場合も、exact
 params／result／error、有限性、副作用、client surface、sampleを一つの縦sliceとして人間レビューします。
@@ -339,6 +353,10 @@ enable／disable、通常再起動、DimensionKey、resource registry、block／
 初回stableは1.21.11を維持し、加えてplatform target freeze時点で採用可能なPaper 26.xを一つsupportします。
 既定候補は26.2です。26.3はMojang正式releaseとPaper stableが成立し、同じpulseを通過した場合だけ26.2と
 置き換えられます。26.3の9月予測をsupport確約にしません。
+
+> 2026-09-30 改訂（`2026-09-30-07`）：26.xの対象を26.3にした。Paper 26.3はbetaに移り、stableまで2週間ほどの
+> 見込み。Paper 26.3がstableになっていれば、初回stableまでに26.3へ対応する（入れるreleaseの見込みはrc1）。
+> b8は1.21.11だけで出す。Paper 26.3の初期の問題が11月までに解消しているというのは見込みで、確かめる手段は今は無い。
 
 plugin compatibility pulseと公開serverのworld migrationを同じgateにしません。公開server移行はclone上の
 world upgrade、旧runtime＋旧world snapshotへのrollback、credential store非包含、Stack lock更新、

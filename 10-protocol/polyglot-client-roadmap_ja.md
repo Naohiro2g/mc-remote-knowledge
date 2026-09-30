@@ -896,6 +896,8 @@ machine-readable shared fixture等を持つ実行可能なProtocol投影／限�
 2026-09-01に公開repository `Naohiro2g/minecraft-remote-protocol`のbootstrapが先行作成されたが、owner移管は批准せずparkした。
 現行ownerはscratch-editorのままとし、b7 successor fixture、consumer参照、release gateをbootstrapへ切り替えない。
 b7 release後の評価において、B8の変更と共通tooling ownership変更を同一change coneへ重ねないため、移管はb8後へ送ることを確定した（`2026-09-13-02`）。
+その後、b9でAPIを変えずに移管すると決めた（`2026-09-30-03`）。b9ではJava以外のconsumerを切り替え、初回stableの後に
+Javaが新しいownerと取得経路で実装を追従して移管を再検証する。移管に「完了」の判定は置かない（`2026-09-30-04`）。
 
 b8後、独立した横断programとして、次を一体で評価する。
 

@@ -1,6 +1,6 @@
 # Protocol／WireScope／Bridge移管評価計画
 
-> 状態: `2026-09-01-03`でpark。`2026-09-13-02`によりb8前に実施せずb8後へ送ることを確定。b8期間中は現行owner・依存方向を維持し、repository操作・source移動・owner変更・distribution変更を開始しない。
+> 状態: `2026-09-01-03`でpark。`2026-09-13-02`によりb8前に実施せずb8後へ送ることを確定。b8期間中は現行owner・依存方向を維持し、repository操作・source移動・owner変更・distribution変更を開始しない。`2026-09-30-03`でb9に実施すると決めた（b9はAPIを変えない）。Java以外のconsumerで行い、初回stableの後にJavaの追従で再検証する（`2026-09-30-04`、下の「Javaの位置づけ」）。topologyとexactな実行範囲は、b9の前に別途批准する。
 >
 > 人間向けの意味、非許可境界、再開手順は
 > [人間向け固定文](protocol-tooling-migration-human-guide_ja.md)をそのまま確認する。b7完了は自動開始条件ではない。
@@ -92,8 +92,23 @@ b7完了は検討再開の最早時点であって、repository操作、source�
 coordinatorは実装／依存、候補、推奨、工数、影響repository、外部操作、knowledge決定文を先に会話へ提示し、exactな方向と
 実行範囲の人間批准後にだけ作業へ進む。
 
-移管を選ぶ場合の完了は、SSOT改訂、target topology、package／artifact取得、owner test、全consumer切替、Scratch側の旧owner
-撤去、provenance、rollback、CIを一組で確認した時点とする。repository作成またはcopy一致だけをcutover完了と呼ばない。
+b9の移管では、SSOT改訂、target topology、package／artifact取得、owner test、Java以外のconsumer（McRemote、Python、
+Scratch）の切替、Scratch側の旧owner撤去、provenance、rollback、CIを一組で行う。repository作成またはcopy一致だけを
+移管と呼ばない。
+
+移管に「完了」の判定は置かない。完璧な移管は無く、何をもって完了とするかは誰も判定しきれないからである
+（`2026-09-30-04`、`2026-07-19-05`）。初回stableの後、Javaが新しいownerと取得経路だけを使って実装を追従し、
+移管を再検証する。見つかった問題は通常の修正として扱う。以前のこの段落にあった「全consumer切替を含む一組の確認を
+完了とする」は、この形へ置き換えた。
 
 release別API referenceの生成はowner移管の実行許可や完了条件ではない。移管を選ばなくても現ownerから生成できることを
-評価し、移管待ちをreference提供の前提にしない（`2026-09-04-06`）。
+評価し、移管待ちをreference提供の前提にしない（`2026-09-04-06`）。人間向けのAPI一覧は公開分をknowledgeが持ち、
+ホームページ配下に置く（`2026-09-30-05`）。
+
+## Javaの位置づけ（`2026-09-30-04`）
+
+Javaはb8にもb9にも含めない。b9までは、移管とfreezeに役立つ準備を先に進める。契約の疑問点の棚卸しとfreeze前の
+返却、consumerとしての依存の明示、再現できる検証の入口、README／examples／対応範囲の整合である。
+
+初回stableの後、Javaは新しいownerと取得経路で実装を追従し、移管の再検証を担う。Scratchに一度も依存したことの
+ないconsumerが新しいownerだけから組み上がるかを確かめる。

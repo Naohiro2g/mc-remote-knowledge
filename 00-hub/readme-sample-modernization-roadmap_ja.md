@@ -98,7 +98,7 @@ rcまでのparticle／effect sampleは互換性の差を順に見せる。b6／p
 
 ### Pass C — RCから初回stable（辞書機能の完全分離）
 
-- **API Referenceの生成分離**: 網羅的なAPI一覧・シグネチャ・戻り値は、生成ツールによる「API Reference」（`2026-09-04-06`）へ完全に分離し、手書きREADMEを辞書化させない。
+- **API Referenceの生成分離**: 網羅的なAPI一覧・シグネチャ・戻り値は、生成ツールによる「API Reference」（`2026-09-04-06`）へ完全に分離し、手書きREADMEを辞書化させない。人間向けのAPI一覧は、公開済みreleaseの分をknowledgeが持ち、ホームページ配下のページとして移管の完了を待たずに先に出す（`2026-09-30-05`）。READMEはその一覧へ案内する。
 - **薄く親切な入口の完成**: READMEは「ようこそ ＋ クイックスタート ＋ 代表作例 ＋ リファレンスへの案内」という薄い入口に徹する。
 - **安定運用の固定**: install、update、rollback、既知制約、対応platformをstable candidateへ固定する。
 

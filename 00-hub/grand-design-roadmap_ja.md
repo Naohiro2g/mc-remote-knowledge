@@ -43,9 +43,9 @@ Scratch固有の現状は[Scratch roadmap](../13-scratch-client/scratch-roadmap_
 | --- | --- | --- |
 | 2026-08末 | b6／protocol 23.0.0公開済み | sign、poke、browser保存を横断統合 |
 | 2026-09前半 | b7／23.1.0：direction、lightning、ParticleBuilder Stage 1 | README／sample Pass A、homepage骨格、Paper 26.2 pulse |
-| 2026-10-03 | b8：entity lifecycle＋particle Stage 2、Windowsでの検証 | README／sample Pass B、ケータリングPC／kitで更新・rollback検証開始 |
-| 2026-10-10 | b9：API freeze、Python APIをPyPIへ登録（`2026-09-29-02`） | b9の範囲はb8の後に決める |
-| 2026-10-24まで | rc1（必要ならb10、b11の後） | 外部testerへ準備済み環境、手順、検証票、feedback導線を提供 |
+| 2026-10-03 | b8：entity lifecycle＋particle Stage 2＋サウンド、Windowsでの検証。MCは1.21.11だけ（`2026-09-30-02`、`2026-09-30-07`） | README／sample Pass B、ケータリングPC／kitで更新・rollback検証開始 |
+| 2026-10-10 | b9：API freeze（APIは変えない）、Protocol／WireScope／Bridgeの移管、Python APIをPyPIへ登録（`2026-09-30-03`） | Javaは初回stable後に追従して移管を再検証（`2026-09-30-04`） |
+| 2026-10-24まで | rc1（b10を挟まないのが基本線）。Paper 26.3がstableなら26.3対応 | 外部testerへ準備済み環境、手順、検証票、feedback導線を提供 |
 | 2026-11-01 | 初回stable | stable導入／更新情報と採用Paper 26.x supportを公開 |
 | 2026-12〜2027-01 | stable保守 | 運用手順化、機能実現位置とsampleを使った教材・学習path作成 |
 | 2027-02 | fixes中心 | 別支援者によるcold setup、開始、障害復旧rehearsal |
@@ -55,8 +55,8 @@ Scratch固有の現状は[Scratch roadmap](../13-scratch-client/scratch-roadmap_
 ## 4. 現在の横断優先
 
 1. b7.post2の収集→preset／order／lock確定→apply→doctorランスルー完走を基線とし、B8のcontract lockと実装を進める。B8のrelease／deployment可否は別のgateで判定する。
-2. B8／protocol `23.2.0`のshared fixtureと必要なconsumer実装を揃え、entity lifecycle／particle receiver・typed data／Python 3D graphを短い縦sliceとして進める。nearbyとParticle Stage 2の契約は`2026-09-23-01`を正とし、必要な場合だけb9 particle batchを使う。
-3. `lookAt`、空間query、player別previewはb9のAPI freezeまでにcontracted／deferred／removedを選ぶ（`2026-09-29-02`）。
+2. B8／protocol `23.2.0`のshared fixtureと必要なconsumer実装を揃え、entity lifecycle／particle receiver・typed data／サウンド／Python 3D graphを短い縦sliceとして進める。nearbyとParticle Stage 2の契約は`2026-09-23-01`、サウンドは`2026-09-30-02`を正とする。particle batch（Stage 3）は初回stable後の候補。
+3. `lookAt`、空間query、player別previewを含むサウンド以外の新APIは、初回stable後へ送った（`2026-09-30-03`）。b9はAPIを変えずにfreezeし、移管とPyPI登録に集中する。
 4. rc1（10月24日まで）から外部testerが会話履歴なしで開始・更新・復旧・feedbackできる入口を用意し、homepage／release情報／技術記事を並走させる。
 5. long-lived credentialの公開gateは閉じたまま、ケータリングで実需要を観察してから再開する。
 

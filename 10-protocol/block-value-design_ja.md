@@ -281,6 +281,9 @@ Pickerは日本語表示名、英語表示名、canonical ID、登録済みalias
 AND検索を行う。選択後に保存・送信するのは`block_id`とmachine state valueであり、日本語名を
 wireへ送らない。
 
+英語名・日本語名は、Minecraft公式の言語データから、表示と検索に要る最小限の情報（IDと各言語の表示名）だけを
+保存して使う。言語ファイル全体を保存・同梱・配送しない（`2026-09-30-10`）。保存の置き場所とexact schemaは未決。
+
 初学者向け教材は、`gold_block`、`iron_block`、`diamond_block`、`sea_lantern`等、輪郭や個数を
 確認しやすくstate propertyを持たないblockから始める。教材の対比表は日本語名、表示用英語名、
 canonical ID、Python定数を並べる。state editorは必要になるまで詳細面へ置く。

@@ -50,6 +50,13 @@
 | build context | connection／stream単位の現在DimensionKeyとabsolute originの組`{dimension,origin}` | helloの初期snapshot、client入力alias、build execution modeと混同しない |
 | Minecraft world | Bukkit `World` object、保存directory／volume、生成済みworld data等、実空間または永続対象 | wire上のdimension identity field名へ使わない。`world.*`操作namespaceと`world_constants`はidentityではないため存続する |
 
+## resource ID
+
+| 正典表記 | 技術的な意味 | ドリフト注意 |
+| --- | --- | --- |
+| resource ID | block、dimension、particle、entity、sound等のMinecraft registryのID。入力はコロンが無ければ`minecraft:`を補い、コロンがあれば完全修飾の正準形を求める。出力は常に完全修飾（wire §5.0.2、`2026-09-30-06`） | 種類ごとに補い方を書き直さない。新しい種別も個別に決めない限りwire §5.0.2に従う |
+| canonical（ID・値の文脈） | 出力の正準形。IDでは完全修飾の`namespace:path`を指す（`2026-06-27-02`の「出力canonical-full」） | 入力を指定するときに「canonical ID」と書かない。「未知のIDをfallbackしない」の意味で使うと、無印の拒否と読み違える（`2026-09-30-06`の根本原因） |
+
 protocol 21／b4以前の`build.setWorld`、`world` field、短縮値は履歴語彙であり、protocol 22の現行surfaceへ
 aliasとして持ち込まない（`2026-08-22-02`）。
 

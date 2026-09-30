@@ -175,6 +175,9 @@ machine tokenは翻訳しない。表示・検索metadataだけをlocalizeする
 
 block名全件のja-Hira翻訳はb5 gateにしない。stateのja-Hira表示と混同しない。
 
+英語名・日本語名はMinecraft公式の言語データから、IDと各言語の表示名の最小限だけを保存して使い、言語ファイル全体を
+保存・同梱・配送しない（`2026-09-30-10`）。
+
 ## 8. sprite／thread lifecycle
 
 BlockInfoText、StateText、ErrorTextは通常のScratch値として扱う。

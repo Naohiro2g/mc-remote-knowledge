@@ -135,8 +135,8 @@ lockへ記録し、b8実装後・API freeze前の負荷較正でruntime policy�
 | `player.setPos` | `[dimension_ref, x, y, z]` | あり | paired playerを指定dimensionのstream origin相対位置へteleportする（§5.2） |
 | `player.getPose` | `[]` | あり | paired playerの現在dimension・位置・向きをstream origin相対で返す（§5.3） |
 | `player.setPose` | `[dimension_ref, x, y, z, yaw, pitch]` | あり | 指定dimensionへ位置・向きを1回のteleportで一体反映する（§5.3） |
-| `events.poll` | `[after_sequence]`／`[after_sequence, {max_events}]` | あり | epoch-scoped event ringを非破壊取得。filterは条件付きb9以降のcandidate（§5.4） |
-| `events.clear` | 後続contractで固定 | あり | retained eventの明示破棄候補。b9以降の候補（§5.4） |
+| `events.poll` | `[after_sequence]`／`[after_sequence, {max_events}]` | あり | epoch-scoped event ringを非破壊取得。filterは初回stable後の候補（§5.4、`2026-09-30-03`） |
+| `events.clear` | 後続contractで固定 | あり | retained eventの明示破棄候補。初回stable後の候補（§5.4、`2026-09-30-03`） |
 | `world.getHeight` | `[x, z]`または`[x, z, max_y]` | あり | origin相対の最上面block高を返す（b5、§5.6） |
 | `world.spawnParticle` | `[x, y, z, offset_x, offset_y, offset_z, particle, speed, count, (force)]` | あり | 9／10 params、`force`省略時`true`。b8で`particle`にobject形`ParticleSpec`を追加（§5.7／§5.8.3） |
 | `world.spawnEntity` | `[x, y, z, entity]` | あり | entityを生成しepoch-scoped handleを返す（b5、§5.7） |
@@ -149,6 +149,8 @@ lockへ記録し、b8実装後・API freeze前の負荷較正でruntime policy�
 | `entity.getPose` | `[handle]` | あり | handle対象のpose `{dimension,pos,yaw,pitch}`を返す（b8、§5.8.3） |
 | `entity.setPose` | `[handle, dimension_ref, x, y, z, yaw, pitch]` | あり | 1回のteleportでposeを一体更新し、再読取りしたposeを返す（b8、§5.8.3） |
 | `entity.remove` | `[handle]` | あり | entityを除去しhandleを即時失効。成功時`null`（b8、§5.8.3） |
+| `world.playSound` | `[x, y, z, sound_id, (options)]` | `null` | 位置から音を鳴らす。receiverは`world`／`self`（b8、§5.8.3） |
+| `world.playBlockSound` | `[x, y, z, kind, (options)]` | `null` | その位置のblockの音を鳴らす（b8、§5.8.3） |
 | `world.getSign` | `[x, y, z]` | `{front:[LineValue×4],back:[LineValue×4],waxed:bool}` | signの両面とwaxedを正準形で取得（b6、§5.8.1） |
 | `world.setSign` | `[x, y, z, {front?:[LineSpec×4],back?:[LineSpec×4]}]` | `null` | 指定面を面内no-mergeの厳密4行へ置換（b6、§5.8.1） |
 | `world.updateSignLine` | `[x, y, z, face, line_index, LineSpec]` | `null` | signの一面・一行だけをPATCH（b6、§5.8.1） |
@@ -205,6 +207,22 @@ integerと定義されたblock座標、height、count、sequence等には本節�
 UIが末尾ゼロを補って表示しても保持値とframeを変更しない。eventの連続位置はlistenerでcaptureするときに
 正準化してimmutable DTOへ入れ、poll時の再計算やclient別変換を行わない。artifact b4以前のraw出力は
 履歴として維持し、本契約はartifact b5のcompatibility setから適用する。
+
+### 5.0.2 resource IDの入力と出力（確定 `2026-09-30-06`）
+
+block、dimension、particle、entity、soundのIDは、次の規則で受けて返す。
+
+- 入力: コロンが無ければ`minecraft:`を補う（例: `stone` → `minecraft:stone`、`entity.cow.ambient` →
+  `minecraft:entity.cow.ambient`）。コロンがあれば、完全修飾の正準形でなければならない。
+- 非正準形（空文字、先頭・末尾のコロン、コロン2つ以上、大文字など）は補わずに拒否する。reasonは種類ごとの既存の
+  もの（block `unknown_block`、particle `unknown_particle`、entity `unknown_entity`、sound `unknown_sound`、
+  dimension `invalid_params`）とする。
+- 出力: 常に完全修飾の正準形で返す。本文書で「canonical」と書くときは、この出力形を指す。
+- 今後足すresource種別も、個別に決めない限りこの規則に従う。
+- 共有fixtureに、種別ごとの無印、完全修飾、非正準形のcaseを置く。
+
+dimensionのalias不採用、case変換・trimをしないこと等の詳細は§5.1とDimensionKey設計、blockの`block_id`は§7.1を
+あわせて参照する。
 
 ### 5.1 DimensionKeyとbuild setter（protocol 22）
 
@@ -355,12 +373,12 @@ world上端の直上はpassableとして扱い、該当が無ければ`height_no
 `[x,y,z,offset_x,offset_y,offset_z,particle,speed,count,(force)]`を受ける。`force`は省略でき、
 省略時は`true`とする。`x`／`y`／`z`はstream origin相対の連続座標で、副作用前に表示桁へ丸めない。
 offset三軸とspeedは有限の非負number、countは非負integer、指定したforceはbooleanでなければならない。
-particleにはcatalogのcanonical namespace IDを使う。b5はdata不要particleだけを受け、未知IDは
+particleのIDは§5.0.2に従う（無印は`minecraft:`を補う）。b5はdata不要particleだけを受け、未知IDは
 `unknown_particle`、typed data必須は`particle_data_required`。count、offset、speed、work量を副作用前に
 検証し、resultには実際に受理したparticle countを返す。
 
 `world.spawnEntity`はexact 4個のpositional params `[x,y,z,entity]`を受ける。`x`／`y`／`z`はstream
-origin相対の連続座標で、副作用前に表示桁へ丸めない。entityにはcatalogのcanonical namespace IDを使い、
+origin相対の連続座標で、副作用前に表示桁へ丸めない。entityのIDは§5.0.2に従い、
 成功時は§5.5のhandleを返す。playerまたはspawn不能typeは`entity_not_spawnable`、未知IDは
 `unknown_entity`。handle capacity、permission、chunk／work admissionをspawn前に検証し、未知IDを
 `minecraft:cow`等の別entityへfallbackしない。
@@ -620,7 +638,7 @@ Scratch `develop`は`0be46fcfaca409a5ede10f592520d93e7c59ba15`へ更新統合さ
 GitHub prerelease（`v1.21.11-2301.0.0b7`／`v2301.0.0b7`／`v2301.0.0b7`）は2026-09-03に公開済み。詳細は
 `00-hub/release-gate-notes_ja.md` 2026-09-02 b7横断release gate節（CLOSED）を正とする。
 
-#### 5.8.3 b8 nearby／particle Stage 2 の確定境界（`2026-09-23-01`）
+#### 5.8.3 b8 nearby／particle Stage 2／サウンドの確定境界（`2026-09-23-01`、`2026-09-30-02`）
 
 本節はprotocol `23.2.0`のB8 contract lockに向け、Scratchレビューの確定搬送票で固定した境界である
 （`2026-09-23-01`）。params、上限、entity lifecycleのexact shape、Dust dataの範囲は`2026-09-30-01`で埋めた
@@ -706,6 +724,65 @@ B8でdata型に対応しないparticleに、objectでdataを指定して要求�
 既存の文字列shorthandでdataを欠く場合は、従来どおり`particle_data_required`。既存のcount上限1000は維持する。
 
 上限超過時の暗黙の切り詰め、探索領域の暗黙の切り取り、未対応typed dataに対する成功時fallbackは行わない。
+
+##### サウンド（`2026-09-30-02`）
+
+`world.playSound [x, y, z, sound_id, options?]`は位置から音を鳴らし、`world.playBlockSound [x, y, z, kind, options?]`は
+その位置のblockの音を鳴らす。どちらもresultは`null`、work costは1で、notificationでも送れる。
+
+入力:
+
+- 座標: `playSound`はstream origin相対の有限な連続座標で、副作用前に丸めない（§5.0.1）。`playBlockSound`は整数の
+  block座標で、小数は`invalid_params`（§5.0.1）。音はblockの中心から鳴らす。
+- `sound_id`: `Registry.SOUND_EVENT`のID。補い方は§5.0.2。未登録は`unknown_sound`。
+- `kind`: `place`／`hit`／`break`／`step`／`fall`（Paper `SoundGroup`の5つのgetter）。それ以外は`invalid_params`。
+- `options`: `{volume?, pitch?, note?, receiver?}`。未知の項目と`null`は`invalid_params`。空の`{}`は省略と同じ。
+  - volume: 0.0〜1.0の有限数値。既定1.0。
+  - 高さ: `pitch`（0.5〜2.0の有限数値）か`note`（整数0〜24、倍率`2^((note-12)/12)`）のどちらか一方。両方は
+    `invalid_params`。どちらも無ければ元の高さ（1.0）。
+  - receiver: `"world"`（既定。周りのplayer全員）か`"self"`（本人だけ）。
+- `playBlockSound`の既定: 省略した項目ごとに、そのblockの`SoundGroup`の`getVolume()`／`getPitch()`をそのまま使う。
+  vanillaが場面ごとに掛ける調整（置くと高さ×0.8など）はしない。`pitch`や`note`を指定したら、`SoundGroup`の高さを
+  掛けずに置き換える（`note` 12は素材そのままの高さ）。
+
+音量の種類はb8では指定させない。`playSound`は`master`、`playBlockSound`は`block`とする。後で足すときは項目名を
+`source`、値をvanillaの単数形（`master`、`music`、`record`、`weather`、`block`、`hostile`、`neutral`、`player`、
+`ambient`、`voice`、`ui`）にする。
+
+`world.playSound`の検証と副作用の順序:
+
+1. paramsの数と形、座標、`sound_id`が文字列であること、optionsの項目・型・範囲、`pitch`と`note`の排他（`invalid_params`）
+2. `sound_id`の解決（`unknown_sound`）
+3. receiverが`self`なら、束縛（`auth_required`）とonline（`player_offline`）
+4. permission（`permission_denied`）
+5. build range（`build_denied`）
+6. 1 tickあたりの上限（`backpressure`）
+7. WorkAdmission（`backpressure`／`work_limit_exceeded`）
+8. 鳴らす（失敗は`internal_error`）
+
+`world.playBlockSound`の検証と副作用の順序:
+
+1. paramsの数と形、整数座標、`kind`の語彙、options（`invalid_params`）
+2. receiverが`self`なら、束縛（`auth_required`）とonline（`player_offline`）
+3. permission
+4. build range
+5. 1 tickあたりの上限
+6. WorkAdmission
+7. chunkの準備（失敗は`backpressure`）
+8. 位置のblockが空気（`air`／`cave_air`／`void_air`）なら`no_block`
+9. 鳴らす
+
+同時に起きたときは、先の段のerrorを返す。未登録の`sound_id`と未束縛の`self`なら`unknown_sound`、不正なoptionsと
+未束縛の`self`なら`invalid_params`とする（particleと同じく、入力側のerrorを`auth_required`より先に返す）。
+
+build rangeは落雷（§5.8.2）と同じく、build originからのX、Zの差の絶対値がそれぞれbuild range以下なら通す
+（両端込み）。Yは判定しない。`playBlockSound`はblockの整数座標で判定する。1 tickあたりの上限はruntime policyで
+持ち（配布既定は接続ごと16、全体64）、数値はprotocolの定数にしない。上限の枠は通った時点で使ったことになり、
+その後のworkの拒否、chunkの失敗、`no_block`でも、枠とworkは戻さない。
+
+定位、距離による減衰、聞こえる距離はクライアントの挙動で、exact claimにしない。resource packの独自音（registryに
+無い音）は受けない（`unknown_sound`）。pitchの下限0.5は、0.5未満がクライアントで0.5に切り詰められるという記憶に
+基づく入力policyで、未確認である。
 
 ---
 
@@ -847,7 +924,7 @@ set入力の`BlockSpec`とget出力の`BlockValue`は同じcontainer shapeを持
 }
 ```
 
-- `block_id`はstring必須。入力は`:`無しのvanilla短縮IDを許容し、pluginが`minecraft:`を補完する。出力は常に完全修飾する。
+- `block_id`はstring必須。入力は`:`無しのvanilla短縮IDを許容し、pluginが`minecraft:`を補完する。出力は常に完全修飾する（resource ID共通の規則は§5.0.2）。
 - `state`はobject必須。valueはJSON native scalar（boolean／number／string）とし、array／object／`null`を許容しない。
 - 最上位fieldは`block_id`と`state`のexact 2 fieldとし、欠落field／未知fieldは`invalid_params`とする。
 - state propertyを持たないblockは`state: {}`とする。field欠落、`null`、空文字を使わない。
@@ -921,7 +998,7 @@ protocol 21の文字列`block_state_ref`、`getBlock`文字列result、文字列
 
 > 却下＝カテゴリ別に `catalog.getBlocks`/`getEntities`/`getParticles` を分ける案：往復が増えるだけで、3カテゴリを束ねるコストは低い。却下＝チャンク配送を先に設計する案：未実測のサイズ問題を先回りして複雑化する。却下＝`catalogHash` を素の version 文字列にする案：同一 MC バージョンで mod 構成が異なる場合を区別できない。却下＝world_constants の全表を catalog.get へ折り込む案：mod 非依存の静的 domain fact を毎接続で運ぶ理由がなく、既存 hello 拡張の枠組みと二重管理になる。
 
-### 7.3 エラー設計（確定 `2026-06-27-03`、`2026-07-01-08` で改訂、`2026-07-07-02` で b2 player reason を追加、`2026-08-02-01` で credential reason を追加、`2026-08-02-02` で `data.ref` 規則を改訂、`2026-08-26-05`でsign reason、`2026-09-01-01`でb7 reasonを追加）
+### 7.3 エラー設計（確定 `2026-06-27-03`、`2026-07-01-08` で改訂、`2026-07-07-02` で b2 player reason を追加、`2026-08-02-01` で credential reason を追加、`2026-08-02-02` で `data.ref` 規則を改訂、`2026-08-26-05`でsign reason、`2026-09-01-01`でb7 reason、`2026-09-30-01`／`2026-09-30-02`でb8 reasonを追加）
 
 §7③ の b1 部分を画定。**JSON-RPC 標準 error オブジェクトに一本化**（独自封筒を作らない＝`2026-06-26-01` の標準枠原則に忠実）。`code` は JSON-RPC 標準に従い、**意味は `data.reason`（安定 enum）が運ぶ二層**。UI/AI/test は `reason` を分岐 key にし family（code）を意識しなくてよい。
 
@@ -953,14 +1030,16 @@ string`"3"`は別型とする。BlockValue出力はregistryの正準型を使い
 | | | `player_offline` | token は有効だが paired player がオンラインでない | b2 |
 | | | `teleport_failed` | `player.setPose`、`entity.setPose`等のteleport自体が`permission_denied`／`player_offline`／`unknown_dimension`／`invalid_params`以外の要因で失敗 | b5／protocol 22、`entity.setPose`はb8 |
 | world-query | `-32000`番台（実装定義域） | `height_not_found` | 指定上限以下に「非passableかつ直上passable」のblockが無い | b5 |
+| world-state | `-32000`番台（実装定義域） | `no_block` | `world.playBlockSound`の位置のblockが空気 | b8 |
 | sign-state | `-32000`番台（実装定義域） | `not_a_sign` | 指定座標のblockがsignでない | b6 |
 | | | `sign_waxed` | waxed signへのwriteを拒否。readは許可 | b6 |
 | | | `sign_update_failed` | mutation時にstale snapshot等を検出し、部分変更なしでwriteを拒否 | b6 |
-| resource-ref | `-32602`（Invalid params） | `unknown_particle` | canonical particle IDがregistryに無い | b5 |
+| resource-ref | `-32602`（Invalid params） | `unknown_particle` | particle ID（§5.0.2で補った後）がregistryに無い、または非正準形 | b5 |
 | | | `particle_data_required` | typed data必須particleでdataが欠落（文字列shorthandを含む） | b5、b8で意味を精密化 |
 | | | `particle_data_unsupported` | 登録済みだが、B8でdata型に対応しないparticleへ、objectでdataを指定して要求 | b8 |
-| | | `unknown_entity` | canonical entity IDがregistryに無い | b5 |
+| | | `unknown_entity` | entity ID（§5.0.2で補った後）がregistryに無い、または非正準形 | b5 |
 | | | `entity_not_spawnable` | playerまたはspawnを許可しないentity type | b5 |
+| | | `unknown_sound` | sound ID（§5.0.2で補った後）が`Registry.SOUND_EVENT`に無い、または非正準形 | b8 |
 | availability | `-32000`番台（実装定義域） | `backpressure` | 副作用開始前の一時的な処理能力超過。同一要求を後でretry可能 | b5 |
 | | | `work_limit_exceeded` | 入力量または走査量がwork上限を超過。自動retryせず入力を縮小する | b5 |
 | | | `entity_capacity_exhausted` | handle slotを副作用前に予約できない。自動retryしない | b5 |
