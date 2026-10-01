@@ -204,7 +204,11 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     `./gradlew test` 273件PASS。**acceptance 2**: ローカルPaper 1.21.11で公開済みb7.post2のJARに一時的に戻し、無印の`flame`が
     `unknown_particle`、`cow`が`unknown_entity`で意図どおり落ち、完全修飾の`minecraft:flame`／`minecraft:cow`は成功した（担当報告）。
     rollbackの注記の裏付けとして、b8が旧キーを移して消した後のconfigでb7は既定値で起動した（この環境では値が既定値と同じで、
-    挙動は変わらない）。着手依頼の1（candidateでのlive-auto）と2（fresh installでの認証ON既定）の結果はこの追記に無い
+    挙動は変わらない）。着手依頼の1と2は、別の追記（`9010c59`時点、JARは同一）で返った。1: ローカルPaper 1.21.11でlive-autoがPASS行61で
+    全PASS（無印の`block.bell.use`と`flame`の受理を含む。試験中だけ`auth.enforcement=false`にして戻した）。2: McRemoteの設定を
+    置かない新しいserver directoryで、生成された`config.yml`が`auth.enforcement: true`、credentialは両方欠落から自動初期化されて
+    `HEALTHY`、token無しの`hello`は`auth_required`で拒否（担当報告）。McRemote側で残る未検証は、b7からのupgradeで実tokenが続くことと
+    live-human
   - Scratchの追記（2026-10-01、knowledge `4f0b46f`を読んだ）: candidate `agent/b8-compatibility@dfcb03cf97fed998268b4714feb32d03a209f549`
     （coordinatorがGitHub APIでbranchの先頭と一致、`054a3af`／`a88c540`／`acc9138`が祖先であることを確認）。
     **10/1の確認点のblocker 3点がそろった**。B8共有fixture successorは`054a3af017f1abb8cc01cf85b3bc83181e648e19`の
