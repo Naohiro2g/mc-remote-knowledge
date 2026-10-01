@@ -197,6 +197,14 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     SHA-256 `90242c9922750a0338139cb884823fbe17e1ead0b3c5deb317080cb4c95e64b4`。同梱WireScopeは引き続きScratch `5aaa9c5`から作っており、
     Scratchのsuccessor fixture／WireScopeの取り込みが残る。Windowsの入口手順（Python repoの`docs/windows-b8-entry_ja.md`）を用意済み
   - 全担当の返却がそろった（2026-09-30）
+  - McRemoteの追記（2026-10-01、knowledge `10484ae`を読んだ）: candidate `feat/b8-entity-lifecycle-particle@17309919f6340b07abbbe16476ad1d4f762518c0`
+    （coordinatorがGitHub APIでbranchの先頭と一致を確認。`b3b3ba8`からの差分は`scripts/live_auto.py`、test、fixtureだけで、plugin本体は不変）。
+    JARは`b3b3ba8`と同一の261,025 bytes／`7ab24fa1…77fb`（担当がclean jarで確認）。fixture successor（`054a3af`、36,481 bytes、
+    `ca636b4a…39f2`）をbytesのまま取り込み、SHA-256とcase数をtestで固定し、サウンド37件とresource ID 15件のconsumerを追加した。
+    `./gradlew test` 273件PASS。**acceptance 2**: ローカルPaper 1.21.11で公開済みb7.post2のJARに一時的に戻し、無印の`flame`が
+    `unknown_particle`、`cow`が`unknown_entity`で意図どおり落ち、完全修飾の`minecraft:flame`／`minecraft:cow`は成功した（担当報告）。
+    rollbackの注記の裏付けとして、b8が旧キーを移して消した後のconfigでb7は既定値で起動した（この環境では値が既定値と同じで、
+    挙動は変わらない）。着手依頼の1（candidateでのlive-auto）と2（fresh installでの認証ON既定）の結果はこの追記に無い
   - Scratchの追記（2026-10-01、knowledge `4f0b46f`を読んだ）: candidate `agent/b8-compatibility@dfcb03cf97fed998268b4714feb32d03a209f549`
     （coordinatorがGitHub APIでbranchの先頭と一致、`054a3af`／`a88c540`／`acc9138`が祖先であることを確認）。
     **10/1の確認点のblocker 3点がそろった**。B8共有fixture successorは`054a3af017f1abb8cc01cf85b3bc83181e648e19`の
