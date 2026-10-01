@@ -225,6 +225,7 @@ setで構造化形へ切り替える。
 - b4のmain stream 1件でもspriteごとの値処理は独立させ、将来substreamへ写像してもblock value shapeを変えない。
 - observation grant と display alias は別票。
 - **カタログのID一覧をリストへ入れるブロック（b8）**: 「カタログの［ブロックID／エンティティID／パーティクルID］を［リスト］に入れる」。CURRENTのcatalogから完全修飾IDを辞書順で選んだリストへ一括コピーし、追加の通信はしない。接続直後は既存のcatalog取得の完了を待つ。未取得・取得失敗・接続世代の切替では元のリストを保持して案内し、取得できた空の一覧はリストを空にする。コピーしたリストはcatalogから独立し、自動では更新しない。wireは変えない。human ownerが表示を確認して了承し、b8に入れる（2026-09-30、scratch-editor確定搬送票1 `agent/b8-compatibility@5aaa9c5`）。learner blockとしてb8の非blocker
+- **サウンド（b8）**: `world.playSound`／`world.playBlockSound`のcommand 2つと、optionsを組み立てるブロック（`acc9138`）。高さの入力は、数字なら`pitch`、`N0`〜`N24`なら`note`として送る。音名から`note`への換算はユーザーコードで行う（wireは`pitch`と`note`だけを扱う。`2026-09-30-02`、[サウンド拡張の検討メモ](../10-protocol/sound-extension-notes_ja.md) §3.3）
 - **ブロックタグ（初回stable後）**: catalogの各block entryへ`tags`を足し、「カタログの［ブロックタグ］を［リスト］に入れる」「ブロックID［ID］のタグを［リスト］に入れる」「タグ［TAG］のブロックIDを［リスト］に入れる」を足す。採用は`2026-09-30-08`、仕様案と作業案は[catalog block tag設計](../10-protocol/catalog-block-tags-design_ja.md)。実装は初回stable後
 - **pickerの日本語名と検索（調査中）**: `金ブロック / Gold Block / gold_block`の表示と、日本語名・英語名・ID・aliasのAND検索は、[ブロック値・状態・多言語投影設計](../10-protocol/block-value-design_ja.md) §8と[Scratch block value投影設計](scratch-block-value-projection-design_ja.md) §7で設計済み。名前の出どころ（catalogの多言語metadataのexact schema）が未決のまま止まっていた（hub NOTES 2026-08-19の行の④⑤）。Scratchが現状を調査中で、できればb8に入れる（human owner 2026-09-30）。名前はMinecraft公式の言語データから、IDと各言語の表示名の最小限だけを保存して使い、言語ファイル全体は持たない（`2026-09-30-10`）
 
