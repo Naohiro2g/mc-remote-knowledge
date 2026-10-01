@@ -218,6 +218,13 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     `bridge-image-inputs.tar.gz` 38,138 bytes／`fd43f714…908f`、`wirescope-app.zip` 83,746 bytes／
     `4cb349894b71d61d7ca143d8362a5b79deb1810e1d7a9e31ad30e29bfe370a07`、`wirescope-app.manifest.json` 2,321 bytes／`65c02083…748f`、
     `contracts.tar.gz` 1,908 bytes／`48948ba4…2390`。b7 release後の是正3件は実装・検証済みだが未commitで、candidateに含まない。human ownerの判断（2026-10-01）でb8に入れる。Scratchがcommitしてcandidateを更新する（Pythonの同梱WireScopeはその新しいsourceから作る）
+  - Scratchの更新（2026-10-01、knowledge `893cbfd`を読んだ）: candidate `agent/b8-compatibility@df34849d2502a498a06c5fe07a91d03e925124eb`
+    （coordinatorがGitHub APIでbranchの先頭と一致を確認。`dfcb03c`からの3 commitの差分はScratch GUIとVMだけで、Protocol、WireScope、
+    Bridgeは不変）。是正3件は`76f9e7d`（空pollの履歴保持）、`b407ca9`（backpressureの案内分離）、`df34849`（入力欄の編集ショートカット）。
+    VM 123 subtests／524 assertions、GUI対象41 tests、WireScope 142 testsがPASS（担当報告）。fixtureは`054a3af`のまま。成果物:
+    `scratch-image-inputs.tar.gz` 152,885,920 bytes／`2b3eda9a…e458`、`bridge-image-inputs.tar.gz`と`wirescope-app.zip`
+    （83,746 bytes／`4cb34989…0a07`）と`contracts.tar.gz`は前のcandidateと同一、`wirescope-app.manifest.json`はsource commitが変わり
+    2,321 bytes／`45d56d50…1413`。Pythonは`df34849`から同梱WireScopeを作り直す
 - blockerと非blocker（human owner 2026-09-30了承）:
   - blocker: Scratchのfixture successor（サウンドのcase、resource種別ごとの無印・完全修飾・非正準形のcase）、Protocol mirror
     とWireScopeのサウンド対応と無印の受け入れ、Scratchからの観測のallowlistの修正。McRemote／Pythonによる取り込み（Pythonは
