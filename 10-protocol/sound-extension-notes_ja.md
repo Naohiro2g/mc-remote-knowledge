@@ -5,8 +5,8 @@
 > wire §5.8.3「サウンド」を正とし、この文書では決めない。
 >
 > 出典: McRemote dev sessionの検討素材`handoff-materials/2026-09-30-sound-api-review/materials/mc-remote-api-and-sound_ja.md`
-> （`feat/b8-entity-lifecycle-particle`、2026-09-30、git管理外）の§2、§3.4、§3.6、§4、§5、§6。McRemoteの提案により
-> knowledgeへ移した。節番号はこの文書で振り直した。記憶に基づく未検証の記述は、素材のとおり「未検証」「記憶」と書いてある。
+> （`feat/b8-entity-lifecycle-particle`、2026-09-30、git管理外。その後McRemote側で破棄済み）の§2、§3.4、§3.6、§4、§5、§6。
+> McRemoteの提案によりknowledgeへ移した。残りの§1、§3.1〜§3.3、§3.5は付録Aに復元した。節番号はこの文書で振り直した。記憶に基づく未検証の記述は、素材のとおり「未検証」「記憶」と書いてある。
 
 ## 1. サウンドでできること（Paper の事実）
 
@@ -301,3 +301,147 @@ Scratch の仕様は scratch-editor の scratch-vm（`packages/scratch-vm/src/bl
 - 寿命: シーケンスと同じく接続ごとにし、切断したら登録も消す。
 - 登録数の上限を runtime policy で持つ。
 - 20 ms の壁（見立て。未測定）: サーバー側で反応しても、操作がサーバーに届いてから次の tick を待つ（最大 50 ms）ことと、音がクライアントへ届く片道の通信が残る。これは vanilla の音符ブロックを叩いたときと同じ経路で、Minecraft での上限にあたる。poll の待ちと往復 1 回分の通信は消えるので、今の方式よりは大幅に縮む。実装するときに、つついてから鳴るまでを実機で測る。
+
+## 付録A. 素材のうち、移し忘れていた節（復元）
+
+> McRemoteの素材は、§2、§3.4、§3.6、§4〜§6を移した後で失効破棄された。coordinatorが残りの節を移さないまま
+> 「破棄してよい」と連絡したためである。以下の§1、§3.1〜§3.3、§3.5は、coordinatorが2026-09-30にこの会話で読んだ
+> 時点の本文から復元した。その後に素材側で書き換えられていた場合、その変更は復元できていない。§3.5のb8の形は
+> `2026-09-30-02`とwire §5.8.3を正とし、ここは経緯として残す。
+
+### A.1 現在の wire API（protocol 23.2.0。素材§1）
+
+座標 `x, y, z` はすべて stream origin からの相対値。
+
+#### 接続・認証
+
+| method | params | result |
+| --- | --- | --- |
+| `hello` | `{protocol, auth?, build?}` | 接続情報（protocol、mc_version、player、dimension、origin など） |
+| `auth.pairBegin` | `{token_type, client}` | `{pairing_id, pair_code, expires_in}` |
+| `auth.pairPoll` | `{pairing_id}` | `{status, token?}` |
+| `auth.listCredentials` | credential 管理 | 一覧 |
+| `auth.revoke` | credential 管理 | 結果 |
+| `auth.logout` | credential 管理 | 結果 |
+| `connection.flush` | `[]` | `null` |
+
+#### 建築の文脈
+
+| method | params | result |
+| --- | --- | --- |
+| `build.setDimension` | `[dimension_ref]` | `{dimension, origin}` |
+| `build.setOrigin` | `[x, y, z]` | `{dimension, origin}` |
+
+#### ブロック
+
+| method | params | result |
+| --- | --- | --- |
+| `world.setBlock` | `[x, y, z, BlockSpec]` | `null` |
+| `world.setBlocks` | `[x1, y1, z1, x2, y2, z2, BlockSpec]` | `null` |
+| `world.getBlock` | `[x, y, z]` | BlockValue |
+| `world.getBlocks` | `[x1, y1, z1, x2, y2, z2]` | 範囲の BlockValue |
+| `world.getHeight` | `[x, z, max_y?]` | y |
+| `world.setSign` | `[x, y, z, {front?, back?}]` | `null` |
+| `world.getSign` | `[x, y, z]` | `{front, back, waxed}` |
+| `world.updateSignLine` | `[x, y, z, face, line_index, LineSpec]` | `null` |
+
+#### player（ペアリングした本人）
+
+| method | params | result |
+| --- | --- | --- |
+| `player.getPos` | `[]` | `{dimension, pos}` |
+| `player.setPos` | `[dimension, x, y, z]` | `{dimension, pos}` |
+| `player.getPose` | `[]` | `{dimension, pos, yaw, pitch}` |
+| `player.setPose` | `[dimension, x, y, z, yaw, pitch]` | `{dimension, pos, yaw, pitch}` |
+| `player.getDirection` | `[]` | `[x, y, z]`（単位ベクトル） |
+| `player.setDirection` | `[x, y, z]` | `[x, y, z]` |
+
+#### entity（handle で指す）
+
+| method | params | result |
+| --- | --- | --- |
+| `world.spawnEntity` | `[x, y, z, entity_id]` | handle |
+| `world.getNearbyEntities` | `[x, y, z, radius, max_entities]` | `[{handle, type, pos}, ...]` |
+| `entity.getPose` | `[handle]` | `{dimension, pos, yaw, pitch}` |
+| `entity.setPose` | `[handle, dimension, x, y, z, yaw, pitch]` | `{dimension, pos, yaw, pitch}` |
+| `entity.getDirection` | `[handle]` | `[x, y, z]` |
+| `entity.setDirection` | `[handle, x, y, z]` | `[x, y, z]` |
+| `entity.remove` | `[handle]` | `null` |
+
+#### 演出（その場で起きて残らないもの）
+
+| method | params | result |
+| --- | --- | --- |
+| `world.spawnParticle` | `[x, y, z, ox, oy, oz, particle, speed, count, force?]` | 受理した count |
+| `world.strikeLightning` | `[x, y, z]` | `null` |
+
+`world.spawnParticle` の `particle` は ID 文字列か `{particle_id, receiver?, data?}`。
+
+#### その他
+
+| method | params | result |
+| --- | --- | --- |
+| `chat.post` | `[message]` | 既定は送信のみ |
+| `events.poll` | `[after_sequence, {max_events}?]` | イベントの一覧 |
+| `catalog.get` | `[]` | block、entity、particle の一覧 |
+
+#### 再構成で目につく点
+
+- `world.*` に、ブロックの読み書き、entity の生成と検索、演出が同居している。生成後の entity 操作は `entity.*`。
+- player は `getPos`／`setPos` と `getPose`／`setPose` が重なる。entity は Pose と Direction だけ。
+- 「誰に届けるか」（receiver）は particle の spec の中にある。sound も同じ形にすると演出系で揃う。
+
+### A.2 設計の軸（素材§3.1）
+
+| 軸 | 選択肢 |
+| --- | --- |
+| 何を鳴らすか | 任意の sound ID、または対象自身の音（entity の鳴き声、ブロックの設置音など） |
+| 高さの指定 | 精密な倍率 `pitch`（0.5〜2.0）、または 25 段階 `note`（0〜24） |
+| 何が音源か | 位置、entity（handle）、player 本人、ブロック |
+| 誰に届けるか | `world`（周りの全員）、`self`（本人だけ） |
+
+### A.3 method と名前の対応（素材§3.2）
+
+wire の名前は 4 つとも `*.playSound` で揃え、名前空間で音源を表す。学習者向けの名前は、Python の既存の流儀（`mc.setPos` が player 本人、`mc.setBlock` が位置）に合わせる。
+
+| wire | 現象 | クライアント名 | 基本の引数 | オプション |
+| --- | --- | --- | --- | --- |
+| `world.playSound` | 音を出す | `playSoundAt` | 位置、sound | 高さ、volume、receiver、category |
+| `entity.playSound` | 鳴かせる | `makeNoise`（候補 `makeSound`） | handle、場面（ambient、hurt、death など） | 他の sound、高さ、volume、receiver |
+| `player.playSound` | 演奏する | `playSound` | sound | 高さ、volume、receiver、category |
+| `world.playBlockSound` | ブロックを鳴らす | `playBlock`（候補 `playBlockSound`） | 位置、場面（place、hit、break、step、fall） | 高さ、volume、receiver |
+
+名前の検討メモ:
+
+- `makeNoise`: 英語の noise には「雑音・騒音」の含みがある。楽器の音を割り当てたときに違和感が出るかもしれない。候補は `makeSound`。
+- `playBlock`: Scratch では「ブロック」がコードのブロックも指す。Python でも「ブロックを置く」と取り違えやすい。候補は `playBlockSound`。
+- wire の `world.playSound` とクライアントの `playSound`（player 本人）は指すものが違う。WireScope では wire の名前が見えるので、対応表を教材側に置く。
+
+### A.4 高さの指定（`pitch` と `note`。素材§3.3）
+
+- wire では、`pitch`（0.5〜2.0 の倍率）と `note`（0〜24 の整数）のどちらか一方だけを受ける。
+  - 両方あれば `invalid_params`。
+  - どちらも無ければ元の高さ（pitch 1.0）。
+- `note` の倍率は `2^((note - 12) / 12)`。12 が元の高さ、0 と 24 がちょうど 1 オクターブ下と上。楽器に限らず、どの sound でも使える（サンプラーを鍵盤で弾くのと同じ）。
+- 音名（ドレミ、C4 など）はユーザーコードで `note` に換算する。音符ブロックの音色は調律済みなので、25 段階がそのまま音名になる。
+- Scratch の入力の案: 数字なら `pitch`、`N0`〜`N24` なら `note`。
+- Python などは、`pitch=` と `note=` を別の引数名で受ける。
+
+### A.5 b8 で決めた wire の形（素材§3.5。経緯として残す。正は`2026-09-30-02`とwire §5.8.3）
+
+| # | 項目 | 決定 |
+| --- | --- | --- |
+| 1 | params の形 | `world.playSound [x, y, z, sound_id, options?]`、`world.playBlockSound [x, y, z, kind, options?]`。`options` は `{volume?, pitch?, note?, receiver?}` で、未知の項目は `invalid_params` |
+| 2 | volume | 0.0〜1.0、既定 1.0 |
+| 3 | 高さ | `pitch` は 0.5〜2.0、`note` は整数 0〜24。どちらか一方だけ（両方なら `invalid_params`）。省略時は元の高さ |
+| 4 | receiver | `world`（既定）か `self`。`self` は未束縛なら `auth_required`、offline なら `player_offline` |
+| 5 | 音量の種類（source） | b8 では指定させない。`playSound` は `master`、`playBlockSound` は `block` に固定（vanilla の `source` の値。Bukkit では `SoundCategory.MASTER`／`BLOCKS`） |
+| 6 | 連打の制限 | 1 tick あたりの上限を runtime policy で持つ（既定: 接続ごと 16、全体 64）。超えたら `backpressure` |
+| 7 | 未登録の sound | 新しい reason `unknown_sound`（-32602） |
+| 8 | result と work cost | result は `null`、work cost は 1 |
+| 9 | 座標 | `playSound` は有限の数値（小数可）、`playBlockSound` はブロックの整数座標 |
+| 10 | `kind` の語彙 | `place`、`hit`、`break`、`step`、`fall`。それ以外は `invalid_params` |
+| 11 | ブロックの音の既定 | options を省略したら、`SoundGroup` の標準値（`getVolume()`、`getPitch()`）で鳴らす |
+| 12 | 空気のブロック | 新しい reason `no_block`（判定は `Material#isAir()`。`air`、`cave_air`、`void_air`） |
+| 13 | permission、build range、chunk | どちらも permission と build range を確認する。`playBlockSound` だけ chunk を準備する（`getBlock` と同じ） |
+| 14 | 引数の順 | 位置が先（mc-remote の `setBlock`、`spawnParticle`、`spawnEntity` と揃える）。語彙（`volume`、`pitch`、将来の `source`）は vanilla の `/playsound` に合わせる |
