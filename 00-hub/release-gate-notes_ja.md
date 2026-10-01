@@ -229,6 +229,9 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     `scratch-image-inputs.tar.gz` 152,885,920 bytes／`2b3eda9a…e458`、`bridge-image-inputs.tar.gz`と`wirescope-app.zip`
     （83,746 bytes／`4cb34989…0a07`）と`contracts.tar.gz`は前のcandidateと同一、`wirescope-app.manifest.json`はsource commitが変わり
     2,321 bytes／`45d56d50…1413`。Pythonは`df34849`から同梱WireScopeを作り直す
+- Stack／backstageの扱い（2026-10-01）: 当面、human ownerが直接コントロールする。coordinatorはStackへ確認票や着手依頼を
+  出さない。devの通常環境の事前確認とJARの差し替えはhuman ownerが行い、coordinatorは凍結したexact setと、差し替え後の
+  環境のidentity（MC版、Paperのbuild、Java版、JARのSHA-256）の記録だけを受け取る
 - blockerと非blocker（human owner 2026-09-30了承）:
   - blocker: Scratchのfixture successor（サウンドのcase、resource種別ごとの無印・完全修飾・非正準形のcase）、Protocol mirror
     とWireScopeのサウンド対応と無印の受け入れ、Scratchからの観測のallowlistの修正。McRemote／Pythonによる取り込み（Pythonは
