@@ -115,7 +115,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   - resource IDの無印の受け入れ（particle、entityは拒否から受け入れへ、soundは新規。`2026-09-30-06`）→ plugin、
     Python／Scratchの送り方、WireScope validatorの表示、共有fixtureのcase
   - 認証の既定値／credentialの自動初期化／configの再編 → fresh installでauth ON、両方欠落・片方欠落の自動初期化、
-    b7.post2のcredential domainからのupgradeでsession tokenが続くこと、旧`b5.`／`b7.`キーの読み替えと警告
+    b7.post2のcredential domainからのupgradeでsession tokenが続くこと、旧`b5.`／`b7.`キーの起動時の移行（新キーへ移して旧キーを消す。`2026-10-01-01`）
   - Pythonのpackaging（extra、短いimport）→ 再現性、metadata、依存解決、importと読み直しの挙動
 - required tier: 横断接続まではTier 2。exact set凍結後にTier 3（変更範囲内の短いlive-auto、人間でしか判定できない
   箇所だけlive-human）
@@ -157,7 +157,12 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     `entity-particle-v23.2.json`（Scratch `0735a9c957d069f719bee9c91e8be0f9322f4920`、20,967 bytes、SHA-256
     `09c1565bf81d33c92d6282e6e20d926559168cb9d780c07d30ad2f9f5895640e`、59 case）を使用。サウンドとresource IDのcaseは未受領。
     未検証: fresh installでの認証ON既定、b7.post2からのupgradeで実tokenが続くこと、live-human
-  - McRemoteの訂正予告: 旧`b5.`／`b7.`キーは、実装（`366f363`）では起動時に値を新キーへ移して旧キーを削除している。
+  - McRemoteの着手依頼5（2026-10-01）: 正式段階の固定trigger（`.github/workflows/release.yml`、`release: published`）と、tagからtitle・JAR名・
+    pre-releaseを導出する`scripts/release_identity.py`を`main@d17712fc3caedb5e8f2ce12d4f31f0d49bc0989d`（PR #13）へ入れた。公開済み
+    `v1.21.11-2301.0.0b7.post2`でのdry run（Actions run `36856681548`）がsuccessで、導出したtitleとpre-releaseは今のReleaseと一致し、
+    Releaseは変えていない（coordinatorがGitHub APIでmainの先頭とrunの結果を確認）。b8のtagは、PR #12と#13の両方がmainに入った
+    状態で打ち、tagのCIが成功してからReleaseを公開する
+  - McRemoteの訂正（2026-10-01に`2026-10-01-01`として着地）: 旧`b5.`／`b7.`キーは、実装（`366f363`）では起動時に値を新キーへ移して旧キーを削除している。
     上の変更範囲の「読み替えと警告」と`2026-09-03-02`の状態欄「起動時にoperatorの`config.yml`を自動で書き換えない」は
     実装と合わない。McRemoteがb8の実装報告の搬送票で訂正を出す。この結果、b8で起動した後にb7.post2のJARへ戻すと、
     運用者が変えていた値が効かなくなる（hub NOTESのpark「rc1のrollbackの範囲」）

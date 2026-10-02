@@ -373,7 +373,7 @@ Tier 3へ進み、10月rcでTier 4、capacity、soak、rollbackを閉じます�
 - exact source／artifact identity、shared fixture、formal evidence、rollback先がある。
 - 1.21.11と採用Paper 26.xのsupport gateを分けて通す。
 - install／update／rollback／既知制約の利用者向け入口がある。
-- McRemote configの旧`b5.`／`b7.`キーの読み替えを外す。外した後も、旧キーが残るconfigを黙って既定値へ戻さない（`2026-09-03-02`、`2026-08-30-02`）。
+- McRemote configの旧`b5.`／`b7.`キーの起動時の移行を外す（`2026-10-01-01`で「読み替えを外す」から読み替えた。移行の後は旧キーがconfigに残らないので、外した後に黙って既定値へ戻るのは、b8より前のconfigをそのまま使い続けた場合に限られる。`2026-09-03-02`、`2026-08-30-02`）。
 
 stable後の小変更は、同じstable coreへbeta suffixを足さず、次coreの`bN → rc → stable`で進めます。
 

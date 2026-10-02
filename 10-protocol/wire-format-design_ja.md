@@ -693,6 +693,7 @@ stageする。truncate後に消失しても次候補を補充せず、残りだ�
 (3) particle引数のstring／object shape、(4) `ParticleSpec` top-levelと`particle_id`抽出、
 (5) particle ID解決、(6) data有無・型・schema整合、(7) receiver構文・`self` player解決、
 (8) permission／build range、(9) WorkAdmission、(10) chunk準備、(11) `ParticleBuilder` spawnとする。
+`self`で束縛されたplayerがofflineなら`player_offline`とし、(7)の中で未束縛の`auth_required`の後に判定する（`2026-10-01-02`）。
 未知particleと未認証`self`の併発は`unknown_particle`、正しいparticleと不正dataと未認証`self`の併発はdata側の
 error、正しいparticle／dataと未認証`self`の併発は`auth_required`を優先する。`receiver:"self"`でも既存`force`を
 受理し、変更せず`ParticleBuilder`へ渡す。work受理後のchunk／spawn失敗でもworkを払い戻さない。
