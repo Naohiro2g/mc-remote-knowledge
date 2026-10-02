@@ -278,7 +278,9 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     b9のPyPI登録の判断材料にする
 - 日程: 目標は10/3。確認点は10/1の終わりで、Scratchのblockerがそろったかを見る。そろわなければ、その時点で日程を相談する。
   10/2に取り込みと凍結、10/2〜10/3に実機試験
-- authorized next action: [着手依頼](b8-gate-work-instructions_ja.md)を各担当へ出す。
+- authorized next action（2026-10-03）: [統一実施票](b8-gate-live-test-sheet_ja.md)を出す。human ownerがdevの通常環境でJARを差し替えて
+  identityを記録した後、segment 1〜4を順に行う。tag／releaseの公開はまだ許可しない
+- 以前のauthorized next action: [着手依頼](b8-gate-work-instructions_ja.md)を各担当へ出す。
   Stack担当は、dev-integrationの読むだけの事前確認をしてよい（稼働中のMC版、Paperのbuild、Java版、McRemote JARの
   SHA-256、listener、credential domainのhealth。変更しない）。ケータリング方式のセットアップは、b8の公開後にStackの
   別作業として、b8のrelease tagを材料に行う（新規セットアップを1日で仕上げるのが目標。hub NOTESのpark）。このgateの根拠には使わない。shared環境へのcandidate deploy、人間参加の試験、tag／releaseの
