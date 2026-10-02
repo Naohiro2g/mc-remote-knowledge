@@ -258,7 +258,11 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     同梱WireScopeのsource `df34849`
   - Scratch `agent/b8-compatibility@691576f60b7f0824e1753bd6823901d01fbe2422`／上の成果物
   - 共有fixture `scratch-editor@054a3af…`の`entity-particle-v23.2.json` 36,481 bytes／`ca636b4a…39f2`／111 case
-  - devの通常環境のidentity（MC版、Paperのbuild、Java版、JARのSHA-256）は、human ownerがJARを差し替えた後に加える
+  - devの通常環境のidentity（2026-10-03、human ownerがJARを差し替えて記録）: host-native、Minecraft `1.21.11`、Paper `1.21.11-132`、
+    Java `21.0.12.1+1`、McRemote JAR `7ab24fa1ff6c20513e46cbf3629f1f4860365acbf3a7e191e48a4e75af1677fb`。認証ON、credential `HEALTHY`、
+    標準portの待ち受けを確認。旧b7のJAR、設定、credentialは退避済み
+  - 実tokenの継続（統一実施票 0-3）: 未完了。確かめたPythonの保存済みtokenは、差し替え前のb7でも`token_not_found`だったので、
+    継続の判定に使えない
   - release時の注意: McRemoteのtagは、PR #12（candidate）と#13（release workflow）をmainへ入れた後のcommitに打つ。そのcommitの
     CIが作るJARが`7ab24fa1…`と一致するかを、公開前に照合する（plugin本体のsourceは同じで、buildは再現可能と報告されている）
 - Stack／backstageの扱い（2026-10-01）: 当面、human ownerが直接コントロールする。coordinatorはStackへ確認票や着手依頼を
