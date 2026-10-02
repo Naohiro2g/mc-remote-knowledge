@@ -263,6 +263,16 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     標準portの待ち受けを確認。旧b7のJAR、設定、credentialは退避済み
   - 実tokenの継続（統一実施票 0-3）: 未完了。確かめたPythonの保存済みtokenは、差し替え前のb7でも`token_not_found`だったので、
     継続の判定に使えない
+  - 実tokenの継続（2026-10-03、Python担当とhuman owner）: **PASS**。devを一時的にb7へ戻してPythonで新しくpairingし（human ownerが
+    Minecraftで承認）、保存tokenでb7の`hello`（protocol `23.1.0`）が通った後、b8のJARへ戻して同じtokenで`hello`（protocol `23.2.0`、
+    `mc_version` `1.21.11`）が再pairingなしで通った
+  - segment 2（Python）の1回目（2026-10-03）: 短いimport、entity lifecycle（無印の`cow`でspawn→nearby→pose get／set→remove）、
+    ParticleSpec（dust／blockを`world`／`self`で、無印の`flame`）、`playSound`（無印の`block.bell.use`を`pitch`／`world`、harpを
+    `note`／`self`）がPASS。WireScopeのframe 1〜34の表示をhuman ownerが確認した。`playBlockSound`の前の準備で、試験runnerが
+    `world.getBlock`の戻り値（`BlockValue`）を辞書として扱った`TypeError`で停止した。serverは`minecraft:air`を正常に返し、clientも
+    正常にdecodeしていた（製品の不具合ではない）。Python担当はGit外のrunnerだけを直し、凍結したidentityは変えていない
+  - coordinatorの判断: runnerだけの修正なので再凍結しない。1回目のPASSは再利用し、残り（`playBlockSound`、3D graph、`getBlock`の
+    WireScope表示）を直したrunnerで同じ凍結identityのまま流す（release運用と責務分担 §7の「harness／runbook／hostのみ」）
   - release時の注意: McRemoteのtagは、PR #12（candidate）と#13（release workflow）をmainへ入れた後のcommitに打つ。そのcommitの
     CIが作るJARが`7ab24fa1…`と一致するかを、公開前に照合する（plugin本体のsourceは同じで、buildは再現可能と報告されている）
 - Stack／backstageの扱い（2026-10-01）: 当面、human ownerが直接コントロールする。coordinatorはStackへ確認票や着手依頼を
