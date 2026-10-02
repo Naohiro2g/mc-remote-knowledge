@@ -83,6 +83,10 @@ minecraft:bamboo_door[facing=east,half=lower,hinge=left,open=true,powered=false]
 - sprite ID、stream ID、credential、capability、catalogHashを埋め込まない。
 - 一回の`world.getBlock`から作るimmutable snapshotとし、ID／stateごとに通信しない。
 - BlockInfoTextの解析でも§2.1のproperty／token文法を使う。
+- 生成される値と手入力の受理範囲を分ける。BlockInfoTextの4 accessor（ID、状態、property、property有無）は、手入力の
+  block IDにnamespaceが無ければ`minecraft:`を補って受け、出力は完全修飾にする（`oak_log[axis=z]`のIDは`minecraft:oak_log`）。
+  他のnamespaceは保持する。空のnamespace、複数のコロン、大文字、空白、状態の重複、非正準のproperty順は従来どおり拒否する。
+  wire §5.0.2のnamespace省略規則と揃える（2026-10-02、Scratchの局所決定、`95156290ec`）
 
 ## 4. Scratch block surface
 
@@ -153,10 +157,14 @@ Pickerはblock ID入力とStateText入力を一つの操作で編集する。
 - UIでは全propertyとMinecraft既定値を見せる。
 - 利用者が変更したpropertyだけを明示指定へ加える。
 - 「既定値に戻す」でそのpropertyをStateTextから除く。
-- 既存StateTextを開いた場合は明示property集合を維持する。
+- property の選択肢はcatalogの順序を保ち、各値を1回だけ表示する。Minecraft既定値には「（デフォルト）」を付け、選ぶと
+  StateTextからそのpropertyを省略する。有効な現在のcatalogと照合できる既存入力・手入力でも、既定値は省略する。catalogを
+  使えない入力や無効な自由入力は、そのまま保持する（2026-10-02、Scratchの局所決定、`12b65b12c9`。以前の「既存StateTextを
+  開いた場合は明示property集合を維持する」を改めた）
 - 変更せず適用した場合は意味を変えない。
 - block IDを変えた場合は旧blockのstateを引き継がない。
-- get由来のfull stateは全propertyを明示指定として保持できる。
+- get由来のfull stateをPickerで開いて適用すると、既定値のpropertyは省略される（同上。以前の「全propertyを明示指定として
+  保持できる」を改めた）。`world.getBlock`由来のBlockInfoText自体、一般のStateText parser、手書きscriptのwire stateは変えない
 
 IDとStateTextは一つのBlockly event groupで原子的に更新し、Undoでも同時に戻す。どちらかの
 入力へvariable／reporterが接続されている場合は両方とも変更せず、接続を黙って外さない。

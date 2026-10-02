@@ -234,6 +234,31 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     `scratch-image-inputs.tar.gz` 152,885,920 bytes／`2b3eda9a…e458`、`bridge-image-inputs.tar.gz`と`wirescope-app.zip`
     （83,746 bytes／`4cb34989…0a07`）と`contracts.tar.gz`は前のcandidateと同一、`wirescope-app.manifest.json`はsource commitが変わり
     2,321 bytes／`45d56d50…1413`。Pythonは`df34849`から同梱WireScopeを作り直す
+- 凍結前の最終返却（2026-10-02。いずれもcoordinatorがGitHub APIでbranchの先頭と一致を確認）:
+  - Python: `codex/b8-python-entity-particle@52d35f5304e62f465c1f47ab47c00fe9bcf62470`。CI run `36860299749`がこのcommitでsuccess。
+    fixture successor（`054a3af`、111 case）をbytesのまま取り込み、Python全685件PASS（担当報告）。同梱WireScopeは`df34849`から作り直し、
+    ZIP 83,746 bytes／`4cb34989…0a07`とmanifest 2,321 bytes／`45d56d50…1413`がScratchの生成物と一致。CI成果物はwheel 195,068 bytes／
+    `dcedff010feac0d5df24ff85dd84b321fb819f78563c39431ac32d9d75bc0180`、sdist 188,775 bytes／
+    `9d56d92b10936787e1eebc1cf85a521ea19aa2e57b391f474eb695b0ba3fad32`。localhostでの診断で、保存済みtokenは`token_not_found`だったが、
+    そのtokenを現在のserverが発行したかは未確認で、b7からの継続の判定には使わない
+  - Scratch: `agent/b8-compatibility@691576f60b7f0824e1753bd6823901d01fbe2422`。human ownerが確認したローカル修正4件（pickerの既定値の
+    省略、BlockInfoTextの手入力のnamespace補完、workspace zoomの位置ずれ、カード画像と表示名）を加えた。`df34849`からの差分は
+    Scratch GUIとVMだけ。fixtureは`054a3af`のまま。成果物: `scratch-image-inputs.tar.gz` 138,375,344 bytes／
+    `c7318efdfb22076c2d40501a526d7ca16a121510f7685d875fff34cdc4404843`、`wirescope-app.manifest.json` 2,321 bytes／`6ea468f5…24d0`、
+    `wirescope-app.zip`と`bridge-image-inputs.tar.gz`と`contracts.tar.gz`は前のcandidateと同一。局所決定2件はScratchのspokeへ着地
+  - Pythonの同梱WireScopeの扱い: `df34849`と`691576f`の間でWireScopeのsourceは変わらず、ZIPはbyte一致で、manifestはsource
+    commitだけが違う。このためPythonに作り直しを求めず、`df34849`由来の同梱物のまま凍結に使う（coordinatorの判断。change coneの外）
+- exact setの凍結案（human ownerの承認待ち。承認後に「凍結」と記録する）:
+  - protocol `23.2.0`／artifact `2320.0.0b8`、Minecraft 1.21.11
+  - McRemote `feat/b8-entity-lifecycle-particle@17309919f6340b07abbbe16476ad1d4f762518c0`／JAR `mc-remote-1.21.11-2320.0.0b8.jar` 261,025 bytes／
+    `7ab24fa1ff6c20513e46cbf3629f1f4860365acbf3a7e191e48a4e75af1677fb`
+  - Python `codex/b8-python-entity-particle@52d35f5304e62f465c1f47ab47c00fe9bcf62470`／wheel `dcedff01…0180`／sdist `9d56d92b…ad32`／
+    同梱WireScopeのsource `df34849`
+  - Scratch `agent/b8-compatibility@691576f60b7f0824e1753bd6823901d01fbe2422`／上の成果物
+  - 共有fixture `scratch-editor@054a3af…`の`entity-particle-v23.2.json` 36,481 bytes／`ca636b4a…39f2`／111 case
+  - devの通常環境のidentity（MC版、Paperのbuild、Java版、JARのSHA-256）は、human ownerがJARを差し替えた後に加える
+  - release時の注意: McRemoteのtagは、PR #12（candidate）と#13（release workflow）をmainへ入れた後のcommitに打つ。そのcommitの
+    CIが作るJARが`7ab24fa1…`と一致するかを、公開前に照合する（plugin本体のsourceは同じで、buildは再現可能と報告されている）
 - Stack／backstageの扱い（2026-10-01）: 当面、human ownerが直接コントロールする。coordinatorはStackへ確認票や着手依頼を
   出さない。devの通常環境の事前確認とJARの差し替えはhuman ownerが行い、coordinatorは凍結したexact setと、差し替え後の
   環境のidentity（MC版、Paperのbuild、Java版、JARのSHA-256）の記録だけを受け取る
