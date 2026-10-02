@@ -139,7 +139,9 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - 持ち越し: b7.post2欄の未検証の境界（WireScopeの横断real-browser E2E、home alpha、Stack後続gateの再判定）は、
   b8で扱うか再開条件を置くかをgate中に決める。NOTES `[priority]` b7 release後の是正候補3件（Scratch／WireScope）も、
   Scratchの確認票で状態を聞いてから扱いを決める
-- exact compatibility set / freeze status: **未凍結**
+- exact compatibility set / freeze status: **凍結**（2026-10-03、`b8-integrated-artifact-set-1`。下の「exact setの凍結」）。source／artifact identityが
+  一つでも変われば失効する
+- devの接続先: 各担当は「devの通常環境」で通じる（human owner 2026-10-03）。coordinatorは接続先を票に書かない
 - target deployment: 論理deployment `dev-integration`（1.21.11、ホームサーバー`home-host-2`、host-native）の通常環境で行う
   （human owner 2026-09-30）。2026-09-30時点では公開済みb7（`mc-remote-1.21.11-2301.0.0b7.jar`）が稼働している（human ownerの
   console log）。Stackの配置経路が無いので、Stack担当が一回限りの許可で読むだけの事前確認をし、exact setの凍結後に別の
@@ -248,7 +250,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     `wirescope-app.zip`と`bridge-image-inputs.tar.gz`と`contracts.tar.gz`は前のcandidateと同一。局所決定2件はScratchのspokeへ着地
   - Pythonの同梱WireScopeの扱い: `df34849`と`691576f`の間でWireScopeのsourceは変わらず、ZIPはbyte一致で、manifestはsource
     commitだけが違う。このためPythonに作り直しを求めず、`df34849`由来の同梱物のまま凍結に使う（coordinatorの判断。change coneの外）
-- exact setの凍結案（human ownerの承認待ち。承認後に「凍結」と記録する）:
+- **exact setの凍結（`b8-integrated-artifact-set-1`、human owner 2026-10-03承認）**:
   - protocol `23.2.0`／artifact `2320.0.0b8`、Minecraft 1.21.11
   - McRemote `feat/b8-entity-lifecycle-particle@17309919f6340b07abbbe16476ad1d4f762518c0`／JAR `mc-remote-1.21.11-2320.0.0b8.jar` 261,025 bytes／
     `7ab24fa1ff6c20513e46cbf3629f1f4860365acbf3a7e191e48a4e75af1677fb`
