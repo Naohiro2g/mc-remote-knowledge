@@ -273,6 +273,14 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     正常にdecodeしていた（製品の不具合ではない）。Python担当はGit外のrunnerだけを直し、凍結したidentityは変えていない
   - coordinatorの判断: runnerだけの修正なので再凍結しない。1回目のPASSは再利用し、残り（`playBlockSound`、3D graph、`getBlock`の
     WireScope表示）を直したrunnerで同じ凍結identityのまま流す（release運用と責務分担 §7の「harness／runbook／hostのみ」）
+  - segment 1（McRemote live-auto、2026-10-03）: **PASS**。PASS行60、FAIL行0、exit code 0。認証ONのまま試験用に一度pairingし（human owner
+    承認）、3つの認証済みconnection epochで`protocol` `23.2.0`／`mc_version` `1.21.11`を照合。devのJARが凍結identityと一致することを
+    読み取りで確認。試験で作ったcow 257体（容量試験）と試験blockはoriginの近く（overworld、y=72）に残し、原状復元しない（b5と同じ扱い）
+  - segment 2（Python）の残り（2026-10-03、run 3）: **PASS**。`getBlock`の取得と仮のstone設置・airへの復元、`playBlockSound`の5つの
+    `kind`で既定・`pitch`・`note`とPythonの既定呼び出しの16往復、3D graphのsample 81往復。WireScopeのframe 1〜50と113〜212の表示を
+    human ownerが確認。runnerは`15c5c2cf…`を基に残りだけを流す版`c001bd5cbc8ab8b5151133c995dec4f226d82f4b9ac83f786a2e9797574a5c7c`
+    （human ownerの選択。Git外のrunnerだけの違いで受け入れる）。凍結identityは不変、再pairingなし。SoundGroupの内部数値、描画、
+    聴取、定位、2-playerの差は未検証（segment 4で見る）
   - release時の注意: McRemoteのtagは、PR #12（candidate）と#13（release workflow）をmainへ入れた後のcommitに打つ。そのcommitの
     CIが作るJARが`7ab24fa1…`と一致するかを、公開前に照合する（plugin本体のsourceは同じで、buildは再現可能と報告されている）
 - Stack／backstageの扱い（2026-10-01）: 当面、human ownerが直接コントロールする。coordinatorはStackへ確認票や着手依頼を
