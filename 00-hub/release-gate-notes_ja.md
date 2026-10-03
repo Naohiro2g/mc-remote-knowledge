@@ -281,6 +281,18 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     human ownerが確認。runnerは`15c5c2cf…`を基に残りだけを流す版`c001bd5cbc8ab8b5151133c995dec4f226d82f4b9ac83f786a2e9797574a5c7c`
     （human ownerの選択。Git外のrunnerだけの違いで受け入れる）。凍結identityは不変、再pairingなし。SoundGroupの内部数値、描画、
     聴取、定位、2-playerの差は未検証（segment 4で見る）
+  - segment 3（Scratch、2026-10-03、凍結source `691576f`と凍結成果物）: **PASS**（1項目はNOTRUN）。最初の認証済み`hello`で
+    `23.2.0`／`1.21.11`を照合、認証ONのまま（pairingはhuman owner承認）。entity lifecycleの各ブロック、particle（無印`flame`、dust、
+    block）、サウンド（`playSound`、`playBlockSound`、`N12`→`note`と数字→`pitch`）、カタログID一覧（block 1166／entity 157／particle 115件）、
+    pickerの日英名と検索（`gold_block 金ブロック`／`Block of Gold`）と既定値の省略、BlockInfoTextのnamespace補完がPASS。Scratch担当が
+    独立のChromiumでWireScope（Scratch source）を開き、entityの4 method、typed particle、サウンド、particleのIDなし通知（送信済み・
+    結果未確認）の表示をDOMとscreenshotで確認し、human ownerも4点を目視で承認。b7 release後の是正のうち、空pollで履歴を押し出さない
+    ことと数値欄のCtrl+C／Ctrl+VはPASS。server backpressureの案内は、通常の操作でbackpressureが起きず**NOTRUN**（設定変更や負荷で
+    無理に起こさなかった）。試験scriptの誤り2件（TRACE delayの省略、FASTがparticleにも効くという誤ったassertion）はscript側の修正で、
+    製品とcandidateは変えていない
+  - 凍結後のWireScope列幅の調整: human ownerの希望で時刻列と方向列を詰めた変更が`agent/b8-compatibility@01cdb0bfee3a681697ffa44db5b890045b74b01c`
+    にある（`mc-remote/live`の2 fileだけ、142 tests PASS）。新しいWireScope ZIPは83,993 bytes／`7d66aa0d…e579`。凍結set
+    `b8-integrated-artifact-set-1`は置き換えていない。b8へ入れるかはhuman ownerの判断待ち
   - release時の注意: McRemoteのtagは、PR #12（candidate）と#13（release workflow）をmainへ入れた後のcommitに打つ。そのcommitの
     CIが作るJARが`7ab24fa1…`と一致するかを、公開前に照合する（plugin本体のsourceは同じで、buildは再現可能と報告されている）
 - Stack／backstageの扱い（2026-10-01）: 当面、human ownerが直接コントロールする。coordinatorはStackへ確認票や着手依頼を
