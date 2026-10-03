@@ -290,6 +290,11 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     ことと数値欄のCtrl+C／Ctrl+VはPASS。server backpressureの案内は、通常の操作でbackpressureが起きず**NOTRUN**（設定変更や負荷で
     無理に起こさなかった）。未確認の範囲として記録し、b8を止める理由にしない（human owner 2026-10-03。是正自体はunit testで確認済み）。試験scriptの誤り2件（TRACE delayの省略、FASTがparticleにも効くという誤ったassertion）はscript側の修正で、
     製品とcandidateは変えていない
+  - segment 4（live-human、2026-10-03）: **PASS**（既知の制限1件）。Java版とiPad（Bedrock、Geyser経由）の2 playerで、receiverの`self`／`world`
+    （particle、サウンド）、dustの色、block particle、音の定位・減衰・`note`の音階・`playBlockSound`の5 kindを確認。3D graphの描画もPASS
+    （効果的なデモにするには工夫が要る、とhuman owner）。iPadではdustの大きさが約1のまま変わらない（Java版では変わる）。b8の対象は
+    Java版のserverとclientなので、Bedrockでのdustの大きさは既知の制限として記録する
+  - evidence: [`14-evidence/records/2026-10-03-b8-dev-live_ja.md`](../14-evidence/records/2026-10-03-b8-dev-live_ja.md)
   - 凍結後のWireScope列幅の調整: human ownerの希望で時刻列と方向列を詰めた変更が`agent/b8-compatibility@01cdb0bfee3a681697ffa44db5b890045b74b01c`
     にある（`mc-remote/live`の2 fileだけ、142 tests PASS）。新しいWireScope ZIPは83,993 bytes／`7d66aa0d…e579`。凍結set
     `b8-integrated-artifact-set-1`は置き換えていない。b8には入れず、b9で出す（human owner 2026-10-03）
@@ -319,6 +324,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   SHA-256、listener、credential domainのhealth。変更しない）。ケータリング方式のセットアップは、b8の公開後にStackの
   別作業として、b8のrelease tagを材料に行う（新規セットアップを1日で仕上げるのが目標。hub NOTESのpark）。このgateの根拠には使わない。shared環境へのcandidate deploy、人間参加の試験、tag／releaseの
   公開はまだ許可しない
+- gate result（2026-10-03）: **GREEN — b8横断技術gate完了**。blockerはすべてPASS。non-claimは、server backpressureの案内の実機表示、
+  Bedrockでのdustの大きさ、正確な聴感の測定、capacity／soak／rollback、Windows（公開後）、Paper 26.x。公開にはhuman ownerの承認が要る
 - non-claim: PyPI.orgへの公開とAPI freeze（b9）、capacity／soak／rollback（rc1。rollbackの範囲案はhub NOTESにpark）、public deploy、Scratch learner block、
   サウンド以外の新API（`2026-09-30-03`で初回stable後）、tooling移管（b9）、26.x（`2026-09-30-07`）、Java、
   初回stableの互換
