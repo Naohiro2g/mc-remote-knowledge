@@ -49,10 +49,10 @@
 				各言語のClient Libraryでの書き方は、それぞれのリポジトリを見てください。</p>
 			<p class="api-note">このページは、仕様の正本<a href="https://github.com/Naohiro2g/mc-remote-knowledge/blob/main/10-protocol/wire-format-design_ja.md" target="_blank" rel="noopener">wire-format-design</a>の§4コマンド表と§7.3 error表から
 				自動生成しています。正確な条件、検証の順序、上限は正本を見てください。<a href="api.json">機械可読版（api.json）</a></p>
-			<p class="api-toc"><a href="#connection">接続</a> ／ <a href="#build">建築の文脈</a> ／ <a href="#block">ブロック</a> ／ <a href="#sign">看板</a> ／ <a href="#player">プレイヤー</a> ／ <a href="#entity">エンティティ</a> ／ <a href="#effect">演出（パーティクル・音・雷）</a> ／ <a href="#chat">チャット</a> ／ <a href="#event">イベント</a> ／ <a href="#catalog">カタログ</a> ／ <a href="#auth">認証</a> ／ <a href="#errors">error reason</a></p>
+			<p class="api-toc"><a href="#connection">接続</a> ／ <a href="#build">建築の文脈</a> ／ <a href="#block">ブロック</a> ／ <a href="#sign">看板</a> ／ <a href="#player">プレイヤー</a> ／ <a href="#entity">エンティティ</a> ／ <a href="#effect">演出（パーティクル・音・雷）</a> ／ <a href="#chat">チャット</a> ／ <a href="#event">イベント</a> ／ <a href="#catalog">カタログ</a> ／ <a href="#auth">認証</a> ／ <a href="#errors">エラー応答</a></p>
 			<h2 id="connection">接続</h2>
 			<div class="table-wrap"><table>
-				<thead><tr><th>method</th><th>用途</th><th>params</th><th>応答</th><th>備考（wireの記述）</th></tr></thead>
+				<thead><tr><th>メソッド</th><th>用途</th><th>パラメーター（params）</th><th>応答</th><th>備考（wireの記述）</th></tr></thead>
 				<tbody>
 					<tr><td class="method"><code>hello</code></td><td>接続の最初に一度だけ送り、protocolの照合、認証、建築の文脈の受け取りをする</td><td>object（§6）</td><td>あり</td><td class="notes">接続ハンドシェイク。1接続に1回。identity/auth/build を担う</td></tr>
 					<tr><td class="method"><code>connection.flush</code></td><td>それまでに送ったcommandが処理されたことを確かめる区切り</td><td><code>[]</code></td><td><code>null</code></td><td class="notes">同一connectionの先行commandに対する明示barrier（§3.5）</td></tr>
@@ -60,7 +60,7 @@
 			</table></div>
 			<h2 id="build">建築の文脈</h2>
 			<div class="table-wrap"><table>
-				<thead><tr><th>method</th><th>用途</th><th>params</th><th>応答</th><th>備考（wireの記述）</th></tr></thead>
+				<thead><tr><th>メソッド</th><th>用途</th><th>パラメーター（params）</th><th>応答</th><th>備考（wireの記述）</th></tr></thead>
 				<tbody>
 					<tr><td class="method"><code>build.setDimension</code></td><td>建築する次元（overworld、the_nether など）を変える</td><td><code>[dimension_ref]</code></td><td><code>{dimension,origin}</code></td><td class="notes">protocol 22のstream-local DimensionKeyを変更（§5.1）</td></tr>
 					<tr><td class="method"><code>build.setOrigin</code></td><td>座標の原点を変える</td><td><code>[x, y, z]</code></td><td><code>{dimension,origin}</code></td><td class="notes">build originを変更し、server正準build contextを返す</td></tr>
@@ -68,7 +68,7 @@
 			</table></div>
 			<h2 id="block">ブロック</h2>
 			<div class="table-wrap"><table>
-				<thead><tr><th>method</th><th>用途</th><th>params</th><th>応答</th><th>備考（wireの記述）</th></tr></thead>
+				<thead><tr><th>メソッド</th><th>用途</th><th>パラメーター（params）</th><th>応答</th><th>備考（wireの記述）</th></tr></thead>
 				<tbody>
 					<tr><td class="method"><code>world.setBlock</code></td><td>ブロックを1つ置く</td><td><code>[x, y, z, blockSpec]</code></td><td>id付きは<code>null</code> / notification時なし</td><td class="notes">protocol 22では構造化<code>BlockSpec</code>で1ブロック設置（§7.1）</td></tr>
 					<tr><td class="method"><code>world.setBlocks</code></td><td>直方体の範囲をブロックで埋める</td><td><code>[x1, y1, z1, x2, y2, z2, blockSpec]</code></td><td>id付きは<code>null</code> / notification時なし</td><td class="notes">protocol 22では構造化<code>BlockSpec</code>で直方体充填（§7.1）</td></tr>
@@ -79,7 +79,7 @@
 			</table></div>
 			<h2 id="sign">看板</h2>
 			<div class="table-wrap"><table>
-				<thead><tr><th>method</th><th>用途</th><th>params</th><th>応答</th><th>備考（wireの記述）</th></tr></thead>
+				<thead><tr><th>メソッド</th><th>用途</th><th>パラメーター（params）</th><th>応答</th><th>備考（wireの記述）</th></tr></thead>
 				<tbody>
 					<tr><td class="method"><code>world.getSign</code></td><td>看板の両面の文字を読む</td><td><code>[x, y, z]</code></td><td><code>{front:[LineValue×4],back:[LineValue×4],waxed:bool}</code></td><td class="notes">signの両面とwaxedを正準形で取得（b6、§5.8.1）</td></tr>
 					<tr><td class="method"><code>world.setSign</code></td><td>看板の面の文字を4行まとめて書き換える</td><td><code>[x, y, z, {front?:[LineSpec×4],back?:[LineSpec×4]}]</code></td><td><code>null</code></td><td class="notes">指定面を面内no-mergeの厳密4行へ置換（b6、§5.8.1）</td></tr>
@@ -88,7 +88,7 @@
 			</table></div>
 			<h2 id="player">プレイヤー</h2>
 			<div class="table-wrap"><table>
-				<thead><tr><th>method</th><th>用途</th><th>params</th><th>応答</th><th>備考（wireの記述）</th></tr></thead>
+				<thead><tr><th>メソッド</th><th>用途</th><th>パラメーター（params）</th><th>応答</th><th>備考（wireの記述）</th></tr></thead>
 				<tbody>
 					<tr><td class="method"><code>player.getPos</code></td><td>自分の位置を調べる</td><td><code>[]</code></td><td>あり</td><td class="notes">paired playerの現在dimensionと現在位置をstream origin相対で返す（§5.2）</td></tr>
 					<tr><td class="method"><code>player.setPos</code></td><td>自分を移動させる</td><td><code>[dimension_ref, x, y, z]</code></td><td>あり</td><td class="notes">paired playerを指定dimensionのstream origin相対位置へteleportする（§5.2）</td></tr>
@@ -100,7 +100,7 @@
 			</table></div>
 			<h2 id="entity">エンティティ</h2>
 			<div class="table-wrap"><table>
-				<thead><tr><th>method</th><th>用途</th><th>params</th><th>応答</th><th>備考（wireの記述）</th></tr></thead>
+				<thead><tr><th>メソッド</th><th>用途</th><th>パラメーター（params）</th><th>応答</th><th>備考（wireの記述）</th></tr></thead>
 				<tbody>
 					<tr><td class="method"><code>world.spawnEntity</code></td><td>エンティティ（動物など）を出し、あとで操作するためのhandleを受け取る</td><td><code>[x, y, z, entity]</code></td><td>あり</td><td class="notes">entityを生成しepoch-scoped handleを返す（b5、§5.7）</td></tr>
 					<tr><td class="method"><code>world.getNearbyEntities</code></td><td>近くのエンティティを探して一覧を受け取る</td><td><code>[x, y, z, radius, max_entities]</code></td><td>あり</td><td class="notes">boundedな近傍entity検索。playerを除外。<code>[{handle,type,pos}, ...]</code>、0件は<code>[]</code>（b8、§5.8.3）</td></tr>
@@ -113,7 +113,7 @@
 			</table></div>
 			<h2 id="effect">演出（パーティクル・音・雷）</h2>
 			<div class="table-wrap"><table>
-				<thead><tr><th>method</th><th>用途</th><th>params</th><th>応答</th><th>備考（wireの記述）</th></tr></thead>
+				<thead><tr><th>メソッド</th><th>用途</th><th>パラメーター（params）</th><th>応答</th><th>備考（wireの記述）</th></tr></thead>
 				<tbody>
 					<tr><td class="method"><code>world.spawnParticle</code></td><td>パーティクルを出す（色や大きさ、見せる相手も選べる）</td><td><code>[x, y, z, offset_x, offset_y, offset_z, particle, speed, count, (force)]</code></td><td>あり</td><td class="notes">9／10 params、<code>force</code>省略時<code>true</code>。b8で<code>particle</code>にobject形<code>ParticleSpec</code>を追加（§5.7／§5.8.3）</td></tr>
 					<tr><td class="method"><code>world.playSound</code></td><td>位置から音を鳴らす</td><td><code>[x, y, z, sound_id, (options)]</code></td><td><code>null</code></td><td class="notes">位置から音を鳴らす。receiverは<code>world</code>／<code>self</code>（b8、§5.8.3）</td></tr>
@@ -123,21 +123,21 @@
 			</table></div>
 			<h2 id="chat">チャット</h2>
 			<div class="table-wrap"><table>
-				<thead><tr><th>method</th><th>用途</th><th>params</th><th>応答</th><th>備考（wireの記述）</th></tr></thead>
+				<thead><tr><th>メソッド</th><th>用途</th><th>パラメーター（params）</th><th>応答</th><th>備考（wireの記述）</th></tr></thead>
 				<tbody>
 					<tr><td class="method"><code>chat.post</code></td><td>チャットに書き込む</td><td><code>[msg]</code></td><td>id付きrequestの成功resultは<code>null</code>（b9から、<code>2026-10-03-01</code>） / notification 時なし</td><td class="notes">チャット送信</td></tr>
 				</tbody>
 			</table></div>
 			<h2 id="event">イベント</h2>
 			<div class="table-wrap"><table>
-				<thead><tr><th>method</th><th>用途</th><th>params</th><th>応答</th><th>備考（wireの記述）</th></tr></thead>
+				<thead><tr><th>メソッド</th><th>用途</th><th>パラメーター（params）</th><th>応答</th><th>備考（wireの記述）</th></tr></thead>
 				<tbody>
 					<tr><td class="method"><code>events.poll</code></td><td>起きたイベント（つつく、チャット、矢が当たるなど）を受け取る</td><td><code>[after_sequence]</code>／<code>[after_sequence, {max_events}]</code></td><td>あり</td><td class="notes">epoch-scoped event ringを非破壊取得。filterは初回stable後の候補（§5.4、<code>2026-09-30-03</code>）</td></tr>
 				</tbody>
 			</table></div>
 			<h2 id="catalog">カタログ</h2>
 			<div class="table-wrap"><table>
-				<thead><tr><th>method</th><th>用途</th><th>params</th><th>応答</th><th>備考（wireの記述）</th></tr></thead>
+				<thead><tr><th>メソッド</th><th>用途</th><th>パラメーター（params）</th><th>応答</th><th>備考（wireの記述）</th></tr></thead>
 				<tbody>
 					<tr><td class="method"><code>catalog.get</code></td><td>サーバーで使えるブロック、エンティティ、パーティクルの一覧を受け取る</td><td><code>[]</code></td><td>あり</td><td class="notes">稼働中 registry から block/entity/particle catalog を取得（b3 実装予定、§7.2.1）</td></tr>
 				</tbody>
@@ -145,7 +145,7 @@
 			<h2 id="auth">認証</h2>
 			<p class="api-note">ペアリングとcredential管理は、表とは別に正本の§6.5 ペアリング、§6.6 credential管理で定めています。</p>
 			<div class="table-wrap"><table>
-				<thead><tr><th>method</th><th>用途</th></tr></thead>
+				<thead><tr><th>メソッド</th><th>用途</th></tr></thead>
 				<tbody>
 					<tr><td class="method"><code>auth.pairBegin</code></td><td>ペアリングを始め、Minecraftで承認するためのコードを受け取る</td></tr>
 					<tr><td class="method"><code>auth.pairPoll</code></td><td>ペアリングが承認されたかを確かめ、承認されたらtokenを受け取る</td></tr>
@@ -154,10 +154,10 @@
 					<tr><td class="method"><code>auth.logout</code></td><td>今使っている長期credentialを取り消して終わる</td></tr>
 				</tbody>
 			</table></div>
-			<h2 id="errors">error reason</h2>
+			<h2 id="errors">エラー応答（reason）</h2>
 			<p class="api-note">失敗したときは、JSON-RPCのerrorの<code>data.reason</code>で理由を見分けます。</p>
 			<div class="table-wrap"><table>
-				<thead><tr><th>reason</th><th>code</th><th>分類</th><th>意味</th><th>導入</th></tr></thead>
+				<thead><tr><th>理由（reason）</th><th>コード（code）</th><th>分類</th><th>意味</th><th>導入</th></tr></thead>
 				<tbody>
 					<tr><td><code>unknown_block</code></td><td><code>-32602</code>（Invalid params）</td><td>block検証</td><td><code>block_id</code>がblock不在（無印補完後の未知名含む）</td><td>○</td></tr>
 					<tr><td><code>unknown_property</code></td><td><code>-32602</code>（Invalid params）</td><td>block検証</td><td>property名がそのblockに無い</td><td>○</td></tr>

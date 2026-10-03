@@ -138,7 +138,7 @@ def render_html(data: dict) -> str:
         parts.append(
             f"\t\t\t<h2 id=\"{category['id']}\">{html.escape(category['title'])}</h2>\n"
             "\t\t\t<div class=\"table-wrap\"><table>\n"
-            "\t\t\t\t<thead><tr><th>method</th><th>用途</th><th>params</th><th>応答</th><th>備考（wireの記述）</th></tr></thead>\n"
+            "\t\t\t\t<thead><tr><th>メソッド</th><th>用途</th><th>パラメーター（params）</th><th>応答</th><th>備考（wireの記述）</th></tr></thead>\n"
             f"\t\t\t\t<tbody>\n{body}\n\t\t\t\t</tbody>\n\t\t\t</table></div>"
         )
     auth = data["auth"]
@@ -208,20 +208,20 @@ def render_html(data: dict) -> str:
 				各言語のClient Libraryでの書き方は、それぞれのリポジトリを見てください。</p>
 			<p class="api-note">このページは、仕様の正本<a href="{WIRE_URL}" target="_blank" rel="noopener">wire-format-design</a>の§4コマンド表と§7.3 error表から
 				自動生成しています。正確な条件、検証の順序、上限は正本を見てください。<a href="api.json">機械可読版（api.json）</a></p>
-			<p class="api-toc">{toc} ／ <a href="#auth">認証</a> ／ <a href="#errors">error reason</a></p>
+			<p class="api-toc">{toc} ／ <a href="#auth">認証</a> ／ <a href="#errors">エラー応答</a></p>
 {chr(10).join(parts)}
 			<h2 id="auth">認証</h2>
 			<p class="api-note">ペアリングとcredential管理は、表とは別に正本の{html.escape(auth.get('wire_sections', ''))}で定めています。</p>
 			<div class="table-wrap"><table>
-				<thead><tr><th>method</th><th>用途</th></tr></thead>
+				<thead><tr><th>メソッド</th><th>用途</th></tr></thead>
 				<tbody>
 {auth_rows}
 				</tbody>
 			</table></div>
-			<h2 id="errors">error reason</h2>
+			<h2 id="errors">エラー応答（reason）</h2>
 			<p class="api-note">失敗したときは、JSON-RPCのerrorの<code>data.reason</code>で理由を見分けます。</p>
 			<div class="table-wrap"><table>
-				<thead><tr><th>reason</th><th>code</th><th>分類</th><th>意味</th><th>導入</th></tr></thead>
+				<thead><tr><th>理由（reason）</th><th>コード（code）</th><th>分類</th><th>意味</th><th>導入</th></tr></thead>
 				<tbody>
 {error_rows}
 				</tbody>
