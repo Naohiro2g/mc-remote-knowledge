@@ -1,0 +1,40 @@
+{
+  "source_commit": "691576f60b7f0824e1753bd6823901d01fbe2422",
+  "files": [
+    {
+      "path": "FIXTURES_ja.md",
+      "bytes": 16140,
+      "sha256": "2b23adb8f3d69538f2689a308046ac33e6ab8bba9ed74670658ecd2d0e01ed6f"
+    },
+    {
+      "path": "HANDOFFS_ja.md",
+      "bytes": 13859,
+      "sha256": "ea3fbf729ee3d591ac1f1d162b165071bd690133ae531b14987e7f247c200b88"
+    },
+    {
+      "path": "MANIFEST_ja.md",
+      "bytes": 1818,
+      "sha256": "4c16448e537d3d73b52e21241aa93953f258fd2388eb4b72cc9da2a6fed14e88"
+    },
+    {
+      "path": "materials/classification-input.json",
+      "bytes": 9769,
+      "sha256": "b69ccb00152af6092841b1132e41608dee35a3c39ccaf5adebbb5503e591e7d2"
+    },
+    {
+      "path": "materials/collect-inventory.py",
+      "bytes": 16822,
+      "sha256": "5b66c26ec7b2e9dc18c6b932047823615a53a2a968997f97e67247bbe752be44"
+    },
+    {
+      "path": "materials/fixture-inventory.json",
+      "bytes": 10639,
+      "sha256": "bc420af9fbc5e97bd69922e11cb6908ca5fd8dd14d6000e927ce6cc83444c5a3"
+    },
+    {
+      "path": "materials/handoff-classification.json",
+      "bytes": 14698,
+      "sha256": "e459f3224b3de45d8fe03e5486315479dcfe877b3f1cfde1d82a98cb22f23cf8"
+    }
+  ]
+}

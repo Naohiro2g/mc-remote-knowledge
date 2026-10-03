@@ -1,0 +1,22 @@
+node:fs:484
+    return binding.readFileUtf8(path, stringToFlags(options.flag));
+                   ^
+
+Error: ENOENT: no such file or directory, open '~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/browser/default-stylesheet.css'
+    at Object.readFileSync (node:fs:484:20)
+    at 41438 (~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/dist/node/scratch-vm.js:2:8770340)
+    at __webpack_require__ (~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/dist/node/scratch-vm.js:2:10563660)
+    at 53648 (~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/dist/node/scratch-vm.js:2:8905618)
+    at __webpack_require__ (~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/dist/node/scratch-vm.js:2:10563660)
+    at 83757 (~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/dist/node/scratch-vm.js:2:8358842)
+    at __webpack_require__ (~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/dist/node/scratch-vm.js:2:10563660)
+    at 43598 (~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/dist/node/scratch-vm.js:2:7465373)
+    at __webpack_require__ (~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/dist/node/scratch-vm.js:2:10563660)
+    at 58344 (~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/dist/node/scratch-vm.js:2:8331551) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/browser/default-stylesheet.css'
+}
+
+Node.js v24.19.0

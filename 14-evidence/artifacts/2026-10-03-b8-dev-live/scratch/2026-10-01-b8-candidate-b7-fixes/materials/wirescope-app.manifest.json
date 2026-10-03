@@ -1,0 +1,72 @@
+{
+  "manifest_schema": "mcremote.wirescope.app-manifest",
+  "manifest_version": 1,
+  "archive": {
+    "file": "wirescope-app.zip",
+    "format": "zip",
+    "format_version": 1,
+    "sha256": "4cb349894b71d61d7ca143d8362a5b79deb1810e1d7a9e31ad30e29bfe370a07"
+  },
+  "source": {
+    "repository": "https://github.com/Naohiro2g/scratch-editor",
+    "commit": "df34849d2502a498a06c5fe07a91d03e925124eb",
+    "subdirectory": "mc-remote/live",
+    "corresponding_source_url": "https://github.com/Naohiro2g/scratch-editor/tree/df34849d2502a498a06c5fe07a91d03e925124eb/mc-remote/live"
+  },
+  "build": {
+    "recipe": "npm ci && npm run build:artifact --workspace=@mc-remote/live -- --source-commit df34849d2502a498a06c5fe07a91d03e925124eb",
+    "toolchain": {
+      "node": "24.19.0",
+      "rolldown-vite": "7.3.1",
+      "typescript": "5.9.3",
+      "jszip": "3.10.1"
+    },
+    "input_identity": {
+      "source_commit": "df34849d2502a498a06c5fe07a91d03e925124eb",
+      "package_json_sha256": "84b74060253ef940952db82c24e1cee4d18d652ae11449ee601a92d1f72a6bbe",
+      "package_lock_sha256": "9756bf3b70d4c00390a75eb49b22b364f3409665f8c356e4e8c959ffda2c4f2b"
+    }
+  },
+  "protocols": {
+    "observer_schema": {
+      "name": "mcremote.observer",
+      "version": 1
+    },
+    "observer_session": 1,
+    "scratch_handoff": 1,
+    "station_attach": 1
+  },
+  "assets": [
+    {
+      "path": "LICENSE",
+      "bytes": 34523,
+      "sha256": "8486a10c4393cee1c25392769ddd3b2d6c242d6ec7928e1414efff7dfb2f07ef"
+    },
+    {
+      "path": "NOTICE",
+      "bytes": 310,
+      "sha256": "a5a1f4e50ffa47063bc2cd9c903d167f6723db3bcf38c76007f7be6824bde8b0"
+    },
+    {
+      "path": "assets/index-BBrN1Qw3.js",
+      "bytes": 66205,
+      "sha256": "82f9ffa023c1fbfed216a2b7deb0c343acb31b3f815942c6fc35584562085aa4"
+    },
+    {
+      "path": "assets/index-BBrN1Qw3.js.map",
+      "bytes": 200640,
+      "sha256": "8f65f0d31fdd45191878b08e8a85f34cad80b50977cfa3800e10311ac613fd8e"
+    },
+    {
+      "path": "assets/index-cdgTmXph.css",
+      "bytes": 9169,
+      "sha256": "0563b68d6abbb713b1728ee108f07bf936db81aea694ceef65af19b9a1c01462"
+    },
+    {
+      "path": "index.html",
+      "bytes": 674,
+      "sha256": "e4d516524769a1f230537a5762c96e2ff51ea29f7d85a385384ae0d1b445bd13"
+    }
+  ],
+  "license_expression": "AGPL-3.0-only"
+}

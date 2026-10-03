@@ -1,0 +1,21 @@
+jest-haste-map: duplicate manual mock found: index
+  The following files share their name; please delete one of them:
+    * <rootDir>/src/lib/settings/color-mode/dark/__mocks__/index.js
+    * <rootDir>/src/lib/settings/color-mode/default/__mocks__/index.js
+
+Browserslist: browsers data (caniuse-lite) is 10 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+PASS test/unit/util/mcremote-l10n.test.js (6.153 s)
+  McRemote Japanese localization
+    ✓ covers the extension, connection, blocks, picker, and WireScope mini (61 ms)
+    ✓ covers every learner-facing message declared by the McRemote VM extension (168 ms)
+    ✓ formats coordinate axes with a spaced colon directly before their inputs in Japanese (37 ms)
+    ✓ provides kanji-free translations for the Japanese Hiragana locale (106 ms)
+    ✓ merges Scratch and McRemote messages into the Japanese Hiragana locale (7 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       5 passed, 5 total
+Snapshots:   0 total
+Time:        10.696 s
+Ran all test suites within paths "test/unit/util/mcremote-l10n.test.js".

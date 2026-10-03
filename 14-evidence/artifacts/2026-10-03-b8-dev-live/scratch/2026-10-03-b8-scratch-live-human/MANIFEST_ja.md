@@ -1,0 +1,27 @@
+# b8 live-human：ScratchとiPad（Scratch側終了・3DはPythonへ）
+
+- 日付: 2026-10-03
+- test class: live-human。human ownerがScratchとMinecraftを操作し、agentが手順を案内して返答を捕捉する。
+- knowledge contract path: `00-hub/b8-gate-live-test-sheet_ja.md`「共通」「4. live-human」。
+- knowledge contract commit: `3f0c14ab9e41e469a23f865b3e7a313744bdcdc7`（remote mainと照合、実参照済み）。凍結の原票は`749ba60dc8c18938e50ce66b8e820aac4401c69e`。
+- Scratch: `b8-integrated-artifact-set-1`のGUI、source `691576f60b7f0824e1753bd6823901d01fbe2422`を展開した配信を案内。列幅修正01cdb0bfeeはb9持ち越し。
+- 開始確認: human ownerがiPadの参加成功、Scratchのpairing成功、WireScope起動を申告。認証済みhelloでprotocol23.2.0／MC1.21.11の一致を確認。認証前のauth_requiredも記録。
+- 素材: `materials/start-observation.json`は開始時点のスナップショット。現在の結果は`materials/observations.json`を正とする。ユーザーが貼り付けたhelloの4 frameを捕捉。省略された中間frameやpairing要求・応答は捕捉していない。
+- 観測: `materials/observations.json`に追記。particleとsoundのself／worldはhuman ownerの確認でPASS。soundの聴取も確認。添付画像だけでiPad側の表示／非表示・聴取を証明したとは扱わない。
+- dust追加確認: Java側のサイズ変化と両端末のRGB色指定はhuman ownerの確認でPASS。0.0はエラー、0.01は受け付けられたとの訂正を反映。Java画面で約0.2から見えたとの観測は今回の画面条件での報告として記録。
+- 差分: iPadのdust size1→4で見た目が変わらないとの申告。size反映のassertionはFAILとして維持。`DUST-BEDROCK-DIFFERENCE_ja.md`へ追加観測と原因候補を捕捉。
+- 続行: 差分を記録して残りを続ける確認に対してhuman owner「続行」（2026-10-03）。同じ凍結版で残りの確認を進める。差分のgateでの扱いとrelease可否は確定しない。
+- block描画: 初回のgold_blockがselfだったためiPadへのworld描画の補完を案内。gold_blockのself／worldとsea_lanternのworldを含む追加画像とhuman owner「いろんなブロックで出ます」を受領し、両端末での描画をPASSへ更新。初回はstoneもworldで確認。全blockの網羅確認とはしない。
+- 音の可聴範囲: human ownerがJava -16〜15／iPad -15〜14程度と報告。観測を捕捉し、厳密な共通の境界値とはしない。終了時に両端末の定位・徐々に音量が下がる減衰を明示確認しPASSへ更新。
+- 音源位置と教材候補: human ownerの記録依頼を受け、`materials/observations.json`の`learning_notes`へ追記。座標指定のplaySoundは入力位置そのもの、ブロック指定のplayBlockSoundはブロック中心が音源。整数座標と各軸に0.5を足した中心座標を比較し、ブロックの指定と空間の位置の違いを観察する教材案。根拠は上記knowledge SHAのwire §5.8.3とScratchの送信処理。比較実験自体は未実施、可聴範囲差の原因確定とは扱わない。
+- Javaクライアントの画像タイトルは26.2。serverのMC版は認証済みhelloの1.21.11として区別する。iPadのMinecraft版と周辺プラグインの実版・設定は未採取。
+- 終了確認: Java／iPad双方での音の定位・減衰・noteについてhuman owner「全てオッケーでした」を受領しPASSへ更新。字幕による音表現がコマンド実行でも表示されるとの追加観測も捕捉。字幕の端末・音ID・methodは未指定。
+- 確認の残り: 3D graphの描画。human owner「続きはPython環境でやります」に従い、既存サンプルexamples/particle_graph.pyの確認をPython側へ引き継ぐ。Scratch側の追加実施漏れはなし。iPadのdustサイズ差はFAILのまま保持。
+- 音階確認中の入力エラー: sound変数を使用した要求は音IDが文字列`0`でunknown_sound。固定IDのblock.glass.breakはresult:null。human owner「行けました。代入されていなかった模様」を受領し、代入漏れによる入力エラーの解消として記録。追加画像ではsoundの表示値がblock.glass.break、再生欄は固定ID。製品修正なし。追加のwire frameは未採取、両端末の音階変化は終了時に明示確認。4 frameと返答はobservations.jsonへ捕捉。
+- 和音のタイミング: noteとnote+3の2ブロックを連続実行する画像と「遅延があるので、和音にはならない」を捕捉。同一スクリプトでは各playSoundの応答を待って次へ進む実装を確認。遅延の実測値や端末別結果は未採取。初回stable後の未批准案sound-extension-notes §5にサーバー側シーケンス演奏と同tickの複数音があるため、後続検討の実機観測として残す。音階の両端末PASSとは区別。
+- サウンド拡張への意向: human owner「シーケンスは早く入れたいね」を捕捉。release対象や実装時期の変更は指定されていない。
+- block音5種類: place／hit／break／step／fallを順に鳴らす画像と「違いがとてもわかりにくいが、変化はしているようだ」を捕捉。画像の設定案はvolume1・note8・world。通常プレイの動作別補正を加えず明示optionsを使うb8仕様と照合。human owner「5種類、Java/iPadで確認」を受領し、両端末での5kindの聴取をPASSへ更新。今回の実block・options値やwire frameは未採取。
+- 原画像は参加者名を含むため`private/`へ保管し、搬送対象にしない。SHA-256は`materials/image-identities.json`へ捕捉。画像の公開・正式evidenceへの採用は匿名化した素材を用意した後に扱う。
+- UI提案: particleのself表示「接続したプレイヤーだけ」を「自分だけ」にする案を捕捉。後続検討として残し、凍結版は変更していない。
+- 本素材はGit管理外の作業記録。正式evidenceのauthoringと配置はknowledge担当。個々の描画・聴取のPASS、component／横断GREENは開始情報から推定しない。
+- 返却・close: `RESULT_ja.md`に確認票、`SESSION-CLOSE_ja.md`にセッションクローズ票を作成。搬送対象はこれらの票とmaterialsのJSON、dust差分票。bytes／SHA-256は`materials/export-identities.json`。private画像は搬送しない。正式evidenceへの配置・横断判定・3Dの継続結果はknowledge coordinator／Python側へ引き継ぐ。

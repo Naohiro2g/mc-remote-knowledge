@@ -1,0 +1,47 @@
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-gui/src/containers/blocks.jsx
+  144:44  warning  Expected parentheses around arrow function argument                                                        arrow-parens
+  168:39  warning  Expected parentheses around arrow function argument                                                        arrow-parens
+  330:23  warning  Expected parentheses around arrow function argument                                                        arrow-parens
+  391:46  warning  Expected parentheses around arrow function argument                                                        arrow-parens
+  540:30  warning  Expected parentheses around arrow function argument                                                        arrow-parens
+  544:40  warning  Expected parentheses around arrow function argument                                                        arrow-parens
+  554:43  warning  Expected parentheses around arrow function argument                                                        arrow-parens
+  570:22  warning  Expected parentheses around arrow function argument                                                        arrow-parens
+  620:61  warning  Expected parentheses around arrow function argument                                                        arrow-parens
+  637:30  warning  Expected parentheses around arrow function argument                                                        arrow-parens
+  672:46  warning  Expected parentheses around arrow function argument                                                        arrow-parens
+  731:19  warning  Expected parentheses around arrow function argument                                                        arrow-parens
+  732:19  warning  Expected parentheses around arrow function argument                                                        arrow-parens
+  740:13  warning  'anyModalVisible' is assigned a value but never used. Allowed unused vars must match /^_/u                 @typescript-eslint/no-unused-vars
+  741:13  warning  'canUseCloud' is assigned a value but never used. Allowed unused vars must match /^_/u                     @typescript-eslint/no-unused-vars
+  745:13  warning  'stageSize' is assigned a value but never used. Allowed unused vars must match /^_/u                       @typescript-eslint/no-unused-vars
+  747:13  warning  'isRtl' is assigned a value but never used. Allowed unused vars must match /^_/u                           @typescript-eslint/no-unused-vars
+  748:13  warning  'isVisible' is assigned a value but never used. Allowed unused vars must match /^_/u                       @typescript-eslint/no-unused-vars
+  750:13  warning  'onActivateColorPicker' is assigned a value but never used. Allowed unused vars must match /^_/u           @typescript-eslint/no-unused-vars
+  751:13  warning  'onOpenConnectionModal' is assigned a value but never used. Allowed unused vars must match /^_/u           @typescript-eslint/no-unused-vars
+  752:13  warning  'onOpenSoundRecorder' is assigned a value but never used. Allowed unused vars must match /^_/u             @typescript-eslint/no-unused-vars
+  753:13  warning  'updateToolboxState' is assigned a value but never used. Allowed unused vars must match /^_/u              @typescript-eslint/no-unused-vars
+  754:13  warning  'onActivateCustomProcedures' is assigned a value but never used. Allowed unused vars must match /^_/u      @typescript-eslint/no-unused-vars
+  756:13  warning  'onRequestCloseCustomProcedures' is assigned a value but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+  757:13  warning  'toolboxXML' is assigned a value but never used. Allowed unused vars must match /^_/u                      @typescript-eslint/no-unused-vars
+  758:28  warning  'updateMetricsProp' is assigned a value but never used. Allowed unused vars must match /^_/u               @typescript-eslint/no-unused-vars
+  759:13  warning  'useCatBlocks' is assigned a value but never used. Allowed unused vars must match /^_/u                    @typescript-eslint/no-unused-vars
+  760:13  warning  'workspaceMetrics' is assigned a value but never used. Allowed unused vars must match /^_/u                @typescript-eslint/no-unused-vars
+  829:5   warning  Prop type "object" is forbidden                                                                            react/forbid-prop-types
+  854:9   warning  Prop type "object" is forbidden                                                                            react/forbid-prop-types
+  886:25  warning  Expected parentheses around arrow function argument                                                        arrow-parens
+  888:51  warning  Expected parentheses around arrow function argument                                                        arrow-parens
+  902:28  warning  Expected parentheses around arrow function argument                                                        arrow-parens
+  903:28  warning  Expected parentheses around arrow function argument                                                        arrow-parens
+  905:28  warning  Expected parentheses around arrow function argument                                                        arrow-parens
+  916:37  warning  Expected parentheses around arrow function argument                                                        arrow-parens
+  919:25  warning  Expected parentheses around arrow function argument                                                        arrow-parens
+  922:20  warning  Expected parentheses around arrow function argument                                                        arrow-parens
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-gui/test/unit/lib/configure-workspace-zoom.test.js
+  8:43  warning  Expected parentheses around arrow function argument  arrow-parens
+
+✖ 39 problems (0 errors, 39 warnings)
+  0 errors and 22 warnings potentially fixable with the `--fix` option.
+

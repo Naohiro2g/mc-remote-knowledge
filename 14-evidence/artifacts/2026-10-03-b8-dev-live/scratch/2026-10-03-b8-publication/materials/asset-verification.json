@@ -1,0 +1,62 @@
+{
+  "checks": "PASS",
+  "source_commit": "691576f60b7f0824e1753bd6823901d01fbe2422",
+  "release_assets": [
+    {
+      "file": "contracts.tar.gz",
+      "bytes": 1908,
+      "sha256": "48948ba47d55409f02a8ff8e0d44021b07859e11ffa5ca0f8598e6ef06082390",
+      "url": "https://github.com/Naohiro2g/scratch-editor/releases/download/v2320.0.0b8/contracts.tar.gz"
+    },
+    {
+      "file": "manifest.json",
+      "bytes": 1168,
+      "sha256": "122846bd6624b80718a905b49dde749e6d283a1ae1cee2ff6daa5826e9cd2887",
+      "url": "https://github.com/Naohiro2g/scratch-editor/releases/download/v2320.0.0b8/manifest.json"
+    },
+    {
+      "file": "wirescope-app.manifest.json",
+      "bytes": 2321,
+      "sha256": "6ea468f50d50b52722b8f34145743df86cebc60865fe0e827be5632c26b024d0",
+      "url": "https://github.com/Naohiro2g/scratch-editor/releases/download/v2320.0.0b8/wirescope-app.manifest.json"
+    },
+    {
+      "file": "wirescope-app.zip",
+      "bytes": 83746,
+      "sha256": "4cb349894b71d61d7ca143d8362a5b79deb1810e1d7a9e31ad30e29bfe370a07",
+      "url": "https://github.com/Naohiro2g/scratch-editor/releases/download/v2320.0.0b8/wirescope-app.zip"
+    }
+  ],
+  "manifest_roles": [
+    {
+      "role": "scratch",
+      "kind": "oci",
+      "locator": "ghcr.io/naohiro2g/mc-remote-scratch",
+      "digest": "sha256:d595992e05feb891ead10860a14eb292228968d8ca9460505a34fa1d24a1d8c0"
+    },
+    {
+      "role": "bridge",
+      "kind": "oci",
+      "locator": "ghcr.io/naohiro2g/mc-remote-bridge",
+      "digest": "sha256:0d7802aba4af418a634afb74c52813810d3b9224ee1ae8e97a485551cf9d79dc"
+    },
+    {
+      "role": "wirescope",
+      "kind": "https-file",
+      "file": "wirescope-app.zip",
+      "sha256": "4cb349894b71d61d7ca143d8362a5b79deb1810e1d7a9e31ad30e29bfe370a07"
+    },
+    {
+      "role": "wirescope-manifest",
+      "kind": "https-file",
+      "file": "wirescope-app.manifest.json",
+      "sha256": "6ea468f50d50b52722b8f34145743df86cebc60865fe0e827be5632c26b024d0"
+    },
+    {
+      "role": "contracts",
+      "kind": "https-file",
+      "file": "contracts.tar.gz",
+      "sha256": "48948ba47d55409f02a8ff8e0d44021b07859e11ffa5ca0f8598e6ef06082390"
+    }
+  ]
+}

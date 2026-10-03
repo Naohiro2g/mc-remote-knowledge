@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-03",
+  "time_zone": "Asia/Tokyo",
+  "test_class": "live-human",
+  "source": "human owner message with WireScope transcript",
+  "human_report": "iPadから参加できました。Scratchでテストするので、ガイドして。ペアリング成功、WireScopeも開きました。",
+  "frames": [
+    {
+      "sequence": 1,
+      "time": "14:11:46",
+      "direction": "send",
+      "method": "hello",
+      "payload": {"params": {"protocol": "23.2.0", "client": {"name": "scratch-mcremote", "version": "2320.0.0b8", "locale": "ja"}}}
+    },
+    {
+      "sequence": 2,
+      "time": "14:11:47",
+      "direction": "receive",
+      "method": "hello",
+      "payload": {"error": {"code": -32000, "message": "auth_required", "data": {"reason": "auth_required"}}}
+    },
+    {
+      "sequence": 31,
+      "time": "14:11:59",
+      "direction": "send",
+      "method": "hello",
+      "payload": {"params": {"protocol": "23.2.0", "client": {"name": "scratch-mcremote", "version": "2320.0.0b8", "locale": "ja"}}}
+    },
+    {
+      "sequence": 32,
+      "time": "14:11:59",
+      "direction": "receive",
+      "method": "hello",
+      "payload": {"result": {"protocol": "23.2.0", "mc_version": "1.21.11", "supported_mc_versions": ["1.21.11"], "catalog_hash": "6d0f8524b70e37fb8d7b34d0fdb45c2b058dcfea82920d86ca9aaabb9fcadc83", "dimension": "minecraft:overworld", "origin": [200, 0, 200], "world_constants": {"y_sea": 62}, "permissions": {"online": true, "offline": true, "build_range": 1000}}}
+    }
+  ],
+  "checks": {
+    "hello_protocol_and_mc_version": "PASS",
+    "particle_receiver": "PENDING",
+    "sound_receiver": "PENDING",
+    "dust_color_and_size": "PENDING",
+    "block_particle_rendering": "PENDING",
+    "sound_position_and_attenuation": "PENDING",
+    "sound_note": "PENDING",
+    "block_sound_five_kinds": "PENDING",
+    "graph_rendering": "PENDING"
+  }
+}

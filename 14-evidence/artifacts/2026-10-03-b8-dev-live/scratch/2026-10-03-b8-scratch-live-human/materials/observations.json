@@ -1,0 +1,283 @@
+{
+  "date": "2026-10-03",
+  "test_class": "live-human",
+  "status": "scratch_checks_closed_with_bedrock_dust_size_difference",
+  "continuation": {
+    "date": "2026-10-03",
+    "source": "human owner",
+    "human_quote": "続行",
+    "scope": "Continue remaining live-human checks on the frozen artifacts while retaining the Bedrock dust-size difference. No product fix or release decision is claimed."
+  },
+  "participants": {
+    "paired_player": "Java Edition",
+    "second_player": "iPad Bedrock Edition",
+    "java_client_version": "26.2",
+    "java_client_version_source": "user-provided Minecraft window title",
+    "server_mc_version": "1.21.11",
+    "server_mc_version_source": "authenticated hello",
+    "bedrock_client_version": null
+  },
+  "observations": [
+    {
+      "case": "particle_receiver_self_and_world",
+      "result": "PASS",
+      "source": "human confirmation in reply to the two receiver test cases",
+      "human_quote": "確認できた。",
+      "confirmed_assertions": [
+        "self: paired Java player sees particles, second iPad player does not",
+        "world: both nearby players see particles"
+      ],
+      "scratch_image_parameters": {
+        "origin": [200, 0, 200],
+        "position": [0, 125, 0],
+        "offset": [0.3, 0.3, 0.3],
+        "particle_id": "minecraft:flame",
+        "receiver_blocks": ["world", "self"],
+        "speed": 0,
+        "count": 100,
+        "force": true
+      },
+      "image_observation": "Java screenshot shows flame rendered near a gold block",
+      "evidence_limit": "The user confirms the two guided cases together; individual screen outcomes were not quoted separately. A Java screenshot alone does not establish the iPad outcome. Request and response frames for particle operations were not supplied."
+    },
+    {
+      "case": "sound_receiver_self_and_world",
+      "result": "PASS",
+      "source": "human confirmation in reply to the two sound receiver test cases",
+      "human_quote": "音もオッケー。",
+      "confirmed_assertions": [
+        "self: paired Java player hears sound, second iPad player does not",
+        "world: both nearby players hear sound"
+      ],
+      "scratch_image_parameters": {
+        "sound_id": "block.glass.break",
+        "alternating_positions": [[-10, 125, 0], [10, 125, 0]],
+        "options": {"volume": 1, "note": 3},
+        "receiver_blocks": ["world", "self"],
+        "wait_between_sounds_seconds": 0.25,
+        "script_world_repetitions": 3,
+        "script_self_repetitions": 2
+      },
+      "evidence_limit": "This entry records the receiver check. Stereo positioning, attenuation, and note variation were confirmed separately at closing. Request and response frames for this receiver run were not supplied."
+    },
+    {
+      "case": "dust_size_bedrock",
+      "result": "FAIL",
+      "source": "human observation",
+      "human_quote": "iPadだと、大きさの変化がない。1ぐらいで固定。",
+      "scratch_image_parameters": {
+        "receiver": "world",
+        "position": [0, 124, 0],
+        "offset": [0.3, 0.3, 0.3],
+        "speed": 0,
+        "count": 20,
+        "force": true,
+        "cases": [
+          {"color": [255, 0, 0], "size": 1, "script_repetitions": 3},
+          {"color": [255, 0, 0], "size": 4, "script_repetitions": 2},
+          {"color": [0, 0, 255], "size": 1, "script_repetitions": 4}
+        ]
+      },
+      "pending_diagnosis": ["Identify the installed Geyser version and compare its particle translator"],
+      "upstream_source_checked": {
+        "repository": "GeyserMC/Geyser",
+        "commit": "63a4e2b79b12f0d138777d5fd80176a112b4bd72",
+        "path": "core/src/main/java/org/geysermc/geyser/translator/protocol/java/level/JavaLevelParticlesTranslator.java",
+        "lines": [135, 144],
+        "finding": "DUST conversion forwards color through FALLING_DUST without applying scale",
+        "relationship_to_live_installation": "Installed Geyser version has not been identified; source finding is a cause candidate."
+      },
+      "evidence_limit": "No dust request or response frames were supplied. Java size and both clients' RGB color handling were confirmed subsequently. No overall gate judgment is made."
+    },
+    {
+      "case": "dust_size_java_and_rgb_both_clients",
+      "result": "PASS",
+      "source": "human observation and explicit lower-bound correction",
+      "human_quotes": [
+        "Java側は0.0から4まで大きさが変わる。実際には0.2から見える。どちらもRGBでの色指定は問題なし。",
+        "0.0はエラーだった。0.01はオッケー"
+      ],
+      "confirmed_assertions": [
+        "Java dust size changes with the size input",
+        "RGB color selection works on both Java and iPad",
+        "Size 0.0 is rejected and 0.01 is accepted"
+      ],
+      "corrected_lower_bound": 0.01,
+      "size_zero_accepted": false,
+      "visibility_observation": "In this Java viewing setup, particles became visibly discernible at about size 0.2; this is not asserted as a universal rendering cutoff.",
+      "evidence_limit": "The layer rejecting 0.0 and its exact error reason were not supplied. The range report is a human visual check, not exhaustive per-value verification. Bedrock size remains an unresolved separate difference."
+    },
+    {
+      "case": "block_particle_rendering",
+      "result": "PASS",
+      "source": "human confirmation and submitted Scratch script image",
+      "human_quote": "オッケーです。",
+      "confirmed_assertions": ["Block particle rendering confirmed on Java and iPad for the sampled block types"],
+      "scratch_image_parameters": {
+        "position": [0, 124, 0],
+        "offset": [0.3, 0.3, 0.3],
+        "speed": 0,
+        "count": 20,
+        "force": true,
+        "cases": [
+          {"block_id": "gold_block", "state": "", "receiver": "self", "script_repetitions": 3},
+          {"block_id": "stone", "state": "", "receiver": "world", "script_repetitions": 2}
+        ]
+      },
+      "followup": {
+        "human_quote": "いろんなブロックで出ます。",
+        "source": "human reply after guidance to verify gold_block with world receiver on iPad",
+        "scratch_image_cases": [
+          {"block_id": "gold_block", "state": "", "receiver": "self", "script_repetitions": 3},
+          {"block_id": "gold_block", "state": "", "receiver": "world", "script_repetitions": 2},
+          {"block_id": "sea_lantern", "state": "", "receiver": "world", "script_repetitions": 4}
+        ]
+      },
+      "coverage_pending": [],
+      "evidence_limit": "PASS is based on the human's follow-up confirmation, with the Scratch image establishing world receiver for gold_block and sea_lantern. Rendering screenshots and request/response frames were not supplied. This does not establish exhaustive coverage of all block IDs."
+    },
+    {
+      "case": "sound_audible_range_observation",
+      "result": "OBSERVED",
+      "source": "human observation during position and attenuation check",
+      "human_quote": "java -16..15が範囲かな？ iPad -15..14 みたいだ。",
+      "reported_ranges": {"java": [-16, 15], "ipad": [-15, 14]},
+      "human_followup": "ブロック中心ではなく、ブロックの端で鳴っているのかも。",
+      "coordinate_contract": "wire §5.8.3: playSound uses continuous origin-relative coordinates; playBlockSound takes integer block coordinates and emits from the block center. Scratch passes input coordinates without adding 0.5. This check does not establish the exact source or listener fractional coordinates used in the human range observation.",
+      "coordinate_contract_commit": "3f0c14ab9e41e469a23f865b3e7a313744bdcdc7",
+      "pending_confirmation": [],
+      "human_closing_confirmation": "全てオッケーでした。",
+      "confirmation_scope": "Stereo positioning and gradual attenuation on both Java and iPad were confirmed at closing; the approximate audible ranges remain observations rather than guaranteed boundaries.",
+      "evidence_limit": "Ranges are reported as approximate. The tested sound ID, exact fractional listener coordinates, coordinate axis and boundary volumes were not supplied. This does not establish an exact guaranteed radius or independently confirm stereo positioning."
+    },
+    {
+      "case": "sound_variable_input_during_note_check",
+      "result": "INPUT_ERROR_RESOLVED; human_confirmed_missing_assignment",
+      "source": "human-provided Scratch image and WireScope frames",
+      "human_quote": "サウンド名を変数で指定したらエラーになった。",
+      "frames": [
+        {"sequence": 30428, "time": "16:46:13", "direction": "send", "method": "world.playSound", "payload": {"params": [0, 125, 0, "0", {"volume": 1, "note": 2}]}},
+        {"sequence": 30429, "time": "16:46:13", "direction": "receive", "method": "world.playSound", "payload": {"error": {"code": -32602, "message": "unknown_sound", "data": {"reason": "unknown_sound"}}}},
+        {"sequence": 30487, "time": "16:46:49", "direction": "send", "method": "world.playSound", "payload": {"params": [0, 125, 0, "block.glass.break", {"volume": 1, "note": 0}]}},
+        {"sequence": 30488, "time": "16:46:49", "direction": "receive", "method": "world.playSound", "payload": {"result": null}}
+      ],
+      "image_observation": "soundをblock.glass.breakに設定するブロックは、実行中のnote初期化・繰り返しから離れている。繰り返し内ではsound変数を音IDとして使用。",
+      "diagnosis": "失敗要求の音IDは文字列0で、unknown_soundの応答と整合する。ScratchのplaySoundは変数から受け取った値を文字列として送る。独立したsound設定ブロックの未実行が原因候補。",
+      "guided_retry": "soundをblock.glass.breakに設定するブロックを繰り返し前につなぎ、変数を初期化して再実行する。",
+      "human_followup": "行けました。代入されていなかった模様。",
+      "followup_image_observation": "sound変数のレポーターの表示値はblock.glass.break。画像の再生ブロックの音ID欄は固定値block.glass.break。noteを0から開始し、25回の繰り返しで1ずつ増やす構成。",
+      "resolution": "human ownerの返答を受け、代入漏れによる入力エラーの解消として記録。",
+      "evidence_limit": "今回の追加画像だけでは変数を差し込んだ要求の再送までは証明できず、追加frameも未採取。Java・iPad双方の音階変化は終了時の明示確認で別途記録。"
+    },
+    {
+      "case": "sequential_sound_chord_timing",
+      "result": "OBSERVED; simultaneous_playback_not_established",
+      "source": "human-provided Scratch image and listening observation",
+      "human_quote": "やはり、遅延があるので、和音にはならない。",
+      "script": {
+        "sound_input": "sound variable; detached setters for block.glass.break and block.note_block.harp are visible, selected value not supplied",
+        "position": [0, 125, 0],
+        "volume": 1,
+        "receiver": "world",
+        "note_pairs": "note and note+3 in consecutive playSound blocks; note starts at 0 and increments through 22 repetitions",
+        "wait_after_pair_seconds": 0.125
+      },
+      "implementation_check": "_soundCommand returns the request promise; Scratch execute.js waits for that promise before advancing the same thread. The second playSound in this script is therefore issued after the first response. This introduces serial request delay and does not guarantee simultaneous playback.",
+      "future_design_reference": {
+        "knowledge_path": "10-protocol/sound-extension-notes_ja.md §5 音楽シーケンス",
+        "knowledge_commit": "3f0c14ab9e41e469a23f865b3e7a313744bdcdc7",
+        "status": "Unratified proposal for after the initial stable release; server-side sequence playback includes multiple sounds in the same tick.",
+        "human_interest": "シーケンスは早く入れたいね。",
+        "interest_limit": "Early implementation interest recorded; no release target or changed implementation schedule was specified."
+      },
+      "evidence_limit": "The client on which the delay was heard and wire timestamps for this run were not supplied. No delay duration or Java/Bedrock difference is established. Note variation on both clients was confirmed separately at closing. Product code and frozen artifacts are unchanged."
+    },
+    {
+      "case": "block_sound_five_kinds",
+      "result": "PASS",
+      "source": "human-provided Scratch image and listening observation",
+      "human_quote": "それぞれにバリエーションがあるせいもあって、違いがとてもわかりにくいが、変化はしているようだ。動作に伴って音量、音程の調整があるので、実際のマイクラプレイでは違いを感じるが。",
+      "script": {
+        "position": [0, 123, 0],
+        "kinds": ["place", "hit", "break", "step", "fall"],
+        "repetitions": [3, 4, 2, 2, 4],
+        "wait_between_repetitions_seconds": 0.25,
+        "wait_between_kinds_seconds": 0.5,
+        "options_variable": "note",
+        "visible_options_setter": {"volume": 1, "note": 8, "receiver": "world"},
+        "visible_block_setters": ["cherry_wood", "sea_lantern"],
+        "block_selection_limit": "The block setters and options setter are detached; the actual selected block and runtime options value were not supplied."
+      },
+      "contract_check": "wire §5.8.3 selects the block SoundGroup sound for each kind without vanilla action-specific volume/pitch adjustments. Explicit volume/note replace the corresponding defaults; the displayed common volume1/note8 setup therefore differs from the sound adjustments of ordinary play.",
+      "knowledge_commit": "3f0c14ab9e41e469a23f865b3e7a313744bdcdc7",
+      "human_followup": "5種類、Java/iPadで確認。Scratchはここまでかな？ あとはPythonのサンプルコードでの3D",
+      "confirmed_clients": ["Java", "iPad"],
+      "pending_confirmation": [],
+      "evidence_limit": "PASS for all five kinds audible on both clients is based on the human's explicit follow-up confirmation. Wire frames for this run were not provided. Distinctive timbres for every kind and exhaustive block coverage are not established."
+    },
+    {
+      "case": "sound_position_and_attenuation",
+      "result": "PASS",
+      "source": "human closing confirmation in direct reply to the remaining sound checks",
+      "human_quote": "全てオッケーでした。",
+      "confirmed_clients": ["Java", "iPad"],
+      "confirmed_assertions": ["左右の音源によって聞こえる方向が変わる", "離れるにつれて音量が徐々に下がる"],
+      "evidence_limit": "PASS is based on the human's listening confirmation. Exact attenuation curves and a shared audibility boundary were not measured."
+    },
+    {
+      "case": "sound_note",
+      "result": "PASS",
+      "source": "human closing confirmation in direct reply to the remaining sound checks",
+      "human_quote": "全てオッケーでした。",
+      "confirmed_clients": ["Java", "iPad"],
+      "confirmed_assertions": ["N指定によって音の高さが変わる"],
+      "evidence_limit": "PASS is based on the human's listening confirmation. No frequency measurement or exact musical tuning is claimed."
+    },
+    {
+      "case": "sound_subtitle_display",
+      "result": "OBSERVED",
+      "source": "human closing observation",
+      "human_quote": "字幕による音表現がこのコマンド実行でも表示される。",
+      "evidence_limit": "The particular client, sound ID and command method were not specified. This observation is not asserted for both clients or all sounds."
+    }
+  ],
+  "ui_feedback": [
+    {
+      "surface": "particle receiver self menu label",
+      "current": "接続したプレイヤーだけ",
+      "suggested": "自分だけ",
+      "human_quote": "「接続したプレイヤー」はわかりにくいな。「自分だけ」の方が良さそう。",
+      "status": "captured_for_followup; frozen_ui_unchanged"
+    }
+  ],
+  "learning_notes": [
+    {
+      "topic": "座標指定とブロック指定による音源位置の違い",
+      "status": "captured_for_teaching; comparison_not_live_tested",
+      "source": "human owner requested recording on 2026-10-03",
+      "human_quote": "座標指定とブロック指定で音源の位置が変わることと、教材ネタというのを記録に入れておいてください。",
+      "contract": {
+        "playSound": "指定した連続座標そのものが音源。整数座標はブロックの角に当たり、Scratchは中心へ寄せる0.5を加えない。",
+        "playBlockSound": "整数座標でブロックを指定し、そのブロックの中心から鳴らす。",
+        "example": "原点からの相対座標[0,124,0]なら、playSoundの音源は[0,124,0]、playBlockSoundの音源は[0.5,124.5,0.5]。",
+        "knowledge_path": "10-protocol/wire-format-design_ja.md §5.8.3 サウンド",
+        "knowledge_commit": "3f0c14ab9e41e469a23f865b3e7a313744bdcdc7",
+        "scratch_source": "packages/scratch-vm/src/extensions/scratch3_mcremote/index.js _soundCommand"
+      },
+      "teaching_idea": "同じ音・音量・高さ・再生先にそろえ、座標指定とブロック指定、または座標指定の0.0と0.5を切り替える。プレイヤーの位置と聞こえ方を比べ、『ブロックを指定する整数座標』と『空間の位置を表す連続座標』の違いを観察して理解する。音源がその軸の0.5なら、プレイヤーが0.0に立つとその軸で半ブロック離れる。",
+      "evidence_limit": "教材候補と仕様の説明を記録したもの。この比較実験自体は未実施で、JavaとiPadの可聴範囲差の原因を確定したものではない。"
+    }
+  ],
+  "remaining": ["graph_rendering"],
+  "next_execution": "Python環境で既存のexamples/particle_graph.pyの3D描画を確認する。human ownerがPython側で続行し、当agentから他repoへ着手しない。",
+  "closure": {
+    "date": "2026-10-03",
+    "human_quote": "全てオッケーでした。字幕による音表現がこのコマンド実行でも表示される。ここまでで漏れがなければ閉じてください。続きはPython環境でやります。",
+    "confirmation_scope": "The all-OK reply confirms the requested remaining sound positioning, attenuation and note checks on Java and iPad. It does not override the known Bedrock dust-size FAIL or establish the unexecuted graph rendering check.",
+    "scratch_required_checks_remaining": [],
+    "known_difference": "iPadのdustサイズが変わらない観測はFAILとして維持。",
+    "gate_judgment": "Not made by the Scratch agent; closure is limited to Scratch work and does not close the cross-repository release gate.",
+    "runtime_shutdown": "No browser, local service or Minecraft shutdown was performed for this session closure."
+  },
+  "unresolved": ["dust_size_bedrock"]
+}

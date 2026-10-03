@@ -1,0 +1,7 @@
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/extensions/scratch3_mcremote/index.js
+  3626:1  warning  The type 'BlockUtility' is undefined  jsdoc/no-undefined-types
+  3647:1  warning  The type 'BlockUtility' is undefined  jsdoc/no-undefined-types
+
+✖ 2 problems (0 errors, 2 warnings)
+

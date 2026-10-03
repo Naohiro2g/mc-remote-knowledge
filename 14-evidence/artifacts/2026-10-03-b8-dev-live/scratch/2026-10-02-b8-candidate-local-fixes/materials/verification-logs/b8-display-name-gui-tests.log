@@ -1,0 +1,34 @@
+jest-haste-map: duplicate manual mock found: index
+  The following files share their name; please delete one of them:
+    * <rootDir>/src/lib/settings/color-mode/dark/__mocks__/index.js
+    * <rootDir>/src/lib/settings/color-mode/default/__mocks__/index.js
+
+Browserslist: browsers data (caniuse-lite) is 10 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+FAIL test/unit/util/mcremote-l10n.test.js (6.568 s)
+  ● McRemote Japanese localization › covers every learner-facing message declared by the McRemote VM extension
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      50 |         for (const locale of ['ja', 'ja-Hira']) {
+      51 |             for (const id of messageIds) {
+    > 52 |                 expect(Object.prototype.hasOwnProperty.call(mcremoteMessages[locale], id)).toBe(true);
+         |                                                                                            ^
+      53 |             }
+      54 |         }
+      55 |     });
+
+      at Object.toBe (test/unit/util/mcremote-l10n.test.js:52:92)
+
+PASS test/unit/components/wire-scope-panel.test.jsx (12.625 s)
+PASS test/unit/components/notice-overlay.test.jsx
+
+Test Suites: 1 failed, 2 passed, 3 total
+Tests:       1 failed, 29 passed, 30 total
+Snapshots:   0 total
+Time:        27.557 s
+Ran all test suites within paths "test/unit/util/mcremote-l10n.test.js", "test/unit/components/notice-overlay.test.jsx", "test/unit/components/wire-scope-panel.test.jsx".

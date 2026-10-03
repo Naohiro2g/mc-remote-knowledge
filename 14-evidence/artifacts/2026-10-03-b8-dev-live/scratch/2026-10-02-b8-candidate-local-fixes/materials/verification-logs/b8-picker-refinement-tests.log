@@ -1,0 +1,1539 @@
+jest-haste-map: duplicate manual mock found: index
+  The following files share their name; please delete one of them:
+    * <rootDir>/src/lib/settings/color-mode/dark/__mocks__/index.js
+    * <rootDir>/src/lib/settings/color-mode/default/__mocks__/index.js
+
+Browserslist: browsers data (caniuse-lite) is 10 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+PASS test/unit/components/mcremote-block-picker.test.jsx (7.667 s)
+  ● Console
+
+    console.error
+      Warning: react-modal: App element is not defined. Please use `Modal.setAppElement(el)` or set `appElement={el}`. This is needed so screen readers don't see main content when modal is opened. It is not recommended, but you can opt-out by setting `ariaHideApp={false}`.
+
+      4 |
+      5 | const renderWithIntl = (ui, {locale = 'en', messages = {}} = {}) => ({
+    > 6 |     ...render(
+        |              ^
+      7 |         <IntlProvider
+      8 |             locale={locale}
+      9 |             messages={messages}
+
+      at printWarning (../../node_modules/warning/warning.js:34:15)
+      at warning (../../node_modules/warning/warning.js:57:20)
+      at validateElement (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:77:27)
+      at Object.hide (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:89:26)
+      at ModalPortal.beforeOpen (../../node_modules/react-modal/lib/components/ModalPortal.js:342:22)
+      at ModalPortal._this.open (../../node_modules/react-modal/lib/components/ModalPortal.js:135:13)
+      at ModalPortal.componentDidMount (../../node_modules/react-modal/lib/components/ModalPortal.js:285:14)
+      at commitLayoutEffectOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:23349:28)
+      at commitLayoutMountEffects_complete (../../node_modules/react-dom/cjs/react-dom.development.js:24727:9)
+      at commitLayoutEffects_begin (../../node_modules/react-dom/cjs/react-dom.development.js:24713:7)
+      at commitLayoutEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24651:3)
+      at commitRootImpl (../../node_modules/react-dom/cjs/react-dom.development.js:26862:5)
+      at commitRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26721:5)
+      at finishConcurrentRender (../../node_modules/react-dom/cjs/react-dom.development.js:26020:9)
+      at performConcurrentWorkOnRoot (../../node_modules/react-dom/cjs/react-dom.development.js:25848:7)
+      at flushActQueue (../../node_modules/react/cjs/react.development.js:2667:24)
+      at act (../../node_modules/react/cjs/react.development.js:2582:11)
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (../../node_modules/@testing-library/react/dist/pure.js:180:26)
+      at render (../../node_modules/@testing-library/react/dist/pure.js:271:10)
+      at renderWithIntl (test/helpers/intl-helpers.jsx:6:14)
+      at renderPicker (test/unit/components/mcremote-block-picker.test.jsx:40:61)
+      at Object.renderPicker (test/unit/components/mcremote-block-picker.test.jsx:46:9)
+
+    console.error
+      Warning: Box: Support for defaultProps will be removed from function components in a future major release. Use JavaScript default parameters instead.
+          at alignContent (~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-gui/src/components/box/box.jsx:33:9)
+          at div
+          at div
+          at ModalPortal (~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/react-modal/lib/components/ModalPortal.js:79:5)
+          at Modal (~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/react-modal/lib/components/Modal.js:73:5)
+          at className (~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-gui/src/components/modal/modal.jsx:19:58)
+          at Modal (~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-gui/src/containers/modal.jsx:10:9)
+          at ConnectFunction (~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/react-redux/lib/components/connect.js:246:74)
+          at catalogState (~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-gui/src/components/mcremote-block-picker/mcremote-block-picker.jsx:42:5)
+          at Provider (~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/react-redux/lib/components/Provider.js:19:3)
+          at IntlProvider (~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/react-intl/src/components/provider.js:33:47)
+
+      4 |
+      5 | const renderWithIntl = (ui, {locale = 'en', messages = {}} = {}) => ({
+    > 6 |     ...render(
+        |              ^
+      7 |         <IntlProvider
+      8 |             locale={locale}
+      9 |             messages={messages}
+
+      at printWarning (../../node_modules/react-dom/cjs/react-dom.development.js:86:30)
+      at error (../../node_modules/react-dom/cjs/react-dom.development.js:60:7)
+      at validateFunctionComponentInDev (../../node_modules/react-dom/cjs/react-dom.development.js:20230:9)
+      at mountIndeterminateComponent (../../node_modules/react-dom/cjs/react-dom.development.js:20189:7)
+      at beginWork (../../node_modules/react-dom/cjs/react-dom.development.js:21626:16)
+      at beginWork$1 (../../node_modules/react-dom/cjs/react-dom.development.js:27465:14)
+      at performUnitOfWork (../../node_modules/react-dom/cjs/react-dom.development.js:26599:12)
+      at workLoopSync (../../node_modules/react-dom/cjs/react-dom.development.js:26505:5)
+      at renderRootSync (../../node_modules/react-dom/cjs/react-dom.development.js:26473:7)
+      at performSyncWorkOnRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26124:20)
+      at flushSyncCallbacks (../../node_modules/react-dom/cjs/react-dom.development.js:12042:22)
+      at commitRootImpl (../../node_modules/react-dom/cjs/react-dom.development.js:26998:3)
+      at commitRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26721:5)
+      at finishConcurrentRender (../../node_modules/react-dom/cjs/react-dom.development.js:26020:9)
+      at performConcurrentWorkOnRoot (../../node_modules/react-dom/cjs/react-dom.development.js:25848:7)
+      at flushActQueue (../../node_modules/react/cjs/react.development.js:2667:24)
+      at act (../../node_modules/react/cjs/react.development.js:2582:11)
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (../../node_modules/@testing-library/react/dist/pure.js:180:26)
+      at render (../../node_modules/@testing-library/react/dist/pure.js:271:10)
+      at renderWithIntl (test/helpers/intl-helpers.jsx:6:14)
+      at renderPicker (test/unit/components/mcremote-block-picker.test.jsx:40:61)
+      at Object.renderPicker (test/unit/components/mcremote-block-picker.test.jsx:46:9)
+
+    console.error
+      Warning: CloseButton: Support for defaultProps will be removed from function components in a future major release. Use JavaScript default parameters instead.
+          at className (~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-gui/src/components/close-button/close-button.jsx:17:19)
+          at div
+          at div
+          at div
+          at alignContent (~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-gui/src/components/box/box.jsx:33:9)
+          at div
+          at div
+          at ModalPortal (~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/react-modal/lib/components/ModalPortal.js:79:5)
+          at Modal (~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/react-modal/lib/components/Modal.js:73:5)
+          at className (~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-gui/src/components/modal/modal.jsx:19:58)
+          at Modal (~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-gui/src/containers/modal.jsx:10:9)
+          at ConnectFunction (~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/react-redux/lib/components/connect.js:246:74)
+          at catalogState (~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-gui/src/components/mcremote-block-picker/mcremote-block-picker.jsx:42:5)
+          at Provider (~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/react-redux/lib/components/Provider.js:19:3)
+          at IntlProvider (~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/react-intl/src/components/provider.js:33:47)
+
+      4 |
+      5 | const renderWithIntl = (ui, {locale = 'en', messages = {}} = {}) => ({
+    > 6 |     ...render(
+        |              ^
+      7 |         <IntlProvider
+      8 |             locale={locale}
+      9 |             messages={messages}
+
+      at printWarning (../../node_modules/react-dom/cjs/react-dom.development.js:86:30)
+      at error (../../node_modules/react-dom/cjs/react-dom.development.js:60:7)
+      at validateFunctionComponentInDev (../../node_modules/react-dom/cjs/react-dom.development.js:20230:9)
+      at mountIndeterminateComponent (../../node_modules/react-dom/cjs/react-dom.development.js:20189:7)
+      at beginWork (../../node_modules/react-dom/cjs/react-dom.development.js:21626:16)
+      at beginWork$1 (../../node_modules/react-dom/cjs/react-dom.development.js:27465:14)
+      at performUnitOfWork (../../node_modules/react-dom/cjs/react-dom.development.js:26599:12)
+      at workLoopSync (../../node_modules/react-dom/cjs/react-dom.development.js:26505:5)
+      at renderRootSync (../../node_modules/react-dom/cjs/react-dom.development.js:26473:7)
+      at performSyncWorkOnRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26124:20)
+      at flushSyncCallbacks (../../node_modules/react-dom/cjs/react-dom.development.js:12042:22)
+      at commitRootImpl (../../node_modules/react-dom/cjs/react-dom.development.js:26998:3)
+      at commitRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26721:5)
+      at finishConcurrentRender (../../node_modules/react-dom/cjs/react-dom.development.js:26020:9)
+      at performConcurrentWorkOnRoot (../../node_modules/react-dom/cjs/react-dom.development.js:25848:7)
+      at flushActQueue (../../node_modules/react/cjs/react.development.js:2667:24)
+      at act (../../node_modules/react/cjs/react.development.js:2582:11)
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (../../node_modules/@testing-library/react/dist/pure.js:180:26)
+      at render (../../node_modules/@testing-library/react/dist/pure.js:271:10)
+      at renderWithIntl (test/helpers/intl-helpers.jsx:6:14)
+      at renderPicker (test/unit/components/mcremote-block-picker.test.jsx:40:61)
+      at Object.renderPicker (test/unit/components/mcremote-block-picker.test.jsx:46:9)
+
+    console.error
+      Warning: react-modal: App element is not defined. Please use `Modal.setAppElement(el)` or set `appElement={el}`. This is needed so screen readers don't see main content when modal is opened. It is not recommended, but you can opt-out by setting `ariaHideApp={false}`.
+
+      at printWarning (../../node_modules/warning/warning.js:34:15)
+      at warning (../../node_modules/warning/warning.js:57:20)
+      at validateElement (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:77:27)
+      at Object.show (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:116:27)
+      at ModalPortal._this.afterClose (../../node_modules/react-modal/lib/components/ModalPortal.js:114:24)
+      at ModalPortal.componentWillUnmount (../../node_modules/react-modal/lib/components/ModalPortal.js:317:14)
+      at callComponentWillUnmountWithTimer (../../node_modules/react-dom/cjs/react-dom.development.js:22896:14)
+      at safelyCallComponentWillUnmount (../../node_modules/react-dom/cjs/react-dom.development.js:22912:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24168:13)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24101:11)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at commitDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24015:5)
+      at recursivelyTraverseMutationEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24298:9)
+      at commitMutationEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24471:9)
+      at commitMutationEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24282:3)
+      at commitRootImpl (../../node_modules/react-dom/cjs/react-dom.development.js:26849:5)
+      at commitRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26721:5)
+      at performSyncWorkOnRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26156:3)
+      at flushSyncCallbacks (../../node_modules/react-dom/cjs/react-dom.development.js:12042:22)
+      at flushSync (../../node_modules/react-dom/cjs/react-dom.development.js:26240:7)
+      at ReactDOMRoot.Object.<anonymous>.ReactDOMHydrationRoot.unmount.ReactDOMRoot.unmount [as unmount] (../../node_modules/react-dom/cjs/react-dom.development.js:29375:5)
+      at Object.unmount (../../node_modules/@testing-library/react/dist/pure.js:155:12)
+      at ../../node_modules/@testing-library/react/dist/pure.js:286:12
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:48:24
+      at act (../../node_modules/react/cjs/react.development.js:2512:16)
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at ../../node_modules/@testing-library/react/dist/pure.js:285:28
+          at Array.forEach (<anonymous>)
+      at cleanup (../../node_modules/@testing-library/react/dist/pure.js:281:22)
+      at Object.<anonymous> (../../node_modules/@testing-library/react/dist/index.js:29:25)
+
+    console.error
+      Warning: react-modal: App element is not defined. Please use `Modal.setAppElement(el)` or set `appElement={el}`. This is needed so screen readers don't see main content when modal is opened. It is not recommended, but you can opt-out by setting `ariaHideApp={false}`.
+
+      4 |
+      5 | const renderWithIntl = (ui, {locale = 'en', messages = {}} = {}) => ({
+    > 6 |     ...render(
+        |              ^
+      7 |         <IntlProvider
+      8 |             locale={locale}
+      9 |             messages={messages}
+
+      at printWarning (../../node_modules/warning/warning.js:34:15)
+      at warning (../../node_modules/warning/warning.js:57:20)
+      at validateElement (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:77:27)
+      at Object.hide (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:89:26)
+      at ModalPortal.beforeOpen (../../node_modules/react-modal/lib/components/ModalPortal.js:342:22)
+      at ModalPortal._this.open (../../node_modules/react-modal/lib/components/ModalPortal.js:135:13)
+      at ModalPortal.componentDidMount (../../node_modules/react-modal/lib/components/ModalPortal.js:285:14)
+      at commitLayoutEffectOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:23349:28)
+      at commitLayoutMountEffects_complete (../../node_modules/react-dom/cjs/react-dom.development.js:24727:9)
+      at commitLayoutEffects_begin (../../node_modules/react-dom/cjs/react-dom.development.js:24713:7)
+      at commitLayoutEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24651:3)
+      at commitRootImpl (../../node_modules/react-dom/cjs/react-dom.development.js:26862:5)
+      at commitRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26721:5)
+      at finishConcurrentRender (../../node_modules/react-dom/cjs/react-dom.development.js:26020:9)
+      at performConcurrentWorkOnRoot (../../node_modules/react-dom/cjs/react-dom.development.js:25848:7)
+      at flushActQueue (../../node_modules/react/cjs/react.development.js:2667:24)
+      at act (../../node_modules/react/cjs/react.development.js:2582:11)
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (../../node_modules/@testing-library/react/dist/pure.js:180:26)
+      at render (../../node_modules/@testing-library/react/dist/pure.js:271:10)
+      at renderWithIntl (test/helpers/intl-helpers.jsx:6:14)
+      at renderPicker (test/unit/components/mcremote-block-picker.test.jsx:40:61)
+      at Object.renderPicker (test/unit/components/mcremote-block-picker.test.jsx:79:9)
+
+    console.error
+      Warning: react-modal: App element is not defined. Please use `Modal.setAppElement(el)` or set `appElement={el}`. This is needed so screen readers don't see main content when modal is opened. It is not recommended, but you can opt-out by setting `ariaHideApp={false}`.
+
+      at printWarning (../../node_modules/warning/warning.js:34:15)
+      at warning (../../node_modules/warning/warning.js:57:20)
+      at validateElement (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:77:27)
+      at Object.show (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:116:27)
+      at ModalPortal._this.afterClose (../../node_modules/react-modal/lib/components/ModalPortal.js:114:24)
+      at ModalPortal.componentWillUnmount (../../node_modules/react-modal/lib/components/ModalPortal.js:317:14)
+      at callComponentWillUnmountWithTimer (../../node_modules/react-dom/cjs/react-dom.development.js:22896:14)
+      at safelyCallComponentWillUnmount (../../node_modules/react-dom/cjs/react-dom.development.js:22912:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24168:13)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24101:11)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at commitDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24015:5)
+      at recursivelyTraverseMutationEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24298:9)
+      at commitMutationEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24471:9)
+      at commitMutationEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24282:3)
+      at commitRootImpl (../../node_modules/react-dom/cjs/react-dom.development.js:26849:5)
+      at commitRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26721:5)
+      at performSyncWorkOnRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26156:3)
+      at flushSyncCallbacks (../../node_modules/react-dom/cjs/react-dom.development.js:12042:22)
+      at flushSync (../../node_modules/react-dom/cjs/react-dom.development.js:26240:7)
+      at ReactDOMRoot.Object.<anonymous>.ReactDOMHydrationRoot.unmount.ReactDOMRoot.unmount [as unmount] (../../node_modules/react-dom/cjs/react-dom.development.js:29375:5)
+      at Object.unmount (../../node_modules/@testing-library/react/dist/pure.js:155:12)
+      at ../../node_modules/@testing-library/react/dist/pure.js:286:12
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:48:24
+      at act (../../node_modules/react/cjs/react.development.js:2512:16)
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at ../../node_modules/@testing-library/react/dist/pure.js:285:28
+          at Array.forEach (<anonymous>)
+      at cleanup (../../node_modules/@testing-library/react/dist/pure.js:281:22)
+      at Object.<anonymous> (../../node_modules/@testing-library/react/dist/index.js:29:25)
+
+    console.error
+      Warning: react-modal: App element is not defined. Please use `Modal.setAppElement(el)` or set `appElement={el}`. This is needed so screen readers don't see main content when modal is opened. It is not recommended, but you can opt-out by setting `ariaHideApp={false}`.
+
+      4 |
+      5 | const renderWithIntl = (ui, {locale = 'en', messages = {}} = {}) => ({
+    > 6 |     ...render(
+        |              ^
+      7 |         <IntlProvider
+      8 |             locale={locale}
+      9 |             messages={messages}
+
+      at printWarning (../../node_modules/warning/warning.js:34:15)
+      at warning (../../node_modules/warning/warning.js:57:20)
+      at validateElement (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:77:27)
+      at Object.hide (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:89:26)
+      at ModalPortal.beforeOpen (../../node_modules/react-modal/lib/components/ModalPortal.js:342:22)
+      at ModalPortal._this.open (../../node_modules/react-modal/lib/components/ModalPortal.js:135:13)
+      at ModalPortal.componentDidMount (../../node_modules/react-modal/lib/components/ModalPortal.js:285:14)
+      at commitLayoutEffectOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:23349:28)
+      at commitLayoutMountEffects_complete (../../node_modules/react-dom/cjs/react-dom.development.js:24727:9)
+      at commitLayoutEffects_begin (../../node_modules/react-dom/cjs/react-dom.development.js:24713:7)
+      at commitLayoutEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24651:3)
+      at commitRootImpl (../../node_modules/react-dom/cjs/react-dom.development.js:26862:5)
+      at commitRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26721:5)
+      at finishConcurrentRender (../../node_modules/react-dom/cjs/react-dom.development.js:26020:9)
+      at performConcurrentWorkOnRoot (../../node_modules/react-dom/cjs/react-dom.development.js:25848:7)
+      at flushActQueue (../../node_modules/react/cjs/react.development.js:2667:24)
+      at act (../../node_modules/react/cjs/react.development.js:2582:11)
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (../../node_modules/@testing-library/react/dist/pure.js:180:26)
+      at render (../../node_modules/@testing-library/react/dist/pure.js:271:10)
+      at renderWithIntl (test/helpers/intl-helpers.jsx:6:14)
+      at renderPicker (test/unit/components/mcremote-block-picker.test.jsx:40:61)
+      at Object.renderPicker (test/unit/components/mcremote-block-picker.test.jsx:104:9)
+
+    console.error
+      Warning: react-modal: App element is not defined. Please use `Modal.setAppElement(el)` or set `appElement={el}`. This is needed so screen readers don't see main content when modal is opened. It is not recommended, but you can opt-out by setting `ariaHideApp={false}`.
+
+      at printWarning (../../node_modules/warning/warning.js:34:15)
+      at warning (../../node_modules/warning/warning.js:57:20)
+      at validateElement (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:77:27)
+      at Object.show (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:116:27)
+      at ModalPortal._this.afterClose (../../node_modules/react-modal/lib/components/ModalPortal.js:114:24)
+      at ModalPortal.componentWillUnmount (../../node_modules/react-modal/lib/components/ModalPortal.js:317:14)
+      at callComponentWillUnmountWithTimer (../../node_modules/react-dom/cjs/react-dom.development.js:22896:14)
+      at safelyCallComponentWillUnmount (../../node_modules/react-dom/cjs/react-dom.development.js:22912:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24168:13)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24101:11)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at commitDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24015:5)
+      at recursivelyTraverseMutationEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24298:9)
+      at commitMutationEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24471:9)
+      at commitMutationEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24282:3)
+      at commitRootImpl (../../node_modules/react-dom/cjs/react-dom.development.js:26849:5)
+      at commitRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26721:5)
+      at performSyncWorkOnRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26156:3)
+      at flushSyncCallbacks (../../node_modules/react-dom/cjs/react-dom.development.js:12042:22)
+      at flushSync (../../node_modules/react-dom/cjs/react-dom.development.js:26240:7)
+      at ReactDOMRoot.Object.<anonymous>.ReactDOMHydrationRoot.unmount.ReactDOMRoot.unmount [as unmount] (../../node_modules/react-dom/cjs/react-dom.development.js:29375:5)
+      at Object.unmount (../../node_modules/@testing-library/react/dist/pure.js:155:12)
+      at ../../node_modules/@testing-library/react/dist/pure.js:286:12
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:48:24
+      at act (../../node_modules/react/cjs/react.development.js:2512:16)
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at ../../node_modules/@testing-library/react/dist/pure.js:285:28
+          at Array.forEach (<anonymous>)
+      at cleanup (../../node_modules/@testing-library/react/dist/pure.js:281:22)
+      at Object.<anonymous> (../../node_modules/@testing-library/react/dist/index.js:29:25)
+
+    console.error
+      Warning: react-modal: App element is not defined. Please use `Modal.setAppElement(el)` or set `appElement={el}`. This is needed so screen readers don't see main content when modal is opened. It is not recommended, but you can opt-out by setting `ariaHideApp={false}`.
+
+      4 |
+      5 | const renderWithIntl = (ui, {locale = 'en', messages = {}} = {}) => ({
+    > 6 |     ...render(
+        |              ^
+      7 |         <IntlProvider
+      8 |             locale={locale}
+      9 |             messages={messages}
+
+      at printWarning (../../node_modules/warning/warning.js:34:15)
+      at warning (../../node_modules/warning/warning.js:57:20)
+      at validateElement (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:77:27)
+      at Object.hide (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:89:26)
+      at ModalPortal.beforeOpen (../../node_modules/react-modal/lib/components/ModalPortal.js:342:22)
+      at ModalPortal._this.open (../../node_modules/react-modal/lib/components/ModalPortal.js:135:13)
+      at ModalPortal.componentDidMount (../../node_modules/react-modal/lib/components/ModalPortal.js:285:14)
+      at commitLayoutEffectOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:23349:28)
+      at commitLayoutMountEffects_complete (../../node_modules/react-dom/cjs/react-dom.development.js:24727:9)
+      at commitLayoutEffects_begin (../../node_modules/react-dom/cjs/react-dom.development.js:24713:7)
+      at commitLayoutEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24651:3)
+      at commitRootImpl (../../node_modules/react-dom/cjs/react-dom.development.js:26862:5)
+      at commitRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26721:5)
+      at finishConcurrentRender (../../node_modules/react-dom/cjs/react-dom.development.js:26020:9)
+      at performConcurrentWorkOnRoot (../../node_modules/react-dom/cjs/react-dom.development.js:25848:7)
+      at flushActQueue (../../node_modules/react/cjs/react.development.js:2667:24)
+      at act (../../node_modules/react/cjs/react.development.js:2582:11)
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (../../node_modules/@testing-library/react/dist/pure.js:180:26)
+      at render (../../node_modules/@testing-library/react/dist/pure.js:271:10)
+      at renderWithIntl (test/helpers/intl-helpers.jsx:6:14)
+      at renderPicker (test/unit/components/mcremote-block-picker.test.jsx:40:61)
+      at renderPicker (test/unit/components/mcremote-block-picker.test.jsx:124:9)
+
+    console.error
+      Warning: react-modal: App element is not defined. Please use `Modal.setAppElement(el)` or set `appElement={el}`. This is needed so screen readers don't see main content when modal is opened. It is not recommended, but you can opt-out by setting `ariaHideApp={false}`.
+
+      at printWarning (../../node_modules/warning/warning.js:34:15)
+      at warning (../../node_modules/warning/warning.js:57:20)
+      at validateElement (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:77:27)
+      at Object.show (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:116:27)
+      at ModalPortal._this.afterClose (../../node_modules/react-modal/lib/components/ModalPortal.js:114:24)
+      at ModalPortal.componentWillUnmount (../../node_modules/react-modal/lib/components/ModalPortal.js:317:14)
+      at callComponentWillUnmountWithTimer (../../node_modules/react-dom/cjs/react-dom.development.js:22896:14)
+      at safelyCallComponentWillUnmount (../../node_modules/react-dom/cjs/react-dom.development.js:22912:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24168:13)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24101:11)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at commitDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24015:5)
+      at recursivelyTraverseMutationEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24298:9)
+      at commitMutationEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24471:9)
+      at commitMutationEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24282:3)
+      at commitRootImpl (../../node_modules/react-dom/cjs/react-dom.development.js:26849:5)
+      at commitRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26721:5)
+      at performSyncWorkOnRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26156:3)
+      at flushSyncCallbacks (../../node_modules/react-dom/cjs/react-dom.development.js:12042:22)
+      at flushSync (../../node_modules/react-dom/cjs/react-dom.development.js:26240:7)
+      at ReactDOMRoot.Object.<anonymous>.ReactDOMHydrationRoot.unmount.ReactDOMRoot.unmount [as unmount] (../../node_modules/react-dom/cjs/react-dom.development.js:29375:5)
+      at Object.unmount (../../node_modules/@testing-library/react/dist/pure.js:155:12)
+      at ../../node_modules/@testing-library/react/dist/pure.js:286:12
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:48:24
+      at act (../../node_modules/react/cjs/react.development.js:2512:16)
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at ../../node_modules/@testing-library/react/dist/pure.js:285:28
+          at Array.forEach (<anonymous>)
+      at cleanup (../../node_modules/@testing-library/react/dist/pure.js:281:22)
+      at Object.<anonymous> (../../node_modules/@testing-library/react/dist/index.js:29:25)
+
+    console.error
+      Warning: react-modal: App element is not defined. Please use `Modal.setAppElement(el)` or set `appElement={el}`. This is needed so screen readers don't see main content when modal is opened. It is not recommended, but you can opt-out by setting `ariaHideApp={false}`.
+
+      4 |
+      5 | const renderWithIntl = (ui, {locale = 'en', messages = {}} = {}) => ({
+    > 6 |     ...render(
+        |              ^
+      7 |         <IntlProvider
+      8 |             locale={locale}
+      9 |             messages={messages}
+
+      at printWarning (../../node_modules/warning/warning.js:34:15)
+      at warning (../../node_modules/warning/warning.js:57:20)
+      at validateElement (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:77:27)
+      at Object.hide (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:89:26)
+      at ModalPortal.beforeOpen (../../node_modules/react-modal/lib/components/ModalPortal.js:342:22)
+      at ModalPortal._this.open (../../node_modules/react-modal/lib/components/ModalPortal.js:135:13)
+      at ModalPortal.componentDidMount (../../node_modules/react-modal/lib/components/ModalPortal.js:285:14)
+      at commitLayoutEffectOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:23349:28)
+      at commitLayoutMountEffects_complete (../../node_modules/react-dom/cjs/react-dom.development.js:24727:9)
+      at commitLayoutEffects_begin (../../node_modules/react-dom/cjs/react-dom.development.js:24713:7)
+      at commitLayoutEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24651:3)
+      at commitRootImpl (../../node_modules/react-dom/cjs/react-dom.development.js:26862:5)
+      at commitRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26721:5)
+      at finishConcurrentRender (../../node_modules/react-dom/cjs/react-dom.development.js:26020:9)
+      at performConcurrentWorkOnRoot (../../node_modules/react-dom/cjs/react-dom.development.js:25848:7)
+      at flushActQueue (../../node_modules/react/cjs/react.development.js:2667:24)
+      at act (../../node_modules/react/cjs/react.development.js:2582:11)
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (../../node_modules/@testing-library/react/dist/pure.js:180:26)
+      at render (../../node_modules/@testing-library/react/dist/pure.js:271:10)
+      at renderWithIntl (test/helpers/intl-helpers.jsx:6:14)
+      at renderPicker (test/unit/components/mcremote-block-picker.test.jsx:40:61)
+      at renderPicker (test/unit/components/mcremote-block-picker.test.jsx:124:9)
+
+    console.error
+      Warning: react-modal: App element is not defined. Please use `Modal.setAppElement(el)` or set `appElement={el}`. This is needed so screen readers don't see main content when modal is opened. It is not recommended, but you can opt-out by setting `ariaHideApp={false}`.
+
+      at printWarning (../../node_modules/warning/warning.js:34:15)
+      at warning (../../node_modules/warning/warning.js:57:20)
+      at validateElement (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:77:27)
+      at Object.show (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:116:27)
+      at ModalPortal._this.afterClose (../../node_modules/react-modal/lib/components/ModalPortal.js:114:24)
+      at ModalPortal.componentWillUnmount (../../node_modules/react-modal/lib/components/ModalPortal.js:317:14)
+      at callComponentWillUnmountWithTimer (../../node_modules/react-dom/cjs/react-dom.development.js:22896:14)
+      at safelyCallComponentWillUnmount (../../node_modules/react-dom/cjs/react-dom.development.js:22912:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24168:13)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24101:11)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at commitDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24015:5)
+      at recursivelyTraverseMutationEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24298:9)
+      at commitMutationEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24471:9)
+      at commitMutationEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24282:3)
+      at commitRootImpl (../../node_modules/react-dom/cjs/react-dom.development.js:26849:5)
+      at commitRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26721:5)
+      at performSyncWorkOnRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26156:3)
+      at flushSyncCallbacks (../../node_modules/react-dom/cjs/react-dom.development.js:12042:22)
+      at flushSync (../../node_modules/react-dom/cjs/react-dom.development.js:26240:7)
+      at ReactDOMRoot.Object.<anonymous>.ReactDOMHydrationRoot.unmount.ReactDOMRoot.unmount [as unmount] (../../node_modules/react-dom/cjs/react-dom.development.js:29375:5)
+      at Object.unmount (../../node_modules/@testing-library/react/dist/pure.js:155:12)
+      at ../../node_modules/@testing-library/react/dist/pure.js:286:12
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:48:24
+      at act (../../node_modules/react/cjs/react.development.js:2512:16)
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at ../../node_modules/@testing-library/react/dist/pure.js:285:28
+          at Array.forEach (<anonymous>)
+      at cleanup (../../node_modules/@testing-library/react/dist/pure.js:281:22)
+      at Object.<anonymous> (../../node_modules/@testing-library/react/dist/index.js:29:25)
+
+    console.error
+      Warning: react-modal: App element is not defined. Please use `Modal.setAppElement(el)` or set `appElement={el}`. This is needed so screen readers don't see main content when modal is opened. It is not recommended, but you can opt-out by setting `ariaHideApp={false}`.
+
+      4 |
+      5 | const renderWithIntl = (ui, {locale = 'en', messages = {}} = {}) => ({
+    > 6 |     ...render(
+        |              ^
+      7 |         <IntlProvider
+      8 |             locale={locale}
+      9 |             messages={messages}
+
+      at printWarning (../../node_modules/warning/warning.js:34:15)
+      at warning (../../node_modules/warning/warning.js:57:20)
+      at validateElement (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:77:27)
+      at Object.hide (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:89:26)
+      at ModalPortal.beforeOpen (../../node_modules/react-modal/lib/components/ModalPortal.js:342:22)
+      at ModalPortal._this.open (../../node_modules/react-modal/lib/components/ModalPortal.js:135:13)
+      at ModalPortal.componentDidMount (../../node_modules/react-modal/lib/components/ModalPortal.js:285:14)
+      at commitLayoutEffectOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:23349:28)
+      at commitLayoutMountEffects_complete (../../node_modules/react-dom/cjs/react-dom.development.js:24727:9)
+      at commitLayoutEffects_begin (../../node_modules/react-dom/cjs/react-dom.development.js:24713:7)
+      at commitLayoutEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24651:3)
+      at commitRootImpl (../../node_modules/react-dom/cjs/react-dom.development.js:26862:5)
+      at commitRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26721:5)
+      at finishConcurrentRender (../../node_modules/react-dom/cjs/react-dom.development.js:26020:9)
+      at performConcurrentWorkOnRoot (../../node_modules/react-dom/cjs/react-dom.development.js:25848:7)
+      at flushActQueue (../../node_modules/react/cjs/react.development.js:2667:24)
+      at act (../../node_modules/react/cjs/react.development.js:2582:11)
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (../../node_modules/@testing-library/react/dist/pure.js:180:26)
+      at render (../../node_modules/@testing-library/react/dist/pure.js:271:10)
+      at renderWithIntl (test/helpers/intl-helpers.jsx:6:14)
+      at renderPicker (test/unit/components/mcremote-block-picker.test.jsx:40:61)
+      at Object.renderPicker (test/unit/components/mcremote-block-picker.test.jsx:151:9)
+
+    console.error
+      Warning: react-modal: App element is not defined. Please use `Modal.setAppElement(el)` or set `appElement={el}`. This is needed so screen readers don't see main content when modal is opened. It is not recommended, but you can opt-out by setting `ariaHideApp={false}`.
+
+      at printWarning (../../node_modules/warning/warning.js:34:15)
+      at warning (../../node_modules/warning/warning.js:57:20)
+      at validateElement (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:77:27)
+      at Object.show (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:116:27)
+      at ModalPortal._this.afterClose (../../node_modules/react-modal/lib/components/ModalPortal.js:114:24)
+      at ModalPortal.componentWillUnmount (../../node_modules/react-modal/lib/components/ModalPortal.js:317:14)
+      at callComponentWillUnmountWithTimer (../../node_modules/react-dom/cjs/react-dom.development.js:22896:14)
+      at safelyCallComponentWillUnmount (../../node_modules/react-dom/cjs/react-dom.development.js:22912:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24168:13)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24101:11)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at commitDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24015:5)
+      at recursivelyTraverseMutationEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24298:9)
+      at commitMutationEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24471:9)
+      at commitMutationEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24282:3)
+      at commitRootImpl (../../node_modules/react-dom/cjs/react-dom.development.js:26849:5)
+      at commitRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26721:5)
+      at performSyncWorkOnRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26156:3)
+      at flushSyncCallbacks (../../node_modules/react-dom/cjs/react-dom.development.js:12042:22)
+      at flushSync (../../node_modules/react-dom/cjs/react-dom.development.js:26240:7)
+      at ReactDOMRoot.Object.<anonymous>.ReactDOMHydrationRoot.unmount.ReactDOMRoot.unmount [as unmount] (../../node_modules/react-dom/cjs/react-dom.development.js:29375:5)
+      at Object.unmount (../../node_modules/@testing-library/react/dist/pure.js:155:12)
+      at ../../node_modules/@testing-library/react/dist/pure.js:286:12
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:48:24
+      at act (../../node_modules/react/cjs/react.development.js:2512:16)
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at ../../node_modules/@testing-library/react/dist/pure.js:285:28
+          at Array.forEach (<anonymous>)
+      at cleanup (../../node_modules/@testing-library/react/dist/pure.js:281:22)
+      at Object.<anonymous> (../../node_modules/@testing-library/react/dist/index.js:29:25)
+
+    console.error
+      Warning: react-modal: App element is not defined. Please use `Modal.setAppElement(el)` or set `appElement={el}`. This is needed so screen readers don't see main content when modal is opened. It is not recommended, but you can opt-out by setting `ariaHideApp={false}`.
+
+      4 |
+      5 | const renderWithIntl = (ui, {locale = 'en', messages = {}} = {}) => ({
+    > 6 |     ...render(
+        |              ^
+      7 |         <IntlProvider
+      8 |             locale={locale}
+      9 |             messages={messages}
+
+      at printWarning (../../node_modules/warning/warning.js:34:15)
+      at warning (../../node_modules/warning/warning.js:57:20)
+      at validateElement (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:77:27)
+      at Object.hide (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:89:26)
+      at ModalPortal.beforeOpen (../../node_modules/react-modal/lib/components/ModalPortal.js:342:22)
+      at ModalPortal._this.open (../../node_modules/react-modal/lib/components/ModalPortal.js:135:13)
+      at ModalPortal.componentDidMount (../../node_modules/react-modal/lib/components/ModalPortal.js:285:14)
+      at commitLayoutEffectOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:23349:28)
+      at commitLayoutMountEffects_complete (../../node_modules/react-dom/cjs/react-dom.development.js:24727:9)
+      at commitLayoutEffects_begin (../../node_modules/react-dom/cjs/react-dom.development.js:24713:7)
+      at commitLayoutEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24651:3)
+      at commitRootImpl (../../node_modules/react-dom/cjs/react-dom.development.js:26862:5)
+      at commitRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26721:5)
+      at finishConcurrentRender (../../node_modules/react-dom/cjs/react-dom.development.js:26020:9)
+      at performConcurrentWorkOnRoot (../../node_modules/react-dom/cjs/react-dom.development.js:25848:7)
+      at flushActQueue (../../node_modules/react/cjs/react.development.js:2667:24)
+      at act (../../node_modules/react/cjs/react.development.js:2582:11)
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (../../node_modules/@testing-library/react/dist/pure.js:180:26)
+      at render (../../node_modules/@testing-library/react/dist/pure.js:271:10)
+      at renderWithIntl (test/helpers/intl-helpers.jsx:6:14)
+      at renderPicker (test/unit/components/mcremote-block-picker.test.jsx:40:61)
+      at renderPicker (test/unit/components/mcremote-block-picker.test.jsx:178:9)
+
+    console.error
+      Warning: react-modal: App element is not defined. Please use `Modal.setAppElement(el)` or set `appElement={el}`. This is needed so screen readers don't see main content when modal is opened. It is not recommended, but you can opt-out by setting `ariaHideApp={false}`.
+
+      at printWarning (../../node_modules/warning/warning.js:34:15)
+      at warning (../../node_modules/warning/warning.js:57:20)
+      at validateElement (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:77:27)
+      at Object.show (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:116:27)
+      at ModalPortal._this.afterClose (../../node_modules/react-modal/lib/components/ModalPortal.js:114:24)
+      at ModalPortal.componentWillUnmount (../../node_modules/react-modal/lib/components/ModalPortal.js:317:14)
+      at callComponentWillUnmountWithTimer (../../node_modules/react-dom/cjs/react-dom.development.js:22896:14)
+      at safelyCallComponentWillUnmount (../../node_modules/react-dom/cjs/react-dom.development.js:22912:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24168:13)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24101:11)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at commitDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24015:5)
+      at recursivelyTraverseMutationEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24298:9)
+      at commitMutationEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24471:9)
+      at commitMutationEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24282:3)
+      at commitRootImpl (../../node_modules/react-dom/cjs/react-dom.development.js:26849:5)
+      at commitRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26721:5)
+      at performSyncWorkOnRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26156:3)
+      at flushSyncCallbacks (../../node_modules/react-dom/cjs/react-dom.development.js:12042:22)
+      at flushSync (../../node_modules/react-dom/cjs/react-dom.development.js:26240:7)
+      at ReactDOMRoot.Object.<anonymous>.ReactDOMHydrationRoot.unmount.ReactDOMRoot.unmount [as unmount] (../../node_modules/react-dom/cjs/react-dom.development.js:29375:5)
+      at Object.unmount (../../node_modules/@testing-library/react/dist/pure.js:155:12)
+      at ../../node_modules/@testing-library/react/dist/pure.js:286:12
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:48:24
+      at act (../../node_modules/react/cjs/react.development.js:2512:16)
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at ../../node_modules/@testing-library/react/dist/pure.js:285:28
+          at Array.forEach (<anonymous>)
+      at cleanup (../../node_modules/@testing-library/react/dist/pure.js:281:22)
+      at Object.<anonymous> (../../node_modules/@testing-library/react/dist/index.js:29:25)
+
+    console.error
+      Warning: react-modal: App element is not defined. Please use `Modal.setAppElement(el)` or set `appElement={el}`. This is needed so screen readers don't see main content when modal is opened. It is not recommended, but you can opt-out by setting `ariaHideApp={false}`.
+
+      4 |
+      5 | const renderWithIntl = (ui, {locale = 'en', messages = {}} = {}) => ({
+    > 6 |     ...render(
+        |              ^
+      7 |         <IntlProvider
+      8 |             locale={locale}
+      9 |             messages={messages}
+
+      at printWarning (../../node_modules/warning/warning.js:34:15)
+      at warning (../../node_modules/warning/warning.js:57:20)
+      at validateElement (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:77:27)
+      at Object.hide (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:89:26)
+      at ModalPortal.beforeOpen (../../node_modules/react-modal/lib/components/ModalPortal.js:342:22)
+      at ModalPortal._this.open (../../node_modules/react-modal/lib/components/ModalPortal.js:135:13)
+      at ModalPortal.componentDidMount (../../node_modules/react-modal/lib/components/ModalPortal.js:285:14)
+      at commitLayoutEffectOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:23349:28)
+      at commitLayoutMountEffects_complete (../../node_modules/react-dom/cjs/react-dom.development.js:24727:9)
+      at commitLayoutEffects_begin (../../node_modules/react-dom/cjs/react-dom.development.js:24713:7)
+      at commitLayoutEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24651:3)
+      at commitRootImpl (../../node_modules/react-dom/cjs/react-dom.development.js:26862:5)
+      at commitRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26721:5)
+      at finishConcurrentRender (../../node_modules/react-dom/cjs/react-dom.development.js:26020:9)
+      at performConcurrentWorkOnRoot (../../node_modules/react-dom/cjs/react-dom.development.js:25848:7)
+      at flushActQueue (../../node_modules/react/cjs/react.development.js:2667:24)
+      at act (../../node_modules/react/cjs/react.development.js:2582:11)
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (../../node_modules/@testing-library/react/dist/pure.js:180:26)
+      at render (../../node_modules/@testing-library/react/dist/pure.js:271:10)
+      at renderWithIntl (test/helpers/intl-helpers.jsx:6:14)
+      at renderPicker (test/unit/components/mcremote-block-picker.test.jsx:40:61)
+      at renderPicker (test/unit/components/mcremote-block-picker.test.jsx:178:9)
+
+    console.error
+      Warning: react-modal: App element is not defined. Please use `Modal.setAppElement(el)` or set `appElement={el}`. This is needed so screen readers don't see main content when modal is opened. It is not recommended, but you can opt-out by setting `ariaHideApp={false}`.
+
+      at printWarning (../../node_modules/warning/warning.js:34:15)
+      at warning (../../node_modules/warning/warning.js:57:20)
+      at validateElement (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:77:27)
+      at Object.show (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:116:27)
+      at ModalPortal._this.afterClose (../../node_modules/react-modal/lib/components/ModalPortal.js:114:24)
+      at ModalPortal.componentWillUnmount (../../node_modules/react-modal/lib/components/ModalPortal.js:317:14)
+      at callComponentWillUnmountWithTimer (../../node_modules/react-dom/cjs/react-dom.development.js:22896:14)
+      at safelyCallComponentWillUnmount (../../node_modules/react-dom/cjs/react-dom.development.js:22912:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24168:13)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24101:11)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at commitDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24015:5)
+      at recursivelyTraverseMutationEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24298:9)
+      at commitMutationEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24471:9)
+      at commitMutationEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24282:3)
+      at commitRootImpl (../../node_modules/react-dom/cjs/react-dom.development.js:26849:5)
+      at commitRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26721:5)
+      at performSyncWorkOnRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26156:3)
+      at flushSyncCallbacks (../../node_modules/react-dom/cjs/react-dom.development.js:12042:22)
+      at flushSync (../../node_modules/react-dom/cjs/react-dom.development.js:26240:7)
+      at ReactDOMRoot.Object.<anonymous>.ReactDOMHydrationRoot.unmount.ReactDOMRoot.unmount [as unmount] (../../node_modules/react-dom/cjs/react-dom.development.js:29375:5)
+      at Object.unmount (../../node_modules/@testing-library/react/dist/pure.js:155:12)
+      at ../../node_modules/@testing-library/react/dist/pure.js:286:12
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:48:24
+      at act (../../node_modules/react/cjs/react.development.js:2512:16)
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at ../../node_modules/@testing-library/react/dist/pure.js:285:28
+          at Array.forEach (<anonymous>)
+      at cleanup (../../node_modules/@testing-library/react/dist/pure.js:281:22)
+      at Object.<anonymous> (../../node_modules/@testing-library/react/dist/index.js:29:25)
+
+    console.error
+      Warning: react-modal: App element is not defined. Please use `Modal.setAppElement(el)` or set `appElement={el}`. This is needed so screen readers don't see main content when modal is opened. It is not recommended, but you can opt-out by setting `ariaHideApp={false}`.
+
+      4 |
+      5 | const renderWithIntl = (ui, {locale = 'en', messages = {}} = {}) => ({
+    > 6 |     ...render(
+        |              ^
+      7 |         <IntlProvider
+      8 |             locale={locale}
+      9 |             messages={messages}
+
+      at printWarning (../../node_modules/warning/warning.js:34:15)
+      at warning (../../node_modules/warning/warning.js:57:20)
+      at validateElement (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:77:27)
+      at Object.hide (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:89:26)
+      at ModalPortal.beforeOpen (../../node_modules/react-modal/lib/components/ModalPortal.js:342:22)
+      at ModalPortal._this.open (../../node_modules/react-modal/lib/components/ModalPortal.js:135:13)
+      at ModalPortal.componentDidMount (../../node_modules/react-modal/lib/components/ModalPortal.js:285:14)
+      at commitLayoutEffectOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:23349:28)
+      at commitLayoutMountEffects_complete (../../node_modules/react-dom/cjs/react-dom.development.js:24727:9)
+      at commitLayoutEffects_begin (../../node_modules/react-dom/cjs/react-dom.development.js:24713:7)
+      at commitLayoutEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24651:3)
+      at commitRootImpl (../../node_modules/react-dom/cjs/react-dom.development.js:26862:5)
+      at commitRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26721:5)
+      at finishConcurrentRender (../../node_modules/react-dom/cjs/react-dom.development.js:26020:9)
+      at performConcurrentWorkOnRoot (../../node_modules/react-dom/cjs/react-dom.development.js:25848:7)
+      at flushActQueue (../../node_modules/react/cjs/react.development.js:2667:24)
+      at act (../../node_modules/react/cjs/react.development.js:2582:11)
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (../../node_modules/@testing-library/react/dist/pure.js:180:26)
+      at render (../../node_modules/@testing-library/react/dist/pure.js:271:10)
+      at renderWithIntl (test/helpers/intl-helpers.jsx:6:14)
+      at renderPicker (test/unit/components/mcremote-block-picker.test.jsx:40:61)
+      at renderPicker (test/unit/components/mcremote-block-picker.test.jsx:178:9)
+
+    console.error
+      Warning: react-modal: App element is not defined. Please use `Modal.setAppElement(el)` or set `appElement={el}`. This is needed so screen readers don't see main content when modal is opened. It is not recommended, but you can opt-out by setting `ariaHideApp={false}`.
+
+      at printWarning (../../node_modules/warning/warning.js:34:15)
+      at warning (../../node_modules/warning/warning.js:57:20)
+      at validateElement (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:77:27)
+      at Object.show (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:116:27)
+      at ModalPortal._this.afterClose (../../node_modules/react-modal/lib/components/ModalPortal.js:114:24)
+      at ModalPortal.componentWillUnmount (../../node_modules/react-modal/lib/components/ModalPortal.js:317:14)
+      at callComponentWillUnmountWithTimer (../../node_modules/react-dom/cjs/react-dom.development.js:22896:14)
+      at safelyCallComponentWillUnmount (../../node_modules/react-dom/cjs/react-dom.development.js:22912:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24168:13)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24101:11)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at commitDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24015:5)
+      at recursivelyTraverseMutationEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24298:9)
+      at commitMutationEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24471:9)
+      at commitMutationEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24282:3)
+      at commitRootImpl (../../node_modules/react-dom/cjs/react-dom.development.js:26849:5)
+      at commitRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26721:5)
+      at performSyncWorkOnRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26156:3)
+      at flushSyncCallbacks (../../node_modules/react-dom/cjs/react-dom.development.js:12042:22)
+      at flushSync (../../node_modules/react-dom/cjs/react-dom.development.js:26240:7)
+      at ReactDOMRoot.Object.<anonymous>.ReactDOMHydrationRoot.unmount.ReactDOMRoot.unmount [as unmount] (../../node_modules/react-dom/cjs/react-dom.development.js:29375:5)
+      at Object.unmount (../../node_modules/@testing-library/react/dist/pure.js:155:12)
+      at ../../node_modules/@testing-library/react/dist/pure.js:286:12
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:48:24
+      at act (../../node_modules/react/cjs/react.development.js:2512:16)
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at ../../node_modules/@testing-library/react/dist/pure.js:285:28
+          at Array.forEach (<anonymous>)
+      at cleanup (../../node_modules/@testing-library/react/dist/pure.js:281:22)
+      at Object.<anonymous> (../../node_modules/@testing-library/react/dist/index.js:29:25)
+
+    console.error
+      Warning: react-modal: App element is not defined. Please use `Modal.setAppElement(el)` or set `appElement={el}`. This is needed so screen readers don't see main content when modal is opened. It is not recommended, but you can opt-out by setting `ariaHideApp={false}`.
+
+      4 |
+      5 | const renderWithIntl = (ui, {locale = 'en', messages = {}} = {}) => ({
+    > 6 |     ...render(
+        |              ^
+      7 |         <IntlProvider
+      8 |             locale={locale}
+      9 |             messages={messages}
+
+      at printWarning (../../node_modules/warning/warning.js:34:15)
+      at warning (../../node_modules/warning/warning.js:57:20)
+      at validateElement (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:77:27)
+      at Object.hide (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:89:26)
+      at ModalPortal.beforeOpen (../../node_modules/react-modal/lib/components/ModalPortal.js:342:22)
+      at ModalPortal._this.open (../../node_modules/react-modal/lib/components/ModalPortal.js:135:13)
+      at ModalPortal.componentDidMount (../../node_modules/react-modal/lib/components/ModalPortal.js:285:14)
+      at commitLayoutEffectOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:23349:28)
+      at commitLayoutMountEffects_complete (../../node_modules/react-dom/cjs/react-dom.development.js:24727:9)
+      at commitLayoutEffects_begin (../../node_modules/react-dom/cjs/react-dom.development.js:24713:7)
+      at commitLayoutEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24651:3)
+      at commitRootImpl (../../node_modules/react-dom/cjs/react-dom.development.js:26862:5)
+      at commitRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26721:5)
+      at finishConcurrentRender (../../node_modules/react-dom/cjs/react-dom.development.js:26020:9)
+      at performConcurrentWorkOnRoot (../../node_modules/react-dom/cjs/react-dom.development.js:25848:7)
+      at flushActQueue (../../node_modules/react/cjs/react.development.js:2667:24)
+      at act (../../node_modules/react/cjs/react.development.js:2582:11)
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (../../node_modules/@testing-library/react/dist/pure.js:180:26)
+      at render (../../node_modules/@testing-library/react/dist/pure.js:271:10)
+      at renderWithIntl (test/helpers/intl-helpers.jsx:6:14)
+      at renderPicker (test/unit/components/mcremote-block-picker.test.jsx:40:61)
+      at renderPicker (test/unit/components/mcremote-block-picker.test.jsx:178:9)
+
+    console.error
+      Warning: react-modal: App element is not defined. Please use `Modal.setAppElement(el)` or set `appElement={el}`. This is needed so screen readers don't see main content when modal is opened. It is not recommended, but you can opt-out by setting `ariaHideApp={false}`.
+
+      at printWarning (../../node_modules/warning/warning.js:34:15)
+      at warning (../../node_modules/warning/warning.js:57:20)
+      at validateElement (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:77:27)
+      at Object.show (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:116:27)
+      at ModalPortal._this.afterClose (../../node_modules/react-modal/lib/components/ModalPortal.js:114:24)
+      at ModalPortal.componentWillUnmount (../../node_modules/react-modal/lib/components/ModalPortal.js:317:14)
+      at callComponentWillUnmountWithTimer (../../node_modules/react-dom/cjs/react-dom.development.js:22896:14)
+      at safelyCallComponentWillUnmount (../../node_modules/react-dom/cjs/react-dom.development.js:22912:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24168:13)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24101:11)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at commitDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24015:5)
+      at recursivelyTraverseMutationEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24298:9)
+      at commitMutationEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24471:9)
+      at commitMutationEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24282:3)
+      at commitRootImpl (../../node_modules/react-dom/cjs/react-dom.development.js:26849:5)
+      at commitRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26721:5)
+      at performSyncWorkOnRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26156:3)
+      at flushSyncCallbacks (../../node_modules/react-dom/cjs/react-dom.development.js:12042:22)
+      at flushSync (../../node_modules/react-dom/cjs/react-dom.development.js:26240:7)
+      at ReactDOMRoot.Object.<anonymous>.ReactDOMHydrationRoot.unmount.ReactDOMRoot.unmount [as unmount] (../../node_modules/react-dom/cjs/react-dom.development.js:29375:5)
+      at Object.unmount (../../node_modules/@testing-library/react/dist/pure.js:155:12)
+      at ../../node_modules/@testing-library/react/dist/pure.js:286:12
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:48:24
+      at act (../../node_modules/react/cjs/react.development.js:2512:16)
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at ../../node_modules/@testing-library/react/dist/pure.js:285:28
+          at Array.forEach (<anonymous>)
+      at cleanup (../../node_modules/@testing-library/react/dist/pure.js:281:22)
+      at Object.<anonymous> (../../node_modules/@testing-library/react/dist/index.js:29:25)
+
+    console.error
+      Warning: react-modal: App element is not defined. Please use `Modal.setAppElement(el)` or set `appElement={el}`. This is needed so screen readers don't see main content when modal is opened. It is not recommended, but you can opt-out by setting `ariaHideApp={false}`.
+
+      4 |
+      5 | const renderWithIntl = (ui, {locale = 'en', messages = {}} = {}) => ({
+    > 6 |     ...render(
+        |              ^
+      7 |         <IntlProvider
+      8 |             locale={locale}
+      9 |             messages={messages}
+
+      at printWarning (../../node_modules/warning/warning.js:34:15)
+      at warning (../../node_modules/warning/warning.js:57:20)
+      at validateElement (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:77:27)
+      at Object.hide (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:89:26)
+      at ModalPortal.beforeOpen (../../node_modules/react-modal/lib/components/ModalPortal.js:342:22)
+      at ModalPortal._this.open (../../node_modules/react-modal/lib/components/ModalPortal.js:135:13)
+      at ModalPortal.componentDidMount (../../node_modules/react-modal/lib/components/ModalPortal.js:285:14)
+      at commitLayoutEffectOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:23349:28)
+      at commitLayoutMountEffects_complete (../../node_modules/react-dom/cjs/react-dom.development.js:24727:9)
+      at commitLayoutEffects_begin (../../node_modules/react-dom/cjs/react-dom.development.js:24713:7)
+      at commitLayoutEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24651:3)
+      at commitRootImpl (../../node_modules/react-dom/cjs/react-dom.development.js:26862:5)
+      at commitRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26721:5)
+      at finishConcurrentRender (../../node_modules/react-dom/cjs/react-dom.development.js:26020:9)
+      at performConcurrentWorkOnRoot (../../node_modules/react-dom/cjs/react-dom.development.js:25848:7)
+      at flushActQueue (../../node_modules/react/cjs/react.development.js:2667:24)
+      at act (../../node_modules/react/cjs/react.development.js:2582:11)
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (../../node_modules/@testing-library/react/dist/pure.js:180:26)
+      at render (../../node_modules/@testing-library/react/dist/pure.js:271:10)
+      at renderWithIntl (test/helpers/intl-helpers.jsx:6:14)
+      at renderPicker (test/unit/components/mcremote-block-picker.test.jsx:40:61)
+      at renderPicker (test/unit/components/mcremote-block-picker.test.jsx:178:9)
+
+    console.error
+      Warning: react-modal: App element is not defined. Please use `Modal.setAppElement(el)` or set `appElement={el}`. This is needed so screen readers don't see main content when modal is opened. It is not recommended, but you can opt-out by setting `ariaHideApp={false}`.
+
+      at printWarning (../../node_modules/warning/warning.js:34:15)
+      at warning (../../node_modules/warning/warning.js:57:20)
+      at validateElement (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:77:27)
+      at Object.show (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:116:27)
+      at ModalPortal._this.afterClose (../../node_modules/react-modal/lib/components/ModalPortal.js:114:24)
+      at ModalPortal.componentWillUnmount (../../node_modules/react-modal/lib/components/ModalPortal.js:317:14)
+      at callComponentWillUnmountWithTimer (../../node_modules/react-dom/cjs/react-dom.development.js:22896:14)
+      at safelyCallComponentWillUnmount (../../node_modules/react-dom/cjs/react-dom.development.js:22912:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24168:13)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24101:11)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at commitDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24015:5)
+      at recursivelyTraverseMutationEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24298:9)
+      at commitMutationEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24471:9)
+      at commitMutationEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24282:3)
+      at commitRootImpl (../../node_modules/react-dom/cjs/react-dom.development.js:26849:5)
+      at commitRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26721:5)
+      at performSyncWorkOnRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26156:3)
+      at flushSyncCallbacks (../../node_modules/react-dom/cjs/react-dom.development.js:12042:22)
+      at flushSync (../../node_modules/react-dom/cjs/react-dom.development.js:26240:7)
+      at ReactDOMRoot.Object.<anonymous>.ReactDOMHydrationRoot.unmount.ReactDOMRoot.unmount [as unmount] (../../node_modules/react-dom/cjs/react-dom.development.js:29375:5)
+      at Object.unmount (../../node_modules/@testing-library/react/dist/pure.js:155:12)
+      at ../../node_modules/@testing-library/react/dist/pure.js:286:12
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:48:24
+      at act (../../node_modules/react/cjs/react.development.js:2512:16)
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at ../../node_modules/@testing-library/react/dist/pure.js:285:28
+          at Array.forEach (<anonymous>)
+      at cleanup (../../node_modules/@testing-library/react/dist/pure.js:281:22)
+      at Object.<anonymous> (../../node_modules/@testing-library/react/dist/index.js:29:25)
+
+    console.error
+      Warning: react-modal: App element is not defined. Please use `Modal.setAppElement(el)` or set `appElement={el}`. This is needed so screen readers don't see main content when modal is opened. It is not recommended, but you can opt-out by setting `ariaHideApp={false}`.
+
+      4 |
+      5 | const renderWithIntl = (ui, {locale = 'en', messages = {}} = {}) => ({
+    > 6 |     ...render(
+        |              ^
+      7 |         <IntlProvider
+      8 |             locale={locale}
+      9 |             messages={messages}
+
+      at printWarning (../../node_modules/warning/warning.js:34:15)
+      at warning (../../node_modules/warning/warning.js:57:20)
+      at validateElement (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:77:27)
+      at Object.hide (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:89:26)
+      at ModalPortal.beforeOpen (../../node_modules/react-modal/lib/components/ModalPortal.js:342:22)
+      at ModalPortal._this.open (../../node_modules/react-modal/lib/components/ModalPortal.js:135:13)
+      at ModalPortal.componentDidMount (../../node_modules/react-modal/lib/components/ModalPortal.js:285:14)
+      at commitLayoutEffectOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:23349:28)
+      at commitLayoutMountEffects_complete (../../node_modules/react-dom/cjs/react-dom.development.js:24727:9)
+      at commitLayoutEffects_begin (../../node_modules/react-dom/cjs/react-dom.development.js:24713:7)
+      at commitLayoutEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24651:3)
+      at commitRootImpl (../../node_modules/react-dom/cjs/react-dom.development.js:26862:5)
+      at commitRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26721:5)
+      at finishConcurrentRender (../../node_modules/react-dom/cjs/react-dom.development.js:26020:9)
+      at performConcurrentWorkOnRoot (../../node_modules/react-dom/cjs/react-dom.development.js:25848:7)
+      at flushActQueue (../../node_modules/react/cjs/react.development.js:2667:24)
+      at act (../../node_modules/react/cjs/react.development.js:2582:11)
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (../../node_modules/@testing-library/react/dist/pure.js:180:26)
+      at render (../../node_modules/@testing-library/react/dist/pure.js:271:10)
+      at renderWithIntl (test/helpers/intl-helpers.jsx:6:14)
+      at renderPicker (test/unit/components/mcremote-block-picker.test.jsx:40:61)
+      at Object.renderPicker (test/unit/components/mcremote-block-picker.test.jsx:198:9)
+
+    console.error
+      Warning: react-modal: App element is not defined. Please use `Modal.setAppElement(el)` or set `appElement={el}`. This is needed so screen readers don't see main content when modal is opened. It is not recommended, but you can opt-out by setting `ariaHideApp={false}`.
+
+      at printWarning (../../node_modules/warning/warning.js:34:15)
+      at warning (../../node_modules/warning/warning.js:57:20)
+      at validateElement (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:77:27)
+      at Object.show (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:116:27)
+      at ModalPortal._this.afterClose (../../node_modules/react-modal/lib/components/ModalPortal.js:114:24)
+      at ModalPortal.componentWillUnmount (../../node_modules/react-modal/lib/components/ModalPortal.js:317:14)
+      at callComponentWillUnmountWithTimer (../../node_modules/react-dom/cjs/react-dom.development.js:22896:14)
+      at safelyCallComponentWillUnmount (../../node_modules/react-dom/cjs/react-dom.development.js:22912:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24168:13)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24101:11)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at commitDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24015:5)
+      at recursivelyTraverseMutationEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24298:9)
+      at commitMutationEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24471:9)
+      at commitMutationEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24282:3)
+      at commitRootImpl (../../node_modules/react-dom/cjs/react-dom.development.js:26849:5)
+      at commitRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26721:5)
+      at performSyncWorkOnRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26156:3)
+      at flushSyncCallbacks (../../node_modules/react-dom/cjs/react-dom.development.js:12042:22)
+      at flushSync (../../node_modules/react-dom/cjs/react-dom.development.js:26240:7)
+      at ReactDOMRoot.Object.<anonymous>.ReactDOMHydrationRoot.unmount.ReactDOMRoot.unmount [as unmount] (../../node_modules/react-dom/cjs/react-dom.development.js:29375:5)
+      at Object.unmount (../../node_modules/@testing-library/react/dist/pure.js:155:12)
+      at ../../node_modules/@testing-library/react/dist/pure.js:286:12
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:48:24
+      at act (../../node_modules/react/cjs/react.development.js:2512:16)
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at ../../node_modules/@testing-library/react/dist/pure.js:285:28
+          at Array.forEach (<anonymous>)
+      at cleanup (../../node_modules/@testing-library/react/dist/pure.js:281:22)
+      at Object.<anonymous> (../../node_modules/@testing-library/react/dist/index.js:29:25)
+
+    console.error
+      Warning: react-modal: App element is not defined. Please use `Modal.setAppElement(el)` or set `appElement={el}`. This is needed so screen readers don't see main content when modal is opened. It is not recommended, but you can opt-out by setting `ariaHideApp={false}`.
+
+      4 |
+      5 | const renderWithIntl = (ui, {locale = 'en', messages = {}} = {}) => ({
+    > 6 |     ...render(
+        |              ^
+      7 |         <IntlProvider
+      8 |             locale={locale}
+      9 |             messages={messages}
+
+      at printWarning (../../node_modules/warning/warning.js:34:15)
+      at warning (../../node_modules/warning/warning.js:57:20)
+      at validateElement (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:77:27)
+      at Object.hide (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:89:26)
+      at ModalPortal.beforeOpen (../../node_modules/react-modal/lib/components/ModalPortal.js:342:22)
+      at ModalPortal._this.open (../../node_modules/react-modal/lib/components/ModalPortal.js:135:13)
+      at ModalPortal.componentDidMount (../../node_modules/react-modal/lib/components/ModalPortal.js:285:14)
+      at commitLayoutEffectOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:23349:28)
+      at commitLayoutMountEffects_complete (../../node_modules/react-dom/cjs/react-dom.development.js:24727:9)
+      at commitLayoutEffects_begin (../../node_modules/react-dom/cjs/react-dom.development.js:24713:7)
+      at commitLayoutEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24651:3)
+      at commitRootImpl (../../node_modules/react-dom/cjs/react-dom.development.js:26862:5)
+      at commitRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26721:5)
+      at finishConcurrentRender (../../node_modules/react-dom/cjs/react-dom.development.js:26020:9)
+      at performConcurrentWorkOnRoot (../../node_modules/react-dom/cjs/react-dom.development.js:25848:7)
+      at flushActQueue (../../node_modules/react/cjs/react.development.js:2667:24)
+      at act (../../node_modules/react/cjs/react.development.js:2582:11)
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (../../node_modules/@testing-library/react/dist/pure.js:180:26)
+      at render (../../node_modules/@testing-library/react/dist/pure.js:271:10)
+      at renderWithIntl (test/helpers/intl-helpers.jsx:6:14)
+      at renderPicker (test/unit/components/mcremote-block-picker.test.jsx:40:61)
+      at Object.renderPicker (test/unit/components/mcremote-block-picker.test.jsx:217:9)
+
+    console.error
+      Warning: react-modal: App element is not defined. Please use `Modal.setAppElement(el)` or set `appElement={el}`. This is needed so screen readers don't see main content when modal is opened. It is not recommended, but you can opt-out by setting `ariaHideApp={false}`.
+
+      at printWarning (../../node_modules/warning/warning.js:34:15)
+      at warning (../../node_modules/warning/warning.js:57:20)
+      at validateElement (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:77:27)
+      at Object.show (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:116:27)
+      at ModalPortal._this.afterClose (../../node_modules/react-modal/lib/components/ModalPortal.js:114:24)
+      at ModalPortal.componentWillUnmount (../../node_modules/react-modal/lib/components/ModalPortal.js:317:14)
+      at callComponentWillUnmountWithTimer (../../node_modules/react-dom/cjs/react-dom.development.js:22896:14)
+      at safelyCallComponentWillUnmount (../../node_modules/react-dom/cjs/react-dom.development.js:22912:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24168:13)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24101:11)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at commitDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24015:5)
+      at recursivelyTraverseMutationEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24298:9)
+      at commitMutationEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24471:9)
+      at commitMutationEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24282:3)
+      at commitRootImpl (../../node_modules/react-dom/cjs/react-dom.development.js:26849:5)
+      at commitRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26721:5)
+      at performSyncWorkOnRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26156:3)
+      at flushSyncCallbacks (../../node_modules/react-dom/cjs/react-dom.development.js:12042:22)
+      at flushSync (../../node_modules/react-dom/cjs/react-dom.development.js:26240:7)
+      at ReactDOMRoot.Object.<anonymous>.ReactDOMHydrationRoot.unmount.ReactDOMRoot.unmount [as unmount] (../../node_modules/react-dom/cjs/react-dom.development.js:29375:5)
+      at Object.unmount (../../node_modules/@testing-library/react/dist/pure.js:155:12)
+      at ../../node_modules/@testing-library/react/dist/pure.js:286:12
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:48:24
+      at act (../../node_modules/react/cjs/react.development.js:2512:16)
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at ../../node_modules/@testing-library/react/dist/pure.js:285:28
+          at Array.forEach (<anonymous>)
+      at cleanup (../../node_modules/@testing-library/react/dist/pure.js:281:22)
+      at Object.<anonymous> (../../node_modules/@testing-library/react/dist/index.js:29:25)
+
+    console.error
+      Warning: react-modal: App element is not defined. Please use `Modal.setAppElement(el)` or set `appElement={el}`. This is needed so screen readers don't see main content when modal is opened. It is not recommended, but you can opt-out by setting `ariaHideApp={false}`.
+
+      4 |
+      5 | const renderWithIntl = (ui, {locale = 'en', messages = {}} = {}) => ({
+    > 6 |     ...render(
+        |              ^
+      7 |         <IntlProvider
+      8 |             locale={locale}
+      9 |             messages={messages}
+
+      at printWarning (../../node_modules/warning/warning.js:34:15)
+      at warning (../../node_modules/warning/warning.js:57:20)
+      at validateElement (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:77:27)
+      at Object.hide (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:89:26)
+      at ModalPortal.beforeOpen (../../node_modules/react-modal/lib/components/ModalPortal.js:342:22)
+      at ModalPortal._this.open (../../node_modules/react-modal/lib/components/ModalPortal.js:135:13)
+      at ModalPortal.componentDidMount (../../node_modules/react-modal/lib/components/ModalPortal.js:285:14)
+      at commitLayoutEffectOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:23349:28)
+      at commitLayoutMountEffects_complete (../../node_modules/react-dom/cjs/react-dom.development.js:24727:9)
+      at commitLayoutEffects_begin (../../node_modules/react-dom/cjs/react-dom.development.js:24713:7)
+      at commitLayoutEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24651:3)
+      at commitRootImpl (../../node_modules/react-dom/cjs/react-dom.development.js:26862:5)
+      at commitRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26721:5)
+      at finishConcurrentRender (../../node_modules/react-dom/cjs/react-dom.development.js:26020:9)
+      at performConcurrentWorkOnRoot (../../node_modules/react-dom/cjs/react-dom.development.js:25848:7)
+      at flushActQueue (../../node_modules/react/cjs/react.development.js:2667:24)
+      at act (../../node_modules/react/cjs/react.development.js:2582:11)
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (../../node_modules/@testing-library/react/dist/pure.js:180:26)
+      at render (../../node_modules/@testing-library/react/dist/pure.js:271:10)
+      at renderWithIntl (test/helpers/intl-helpers.jsx:6:14)
+      at renderPicker (test/unit/components/mcremote-block-picker.test.jsx:40:61)
+      at Object.renderPicker (test/unit/components/mcremote-block-picker.test.jsx:237:9)
+
+    console.error
+      Warning: react-modal: App element is not defined. Please use `Modal.setAppElement(el)` or set `appElement={el}`. This is needed so screen readers don't see main content when modal is opened. It is not recommended, but you can opt-out by setting `ariaHideApp={false}`.
+
+      at printWarning (../../node_modules/warning/warning.js:34:15)
+      at warning (../../node_modules/warning/warning.js:57:20)
+      at validateElement (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:77:27)
+      at Object.show (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:116:27)
+      at ModalPortal._this.afterClose (../../node_modules/react-modal/lib/components/ModalPortal.js:114:24)
+      at ModalPortal.componentWillUnmount (../../node_modules/react-modal/lib/components/ModalPortal.js:317:14)
+      at callComponentWillUnmountWithTimer (../../node_modules/react-dom/cjs/react-dom.development.js:22896:14)
+      at safelyCallComponentWillUnmount (../../node_modules/react-dom/cjs/react-dom.development.js:22912:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24168:13)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24101:11)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at commitDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24015:5)
+      at recursivelyTraverseMutationEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24298:9)
+      at commitMutationEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24471:9)
+      at commitMutationEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24282:3)
+      at commitRootImpl (../../node_modules/react-dom/cjs/react-dom.development.js:26849:5)
+      at commitRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26721:5)
+      at performSyncWorkOnRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26156:3)
+      at flushSyncCallbacks (../../node_modules/react-dom/cjs/react-dom.development.js:12042:22)
+      at flushSync (../../node_modules/react-dom/cjs/react-dom.development.js:26240:7)
+      at ReactDOMRoot.Object.<anonymous>.ReactDOMHydrationRoot.unmount.ReactDOMRoot.unmount [as unmount] (../../node_modules/react-dom/cjs/react-dom.development.js:29375:5)
+      at Object.unmount (../../node_modules/@testing-library/react/dist/pure.js:155:12)
+      at ../../node_modules/@testing-library/react/dist/pure.js:286:12
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:48:24
+      at act (../../node_modules/react/cjs/react.development.js:2512:16)
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at ../../node_modules/@testing-library/react/dist/pure.js:285:28
+          at Array.forEach (<anonymous>)
+      at cleanup (../../node_modules/@testing-library/react/dist/pure.js:281:22)
+      at Object.<anonymous> (../../node_modules/@testing-library/react/dist/index.js:29:25)
+
+    console.error
+      Warning: react-modal: App element is not defined. Please use `Modal.setAppElement(el)` or set `appElement={el}`. This is needed so screen readers don't see main content when modal is opened. It is not recommended, but you can opt-out by setting `ariaHideApp={false}`.
+
+      4 |
+      5 | const renderWithIntl = (ui, {locale = 'en', messages = {}} = {}) => ({
+    > 6 |     ...render(
+        |              ^
+      7 |         <IntlProvider
+      8 |             locale={locale}
+      9 |             messages={messages}
+
+      at printWarning (../../node_modules/warning/warning.js:34:15)
+      at warning (../../node_modules/warning/warning.js:57:20)
+      at validateElement (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:77:27)
+      at Object.hide (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:89:26)
+      at ModalPortal.beforeOpen (../../node_modules/react-modal/lib/components/ModalPortal.js:342:22)
+      at ModalPortal._this.open (../../node_modules/react-modal/lib/components/ModalPortal.js:135:13)
+      at ModalPortal.componentDidMount (../../node_modules/react-modal/lib/components/ModalPortal.js:285:14)
+      at commitLayoutEffectOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:23349:28)
+      at commitLayoutMountEffects_complete (../../node_modules/react-dom/cjs/react-dom.development.js:24727:9)
+      at commitLayoutEffects_begin (../../node_modules/react-dom/cjs/react-dom.development.js:24713:7)
+      at commitLayoutEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24651:3)
+      at commitRootImpl (../../node_modules/react-dom/cjs/react-dom.development.js:26862:5)
+      at commitRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26721:5)
+      at finishConcurrentRender (../../node_modules/react-dom/cjs/react-dom.development.js:26020:9)
+      at performConcurrentWorkOnRoot (../../node_modules/react-dom/cjs/react-dom.development.js:25848:7)
+      at flushActQueue (../../node_modules/react/cjs/react.development.js:2667:24)
+      at act (../../node_modules/react/cjs/react.development.js:2582:11)
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (../../node_modules/@testing-library/react/dist/pure.js:180:26)
+      at render (../../node_modules/@testing-library/react/dist/pure.js:271:10)
+      at renderWithIntl (test/helpers/intl-helpers.jsx:6:14)
+      at renderPicker (test/unit/components/mcremote-block-picker.test.jsx:40:61)
+      at Object.renderPicker (test/unit/components/mcremote-block-picker.test.jsx:259:9)
+
+    console.error
+      Warning: react-modal: App element is not defined. Please use `Modal.setAppElement(el)` or set `appElement={el}`. This is needed so screen readers don't see main content when modal is opened. It is not recommended, but you can opt-out by setting `ariaHideApp={false}`.
+
+      at printWarning (../../node_modules/warning/warning.js:34:15)
+      at warning (../../node_modules/warning/warning.js:57:20)
+      at validateElement (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:77:27)
+      at Object.show (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:116:27)
+      at ModalPortal._this.afterClose (../../node_modules/react-modal/lib/components/ModalPortal.js:114:24)
+      at ModalPortal.componentWillUnmount (../../node_modules/react-modal/lib/components/ModalPortal.js:317:14)
+      at callComponentWillUnmountWithTimer (../../node_modules/react-dom/cjs/react-dom.development.js:22896:14)
+      at safelyCallComponentWillUnmount (../../node_modules/react-dom/cjs/react-dom.development.js:22912:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24168:13)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24101:11)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at commitDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24015:5)
+      at recursivelyTraverseMutationEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24298:9)
+      at commitMutationEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24471:9)
+      at commitMutationEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24282:3)
+      at commitRootImpl (../../node_modules/react-dom/cjs/react-dom.development.js:26849:5)
+      at commitRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26721:5)
+      at performSyncWorkOnRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26156:3)
+      at flushSyncCallbacks (../../node_modules/react-dom/cjs/react-dom.development.js:12042:22)
+      at flushSync (../../node_modules/react-dom/cjs/react-dom.development.js:26240:7)
+      at ReactDOMRoot.Object.<anonymous>.ReactDOMHydrationRoot.unmount.ReactDOMRoot.unmount [as unmount] (../../node_modules/react-dom/cjs/react-dom.development.js:29375:5)
+      at Object.unmount (../../node_modules/@testing-library/react/dist/pure.js:155:12)
+      at ../../node_modules/@testing-library/react/dist/pure.js:286:12
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:48:24
+      at act (../../node_modules/react/cjs/react.development.js:2512:16)
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at ../../node_modules/@testing-library/react/dist/pure.js:285:28
+          at Array.forEach (<anonymous>)
+      at cleanup (../../node_modules/@testing-library/react/dist/pure.js:281:22)
+      at Object.<anonymous> (../../node_modules/@testing-library/react/dist/index.js:29:25)
+
+    console.error
+      Warning: react-modal: App element is not defined. Please use `Modal.setAppElement(el)` or set `appElement={el}`. This is needed so screen readers don't see main content when modal is opened. It is not recommended, but you can opt-out by setting `ariaHideApp={false}`.
+
+      4 |
+      5 | const renderWithIntl = (ui, {locale = 'en', messages = {}} = {}) => ({
+    > 6 |     ...render(
+        |              ^
+      7 |         <IntlProvider
+      8 |             locale={locale}
+      9 |             messages={messages}
+
+      at printWarning (../../node_modules/warning/warning.js:34:15)
+      at warning (../../node_modules/warning/warning.js:57:20)
+      at validateElement (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:77:27)
+      at Object.hide (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:89:26)
+      at ModalPortal.beforeOpen (../../node_modules/react-modal/lib/components/ModalPortal.js:342:22)
+      at ModalPortal._this.open (../../node_modules/react-modal/lib/components/ModalPortal.js:135:13)
+      at ModalPortal.componentDidMount (../../node_modules/react-modal/lib/components/ModalPortal.js:285:14)
+      at commitLayoutEffectOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:23349:28)
+      at commitLayoutMountEffects_complete (../../node_modules/react-dom/cjs/react-dom.development.js:24727:9)
+      at commitLayoutEffects_begin (../../node_modules/react-dom/cjs/react-dom.development.js:24713:7)
+      at commitLayoutEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24651:3)
+      at commitRootImpl (../../node_modules/react-dom/cjs/react-dom.development.js:26862:5)
+      at commitRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26721:5)
+      at finishConcurrentRender (../../node_modules/react-dom/cjs/react-dom.development.js:26020:9)
+      at performConcurrentWorkOnRoot (../../node_modules/react-dom/cjs/react-dom.development.js:25848:7)
+      at flushActQueue (../../node_modules/react/cjs/react.development.js:2667:24)
+      at act (../../node_modules/react/cjs/react.development.js:2582:11)
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (../../node_modules/@testing-library/react/dist/pure.js:180:26)
+      at render (../../node_modules/@testing-library/react/dist/pure.js:271:10)
+      at renderWithIntl (test/helpers/intl-helpers.jsx:6:14)
+      at renderPicker (test/unit/components/mcremote-block-picker.test.jsx:40:61)
+      at Object.renderPicker (test/unit/components/mcremote-block-picker.test.jsx:276:9)
+
+    console.error
+      Warning: react-modal: App element is not defined. Please use `Modal.setAppElement(el)` or set `appElement={el}`. This is needed so screen readers don't see main content when modal is opened. It is not recommended, but you can opt-out by setting `ariaHideApp={false}`.
+
+      at printWarning (../../node_modules/warning/warning.js:34:15)
+      at warning (../../node_modules/warning/warning.js:57:20)
+      at validateElement (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:77:27)
+      at Object.show (../../node_modules/react-modal/lib/helpers/ariaAppHider.js:116:27)
+      at ModalPortal._this.afterClose (../../node_modules/react-modal/lib/components/ModalPortal.js:114:24)
+      at ModalPortal.componentWillUnmount (../../node_modules/react-modal/lib/components/ModalPortal.js:317:14)
+      at callComponentWillUnmountWithTimer (../../node_modules/react-dom/cjs/react-dom.development.js:22896:14)
+      at safelyCallComponentWillUnmount (../../node_modules/react-dom/cjs/react-dom.development.js:22912:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24168:13)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24101:11)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24157:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24209:9)
+      at recursivelyTraverseDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24028:5)
+      at commitDeletionEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24172:9)
+      at commitDeletionEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24015:5)
+      at recursivelyTraverseMutationEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24298:9)
+      at commitMutationEffectsOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:24471:9)
+      at commitMutationEffects (../../node_modules/react-dom/cjs/react-dom.development.js:24282:3)
+      at commitRootImpl (../../node_modules/react-dom/cjs/react-dom.development.js:26849:5)
+      at commitRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26721:5)
+      at performSyncWorkOnRoot (../../node_modules/react-dom/cjs/react-dom.development.js:26156:3)
+      at flushSyncCallbacks (../../node_modules/react-dom/cjs/react-dom.development.js:12042:22)
+      at flushSync (../../node_modules/react-dom/cjs/react-dom.development.js:26240:7)
+      at ReactDOMRoot.Object.<anonymous>.ReactDOMHydrationRoot.unmount.ReactDOMRoot.unmount [as unmount] (../../node_modules/react-dom/cjs/react-dom.development.js:29375:5)
+      at Object.unmount (../../node_modules/@testing-library/react/dist/pure.js:155:12)
+      at ../../node_modules/@testing-library/react/dist/pure.js:286:12
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:48:24
+      at act (../../node_modules/react/cjs/react.development.js:2512:16)
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at ../../node_modules/@testing-library/react/dist/pure.js:285:28
+          at Array.forEach (<anonymous>)
+      at cleanup (../../node_modules/@testing-library/react/dist/pure.js:281:22)
+      at Object.<anonymous> (../../node_modules/@testing-library/react/dist/index.js:29:25)
+
+PASS test/unit/lib/mcremote-block-names.test.js
+PASS test/unit/lib/mcremote-block-ref.test.js
+
+Test Suites: 3 passed, 3 total
+Tests:       26 passed, 26 total
+Snapshots:   0 total
+Time:        11.602 s, estimated 22 s
+Ran all test suites matching /test\/unit\/components\/mcremote-block-picker.test.jsx|test\/unit\/lib\/mcremote-block-ref.test.js|test\/unit\/lib\/mcremote-block-names.test.js/i.

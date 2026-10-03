@@ -1,0 +1,12 @@
+{
+  "result": "PASS",
+  "reviewer": "human owner",
+  "response": "４点、オッケー。",
+  "checks": [
+    "entity method names and send/receive directions",
+    "particle flame/dust/block frames",
+    "playSound/playBlockSound send and receive frames",
+    "idless particle notification shown as sent-unconfirmed"
+  ],
+  "followup": "Narrow timestamp and direction columns; notification direction may wrap to two lines."
+}

@@ -1,0 +1,114 @@
+jest-haste-map: duplicate manual mock found: index
+  The following files share their name; please delete one of them:
+    * <rootDir>/src/lib/settings/color-mode/dark/__mocks__/index.js
+    * <rootDir>/src/lib/settings/color-mode/default/__mocks__/index.js
+
+Browserslist: browsers data (caniuse-lite) is 10 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+ts-jest[config] (WARN) 
+    The "ts-jest" config option "isolatedModules" is deprecated and will be removed in v30.0.0. Please use "isolatedModules: true" in ~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-gui/tsconfig.test.json instead, see https://www.typescriptlang.org/tsconfig/#isolatedModules
+  
+  console.error
+    Warning: Box: Support for defaultProps will be removed from function components in a future major release. Use JavaScript default parameters instead.
+        at alignContent (~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-gui/src/components/box/box.jsx:33:9)
+        at MenuBar (~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-gui/src/components/menu-bar/menu-bar.jsx:161:9)
+        at ConnectFunction (~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/react-redux/lib/components/connect.js:246:74)
+        at MenuBarContainer (~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-gui/src/containers/menu-bar-hoc.jsx:9:13)
+        at ConnectFunction (~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/react-redux/lib/components/connect.js:246:74)
+        at injectIntl(Connect(MenuBarContainer))
+        at children (~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-gui/src/contexts/menu-ref-context.jsx:31:34)
+        at Provider (~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/react-redux/lib/components/Provider.js:19:3)
+        at IntlProvider (~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/react-intl/src/components/provider.js:33:47)
+
+      4 |
+      5 | const renderWithIntl = (ui, {locale = 'en', messages = {}} = {}) => ({
+    > 6 |     ...render(
+        |              ^
+      7 |         <IntlProvider
+      8 |             locale={locale}
+      9 |             messages={messages}
+
+      at printWarning (../../node_modules/react-dom/cjs/react-dom.development.js:86:30)
+      at error (../../node_modules/react-dom/cjs/react-dom.development.js:60:7)
+      at validateFunctionComponentInDev (../../node_modules/react-dom/cjs/react-dom.development.js:20230:9)
+      at mountIndeterminateComponent (../../node_modules/react-dom/cjs/react-dom.development.js:20189:7)
+      at beginWork (../../node_modules/react-dom/cjs/react-dom.development.js:21626:16)
+      at beginWork$1 (../../node_modules/react-dom/cjs/react-dom.development.js:27465:14)
+      at performUnitOfWork (../../node_modules/react-dom/cjs/react-dom.development.js:26599:12)
+      at workLoopSync (../../node_modules/react-dom/cjs/react-dom.development.js:26505:5)
+      at renderRootSync (../../node_modules/react-dom/cjs/react-dom.development.js:26473:7)
+      at performConcurrentWorkOnRoot (../../node_modules/react-dom/cjs/react-dom.development.js:25777:74)
+      at flushActQueue (../../node_modules/react/cjs/react.development.js:2667:24)
+      at act (../../node_modules/react/cjs/react.development.js:2582:11)
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (../../node_modules/@testing-library/react/dist/pure.js:180:26)
+      at render (../../node_modules/@testing-library/react/dist/pure.js:271:10)
+      at renderWithIntl (test/helpers/intl-helpers.jsx:6:14)
+      at Object.<anonymous> (test/unit/components/menu-bar.test.jsx:65:43)
+
+  console.log
+    [37m2026-10-02 09:28:07.344[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37m[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	Central dispatch replacing existing service provider for runtime
+
+      at Object.c [as transportFormatted] (../scratch-vm/dist/web/webpack:/VirtualMachine/webpack/universalModuleDefinition:1:1)
+
+  console.log
+    [37m2026-10-02 09:28:16.390[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37m[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	Central dispatch replacing existing service provider for extensions
+
+      at Object.c [as transportFormatted] (../scratch-vm/dist/web/webpack:/VirtualMachine/webpack/universalModuleDefinition:1:1)
+
+  console.log
+    [37m2026-10-02 09:28:16.488[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37m[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	Central dispatch replacing existing service provider for runtime
+
+      at Object.c [as transportFormatted] (../scratch-vm/dist/web/webpack:/VirtualMachine/webpack/universalModuleDefinition:1:1)
+
+  console.log
+    [37m2026-10-02 09:28:16.498[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37m[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	Central dispatch replacing existing service provider for extensions
+
+      at Object.c [as transportFormatted] (../scratch-vm/dist/web/webpack:/VirtualMachine/webpack/universalModuleDefinition:1:1)
+
+  console.log
+    [37m2026-10-02 09:28:16.602[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37m[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	Central dispatch replacing existing service provider for runtime
+
+      at Object.c [as transportFormatted] (../scratch-vm/dist/web/webpack:/VirtualMachine/webpack/universalModuleDefinition:1:1)
+
+  console.log
+    [37m2026-10-02 09:28:16.619[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37m[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	Central dispatch replacing existing service provider for extensions
+
+      at Object.c [as transportFormatted] (../scratch-vm/dist/web/webpack:/VirtualMachine/webpack/universalModuleDefinition:1:1)
+
+  console.log
+    [37m2026-10-02 09:28:16.704[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37m[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	Central dispatch replacing existing service provider for runtime
+
+      at Object.c [as transportFormatted] (../scratch-vm/dist/web/webpack:/VirtualMachine/webpack/universalModuleDefinition:1:1)
+
+  console.log
+    [37m2026-10-02 09:28:16.713[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37m[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	Central dispatch replacing existing service provider for extensions
+
+      at Object.c [as transportFormatted] (../scratch-vm/dist/web/webpack:/VirtualMachine/webpack/universalModuleDefinition:1:1)
+
+  console.log
+    [37m2026-10-02 09:28:16.796[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37m[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	Central dispatch replacing existing service provider for runtime
+
+      at Object.c [as transportFormatted] (../scratch-vm/dist/web/webpack:/VirtualMachine/webpack/universalModuleDefinition:1:1)
+
+  console.log
+    [37m2026-10-02 09:28:16.810[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37m[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	Central dispatch replacing existing service provider for extensions
+
+      at Object.c [as transportFormatted] (../scratch-vm/dist/web/webpack:/VirtualMachine/webpack/universalModuleDefinition:1:1)
+
+PASS test/unit/components/menu-bar.test.jsx (21.476 s)
+  MenuBar Component
+    ✓ menu bar with no About handler has no About button (579 ms)
+    ✓ menu bar with an About handler has an About button (9145 ms)
+    ✓ McRemote target sync does not push a target while the bundled runtime is disabled (91 ms)
+    ✓ McRemote connection menu is absent while the bundled runtime is disabled (138 ms)
+    triggering About button handler
+      ✓ clicking on About button calls the handler (114 ms)
+      ✓ not clicking on About button does not call the handler (100 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       6 passed, 6 total
+Snapshots:   0 total
+Time:        24.72 s
+Ran all test suites within paths "test/unit/components/menu-bar.test.jsx".

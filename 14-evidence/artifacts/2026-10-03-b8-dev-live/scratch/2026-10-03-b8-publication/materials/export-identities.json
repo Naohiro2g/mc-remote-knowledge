@@ -1,0 +1,71 @@
+{
+  "release_tag": "v2320.0.0b8",
+  "source_commit": "691576f60b7f0824e1753bd6823901d01fbe2422",
+  "files": [
+    {
+      "path": "HANDOFF-INVENTORY_ja.md",
+      "bytes": 4291,
+      "sha256": "6727b0963a504d0680910074ca9f620771569c830817ba1a74e9b10f7e6be081"
+    },
+    {
+      "path": "MANIFEST_ja.md",
+      "bytes": 3149,
+      "sha256": "5224c1843fa801ce3026789bca68c49478f215d74fbc825d631df790febcb083"
+    },
+    {
+      "path": "RELEASE-NOTES_ja.md",
+      "bytes": 1679,
+      "sha256": "1da60d11c45bc55206e0382fbd386948f127d14a0ec8a06e7e3619149db3014e"
+    },
+    {
+      "path": "RESULT_ja.md",
+      "bytes": 6734,
+      "sha256": "073047198d7e06c0625c62a70d0b9e61fb79f952ee036cd37f7995faaac26a18"
+    },
+    {
+      "path": "SESSION-CLOSE_ja.md",
+      "bytes": 2216,
+      "sha256": "755e452b5305f22991a9f03a63dbcb6b531858b92d96fba373e34b749d9a3e3b"
+    },
+    {
+      "path": "materials/asset-verification.json",
+      "bytes": 2173,
+      "sha256": "8c4a461d2aa65275aa3e959faf31a9e3f4824bc0032ec646d436fa1cca3bb565"
+    },
+    {
+      "path": "materials/contracts.tar.gz",
+      "bytes": 1908,
+      "sha256": "48948ba47d55409f02a8ff8e0d44021b07859e11ffa5ca0f8598e6ef06082390"
+    },
+    {
+      "path": "materials/handoff-inventory.json",
+      "bytes": 9388,
+      "sha256": "2163330e8a8a26ef568eca7a960a69dd343415e7ccbf35bafef91917ecd68b4f"
+    },
+    {
+      "path": "materials/manifest.json",
+      "bytes": 1168,
+      "sha256": "122846bd6624b80718a905b49dde749e6d283a1ae1cee2ff6daa5826e9cd2887"
+    },
+    {
+      "path": "materials/oci-identities.json",
+      "bytes": 4417,
+      "sha256": "30aec02bb756abadd550395d80bf2f0588ffc8165e2dde778ddd2367fca8809f"
+    },
+    {
+      "path": "materials/provider-identities.json",
+      "bytes": 2597,
+      "sha256": "7b04ae27312aed1b10eb732169619ffe85aed171d65f11a73bec7e877280d894"
+    },
+    {
+      "path": "materials/wirescope-app.manifest.json",
+      "bytes": 2321,
+      "sha256": "6ea468f50d50b52722b8f34145743df86cebc60865fe0e827be5632c26b024d0"
+    },
+    {
+      "path": "materials/wirescope-app.zip",
+      "bytes": 83746,
+      "sha256": "4cb349894b71d61d7ca143d8362a5b79deb1810e1d7a9e31ad30e29bfe370a07"
+    }
+  ]
+}

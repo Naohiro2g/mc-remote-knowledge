@@ -363,6 +363,14 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   - Latest: 3 repoとも変えていない（McRemoteは`v1.21.8-1.4.0`、Pythonは`v1214.10.11`、ScratchはLatestなし）
 - gate result（公開）: **3 repoのGitHub prerelease公開identityを確認した（2026-10-03）**。残りはgateのclose（default branchへの
   統合の確認、各repoの`handoff-materials`の分類、parkの見直し、b9の移管の起点にするfixtureの一覧の記録）
+- b9の移管の起点（2026-10-03、Scratchの返却）: 公開source `691576f`時点のfixture 12件（Protocol 7、WireScope 4、Bridge 1）の
+  path、bytes、SHA-256、case数、consumerを[一覧](../14-evidence/artifacts/2026-10-03-b8-dev-live/scratch/2026-10-03-b8-close-inventory/FIXTURES_ja.md)に収容した。Protocolの主なものは`direction-lightning-v23.1.json`
+  20,367 bytes／`586d24bf…0dce`／93 case、`entity-particle-v23.2.json` 36,481 bytes／`ca636b4a…39f2`／111 case、`sign-v23.json`
+  5,043 bytes／`7ffb63c2…d30e`／7 group。VM runtimeは`@mc-remote/protocol`をimportせず、VMとWireScopeのtestがrepo相対pathでfixtureを
+  読む。release manifestの`contracts`はScratch GUIのconfig schemaで、protocol fixtureの配布物ではない
+- handoff-materialsの分類（2026-10-03）: McRemote、Python、Scratchの①の素材と、Scratchの③の素材のテキストを
+  `14-evidence/artifacts/2026-10-03-b8-dev-live/`へ全文のまま収容した（一覧と収容しなかったfileは`INVENTORY_ja.md`）。②は各担当が
+  後続（b9等）のために保持する
 - close（2026-10-03、human ownerの判断）: **b8 gateをCLOSEDとする**。default branchへの統合は照合済み（McRemote main `8f13b2f`、
   Python main `52d35f5`、Scratch develop `691576f`がそれぞれtagと一致）。gateを閉じるときのpark確認（`2026-09-30-09`）で、API一覧、
   ケータリング、Windows、iPad、browser検証能力の行を更新した。各repoの`handoff-materials`の分類と、b9の移管の起点にする

@@ -1,0 +1,22 @@
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-gui/src/components/mcremote-block-picker/mcremote-block-picker.jsx
+   71:37  warning  Expected parentheses around arrow function argument  arrow-parens
+   87:50  warning  Expected parentheses around arrow function argument  arrow-parens
+   96:48  warning  Expected parentheses around arrow function argument  arrow-parens
+  111:44  warning  Expected parentheses around arrow function argument  arrow-parens
+  112:42  warning  Expected parentheses around arrow function argument  arrow-parens
+  115:43  warning  Expected parentheses around arrow function argument  arrow-parens
+  238:50  warning  Expected parentheses around arrow function argument  arrow-parens
+  298:34  warning  Expected parentheses around arrow function argument  arrow-parens
+  302:52  warning  Expected parentheses around arrow function argument  arrow-parens
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-gui/test/unit/components/mcremote-block-picker.test.jsx
+   64:66   warning  Expected parentheses around arrow function argument  arrow-parens
+   92:44   warning  Expected parentheses around arrow function argument  arrow-parens
+  122:100  warning  Expected parentheses around arrow function argument  arrow-parens
+  145:69   warning  Expected parentheses around arrow function argument  arrow-parens
+  177:77   warning  Expected parentheses around arrow function argument  arrow-parens
+
+✖ 14 problems (0 errors, 14 warnings)
+  0 errors and 14 warnings potentially fixable with the `--fix` option.
+

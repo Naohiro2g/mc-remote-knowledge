@@ -1,0 +1,32 @@
+
+> @mc-remote/live@0.1.0 build:artifact
+> npm run build && node scripts/build-artifact.mjs --source-commit 691576f60b7f0824e1753bd6823901d01fbe2422
+
+
+> @mc-remote/live@0.1.0 build
+> vite build && vite build --config vite.lib.config.js && tsc --project tsconfig.build.json
+
+rolldown-vite v7.3.1 building client environment for production...
+[2Ktransforming...✓ 15 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                  0.67 kB │ gzip:  0.38 kB
+dist/assets/index-cdgTmXph.css   9.16 kB │ gzip:  2.50 kB
+dist/assets/index-BBrN1Qw3.js   66.20 kB │ gzip: 19.46 kB │ map: 200.64 kB
+✓ built in 295ms
+rolldown-vite v7.3.1 building client environment for production...
+[2Ktransforming...✓ 6 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/observer.js  38.72 kB │ gzip: 9.33 kB
+✓ built in 130ms
+{
+  "archive": {
+    "path": "~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/mc-remote/live/dist/artifacts/wirescope-app.zip",
+    "sha256": "4cb349894b71d61d7ca143d8362a5b79deb1810e1d7a9e31ad30e29bfe370a07"
+  },
+  "manifest": {
+    "path": "~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/mc-remote/live/dist/artifacts/wirescope-app.manifest.json",
+    "sha256": "6ea468f50d50b52722b8f34145743df86cebc60865fe0e827be5632c26b024d0"
+  }
+}

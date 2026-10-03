@@ -1,0 +1,85 @@
+691576f60b7f0824e1753bd6823901d01fbe2422:mc-remote/bridge/test/server.test.ts:9:  readFileSync(new URL('./fixtures/one-shot-transport-v1.json', import.meta.url), 'utf8'),
+691576f60b7f0824e1753bd6823901d01fbe2422:mc-remote/bridge/test/transport.test.ts:12:  readFileSync(new URL('./fixtures/one-shot-transport-v1.json', import.meta.url), 'utf8'),
+691576f60b7f0824e1753bd6823901d01fbe2422:mc-remote/live/test/client.test.ts:11:const fixturePath = fileURLToPath(new URL('./fixtures/scratch-main-lifecycle.json', import.meta.url))
+691576f60b7f0824e1753bd6823901d01fbe2422:mc-remote/live/test/display-alias.test.ts:13:const fixturePath = fileURLToPath(new URL('./fixtures/display-alias-v1.json', import.meta.url))
+691576f60b7f0824e1753bd6823901d01fbe2422:mc-remote/live/test/observer.test.ts:6:const fixturePath = fileURLToPath(new URL('./fixtures/scratch-main-lifecycle.json', import.meta.url))
+691576f60b7f0824e1753bd6823901d01fbe2422:mc-remote/live/test/observer.test.ts:7:const eventsFixturePath = fileURLToPath(new URL('../../protocol/test/fixtures/events-v23.json', import.meta.url))
+691576f60b7f0824e1753bd6823901d01fbe2422:mc-remote/live/test/observer.test.ts:8:const spawnFixturePath = fileURLToPath(new URL('../../protocol/test/fixtures/spawn-v22.json', import.meta.url))
+691576f60b7f0824e1753bd6823901d01fbe2422:mc-remote/live/test/observer.test.ts:10:  new URL('../../protocol/test/fixtures/dimensions-v22.json', import.meta.url),
+691576f60b7f0824e1753bd6823901d01fbe2422:mc-remote/live/test/observer.test.ts:13:  new URL('../../protocol/test/fixtures/direction-lightning-v23.1.json', import.meta.url),
+691576f60b7f0824e1753bd6823901d01fbe2422:mc-remote/live/test/observer.test.ts:16:  new URL('../../protocol/test/fixtures/entity-particle-v23.2.json', import.meta.url),
+691576f60b7f0824e1753bd6823901d01fbe2422:mc-remote/live/test/session.test.ts:13:const fixturePath = fileURLToPath(new URL('./fixtures/scratch-main-lifecycle.json', import.meta.url))
+691576f60b7f0824e1753bd6823901d01fbe2422:mc-remote/live/test/session.test.ts:14:const sessionFixturePath = fileURLToPath(new URL('./fixtures/observer-session-lifecycle.ndjson', import.meta.url))
+691576f60b7f0824e1753bd6823901d01fbe2422:mc-remote/live/test/session.test.ts:15:const eventsFixturePath = fileURLToPath(new URL('../../protocol/test/fixtures/events-v23.json', import.meta.url))
+691576f60b7f0824e1753bd6823901d01fbe2422:mc-remote/live/test/sound-resource-observer.test.ts:5:const soundFixturePath = new URL('../../protocol/test/fixtures/entity-particle-v23.2.json', import.meta.url)
+691576f60b7f0824e1753bd6823901d01fbe2422:mc-remote/live/test/sound-resource-observer.test.ts:12:  readFileSync(new URL('./fixtures/scratch-main-lifecycle.json', import.meta.url), 'utf8'),
+691576f60b7f0824e1753bd6823901d01fbe2422:mc-remote/live/test/station-adapter.test.ts:7:const contractFixturePath = fileURLToPath(new URL('./fixtures/station-attach-v1.json', import.meta.url))
+691576f60b7f0824e1753bd6823901d01fbe2422:mc-remote/live/test/station-adapter.test.ts:8:const sessionFixturePath = fileURLToPath(new URL('./fixtures/observer-session-lifecycle.ndjson', import.meta.url))
+691576f60b7f0824e1753bd6823901d01fbe2422:mc-remote/live/test/station.test.ts:21:const fixturePath = fileURLToPath(new URL('./fixtures/station-attach-v1.json', import.meta.url))
+691576f60b7f0824e1753bd6823901d01fbe2422:mc-remote/protocol/test/b8-owner-fixture.test.ts:14:import fixture from './fixtures/entity-particle-v23.2.json'
+691576f60b7f0824e1753bd6823901d01fbe2422:mc-remote/protocol/test/contract.test.ts:44:import dimensionsFixture from './fixtures/dimensions-v22.json'
+691576f60b7f0824e1753bd6823901d01fbe2422:mc-remote/protocol/test/contract.test.ts:45:import directionLightningFixture from './fixtures/direction-lightning-v23.1.json'
+691576f60b7f0824e1753bd6823901d01fbe2422:mc-remote/protocol/test/contract.test.ts:46:import eventsFixture from './fixtures/events-v23.json'
+691576f60b7f0824e1753bd6823901d01fbe2422:mc-remote/protocol/test/contract.test.ts:47:import signFixture from './fixtures/sign-v23.json'
+691576f60b7f0824e1753bd6823901d01fbe2422:mc-remote/protocol/test/contract.test.ts:48:import spawnFixture from './fixtures/spawn-v22.json'
+691576f60b7f0824e1753bd6823901d01fbe2422:mc-remote/protocol/test/fixtures/direction-lightning-v23.1.json:12:      "path": "mc-remote/protocol/test/fixtures/direction-lightning-v23.1.json",
+691576f60b7f0824e1753bd6823901d01fbe2422:mc-remote/protocol/test/sound-resource-owner-fixture.test.ts:4:import fixture from './fixtures/entity-particle-v23.2.json'
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-gui/test/unit/util/mcremote-wirescope-source.test.js:5:import eventsFixture from '../../../../../mc-remote/protocol/test/fixtures/events-v23.json';
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-gui/test/unit/util/mcremote-wirescope-source.test.js:6:import dimensionFixture from '../../../../../mc-remote/protocol/test/fixtures/dimensions-v22.json';
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-gui/test/unit/util/mcremote-wirescope-source.test.js:7:import spawnFixture from '../../../../../mc-remote/protocol/test/fixtures/spawn-v22.json';
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-gui/test/unit/util/mcremote-wirescope-source.test.js:8:import b7Fixture from '../../../../../mc-remote/protocol/test/fixtures/direction-lightning-v23.1.json';
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-gui/test/unit/util/mcremote-wirescope-source.test.js:9:import soundFixture from '../../../../../mc-remote/protocol/test/fixtures/entity-particle-v23.2.json';
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/src/extensions/scratch3_mcremote/index.js:3718:// Exposed so tests can build protocol-version-aware fixtures/mocks instead of
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/dispatch.js:1:const DispatchTestService = require('../fixtures/dispatch-test-service');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/engine_adapter.js:3:const events = require('../fixtures/events.json');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/engine_blocks.js:5:const events = require('../fixtures/events.json');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/engine_runtime.js:3:const readFileToBuffer = require('../fixtures/readProjectFile').readFileToBuffer;
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/engine_runtime.js:126:    const projectUri = path.resolve(__dirname, '../fixtures/default.sb2');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/engine_target.js:7:const events = require('../fixtures/events.json');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/extension_mcremote.js:6:const entityParticleFixture = require('../../../../mc-remote/protocol/test/fixtures/entity-particle-v23.2.json');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/extension_mcremote.js:14:const displayAliasFixture = require('../../../../mc-remote/live/test/fixtures/display-alias-v1.json');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/extension_mcremote.js:15:const oneShotTransportFixture = require('../../../../mc-remote/bridge/test/fixtures/one-shot-transport-v1.json');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/extension_mcremote.js:16:const eventFixture = require('../../../../mc-remote/protocol/test/fixtures/events-v23.json');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/extension_mcremote.js:17:const dimensionFixture = require('../../../../mc-remote/protocol/test/fixtures/dimensions-v22.json');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/extension_mcremote.js:20:    '../../../../mc-remote/protocol/test/fixtures/direction-lightning-v23.1.json'
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/extension_mcremote.js:23:const b8Fixture = require('../../../../mc-remote/protocol/test/fixtures/entity-particle-v23.2.json');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/extension_mcremote.js:24:const spawnFixture = require('../../../../mc-remote/protocol/test/fixtures/spawn-v22.json');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/mcremote_block_value.js:2:const fixture = require('../../../../mc-remote/protocol/test/fixtures/block-value-v22.json');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/mcremote_event.js:2:const fixture = require('../../../../mc-remote/protocol/test/fixtures/events-v23.json');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/mcremote_sign.js:12:const signFixture = require('../../../../mc-remote/protocol/test/fixtures/sign-v23.json');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/mcremote_sign.js:109:test('FACES and DECORATIONS match the shared protocol fixture (mc-remote/protocol/test/fixtures/sign-v23.json)', t => {
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/mock-timer.js:2:const MockTimer = require('../fixtures/mock-timer');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/project_changed_state.js:3:const readFileToBuffer = require('../fixtures/readProjectFile').readFileToBuffer;
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/project_changed_state.js:4:const makeTestStorage = require('../fixtures/make-test-storage');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/project_changed_state.js:11:    const projectUri = path.resolve(__dirname, '../fixtures/default.sb2');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/project_changed_state.js:33:    const sprite2Uri = path.resolve(__dirname, '../fixtures/cat.sprite2');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/project_changed_state.js:43:    const sprite3Uri = path.resolve(__dirname, '../fixtures/cat.sprite3');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/project_changed_state.js:138:    const sprite3Uri = path.resolve(__dirname, '../fixtures/cat.sprite3');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/project_changed_state_blocks.js:3:const readFileToBuffer = require('../fixtures/readProjectFile').readFileToBuffer;
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/project_changed_state_blocks.js:4:const makeTestStorage = require('../fixtures/make-test-storage');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/project_changed_state_blocks.js:12:    const projectUri = path.resolve(__dirname, '../fixtures/default.sb2');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/project_load_changed_state.js:3:const readFileToBuffer = require('../fixtures/readProjectFile').readFileToBuffer;
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/project_load_changed_state.js:4:const makeTestStorage = require('../fixtures/make-test-storage');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/project_load_changed_state.js:13:    const projectUri = path.resolve(__dirname, '../fixtures/default.sb2');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/serialization_sb2.js:3:const extractProjectJson = require('../fixtures/readProjectFile').extractProjectJson;
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/serialization_sb2.js:17:    const uri = path.resolve(__dirname, '../fixtures/default.sb2');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/serialization_sb2.js:55:    const uri = path.resolve(__dirname, '../fixtures/data.sb2');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/serialization_sb2.js:71:    const uri = path.resolve(__dirname, '../fixtures/when-clicked.sb2');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/serialization_sb2.js:94:    const uri = path.resolve(__dirname, '../fixtures/ordering.sb2');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/serialization_sb3.js:6:const readFileToBuffer = require('../fixtures/readProjectFile').readFileToBuffer;
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/serialization_sb3.js:7:const exampleProjectPath = path.resolve(__dirname, '../fixtures/clone-cleanup.sb2');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/serialization_sb3.js:8:const commentsSB2ProjectPath = path.resolve(__dirname, '../fixtures/comments.sb2');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/serialization_sb3.js:9:const commentsSB3ProjectPath = path.resolve(__dirname, '../fixtures/comments.sb3');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/serialization_sb3.js:10:const commentsSB3NoDupeIds = path.resolve(__dirname, '../fixtures/comments_no_duplicate_id_serialization.sb3');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/serialization_sb3.js:11:const variableReporterSB2ProjectPath = path.resolve(__dirname, '../fixtures/top-level-variable-reporter.sb2');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/serialization_sb3.js:12:const topLevelReportersProjectPath = path.resolve(__dirname, '../fixtures/top-level-reporters.sb3');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/serialization_sb3.js:13:const draggableSB3ProjectPath = path.resolve(__dirname, '../fixtures/draggable.sb3');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/serialization_sb3.js:14:const originSB3ProjectPath = path.resolve(__dirname, '../fixtures/origin.sb3');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/serialization_sb3.js:15:const originAbsentSB3ProjectPath = path.resolve(__dirname, '../fixtures/origin-absent.sb3');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/serialization_sb3.js:16:const FakeRenderer = require('../fixtures/fake-renderer');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/serialization_sb3.js:156:    return vm.loadProject(readFileToBuffer(path.resolve(__dirname, '../fixtures/ordering.sb2')))
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/sprites_rendered-target.js:5:const FakeRenderer = require('../fixtures/fake-renderer');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/util_new-block-ids.js:2:const simpleStack = require('../fixtures/simple-stack');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/util_new-block-ids.js:25: * Inspect fixtures/simple-stack for the full object.
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/virtual-machine.js:6:const events = require('../fixtures/events.json');
+691576f60b7f0824e1753bd6823901d01fbe2422:packages/scratch-vm/test/unit/virtual-machine.js:7:const Renderer = require('../fixtures/fake-renderer');

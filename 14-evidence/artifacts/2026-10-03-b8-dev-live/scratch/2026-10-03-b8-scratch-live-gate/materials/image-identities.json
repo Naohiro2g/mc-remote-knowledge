@@ -1,0 +1,18 @@
+{
+  "picker-gold.png": {
+    "bytes": 56575,
+    "sha256": "29e4f55175153afb3c9efb55727c2cdacb02b7623aa708a4769db0cbc23d36ae"
+  },
+  "picker-door.png": {
+    "bytes": 68950,
+    "sha256": "d11373c121a3ecd1b08911aa6c2a2a7fd52079c50a698dc2b7da2353f5fb4202"
+  },
+  "picker-default-state.png": {
+    "bytes": 53088,
+    "sha256": "67da931ffe3da191556892c57fc8caad80679e5077e239ee4f9c908a32c9fd15"
+  },
+  "wirescope-final.png": {
+    "bytes": 582596,
+    "sha256": "1d43fa655ce2de5a8dbd6ee32f644a0d6b4e22f12fe3e201719d83fc24432b54"
+  }
+}

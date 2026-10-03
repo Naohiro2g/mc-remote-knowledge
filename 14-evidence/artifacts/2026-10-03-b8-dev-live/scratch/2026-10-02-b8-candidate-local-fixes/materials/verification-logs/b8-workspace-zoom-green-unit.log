@@ -1,0 +1,19 @@
+jest-haste-map: duplicate manual mock found: index
+  The following files share their name; please delete one of them:
+    * <rootDir>/src/lib/settings/color-mode/dark/__mocks__/index.js
+    * <rootDir>/src/lib/settings/color-mode/default/__mocks__/index.js
+
+Browserslist: browsers data (caniuse-lite) is 10 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+PASS test/unit/lib/configure-workspace-zoom.test.js
+  configureWorkspaceZoom
+    ✓ does not clip canvas translation before it becomes a viewport scroll offset (15 ms)
+    ✓ preserves resizing disabled by an outer workspace operation (2 ms)
+    ✓ restores resizing and propagates a zoom failure (18 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       3 passed, 3 total
+Snapshots:   0 total
+Time:        3.977 s, estimated 4 s
+Ran all test suites matching /test\/unit\/lib\/configure-workspace-zoom.test.js/i.

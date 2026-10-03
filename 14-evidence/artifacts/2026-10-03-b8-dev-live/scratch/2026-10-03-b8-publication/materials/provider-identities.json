@@ -1,0 +1,69 @@
+{
+  "release": {
+    "assets": [
+      {
+        "browser_download_url": "https://github.com/Naohiro2g/scratch-editor/releases/download/v2320.0.0b8/contracts.tar.gz",
+        "digest": "sha256:48948ba47d55409f02a8ff8e0d44021b07859e11ffa5ca0f8598e6ef06082390",
+        "id": 607558762,
+        "name": "contracts.tar.gz",
+        "size": 1908
+      },
+      {
+        "browser_download_url": "https://github.com/Naohiro2g/scratch-editor/releases/download/v2320.0.0b8/manifest.json",
+        "digest": "sha256:122846bd6624b80718a905b49dde749e6d283a1ae1cee2ff6daa5826e9cd2887",
+        "id": 607558763,
+        "name": "manifest.json",
+        "size": 1168
+      },
+      {
+        "browser_download_url": "https://github.com/Naohiro2g/scratch-editor/releases/download/v2320.0.0b8/wirescope-app.manifest.json",
+        "digest": "sha256:6ea468f50d50b52722b8f34145743df86cebc60865fe0e827be5632c26b024d0",
+        "id": 607558761,
+        "name": "wirescope-app.manifest.json",
+        "size": 2321
+      },
+      {
+        "browser_download_url": "https://github.com/Naohiro2g/scratch-editor/releases/download/v2320.0.0b8/wirescope-app.zip",
+        "digest": "sha256:4cb349894b71d61d7ca143d8362a5b79deb1810e1d7a9e31ad30e29bfe370a07",
+        "id": 607558760,
+        "name": "wirescope-app.zip",
+        "size": 83746
+      }
+    ],
+    "draft": false,
+    "html_url": "https://github.com/Naohiro2g/scratch-editor/releases/tag/v2320.0.0b8",
+    "id": 402440419,
+    "immutable": false,
+    "name": "mc-remote Scratch 2320.0.0b8",
+    "prerelease": true,
+    "published_at": "2026-10-03T09:42:03Z",
+    "tag_name": "v2320.0.0b8",
+    "target_commitish": "691576f60b7f0824e1753bd6823901d01fbe2422"
+  },
+  "workflow": {
+    "conclusion": "success",
+    "created_at": "2026-10-03T09:42:05Z",
+    "event": "release",
+    "head_branch": "v2320.0.0b8",
+    "head_sha": "691576f60b7f0824e1753bd6823901d01fbe2422",
+    "html_url": "https://github.com/Naohiro2g/scratch-editor/actions/runs/37113933602",
+    "id": 37113933602,
+    "name": "Build McRemote OCI Images",
+    "path": ".github/workflows/mc-remote-images.yml",
+    "run_attempt": 1,
+    "status": "completed",
+    "updated_at": "2026-10-03T09:48:41Z"
+  },
+  "tag": {
+    "html_url": "https://github.com/Naohiro2g/scratch-editor/commit/691576f60b7f0824e1753bd6823901d01fbe2422",
+    "sha": "691576f60b7f0824e1753bd6823901d01fbe2422"
+  },
+  "develop": {
+    "name": "develop",
+    "sha": "691576f60b7f0824e1753bd6823901d01fbe2422"
+  },
+  "b9_branch": {
+    "name": "agent/b8-compatibility",
+    "sha": "01cdb0bfee3a681697ffa44db5b890045b74b01c"
+  }
+}

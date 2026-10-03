@@ -1,0 +1,1203 @@
+TAP version 14
+# Subtest: FakeWebSocket backfills the mock hello default build context by the client protocol major
+    ok 1 - a hello matching the client protocol major gets the default build context
+    ok 2 - a hello with a different protocol major does not get the default build context
+    1..2
+ok 1 - FakeWebSocket backfills the mock hello default build context by the client protocol major # time=19.096ms
+
+# Subtest: McRemote display aliases use the shared WireScope vocabulary
+    ok 1 - should be equivalent
+    ok 2 - should be equal
+    1..2
+ok 2 - McRemote display aliases use the shared WireScope vocabulary # time=9.013ms
+
+# Subtest: catalog list copies sorted IDs from all three catalogs without requests
+    ok 1 - should be equivalent
+    ok 2 - should be equal
+    ok 3 - should be equivalent
+    ok 4 - should be equal
+    ok 5 - should be equivalent
+    ok 6 - should be equal
+    ok 7 - should be equivalent
+    ok 8 - copying IDs does not issue a new RPC
+    ok 9 - the list is independent of the catalog
+    ok 10 - an available empty catalog clears the selected list
+    1..10
+ok 3 - catalog list copies sorted IDs from all three catalogs without requests # time=319.388ms
+
+# Subtest: catalog list waits for the hello acquisition and preserves the list on failure
+    ok 1 - the list remains intact while acquisition is pending
+    ok 2 - only hello and its catalog.get are sent
+    ok 3 - should be equivalent
+    ok 4 - the list remains intact while acquisition is pending
+[37m2026-10-02 09:29:09.920[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:1831[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: catalog acquisition failed: permission_denied
+[37m2026-10-02 09:29:09.933[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2911[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: catalogToList failed: catalog_unavailable
+    ok 5 - only hello and its catalog.get are sent
+    ok 6 - should be equivalent
+    ok 7 - should be equal
+    ok 8 - should be equal
+    1..8
+ok 4 - catalog list waits for the hello acquisition and preserves the list on failure # time=42.247ms
+
+[37m2026-10-02 09:29:09.945[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2911[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: catalogToList failed: catalog_unavailable
+# Subtest: catalog list rejects unavailable catalogs, invalid inputs and obsolete connection generations
+    ok 1 - should be equal
+    ok 2 - should be equivalent
+[37m2026-10-02 09:29:09.950[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2911[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: catalogToList failed: catalog_unavailable
+    ok 3 - should be equal
+    ok 4 - should be equivalent
+[37m2026-10-02 09:29:09.954[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2911[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: catalogToList failed: invalid_params
+    ok 5 - should be equal
+[37m2026-10-02 09:29:09.958[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2911[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: catalogToList failed: invalid_output_list
+    ok 6 - should be equal
+[37m2026-10-02 09:29:09.961[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2911[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: catalogToList failed: catalog_unavailable
+    ok 7 - should be equal
+    ok 8 - an old request cannot copy the successor connection catalog
+    ok 9 - should be equal
+    ok 10 - should be equal
+    1..10
+ok 5 - catalog list rejects unavailable catalogs, invalid inputs and obsolete connection generations # time=24.594ms
+
+# Subtest: hello uses a JSON-RPC 2.0 request with protocol 23.2.0
+    ok 1 - should be equal
+    ok 2 - should be equivalent
+    ok 3 - should be equal
+    ok 4 - client-numbered id starts at 1
+    ok 5 - should be equal
+    ok 6 - clean protocol semver, no channel suffix
+    ok 7 - should be equal
+    ok 8 - client build label is diagnostic only
+    ok 9 - sandbox routing is not part of hello
+    1..9
+ok 6 - hello uses a JSON-RPC 2.0 request with protocol 23.2.0 # time=4.781ms
+
+# Subtest: connect fails closed when the Bridge does not select the one-shot transport
+    ok 1 - expected to reject
+    ok 2 - hello is not sent through an incompatible Bridge
+    1..2
+ok 7 - connect fails closed when the Bridge does not select the one-shot transport # time=11.809ms
+
+# Subtest: connect uses the runtime McRemote connection target
+    ok 1 - should be equal
+    ok 2 - should be equivalent
+    ok 3 - hello payload stays route-free
+    1..3
+ok 8 - connect uses the runtime McRemote connection target # time=4.159ms
+
+# Subtest: connect uses the runtime-configured bridge and default sandbox without overriding the client version
+    ok 1 - should be equal
+    ok 2 - should be equal
+    1..2
+ok 9 - connect uses the runtime-configured bridge and default sandbox without overriding the client version # time=3.898ms
+
+Translation for "mcremote.connectionDisabled" in "en" is missing
+# Subtest: disabled runtime config refuses before opening a WebSocket
+    ok 1 - expected to reject
+    ok 2 - no connection is attempted
+    1..2
+ok 10 - disabled runtime config refuses before opening a WebSocket # time=13.708ms
+
+# Subtest: hello includes a saved session token when available
+    ok 1 - should be equivalent
+    1..1
+ok 11 - hello includes a saved session token when available # time=5.802ms
+
+# Subtest: hello reads only the token scoped to the current sandbox route
+    ok 1 - should be equivalent
+    1..1
+ok 12 - hello reads only the token scoped to the current sandbox route # time=4.295ms
+
+# Subtest: McRemote observation logs hello frames and redacts session tokens
+    ok 1 - should be equal
+    ok 2 - alias is not issued before authenticated hello succeeds
+    ok 3 - should be equal
+    ok 4 - should be equal
+    ok 5 - should be equal
+    ok 6 - should be equal
+    ok 7 - should be equivalent
+    ok 8 - saved token is never exposed
+    ok 9 - should be equal
+    ok 10 - should be equal
+    ok 11 - should match pattern
+    ok 12 - should be equivalent
+    ok 13 - should be equal
+    ok 14 - should be equal
+    ok 15 - should be equal
+    1..15
+ok 13 - McRemote observation logs hello frames and redacts session tokens # time=25.789ms
+
+# Subtest: droppedFrames stays 0 while the frame log is within FRAME_LOG_LIMIT
+    ok 1 - should be equal
+    ok 2 - should be equal
+    1..2
+ok 14 - droppedFrames stays 0 while the frame log is within FRAME_LOG_LIMIT # time=50.353ms
+
+# Subtest: droppedFrames accumulates the exact number of frames trimmed once FRAME_LOG_LIMIT is exceeded
+    ok 1 - the log itself stays bounded at FRAME_LOG_LIMIT
+    ok 2 - the 5 oldest frames beyond the limit are counted as dropped
+    ok 3 - should be equal
+    ok 4 - dropped frames accumulate across multiple trims, never reset alone
+    1..4
+ok 15 - droppedFrames accumulates the exact number of frames trimmed once FRAME_LOG_LIMIT is exceeded # time=92.291ms
+
+# Subtest: droppedFrames resets to 0 at the same connection-reset boundary as the frame log itself
+    ok 1 - should be equal
+    ok 2 - a new connection resets droppedFrames alongside frameLog
+    ok 3 - the reset clears the frame log itself at the same boundary
+    1..3
+ok 16 - droppedFrames resets to 0 at the same connection-reset boundary as the frame log itself # time=47.557ms
+
+# Subtest: empty events.poll exchanges do not evict useful WireScope history
+    ok 1 - should be equal
+    ok 2 - should be equal
+    ok 3 - should be equivalent
+    ok 4 - 50 empty replies do not trim more history
+    1..4
+ok 17 - empty events.poll exchanges do not evict useful WireScope history # time=174.936ms
+
+# Subtest: McRemote observation normalizes top-level y_sea into world constants
+    ok 1 - should be equivalent
+    1..1
+ok 18 - McRemote observation normalizes top-level y_sea into world constants # time=8.948ms
+
+# Subtest: auth_required starts pair flow, stores token, retries hello and fires the hat
+    ok 1 - should be equal
+    ok 2 - should be equivalent
+    ok 3 - should be equal
+    ok 4 - should be equivalent
+    ok 5 - should be equal
+    ok 6 - should be equal
+    ok 7 - should be equal
+    ok 8 - should be equal
+    ok 9 - should be equal
+    ok 10 - should be equal
+    ok 11 - should be equal
+    ok 12 - should be equivalent
+    ok 13 - should be equal
+    ok 14 - should be equivalent
+    ok 15 - retry hello stays on the persistent transport
+    ok 16 - should be equal
+    ok 17 - should be equivalent
+    ok 18 - should be equal
+    ok 19 - should be equivalent
+    ok 20 - should be equal
+    ok 21 - should be equal
+    ok 22 - should be equal
+    ok 23 - new token is never exposed
+    ok 24 - Bridge transport hints are never exposed to WireScope observations
+    1..24
+ok 19 - auth_required starts pair flow, stores token, retries hello and fires the hat # time=116.564ms
+
+# Subtest: auth errors clear only the token scoped to the current sandbox route
+    ok 1 - should be equal
+    ok 2 - should be equal
+    1..2
+ok 20 - auth errors clear only the token scoped to the current sandbox route # time=2.509ms
+
+# Subtest: credential management methods stay on the persistent transport
+    ok 1 - should be equal
+    ok 2 - should be equal
+    1..2
+ok 21 - credential management methods stay on the persistent transport # time=5.934ms
+
+# Subtest: non-auth hello errors surface as connection errors without clearing the sandbox token
+    ok 1 - should be equal
+    ok 2 - should be equal
+    ok 3 - should be equal
+    ok 4 - should be equal
+    1..4
+ok 22 - non-auth hello errors surface as connection errors without clearing the sandbox token # time=14.398ms
+
+# Subtest: hello accepts a server with a newer compatible protocol minor
+    ok 1 - should be equal
+    1..1
+ok 23 - hello accepts a server with a newer compatible protocol minor # time=2.315ms
+
+[37m2026-10-02 09:29:10.607[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2791[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: chat.post failed: not_connected
+# Subtest: hello rejects an incompatible server protocol before commands can run
+    ok 1 - should be equal
+    ok 2 - should be equal
+    ok 3 - should be equal
+    ok 4 - should be equal
+    1..4
+ok 24 - hello rejects an incompatible server protocol before commands can run # time=5.054ms
+
+# Subtest: hello rejects a 23.0.x server as older than the 23.2 client
+    ok 1 - server patch is ignored
+    ok 2 - should be equal
+    1..2
+ok 25 - hello rejects a 23.0.x server as older than the 23.2 client # time=2.759ms
+
+[37m2026-10-02 09:29:10.615[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2791[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: chat.post failed: not_connected
+# Subtest: commands are not sent after hello fails before connection is established
+    ok 1 - should be equal
+    ok 2 - should be equal
+    ok 3 - should be equal
+    1..3
+ok 26 - commands are not sent after hello fails before connection is established # time=4.441ms
+
+# Subtest: connectTo forwards the sandbox name in the bridge URL query
+    ok 1 - should be equal
+    ok 2 - hello payload stays route-free
+    1..2
+ok 27 - connectTo forwards the sandbox name in the bridge URL query # time=16.672ms
+
+# Subtest: connectTo URL-encodes the sandbox route hint
+    ok 1 - should be equal
+    1..1
+ok 28 - connectTo URL-encodes the sandbox route hint # time=1.525ms
+
+# Subtest: connect block resolves without exposing the hello result
+    ok 1 - should be equal
+    1..1
+ok 29 - connect block resolves without exposing the hello result # time=2.598ms
+
+[37m2026-10-02 09:29:10.643[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2791[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: chat.post failed: not_connected
+# Subtest: commands are not sent before hello completes
+    ok 1 - should be equal
+    ok 2 - should be equal
+    1..2
+ok 30 - commands are not sent before hello completes # time=3.325ms
+
+[37m2026-10-02 09:29:10.647[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2791[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: chat.post failed: not_connected
+[37m2026-10-02 09:29:10.649[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2991[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: world.setBlock failed: not_connected
+# Subtest: disconnected commands emit connection guidance only once per disconnected period
+    ok 1 - should be equal
+    ok 2 - should be equal
+    ok 3 - should be equal
+    1..3
+ok 31 - disconnected commands emit connection guidance only once per disconnected period # time=5.121ms
+
+[37m2026-10-02 09:29:10.652[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2791[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: chat.post failed: not_connected
+[37m2026-10-02 09:29:10.654[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2791[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: chat.post failed: not_connected
+# Subtest: successful reconnect resets disconnected command guidance
+    ok 1 - should be equal
+    ok 2 - should be equal
+    1..2
+ok 32 - successful reconnect resets disconnected command guidance # time=3.503ms
+
+# Subtest: connect block reuses an in-flight connection instead of opening a duplicate socket
+    ok 1 - should be equal
+    ok 2 - should be equal
+    1..2
+ok 33 - connect block reuses an in-flight connection instead of opening a duplicate socket # time=2.266ms
+
+# Subtest: connect block reuses an open connection instead of opening a duplicate socket
+    ok 1 - should be equal
+    1..1
+ok 34 - connect block reuses an open connection instead of opening a duplicate socket # time=2.269ms
+
+# Subtest: close before hello rejects the connect block instead of hanging
+    ok 1 - should match pattern
+    1..1
+ok 35 - close before hello rejects the connect block instead of hanging # time=7.439ms
+
+Translation for "mcremote.categoryName" in "en" is missing
+Translation for "mcremote.connect" in "en" is missing
+Translation for "mcremote.connectTo" in "en" is missing
+Translation for "mcremote.pairCode" in "en" is missing
+Translation for "mcremote.pairCommand" in "en" is missing
+Translation for "mcremote.whenPaired" in "en" is missing
+Translation for "mcremote.setDimension" in "en" is missing
+Translation for "mcremote.setBuildOrigin" in "en" is missing
+Translation for "mcremote.setBuildMode" in "en" is missing
+Translation for "mcremote.flushBuildCommands" in "en" is missing
+Translation for "mcremote.postToChat" in "en" is missing
+Translation for "mcremote.setBlock" in "en" is missing
+Translation for "mcremote.setBlocks" in "en" is missing
+Translation for "mcremote.getBlock" in "en" is missing
+Translation for "mcremote.getBlocks" in "en" is missing
+Translation for "mcremote.catalogToList" in "en" is missing
+Translation for "mcremote.getHeight" in "en" is missing
+Translation for "mcremote.getHeightBelow" in "en" is missing
+Translation for "mcremote.blockInfoId" in "en" is missing
+Translation for "mcremote.blockInfoState" in "en" is missing
+Translation for "mcremote.blockInfoStateProperty" in "en" is missing
+Translation for "mcremote.blockInfoHasStateProperty" in "en" is missing
+Translation for "mcremote.getSign" in "en" is missing
+Translation for "mcremote.setSign" in "en" is missing
+Translation for "mcremote.updateSignLine" in "en" is missing
+Translation for "mcremote.signLineText" in "en" is missing
+Translation for "mcremote.signLineColor" in "en" is missing
+Translation for "mcremote.signLineHasDecoration" in "en" is missing
+Translation for "mcremote.signIsWaxed" in "en" is missing
+Translation for "mcremote.isMcRemoteError" in "en" is missing
+Translation for "mcremote.spawnParticle" in "en" is missing
+Translation for "mcremote.spawnEntity" in "en" is missing
+Translation for "mcremote.getNearbyEntities" in "en" is missing
+Translation for "mcremote.entityInfo" in "en" is missing
+Translation for "mcremote.getEntityPose" in "en" is missing
+Translation for "mcremote.entityPoseInfo" in "en" is missing
+Translation for "mcremote.setEntityPose" in "en" is missing
+Translation for "mcremote.removeEntity" in "en" is missing
+Translation for "mcremote.particleSpec" in "en" is missing
+Translation for "mcremote.dustParticleSpec" in "en" is missing
+Translation for "mcremote.blockParticleSpec" in "en" is missing
+Translation for "mcremote.playerDirection" in "en" is missing
+Translation for "mcremote.setPlayerDirection" in "en" is missing
+Translation for "mcremote.entityDirection" in "en" is missing
+Translation for "mcremote.setEntityDirection" in "en" is missing
+Translation for "mcremote.playSound" in "en" is missing
+Translation for "mcremote.playBlockSound" in "en" is missing
+Translation for "mcremote.soundOptions" in "en" is missing
+Translation for "mcremote.strikeLightning" in "en" is missing
+Translation for "mcremote.whenPickaxePoke" in "en" is missing
+Translation for "mcremote.whenChatPosted" in "en" is missing
+Translation for "mcremote.whenProjectileHit" in "en" is missing
+Translation for "mcremote.eventValue" in "en" is missing
+Translation for "mcremote.eventStatus" in "en" is missing
+Translation for "mcremote.playerAttribute" in "en" is missing
+Translation for "mcremote.setPlayerPos" in "en" is missing
+Translation for "mcremote.setPlayerPose" in "en" is missing
+Translation for "mcremote.setPlayerXYZ" in "en" is missing
+Translation for "mcremote.catalogKind.block" in "en" is missing
+Translation for "mcremote.catalogKind.entity" in "en" is missing
+Translation for "mcremote.catalogKind.particle" in "en" is missing
+Translation for "mcremote.eventValue.sequence" in "en" is missing
+Translation for "mcremote.eventValue.type" in "en" is missing
+Translation for "mcremote.eventValue.dimension" in "en" is missing
+Translation for "mcremote.eventValue.x" in "en" is missing
+Translation for "mcremote.eventValue.y" in "en" is missing
+Translation for "mcremote.eventValue.z" in "en" is missing
+Translation for "mcremote.eventValue.originX" in "en" is missing
+Translation for "mcremote.eventValue.originY" in "en" is missing
+Translation for "mcremote.eventValue.originZ" in "en" is missing
+Translation for "mcremote.eventValue.face" in "en" is missing
+Translation for "mcremote.eventValue.hand" in "en" is missing
+Translation for "mcremote.eventValue.item" in "en" is missing
+Translation for "mcremote.eventValue.message" in "en" is missing
+Translation for "mcremote.eventValue.block" in "en" is missing
+Translation for "mcremote.eventValue.projectile" in "en" is missing
+Translation for "mcremote.eventValue.targetKind" in "en" is missing
+Translation for "mcremote.eventValue.targetX" in "en" is missing
+Translation for "mcremote.eventValue.targetY" in "en" is missing
+Translation for "mcremote.eventValue.targetZ" in "en" is missing
+Translation for "mcremote.eventValue.targetFace" in "en" is missing
+Translation for "mcremote.eventValue.targetBlock" in "en" is missing
+Translation for "mcremote.eventValue.targetHandle" in "en" is missing
+Translation for "mcremote.eventStatus.cursor" in "en" is missing
+Translation for "mcremote.eventStatus.latest" in "en" is missing
+Translation for "mcremote.eventStatus.overflow" in "en" is missing
+Translation for "mcremote.eventStatus.capacity" in "en" is missing
+Translation for "mcremote.eventStatus.discarded" in "en" is missing
+Translation for "mcremote.eventStatus.totalLoss" in "en" is missing
+Translation for "mcremote.signFace.front" in "en" is missing
+Translation for "mcremote.signFace.back" in "en" is missing
+Translation for "mcremote.signLineIndex.0" in "en" is missing
+Translation for "mcremote.signLineIndex.1" in "en" is missing
+Translation for "mcremote.signLineIndex.2" in "en" is missing
+Translation for "mcremote.signLineIndex.3" in "en" is missing
+Translation for "mcremote.signDecoration.bold" in "en" is missing
+Translation for "mcremote.signDecoration.italic" in "en" is missing
+Translation for "mcremote.signDecoration.obfuscated" in "en" is missing
+Translation for "mcremote.signDecoration.strikethrough" in "en" is missing
+Translation for "mcremote.signDecoration.underlined" in "en" is missing
+Translation for "mcremote.buildMode.debug" in "en" is missing
+Translation for "mcremote.buildMode.trace" in "en" is missing
+Translation for "mcremote.buildMode.fast" in "en" is missing
+Translation for "mcremote.particleVisibility.far" in "en" is missing
+Translation for "mcremote.particleVisibility.near" in "en" is missing
+Translation for "mcremote.entityProperty.handle" in "en" is missing
+Translation for "mcremote.entityProperty.type" in "en" is missing
+Translation for "mcremote.particleReceiver.world" in "en" is missing
+Translation for "mcremote.particleReceiver.self" in "en" is missing
+Translation for "mcremote.soundKind.place" in "en" is missing
+Translation for "mcremote.soundKind.hit" in "en" is missing
+Translation for "mcremote.soundKind.break" in "en" is missing
+Translation for "mcremote.soundKind.step" in "en" is missing
+Translation for "mcremote.soundKind.fall" in "en" is missing
+Translation for "mcremote.soundReceiver.world" in "en" is missing
+Translation for "mcremote.soundReceiver.self" in "en" is missing
+Translation for "mcremote.playerAttribute.dimension" in "en" is missing
+Translation for "mcremote.playerAttribute.x" in "en" is missing
+Translation for "mcremote.playerAttribute.y" in "en" is missing
+Translation for "mcremote.playerAttribute.z" in "en" is missing
+Translation for "mcremote.playerAttribute.yaw" in "en" is missing
+Translation for "mcremote.playerAttribute.pitch" in "en" is missing
+Translation for "mcremote.dimension.overworld" in "en" is missing
+Translation for "mcremote.dimension.nether" in "en" is missing
+Translation for "mcremote.dimension.theEnd" in "en" is missing
+# Subtest: connectTo is kept as a hidden debug block with the default sandbox route
+    ok 1 - should be equal
+    ok 2 - should be equal
+    1..2
+ok 36 - connectTo is kept as a hidden debug block with the default sandbox route # time=48.149ms
+
+# Subtest: connectTo debug block uses the runtime-configured default sandbox route
+    ok 1 - should be equal
+    1..1
+ok 37 - connectTo debug block uses the runtime-configured default sandbox route # time=7.748ms
+
+# Subtest: build dimension block offers standard refs and accepts reporters
+    ok 1 - should be equal
+    ok 2 - should be equal
+    ok 3 - should be equivalent
+    1..3
+ok 38 - build dimension block offers standard refs and accepts reporters # time=10.205ms
+
+# Subtest: setBuildOrigin block shows the fixed y value
+    ok 1 - should be equal
+    ok 2 - should be equivalent
+    1..2
+ok 39 - setBuildOrigin block shows the fixed y value # time=14.006ms
+
+# Subtest: position coordinates use spaced colons while direction vectors stay compact
+    ok 1 - setBlock formats its x position as "x :"
+    ok 2 - setBlocks formats its x position as "x :"
+    ok 3 - getBlock formats its x position as "x :"
+    ok 4 - getBlocks formats its x position as "x :"
+    ok 5 - getHeight formats its x position as "x :"
+    ok 6 - getHeightBelow formats its x position as "x :"
+    ok 7 - getSign formats its x position as "x :"
+    ok 8 - setSign formats its x position as "x :"
+    ok 9 - updateSignLine formats its x position as "x :"
+    ok 10 - spawnParticle formats its x position as "x :"
+    ok 11 - spawnEntity formats its x position as "x :"
+    ok 12 - strikeLightning formats its x position as "x :"
+    ok 13 - setPlayerPos formats its x position as "x :"
+    ok 14 - setPlayerPose formats its x position as "x :"
+    ok 15 - setPlayerXYZ formats its x position as "x :"
+    ok 16 - setPlayerDirection keeps its vector component compact
+    ok 17 - setEntityDirection keeps its vector component compact
+    1..17
+ok 40 - position coordinates use spaced colons while direction vectors stay compact # time=24.086ms
+
+# Subtest: build mode and flush command blocks expose one shared stream control surface
+    ok 1 - should be equal
+    ok 2 - should be equal
+    ok 3 - should be equivalent
+    ok 4 - explicit connection.flush command is visible
+    1..4
+ok 41 - build mode and flush command blocks expose one shared stream control surface # time=7.939ms
+
+# Subtest: b6 events expose three hats and thread-local accessors without raw poll controls
+    ok 1 - whenPickaxePoke is public
+    ok 2 - whenChatPosted is public
+    ok 3 - whenProjectileHit is public
+    ok 4 - eventValue is public
+    ok 5 - eventStatus is public
+    ok 6 - raw events.poll is not a public block
+    ok 7 - events.clear remains outside b6
+    1..7
+ok 42 - b6 events expose three hats and thread-local accessors without raw poll controls # time=26.198ms
+
+# Subtest: b7 direction and full-lightning blocks expose the fixed learner surface
+    ok 1 - should be equal
+    ok 2 - should be equal
+    ok 3 - should be equal
+    ok 4 - should be equal
+    ok 5 - should be equal
+    ok 6 - should be equal
+    ok 7 - should be equal
+    ok 8 - should be equal
+    ok 9 - should be equal
+    ok 10 - should be equal
+    ok 11 - should be equivalent
+    ok 12 - effect-only lightning is not public
+    1..12
+ok 43 - b7 direction and full-lightning blocks expose the fixed learner surface # time=30.585ms
+
+# Subtest: b7 Scratch surface maps directly to the owner fixture contract
+    ok 1 - successor owner fixture size is unchanged
+    ok 2 - successor owner fixture identity is unchanged
+    ok 3 - should be equal
+    ok 4 - should be equivalent
+    ok 5 - should be equivalent
+    ok 6 - all 93 successor owner cases remain addressable
+    ok 7 - all successor owner case IDs are unique
+    ok 8 - should be equal
+    ok 9 - should be equal
+    1..9
+ok 44 - b7 Scratch surface maps directly to the owner fixture contract # time=19.651ms
+
+# Subtest: pairing reporter blocks are exposed
+    ok 1 - should be equal
+    ok 2 - should be equal
+    ok 3 - should be equal
+    1..3
+ok 45 - pairing reporter blocks are exposed # time=5.791ms
+
+# Subtest: setDimension preserves a general DimensionRef and accepts canonical context
+    ok 1 - should be equal
+    ok 2 - should be equal
+    ok 3 - build state changes wait for acknowledgement
+    ok 4 - should be equivalent
+    ok 5 - should be equal
+    1..5
+ok 46 - setDimension preserves a general DimensionRef and accepts canonical context # time=12.694ms
+
+[37m2026-10-02 09:29:10.920[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2853[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: build.setDimension failed: invalid_params
+[37m2026-10-02 09:29:10.920[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2853[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: build.setDimension failed: invalid_params
+[37m2026-10-02 09:29:10.921[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2853[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: build.setDimension failed: invalid_params
+[37m2026-10-02 09:29:10.922[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2853[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: build.setDimension failed: invalid_params
+[37m2026-10-02 09:29:10.925[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2853[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: build.setDimension failed: invalid_params
+[37m2026-10-02 09:29:10.928[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2853[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: build.setDimension failed: invalid_params
+[37m2026-10-02 09:29:10.929[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2853[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: build.setDimension failed: invalid_params
+# Subtest: setDimension rejects case, whitespace, and malformed refs without sending
+    ok 1 - should be equal
+    1..1
+ok 47 - setDimension rejects case, whitespace, and malformed refs without sending # time=19.724ms
+
+# Subtest: reconnect reuses the sandbox token and starts build state from defaults
+    ok 1 - request ids reset per connection
+    ok 2 - should be equal
+    ok 3 - should be equivalent
+    ok 4 - build state is not replayed automatically
+    1..4
+ok 48 - reconnect reuses the sandbox token and starts build state from defaults # time=12.092ms
+
+# Subtest: sandbox switch uses the token scoped to the newly selected route
+    ok 1 - should be equal
+    ok 2 - should be equivalent
+    1..2
+ok 49 - sandbox switch uses the token scoped to the newly selected route # time=4.393ms
+
+[37m2026-10-02 09:29:10.967[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2844[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: build.setDimension failed: permission_denied
+# Subtest: permission_denied does not clear the current sandbox token
+    ok 1 - should be equal
+    1..1
+ok 50 - permission_denied does not clear the current sandbox token # time=3.962ms
+
+# Subtest: setBuildOrigin seals y at 0 for Scratch
+    ok 1 - should be equal
+    ok 2 - build state changes wait for acknowledgement
+    ok 3 - should be equivalent
+    1..3
+ok 51 - setBuildOrigin seals y at 0 for Scratch # time=3.813ms
+
+# Subtest: postToChat is an acknowledged request
+    ok 1 - should be equal
+    ok 2 - should be equal
+    ok 3 - chat.post waits for acknowledgement
+    ok 4 - should be equivalent
+    1..4
+ok 52 - postToChat is an acknowledged request # time=4.372ms
+
+# Subtest: setBlock sends a structured BlockSpec and waits for a null result in DEBUG mode
+    ok 1 - should be equal
+    ok 2 - should be equal
+    ok 3 - setBlock waits for acknowledgement
+    ok 4 - should be equivalent
+    1..4
+ok 53 - setBlock sends a structured BlockSpec and waits for a null result in DEBUG mode # time=11.806ms
+
+# Subtest: setBlocks sends an empty state object without requiring a catalog
+    ok 1 - should be equal
+    ok 2 - should be equal
+    ok 3 - setBlocks waits for acknowledgement
+    ok 4 - should be equivalent
+    1..4
+ok 54 - setBlocks sends an empty state object without requiring a catalog # time=7.637ms
+
+# Subtest: FAST mode is applied after a flush fence and sends setters as notifications
+    ok 1 - should be equal
+    ok 2 - should be equivalent
+    ok 3 - type is number
+    ok 4 - later setter is fenced until flush succeeds
+    ok 5 - should be equal
+    ok 6 - FAST omits the JSON-RPC id
+    ok 7 - should be equivalent
+    1..7
+ok 55 - FAST mode is applied after a flush fence and sends setters as notifications # time=21.425ms
+
+# Subtest: TRACE waits once after a successful setter response
+    ok 1 - should be equal
+    ok 2 - type is number
+    ok 3 - TRACE waits only after success
+    ok 4 - one setBlocks call causes one delay
+    1..4
+ok 56 - TRACE waits once after a successful setter response # time=12.121ms
+
+[37m2026-10-02 09:29:11.044[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2991[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: world.setBlock failed: invalid_block_state
+# Subtest: TRACE reports a setter error immediately without applying its delay
+    ok 1 - failed setter does not delay the calling Scratch thread
+    1..1
+ok 57 - TRACE reports a setter error immediately without applying its delay # time=12.773ms
+
+[37m2026-10-02 09:29:11.061[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2911[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: setBuildMode failed: invalid_trace_delay
+# Subtest: invalid TRACE delay leaves the current mode unchanged
+    ok 1 - invalid input does not send connection.flush
+    ok 2 - DEBUG remains active
+    1..2
+ok 58 - invalid TRACE delay leaves the current mode unchanged # time=5.652ms
+
+# Subtest: TRACE delay accepts the inclusive 0 to 2 second range and rejects a larger value
+    ok 1 - should be equal
+    ok 2 - should be equal
+    ok 3 - should be equal
+[37m2026-10-02 09:29:11.079[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2911[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: setBuildMode failed: invalid_trace_delay
+    ok 4 - out-of-range delay sends no flush
+    ok 5 - should be equal
+    ok 6 - should be equal
+[37m2026-10-02 09:29:11.082[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2911[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: setBuildMode failed: invalid_trace_delay
+    ok 7 - negative delay sends no flush
+    ok 8 - should be equal
+    ok 9 - should be equal
+    1..9
+ok 59 - TRACE delay accepts the inclusive 0 to 2 second range and rejects a larger value # time=16.944ms
+
+[37m2026-10-02 09:29:11.090[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2911[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: setBuildMode failed: transport_lost
+# Subtest: failed mode transition retains DEBUG and releases later registrations
+    ok 1 - should be equal
+    ok 2 - old DEBUG mode remains active
+    ok 3 - should be equal
+    1..3
+ok 60 - failed mode transition retains DEBUG and releases later registrations # time=5.358ms
+
+# Subtest: FAST applies finite WebSocket backpressure without dropping the notification
+    ok 1 - notification waits while the browser buffer is full
+    ok 2 - should be equal
+    ok 3 - should be equal
+    1..3
+ok 61 - FAST applies finite WebSocket backpressure without dropping the notification # time=8.819ms
+
+[37m2026-10-02 09:29:11.118[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2911[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: world.setBlock failed: backpressure
+# Subtest: a saturated outbound registration queue closes the connection without silent drops
+    ok 1 - should be equal
+    ok 2 - should be equal
+    ok 3 - should be equal
+    ok 4 - delivery guidance is emitted once per connection
+    ok 5 - should be equal
+    1..5
+ok 62 - a saturated outbound registration queue closes the connection without silent drops # time=12.031ms
+
+# Subtest: FAST notification is observable with a null request id and no synthetic response
+    ok 1 - should be equal
+    ok 2 - should be equal
+    ok 3 - should be equal
+    ok 4 - should be equivalent
+    1..4
+ok 63 - FAST notification is observable with a null request id and no synthetic response # time=5.434ms
+
+# Subtest: flushBuildCommands sends the exact connection.flush request
+    ok 1 - should be equal
+    ok 2 - should be equivalent
+    ok 3 - type is number
+    1..3
+ok 64 - flushBuildCommands sends the exact connection.flush request # time=2.697ms
+
+# Subtest: leaving FAST flushes earlier notifications before applying DEBUG
+    ok 1 - should be equal
+    ok 2 - should be equal
+    ok 3 - should be equal
+    ok 4 - notification precedes the transition flush
+    ok 5 - should be equal
+    1..5
+ok 65 - leaving FAST flushes earlier notifications before applying DEBUG # time=6.184ms
+
+# Subtest: getBlock makes one request and resolves to canonical BlockInfoText
+    ok 1 - should be equal
+    ok 2 - second request on the connection
+    ok 3 - should be equal
+    1..3
+ok 66 - getBlock makes one request and resolves to canonical BlockInfoText # time=22.305ms
+
+# Subtest: getBlocks atomically replaces the selected list with ordered BlockInfoText values
+    ok 1 - should be equal
+    ok 2 - should be equal
+    ok 3 - should be equal
+    ok 4 - should be equivalent
+    ok 5 - destination is unchanged while the response is pending
+    ok 6 - should be equivalent
+    ok 7 - should be equal
+    1..7
+ok 67 - getBlocks atomically replaces the selected list with ordered BlockInfoText values # time=7.577ms
+
+[37m2026-10-02 09:29:11.174[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2911[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: world.getBlocks failed: invalid_block_info
+# Subtest: getBlocks preserves the selected list when any returned block value is malformed
+    ok 1 - should be equivalent
+    ok 2 - should be equal
+    1..2
+ok 68 - getBlocks preserves the selected list when any returned block value is malformed # time=4.319ms
+
+# Subtest: getSign makes one request and resolves to a SignInfoText usable by the line accessors
+    ok 1 - should be equal
+    ok 2 - should be equal
+    ok 3 - should be equal
+    ok 4 - should be equal
+    ok 5 - should be equal
+    1..5
+ok 69 - getSign makes one request and resolves to a SignInfoText usable by the line accessors # time=30.212ms
+
+# Subtest: setSign replaces one face with plain-text lines and waits for a null result
+    ok 1 - should be equal
+    ok 2 - should be equivalent
+    1..2
+ok 70 - setSign replaces one face with plain-text lines and waits for a null result # time=4.186ms
+
+# Subtest: updateSignLine sends the exact one-line PATCH shape
+    ok 1 - should be equal
+    ok 2 - should be equivalent
+    1..2
+ok 71 - updateSignLine sends the exact one-line PATCH shape # time=2.3ms
+
+[37m2026-10-02 09:29:11.217[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2991[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: world.setSign failed: sign_waxed
+# Subtest: a sign write error resolves the command block without rejecting the calling thread
+    1..0
+ok 72 - a sign write error resolves the command block without rejecting the calling thread # time=2.28ms
+
+# Subtest: getHeight returns an integer and uses the optional maxY as an inclusive third parameter
+    ok 1 - should be equal
+    ok 2 - should be equivalent
+    ok 3 - negative relative heights remain valid values
+    1..3
+ok 73 - getHeight returns an integer and uses the optional maxY as an inclusive third parameter # time=2.706ms
+
+# Subtest: getHeight returns ErrorText and emits one actionable hint for height_not_found
+    ok 1 - should be equivalent
+[37m2026-10-02 09:29:11.224[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2911[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: world.getHeight failed: height_not_found
+    ok 2 - should be equal
+    ok 3 - should be equal
+    ok 4 - should be equal
+    1..4
+ok 74 - getHeight returns ErrorText and emits one actionable hint for height_not_found # time=4.837ms
+
+# Subtest: one connection poller dispatches mixed b6 events with per-thread context and visible loss
+    ok 1 - should be equal
+    ok 2 - Scratch omits options and delegates the default limit to the server
+    ok 3 - a poll that delivers events remains visible in WireScope
+    ok 4 - mixed events preserve FIFO hat dispatch
+    ok 5 - should be equal
+    ok 6 - should be equal
+    ok 7 - should be equal
+    ok 8 - should be equal
+    ok 9 - should be equal
+    ok 10 - monitor evaluation cannot reuse a hat thread event
+    ok 11 - each thread owns a distinct context object
+    ok 12 - should be equivalent
+[37m2026-10-02 09:29:11.239[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2475[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: events.poll reported loss: overflow=0, capacity=1
+    ok 13 - an empty poll with changed loss counters remains visible in WireScope
+    ok 14 - should be equal
+    ok 15 - should be equal
+    ok 16 - should be equal
+    ok 17 - disconnect clears the epoch cursor
+    ok 18 - disconnect clears event context on active threads
+    ok 19 - the new connection epoch starts from cursor zero
+    1..19
+ok 75 - one connection poller dispatches mixed b6 events with per-thread context and visible loss # time=30.559ms
+
+# Subtest: build context updates only from a valid setter result and guards event dispatch
+    ok 1 - expected to reject
+    ok 2 - malformed success does not change the context
+    ok 3 - should be equivalent
+    ok 4 - an event captured under the old context is ignored
+    ok 5 - the matching dimension and origin start the hat
+    1..5
+ok 76 - build context updates only from a valid setter result and guards event dispatch # time=5.27ms
+
+[37m2026-10-02 09:29:11.267[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2492[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: events.poll stopped: invalid_event_response
+# Subtest: a malformed event result stops only the poller without advancing its cursor
+    ok 1 - should be equal
+    ok 2 - Minecraft control remains usable
+    ok 3 - should be equal
+    1..3
+ok 77 - a malformed event result stops only the poller without advancing its cursor # time=5.204ms
+
+# Subtest: spawnEntity writes its epoch handle or ErrorText to the selected scalar variable
+    ok 1 - should be equal
+    ok 2 - should be equivalent
+    ok 3 - output changes only after the response
+    ok 4 - should be equal
+    ok 5 - should be equal
+    1..5
+ok 78 - spawnEntity writes its epoch handle or ErrorText to the selected scalar variable # time=3.901ms
+
+# Subtest: spawnEntity treats a protocol-22 mceh_ handle from the server as a remote_error
+    ok 1 - should be equal
+    1..1
+ok 79 - spawnEntity treats a protocol-22 mceh_ handle from the server as a remote_error # time=2.342ms
+
+# Subtest: spawnParticle sends coordinate-first params and preserves optional force
+    ok 1 - should be equal
+    ok 2 - should be equivalent
+    ok 3 - should be equivalent
+    1..3
+ok 80 - spawnParticle sends coordinate-first params and preserves optional force # time=4.261ms
+
+# Subtest: getBlock returns allowlisted ErrorText for a JSON-RPC error
+    ok 1 - should be equal
+    1..1
+ok 81 - getBlock returns allowlisted ErrorText for a JSON-RPC error # time=3.149ms
+
+# Subtest: B8 particle data error keeps its stable reason in ErrorText
+    ok 1 - should be equal
+    1..1
+ok 82 - B8 particle data error keeps its stable reason in ErrorText # time=0.782ms
+
+# Subtest: getBlock folds unknown remote reasons without reflecting server messages
+    ok 1 - should be equal
+    ok 2 - should be equal
+    1..2
+ok 83 - getBlock folds unknown remote reasons without reflecting server messages # time=2.476ms
+
+# Subtest: block information accessors are pure and never send another request
+    ok 1 - should be equal
+    ok 2 - should be equal
+    ok 3 - should be equal
+    ok 4 - should be equal
+    ok 5 - should be equal
+    ok 6 - should be equal
+    ok 7 - should be equal
+    ok 8 - should be equal
+    ok 9 - should be equal
+    ok 10 - should be equal
+    ok 11 - should be equal
+    1..11
+ok 84 - block information accessors are pure and never send another request # time=21.037ms
+
+# Subtest: getBlock coalesces monitor requests but explicit calls always fetch
+    ok 1 - hello plus one coalesced getBlock request
+    ok 2 - should be equivalent
+    ok 3 - explicit call bypasses the monitor cache
+    ok 4 - should be equal
+    1..4
+ok 85 - getBlock coalesces monitor requests but explicit calls always fetch # time=4.667ms
+
+# Subtest: disconnect clears block information monitor cache and pending requests
+    ok 1 - should be equal
+    ok 2 - should be equal
+    ok 3 - should be equal
+    ok 4 - should be equal
+    1..4
+ok 86 - disconnect clears block information monitor cache and pending requests # time=4.911ms
+
+# Subtest: an in-flight monitor response cannot repopulate cache after disconnect
+    ok 1 - should be equal
+    ok 2 - should be equal
+    ok 3 - should be equal
+    ok 4 - should be equal
+    1..4
+ok 87 - an in-flight monitor response cannot repopulate cache after disconnect # time=6.114ms
+
+[37m2026-10-02 09:29:11.335[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2911[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: world.setBlock failed: invalid_block_state
+# Subtest: malformed StateText is not sent and emits an actionable local reason
+    ok 1 - should be equal
+    ok 2 - should be equal
+    1..2
+ok 88 - malformed StateText is not sent and emits an actionable local reason # time=4.573ms
+
+# Subtest: playerAttribute reports dimension and position from player.getPos
+    ok 1 - should be equal
+    ok 2 - should be equivalent
+    ok 3 - should be equal
+    1..3
+ok 89 - playerAttribute reports dimension and position from player.getPos # time=5.239ms
+
+# Subtest: playerAttribute resolves the canonical dimension property
+    ok 1 - should be equal
+    1..1
+ok 90 - playerAttribute resolves the canonical dimension property # time=3.319ms
+
+# Subtest: playerAttribute rejects a non-canonical dimension result
+    ok 1 - should be equal
+    1..1
+ok 91 - playerAttribute rejects a non-canonical dimension result # time=2.752ms
+
+# Subtest: playerAttribute reports yaw and pitch from player.getPose
+    ok 1 - should be equal
+    ok 2 - should be equivalent
+    ok 3 - should be equal
+    ok 4 - should be equal
+    ok 5 - should be equal
+    1..5
+ok 92 - playerAttribute reports yaw and pitch from player.getPose # time=6.488ms
+
+# Subtest: playerAttribute swallows a JSON-RPC error into empty string
+    ok 1 - should be equal
+    1..1
+ok 93 - playerAttribute swallows a JSON-RPC error into empty string # time=3.491ms
+
+# Subtest: playerAttribute throttles monitor-driven polls to one bridge request
+    ok 1 - should be equal
+    ok 2 - cached result reused, no new bridge request sent
+    ok 3 - cached pos still answers a different property
+    1..3
+ok 94 - playerAttribute throttles monitor-driven polls to one bridge request # time=5.237ms
+
+# Subtest: playerAttribute throttles monitor-driven pose polls separately from position polls
+    ok 1 - should be equal
+    ok 2 - should be equal
+    ok 3 - cached pose reused, no new bridge request sent
+    ok 4 - should be equal
+    ok 5 - position retains the existing wire method
+    ok 6 - should be equal
+    1..6
+ok 95 - playerAttribute throttles monitor-driven pose polls separately from position polls # time=5.344ms
+
+# Subtest: playerAttribute does not throttle explicit (non-monitor) calls
+    ok 1 - a second explicit call sends its own request
+    ok 2 - should be equal
+    1..2
+ok 96 - playerAttribute does not throttle explicit (non-monitor) calls # time=3.648ms
+
+# Subtest: direction reporters use exact methods and accept only finite triples
+    ok 1 - should be equal
+    ok 2 - should be equivalent
+    ok 3 - should be equal
+    ok 4 - should be equal
+    ok 5 - opaque handle is sent unchanged
+    ok 6 - should be equal
+    ok 7 - [1,2] is rejected
+    ok 8 - [1,2,3,4] is rejected
+    ok 9 - [1,"2",3] is rejected
+    ok 10 - [1,null,3] is rejected
+    ok 11 - [1,null,3] is rejected
+    1..11
+ok 97 - direction reporters use exact methods and accept only finite triples # time=9.621ms
+
+# Subtest: setDirection preserves inputs and validates the post-read direction
+    ok 1 - should be equal
+    ok 2 - Scratch does not normalize, round, or replace zero components
+    ok 3 - should be equal
+    ok 4 - should be equal
+    ok 5 - entity handle remains opaque
+[37m2026-10-02 09:29:11.404[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2911[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: player.setDirection failed: invalid_response
+    ok 6 - malformed post-read result uses the actionable error path
+    1..6
+ok 98 - setDirection preserves inputs and validates the post-read direction # time=11.046ms
+
+# Subtest: direction errors remain observable and a zero vector reaches the server
+    ok 1 - should be equivalent
+[37m2026-10-02 09:29:11.412[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2911[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: player.setDirection failed: zero_direction
+    ok 2 - should be equal
+    ok 3 - should be equal
+    ok 4 - should be equal
+    ok 5 - should be equal
+    1..5
+ok 99 - direction errors remain observable and a zero vector reaches the server # time=8.038ms
+
+# Subtest: full lightning is an id-bearing request with null success and actionable failures
+    ok 1 - should be equal
+    ok 2 - should be equivalent
+    ok 3 - lightning is not notification-only
+[37m2026-10-02 09:29:11.428[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2911[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: world.strikeLightning failed: permission_denied
+    ok 4 - B7-A10 is actionable
+[37m2026-10-02 09:29:11.433[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2911[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: world.strikeLightning failed: backpressure
+    ok 5 - B7-L21 is actionable
+[37m2026-10-02 09:29:11.437[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2911[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: world.strikeLightning failed: work_limit_exceeded
+    ok 6 - B7-L32 is actionable
+[37m2026-10-02 09:29:11.445[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2911[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: world.strikeLightning failed: backpressure
+    ok 7 - B7-L52 is actionable
+[37m2026-10-02 09:29:11.451[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2911[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: world.strikeLightning failed: internal_error
+    ok 8 - B7-L55 is actionable
+    1..8
+ok 100 - full lightning is an id-bearing request with null success and actionable failures # time=39.334ms
+
+[37m2026-10-02 09:29:11.463[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2911[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: world.strikeLightning failed: backpressure
+# Subtest: server backpressure leaves lightning connected and allows a later explicit retry
+    ok 1 - should be equal
+    ok 2 - should match pattern
+    ok 3 - server rejection is not a stopped outbound transport
+    ok 4 - should be equal
+    1..4
+ok 101 - server backpressure leaves lightning connected and allows a later explicit retry # time=12.836ms
+
+# Subtest: setPlayerPos is an acknowledged request with an explicit dimension
+    ok 1 - should be equal
+    ok 2 - should be equivalent
+    1..2
+ok 102 - setPlayerPos is an acknowledged request with an explicit dimension # time=7.351ms
+
+# Subtest: setPlayerPose sends dimension, position, yaw and pitch in one acknowledged request
+    ok 1 - should be equal
+    ok 2 - should be equivalent
+    1..2
+ok 103 - setPlayerPose sends dimension, position, yaw and pitch in one acknowledged request # time=5.515ms
+
+# Subtest: setPlayerXYZ fetches the current dimension before teleporting
+    ok 1 - should be equal
+    ok 2 - should be equivalent
+    ok 3 - should be equal
+    ok 4 - should be equivalent
+    1..4
+ok 104 - setPlayerXYZ fetches the current dimension before teleporting # time=8.964ms
+
+# Subtest: a closed socket rejects pending requests instead of hanging
+    ok 1 - should match pattern
+    1..1
+ok 105 - a closed socket rejects pending requests instead of hanging # time=6.881ms
+
+# Subtest: a closed socket emits a closed McRemote observation
+    ok 1 - should be equal
+    ok 2 - should be equal
+    ok 3 - should match pattern
+    ok 4 - should be equal
+    ok 5 - should be equal
+    1..5
+ok 106 - a closed socket emits a closed McRemote observation # time=2.607ms
+
+# Subtest: replies for unknown ids are dropped
+    ok 1 - should be equal
+    1..1
+ok 107 - replies for unknown ids are dropped # time=8.434ms
+
+# Subtest: hello uses a validated hash-matched catalog cache without a network request
+    ok 1 - catalog.get is skipped on a valid cache hit
+    ok 2 - should be equal
+    ok 3 - should be equal
+    ok 4 - should be equivalent
+    1..4
+ok 108 - hello uses a validated hash-matched catalog cache without a network request # time=33.371ms
+
+# Subtest: catalog cache miss fetches after hello without delaying connection
+    ok 1 - connect resolves before catalog response
+    ok 2 - should be equivalent
+    ok 3 - should be equal
+    ok 4 - should be equal
+    ok 5 - should be equal
+    ok 6 - should be equivalent
+    1..6
+ok 109 - catalog cache miss fetches after hello without delaying connection # time=36.913ms
+
+[37m2026-10-02 09:29:11.626[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:1831[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: catalog acquisition failed: catalog_hash_mismatch
+# Subtest: invalid catalog is unavailable but leaves the connection usable
+    ok 1 - should be equal
+    ok 2 - should be equal
+    1..2
+ok 110 - invalid catalog is unavailable but leaves the connection usable # time=20.523ms
+
+# Subtest: disconnect hides catalog data and ignores an in-flight acquisition
+    ok 1 - should be equal
+    ok 2 - should be equal
+    1..2
+ok 111 - disconnect hides catalog data and ignores an in-flight acquisition # time=10.556ms
+
+# Subtest: disableMcRemoteConnection turns the connection off for the life of the runtime
+    ok 1 - should be equal
+    ok 2 - should be equal
+    1..2
+ok 112 - disableMcRemoteConnection turns the connection off for the life of the runtime # time=21.603ms
+
+# Subtest: runtime config cannot re-enable a connection disabled at build time
+    ok 1 - should be equal
+    1..1
+ok 113 - runtime config cannot re-enable a connection disabled at build time # time=2.572ms
+
+# Subtest: connect on a disabled deployment opens no socket and reads no token
+    ok 1 - should be equal
+    ok 2 - should be equal
+    ok 3 - should be equal
+    1..3
+ok 114 - connect on a disabled deployment opens no socket and reads no token # time=11.261ms
+
+# Subtest: a disabled deployment is reported as disabled rather than as not connected
+    ok 1 - should be equal
+    ok 2 - should not match pattern
+    1..2
+ok 115 - a disabled deployment is reported as disabled rather than as not connected # time=36.718ms
+
+[37m2026-10-02 09:29:11.725[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2791[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: chat.post failed: connection_disabled
+[37m2026-10-02 09:29:11.726[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2791[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: chat.post failed: connection_disabled
+# Subtest: a disabled deployment emits showcase guidance instead of a connect prompt
+    ok 1 - should be equal
+    ok 2 - should be equal
+    1..2
+ok 116 - a disabled deployment emits showcase guidance instead of a connect prompt # time=6.699ms
+
+# Subtest: a disabled deployment still shows every block
+    ok 1 - should be equivalent
+    1..1
+ok 117 - a disabled deployment still shows every block # time=5.856ms
+
+# Subtest: B8 nearby list stores complete snapshots atomically and clears on an empty result
+    ok 1 - should be equivalent
+    ok 2 - should be equivalent
+    ok 3 - should be equal
+    ok 4 - should be equal
+    ok 5 - should be equal
+    ok 6 - should be equal
+    ok 7 - should be equal
+    ok 8 - should be equal
+    ok 9 - accessors do not request live data
+[37m2026-10-02 09:29:11.752[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2911[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: world.getNearbyEntities failed: invalid_response
+    ok 10 - a malformed item preserves the whole previous list
+    ok 11 - should be equivalent
+    1..11
+ok 118 - B8 nearby list stores complete snapshots atomically and clears on an empty result # time=22.603ms
+
+# Subtest: B8 entity lifecycle maps owner fixture params and propagates handle errors
+    ok 1 - should be equal
+    ok 2 - should be equivalent
+    ok 3 - should be equal
+    ok 4 - should be equal
+    ok 5 - should be equal
+    ok 6 - should be equal
+    ok 7 - should be equal
+    ok 8 - should be equal
+    ok 9 - should be equal
+    ok 10 - preserves input precision
+    ok 11 - should be equal
+    ok 12 - should be equivalent
+    ok 13 - should be equal
+    1..13
+ok 119 - B8 entity lifecycle maps owner fixture params and propagates handle errors # time=13.766ms
+
+# Subtest: B8 particle constructors send structured data and preserve explicit force
+    ok 1 - should be equivalent
+    ok 2 - should be equivalent
+    ok 3 - should be equivalent
+    ok 4 - should be equal
+[37m2026-10-02 09:29:11.779[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2911[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: world.spawnParticle failed: invalid_params
+    ok 5 - constructor errors are not sent as particle IDs
+    1..5
+ok 120 - B8 particle constructors send structured data and preserve explicit force # time=8.743ms
+
+# Subtest: B8 sound blocks expose both methods and the numeric-or-note height input
+    ok 1 - should be equal
+    ok 2 - should be equal
+    ok 3 - should be equal
+    ok 4 - should be equivalent
+    ok 5 - should be equivalent
+    ok 6 - should be equal
+    ok 7 - should be equivalent
+    ok 8 - should be equivalent
+    ok 9 - should be equal
+    ok 10 - should be equal
+    ok 11 - should be equal
+    ok 12 - should be equal
+    ok 13 - should be equal
+    ok 14 - should be equal
+    1..14
+ok 121 - B8 sound blocks expose both methods and the numeric-or-note height input # time=8.408ms
+
+# Subtest: B8 sound commands use fixture params and surface server and local errors
+    ok 1 - should be equal
+    ok 2 - should be equivalent
+    ok 3 - type is number
+    ok 4 - should be equal
+    ok 5 - should be equivalent
+    ok 6 - type is number
+    ok 7 - should be equal
+    ok 8 - should be equivalent
+    ok 9 - type is number
+    ok 10 - should be equal
+    ok 11 - should be equivalent
+    ok 12 - type is number
+[37m2026-10-02 09:29:11.800[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2911[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: world.playSound failed: invalid_params
+[37m2026-10-02 09:29:11.801[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2911[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: world.playSound failed: invalid_params
+[37m2026-10-02 09:29:11.808[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2911[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: world.playBlockSound failed: invalid_params
+    ok 13 - invalid local inputs are not sent
+    ok 14 - should be equal
+[37m2026-10-02 09:29:11.810[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2911[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: world.playBlockSound failed: no_block
+    ok 15 - should be equal
+    1..15
+ok 122 - B8 sound commands use fixture params and surface server and local errors # time=25.213ms
+
+# Subtest: B8 entity commands remain acknowledged in FAST and report invalid results and remote errors
+    ok 1 - a pose setter has a response even in FAST
+[37m2026-10-02 09:29:11.821[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2911[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: entity.setPose failed: invalid_response
+    ok 2 - should be equal
+    ok 3 - removal is acknowledged in FAST
+[37m2026-10-02 09:29:11.824[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2911[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: entity.remove failed: entity_unavailable
+    ok 4 - should be equal
+[37m2026-10-02 09:29:11.826[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37msrc/extensions/scratch3_mcremote/index.js:2911[39m[0m[0m[1m[37m	scratch-vm[39m[22m[0m[0m	McRemote: world.getNearbyEntities failed: invalid_params
+    ok 5 - runtime policy rejection preserves the previous list
+    ok 6 - should be equal
+    ok 7 - should be equal
+    ok 8 - should be equal
+    1..8
+ok 123 - B8 entity commands remain acknowledged in FAST and report invalid results and remote errors # time=11.001ms
+
+1..123
+# { total: 528, pass: 528 }
+# time=2959.015ms

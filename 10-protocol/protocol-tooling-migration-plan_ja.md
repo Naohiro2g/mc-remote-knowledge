@@ -105,6 +105,11 @@ release別API referenceの生成はowner移管の実行許可や完了条件で�
 評価し、移管待ちをreference提供の前提にしない（`2026-09-04-06`）。人間向けのAPI一覧は公開分をknowledgeが持ち、
 ホームページ配下に置く（`2026-09-30-05`）。
 
+## b8時点の起点
+
+b9の移管の起点は、公開したb8のScratch source `691576f`時点のfixture 12件（Protocol 7、WireScope 4、Bridge 1）である。path、bytes、
+SHA-256、case数、consumerは[b8 closeのfixture一覧](../14-evidence/artifacts/2026-10-03-b8-dev-live/scratch/2026-10-03-b8-close-inventory/FIXTURES_ja.md)を正とし、移した後のownerはこれとbyte一致で再現する。
+
 ## Javaの位置づけ（`2026-09-30-04`）
 
 Javaはb8にもb9にも含めない。b9までは、移管とfreezeに役立つ準備を先に進める。契約の疑問点の棚卸しとfreeze前の

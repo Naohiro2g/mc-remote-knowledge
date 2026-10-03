@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-03",
+  "scope": "knowledge transport materials; private images excluded",
+  "files": [
+    {
+      "path": "MANIFEST_ja.md",
+      "bytes": 6743,
+      "sha256": "719f1a865a4b54661b30476e8242e86f4b6eef91b928c129d1e863d7e18352ad"
+    },
+    {
+      "path": "RESULT_ja.md",
+      "bytes": 7532,
+      "sha256": "d0536afbf8949fa1ed72b20b5229d21c56db325fb91dddff396a9a3f8e221da9"
+    },
+    {
+      "path": "SESSION-CLOSE_ja.md",
+      "bytes": 2504,
+      "sha256": "215be6b387f61d7d3caed0df349a3a53894d0fa955e9d90e5ac2c204166d6cad"
+    },
+    {
+      "path": "DUST-BEDROCK-DIFFERENCE_ja.md",
+      "bytes": 3065,
+      "sha256": "ff2834cb2560e183fb160a7061a4937115daa5c213a38da089f00edb1d3e8e00"
+    },
+    {
+      "path": "materials/start-observation.json",
+      "bytes": 1890,
+      "sha256": "df7e6da9e45402e41420e37fecb983dd476cde26ba809a2a3b6942ae4c3d63bc"
+    },
+    {
+      "path": "materials/observations.json",
+      "bytes": 19196,
+      "sha256": "82c87653e0306ef75436a05712435ac6caf70533dbfdc7bdc5aba8ef9c1f2b5f"
+    },
+    {
+      "path": "materials/image-identities.json",
+      "bytes": 2118,
+      "sha256": "f169c02686f0af6803af7dbb0b19b5466064419f6689b39265ecb6d3059317f5"
+    }
+  ]
+}

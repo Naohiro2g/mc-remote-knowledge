@@ -1,0 +1,56 @@
+{
+  "result": "PASS",
+  "test_class": "unit/deterministic",
+  "source_commit": "691576f60b7f0824e1753bd6823901d01fbe2422",
+  "fixture": {
+    "bytes": 36481,
+    "sha256": "ca636b4a2685ea67f24d8e7931e3d30a84e7cec872bb5c5d2eadd178cdac39f2",
+    "case_count": 111,
+    "case_groups": {
+      "nearby": 19,
+      "entity_lifecycle": 7,
+      "particle_stage_2": 26,
+      "sound": 37,
+      "resource_ids": 15,
+      "nearby.handle_transaction_cases": 7
+    }
+  },
+  "wirescope_assets": 6,
+  "archive_file_counts": {
+    "scratch-image-inputs.tar.gz": 1729,
+    "bridge-image-inputs.tar.gz": 24,
+    "contracts.tar.gz": 11
+  },
+  "bridge_ws_version": "8.18.3",
+  "gui_runtime_config": {
+    "schema_version": 1,
+    "connection_enabled": false
+  },
+  "files": {
+    "scratch-image-inputs.tar.gz": {
+      "bytes": 138375344,
+      "sha256": "c7318efdfb22076c2d40501a526d7ca16a121510f7685d875fff34cdc4404843",
+      "unchanged_from_previous_candidate": false
+    },
+    "bridge-image-inputs.tar.gz": {
+      "bytes": 38138,
+      "sha256": "fd43f714c77d2bc184bf882460dfc05a1ce345dc6d4f5b52505a6a9d2850908f",
+      "unchanged_from_previous_candidate": true
+    },
+    "wirescope-app.zip": {
+      "bytes": 83746,
+      "sha256": "4cb349894b71d61d7ca143d8362a5b79deb1810e1d7a9e31ad30e29bfe370a07",
+      "unchanged_from_previous_candidate": true
+    },
+    "wirescope-app.manifest.json": {
+      "bytes": 2321,
+      "sha256": "6ea468f50d50b52722b8f34145743df86cebc60865fe0e827be5632c26b024d0",
+      "unchanged_from_previous_candidate": false
+    },
+    "contracts.tar.gz": {
+      "bytes": 1908,
+      "sha256": "48948ba47d55409f02a8ff8e0d44021b07859e11ffa5ca0f8598e6ef06082390",
+      "unchanged_from_previous_candidate": true
+    }
+  }
+}

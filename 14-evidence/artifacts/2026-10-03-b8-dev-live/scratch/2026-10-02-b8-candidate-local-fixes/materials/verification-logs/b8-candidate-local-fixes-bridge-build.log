@@ -1,0 +1,12 @@
+
+> @mc-remote/bridge@0.1.0 build
+> tsc --project tsconfig.build.json && vite build
+
+rolldown-vite v7.3.1 building client environment for production...
+[2Ktransforming...[2Ktransforming...✓ 8 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.js            0.33 kB │ gzip: 0.19 kB
+dist/main.js             0.46 kB │ gzip: 0.29 kB
+dist/config-BifYensG.js  7.59 kB │ gzip: 2.60 kB
+✓ built in 191ms

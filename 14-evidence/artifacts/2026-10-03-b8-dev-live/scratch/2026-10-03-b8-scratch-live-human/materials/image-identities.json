@@ -1,0 +1,62 @@
+[
+  {
+    "path": "private/particle-receiver-blocks.png",
+    "bytes": 80510,
+    "sha256": "e2d302a8886c0511fd69f60488163b2a76f894d45a6b1efd9d288ea4821da63b",
+    "visibility": "private; not for transport"
+  },
+  {
+    "path": "private/particle-java-render.png",
+    "bytes": 531994,
+    "sha256": "3107e58852460b7b1415179ca21ba23a374293c5c70ef837944d22d725989da2",
+    "visibility": "private; not for transport"
+  },
+  {
+    "path": "private/sound-receiver-blocks.png",
+    "bytes": 106067,
+    "sha256": "13bf323c561ec2b8681764b2348470bf269d3c7631f4bd3a562f22e8d8adfaf7",
+    "visibility": "private; not for transport"
+  },
+  {
+    "path": "private/dust-color-size-blocks.png",
+    "bytes": 138128,
+    "sha256": "478b53675a3df9d0e3ea0e86ce91e785a40445f40f73f82f46f2e85f1ed5ed9d",
+    "visibility": "private; not for transport"
+  },
+  {
+    "path": "private/block-particle-blocks.png",
+    "bytes": 92641,
+    "sha256": "c3fac186affffa8a3206cb54377b359c031dbcc8e5defacf81932d3c36b576b1",
+    "visibility": "private; not for transport"
+  },
+  {
+    "path": "private/block-particle-followup.png",
+    "bytes": 135399,
+    "sha256": "31f5bab65269bdc087acbdbc8da5249a45a056dc4959274d0aa299d465cb727e",
+    "visibility": "private; not for transport"
+  },
+  {
+    "path": "private/sound-variable-input-blocks.png",
+    "bytes": 87799,
+    "sha256": "99189f440149c1c13718aa86e8f238ccf118a9d1690b4e03c84b687e5a16ca52",
+    "visibility": "private; not for transport"
+  },
+  {
+    "path": "private/sound-variable-assignment-followup.png",
+    "bytes": 84276,
+    "sha256": "1ac76c39085d1e250d2405696c0b8375065519a29d5743c1de24d894cb39b823",
+    "visibility": "private; not for transport"
+  },
+  {
+    "path": "private/sequential-sound-chord-blocks.png",
+    "bytes": 76289,
+    "sha256": "70d03456b629636f4fe02e467744302b215bf807f2f56b1e0fbb71363002d8be",
+    "visibility": "private; not for transport"
+  },
+  {
+    "path": "private/block-sound-five-kinds-blocks.png",
+    "bytes": 113708,
+    "sha256": "115376a9e01e0da38df429f71a83ea1a525d4537630b5376be5efe7a4a5f1070",
+    "visibility": "private; not for transport"
+  }
+]

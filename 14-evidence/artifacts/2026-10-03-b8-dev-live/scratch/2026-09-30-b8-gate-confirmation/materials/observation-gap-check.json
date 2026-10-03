@@ -1,0 +1,90 @@
+{
+  "testClass": "unit/deterministic gap audit",
+  "sourceBase": "5aaa9c59acc393cd0a0de5cb45a5e619a5e87abe",
+  "results": [
+    {
+      "id": "particle-qualified",
+      "method": "world.spawnParticle",
+      "validatorAccepted": true,
+      "validatorError": null,
+      "scratchProjectedFrameCount": 1
+    },
+    {
+      "id": "particle-short",
+      "method": "world.spawnParticle",
+      "validatorAccepted": false,
+      "validatorError": "frame.payload.params[6] must be a canonical resource ID",
+      "scratchProjectedFrameCount": 0
+    },
+    {
+      "id": "particle-typed",
+      "method": "world.spawnParticle",
+      "validatorAccepted": true,
+      "validatorError": null,
+      "scratchProjectedFrameCount": 0
+    },
+    {
+      "id": "particle-fast",
+      "method": "world.spawnParticle",
+      "validatorAccepted": true,
+      "validatorError": null,
+      "scratchProjectedFrameCount": 0
+    },
+    {
+      "id": "entity-qualified",
+      "method": "world.spawnEntity",
+      "validatorAccepted": true,
+      "validatorError": null,
+      "scratchProjectedFrameCount": 1
+    },
+    {
+      "id": "entity-short",
+      "method": "world.spawnEntity",
+      "validatorAccepted": false,
+      "validatorError": "frame.payload.params[3] must be a canonical resource ID",
+      "scratchProjectedFrameCount": 0
+    },
+    {
+      "id": "nearby",
+      "method": "world.getNearbyEntities",
+      "validatorAccepted": true,
+      "validatorError": null,
+      "scratchProjectedFrameCount": 0
+    },
+    {
+      "id": "get-pose",
+      "method": "entity.getPose",
+      "validatorAccepted": true,
+      "validatorError": null,
+      "scratchProjectedFrameCount": 0
+    },
+    {
+      "id": "set-pose",
+      "method": "entity.setPose",
+      "validatorAccepted": true,
+      "validatorError": null,
+      "scratchProjectedFrameCount": 0
+    },
+    {
+      "id": "remove",
+      "method": "entity.remove",
+      "validatorAccepted": true,
+      "validatorError": null,
+      "scratchProjectedFrameCount": 0
+    },
+    {
+      "id": "sound",
+      "method": "world.playSound",
+      "validatorAccepted": false,
+      "validatorError": "frame.method is not observable: world.playSound",
+      "scratchProjectedFrameCount": 0
+    },
+    {
+      "id": "block-sound",
+      "method": "world.playBlockSound",
+      "validatorAccepted": false,
+      "validatorError": "frame.method is not observable: world.playBlockSound",
+      "scratchProjectedFrameCount": 0
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+jest-haste-map: duplicate manual mock found: index
+  The following files share their name; please delete one of them:
+    * <rootDir>/src/lib/settings/color-mode/dark/__mocks__/index.js
+    * <rootDir>/src/lib/settings/color-mode/default/__mocks__/index.js
+
+Browserslist: browsers data (caniuse-lite) is 10 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+PASS test/unit/lib/configure-workspace-zoom.test.js
+ts-jest[config] (WARN) 
+    The "ts-jest" config option "isolatedModules" is deprecated and will be removed in v30.0.0. Please use "isolatedModules: true" in ~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-gui/tsconfig.test.json instead, see https://www.typescriptlang.org/tsconfig/#isolatedModules
+  
+PASS test/unit/containers/blocks.test.js (45.426 s)
+  ● Console
+
+    console.log
+      [37m2026-10-01 20:06:35.090[39m[0m[0m	[31m[1mERROR[22m[39m[0m[0m	[37m~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-gui/src/containers/blocks.jsx:488[39m[0m[0m[1m[37m	scratch-gui[39m[22m[0m[0m	
+      [97m[101m[1m Error [22m[49m[39m[0m[0m Workspace Update Error: workspace load failed[0m[0m
+      error stack:
+        • [33mblocks.test.js[39m[0m[0m	[0m[0m
+      	[37m~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-gui/test/unit/containers/blocks.test.js:46[39m[0m[0m
+        • [33mindex.js[39m[0m[0m	[0m[0m
+      	[37m~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/jest-mock/build/index.js:397[39m[0m[0m
+        • [33mindex.js[39m[0m[0m	[0m[0m
+      	[37m~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/jest-mock/build/index.js:404[39m[0m[0m
+        • [33mindex.js[39m[0m[0m	[0m[0m
+      	[37m~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/jest-mock/build/index.js:148[39m[0m[0m
+        • [33mblocks.jsx[39m[0m[0m	[0m[0m
+      	[37m~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-gui/src/containers/blocks.jsx:474[39m[0m[0m
+        • [33mblocks.test.js[39m[0m[0m	[0m[0m
+      	[37m~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-gui/test/unit/containers/blocks.test.js:49[39m[0m[0m
+        • [33mutils.js[39m[0m[0m	[0m[0m
+      	[37m~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/jest-circus/build/utils.js:298[39m[0m[0m
+        • [33mutils.js[39m[0m[0m	[0m[0m
+      	[37m~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/jest-circus/build/utils.js:231[39m[0m[0m
+        • [33mrun.js[39m[0m[0m	[0m[0m
+      	[37m~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/jest-circus/build/run.js:316[39m[0m[0m
+        • [33mrun.js[39m[0m[0m	[0m[0m
+      	[37m~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/jest-circus/build/run.js:252[39m[0m[0m
+        • [33mrun.js[39m[0m[0m	[0m[0m
+      	[37m~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/jest-circus/build/run.js:126[39m[0m[0m
+        • [33mrun.js[39m[0m[0m	[0m[0m
+      	[37m~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/jest-circus/build/run.js:121[39m[0m[0m
+        • [33mrun.js[39m[0m[0m	[0m[0m
+      	[37m~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/jest-circus/build/run.js:71[39m[0m[0m
+        • [33mjestAdapterInit.js[39m[0m[0m	[0m[0m
+      	[37m~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122[39m[0m[0m
+        • [33mjestAdapter.js[39m[0m[0m	[0m[0m
+      	[37m~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79[39m[0m[0m
+        • [33mrunTest.js[39m[0m[0m	[0m[0m
+      	[37m~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/jest-runner/build/runTest.js:367[39m[0m[0m
+        • [33mrunTest.js[39m[0m[0m	[0m[0m
+      	[37m~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/jest-runner/build/runTest.js:444[39m[0m[0m[0m[0m
+
+      at Object.transportFormatted (../../node_modules/tslog/cjs/BaseLogger.js:115:13)
+
+    console.log
+      [37m2026-10-01 20:06:35.144[39m[0m[0m	[31m[1mERROR[22m[39m[0m[0m	[37m~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-gui/src/containers/blocks.jsx:488[39m[0m[0m[1m[37m	scratch-gui[39m[22m[0m[0m	
+      [97m[101m[1m Error [22m[49m[39m[0m[0m Workspace Update Error: XML parse failed[0m[0m
+      error stack:
+        • [33mblocks.test.js[39m[0m[0m	[0m[0m
+      	[37m~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-gui/test/unit/containers/blocks.test.js:57[39m[0m[0m
+        • [33mindex.js[39m[0m[0m	[0m[0m
+      	[37m~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/jest-mock/build/index.js:397[39m[0m[0m
+        • [33mindex.js[39m[0m[0m	[0m[0m
+      	[37m~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/jest-mock/build/index.js:404[39m[0m[0m
+        • [33mindex.js[39m[0m[0m	[0m[0m
+      	[37m~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/jest-mock/build/index.js:148[39m[0m[0m
+        • [33mblocks.jsx[39m[0m[0m	[0m[0m
+      	[37m~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-gui/src/containers/blocks.jsx:473[39m[0m[0m
+        • [33mblocks.test.js[39m[0m[0m	[0m[0m
+      	[37m~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-gui/test/unit/containers/blocks.test.js:60[39m[0m[0m
+        • [33mutils.js[39m[0m[0m	[0m[0m
+      	[37m~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/jest-circus/build/utils.js:298[39m[0m[0m
+        • [33mutils.js[39m[0m[0m	[0m[0m
+      	[37m~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/jest-circus/build/utils.js:231[39m[0m[0m
+        • [33mrun.js[39m[0m[0m	[0m[0m
+      	[37m~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/jest-circus/build/run.js:316[39m[0m[0m
+        • [33mrun.js[39m[0m[0m	[0m[0m
+      	[37m~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/jest-circus/build/run.js:252[39m[0m[0m
+        • [33mrun.js[39m[0m[0m	[0m[0m
+      	[37m~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/jest-circus/build/run.js:126[39m[0m[0m
+        • [33mrun.js[39m[0m[0m	[0m[0m
+      	[37m~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/jest-circus/build/run.js:121[39m[0m[0m
+        • [33mrun.js[39m[0m[0m	[0m[0m
+      	[37m~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/jest-circus/build/run.js:71[39m[0m[0m
+        • [33mjestAdapterInit.js[39m[0m[0m	[0m[0m
+      	[37m~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122[39m[0m[0m
+        • [33mjestAdapter.js[39m[0m[0m	[0m[0m
+      	[37m~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79[39m[0m[0m
+        • [33mrunTest.js[39m[0m[0m	[0m[0m
+      	[37m~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/jest-runner/build/runTest.js:367[39m[0m[0m
+        • [33mrunTest.js[39m[0m[0m	[0m[0m
+      	[37m~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/node_modules/jest-runner/build/runTest.js:444[39m[0m[0m[0m[0m
+
+      at Object.transportFormatted (../../node_modules/tslog/cjs/BaseLogger.js:115:13)
+
+PASS test/unit/lib/configure-continuous-flyout.test.js
+
+Test Suites: 3 passed, 3 total
+Tests:       13 passed, 13 total
+Snapshots:   0 total
+Time:        52.188 s
+Ran all test suites matching /test\/unit\/lib\/configure-workspace-zoom.test.js|test\/unit\/lib\/configure-continuous-flyout.test.js|test\/unit\/containers\/blocks.test.js/i.

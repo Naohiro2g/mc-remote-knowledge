@@ -1,0 +1,215 @@
+{
+  "knowledge_close_commit": "2a8c3eae4e489e67f044111b0d1e6cdd22ead86a",
+  "knowledge_runtime_commit": "90cf87fbcd132984ef027a98a263e5911aaf30bf",
+  "source_commit": "691576f60b7f0824e1753bd6823901d01fbe2422",
+  "existing_directory_count": 14,
+  "counts": {
+    "1": 5,
+    "2": 6,
+    "3": 3
+  },
+  "directories": [
+    {
+      "directory": "2026-09-30-b8-gate-confirmation",
+      "category": 3,
+      "destination": "廃棄候補（coordinatorの全文着地確認待ち）",
+      "reason": "初回確認票・カタログ着地回答・観測欠落の再現。後続の実装・公開・live結果へ更新済み。",
+      "identity": "5aaa9c59acc393cd0a0de5cb45a5e619a5e87abe",
+      "next_action": "landing-confirmationとrelease-gate-confirmationの全文がknowledgeへ移っていること、再現素材が他票から不要となったことをcoordinatorが確認する。未着地の内容があれば残して再分類する。",
+      "entry": {
+        "path": "handoff-materials/2026-09-30-b8-gate-confirmation/MANIFEST_ja.md",
+        "bytes": 1995,
+        "sha256": "dd909a83229893183ccf17b5678fffbea4593610bc862f30acfd0b2d87c347f1"
+      },
+      "transfer_state": "pending; no transfer or deletion performed"
+    },
+    {
+      "directory": "2026-09-30-b8-scratch-blocks",
+      "category": 3,
+      "destination": "廃棄候補（coordinatorの全文着地確認待ち）",
+      "reason": "未commit時の9ブロック案と59 case版fixtureへの問い合わせ回答。実装は公開source、fixtureは111 case版へ進んだ。",
+      "identity": "5aaa9c59acc393cd0a0de5cb45a5e619a5e87abe",
+      "next_action": "mcremote-replyとscratch-blocksの全文をknowledgeのgate記録・Scratch spokeと照合。未着地のreason/config回答や局所決定があれば残す。旧59 caseの案を現行contractとして再利用しない。",
+      "entry": {
+        "path": "handoff-materials/2026-09-30-b8-scratch-blocks/MANIFEST_ja.md",
+        "bytes": 543,
+        "sha256": "8107b8a53fb67706d26e8150312f462fef26132fc085441a16e9128c8d99e8ab"
+      },
+      "transfer_state": "pending; no transfer or deletion performed"
+    },
+    {
+      "directory": "2026-09-30-b8-scratch-candidate",
+      "category": 3,
+      "destination": "廃棄候補（coordinatorの全文着地確認待ち）",
+      "reason": "dfcb03cfの旧candidate。df34849のPython同梱由来と691576fの凍結・公開素材は別directoryで残す。",
+      "identity": "dfcb03cf97fed998268b4714feb32d03a209f549",
+      "next_action": "MANIFESTの全文と旧artifact identityのknowledge着地、旧archiveへの非参照を確認する。その後に限り旧build logとarchiveを処分する。",
+      "entry": {
+        "path": "handoff-materials/2026-09-30-b8-scratch-candidate/MANIFEST_ja.md",
+        "bytes": 3437,
+        "sha256": "74406ae5ef608009319d82a30097f6c3e4f2a472b9db14d4311bc726f5666509"
+      },
+      "transfer_state": "pending; no transfer or deletion performed"
+    },
+    {
+      "directory": "2026-09-30-block-picker-names",
+      "category": 2,
+      "destination": "b9のScratch picker担当。設計正本は13-scratch-client/scratch-block-value-projection-design_ja.md §7／scratch-roadmap_ja.md",
+      "reason": "日英名・検索の元票、長い名前の表示例とbrowser scriptをalias検索・幅・読み上げ確認へ引き継ぐ。",
+      "identity": "初期base 5aaa9c59acc393cd0a0de5cb45a5e619a5e87abe／公開実装 691576f60b7f0824e1753bd6823901d01fbe2422",
+      "next_action": "後続担当がknowledge-handoff、browser-smoke、画像を受領し、公開実装に対して再現入口を更新する。旧画面の承認をb9の検証済み扱いにしない。",
+      "entry": {
+        "path": "handoff-materials/2026-09-30-block-picker-names/MANIFEST_ja.md",
+        "bytes": 1809,
+        "sha256": "30c6c053b60e0a7a8b9727fcd15e1532ca2606ca5984845fddd30fffa7c0a7fd"
+      },
+      "transfer_state": "pending; no transfer or deletion performed"
+    },
+    {
+      "directory": "2026-10-01-b8-candidate-b7-fixes",
+      "category": 1,
+      "destination": "knowledge 14-evidence/records/2026-10-03-b8-scratch-close_ja.md と14-evidence/artifacts/2026-10-03-b8-scratch-close/candidate-df34849/（命名提案）",
+      "reason": "Python同梱WireScopeのsource df34849と、B7是正3件のcommit・artifact identityをつなぐ由来を保存する。",
+      "identity": "df34849d2502a498a06c5fe07a91d03e925124eb",
+      "next_action": "MANIFEST・REPLY・detached manifestとartifact identityを正式配置。ZIPの同一bytesとsourceの異なるmanifestを区別する。重複GUI／Bridge archiveは全文着地・非参照確認後だけ整理。",
+      "entry": {
+        "path": "handoff-materials/2026-10-01-b8-candidate-b7-fixes/MANIFEST_ja.md",
+        "bytes": 3722,
+        "sha256": "52943d50668754e3b78a06b093f0005f031c2797c442eb183e1a1e2611386be7"
+      },
+      "transfer_state": "pending; no transfer or deletion performed"
+    },
+    {
+      "directory": "2026-10-01-b8-fixture-preflight",
+      "category": 2,
+      "destination": "b9移管coordinator／tooling担当。10-protocol/protocol-tooling-migration-plan_ja.mdのb8基線へ本返信の凍結一覧と一緒に渡す",
+      "reason": "凍結前の棚卸しと依存関係の整理。今回の691576fの一覧が移管基線、事前票は一致の履歴として残す。",
+      "identity": "dfcb03cf97fed998268b4714feb32d03a209f549 → 691576f60b7f0824e1753bd6823901d01fbe2422",
+      "next_action": "本返信の12 fixture／consumer一覧を主入口にし、事前票を比較用として受領する。owner・source・配布先の変更は別途批准された範囲で行う。",
+      "entry": {
+        "path": "handoff-materials/2026-10-01-b8-fixture-preflight/MANIFEST_ja.md",
+        "bytes": 4274,
+        "sha256": "596af26e71dc776c716892b6a1bcb0d19a371f48e889a2bd8cedd75cec302f47"
+      },
+      "transfer_state": "pending; no transfer or deletion performed"
+    },
+    {
+      "directory": "2026-10-01-b8-local-playtest",
+      "category": 2,
+      "destination": "Scratch後続のローカル動作確認担当。private設定・運用ログを保管する場合はmc-remote-backstage担当へ",
+      "reason": "接続・表示の再現scriptとローカル試運転の観測を利用できる。正式b8 gateのPASS根拠には使わない。",
+      "identity": "df34849d2502a498a06c5fe07a91d03e925124eb（試運転準備時点）",
+      "next_action": "起動script・観測・画像を後続担当へ渡し、runtime-configと運用値は公開票から除く。稼働サービスがこのpathを参照し得るため受領だけを根拠に削除しない。",
+      "entry": {
+        "path": "handoff-materials/2026-10-01-b8-local-playtest/MANIFEST_ja.md",
+        "bytes": 3856,
+        "sha256": "a99218d5b4bbd08c2fd708344366e6098b71e9e433d80e26b8234a70d4545a24"
+      },
+      "transfer_state": "pending; no transfer or deletion performed"
+    },
+    {
+      "directory": "2026-10-02-b8-candidate-local-fixes",
+      "category": 1,
+      "destination": "knowledge 14-evidence/records/2026-10-03-b8-scratch-close_ja.md と14-evidence/artifacts/2026-10-03-b8-scratch-close/candidate-691576f/（命名提案）",
+      "reason": "凍結candidateの5 artifact、GUIローカル試験入力、picker／BlockInfoText局所決定を公開sourceへ結び付ける。",
+      "identity": "691576f60b7f0824e1753bd6823901d01fbe2422",
+      "next_action": "MANIFEST・REPLY・DECISIONS-HANDOFF・verification.json・verify-artifacts.pyを正式配置する。局所決定は着地済みspokeへ参照。大きな入力archiveはidentityと試験入力の参照を残し、廃棄可否を別途確認する。",
+      "entry": {
+        "path": "handoff-materials/2026-10-02-b8-candidate-local-fixes/MANIFEST_ja.md",
+        "bytes": 7180,
+        "sha256": "e9c3092a3839e9c9fd7b57f445a17e94a67f9c46b2c6dda1d7544c58ed209e4b"
+      },
+      "transfer_state": "pending; no transfer or deletion performed"
+    },
+    {
+      "directory": "2026-10-02-home-scratch-contract-reply",
+      "category": 2,
+      "destination": "Stackのホーム設定担当、およびScratchのruntime-config表示担当。元票2026-10-02-home-scratch-contract-driftへの回答",
+      "reason": "設定contractの照合と、設定異常／意図的disabledを画面で区別できない未対応を継続して追跡する。",
+      "identity": "Scratch df34849d2502a498a06c5fe07a91d03e925124eb／元票Stack 68832e0a95c0462462e9a10115bfae272ec1a6d7",
+      "next_action": "materials/reply_ja.mdをStack担当へ人間経由で返し、表示課題はScratch NOTESで継続する。設定schemaを変更する判断ではない。",
+      "entry": {
+        "path": "handoff-materials/2026-10-02-home-scratch-contract-reply/MANIFEST_ja.md",
+        "bytes": 666,
+        "sha256": "924e075db8e6e0a604e9f6cfdc9ea30eaf00fca54e51e0416a9e8d803760faa3"
+      },
+      "transfer_state": "pending; no transfer or deletion performed"
+    },
+    {
+      "directory": "2026-10-02-stack-wss-reply",
+      "category": 2,
+      "destination": "Stackのホーム接続検査／doctor担当。元票2026-10-02-home-runtime-permissionsへの回答",
+      "reason": "WSS 401の検査要求にone-shot subprotocolが欠けることを切り分けた回答とローカル再現を保持する。",
+      "identity": "調査対象 f133fc95ed7b23109cc1908dc4f0dae066510258（b7.post2）／元票Stack 19c8afa68a3133addf82f308ab642d8ca4e51e15",
+      "next_action": "reply、probe-subprotocol.mjs、probe-result.jsonを検査修正へ引き継ぐ。実ホームTLS／proxy経路は今回未検証、製品改訂は不要と回答済み。",
+      "entry": {
+        "path": "handoff-materials/2026-10-02-stack-wss-reply/MANIFEST_ja.md",
+        "bytes": 846,
+        "sha256": "0366ca9c3a8881c89e8cd4f6e65ed3d230236fc7b99eaaaf6c2f0ba5603ed48f"
+      },
+      "transfer_state": "pending; no transfer or deletion performed"
+    },
+    {
+      "directory": "2026-10-03-b8-publication",
+      "category": 1,
+      "destination": "knowledge 14-evidence/records/2026-10-03-b8-scratch-close_ja.md と14-evidence/artifacts/2026-10-03-b8-scratch-close/publication/（命名提案）",
+      "reason": "公開tag／develop／workflow／Release asset／OCIのprovider実照合値と公開成果物を保存する。",
+      "identity": "v2320.0.0b8 → 691576f60b7f0824e1753bd6823901d01fbe2422／workflow 37113933602",
+      "next_action": "RESULTとprovider・asset・OCI identity、公開manifest／detached manifestを正式配置。旧HANDOFF-INVENTORYの全②の暫定分類は本返信で置き換える。",
+      "entry": {
+        "path": "handoff-materials/2026-10-03-b8-publication/MANIFEST_ja.md",
+        "bytes": 3149,
+        "sha256": "5224c1843fa801ce3026789bca68c49478f215d74fbc825d631df790febcb083"
+      },
+      "transfer_state": "pending; no transfer or deletion performed"
+    },
+    {
+      "directory": "2026-10-03-b8-scratch-live-gate",
+      "category": 1,
+      "destination": "knowledgeの既存14-evidence/records/2026-10-03-b8-dev-live_ja.mdと14-evidence/artifacts/2026-10-03-b8-dev-live/scratch-segment-3/（artifact名は提案）。依存／fixture棚卸しはb9 tooling担当にも渡す",
+      "reason": "segment 3の実ブラウザ・ブロック往復・human目視の詳細観測を、着地済みsummaryの根拠として残す。",
+      "identity": "691576f60b7f0824e1753bd6823901d01fbe2422／b8-integrated-artifact-set-1",
+      "next_action": "RESULT、live-results、human-review、frozen-identities、画像digestとsanitized画像を正式配置。browser-step等を再現入口に添える。private/は公開搬送せずbackstage担当、runtime/は重複展開物で稼働参照終了と移管確認まで保持。backpressure実機NOTRUNを維持する。",
+      "entry": {
+        "path": "handoff-materials/2026-10-03-b8-scratch-live-gate/MANIFEST_ja.md",
+        "bytes": 4517,
+        "sha256": "60ced28b8e40915d68e97d1bb9a1305f57c4e854a349ed353f28103e9cecaaac"
+      },
+      "transfer_state": "pending; no transfer or deletion performed"
+    },
+    {
+      "directory": "2026-10-03-b8-scratch-live-human",
+      "category": 1,
+      "destination": "knowledgeの既存14-evidence/records/2026-10-03-b8-dev-live_ja.mdと14-evidence/artifacts/2026-10-03-b8-dev-live/scratch-live-human/（artifact名は提案）。後続観測はScratch／教材／サウンド担当にも渡す",
+      "reason": "2 playerの申告、dustサイズ差、音と教材候補の観測を要約に潰さず保存する。",
+      "identity": "691576f60b7f0824e1753bd6823901d01fbe2422／knowledge参照3f0c14ab9e41e469a23f865b3e7a313744bdcdc7",
+      "next_action": "RESULT、DUST-BEDROCK-DIFFERENCE、observations・start-observation・image-identities・export-identitiesを正式配置。iPad dustサイズのFAILを原観測として保持。private原画像は公開搬送せずbackstageへ。self文言、音源位置教材、シーケンス関心は後続担当へ渡し、実装時期は確定しない。",
+      "entry": {
+        "path": "handoff-materials/2026-10-03-b8-scratch-live-human/MANIFEST_ja.md",
+        "bytes": 6743,
+        "sha256": "719f1a865a4b54661b30476e8242e86f4b6eef91b928c129d1e863d7e18352ad"
+      },
+      "transfer_state": "pending; no transfer or deletion performed"
+    },
+    {
+      "directory": "2026-10-03-wirescope-column-width",
+      "category": 2,
+      "destination": "b9 WireScope担当。agent/b8-compatibilityの01cdb0bとGATE-ADDENDUMを起点にする",
+      "reason": "human owner承認済み・commit／push済みの列幅改訂をb9へ送る決定。b8公開には含まない。",
+      "identity": "01cdb0bfee3a681697ffa44db5b890045b74b01c",
+      "next_action": "patch・測定JSON・画像・再現script・ZIP／manifestを受領する。b9候補のsource・依存に合わせてartifact identityと確認を更新する。",
+      "entry": {
+        "path": "handoff-materials/2026-10-03-wirescope-column-width/MANIFEST_ja.md",
+        "bytes": 2648,
+        "sha256": "9d8e0289f0541f667f0265fd442fd03d120d680bd113ecb39407ae337628ae10"
+      },
+      "transfer_state": "pending; no transfer or deletion performed"
+    }
+  ],
+  "reply_directory": {
+    "directory": "2026-10-03-b8-close-inventory",
+    "category": 1,
+    "destination": "knowledge 14-evidence/records/2026-10-03-b8-scratch-close_ja.mdおよび同artifacts（命名提案）",
+    "reason": "今回の全directory分類、凍結fixtureとconsumerの再採取値をb8 close／b9移管の入力として保存する"
+  }
+}

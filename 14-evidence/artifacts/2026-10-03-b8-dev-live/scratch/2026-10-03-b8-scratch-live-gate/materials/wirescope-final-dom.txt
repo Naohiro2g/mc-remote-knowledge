@@ -1,0 +1,76 @@
+W
+WireScope
+ライブ画面・読み取り専用
+にほんご
+1 本のストリームを観測中
+フィルターを表示
+フィルター: 55件中55件を表示
+SCRATCH 接続元
+PAPERT-APPLE-176141
+読み取り専用
+
+古いフレームを 17 件省略し、直近の履歴を表示しています。
+
+メインストリーム
+main
+エラー
+ハンドシェイク · 1.21.11 · 23.2.0
+通信フレーム
+55
+表示を一時停止
+#	時刻	方向	メソッド	ペイロード
+61	05:47:40	送信	hello	{"params":{"protocol":"23.2.0","client":{"name":"scratch-mcremote","version":"2320.0.0b8","locale":"ja"}}}
+62	05:47:40	受信	hello	{"result":{"protocol":"23.2.0","mc_version":"1.21.11","supported_mc_versions":["1.21.11"],"catalog_hash":"6d0f8524b70e37fb8d7b34d0fdb45c2b058dcfea82920d86ca9aaabb9fcadc83","dimension":"minecraft:overworld","origin":[200,0,200],"world_constants":{"y_sea":62},"permissions":{"online":true,"offline":true,"build_range":1000}}}
+779	05:51:37	送信	player.getPos	{"params":[]}
+780	05:51:37	受信	player.getPos	{"result":{"dimension":"minecraft:overworld","pos":[7.688,121,-1.898]}}
+782	05:51:38	送信	player.getPos	{"params":[]}
+783	05:51:38	受信	player.getPos	{"result":{"dimension":"minecraft:overworld","pos":[7.688,121,-1.898]}}
+784	05:51:38	送信	player.getPos	{"params":[]}
+785	05:51:38	受信	player.getPos	{"result":{"dimension":"minecraft:overworld","pos":[7.688,121,-1.898]}}
+786	05:51:38	送信	player.getPos	{"params":[]}
+788	05:51:38	受信	player.getPos	{"result":{"dimension":"minecraft:overworld","pos":[7.688,121,-1.898]}}
+971	05:52:38	送信	world.spawnEntity	{"params":[9.687999999999999,121,-1.898,"armor_stand"]}
+972	05:52:38	受信	world.spawnEntity	{"result":"mcr_eh_lDdr9OEsEIqfogi9aE6lYQ"}
+973	05:52:38	送信	world.getNearbyEntities	{"params":[7.688,121,-1.898,10,64]}
+974	05:52:38	受信	world.getNearbyEntities	{"result":[{"handle":"mcr_eh_lDdr9OEsEIqfogi9aE6lYQ","type":"minecraft:armor_stand","pos":[9.688,121,-1.898]},{"handle":"mcr_eh_Pdhh7qHdXX3s_3Ci7LF0gw","type":"minecraft:armor_stand","pos":[0.5,121,0.5]}]}
+976	05:52:38	送信	entity.getPose	{"params":["mcr_eh_lDdr9OEsEIqfogi9aE6lYQ"]}
+977	05:52:38	受信	entity.getPose	{"result":{"dimension":"minecraft:overworld","pos":[9.688,121,-1.898],"yaw":0,"pitch":0}}
+978	05:52:38	送信	entity.setPose	{"params":["mcr_eh_lDdr9OEsEIqfogi9aE6lYQ","overworld",10.687999999999999,121,-1.898,90,0]}
+979	05:52:39	受信	entity.setPose	{"result":{"dimension":"minecraft:overworld","pos":[10.688,121,-1.898],"yaw":90,"pitch":0}}
+981	05:52:39	送信	entity.getPose	{"params":["mcr_eh_lDdr9OEsEIqfogi9aE6lYQ"]}
+982	05:52:39	受信	entity.getPose	{"result":{"dimension":"minecraft:overworld","pos":[10.688,121,-1.898],"yaw":90,"pitch":0}}
+983	05:52:39	送信	entity.remove	{"params":["mcr_eh_lDdr9OEsEIqfogi9aE6lYQ"]}
+984	05:52:39	受信	entity.remove	{"result":null}
+986	05:52:39	送信	world.getNearbyEntities	{"params":[7.688,121,-1.898,10,64]}
+987	05:52:39	受信	world.getNearbyEntities	{"result":[{"handle":"mcr_eh_Pdhh7qHdXX3s_3Ci7LF0gw","type":"minecraft:armor_stand","pos":[0.5,121,0.5]}]}
+1130	05:53:28	送信	world.spawnParticle	{"params":[8.687999999999999,122,-1.898,0.3,0.3,0.3,{"particle_id":"flame","receiver":"world"},0,8,false]}
+1131	05:53:28	受信	world.spawnParticle	{"result":8}
+1132	05:53:28	送信	world.spawnParticle	{"params":[8.687999999999999,122,-1.898,0.3,0.3,0.3,{"particle_id":"minecraft:dust","receiver":"world","data":{"color":[255,64,0],"size":1}},0,8,false]}
+1134	05:53:28	受信	world.spawnParticle	{"result":8}
+1135	05:53:28	送信	world.spawnParticle	{"params":[8.687999999999999,122,-1.898,0.3,0.3,0.3,{"particle_id":"minecraft:block","receiver":"world","data":{"block_id":"stone","state":{}}},0,8,false]}
+1136	05:53:28	受信	world.spawnParticle	{"result":8}
+1137	05:53:28	送信	world.spawnParticle	{"params":[8.687999999999999,122,-1.898,0.3,0.3,0.3,{"particle_id":"flame","receiver":"self"},0,8,false]}
+1139	05:53:28	受信	world.spawnParticle	{"result":8}
+1140	05:53:28	送信	world.spawnParticle	{"params":[8.687999999999999,122,-1.898,0.3,0.3,0.3,{"particle_id":"minecraft:dust","receiver":"self","data":{"color":[255,64,0],"size":1}},0,8,false]}
+1141	05:53:29	受信	world.spawnParticle	{"result":8}
+1142	05:53:29	送信	world.spawnParticle	{"params":[8.687999999999999,122,-1.898,0.3,0.3,0.3,{"particle_id":"minecraft:block","receiver":"self","data":{"block_id":"stone","state":{}}},0,8,false]}
+1143	05:53:29	受信	world.spawnParticle	{"result":8}
+1145	05:53:29	送信	world.spawnParticle	{"params":[8.687999999999999,122,-1.898,0.3,0.3,0.3,{"particle_id":"flame","receiver":"world"},0,8,false]}
+1146	05:53:29	受信	world.spawnParticle	{"result":8}
+1148	05:53:29	送信	world.playSound	{"params":[7.688,121,-1.898,"block.glass.break",{"volume":0.5,"note":12}]}
+1149	05:53:29	受信	world.playSound	{"result":null}
+1151	05:53:30	送信	world.playSound	{"params":[7.688,121,-1.898,"block.note_block.harp",{"volume":0.5,"pitch":1,"receiver":"self"}]}
+1152	05:53:30	受信	world.playSound	{"result":null}
+1153	05:53:30	送信	world.getBlock	{"params":[7,120,-2]}
+1154	05:53:30	受信	world.getBlock	{"result":{"block_id":"minecraft:stone","state":{}}}
+1156	05:53:30	送信	world.playBlockSound	{"params":[7,120,-2,"break",{"volume":0.5,"note":12}]}
+1157	05:53:30	受信	world.playBlockSound	{"result":null}
+1357	05:54:41	送信	connection.flush	{"params":[]}
+1358	05:54:41	受信	connection.flush	{"result":null}
+1360	05:54:41	送信	world.spawnParticle	{"params":[8.687999999999999,122,-1.898,0.3,0.3,0.3,{"particle_id":"flame","receiver":"world"},0,8,false]}
+1361	05:54:41	受信	world.spawnParticle	{"result":8}
+2570	06:01:43	送信	connection.flush	{"params":[]}
+2571	06:01:43	受信	connection.flush	{"result":null}
+2572	06:01:43	送信済み・結果未確認	world.spawnParticle	{"params":[8.687999999999999,122,-1.898,0.3,0.3,0.3,{"particle_id":"flame","receiver":"world"},0,8,false]}
+2573	06:01:43	送信	connection.flush	{"params":[]}
+2575	06:01:43	受信	connection.flush	{"result":null}

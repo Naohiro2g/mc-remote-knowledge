@@ -1,0 +1,1 @@
+{"result":"PASS","testClass":"local browser Scratch VM primitives","actual":{"id":"minecraft:oak_log","state":"axis=z","property":"z","hasProperty":true,"modId":"examplemod:ruby_block","invalid":"⟦mcr-error:invalid_block_info⟧"}}

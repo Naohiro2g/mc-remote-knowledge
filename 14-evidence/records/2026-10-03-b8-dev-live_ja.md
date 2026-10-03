@@ -7,7 +7,7 @@
 ## 素材
 
 `14-evidence/artifacts/2026-10-03-b8-dev-live/`（一覧と収容しなかったfileは`INVENTORY_ja.md`）。McRemoteのlive-auto（全文log、
-RPC transcript）、Pythonのcomponent返却、segment 2（token継続、run 1〜3）、公開の照合資料を収容した。Scratchの素材は分類の返却待ち。
+RPC transcript）、Pythonのcomponent返却、segment 2（token継続、run 1〜3）、公開の照合資料を収容した。Scratchの素材（segment 3と4、candidate、公開の照合、close時のfixture一覧）も収容した。
 
 ## 使ったidentity
 
