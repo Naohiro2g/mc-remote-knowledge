@@ -1,5 +1,8 @@
 # b8横断release gate 確認票依頼
 
+> 状態: **完了・履歴**。b8横断release gateは2026-10-03にCLOSEDとなった（`00-hub/release-gate-notes_ja.md`の2026-09-30の節）。
+> 現在の指示ではなく、b8で出した票の記録として残す。
+
 > b8横断release gate（`00-hub/release-gate-notes_ja.md`の2026-09-30の節）を開いたときに、各担当へ出す確認票の依頼です。
 > 参照するknowledge commitは`16668c5e5152d593c4b184939c9a9e723529d6e9`です（gateの節とこの依頼を含む。契約を着地した
 > `2d0830a741997573248ee94e945c719316a0c299`とはwireとDECISIONSが同一）。当初この欄に`2d0830a`とだけ書いていたのは

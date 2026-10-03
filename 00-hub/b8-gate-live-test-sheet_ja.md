@@ -1,5 +1,8 @@
 # b8横断release gate 統一実施票
 
+> 状態: **完了・履歴**。b8横断release gateは2026-10-03にCLOSEDとなった（`00-hub/release-gate-notes_ja.md`の2026-09-30の節）。
+> 現在の指示ではなく、b8で出した票の記録として残す。
+
 > 凍結したexact set `b8-integrated-artifact-set-1`（`00-hub/release-gate-notes_ja.md`の2026-09-30の節）を、devの通常環境で
 > 確かめる実施票です。上から順に進めます。各segmentの担当は、自分のsegmentと「共通」を読んでください。
 

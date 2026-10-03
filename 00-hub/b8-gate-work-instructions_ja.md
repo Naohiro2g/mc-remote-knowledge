@@ -1,5 +1,8 @@
 # b8横断release gate 着手依頼
 
+> 状態: **完了・履歴**。b8横断release gateは2026-10-03にCLOSEDとなった（`00-hub/release-gate-notes_ja.md`の2026-09-30の節）。
+> 現在の指示ではなく、b8で出した票の記録として残す。
+
 > b8横断release gate（`00-hub/release-gate-notes_ja.md`の2026-09-30の節）で、確認票の返却を受けて出す着手依頼です。
 > blockerと非blockerの線引き、依存順、日程の確認点は、human ownerの了承（2026-09-30）によります。
 > 各担当は、自分の節と「共通」を読んでください。
