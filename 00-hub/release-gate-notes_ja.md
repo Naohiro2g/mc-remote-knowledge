@@ -71,7 +71,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - non-claim: PyPI.orgへの公開はしない。mature判定はしない。Windowsでは検証していない
 - coordinator判定／human release owner承認: human ownerがpost2のsetへの組み入れを判定（2026-09-26、`2026-09-27-01`）。coordinatorはchange coneが閉じていることを確認し、単独更新gateを通過とする（2026-09-28）。**CLOSED**
 
-## 2026-09-30 b8横断release gate（OPEN）
+## 2026-09-30 b8横断release gate（CLOSED）
 
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
@@ -363,6 +363,10 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   - Latest: 3 repoとも変えていない（McRemoteは`v1.21.8-1.4.0`、Pythonは`v1214.10.11`、ScratchはLatestなし）
 - gate result（公開）: **3 repoのGitHub prerelease公開identityを確認した（2026-10-03）**。残りはgateのclose（default branchへの
   統合の確認、各repoの`handoff-materials`の分類、parkの見直し、b9の移管の起点にするfixtureの一覧の記録）
+- close（2026-10-03、human ownerの判断）: **b8 gateをCLOSEDとする**。default branchへの統合は照合済み（McRemote main `8f13b2f`、
+  Python main `52d35f5`、Scratch develop `691576f`がそれぞれtagと一致）。gateを閉じるときのpark確認（`2026-09-30-09`）で、API一覧、
+  ケータリング、Windows、iPad、browser検証能力の行を更新した。各repoの`handoff-materials`の分類と、b9の移管の起点にする
+  fixtureの一覧の記録は、hub NOTESのpark「b8 gate closeの残り」で追う
 - authorized next action（2026-10-03、公開）: 各repoへ公開の指示票を出す。公開後、coordinatorがtag target、prerelease／draft、
   `manifest.json`のartifact identityをGitHub APIで読むだけ照合し、gateを閉じる
 - non-claim: PyPI.orgへの公開とAPI freeze（b9）、capacity／soak／rollback（rc1。rollbackの範囲案はhub NOTESにpark）、public deploy、Scratch learner block、
