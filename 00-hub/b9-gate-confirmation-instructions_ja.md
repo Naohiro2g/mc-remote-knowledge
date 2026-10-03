@@ -63,3 +63,13 @@ Scratchは移管の現ownerなので、調べる範囲が広くなります。�
   最小限だけという`2026-09-30-10`との関係）、b7 release後の是正候補3件のうちb8で終わらなかったもの（backpressureの案内など）
 - protocol 22 Scratch block value投影の残り（hub NOTES 2026-08-19のpark行。名前データの置き場所とexact schema、
   一段／二段表示など）の状態
+
+## Java client（gateの条件にしない）
+
+Javaはb9に参加しません（`2026-09-30-04`）。返却はb9 gateの判定に使わず、freezeと移管の前に知っておくために聞きます。
+返却は確認票の形式でなくてよく、次の2点だけを返してください。
+
+- freeze前の契約の疑問点: 契約監査で返した2件（`2026-10-03-01`、`2026-10-03-02`）のほかに、APIを固定する前に決めておく
+  べき疑問点が残っているか。棚卸しはこれで終わりか、まだ続いているか。残っていれば、10/10の前に搬送票で返す
+- 移管の影響: 共有fixtureを今どう持っているか（手元のcopyか、scratch-editorのrepoやpathを直接参照しているか）。
+  Scratchのfixtureのpathやrepositoryが変わったときに、JavaのbuildやCIが切れる箇所があるか
