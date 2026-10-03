@@ -385,7 +385,7 @@ mc.setBlock(5, 67, 5, "sea_lantern")</code></pre>
 
 			<div class="roadmap-box">
 				<div class="current-status">
-					<span>●</span> 現在地: <strong>R3（学べる・教えられる）進行中 / b7 公開中</strong>
+					<span>●</span> 現在地: <strong>R3（学べる・教えられる）進行中 / b8 公開中</strong>
 				</div>
 
 				<ul class="timeline-list">
@@ -401,17 +401,16 @@ mc.setBlock(5, 67, 5, "sea_lantern")</code></pre>
 							ZIP同梱。ホームページ骨格・README近代化（Pass A）。</div>
 					</li>
 					<li class="timeline-item">
-						<div class="timeline-date">2026年10月3日【現在地】</div>
-						<div class="timeline-desc"><strong>b8 / Protocol 23.2.0</strong>: エンティティライフサイクル、パーティクルStage 2、サウンド。Windowsでの導入手順の検証。</div>
+						<div class="timeline-date">2026年10月3日【公開】</div>
+						<div class="timeline-desc"><strong>b8 / Protocol 23.2.0</strong>: エンティティライフサイクル（近くのエンティティの検索、位置と向き、削除）、パーティクルStage 2（色・大きさ、見せる相手）、サウンド（位置とブロックの音）。Pythonの短いimport。Windowsでの導入手順の確認。</div>
 					</li>
 					<li class="timeline-item">
-						<div class="timeline-date">2026年10月10日</div>
-						<div class="timeline-desc"><strong>b9</strong>: APIフリーズ（新API追加停止）。PythonモジュールをPyPIへ登録。</div>
+						<div class="timeline-date">2026年10月10日【次】</div>
+						<div class="timeline-desc"><strong>b9</strong>: APIフリーズ（APIは追加・変更しない）。PythonモジュールをPyPIへ登録。</div>
 					</li>
 					<li class="timeline-item">
 						<div class="timeline-date">2026年10月24日まで</div>
-						<div class="timeline-desc"><strong>RC (Release Candidate)</strong>: 外部テスターによる実機検証、Paper
-							26.2/26.3対応。必要に応じてb10、b11を挟みます。</div>
+						<div class="timeline-desc"><strong>RC (Release Candidate)</strong>: 外部テスターによる実機検証。Paper 26.3の安定版が出ていれば26.3にも対応。b10を挟まずに進む予定です。</div>
 					</li>
 					<li class="timeline-item">
 						<div class="timeline-date">2026年11月1日</div>
@@ -445,8 +444,8 @@ mc.setBlock(5, 67, 5, "sea_lantern")</code></pre>
 				<tbody>
 					<tr>
 						<td><strong>McRemote（Plugin、ベータ）</strong></td>
-						<td><code>2301.0.0b7.post2</code></td>
-						<td>23.1.0</td>
+						<td><code>2320.0.0b8</code></td>
+						<td>23.2.0</td>
 						<td>Paper 1.21.11</td>
 					</tr>
 					<tr>
@@ -457,20 +456,20 @@ mc.setBlock(5, 67, 5, "sea_lantern")</code></pre>
 					</tr>
 					<tr>
 						<td><strong>minecraft-remote-api (Python)</strong></td>
-						<td><code>2301.0.0b7.post3</code></td>
-						<td>23.1.0</td>
-						<td>Python 3.10以上対応。PyPI安定版は旧プロトコル</td>
+						<td><code>2320.0.0b8</code></td>
+						<td>23.2.0</td>
+						<td>Python 3.10以上対応。TestPyPIにも公開。PyPI安定版は旧プロトコル</td>
 					</tr>
 					<tr>
 						<td><strong>scratch-editor (Scratch)</strong></td>
-						<td><code>2301.0.0b7.post2</code></td>
-						<td>23.1.0</td>
+						<td><code>2320.0.0b8</code></td>
+						<td>23.2.0</td>
 						<td>ブラウザ完結（Chrome, Safari, Edge等）</td>
 					</tr>
 					<tr>
 						<td><strong>WireScope</strong></td>
-						<td><code>2301.0.0b7.post2</code></td>
-						<td>23.1.0</td>
+						<td><code>2320.0.0b8</code></td>
+						<td>23.2.0</td>
 						<td>共通パケット観察Webアプリ</td>
 					</tr>
 					<tr>
@@ -492,6 +491,14 @@ mc.setBlock(5, 67, 5, "sea_lantern")</code></pre>
 			<details>
 				<summary>📜 過去のリリース履歴を展開して確認する</summary>
 				<ul class="history-timeline" style="margin-top: 14px;">
+						<li>
+							<div class="history-meta"><span class="history-date">2026年10月3日</span><span
+									class="history-version">Protocol 23.2.0 (b8)</span></div>
+							<div class="history-description">近くのエンティティの検索（<code>getNearbyEntities</code>）、エンティティの位置と向き・削除（<code>entity.getPose</code> /
+								<code>setPose</code> / <code>remove</code>）、パーティクルの色・大きさと見せる相手（<code>receiver</code>）、サウンド（<code>playSound</code> /
+								<code>playBlockSound</code>）。<code>minecraft:</code>を省いたIDの受け付けを全種類で統一。
+							</div>
+						</li>
 					<li>
 						<div class="history-meta"><span class="history-date">2026年9月3日</span><span
 								class="history-version">Protocol 23.1.0 (b7)</span></div>
