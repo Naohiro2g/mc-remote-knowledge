@@ -39,6 +39,20 @@ gateを開くときと閉じるときに、coordinatorがこの一覧を見て�
 （`2026-09-30-09`、release運用と責務分担 §10の12）。**判定はしません**。出来事が起きたかは文面から機械的に
 分からないためで、exit codeは常に0です。
 
+## API一覧の生成
+
+```bash
+python3 tools/build-api-reference.py
+python3 tools/build-api-reference.py --check
+python3 -m unittest tools/test_build_api_reference.py
+```
+
+ホームページのAPI一覧（`30-広告宣伝/homepage/api/index.html`と`api.json`）を生成します（`2026-09-30-05`）。契約の中身
+（params、応答、備考、error reason）は`10-protocol/wire-format-design_ja.md`の§4コマンド表と§7.3 error表から読み、
+`10-protocol/api-reference-metadata.json`からは、載せる版、分類、一行の用途、載せないmethodとreasonだけを読みます。
+wireの表とmetadataのmethodが一致しなければ失敗します。wireの表を変えたら、このscriptを実行して生成物もcommitします。
+`--check`はGitHub Actionsでも走り、生成物が古ければ失敗します。
+
 ## dev agent runtime block checker
 
 ```bash

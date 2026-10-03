@@ -1,0 +1,587 @@
+{
+  "schema": "mc-remote.api-reference",
+  "schema_version": 1,
+  "release": {
+    "label": "b8",
+    "protocol": "23.2.0",
+    "artifact": "2320.0.0b8",
+    "minecraft": "1.21.11",
+    "published": "2026-10-03"
+  },
+  "source": {
+    "wire": "10-protocol/wire-format-design_ja.md §4, §7.3",
+    "metadata": "10-protocol/api-reference-metadata.json"
+  },
+  "categories": [
+    {
+      "id": "connection",
+      "title": "接続"
+    },
+    {
+      "id": "build",
+      "title": "建築の文脈"
+    },
+    {
+      "id": "block",
+      "title": "ブロック"
+    },
+    {
+      "id": "sign",
+      "title": "看板"
+    },
+    {
+      "id": "player",
+      "title": "プレイヤー"
+    },
+    {
+      "id": "entity",
+      "title": "エンティティ"
+    },
+    {
+      "id": "effect",
+      "title": "演出（パーティクル・音・雷）"
+    },
+    {
+      "id": "chat",
+      "title": "チャット"
+    },
+    {
+      "id": "event",
+      "title": "イベント"
+    },
+    {
+      "id": "catalog",
+      "title": "カタログ"
+    }
+  ],
+  "methods": [
+    {
+      "method": "hello",
+      "category": "connection",
+      "purpose": "接続の最初に一度だけ送り、protocolの照合、認証、建築の文脈の受け取りをする",
+      "params": "object（§6）",
+      "response": "あり",
+      "notes": "接続ハンドシェイク。1接続に1回。identity/auth/build を担う"
+    },
+    {
+      "method": "connection.flush",
+      "category": "connection",
+      "purpose": "それまでに送ったcommandが処理されたことを確かめる区切り",
+      "params": "`[]`",
+      "response": "`null`",
+      "notes": "同一connectionの先行commandに対する明示barrier（§3.5）"
+    },
+    {
+      "method": "build.setDimension",
+      "category": "build",
+      "purpose": "建築する次元（overworld、the_nether など）を変える",
+      "params": "`[dimension_ref]`",
+      "response": "`{dimension,origin}`",
+      "notes": "protocol 22のstream-local DimensionKeyを変更（§5.1）"
+    },
+    {
+      "method": "build.setOrigin",
+      "category": "build",
+      "purpose": "座標の原点を変える",
+      "params": "`[x, y, z]`",
+      "response": "`{dimension,origin}`",
+      "notes": "build originを変更し、server正準build contextを返す"
+    },
+    {
+      "method": "world.setBlock",
+      "category": "block",
+      "purpose": "ブロックを1つ置く",
+      "params": "`[x, y, z, blockSpec]`",
+      "response": "id付きは`null` / notification時なし",
+      "notes": "protocol 22では構造化`BlockSpec`で1ブロック設置（§7.1）"
+    },
+    {
+      "method": "world.setBlocks",
+      "category": "block",
+      "purpose": "直方体の範囲をブロックで埋める",
+      "params": "`[x1, y1, z1, x2, y2, z2, blockSpec]`",
+      "response": "id付きは`null` / notification時なし",
+      "notes": "protocol 22では構造化`BlockSpec`で直方体充填（§7.1）"
+    },
+    {
+      "method": "world.getBlock",
+      "category": "block",
+      "purpose": "ブロックを1つ調べる",
+      "params": "`[x, y, z]`",
+      "response": "あり",
+      "notes": "protocol 22では構造化`BlockValue`を返す（§7.1）"
+    },
+    {
+      "method": "world.getBlocks",
+      "category": "block",
+      "purpose": "直方体の範囲のブロックをまとめて調べる",
+      "params": "`[x1, y1, z1, x2, y2, z2]`",
+      "response": "`BlockValue[]`",
+      "notes": "protocol 22の有界領域query（§7.1.1）"
+    },
+    {
+      "method": "world.getHeight",
+      "category": "block",
+      "purpose": "その位置のいちばん上の地面の高さを調べる",
+      "params": "`[x, z]`または`[x, z, max_y]`",
+      "response": "あり",
+      "notes": "origin相対の最上面block高を返す（b5、§5.6）"
+    },
+    {
+      "method": "world.getSign",
+      "category": "sign",
+      "purpose": "看板の両面の文字を読む",
+      "params": "`[x, y, z]`",
+      "response": "`{front:[LineValue×4],back:[LineValue×4],waxed:bool}`",
+      "notes": "signの両面とwaxedを正準形で取得（b6、§5.8.1）"
+    },
+    {
+      "method": "world.setSign",
+      "category": "sign",
+      "purpose": "看板の面の文字を4行まとめて書き換える",
+      "params": "`[x, y, z, {front?:[LineSpec×4],back?:[LineSpec×4]}]`",
+      "response": "`null`",
+      "notes": "指定面を面内no-mergeの厳密4行へ置換（b6、§5.8.1）"
+    },
+    {
+      "method": "world.updateSignLine",
+      "category": "sign",
+      "purpose": "看板の1行だけを書き換える",
+      "params": "`[x, y, z, face, line_index, LineSpec]`",
+      "response": "`null`",
+      "notes": "signの一面・一行だけをPATCH（b6、§5.8.1）"
+    },
+    {
+      "method": "player.getPos",
+      "category": "player",
+      "purpose": "自分の位置を調べる",
+      "params": "`[]`",
+      "response": "あり",
+      "notes": "paired playerの現在dimensionと現在位置をstream origin相対で返す（§5.2）"
+    },
+    {
+      "method": "player.setPos",
+      "category": "player",
+      "purpose": "自分を移動させる",
+      "params": "`[dimension_ref, x, y, z]`",
+      "response": "あり",
+      "notes": "paired playerを指定dimensionのstream origin相対位置へteleportする（§5.2）"
+    },
+    {
+      "method": "player.getPose",
+      "category": "player",
+      "purpose": "自分の位置と向きを調べる",
+      "params": "`[]`",
+      "response": "あり",
+      "notes": "paired playerの現在dimension・位置・向きをstream origin相対で返す（§5.3）"
+    },
+    {
+      "method": "player.setPose",
+      "category": "player",
+      "purpose": "自分の位置と向きをまとめて変える",
+      "params": "`[dimension_ref, x, y, z, yaw, pitch]`",
+      "response": "あり",
+      "notes": "指定dimensionへ位置・向きを1回のteleportで一体反映する（§5.3）"
+    },
+    {
+      "method": "player.getDirection",
+      "category": "player",
+      "purpose": "自分の向いている方向を調べる",
+      "params": "`[]`",
+      "response": "`DirectionValue`",
+      "notes": "paired playerの現在方向を返す（b7、§5.8.2）"
+    },
+    {
+      "method": "player.setDirection",
+      "category": "player",
+      "purpose": "自分の向きだけを変える",
+      "params": "`[x,y,z]`",
+      "response": "適用後の`DirectionValue`",
+      "notes": "非zero vectorを正規化してpaired playerの向きだけを変える（b7、§5.8.2）"
+    },
+    {
+      "method": "world.spawnEntity",
+      "category": "entity",
+      "purpose": "エンティティ（動物など）を出し、あとで操作するためのhandleを受け取る",
+      "params": "`[x, y, z, entity]`",
+      "response": "あり",
+      "notes": "entityを生成しepoch-scoped handleを返す（b5、§5.7）"
+    },
+    {
+      "method": "world.getNearbyEntities",
+      "category": "entity",
+      "purpose": "近くのエンティティを探して一覧を受け取る",
+      "params": "`[x, y, z, radius, max_entities]`",
+      "response": "あり",
+      "notes": "boundedな近傍entity検索。playerを除外。`[{handle,type,pos}, ...]`、0件は`[]`（b8、§5.8.3）"
+    },
+    {
+      "method": "entity.getPose",
+      "category": "entity",
+      "purpose": "エンティティの位置と向きを調べる",
+      "params": "`[handle]`",
+      "response": "あり",
+      "notes": "handle対象のpose `{dimension,pos,yaw,pitch}`を返す（b8、§5.8.3）"
+    },
+    {
+      "method": "entity.setPose",
+      "category": "entity",
+      "purpose": "エンティティの位置と向きをまとめて変える",
+      "params": "`[handle, dimension_ref, x, y, z, yaw, pitch]`",
+      "response": "あり",
+      "notes": "1回のteleportでposeを一体更新し、再読取りしたposeを返す（b8、§5.8.3）"
+    },
+    {
+      "method": "entity.getDirection",
+      "category": "entity",
+      "purpose": "エンティティの向いている方向を調べる",
+      "params": "`[handle]`",
+      "response": "`DirectionValue`",
+      "notes": "handle対象の現在方向を返す（b7、§5.8.2）"
+    },
+    {
+      "method": "entity.setDirection",
+      "category": "entity",
+      "purpose": "エンティティの向きだけを変える",
+      "params": "`[handle,x,y,z]`",
+      "response": "適用後の`DirectionValue`",
+      "notes": "非zero vectorを正規化してhandle対象の向きだけを変える（b7、§5.8.2）"
+    },
+    {
+      "method": "entity.remove",
+      "category": "entity",
+      "purpose": "エンティティを消す",
+      "params": "`[handle]`",
+      "response": "あり",
+      "notes": "entityを除去しhandleを即時失効。成功時`null`（b8、§5.8.3）"
+    },
+    {
+      "method": "world.spawnParticle",
+      "category": "effect",
+      "purpose": "パーティクルを出す（色や大きさ、見せる相手も選べる）",
+      "params": "`[x, y, z, offset_x, offset_y, offset_z, particle, speed, count, (force)]`",
+      "response": "あり",
+      "notes": "9／10 params、`force`省略時`true`。b8で`particle`にobject形`ParticleSpec`を追加（§5.7／§5.8.3）"
+    },
+    {
+      "method": "world.playSound",
+      "category": "effect",
+      "purpose": "位置から音を鳴らす",
+      "params": "`[x, y, z, sound_id, (options)]`",
+      "response": "`null`",
+      "notes": "位置から音を鳴らす。receiverは`world`／`self`（b8、§5.8.3）"
+    },
+    {
+      "method": "world.playBlockSound",
+      "category": "effect",
+      "purpose": "その位置のブロックの音（置く、叩く、壊すなど）を鳴らす",
+      "params": "`[x, y, z, kind, (options)]`",
+      "response": "`null`",
+      "notes": "その位置のblockの音を鳴らす（b8、§5.8.3）"
+    },
+    {
+      "method": "world.strikeLightning",
+      "category": "effect",
+      "purpose": "雷を落とす",
+      "params": "`[x,y,z]`",
+      "response": "`null`",
+      "notes": "current dimensionのorigin相対位置へdamage-capableなfull lightningを要求する（b7、§5.8.2）"
+    },
+    {
+      "method": "chat.post",
+      "category": "chat",
+      "purpose": "チャットに書き込む",
+      "params": "`[msg]`",
+      "response": "id付きrequestの成功resultは`null`（b9から、`2026-10-03-01`） / notification 時なし",
+      "notes": "チャット送信"
+    },
+    {
+      "method": "events.poll",
+      "category": "event",
+      "purpose": "起きたイベント（つつく、チャット、矢が当たるなど）を受け取る",
+      "params": "`[after_sequence]`／`[after_sequence, {max_events}]`",
+      "response": "あり",
+      "notes": "epoch-scoped event ringを非破壊取得。filterは初回stable後の候補（§5.4、`2026-09-30-03`）"
+    },
+    {
+      "method": "catalog.get",
+      "category": "catalog",
+      "purpose": "サーバーで使えるブロック、エンティティ、パーティクルの一覧を受け取る",
+      "params": "`[]`",
+      "response": "あり",
+      "notes": "稼働中 registry から block/entity/particle catalog を取得（b3 実装予定、§7.2.1）"
+    }
+  ],
+  "auth": {
+    "wire_sections": "§6.5 ペアリング、§6.6 credential管理",
+    "methods": [
+      {
+        "method": "auth.pairBegin",
+        "purpose": "ペアリングを始め、Minecraftで承認するためのコードを受け取る"
+      },
+      {
+        "method": "auth.pairPoll",
+        "purpose": "ペアリングが承認されたかを確かめ、承認されたらtokenを受け取る"
+      },
+      {
+        "method": "auth.listCredentials",
+        "purpose": "自分の長期credentialの一覧を見る"
+      },
+      {
+        "method": "auth.revoke",
+        "purpose": "長期credentialを取り消す"
+      },
+      {
+        "method": "auth.logout",
+        "purpose": "今使っている長期credentialを取り消して終わる"
+      }
+    ]
+  },
+  "errors": [
+    {
+      "family": "block検証",
+      "code": "`-32602`（Invalid params）",
+      "reason": "unknown_block",
+      "meaning": "`block_id`がblock不在（無印補完後の未知名含む）",
+      "introduced": "○"
+    },
+    {
+      "family": "block検証",
+      "code": "`-32602`（Invalid params）",
+      "reason": "unknown_property",
+      "meaning": "property名がそのblockに無い",
+      "introduced": "○"
+    },
+    {
+      "family": "property検証",
+      "code": "`-32602`（Invalid params）",
+      "reason": "invalid_property_value",
+      "meaning": "block state、sign色／装飾等の値が許容外。`allowed`を返せる",
+      "introduced": "b1、signはb6"
+    },
+    {
+      "family": "params 検証",
+      "code": "`-32602`（Invalid params）",
+      "reason": "invalid_params",
+      "meaning": "JSON-RPC params の形・型・座標値が不正",
+      "introduced": "b2"
+    },
+    {
+      "family": "params 検証",
+      "code": "`-32602`（Invalid params）",
+      "reason": "zero_direction",
+      "meaning": "directionの3成分がsigned zeroだけで向きを定義できない",
+      "introduced": "b7"
+    },
+    {
+      "family": "params 検証",
+      "code": "`-32602`（Invalid params）",
+      "reason": "unknown_dimension",
+      "meaning": "指定DimensionKeyがloaded dimensionとして解決できない",
+      "introduced": "b5／protocol 22"
+    },
+    {
+      "family": "world-state",
+      "code": "`-32000`番台（実装定義域）",
+      "reason": "build_denied",
+      "meaning": "build policy / 範囲 / 認可により操作拒否。返せる場合は `data.bounds` / `data.violating` 等で理由を補足",
+      "introduced": "○"
+    },
+    {
+      "family": "player-state",
+      "code": "`-32000`番台（実装定義域）",
+      "reason": "permission_denied",
+      "meaning": "LuckPerms 等の認可により操作拒否。token は温存",
+      "introduced": "b2"
+    },
+    {
+      "family": "player-state",
+      "code": "`-32000`番台（実装定義域）",
+      "reason": "player_offline",
+      "meaning": "token は有効だが paired player がオンラインでない",
+      "introduced": "b2"
+    },
+    {
+      "family": "player-state",
+      "code": "`-32000`番台（実装定義域）",
+      "reason": "teleport_failed",
+      "meaning": "`player.setPose`、`entity.setPose`等のteleport自体が`permission_denied`／`player_offline`／`unknown_dimension`／`invalid_params`以外の要因で失敗",
+      "introduced": "b5／protocol 22、`entity.setPose`はb8"
+    },
+    {
+      "family": "world-query",
+      "code": "`-32000`番台（実装定義域）",
+      "reason": "height_not_found",
+      "meaning": "指定上限以下に「非passableかつ直上passable」のblockが無い",
+      "introduced": "b5"
+    },
+    {
+      "family": "world-state",
+      "code": "`-32000`番台（実装定義域）",
+      "reason": "no_block",
+      "meaning": "`world.playBlockSound`の位置のblockが空気",
+      "introduced": "b8"
+    },
+    {
+      "family": "sign-state",
+      "code": "`-32000`番台（実装定義域）",
+      "reason": "not_a_sign",
+      "meaning": "指定座標のblockがsignでない",
+      "introduced": "b6"
+    },
+    {
+      "family": "sign-state",
+      "code": "`-32000`番台（実装定義域）",
+      "reason": "sign_waxed",
+      "meaning": "waxed signへのwriteを拒否。readは許可",
+      "introduced": "b6"
+    },
+    {
+      "family": "sign-state",
+      "code": "`-32000`番台（実装定義域）",
+      "reason": "sign_update_failed",
+      "meaning": "mutation時にstale snapshot等を検出し、部分変更なしでwriteを拒否",
+      "introduced": "b6"
+    },
+    {
+      "family": "resource-ref",
+      "code": "`-32602`（Invalid params）",
+      "reason": "unknown_particle",
+      "meaning": "particle ID（§5.0.2で補った後）がregistryに無い、または非正準形",
+      "introduced": "b5"
+    },
+    {
+      "family": "resource-ref",
+      "code": "`-32602`（Invalid params）",
+      "reason": "particle_data_required",
+      "meaning": "typed data必須particleでdataが欠落（文字列shorthandを含む）",
+      "introduced": "b5、b8で意味を精密化"
+    },
+    {
+      "family": "resource-ref",
+      "code": "`-32602`（Invalid params）",
+      "reason": "particle_data_unsupported",
+      "meaning": "登録済みだが、B8でdata型に対応しないparticleへ、objectでdataを指定して要求",
+      "introduced": "b8"
+    },
+    {
+      "family": "resource-ref",
+      "code": "`-32602`（Invalid params）",
+      "reason": "unknown_entity",
+      "meaning": "entity ID（§5.0.2で補った後）がregistryに無い、または非正準形",
+      "introduced": "b5"
+    },
+    {
+      "family": "resource-ref",
+      "code": "`-32602`（Invalid params）",
+      "reason": "entity_not_spawnable",
+      "meaning": "playerまたはspawnを許可しないentity type",
+      "introduced": "b5"
+    },
+    {
+      "family": "resource-ref",
+      "code": "`-32602`（Invalid params）",
+      "reason": "unknown_sound",
+      "meaning": "sound ID（§5.0.2で補った後）が`Registry.SOUND_EVENT`に無い、または非正準形",
+      "introduced": "b8"
+    },
+    {
+      "family": "availability",
+      "code": "`-32000`番台（実装定義域）",
+      "reason": "backpressure",
+      "meaning": "副作用開始前の一時的な処理能力超過。同一要求を後でretry可能",
+      "introduced": "b5"
+    },
+    {
+      "family": "availability",
+      "code": "`-32000`番台（実装定義域）",
+      "reason": "work_limit_exceeded",
+      "meaning": "入力量または走査量がwork上限を超過。自動retryせず入力を縮小する",
+      "introduced": "b5"
+    },
+    {
+      "family": "availability",
+      "code": "`-32000`番台（実装定義域）",
+      "reason": "entity_capacity_exhausted",
+      "meaning": "handle slotを副作用前に予約できない。自動retryしない",
+      "introduced": "b5"
+    },
+    {
+      "family": "entity-state",
+      "code": "`-32000`番台（実装定義域）",
+      "reason": "entity_handle_not_found",
+      "meaning": "foreign／unknown handle。存在差を公開しない",
+      "introduced": "b5"
+    },
+    {
+      "family": "entity-state",
+      "code": "`-32000`番台（実装定義域）",
+      "reason": "entity_removed",
+      "meaning": "known handleの対象entityが除去済み",
+      "introduced": "b5"
+    },
+    {
+      "family": "entity-state",
+      "code": "`-32000`番台（実装定義域）",
+      "reason": "entity_unloaded",
+      "meaning": "known handleの対象entityがunloadされ現在操作不能",
+      "introduced": "b5"
+    },
+    {
+      "family": "entity-state",
+      "code": "`-32000`番台（実装定義域）",
+      "reason": "entity_dimension_changed",
+      "meaning": "対象entityが外部要因でissued dimensionから移動。b7 directionでは初回検出時にhandleを失効",
+      "introduced": "b5、b7"
+    },
+    {
+      "family": "entity-state",
+      "code": "`-32000`番台（実装定義域）",
+      "reason": "entity_spawn_failed",
+      "meaning": "admission後のspawn自体が失敗",
+      "introduced": "b5"
+    },
+    {
+      "family": "entity-state",
+      "code": "`-32000`番台（実装定義域）",
+      "reason": "entity_not_found",
+      "meaning": "b7 directionでempty／foreign／unknown／旧epoch／旧形式、または失効後のhandleを同値化",
+      "introduced": "b7"
+    },
+    {
+      "family": "entity-state",
+      "code": "`-32000`番台（実装定義域）",
+      "reason": "entity_unavailable",
+      "meaning": "b7 directionでknown handleの対象が最初にremoved／unloaded／invalidと判明し、その場で失効",
+      "introduced": "b7"
+    },
+    {
+      "family": "server-state",
+      "code": "`-32603`（Internal error）",
+      "reason": "internal_error",
+      "meaning": "結果が確定できない。非冪等操作を自動retryしない",
+      "introduced": "b5"
+    },
+    {
+      "family": "params 検証",
+      "code": "`-32602`（Invalid params）",
+      "reason": "credential_not_found",
+      "meaning": "`auth.revoke` で指定した `credential_id` が要求元 UUID の active credential に無い（他 player の ID と存在しない ID を同値へ畳んで存在を隠す）。**caller の token は温存**し、`ref` に `credential_id` を返す",
+      "introduced": "bN"
+    },
+    {
+      "family": "credential-state",
+      "code": "`-32000`番台（実装定義域）",
+      "reason": "credential_limit_reached",
+      "meaning": "UUID ごとの active long-lived credential 上限に到達。`data.type` / `data.limit` / `data.active` を返す。古い credential を自動失効させず、ユーザーが list / revoke する",
+      "introduced": "bN"
+    },
+    {
+      "family": "auth-service",
+      "code": "`-32000`番台（実装定義域）",
+      "reason": "credential_store_unavailable",
+      "meaning": "server が credential 状態を現在検証できない、または credential 管理操作の durable な結果を確定できない。`data.operation`（`resolve`/`issue`/`list`/`revoke`/`touch`）を返す。**単独では token を invalid と分類せず、client は token を削除せず自動再ペアリングもしない**（token 温存・再試行）",
+      "introduced": "bN"
+    }
+  ]
+}

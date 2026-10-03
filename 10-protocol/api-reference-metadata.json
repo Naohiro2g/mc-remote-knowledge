@@ -1,0 +1,253 @@
+{
+  "schema": "mc-remote.api-reference-metadata",
+  "schema_version": 1,
+  "note": "API一覧（2026-09-30-05）の生成用metadata。契約の中身（params、result、reason）は書かず、wire-format-design_ja.mdの表から読む。ここに置くのは、載せる版、分類、一行の用途だけ。",
+  "release": {
+    "label": "b8",
+    "protocol": "23.2.0",
+    "artifact": "2320.0.0b8",
+    "minecraft": "1.21.11",
+    "published": "2026-10-03"
+  },
+  "categories": [
+    {
+      "id": "connection",
+      "title": "接続"
+    },
+    {
+      "id": "build",
+      "title": "建築の文脈"
+    },
+    {
+      "id": "block",
+      "title": "ブロック"
+    },
+    {
+      "id": "sign",
+      "title": "看板"
+    },
+    {
+      "id": "player",
+      "title": "プレイヤー"
+    },
+    {
+      "id": "entity",
+      "title": "エンティティ"
+    },
+    {
+      "id": "effect",
+      "title": "演出（パーティクル・音・雷）"
+    },
+    {
+      "id": "chat",
+      "title": "チャット"
+    },
+    {
+      "id": "event",
+      "title": "イベント"
+    },
+    {
+      "id": "catalog",
+      "title": "カタログ"
+    }
+  ],
+  "methods": [
+    {
+      "method": "hello",
+      "category": "connection",
+      "purpose": "接続の最初に一度だけ送り、protocolの照合、認証、建築の文脈の受け取りをする"
+    },
+    {
+      "method": "connection.flush",
+      "category": "connection",
+      "purpose": "それまでに送ったcommandが処理されたことを確かめる区切り"
+    },
+    {
+      "method": "build.setDimension",
+      "category": "build",
+      "purpose": "建築する次元（overworld、the_nether など）を変える"
+    },
+    {
+      "method": "build.setOrigin",
+      "category": "build",
+      "purpose": "座標の原点を変える"
+    },
+    {
+      "method": "world.setBlock",
+      "category": "block",
+      "purpose": "ブロックを1つ置く"
+    },
+    {
+      "method": "world.setBlocks",
+      "category": "block",
+      "purpose": "直方体の範囲をブロックで埋める"
+    },
+    {
+      "method": "world.getBlock",
+      "category": "block",
+      "purpose": "ブロックを1つ調べる"
+    },
+    {
+      "method": "world.getBlocks",
+      "category": "block",
+      "purpose": "直方体の範囲のブロックをまとめて調べる"
+    },
+    {
+      "method": "world.getHeight",
+      "category": "block",
+      "purpose": "その位置のいちばん上の地面の高さを調べる"
+    },
+    {
+      "method": "world.getSign",
+      "category": "sign",
+      "purpose": "看板の両面の文字を読む"
+    },
+    {
+      "method": "world.setSign",
+      "category": "sign",
+      "purpose": "看板の面の文字を4行まとめて書き換える"
+    },
+    {
+      "method": "world.updateSignLine",
+      "category": "sign",
+      "purpose": "看板の1行だけを書き換える"
+    },
+    {
+      "method": "player.getPos",
+      "category": "player",
+      "purpose": "自分の位置を調べる"
+    },
+    {
+      "method": "player.setPos",
+      "category": "player",
+      "purpose": "自分を移動させる"
+    },
+    {
+      "method": "player.getPose",
+      "category": "player",
+      "purpose": "自分の位置と向きを調べる"
+    },
+    {
+      "method": "player.setPose",
+      "category": "player",
+      "purpose": "自分の位置と向きをまとめて変える"
+    },
+    {
+      "method": "player.getDirection",
+      "category": "player",
+      "purpose": "自分の向いている方向を調べる"
+    },
+    {
+      "method": "player.setDirection",
+      "category": "player",
+      "purpose": "自分の向きだけを変える"
+    },
+    {
+      "method": "world.spawnEntity",
+      "category": "entity",
+      "purpose": "エンティティ（動物など）を出し、あとで操作するためのhandleを受け取る"
+    },
+    {
+      "method": "world.getNearbyEntities",
+      "category": "entity",
+      "purpose": "近くのエンティティを探して一覧を受け取る"
+    },
+    {
+      "method": "entity.getPose",
+      "category": "entity",
+      "purpose": "エンティティの位置と向きを調べる"
+    },
+    {
+      "method": "entity.setPose",
+      "category": "entity",
+      "purpose": "エンティティの位置と向きをまとめて変える"
+    },
+    {
+      "method": "entity.getDirection",
+      "category": "entity",
+      "purpose": "エンティティの向いている方向を調べる"
+    },
+    {
+      "method": "entity.setDirection",
+      "category": "entity",
+      "purpose": "エンティティの向きだけを変える"
+    },
+    {
+      "method": "entity.remove",
+      "category": "entity",
+      "purpose": "エンティティを消す"
+    },
+    {
+      "method": "world.spawnParticle",
+      "category": "effect",
+      "purpose": "パーティクルを出す（色や大きさ、見せる相手も選べる）"
+    },
+    {
+      "method": "world.playSound",
+      "category": "effect",
+      "purpose": "位置から音を鳴らす"
+    },
+    {
+      "method": "world.playBlockSound",
+      "category": "effect",
+      "purpose": "その位置のブロックの音（置く、叩く、壊すなど）を鳴らす"
+    },
+    {
+      "method": "world.strikeLightning",
+      "category": "effect",
+      "purpose": "雷を落とす"
+    },
+    {
+      "method": "chat.post",
+      "category": "chat",
+      "purpose": "チャットに書き込む"
+    },
+    {
+      "method": "events.poll",
+      "category": "event",
+      "purpose": "起きたイベント（つつく、チャット、矢が当たるなど）を受け取る"
+    },
+    {
+      "method": "catalog.get",
+      "category": "catalog",
+      "purpose": "サーバーで使えるブロック、エンティティ、パーティクルの一覧を受け取る"
+    }
+  ],
+  "excluded": [
+    {
+      "method": "events.clear",
+      "reason": "候補のまま公開されていない（初回stable後の候補、2026-09-30-03）"
+    }
+  ],
+  "auth": {
+    "wire_sections": "§6.5 ペアリング、§6.6 credential管理",
+    "methods": [
+      {
+        "method": "auth.pairBegin",
+        "purpose": "ペアリングを始め、Minecraftで承認するためのコードを受け取る"
+      },
+      {
+        "method": "auth.pairPoll",
+        "purpose": "ペアリングが承認されたかを確かめ、承認されたらtokenを受け取る"
+      },
+      {
+        "method": "auth.listCredentials",
+        "purpose": "自分の長期credentialの一覧を見る"
+      },
+      {
+        "method": "auth.revoke",
+        "purpose": "長期credentialを取り消す"
+      },
+      {
+        "method": "auth.logout",
+        "purpose": "今使っている長期credentialを取り消して終わる"
+      }
+    ]
+  },
+  "excluded_reasons": [
+    {
+      "reason": "malformed_ref",
+      "why": "protocol 21の履歴。protocol 22以降では使わない"
+    }
+  ]
+}
