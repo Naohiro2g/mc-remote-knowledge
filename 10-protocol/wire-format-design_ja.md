@@ -124,7 +124,7 @@ lockへ記録し、b8実装後・API freeze前の負荷較正でruntime policy�
 | `hello` | object（§6） | あり | 接続ハンドシェイク。1接続に1回。identity/auth/build を担う |
 | `build.setDimension` | `[dimension_ref]` | `{dimension,origin}` | protocol 22のstream-local DimensionKeyを変更（§5.1） |
 | `build.setOrigin` | `[x, y, z]` | `{dimension,origin}` | build originを変更し、server正準build contextを返す |
-| `chat.post` | `[msg]` | あり（b1 は id 付き同期 request） / notification 時なし | チャット送信 |
+| `chat.post` | `[msg]` | id付きrequestの成功resultは`null`（b9から、`2026-10-03-01`） / notification 時なし | チャット送信 |
 | `world.setBlock` | `[x, y, z, blockSpec]` | id付きは`null` / notification時なし | protocol 22では構造化`BlockSpec`で1ブロック設置（§7.1） |
 | `world.setBlocks` | `[x1, y1, z1, x2, y2, z2, blockSpec]` | id付きは`null` / notification時なし | protocol 22では構造化`BlockSpec`で直方体充填（§7.1） |
 | `world.getBlock` | `[x, y, z]` | あり | protocol 22では構造化`BlockValue`を返す（§7.1） |
@@ -304,6 +304,10 @@ b5ではfilterとclearを実装せず、`filtered_out`と`explicitly_discarded_t
 後続filterはringをsequence順に走査する。非一致eventでも`through_sequence`を進め、
 `filtered_out`へ加算するがlossには数えない。`events.clear`は呼出時点までのretained eventを削除し、
 `explicitly_discarded_total`へ加算する。
+
+知らないevent typeの扱い（b9から、`2026-10-03-02`）: 互換な新しいprotocol minorで、clientの知らないevent typeが`events`に
+含まれても、poll全体を失敗させない。clientはそのeventを省略するか、opaqueな値として公開してよい（どちらにするかは各Client
+Libraryが決める）。ただし、serverが返した`through_sequence`とloss counterはそのまま使い、同じ知らないeventを取り直し続けない。
 
 b5のevent typeは次の3種である。exact JSON shapeはplugin fixtureを拘束層とし、Bukkit Event objectを
 wireやringへ保持しない。
