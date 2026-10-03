@@ -355,7 +355,14 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     `contracts.tar.gz` 1,908 bytes／`48948ba4…2390`、`manifest.json` 1,168 bytes／`122846bd…2887`。manifestはschema v1、`release_tag`
     `v2320.0.0b8`、`source_commit` `691576f`、OCIは`scratch` `sha256:d595992e05feb891ead10860a14eb292228968d8ca9460505a34fa1d24a1d8c0`、
     `bridge` `sha256:0d7802aba4af418a634afb74c52813810d3b9224ee1ae8e97a485551cf9d79dc`
-  - McRemote: 公開の再開を指示済み。返却待ち
+  - McRemote [v1.21.11-2320.0.0b8](https://github.com/Naohiro2g/McRemote/releases/tag/v1.21.11-2320.0.0b8): title「McRemote 1.21.11 / 2320.0.0b8」、
+    prerelease=true、draft=false、annotated tagのtarget `8f13b2f4dc14798899ab5153a0a647c2dea7aa18`（PR #12をmergeしたmainの先頭と一致）。
+    asset: `mc-remote-1.21.11-2320.0.0b8.jar` 261,025 bytes／`fdffaf0c…80c6`（受け入れたCIのJAR）、`manifest.json` 387 bytes／
+    `382a7a3e…037e`。manifestの`release_tag` `v1.21.11-2320.0.0b8`、`source_commit` `8f13b2f`、role `jar`のdigestが一致。release
+    workflow run `37117743334`がsuccess
+  - Latest: 3 repoとも変えていない（McRemoteは`v1.21.8-1.4.0`、Pythonは`v1214.10.11`、ScratchはLatestなし）
+- gate result（公開）: **3 repoのGitHub prerelease公開identityを確認した（2026-10-03）**。残りはgateのclose（default branchへの
+  統合の確認、各repoの`handoff-materials`の分類、parkの見直し、b9の移管の起点にするfixtureの一覧の記録）
 - authorized next action（2026-10-03、公開）: 各repoへ公開の指示票を出す。公開後、coordinatorがtag target、prerelease／draft、
   `manifest.json`のartifact identityをGitHub APIで読むだけ照合し、gateを閉じる
 - non-claim: PyPI.orgへの公開とAPI freeze（b9）、capacity／soak／rollback（rc1。rollbackの範囲案はhub NOTESにpark）、public deploy、Scratch learner block、
