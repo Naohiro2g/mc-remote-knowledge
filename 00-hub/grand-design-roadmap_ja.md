@@ -54,8 +54,8 @@ Scratch固有の現状は[Scratch roadmap](../13-scratch-client/scratch-roadmap_
 
 ## 4. 現在の横断優先
 
-1. b7.post2の収集→preset／order／lock確定→apply→doctorランスルー完走を基線とし、B8のcontract lockと実装を進める。B8のrelease／deployment可否は別のgateで判定する。
-2. B8／protocol `23.2.0`のshared fixtureと必要なconsumer実装を揃え、entity lifecycle／particle receiver・typed data／サウンド／Python 3D graphを短い縦sliceとして進める。nearbyとParticle Stage 2の契約は`2026-09-23-01`、サウンドは`2026-09-30-02`を正とする。particle batch（Stage 3）は初回stable後の候補。
+1. b8（protocol `23.2.0`／artifact `2320.0.0b8`）を2026-10-03に公開し、b8横断release gateを閉じた（`00-hub/release-gate-notes_ja.md`）。公開後に残るのは、Windowsでの導入手順の確認（b9のPyPI登録の判断材料）。
+2. 次はb9（2026-10-10）。APIを変えずにfreezeし、Protocol／WireScope／Bridgeの移管（Java以外のconsumer。起点はb8時点のfixture一覧）とPython APIのPyPI登録に集中する。freeze前の契約2件（`2026-10-03-01`／`-02`）の適合もb9 gateで確かめる。
 3. `lookAt`、空間query、player別previewを含むサウンド以外の新APIは、初回stable後へ送った（`2026-09-30-03`）。b9はAPIを変えずにfreezeし、移管とPyPI登録に集中する。
 4. rc1（10月24日まで）から外部testerが会話履歴なしで開始・更新・復旧・feedbackできる入口を用意し、homepage／release情報／技術記事を並走させる。
 5. long-lived credentialの公開gateは閉じたまま、ケータリングで実需要を観察してから再開する。
