@@ -326,6 +326,17 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   公開はまだ許可しない
 - gate result（2026-10-03）: **GREEN — b8横断技術gate完了**。blockerはすべてPASS。non-claimは、server backpressureの案内の実機表示、
   Bedrockでのdustの大きさ、正確な聴感の測定、capacity／soak／rollback、Windows（公開後）、Paper 26.x。公開にはhuman ownerの承認が要る
+- release authorization: プロジェクトオーナーの明示承認（2026-10-03）。3 repoともprerelease ON、draft OFF、Latest非対象。tag target、
+  default branchへの統合、公開後の照合は下の指示票による
+  - McRemote: PR #12をmainへmergeし、そのcommitへ`v1.21.11-2320.0.0b8`。tagのCIが作るJARが`7ab24fa1…77fb`と一致してから公開する。
+    添付とtitleは固定workflow（`release.yml`）
+  - Python: `52d35f5`をmainへ統合し、そのcommitへ`v2320.0.0b8`。CI成果物がwheel `dcedff01…0180`／sdist `9d56d92b…ad32`と一致して
+    から公開する。固定triggerがTestPyPIにも出す
+  - Scratch: tagは凍結した`691576f`へ`v2320.0.0b8`。developは`691576f`まで統合する。branchの先頭の`01cdb0b`（列幅、b9）はtagにも
+    developにも入れない
+  - 一致しないもの（tagのCIのJAR、wheelのdigest等）が出たら、公開せずに止めてcoordinatorへ返す
+- authorized next action（2026-10-03、公開）: 各repoへ公開の指示票を出す。公開後、coordinatorがtag target、prerelease／draft、
+  `manifest.json`のartifact identityをGitHub APIで読むだけ照合し、gateを閉じる
 - non-claim: PyPI.orgへの公開とAPI freeze（b9）、capacity／soak／rollback（rc1。rollbackの範囲案はhub NOTESにpark）、public deploy、Scratch learner block、
   サウンド以外の新API（`2026-09-30-03`で初回stable後）、tooling移管（b9）、26.x（`2026-09-30-07`）、Java、
   初回stableの互換
