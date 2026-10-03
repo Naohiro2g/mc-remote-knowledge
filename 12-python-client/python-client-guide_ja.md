@@ -1,5 +1,8 @@
 # マイクラリモコン Python API セットアップと使い方
 
+> 状態: **履歴**。b3時点の導線と各版の記録として残す。今の導入手順は[PythonリポのREADME](https://github.com/Naohiro2g/minecraft-remote-api)、
+> APIは[ホームページのAPI一覧](https://mc-remote.com/api/)を見る。以下の「現行」は書かれた時点の現行を指す。
+
 このガイドは Python API `2100.0.0b3`、wire protocol `21.0.0` の現行導線を説明します。対象実装は `Naohiro2g/minecraft-remote-api` の tag `v2100.0.0b3`、commit `af2d11d66a16e3085f569241406a703a1c28c348` です。
 
 `2100.0.0b3` は GitHub prerelease のみで、PyPIには公開していません。素の `pip install minecraft-remote-api` は旧stableを選ぶため、b3を試す場合はsource checkoutまたはGitHub tagへのexact pinを使います。
