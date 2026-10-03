@@ -1,0 +1,7 @@
+261025 bytes
+7ab24fa1ff6c20513e46cbf3629f1f4860365acbf3a7e191e48a4e75af1677fb
+[03:24:22] [ServerMain/INFO]: [bootstrap] Running Java 21 (OpenJDK 64-Bit Server VM 21.0.12.1+1-1-24.04.4-Ubuntu; Ubuntu null) on Linux 6.8.0-136-generic (amd64)
+[03:24:30] [Server thread/INFO]: Starting minecraft server version 1.21.11
+[03:24:30] [Server thread/INFO]: This server is running Paper version 1.21.11-132-ver/1.21.11@c5eb079 (2026-05-11T11:43:09Z) (Implementing API version 1.21.11-R0.1-SNAPSHOT)
+[03:24:35] [Server thread/INFO]: [McRemote] Auth enforcement: true
+[03:24:35] [Server thread/INFO]: [McRemote] Credential domain health: HEALTHY (healthy)

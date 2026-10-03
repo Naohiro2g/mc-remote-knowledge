@@ -4,6 +4,11 @@
 > （`00-hub/b8-gate-live-test-sheet_ja.md`）による。各担当の返却票（Git外の搬送素材）をcoordinatorが要約した。token、pairing_id、
 > private address、player UUIDは収録しない。
 
+## 素材
+
+`14-evidence/artifacts/2026-10-03-b8-dev-live/`（一覧と収容しなかったfileは`INVENTORY_ja.md`）。McRemoteのlive-auto（全文log、
+RPC transcript）、Pythonのcomponent返却、segment 2（token継続、run 1〜3）、公開の照合資料を収容した。Scratchの素材は分類の返却待ち。
+
 ## 使ったidentity
 
 - exact set: `b8-integrated-artifact-set-1`（protocol `23.2.0`／artifact `2320.0.0b8`）

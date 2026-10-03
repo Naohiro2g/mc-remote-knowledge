@@ -1,0 +1,43 @@
+{
+  "knowledge_commit": "396326def73d99aae91dca4de9416f4eca6d2aea",
+  "exact_set": "b8-integrated-artifact-set-1",
+  "client_commit": "52d35f5304e62f465c1f47ab47c00fe9bcf62470",
+  "wheel_sha256": "dcedff010feac0d5df24ff85dd84b321fb819f78563c39431ac32d9d75bc0180",
+  "runner_sha256": "46b4b61f85eef5679114223755eea9ad4ac8f3fb5de2aca2ed0258348da90271",
+  "derived_from_runner_sha256": "15c5c2cfa1ace74b03fd21c54d0ac575b656f75a39315754f283d8255fbf1003",
+  "sample_sha256": "e3824c3800aea4acc3ca1141a289e5a04d34c52cb2492af25b38f050bfe824d3",
+  "test_class": "live-auto with live-human WireScope observation",
+  "reused_pass": [
+    "short import",
+    "entity lifecycle",
+    "ParticleSpec",
+    "playSound",
+    "run-1 WireScope frames"
+  ],
+  "status": "FAIL",
+  "pairing_started": false,
+  "results": [
+    {
+      "operation": "authenticated hello",
+      "status": "PASS"
+    }
+  ],
+  "human_observations": {},
+  "temporary_block_remaining": false,
+  "non_claim": [
+    "actual server SoundGroup volume/pitch numbers",
+    "2-player receiver difference",
+    "rendering",
+    "audibility",
+    "localization"
+  ],
+  "hello": {
+    "protocol": "23.2.0",
+    "mc_version": "1.21.11"
+  },
+  "failure": {
+    "stage": "authenticated hello",
+    "reason": "human checkpoint not confirmed"
+  },
+  "frame_count": 2
+}

@@ -1,0 +1,62 @@
+{
+  "main_commit": "52d35f5304e62f465c1f47ab47c00fe9bcf62470",
+  "tag_ref": {
+    "object": {
+      "sha": "52d35f5304e62f465c1f47ab47c00fe9bcf62470",
+      "type": "commit",
+      "url": "https://api.github.com/repos/Naohiro2g/minecraft-remote-api/git/commits/52d35f5304e62f465c1f47ab47c00fe9bcf62470"
+    },
+    "ref": "refs/tags/v2320.0.0b8"
+  },
+  "release": {
+    "assets": [
+      {
+        "browser_download_url": "https://github.com/Naohiro2g/minecraft-remote-api/releases/download/v2320.0.0b8/manifest.json",
+        "digest": "sha256:7aa2868f1d9fc75b414cb37ac8d0886d390691d7b169f060def99248e29d9fc0",
+        "id": 607539292,
+        "name": "manifest.json",
+        "size": 681
+      },
+      {
+        "browser_download_url": "https://github.com/Naohiro2g/minecraft-remote-api/releases/download/v2320.0.0b8/minecraft_remote_api-2320.0.0b8-py3-none-any.whl",
+        "digest": "sha256:dcedff010feac0d5df24ff85dd84b321fb819f78563c39431ac32d9d75bc0180",
+        "id": 607539300,
+        "name": "minecraft_remote_api-2320.0.0b8-py3-none-any.whl",
+        "size": 195068
+      },
+      {
+        "browser_download_url": "https://github.com/Naohiro2g/minecraft-remote-api/releases/download/v2320.0.0b8/minecraft_remote_api-2320.0.0b8.tar.gz",
+        "digest": "sha256:9d56d92b10936787e1eebc1cf85a521ea19aa2e57b391f474eb695b0ba3fad32",
+        "id": 607539289,
+        "name": "minecraft_remote_api-2320.0.0b8.tar.gz",
+        "size": 188775
+      }
+    ],
+    "draft": false,
+    "html_url": "https://github.com/Naohiro2g/minecraft-remote-api/releases/tag/v2320.0.0b8",
+    "id": 402437492,
+    "name": "minecraft-remote-api 2320.0.0b8",
+    "prerelease": true,
+    "published_at": "2026-10-03T09:34:55Z",
+    "tag_name": "v2320.0.0b8"
+  },
+  "latest_tag": "v1214.10.11",
+  "release_jobs": {
+    "jobs": [
+      {
+        "conclusion": "success",
+        "html_url": "https://github.com/Naohiro2g/minecraft-remote-api/actions/runs/37113530599/job/111175851621",
+        "id": 111175851621,
+        "name": "promote",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "html_url": "https://github.com/Naohiro2g/minecraft-remote-api/actions/runs/37113530599/job/111175880010",
+        "id": 111175880010,
+        "name": "publish-testpypi",
+        "status": "completed"
+      }
+    ]
+  }
+}

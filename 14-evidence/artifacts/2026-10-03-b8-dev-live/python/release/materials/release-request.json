@@ -1,0 +1,9 @@
+{
+  "tag_name": "v2320.0.0b8",
+  "target_commitish": "52d35f5304e62f465c1f47ab47c00fe9bcf62470",
+  "name": "minecraft-remote-api 2320.0.0b8",
+  "body": "Minecraft 1.21.11、McRemote protocol 23.2.0に対応するB8のPythonクライアントです。\n\n- entityの近傍取得、pose取得・変更、削除を追加しました。\n- dust／blockのParticleSpecとworld／self receiverに対応しました。\n- playSound／playBlockSoundを追加し、pitchまたはnoteを指定できます。\n- from mc_remote import Minecraftでimportできます。pygameはoptional extraです。\n- パーティクルで81点を描く3Dグラフのサンプルを同梱しています。\n- protocol 23.2.0に対応するWireScopeをwheelに同梱しています。\n\nGitを使わず、Release wheelから導入できます。\n\n```powershell\nuv add https://github.com/Naohiro2g/minecraft-remote-api/releases/download/v2320.0.0b8/minecraft_remote_api-2320.0.0b8-py3-none-any.whl\n```\n\n[B8の使い方](https://github.com/Naohiro2g/minecraft-remote-api/blob/v2320.0.0b8/docs/b8-python_ja.md)／[Windows 11からJupyterLabまでの導入手順](https://github.com/Naohiro2g/minecraft-remote-api/blob/v2320.0.0b8/docs/windows-b8-entry_ja.md)\n",
+  "draft": false,
+  "prerelease": true,
+  "make_latest": "false"
+}

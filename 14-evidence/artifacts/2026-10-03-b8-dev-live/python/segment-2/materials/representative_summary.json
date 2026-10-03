@@ -1,0 +1,99 @@
+{
+  "knowledge_commit": "749ba60dc8c18938e50ce66b8e820aac4401c69e",
+  "exact_set": "b8-integrated-artifact-set-1",
+  "client_commit": "52d35f5304e62f465c1f47ab47c00fe9bcf62470",
+  "wheel_sha256": "dcedff010feac0d5df24ff85dd84b321fb819f78563c39431ac32d9d75bc0180",
+  "test_class": "live-auto with live-human WireScope observation",
+  "status": "FAIL",
+  "pairing_started": false,
+  "results": [
+    {
+      "operation": "short import and authenticated hello",
+      "status": "PASS"
+    },
+    {
+      "operation": "build context at player feet",
+      "status": "PASS"
+    },
+    {
+      "operation": "spawnEntity bare cow",
+      "status": "PASS"
+    },
+    {
+      "operation": "getNearbyEntities",
+      "status": "PASS",
+      "entity_count": 2,
+      "spawned_handle_present": true
+    },
+    {
+      "operation": "getEntityPose",
+      "status": "PASS",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "operation": "setEntityPose",
+      "status": "PASS",
+      "post_read_pose": {
+        "dimension": "minecraft:overworld",
+        "pos": [
+          2.5,
+          1.422,
+          2
+        ],
+        "yaw": 45,
+        "pitch": 0
+      }
+    },
+    {
+      "operation": "removeEntity",
+      "status": "PASS"
+    },
+    {
+      "operation": "dust ParticleSpec world",
+      "status": "PASS",
+      "result": 8
+    },
+    {
+      "operation": "block ParticleSpec world",
+      "status": "PASS",
+      "result": 8
+    },
+    {
+      "operation": "dust ParticleSpec self",
+      "status": "PASS",
+      "result": 8
+    },
+    {
+      "operation": "block ParticleSpec self",
+      "status": "PASS",
+      "result": 8
+    },
+    {
+      "operation": "spawnParticle bare flame",
+      "status": "PASS",
+      "result": 4
+    },
+    {
+      "operation": "playSound bare block.bell.use pitch world",
+      "status": "PASS"
+    },
+    {
+      "operation": "playSound note self",
+      "status": "PASS"
+    }
+  ],
+  "human_observations": {
+    "WireScope attached and Minecraft logged in": "human owner confirmed"
+  },
+  "created_entity_remaining": false,
+  "temporary_block_remaining": false,
+  "hello": {
+    "protocol": "23.2.0",
+    "mc_version": "1.21.11"
+  },
+  "failure": {
+    "stage": "block sound target",
+    "type": "TypeError"
+  },
+  "frame_count": 34
+}

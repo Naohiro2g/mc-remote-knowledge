@@ -1,0 +1,26 @@
+{
+  "knowledge_commit": "749ba60dc8c18938e50ce66b8e820aac4401c69e",
+  "exact_set": "b8-integrated-artifact-set-1",
+  "client_commit": "52d35f5304e62f465c1f47ab47c00fe9bcf62470",
+  "wheel_sha256": "dcedff010feac0d5df24ff85dd84b321fb819f78563c39431ac32d9d75bc0180",
+  "phase": "b7",
+  "test_class": "live-human",
+  "expected_protocol": "23.1.0",
+  "status": "FAIL",
+  "mc_version": null,
+  "pairing_started": false,
+  "world_write_calls": 0,
+  "hello_request": {
+    "method": "hello",
+    "params": {
+      "protocol": "23.1.0",
+      "auth": {
+        "token": "[REDACTED]"
+      }
+    }
+  },
+  "failure": {
+    "stage": "b7 unauthenticated preflight",
+    "type": "gaierror"
+  }
+}

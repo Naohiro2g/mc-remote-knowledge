@@ -1,0 +1,9 @@
+
+ RUN  v4.1.9 /tmp/mcr-b8-source/mc-remote/live
+
+
+ Test Files  3 passed (3)
+      Tests  37 passed (37)
+   Start at  20:41:20
+   Duration  864ms (transform 442ms, setup 0ms, import 840ms, tests 291ms, environment 1ms)
+

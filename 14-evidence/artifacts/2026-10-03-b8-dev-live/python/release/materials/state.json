@@ -1,0 +1,90 @@
+{
+  "knowledge_commit": "fd7cad78564dd96ee91831d284abf1560fdf65b0",
+  "exact_set": "b8-integrated-artifact-set-1",
+  "candidate_commit": "52d35f5304e62f465c1f47ab47c00fe9bcf62470",
+  "previous_main": "70596ed5fc96d826d5107f2033354a59cccfc2e6",
+  "tag": "v2320.0.0b8",
+  "previous_latest_release": "v1214.10.11",
+  "worktree": "/tmp/mcr-b8-release-worktree-fd7cad7",
+  "phase": "COMPLETE: main/tag integration, CI identity check, GitHub prerelease, TestPyPI publish, public bytes and anonymous Windows URL verified",
+  "expected": {
+    "wheel": {
+      "bytes": 195068,
+      "sha256": "dcedff010feac0d5df24ff85dd84b321fb819f78563c39431ac32d9d75bc0180"
+    },
+    "sdist": {
+      "bytes": 188775,
+      "sha256": "9d56d92b10936787e1eebc1cf85a521ea19aa2e57b391f474eb695b0ba3fad32"
+    }
+  },
+  "user_worktree_fingerprints": {
+    "examples/param_mc_remote.py": "3ff25c7ec7576e72eea8c6f82bc554b2dc82b1010d27944875e3a31e7bc5e3b5",
+    "examples/particle_graph.py": "b14db0c25e3ed1a95eb0f202758f00bafbdfff4fb10ed58eff02a795234fdc14"
+  },
+  "main_commit": "52d35f5304e62f465c1f47ab47c00fe9bcf62470",
+  "tag_target": "52d35f5304e62f465c1f47ab47c00fe9bcf62470",
+  "ci_run_id": 37113256520,
+  "ci_artifact_id": 11271101046,
+  "ci_artifacts": [
+    {
+      "role": "wheel",
+      "file": "minecraft_remote_api-2320.0.0b8-py3-none-any.whl",
+      "bytes": 195068,
+      "sha256": "dcedff010feac0d5df24ff85dd84b321fb819f78563c39431ac32d9d75bc0180"
+    },
+    {
+      "role": "sdist",
+      "file": "minecraft_remote_api-2320.0.0b8.tar.gz",
+      "bytes": 188775,
+      "sha256": "9d56d92b10936787e1eebc1cf85a521ea19aa2e57b391f474eb695b0ba3fad32"
+    }
+  ],
+  "artifact_verification": "PASS",
+  "release_id": 402437492,
+  "release_url": "https://github.com/Naohiro2g/minecraft-remote-api/releases/tag/v2320.0.0b8",
+  "release_run_id": 37113530599,
+  "release_assets": [
+    {
+      "role": "wheel",
+      "file": "minecraft_remote_api-2320.0.0b8-py3-none-any.whl",
+      "bytes": 195068,
+      "sha256": "dcedff010feac0d5df24ff85dd84b321fb819f78563c39431ac32d9d75bc0180"
+    },
+    {
+      "role": "sdist",
+      "file": "minecraft_remote_api-2320.0.0b8.tar.gz",
+      "bytes": 188775,
+      "sha256": "9d56d92b10936787e1eebc1cf85a521ea19aa2e57b391f474eb695b0ba3fad32"
+    },
+    {
+      "role": "manifest",
+      "file": "manifest.json",
+      "bytes": 681,
+      "sha256": "7aa2868f1d9fc75b414cb37ac8d0886d390691d7b169f060def99248e29d9fc0"
+    }
+  ],
+  "testpypi_status": "PASS",
+  "testpypi_files": [
+    {
+      "file": "minecraft_remote_api-2320.0.0b8-py3-none-any.whl",
+      "bytes": 195068,
+      "sha256": "dcedff010feac0d5df24ff85dd84b321fb819f78563c39431ac32d9d75bc0180",
+      "url": "https://test-files.pythonhosted.org/packages/b5/ed/a741ec71b1884e50e3a1de69af82725f51490cf6f13ebd441cb62f8f25f3/minecraft_remote_api-2320.0.0b8-py3-none-any.whl",
+      "yanked": false
+    },
+    {
+      "file": "minecraft_remote_api-2320.0.0b8.tar.gz",
+      "bytes": 188775,
+      "sha256": "9d56d92b10936787e1eebc1cf85a521ea19aa2e57b391f474eb695b0ba3fad32",
+      "url": "https://test-files.pythonhosted.org/packages/c7/a4/8e1faa3ee7e3d19deb316f747fd354bbbafe2c187cb328a999b3607e69cc/minecraft_remote_api-2320.0.0b8.tar.gz",
+      "yanked": false
+    }
+  ],
+  "testpypi_url": "https://test.pypi.org/project/minecraft-remote-api/2320.0.0b8/",
+  "user_worktree_preserved": true,
+  "latest_tag_after_release": "v1214.10.11",
+  "anonymous_wheel_download": "PASS",
+  "wheel_url": "https://github.com/Naohiro2g/minecraft-remote-api/releases/download/v2320.0.0b8/minecraft_remote_api-2320.0.0b8-py3-none-any.whl",
+  "temporary_worktree_removed": true,
+  "receipt": "materials/release-return_ja.md"
+}

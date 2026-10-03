@@ -1,0 +1,297 @@
+{
+  "knowledge_commit": "396326def73d99aae91dca4de9416f4eca6d2aea",
+  "exact_set": "b8-integrated-artifact-set-1",
+  "client_commit": "52d35f5304e62f465c1f47ab47c00fe9bcf62470",
+  "wheel_sha256": "dcedff010feac0d5df24ff85dd84b321fb819f78563c39431ac32d9d75bc0180",
+  "runner_sha256": "c001bd5cbc8ab8b5151133c995dec4f226d82f4b9ac83f786a2e9797574a5c7c",
+  "derived_from_runner_sha256": "15c5c2cfa1ace74b03fd21c54d0ac575b656f75a39315754f283d8255fbf1003",
+  "previous_attempt_runner_sha256": "46b4b61f85eef5679114223755eea9ad4ac8f3fb5de2aca2ed0258348da90271",
+  "sample_sha256": "e3824c3800aea4acc3ca1141a289e5a04d34c52cb2492af25b38f050bfe824d3",
+  "test_class": "live-auto with live-human WireScope observation",
+  "reused_pass": [
+    "short import",
+    "entity lifecycle",
+    "ParticleSpec",
+    "playSound",
+    "run-1 WireScope frames"
+  ],
+  "status": "PASS",
+  "pairing_started": false,
+  "results": [
+    {
+      "operation": "authenticated hello",
+      "status": "PASS"
+    },
+    {
+      "operation": "getBlock original BlockValue",
+      "status": "PASS",
+      "block": {
+        "block_id": "minecraft:air",
+        "state": {}
+      }
+    },
+    {
+      "operation": "temporary stone readback",
+      "status": "PASS",
+      "block": {
+        "block_id": "minecraft:stone",
+        "state": {}
+      }
+    },
+    {
+      "operation": "playBlockSound place options omitted",
+      "status": "PASS",
+      "wire_params": [
+        3,
+        1,
+        0,
+        "place"
+      ],
+      "result": null
+    },
+    {
+      "operation": "playBlockSound place pitch override self",
+      "status": "PASS",
+      "wire_params": [
+        3,
+        1,
+        0,
+        "place",
+        {
+          "pitch": 0.75,
+          "receiver": "self"
+        }
+      ],
+      "result": null
+    },
+    {
+      "operation": "playBlockSound place note override world",
+      "status": "PASS",
+      "wire_params": [
+        3,
+        1,
+        0,
+        "place",
+        {
+          "note": 18,
+          "receiver": "world"
+        }
+      ],
+      "result": null
+    },
+    {
+      "operation": "playBlockSound hit options omitted",
+      "status": "PASS",
+      "wire_params": [
+        3,
+        1,
+        0,
+        "hit"
+      ],
+      "result": null
+    },
+    {
+      "operation": "playBlockSound hit pitch override self",
+      "status": "PASS",
+      "wire_params": [
+        3,
+        1,
+        0,
+        "hit",
+        {
+          "pitch": 0.75,
+          "receiver": "self"
+        }
+      ],
+      "result": null
+    },
+    {
+      "operation": "playBlockSound hit note override world",
+      "status": "PASS",
+      "wire_params": [
+        3,
+        1,
+        0,
+        "hit",
+        {
+          "note": 18,
+          "receiver": "world"
+        }
+      ],
+      "result": null
+    },
+    {
+      "operation": "playBlockSound break options omitted",
+      "status": "PASS",
+      "wire_params": [
+        3,
+        1,
+        0,
+        "break"
+      ],
+      "result": null
+    },
+    {
+      "operation": "playBlockSound break pitch override self",
+      "status": "PASS",
+      "wire_params": [
+        3,
+        1,
+        0,
+        "break",
+        {
+          "pitch": 0.75,
+          "receiver": "self"
+        }
+      ],
+      "result": null
+    },
+    {
+      "operation": "playBlockSound break note override world",
+      "status": "PASS",
+      "wire_params": [
+        3,
+        1,
+        0,
+        "break",
+        {
+          "note": 18,
+          "receiver": "world"
+        }
+      ],
+      "result": null
+    },
+    {
+      "operation": "playBlockSound step options omitted",
+      "status": "PASS",
+      "wire_params": [
+        3,
+        1,
+        0,
+        "step"
+      ],
+      "result": null
+    },
+    {
+      "operation": "playBlockSound step pitch override self",
+      "status": "PASS",
+      "wire_params": [
+        3,
+        1,
+        0,
+        "step",
+        {
+          "pitch": 0.75,
+          "receiver": "self"
+        }
+      ],
+      "result": null
+    },
+    {
+      "operation": "playBlockSound step note override world",
+      "status": "PASS",
+      "wire_params": [
+        3,
+        1,
+        0,
+        "step",
+        {
+          "note": 18,
+          "receiver": "world"
+        }
+      ],
+      "result": null
+    },
+    {
+      "operation": "playBlockSound fall options omitted",
+      "status": "PASS",
+      "wire_params": [
+        3,
+        1,
+        0,
+        "fall"
+      ],
+      "result": null
+    },
+    {
+      "operation": "playBlockSound fall pitch override self",
+      "status": "PASS",
+      "wire_params": [
+        3,
+        1,
+        0,
+        "fall",
+        {
+          "pitch": 0.75,
+          "receiver": "self"
+        }
+      ],
+      "result": null
+    },
+    {
+      "operation": "playBlockSound fall note override world",
+      "status": "PASS",
+      "wire_params": [
+        3,
+        1,
+        0,
+        "fall",
+        {
+          "note": 18,
+          "receiver": "world"
+        }
+      ],
+      "result": null
+    },
+    {
+      "operation": "playBlockSound hit Python default call",
+      "status": "PASS",
+      "wire_params": [
+        3,
+        1,
+        0,
+        "hit",
+        {
+          "receiver": "world"
+        }
+      ],
+      "result": null
+    },
+    {
+      "operation": "original block restored and read back",
+      "status": "PASS",
+      "block": {
+        "block_id": "minecraft:air",
+        "state": {}
+      }
+    },
+    {
+      "operation": "frozen 3D graph sample",
+      "status": "PASS",
+      "particle_requests": 81,
+      "particle_results": 81
+    }
+  ],
+  "human_observations": {
+    "WireScope attached and Minecraft logged in": "human owner confirmed",
+    "getBlock payload and playBlockSound frames visible": "human owner confirmed",
+    "graph frames visible": "human owner confirmed"
+  },
+  "temporary_block_remaining": false,
+  "non_claim": [
+    "actual server SoundGroup volume/pitch numbers",
+    "2-player receiver difference",
+    "rendering",
+    "audibility",
+    "localization"
+  ],
+  "hello": {
+    "protocol": "23.2.0",
+    "mc_version": "1.21.11"
+  },
+  "sound_target_block": {
+    "block_id": "minecraft:stone",
+    "state": {}
+  },
+  "frame_count": 212
+}
