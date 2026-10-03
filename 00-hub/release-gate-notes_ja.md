@@ -71,6 +71,69 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - non-claim: PyPI.orgへの公開はしない。mature判定はしない。Windowsでは検証していない
 - coordinator判定／human release owner承認: human ownerがpost2のsetへの組み入れを判定（2026-09-26、`2026-09-27-01`）。coordinatorはchange coneが閉じていることを確認し、単独更新gateを通過とする（2026-09-28）。**CLOSED**
 
+## 2026-10-04 b9横断release gate（OPEN）
+
+- gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
+- human release owner: プロジェクトオーナー
+- current phase: **確認票の依頼**。b8（`b8-integrated-artifact-set-1`）を基準に、各担当からb9に向けた現状と移管の材料を
+  受け取る。移管のtopologyと実行範囲は、Scratchの返却を見てhuman ownerが決める（移管計画の「再開gateと完了条件」、
+  人間向け固定文の「再開時の扱い」）。決まるまで、repositoryの操作、sourceの移動、owner・配布の変更をしない
+- 目標日: 2026-10-10 release（`2026-09-29-02`）
+- release mode: 軽量mode（release運用と責務分担 §14、`2026-08-28-02`）。移管はconsumerの取得経路とrelease workflowを
+  変えるので、その部分は§14の但し書きにより検証を強める
+- contract: protocol `23.2.0`のまま、artifact `2320.0.0b9`（`2026-09-30-03`）。APIは変えない
+  - b9の範囲: `2026-09-30-03`（API freeze、移管、PyPI登録）
+  - freeze前の契約2件: `2026-10-03-01`（id付き`chat.post`の成功resultは`null`）、`2026-10-03-02`（知らないevent typeで
+    `events.poll`を失敗させない）
+  - 移管: `2026-09-13-02`（b8後へ送った）、`2026-09-30-04`（Java以外のconsumerで行い、Javaは初回stable後に再検証）、
+    移管計画、人間向け固定文
+  - PyPI: `2026-09-26-03`（機構モード soak→mature）、`2026-09-29-02`（Windowsの検証を受けてmature判定をしてから登録）、
+    versioning-design §10.9の遷移ゲート①〜④
+  - API一覧: `2026-09-30-05`（公開releaseだけ、knowledgeが持つ）
+  - gate開閉時のpark確認: `2026-09-30-09`
+- 基準set: b8（McRemote `v1.21.11-2320.0.0b8`、Python `v2320.0.0b8`、Scratch `v2320.0.0b8`）
+- 参加component:
+  - McRemote: 契約2件のうち`chat.post`のresult、JARのunix権限bitの固定（hub NOTES 2026-10-03）、移管後のfixtureの取得経路
+  - Python client: PyPIへの登録（TestPyPIでの予行とmature判定の材料）、知らないevent typeの扱い、移管後のfixtureと
+    同梱WireScopeの取得経路
+  - Scratch editor（Bridge・WireScope同梱）: 移管の現ownerとして調査と実施、知らないevent typeの扱い（Scratch、WireScope）、
+    WireScopeの列幅（`agent/b8-compatibility@01cdb0b`、b9で出す）、pickerのalias検索
+  - 不参加: Java（`2026-09-30-04`。契約2件には自分で追従し、gateの条件にしない）。Stackはdeploymentで関わる
+    （human ownerの直接管理、2026-10-01）
+- 変更範囲（change cone）:
+  - 移管: Protocol projection、shared fixture、WireScope、Bridgeのowner → 各consumerの取得経路、owner test、CI、
+    release workflowとmanifest、Pythonの同梱WireScope、Stackの収集の入口
+  - 契約2件 → McRemoteの`chat.post`、各clientのpoll、shared fixtureのcase
+  - Pythonの公開チャンネル → TestPyPI／PyPIへのpublish workflow、exact-pinの手順
+  - McRemoteのJARの作り方 → JARのdigest（中身は変えない）
+- required tier: 確認票と移管の作業はTier 2。exact set凍結後にTier 3（移管の前後でfixtureとartifactが同じであることを
+  確かめる。代表往復だけlive）
+- acceptance:
+  1. 移管した後のownerが、b8時点のfixture 12件（移管計画の「b8時点の起点」）をbyte一致で再現する
+  2. McRemote、Python、Scratchが、新しいownerと取得経路からfixtureを取ってconsumer testを通す。Scratch側に編集できる
+     owner copyを残さない（hybridを選んだ場合は終了条件を先に決める）
+  3. 移管の前に戻せる（rollback先はb8のScratch source `691576f`とfixture一覧）
+  4. 契約2件に各componentが適合し、shared fixtureにcaseがある
+  5. API freeze: wireの§4コマンド表と§7.3 error表がb8から変わらない（API一覧の`api.json`の差分で確かめる）
+  6. Python: TestPyPIで予行し、遷移ゲート①〜④の材料をそろえる。mature判定とPyPI.orgへの登録はhuman ownerが決める
+  7. McRemote: 手元とCIのJARのdigestが一致する
+  8. 1.21.11での代表往復。live試験の開始時にhelloの`mc_version`を照合し、違えば本体を実行せずFAIL
+- 再利用するPASS: b8のlive PASSは、APIを変えないので再利用する。移管と契約2件で変わる箇所だけを取り直す
+- 日程（案）: 10/5に確認票の返却 → 10/6に移管のtopologyと範囲を決める → 10/6〜10/8に作業と凍結 → 10/9に実機試験 →
+  10/10にrelease。移管が10/10に収まらない見込みになったら、10/6の時点で日程か範囲を相談する
+- park確認（`2026-09-30-09`、`tools/list-reopen-conditions.py --release-tied`、2026-10-04）: b9 gateを開くときに再開する
+  行を次のように扱う
+  - McRemote JARのunix権限bit: b9に入れる（McRemoteへ依頼）
+  - freeze前の契約2件: b9に入れる（確認票で聞く）
+  - API一覧: 公開版ごとに残すページ、クライアントAPI一覧とのつなぎ方を、b9の公開に合わせて決める
+  - public README／sample codeの再編: 各repoの残りを確認票で聞く
+  - `2026-08-23-01`のrelease gate方法論の残り（gate manifest）: b9でも作らない案をhuman ownerに示す
+  - protocol 22 Scratch block value投影の残り: Scratchの確認票で聞く
+  - b8で非blockerにしたもの: サウンドのlearner block（command 2つとoptionsのブロック）とpost-b7のpark 2件はb8に入って公開済み
+    （b8の節の凍結とsegment 3）。残るpickerのalias検索と、b7 release後の是正候補のうちb8で終わらなかったものをScratchの確認票で聞く
+- 判断を求める事項: API freezeの範囲（wireだけか、Python APIとScratchのブロックも含めるか）。b9に残る学習面の作業
+  （pickerのalias検索）には影響しないので、確認票の返却の後に決める
+
 ## 2026-09-30 b8横断release gate（CLOSED）
 
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
