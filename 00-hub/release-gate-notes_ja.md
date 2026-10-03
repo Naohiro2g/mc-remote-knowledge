@@ -335,6 +335,13 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   - Scratch: tagは凍結した`691576f`へ`v2320.0.0b8`。developは`691576f`まで統合する。branchの先頭の`01cdb0b`（列幅、b9）はtagにも
     developにも入れない
   - 一致しないもの（tagのCIのJAR、wheelのdigest等）が出たら、公開せずに止めてcoordinatorへ返す
+  - McRemoteのJARの食い違い（2026-10-03）: PR #12をmergeしたcommit `8f13b2f4dc14798899ab5153a0a647c2dea7aa18`へtag
+    `v1.21.11-2320.0.0b8`を打ち、tagのCI（run `37113943263`）が作ったJARは261,025 bytesで同じだが、SHA-256が
+    `fdffaf0c6e8bf0928ef9872c519ec0ad0c609547cd087040bc2d44daf14d80c6`になり、McRemoteは公開を止めた。coordinatorがCIの成果物と凍結した
+    JARを取り出して比べ、148 entryの名前・並び・CRC・サイズ・圧縮方式・時刻・中身のbytesが一致し、違いは146 entryのunix権限bit
+    （ファイル664／644、ディレクトリ775／755。buildした環境のumaskの差）だけであることを確かめた。human ownerの判断（2026-10-03）で、
+    **CIのJAR `fdffaf0c…`をb8の公開物として受け入れる**。実機試験のPASSは再利用する（release運用と責務分担 §7の「packaging／
+    archive metadata」）。凍結set `b8-integrated-artifact-set-1`のMcRemoteの公開JARは`fdffaf0c…`（試験したJAR `7ab24fa1…`と中身は同じ）
 - authorized next action（2026-10-03、公開）: 各repoへ公開の指示票を出す。公開後、coordinatorがtag target、prerelease／draft、
   `manifest.json`のartifact identityをGitHub APIで読むだけ照合し、gateを閉じる
 - non-claim: PyPI.orgへの公開とAPI freeze（b9）、capacity／soak／rollback（rc1。rollbackの範囲案はhub NOTESにpark）、public deploy、Scratch learner block、

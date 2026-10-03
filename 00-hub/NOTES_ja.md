@@ -8,6 +8,7 @@
 
 ## Inbox
 
+- 2026-10-03 [park] McRemote JARのunix権限bitを固定し、手元とCIで同じdigestにする / b8の公開で、手元のbuild（umask 002）とCI（umask 022）のJARが、中身は同じで権限bitだけ違いdigestが変わった（release-gate-notesのb8の節）。Gradleのjarの作り方でファイルとディレクトリの権限を固定し、同じsourceならどこでbuildしても同じSHA-256になるようにする / 再開＝b9 gateを開くとき（McRemote担当へ着手依頼） / 閉じる＝手元とCIのJARのdigestが一致した時
 - 2026-10-03 [park] b9 gateで確かめるfreeze前の契約2件 / `2026-10-03-01`（`chat.post`の成功resultを`null`）と`2026-10-03-02`（知らないevent typeでpollを失敗させない）。McRemoteには今の`chat.post`のresult、Python／Scratch／WireScopeには知らないevent typeの扱いを確認票で聞き、違えば直してshared fixtureへcaseを足す。Javaは自分で追従し、gateの条件にはしない / 再開＝b9 gateを開くとき（knowledge coordinatorが気づく） / 閉じる＝b9 gateで各componentの適合を確かめた時
 - 2026-09-30 [park] 初回stable後のサウンド拡張 / `2026-09-30-03`。シーケンス演奏（`setMusicSequence`／`playSequence`／`pauseSequence`（トグル）／`stopSequence`、loop付き。tickごとにサーバー側で鳴らす）とイベント登録（イベントでシーケンスを開始する）を優先する。続いて`player.playSound`、`entity.playSound`、`playMusic`と止める手段、`source`／`minVolume`のoptions、catalogへのsoundの追加。検討の中身（Paperの事実、Scratchの音のブロックとの対応、時間分解能、遅れの内訳、method名、イベントの形）はMcRemoteの提案で`10-protocol/sound-extension-notes_ja.md`へ移した（2026-09-30） / 再開＝初回stable後のAPI計画を立てるとき（knowledge coordinatorが気づく） / 閉じる＝各候補を決定へ上げるか、明示的に落とした時
 - 2026-09-30 [park] API一覧（ホームページ配下）の最初の対象版と生成の仕組み / `2026-09-30-05`。公開releaseのProtocol APIだけを載せ、knowledgeが所有する。未決＝最初の対象版（公開済みのb7か、10/3のb8か）、生成の入力と仕組み（wire、fixture、production registryからの生成、site generator）、機械可読版の形、トップページからのリンクの位置 / 再開＝b8 gateを閉じるとき（knowledge coordinatorが気づく） / 閉じる＝最初の版をホームページに載せた時
