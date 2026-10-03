@@ -342,6 +342,20 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     （ファイル664／644、ディレクトリ775／755。buildした環境のumaskの差）だけであることを確かめた。human ownerの判断（2026-10-03）で、
     **CIのJAR `fdffaf0c…`をb8の公開物として受け入れる**。実機試験のPASSは再利用する（release運用と責務分担 §7の「packaging／
     archive metadata」）。凍結set `b8-integrated-artifact-set-1`のMcRemoteの公開JARは`fdffaf0c…`（試験したJAR `7ab24fa1…`と中身は同じ）
+- release identity verification（2026-10-03、coordinatorがGitHub APIで読むだけ照合）:
+  - Python [v2320.0.0b8](https://github.com/Naohiro2g/minecraft-remote-api/releases/tag/v2320.0.0b8): title「minecraft-remote-api 2320.0.0b8」、
+    prerelease=true、draft=false、tag target `52d35f5304e62f465c1f47ab47c00fe9bcf62470`（mainへfast-forward統合、mainの先頭と一致）。asset:
+    wheel 195,068 bytes／`dcedff01…0180`、sdist 188,775 bytes／`9d56d92b…ad32`、`manifest.json` 681 bytes／`7aa2868f…9fc0`。manifestは
+    schema `mc-remote.release-manifest` v1、`release_tag` `v2320.0.0b8`、`source_commit` `52d35f5`、`bundled_wirescope_source_commit` `df34849`。
+    TestPyPIへの公開も成功（担当報告）。Windows検証用のwheel URLは
+    `https://github.com/Naohiro2g/minecraft-remote-api/releases/download/v2320.0.0b8/minecraft_remote_api-2320.0.0b8-py3-none-any.whl`
+  - Scratch [v2320.0.0b8](https://github.com/Naohiro2g/scratch-editor/releases/tag/v2320.0.0b8): title「mc-remote Scratch 2320.0.0b8」、
+    prerelease=true、draft=false、annotated tagのtarget `691576f60b7f0824e1753bd6823901d01fbe2422`、developの先頭も`691576f`（`01cdb0b`は
+    b9用のbranchに保持）。asset: `wirescope-app.zip` 83,746 bytes／`4cb34989…0a07`、`wirescope-app.manifest.json` 2,321 bytes／`6ea468f5…24d0`、
+    `contracts.tar.gz` 1,908 bytes／`48948ba4…2390`、`manifest.json` 1,168 bytes／`122846bd…2887`。manifestはschema v1、`release_tag`
+    `v2320.0.0b8`、`source_commit` `691576f`、OCIは`scratch` `sha256:d595992e05feb891ead10860a14eb292228968d8ca9460505a34fa1d24a1d8c0`、
+    `bridge` `sha256:0d7802aba4af418a634afb74c52813810d3b9224ee1ae8e97a485551cf9d79dc`
+  - McRemote: 公開の再開を指示済み。返却待ち
 - authorized next action（2026-10-03、公開）: 各repoへ公開の指示票を出す。公開後、coordinatorがtag target、prerelease／draft、
   `manifest.json`のartifact identityをGitHub APIで読むだけ照合し、gateを閉じる
 - non-claim: PyPI.orgへの公開とAPI freeze（b9）、capacity／soak／rollback（rc1。rollbackの範囲案はhub NOTESにpark）、public deploy、Scratch learner block、
