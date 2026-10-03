@@ -288,11 +288,11 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     独立のChromiumでWireScope（Scratch source）を開き、entityの4 method、typed particle、サウンド、particleのIDなし通知（送信済み・
     結果未確認）の表示をDOMとscreenshotで確認し、human ownerも4点を目視で承認。b7 release後の是正のうち、空pollで履歴を押し出さない
     ことと数値欄のCtrl+C／Ctrl+VはPASS。server backpressureの案内は、通常の操作でbackpressureが起きず**NOTRUN**（設定変更や負荷で
-    無理に起こさなかった）。試験scriptの誤り2件（TRACE delayの省略、FASTがparticleにも効くという誤ったassertion）はscript側の修正で、
+    無理に起こさなかった）。未確認の範囲として記録し、b8を止める理由にしない（human owner 2026-10-03。是正自体はunit testで確認済み）。試験scriptの誤り2件（TRACE delayの省略、FASTがparticleにも効くという誤ったassertion）はscript側の修正で、
     製品とcandidateは変えていない
   - 凍結後のWireScope列幅の調整: human ownerの希望で時刻列と方向列を詰めた変更が`agent/b8-compatibility@01cdb0bfee3a681697ffa44db5b890045b74b01c`
     にある（`mc-remote/live`の2 fileだけ、142 tests PASS）。新しいWireScope ZIPは83,993 bytes／`7d66aa0d…e579`。凍結set
-    `b8-integrated-artifact-set-1`は置き換えていない。b8へ入れるかはhuman ownerの判断待ち
+    `b8-integrated-artifact-set-1`は置き換えていない。b8には入れず、b9で出す（human owner 2026-10-03）
   - release時の注意: McRemoteのtagは、PR #12（candidate）と#13（release workflow）をmainへ入れた後のcommitに打つ。そのcommitの
     CIが作るJARが`7ab24fa1…`と一致するかを、公開前に照合する（plugin本体のsourceは同じで、buildは再現可能と報告されている）
 - Stack／backstageの扱い（2026-10-01）: 当面、human ownerが直接コントロールする。coordinatorはStackへ確認票や着手依頼を
