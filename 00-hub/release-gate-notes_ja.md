@@ -159,6 +159,9 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     リンク）と`00c0146`（Scratchブロック一覧のドラフト）。移管は別紙`ASSESSMENT_ja.md`で、共通TypeScript tooling monorepo、
     Bridgeは今の機能のまま共通ownerへ、fixtureは固定Git SHA、WireScopeは固定digestの生成物で取得、を推奨。見込みは契約2件と
     追加fixtureが0.5〜1作業日、monorepoへの移管が2〜4作業日で、10/10は条件付き
+- Windows（2026-10-05）: クリーンなWindows 11から、Gitなしでuv、b8のRelease wheel、import、JupyterLabまで成功した
+  （human ownerの報告、`14-evidence/records/2026-10-05-python-windows-entry_ja.md`）。遷移ゲート④の材料がそろった。mature判定は
+  human owner
 - human owner（2026-10-04）: WindowsでのPythonの導入手順の確認とPyPI.orgの準備は、今日中を目標にする。契約2件のcaseを
   足したshared fixtureは、今のownerのScratchが先に出す（移管より前）
 

@@ -1,6 +1,7 @@
 # TestPyPI soak と uv 前提 README 再構築の指示書（Python）
 
-> status: A（TestPyPI soak）はWindows検証を除き返却済み、B（README）は完了（2026-09-28、`main@c213674`）。mature判定はhuman owner。
+> status: A（TestPyPI soak）はWindows検証を除き返却済み、B（README）は完了（2026-09-28、`main@c213674`）。Windowsは2026-10-05に
+> b8のRelease wheelで成功（`14-evidence/records/2026-10-05-python-windows-entry_ja.md`）。mature判定はhuman owner。
 > 根拠は `2026-09-26-03`、`2026-09-26-04`、`2026-09-27-01`、`2026-09-27-02`。返却内容は末尾の「返却（2026-09-28）」。
 
 minecraft-remote-api を機構モード soak へ入れる（versioning-design §10.9）。`2301.0.0b7.post3` を TestPyPI へ出して遷移ゲート①〜④を実際に回し、並行して README を uv 前提へ作り直す。

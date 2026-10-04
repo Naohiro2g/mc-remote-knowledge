@@ -1,6 +1,7 @@
 # Python API TestPyPI soak：遷移ゲート①〜④の記録
 
 > status: ①②③④は実施（④のWindowsを除く）。mature判定は未実施（human ownerが行う）。
+> 2026-10-05: ④のWindowsは、b8のRelease wheelで入口ルートが成功した（[Windows入口の記録](2026-10-05-python-windows-entry_ja.md)、報告ベース）。
 
 ## Record
 
