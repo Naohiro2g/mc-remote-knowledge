@@ -171,6 +171,18 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     一致の対象から外し、ZIPの中のassetのbytesを比べる
   - 移管だけの差分と機能の差分を分ける。b9の列幅と知らないevent typeの修正はWireScopeのbytesを変えるので、移管前の同じ
     機能版を基準に比べる
+- 着手の返却（2026-10-05）:
+  - McRemote（knowledge `900f6f4`）: 着手項目1〜7を完了。candidate `feat/b9-contract-packaging@5cb33ebad4bf2c5e36c3433b0f70fe6070915b00`、
+    `mc-remote-1.21.11-2320.0.0b9.jar` 261,016 bytes／SHA-256 `4feb90dbdba8550cd16800cc3d384e42fed16a5c5e20faa489a0381ad2cda58e`。
+    commitは`b6a974a`（`chat.post`の`null`、JARの権限bit、version）→`33fb693`（README）→`344dc2b`（契約2件のfixtureの取り込み。
+    移管を外すときのsource）→`5cb33eb`（fixtureの取得元を`minecraft-remote-tooling`へ）。281 tests PASS（umask 002と022のそれぞれ）。
+    手元の002／022とCIのJARで、全148 entryのmode、bytes、順序とJAR全体のSHA-256が一致した（担当報告）。共有fixture 4件は
+    公開b8とbyte一致
+    - coordinatorの照合: remote branchの先頭が`5cb33eb`。CI run `37220994120`はこのcommitでsuccess、artifact
+      `mc-remote-candidate`のJARは261,016 bytes／`4feb90db…a58e`、`source-commit.txt`は`5cb33eb`。追加のshared fixture
+      `chat-event-compat-v23.2.json`（32,382 bytes／SHA-256 `670b0a86df1956c0e44c6986a0a2598caab32c7328804f9c703190e62e9dd727`、33 case）は、
+      Scratchの発行元`scratch-editor@62e46fd`と移管先`minecraft-remote-tooling@98e4208`の`packages/protocol/test/fixtures/`でbytesと
+      SHA-256が一致。`Naohiro2g/minecraft-remote-protocol`は`minecraft-remote-tooling`へ名前が変わっている
 - human owner（2026-10-05）: `minecraft-remote-tooling`の名前変更とpark解除はScratchに頼む。Pythonをmatureへ移す（`2026-10-05-03`。
   b9からPyPI.orgへpre-release）
 - human owner（2026-10-04）: WindowsでのPythonの導入手順の確認とPyPI.orgの準備は、今日中を目標にする。契約2件のcaseを
