@@ -75,8 +75,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
-- current phase: **着手依頼**（`00-hub/b9-gate-work-instructions_ja.md`）。移管のtopologyとrepository（`2026-10-05-01`、`2026-10-05-02`）、
-  Pythonのmature（`2026-10-05-03`）が決まった。確認点は10/6の終わり
+- current phase: **凍結済み・実機試験**（`b9-integrated-artifact-set-1`、`00-hub/b9-gate-live-test-sheet_ja.md`）
 - 目標日: 2026-10-10 release（`2026-09-29-02`）
 - release mode: 軽量mode（release運用と責務分担 §14、`2026-08-28-02`）。移管はconsumerの取得経路とrelease workflowを
   変えるので、その部分は§14の但し書きにより検証を強める
@@ -216,7 +215,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
       `dc1ab83`の差分は`.dockerignore`の1 fileだけで、fixtureは同じ（McRemoteの取得元の記録はそのままでよい）
     - API freeze（acceptance 5）: b8 closeの`2a8c3ea`から、wireの文書は変わっていない（最後の変更は10/3の契約2件の`46033d8`）。
       `tools/build-api-reference.py --check`はOK（32 method、35 reason）
-- **exact set凍結の案（`b9-integrated-artifact-set-1`、human ownerの承認待ち）**: protocol `23.2.0`／artifact `2320.0.0b9`
+- **exact set凍結（`b9-integrated-artifact-set-1`、human owner承認 2026-10-05）**: protocol `23.2.0`／artifact `2320.0.0b9`
   - McRemote: source `5cb33ebad4bf2c5e36c3433b0f70fe6070915b00`、`mc-remote-1.21.11-2320.0.0b9.jar` 261,016 bytes／
     `4feb90dbdba8550cd16800cc3d384e42fed16a5c5e20faa489a0381ad2cda58e`（CI run `37220994120`）
   - Python: source `b901c88fe41b67530ff353271683ece9fd453076`、wheel 196,221 bytes／`e166bc9c…38c6`、sdist 190,627 bytes／
@@ -227,6 +226,10 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     manifest 2,339 bytes／`c654f7d1…10d7`、Bridge OCI `sha256:5828304c…b84f`（run `37220882228`）
   - shared fixture: b8時点の12件（不変）と`chat-event-compat-v23.2.json` 32,382 bytes／`670b0a86…d727`（33 case）
   - 実施票: `00-hub/b9-gate-live-test-sheet_ja.md`
+- PyPI.orgへの公開の設定（human owner 2026-10-05）: GitHub environment `pypi`に承認者（Required reviewer、Prevent self-reviewはOFF）
+  とtagの制限、repositoryの変数`PYPI_PUBLISH_ENABLED`は`false`。coordinatorがGitHub APIで照合した（承認者`Naohiro2g`、
+  `prevent_self_review: false`、deployment policyはtag `v*`、変数は`false`）。b9の公開の前に`true`にする。TestPyPIの予行は
+  b9では自動のまま、以降は手動のときだけにする（Pythonの案を採用）
 - human owner（2026-10-05）: `minecraft-remote-tooling`の名前変更とpark解除はScratchに頼む。Pythonをmatureへ移す（`2026-10-05-03`。
   b9からPyPI.orgへpre-release）
 - human owner（2026-10-04）: WindowsでのPythonの導入手順の確認とPyPI.orgの準備は、今日中を目標にする。契約2件のcaseを
