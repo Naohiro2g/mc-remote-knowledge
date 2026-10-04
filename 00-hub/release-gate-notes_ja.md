@@ -75,9 +75,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
-- current phase: **移管のtopologyと範囲の判断待ち**（確認票は全担当から返却済み）。移管のtopologyと実行範囲は、
-  Scratchの返却を見てhuman ownerが決める（移管計画の「再開gateと完了条件」、
-  人間向け固定文の「再開時の扱い」）。決まるまで、repositoryの操作、sourceの移動、owner・配布の変更をしない
+- current phase: **着手依頼の前**。移管のtopologyとrepositoryが決まった（`2026-10-05-01`、`2026-10-05-02`）。次は各担当への着手依頼
 - 目標日: 2026-10-10 release（`2026-09-29-02`）
 - release mode: 軽量mode（release運用と責務分担 §14、`2026-08-28-02`）。移管はconsumerの取得経路とrelease workflowを
   変えるので、その部分は§14の但し書きにより検証を強める
@@ -109,7 +107,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - required tier: 確認票と移管の作業はTier 2。exact set凍結後にTier 3（移管の前後でfixtureとartifactが同じであることを
   確かめる。代表往復だけlive）
 - acceptance:
-  1. 移管した後のownerが、b8時点のfixture 12件（移管計画の「b8時点の起点」）をbyte一致で再現する
+  1. 移管した後のowner（`minecraft-remote-tooling`）が、b8時点のfixture 12件（移管計画の「b8時点の起点」）をbyte一致で再現する
   2. McRemote、Python、Scratchが、新しいownerと取得経路からfixtureを取ってconsumer testを通す。Scratch側に編集できる
      owner copyを残さない（hybridを選んだ場合は終了条件を先に決める）
   3. 移管の前に戻せる（rollback先はb8のScratch source `691576f`とfixture一覧）
@@ -164,6 +162,14 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   human owner
 - PyPI.orgの準備（2026-10-05）: human ownerが完了を報告した（Python確認票が挙げた、既存projectの権限と2FAの確認、
   Trusted Publisherの登録、GitHub environment `pypi`の保護。coordinatorは照合していない）
+- 移管の判断（human owner 2026-10-05）: 共通TypeScript tooling monorepo、Bridgeは今の機能のまま移す、fixtureは固定Git commit、
+  WireScopeは固定digestの生成物で取り込む（`2026-10-05-01`）。移管先は`minecraft-remote-protocol`を`minecraft-remote-tooling`へ
+  名前を変えて使う（`2026-10-05-02`、McRemote確定搬送票）。「同じ」の判定は次のとおりにする
+  - fixture 12件はbyte一致。契約2件のcaseを足したfixtureは別のidentityとして記録する
+  - 配布物は中身を比べる。source URLやcommitを書き込むdetached manifestとOCIのmetadataは、移管で必ずdigestが変わるので
+    一致の対象から外し、ZIPの中のassetのbytesを比べる
+  - 移管だけの差分と機能の差分を分ける。b9の列幅と知らないevent typeの修正はWireScopeのbytesを変えるので、移管前の同じ
+    機能版を基準に比べる
 - human owner（2026-10-04）: WindowsでのPythonの導入手順の確認とPyPI.orgの準備は、今日中を目標にする。契約2件のcaseを
   足したshared fixtureは、今のownerのScratchが先に出す（移管より前）
 

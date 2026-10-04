@@ -1,6 +1,6 @@
 # Protocol／WireScope／Bridge移管評価計画
 
-> 状態: `2026-09-01-03`でpark。`2026-09-13-02`によりb8前に実施せずb8後へ送ることを確定。b8期間中は現行owner・依存方向を維持し、repository操作・source移動・owner変更・distribution変更を開始しない。`2026-09-30-03`でb9に実施すると決めた（b9はAPIを変えない）。Java以外のconsumerで行い、初回stableの後にJavaの追従で再検証する（`2026-09-30-04`、下の「Javaの位置づけ」）。topologyとexactな実行範囲は、b9の前に別途批准する。
+> 状態: `2026-09-01-03`でpark。`2026-09-13-02`によりb8前に実施せずb8後へ送ることを確定。b8期間中は現行owner・依存方向を維持し、repository操作・source移動・owner変更・distribution変更を開始しない。`2026-09-30-03`でb9に実施すると決めた（b9はAPIを変えない）。Java以外のconsumerで行い、初回stableの後にJavaの追従で再検証する（`2026-09-30-04`、下の「Javaの位置づけ」）。topologyとexactな実行範囲は、b9の前に別途批准する。**2026-10-05に批准した**: 共通TypeScript tooling monorepoへProtocol、共有fixture、WireScope、Bridge（今の機能のまま）を移し、fixtureは固定Git commit、WireScopeは固定digestの生成物で取り込む（`2026-10-05-01`）。移管先は公開済みの`minecraft-remote-protocol`を`minecraft-remote-tooling`へ名前を変えて使う（`2026-10-05-02`）。下の「現在地」以降の本文は批准前の評価で、比べた候補を残すために変えない。
 >
 > 人間向けの意味、非許可境界、再開手順は
 > [人間向け固定文](protocol-tooling-migration-human-guide_ja.md)をそのまま確認する。b7完了は自動開始条件ではない。
@@ -72,7 +72,7 @@ Protocol、conformance、WireScope、必要ならBridgeを一つの中立reposit
 
 Scratch monorepo内で既に一緒に育ち、Protocol変更、observer allowlist、fixture、artifactを横断検証できた価値を、Scratch
 製品所有から切り離して維持できる点が強い。現時点の有力案とする。ただし公開bootstrap名
-`minecraft-remote-protocol`を共通tooling全体の名前として使うかは再批准する。
+`minecraft-remote-protocol`を共通tooling全体の名前として使うかは再批准する（`2026-10-05-02`で、このrepositoryを`minecraft-remote-tooling`へ名前を変えて使うと決めた）。
 
 ### Protocol repo＋WireScope repo
 
