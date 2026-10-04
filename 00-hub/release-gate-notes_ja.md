@@ -75,8 +75,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
-- current phase: **確認票の返却待ち**（McRemote、Python、Javaは返却済み、Scratchは作業中）。b8（`b8-integrated-artifact-set-1`）を基準に、各担当からb9に向けた現状と移管の材料を
-  受け取る。移管のtopologyと実行範囲は、Scratchの返却を見てhuman ownerが決める（移管計画の「再開gateと完了条件」、
+- current phase: **移管のtopologyと範囲の判断待ち**（確認票は全担当から返却済み）。移管のtopologyと実行範囲は、
+  Scratchの返却を見てhuman ownerが決める（移管計画の「再開gateと完了条件」、
   人間向け固定文の「再開時の扱い」）。決まるまで、repositoryの操作、sourceの移動、owner・配布の変更をしない
 - 目標日: 2026-10-10 release（`2026-09-29-02`）
 - release mode: 軽量mode（release運用と責務分担 §14、`2026-08-28-02`）。移管はconsumerの取得経路とrelease workflowを
@@ -151,7 +151,16 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     b8の後のmainは`74243d4`（README等を公開状態へ）と`7981031`（PythonクライアントAPI一覧のドラフト）。見込みは1〜2作業日
   - Java（gateの条件にしない、knowledge `06b069a`）: freeze前の契約の棚卸しは完了で、2件のほかに決めることは残っていない。
     2件へは未commitで追従済み。fixture 3件はcopyで、Scratchのpathやrepositoryが変わってもbuildとCIは切れない
-  - Scratch: 作業中
+  - Scratch（`develop@00c0146`、knowledge `ceba530`）: 知らないevent typeで、Scratch VMはpoll応答を拒否してpollerを止め、
+    WireScopeはsnapshot全体を拒否する（`2026-10-03-02`に合わない）。`chat.post`の`null`はScratchが受けられるが、WireScopeは
+    `true`なども受けてしまい、mirrorに`ChatPostResult = null`が無い。fixture 12件は公開b8とbyte一致。b7 release後の是正3件は
+    すべてb8に入っていた。WireScopeの列幅`01cdb0b`はdevelopに未統合。pickerのalias検索は未実装（名前データの置き場所、
+    schema、二段表示はb8で実装済み、読み上げは人間の確認が未了）。b8の後のdevelopは`16887de`（READMEにAPI一覧への
+    リンク）と`00c0146`（Scratchブロック一覧のドラフト）。移管は別紙`ASSESSMENT_ja.md`で、共通TypeScript tooling monorepo、
+    Bridgeは今の機能のまま共通ownerへ、fixtureは固定Git SHA、WireScopeは固定digestの生成物で取得、を推奨。見込みは契約2件と
+    追加fixtureが0.5〜1作業日、monorepoへの移管が2〜4作業日で、10/10は条件付き
+- human owner（2026-10-04）: WindowsでのPythonの導入手順の確認とPyPI.orgの準備は、今日中を目標にする。契約2件のcaseを
+  足したshared fixtureは、今のownerのScratchが先に出す（移管より前）
 
 ## 2026-09-30 b8横断release gate（CLOSED）
 
