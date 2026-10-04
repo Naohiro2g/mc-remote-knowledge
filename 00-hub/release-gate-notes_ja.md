@@ -198,6 +198,35 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
       合わない）
     - 注意: McRemoteは`minecraft-remote-tooling@98e4208`、Pythonは`@dc1ab83`を取得元に記録している。fixtureのbytesは同じ。
       凍結では、Scratchの返すtoolingのcommitに揃える
+  - Scratch（knowledge `900f6f4`）: 着手項目1〜6を完了。Scratch `develop@7fbbf034488760d8fc7e034bf23f3e08e6e1807d`、
+    `minecraft-remote-tooling` `main@dc1ab834183e29f2eb03059b07e99d2b463776ee`。Scratchのcommitは`62e46fd`（契約2件、`ChatPostResult`、
+    追加fixtureの発行）→`c7505c8`（WireScopeの列幅）→`688b1b1`（client identityをb9へ）→`ea796dc`（GUIの観測の契約追従）→
+    `3e5ac5f`（consumerへの切り替え、旧ownerの撤去、`mc-remote/tooling-lock.json`、CI、collector）→`7fbbf03`（GUI unitのmock指定の
+    修正、製品codeは不変）。toolingはProtocol 39／Bridge 30／WireScope 144 tests PASS、ScratchはCI（unit 530、integration 127、
+    Playwright 8）success。移管前のScratch `c7505c8`と移管後のtoolingで、runtime、fixture、index HTMLの44 fileとWireScope ZIP内の
+    6 assetがbyte一致（担当報告）。candidate: tooling run `37220882228`（WireScope ZIP 83,854 bytes／`da3da0b6…31ad`、manifest
+    2,339 bytes／`c654f7d1…10d7`、Bridge OCI index `sha256:5828304c9bb1d60df8672f9189f503790050e09358bd375f39e4d59d190eb84f`、
+    linux/amd64とarm64）、Scratch run `37232396741`（`scratch-gui.tar.gz` 138,376,671 bytes／`c0d08c26…c75d`、Scratch OCI index
+    `sha256:6702b112ad53b48efa2bf99fc0145fc7b23d24a1d20743018582f781f61c9e34`、`contracts.tar.gz`は公開b8と同じ1,908 bytes／
+    `48948ba4…2390`）。OCIのregistryへはまだ出していない。pickerのalias検索は非blockerのまま（登録する語をhuman ownerが選ぶ）
+    - coordinatorの照合: Scratch developの先頭が`7fbbf03`、toolingのmainの先頭が`dc1ab83`。3つのrun（tooling `37220882228`、
+      Scratch CI `37232360354`、candidate `37232396741`）はそれぞれのcommitでsuccess。toolingの`dc1ab83`で、b8時点のfixture 12件
+      （`packages/`配下）がb8 closeの一覧とbytesとSHA-256で全件一致（acceptance 1）。Scratchの`7fbbf03`の`mc-remote/`には
+      `README.md`、`block-reference`、`tooling-lock.json`だけが残り、旧ownerのsourceは無い。McRemoteが記録した`98e4208`から
+      `dc1ab83`の差分は`.dockerignore`の1 fileだけで、fixtureは同じ（McRemoteの取得元の記録はそのままでよい）
+    - API freeze（acceptance 5）: b8 closeの`2a8c3ea`から、wireの文書は変わっていない（最後の変更は10/3の契約2件の`46033d8`）。
+      `tools/build-api-reference.py --check`はOK（32 method、35 reason）
+- **exact set凍結の案（`b9-integrated-artifact-set-1`、human ownerの承認待ち）**: protocol `23.2.0`／artifact `2320.0.0b9`
+  - McRemote: source `5cb33ebad4bf2c5e36c3433b0f70fe6070915b00`、`mc-remote-1.21.11-2320.0.0b9.jar` 261,016 bytes／
+    `4feb90dbdba8550cd16800cc3d384e42fed16a5c5e20faa489a0381ad2cda58e`（CI run `37220994120`）
+  - Python: source `b901c88fe41b67530ff353271683ece9fd453076`、wheel 196,221 bytes／`e166bc9c…38c6`、sdist 190,627 bytes／
+    `bd027b8b…e179`（CI run `37233244696`）
+  - Scratch: source `7fbbf034488760d8fc7e034bf23f3e08e6e1807d`、Scratch OCI `sha256:6702b112…9e34`、`scratch-gui.tar.gz`
+    `c0d08c26…c75d`、`contracts.tar.gz` `48948ba4…2390`（run `37232396741`）
+  - minecraft-remote-tooling: source `dc1ab834183e29f2eb03059b07e99d2b463776ee`、WireScope ZIP 83,854 bytes／`da3da0b6…31ad`、
+    manifest 2,339 bytes／`c654f7d1…10d7`、Bridge OCI `sha256:5828304c…b84f`（run `37220882228`）
+  - shared fixture: b8時点の12件（不変）と`chat-event-compat-v23.2.json` 32,382 bytes／`670b0a86…d727`（33 case）
+  - 実施票: `00-hub/b9-gate-live-test-sheet_ja.md`
 - human owner（2026-10-05）: `minecraft-remote-tooling`の名前変更とpark解除はScratchに頼む。Pythonをmatureへ移す（`2026-10-05-03`。
   b9からPyPI.orgへpre-release）
 - human owner（2026-10-04）: WindowsでのPythonの導入手順の確認とPyPI.orgの準備は、今日中を目標にする。契約2件のcaseを
