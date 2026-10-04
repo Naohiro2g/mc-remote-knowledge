@@ -75,7 +75,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
-- current phase: **着手依頼の前**。移管のtopologyとrepositoryが決まった（`2026-10-05-01`、`2026-10-05-02`）。次は各担当への着手依頼
+- current phase: **着手依頼**（`00-hub/b9-gate-work-instructions_ja.md`）。移管のtopologyとrepository（`2026-10-05-01`、`2026-10-05-02`）、
+  Pythonのmature（`2026-10-05-03`）が決まった。確認点は10/6の終わり
 - 目標日: 2026-10-10 release（`2026-09-29-02`）
 - release mode: 軽量mode（release運用と責務分担 §14、`2026-08-28-02`）。移管はconsumerの取得経路とrelease workflowを
   変えるので、その部分は§14の但し書きにより検証を強める
@@ -170,6 +171,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     一致の対象から外し、ZIPの中のassetのbytesを比べる
   - 移管だけの差分と機能の差分を分ける。b9の列幅と知らないevent typeの修正はWireScopeのbytesを変えるので、移管前の同じ
     機能版を基準に比べる
+- human owner（2026-10-05）: `minecraft-remote-tooling`の名前変更とpark解除はScratchに頼む。Pythonをmatureへ移す（`2026-10-05-03`。
+  b9からPyPI.orgへpre-release）
 - human owner（2026-10-04）: WindowsでのPythonの導入手順の確認とPyPI.orgの準備は、今日中を目標にする。契約2件のcaseを
   足したshared fixtureは、今のownerのScratchが先に出す（移管より前）
 
