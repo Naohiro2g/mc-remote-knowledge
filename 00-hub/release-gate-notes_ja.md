@@ -75,7 +75,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
-- current phase: **確認票の依頼**。b8（`b8-integrated-artifact-set-1`）を基準に、各担当からb9に向けた現状と移管の材料を
+- current phase: **確認票の返却待ち**（McRemote、Python、Javaは返却済み、Scratchは作業中）。b8（`b8-integrated-artifact-set-1`）を基準に、各担当からb9に向けた現状と移管の材料を
   受け取る。移管のtopologyと実行範囲は、Scratchの返却を見てhuman ownerが決める（移管計画の「再開gateと完了条件」、
   人間向け固定文の「再開時の扱い」）。決まるまで、repositoryの操作、sourceの移動、owner・配布の変更をしない
 - 目標日: 2026-10-10 release（`2026-09-29-02`）
@@ -133,6 +133,25 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     （b8の節の凍結とsegment 3）。残るpickerのalias検索と、b7 release後の是正候補のうちb8で終わらなかったものをScratchの確認票で聞く
 - 判断を求める事項: API freezeの範囲（wireだけか、Python APIとScratchのブロックも含めるか）。b9に残る学習面の作業
   （pickerのalias検索）には影響しないので、確認票の返却の後に決める
+- 確認票の返却（2026-10-04。担当報告、coordinatorはhandoff-materialsの票を読んだだけで照合していない）:
+  - McRemote（`main@14cd3b7`、knowledge `71814e4`、48 tests PASS）: id付き`chat.post`は送ったmessageの文字列をresultに
+    返している（`2026-10-03-01`に合わない。`null`へ直す）。知らないevent typeはserverに選別がなく、successor fixtureで照合する。
+    JARの権限bitは`tasks.jar`に`filePermissions { unix("0644") }`と`dirPermissions { unix("0755") }`を足す案で、umask
+    002／022の手元buildとCIのdigestを比べる。共有fixture 4件（direction-lightning、entity-particle、events、sign）は
+    `src/test/resources/fixtures/`へのcopyで、公開b8 sourceとbyte一致。取得元を変えるだけならbuildとruntimeは変えない。
+    scratch-editorの直接記載はコメント5箇所。b8の後のmainは`14cd3b7`（smoke／player testの既定protocolを`23.2.0`へ）。
+    見込みは着手後1〜2作業日、10/6に移管先が決まれば10/8にcandidateを返せる
+  - Python（`main@7981031`、knowledge `71814e4`）: 知らないevent typeで`decode_event()`が失敗し、batch全体が落ち、cursorが
+    進まず同じeventを取り直し続ける（`2026-10-03-02`に合わない）。省略で直す予定。`chat.post`の`null`は`None`として
+    受けられる。共有fixture 6件（Protocol 4、WireScope 2）はcopyでsidecarにprovenance、同梱WireScopeはScratch
+    `df34849`から作ったZIP／manifestのvendor。Bridgeは使っていない。PyPI: TestPyPIの固定triggerは動いている。PyPI.org用の
+    jobは未実装。遷移ゲート①〜③はb7.post3の記録あり（③のPyPI.org側のowner／2FAは未確認）、④はWindowsが未了。
+    human ownerの外部操作は、PyPI.orgの既存project `minecraft-remote-api`の権限と2FAの確認、Trusted Publisherの登録
+    （`Naohiro2g`／`minecraft-remote-api`／`release.yml`／environment `pypi`）、GitHub environment `pypi`の保護設定。
+    b8の後のmainは`74243d4`（README等を公開状態へ）と`7981031`（PythonクライアントAPI一覧のドラフト）。見込みは1〜2作業日
+  - Java（gateの条件にしない、knowledge `06b069a`）: freeze前の契約の棚卸しは完了で、2件のほかに決めることは残っていない。
+    2件へは未commitで追従済み。fixture 3件はcopyで、Scratchのpathやrepositoryが変わってもbuildとCIは切れない
+  - Scratch: 作業中
 
 ## 2026-09-30 b8横断release gate（CLOSED）
 
