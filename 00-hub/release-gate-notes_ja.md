@@ -162,6 +162,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - Windows（2026-10-05）: クリーンなWindows 11から、Gitなしでuv、b8のRelease wheel、import、JupyterLabまで成功した
   （human ownerの報告、`14-evidence/records/2026-10-05-python-windows-entry_ja.md`）。遷移ゲート④の材料がそろった。mature判定は
   human owner
+- PyPI.orgの準備（2026-10-05）: human ownerが完了を報告した（Python確認票が挙げた、既存projectの権限と2FAの確認、
+  Trusted Publisherの登録、GitHub environment `pypi`の保護。coordinatorは照合していない）
 - human owner（2026-10-04）: WindowsでのPythonの導入手順の確認とPyPI.orgの準備は、今日中を目標にする。契約2件のcaseを
   足したshared fixtureは、今のownerのScratchが先に出す（移管より前）
 
