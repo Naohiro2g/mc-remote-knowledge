@@ -183,6 +183,21 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
       `chat-event-compat-v23.2.json`（32,382 bytes／SHA-256 `670b0a86df1956c0e44c6986a0a2598caab32c7328804f9c703190e62e9dd727`、33 case）は、
       Scratchの発行元`scratch-editor@62e46fd`と移管先`minecraft-remote-tooling@98e4208`の`packages/protocol/test/fixtures/`でbytesと
       SHA-256が一致。`Naohiro2g/minecraft-remote-protocol`は`minecraft-remote-tooling`へ名前が変わっている
+  - Python（knowledge `900f6f4`）: candidate `codex/b9-python-contracts-pypi@b901c88fe41b67530ff353271683ece9fd453076`。commitは
+    `2f943ff`（契約2件、PyPI.org用のjob、version）→`10c0cc5`（追加fixtureの取り込みとpollのcounterの逆行検査。移管を外すときの
+    source）→`fc1935b`（fixtureと同梱WireScopeの取得元を`minecraft-remote-tooling`へ）→`b901c88`（更新・戻し方の案内、starter、
+    API一覧の説明）。780 tests PASS、CI（Python 3.10〜3.13）success。共有fixture 7件は公開b8とScratch `62e46fd`にbyte一致。
+    同梱WireScopeは`minecraft-remote-tooling@dc1ab83`の`packages/live`から（ZIP 83,854 bytes／`da3da0b6…31ad`）。移管直前の
+    Scratch `c7505c8`から作ったZIPとbyte一致（manifestはsource metadataが変わるので比較から除いた）。CI成果物はwheel 196,221 bytes／
+    `e166bc9c14c425b3859f9af6c7af52900b58d1769fc077a3524a5368d05638c6`、sdist 190,627 bytes／
+    `bd027b8b94ff775bfb7a3c02ada9716ad8785e5499180bb0cfb26f1da4afe479`。PyPI.orgへの公開は`PYPI_PUBLISH_ENABLED`が未設定で、
+    まだ動かない。TestPyPIはb9では今までどおり自動で予行し、初回のPyPI公開の後に手動へ絞る案
+    - coordinatorの照合: remote branchの先頭が`b901c88`、CI run `37233244696`はこのcommitでsuccess。artifactのwheel、sdist、
+      `manifest.json`のSHA-256が上と一致し、manifestの`source_commit`は`b901c88`、`bundled_wirescope_source_commit`は`dc1ab83`。
+      GitHub environment `pypi`は`protection_rules`が空、`deployment_branch_policy`が`null`（human ownerが報告した保護設定と
+      合わない）
+    - 注意: McRemoteは`minecraft-remote-tooling@98e4208`、Pythonは`@dc1ab83`を取得元に記録している。fixtureのbytesは同じ。
+      凍結では、Scratchの返すtoolingのcommitに揃える
 - human owner（2026-10-05）: `minecraft-remote-tooling`の名前変更とpark解除はScratchに頼む。Pythonをmatureへ移す（`2026-10-05-03`。
   b9からPyPI.orgへpre-release）
 - human owner（2026-10-04）: WindowsでのPythonの導入手順の確認とPyPI.orgの準備は、今日中を目標にする。契約2件のcaseを
