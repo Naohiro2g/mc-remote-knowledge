@@ -269,6 +269,11 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     title「mc-remote tooling 2320.0.0b9」、prerelease=true、draft=false、Latestなし。annotated tagのtarget `dc1ab834183e29f2eb03059b07e99d2b463776ee`。
     asset: `wirescope-app.zip` 83,854 bytes／`da3da0b6…31ad`、`wirescope-app.manifest.json` 2,339 bytes／`c654f7d1…10d7`、`bridge.oci.tar`
     114,628,096 bytes／`b6a6feec…b100`（OCI index `sha256:5828304c…b84f`。registryへはまだ出していない）
+  - McRemoteの公開（2026-10-05、coordinatorがGitHub APIで照合）: [v1.21.11-2320.0.0b9](https://github.com/Naohiro2g/McRemote/releases/tag/v1.21.11-2320.0.0b9)、
+    title「McRemote 1.21.11 / 2320.0.0b9」、prerelease=true、draft=false。annotated tagのtarget `5cb33ebad4bf2c5e36c3433b0f70fe6070915b00`で、
+    mainの先頭と一致。asset: `mc-remote-1.21.11-2320.0.0b9.jar` 261,016 bytes／`4feb90db…a58e`（凍結したJARと同じ。b9で権限bitを
+    固定したので、b8のような食い違いは出なかった）、`manifest.json` 387 bytes／`1b18e60c…0fd6`（`release_tag` `v1.21.11-2320.0.0b9`、
+    `source_commit` `5cb33eb`、role `jar`のdigestが一致）。Latestは`v1.21.8-1.4.0`のまま
   - Scratch OCIのCOPY layer（2026-10-05）: Scratch担当が公開前のbuild（run `37266780367`、index `sha256:da7c9622…ff27`）を凍結した
     OCIと比べ（run `37267805360`）、止めた。amd64とarm64とも先頭9 layerは同じで、最後のGUIのCOPY layerだけdigestが違う。
     その1,746 entryのpath、中身のSHA、size、type、link先、mode、uid／gidはすべて同じで、違いは1,743 entryのmtimeだけ。GUI tarは
