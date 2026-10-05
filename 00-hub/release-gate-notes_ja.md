@@ -75,7 +75,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
-- current phase: **GREEN・公開の承認待ち**（`b9-integrated-artifact-set-1`）
+- current phase: **公開**（2026-10-05承認。下の「release authorization」の指示）
 - 目標日: 2026-10-10 release（`2026-09-29-02`）
 - release mode: 軽量mode（release運用と責務分担 §14、`2026-08-28-02`）。移管はconsumerの取得経路とrelease workflowを
   変えるので、その部分は§14の但し書きにより検証を強める
@@ -239,6 +239,22 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     確かめていない
 - **判定: GREEN**（human owner 2026-10-05）。Bridge OCIのcontainerとしての起動は、ケータリング方式のVPSベータへのdeployで
   human ownerが確かめる。起動しなければOCIのpackagingだけを直し、他のPASSは再利用する（release運用と責務分担 §7）
+- release authorization: プロジェクトオーナーの明示承認（2026-10-05）。4 repoともGitHub prerelease ON、draft OFF、Latest非対象。
+  `minecraft-remote-tooling`も`v2320.0.0b9`で自分のReleaseを出す（human owner 2026-10-05。b9の公開setに入るためで、同じrepoに
+  あることを理由にversionを揃えるのではない、`2026-10-05-01`）。公開の指示は次のとおり
+  - 順番: toolingを先に出す。Scratchの公開物（WireScope、Bridge）はtoolingの生成物を集めるため
+  - minecraft-remote-tooling（Scratch担当）: tag `v2320.0.0b9`を凍結した`dc1ab83`へ打ち、WireScope ZIP（`da3da0b6…31ad`）と
+    detached manifest（`c654f7d1…10d7`）を添付し、Bridge OCI（index `sha256:5828304c…b84f`）の置き場所とdigestをRelease notesか
+    manifestに記録する。registryへ出すBridge OCIのindex digestは凍結値と同じにする
+  - Scratch: tag `v2320.0.0b9`を凍結した`7fbbf03`へ打つ（developの先頭と同じ）。固定workflowが添付するWireScope、Bridge、
+    Scratch OCI、contractsが凍結値と一致すること
+  - McRemote: `feat/b9-contract-packaging`（`5cb33eb`）をmainへ統合し、tag `v1.21.11-2320.0.0b9`。tagのCIが作るJARが`4feb90db…a58e`と
+    一致してから公開する（b9で権限bitを固定したので一致するはず）
+  - Python: mainを`b901c88`へfast-forwardし、tag `v2320.0.0b9`。CI成果物がwheel `e166bc9c…38c6`／sdist `bd027b8b…e179`と一致してから
+    公開する。tagを打つ前に、human ownerが変数`PYPI_PUBLISH_ENABLED`を`true`にする。PyPI.orgへのjobはhuman ownerの承認を待つ。
+    TestPyPIへも固定triggerで出す
+  - 一致しないもの（tagのCIのJAR、wheel、OCIのdigest等）が出たら、公開せずに止めてcoordinatorへ返す
+  - 公開後、coordinatorがtag target、prerelease／draft、assetと`manifest.json`のidentity、PyPI.orgの版をGitHub APIとPyPIで読むだけ照合する
 - human owner（2026-10-05）: `minecraft-remote-tooling`の名前変更とpark解除はScratchに頼む。Pythonをmatureへ移す（`2026-10-05-03`。
   b9からPyPI.orgへpre-release）
 - human owner（2026-10-04）: WindowsでのPythonの導入手順の確認とPyPI.orgの準備は、今日中を目標にする。契約2件のcaseを
