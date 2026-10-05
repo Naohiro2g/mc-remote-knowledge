@@ -8,6 +8,21 @@
 
 ## Inbox
 
+- 2026-10-06 [park] Claude Codeのauto modeが、knowledgeへのhandoff着地のpushを止めた / Scratchの追跡更新票（scratch-editor
+  `handoff-materials/2026-10-06-stack-backstage-handoff/`）をknowledgeの`14-evidence/artifacts/2026-10-05-b9-release/scratch/close-followup/`へ
+  複製し、commit `e0eaaf4`のpushで`Out-of-Place Publication`として拒否された。続く`git rev-parse HEAD`も拒否された（読むだけの操作）。
+  他repoへの書き込みは無い。原因：ユーザー全体の設定`~/.claude/settings.json`の`autoMode.environment`が、9/30に
+  minecraft-remote-apiの中で生成された内容のままで、「その場のrepoの仕事だけをpushしてよい、外から持ち込んだ内容は自分の仕事ではない」
+  という規則文を含んでいた。repo間の受け渡しを本来の仕事とするknowledgeの役割とずれていた。設定は9/30から変わっておらず、
+  10/5のevidence着地では止まっていない（判定は会話の文脈を読むので、毎回同じではない）。
+  対処（human ownerが適用）：環境の記述を事実だけ（持ち主、private repo、秘密の場所、外のremote、本番に当たるもの、`$defaults`）にし、
+  作業の規則は「各repoのCLAUDE.md／AGENTS.mdと指示が定める」と一行で参照するだけにした。規則をSSOTの外へ複製すると
+  ドリフトの源になるため（`2026-07-10-03`、`2026-09-05-01`）。適用後、同じpushは通った。経過で、agentが作った最初の修正案は
+  「public repo同士の移動は通常の作業」「push・tagは通常の作業」と規則を書き足しており、human ownerの指摘で事実だけに改めた。
+  agentによる設定の書き換えは`Self-Modification`として拒否され、それは妥当だった。プロジェクトの`.claude/settings.local.json`の
+  `Bash(git push *)`は、auto modeの判定を越えなかった / 再開＝次に横断のhandoffを着地してpushするとき（coordinatorが、止まらずに
+  通るか、止まるならどの文言かを見る） / 閉じる＝rc1 gateの着地とcloseまで、別のrepoからの着地を含むpushが設定を変えずに通った時（旧設定でも10/5は
+  通っていたので、一度通っただけでは足りない）
 - 2026-10-03 [done] b8 gate closeの残り：各repoの`handoff-materials`の分類と、b9の移管の起点 / b8 gateはhuman ownerの判断で閉じた（2026-10-03）。残りは、McRemote／Python／Scratchの今回の`handoff-materials`を「knowledgeのevidenceへ移す／後続へ引き継ぐ／捨てる」に分けること（knowledgeへ全文が移ったことをcoordinatorが確かめるまで元を消さない）と、Scratchが公開source `691576f`時点のprotocol fixtureの一覧（file、bytes、SHA-256、case数）を返し、b9の移管の起点としてgateの節へ記録すること / 再開＝各担当の返却が来たとき、遅くともb9 gateを開くとき / 閉じる＝分類とfixtureの一覧の記録が済んだ時 / 2026-10-03閉じた：①の素材（McRemote、Python、Scratch）とScratchの③のテキストを`14-evidence/artifacts/2026-10-03-b8-dev-live/`へ全文で収容し、fixture 12件の一覧をgateの節と移管計画の「b8時点の起点」に記録した
 - 2026-10-05 [park] Scratchの製品noticeを一つに絞る / human ownerが確かめた方針（Stack確定搬送票、2026-10-05）：製品noticeと運用者noticeの二系統を保つ（`2026-09-05-02`）。開発元から必要なときに固定の表示を出せる仕組みは残し、製品noticeは製品のversionとreleaseページへのリンクを持つ一つのentryに絞る。追加の話題は、運用者がdeployの編集の段階で用意する。b9の公開物がこれを満たしているかは確かめていない / 再開＝rc1 gateを開くとき（Scratchの確認票で聞く） / 閉じる＝製品noticeが一つのentryになったreleaseを確かめた時
 - 2026-10-05 [park] Scratch OCIのversionラベルをcandidateと公開で揃える / b9の公開で、candidateのworkflowはOCIのversionラベルに`2320.0.0b9`、公開workflowは`v2320.0.0b9`を入れ、凍結したOCIと公開するOCIのdigestが変わった（release-gate-notesのb9の節）。b9は公開workflowでbuildし直し、packagingの差として受け入れた。同じsourceなら凍結と公開で同じdigestになるよう、version文字列を揃える。2026-10-05追記：GUIのCOPY layerもbuildごとにmtimeが変わりdigestが変わった（中身は同じ）。mtimeも固定する（例: `SOURCE_DATE_EPOCH`とtimestampの書き換え） / 再開＝rc1 gateを開くとき（Scratch担当へ着手依頼） / 閉じる＝candidateと公開のScratch OCIのdigestが一致した時
