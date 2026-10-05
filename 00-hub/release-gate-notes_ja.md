@@ -265,6 +265,17 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     §7。b8のMcRemote JARの権限bitと同じ扱い）。条件: 公開する前にScratch担当が新しいOCIと凍結したOCIを比べ、amd64とarm64の
     layerのdigestがすべて同じで、configの違いがversionラベルと生成のmetadata（作成時刻など）だけであることを確かめる。layerが
     違えば止めて返す。実機試験のPASSは再利用する。公開するScratch OCIのdigestは、照合の後に記録する
+  - toolingの公開（2026-10-05、coordinatorがGitHub APIで照合）: [v2320.0.0b9](https://github.com/Naohiro2g/minecraft-remote-tooling/releases/tag/v2320.0.0b9)、
+    title「mc-remote tooling 2320.0.0b9」、prerelease=true、draft=false、Latestなし。annotated tagのtarget `dc1ab834183e29f2eb03059b07e99d2b463776ee`。
+    asset: `wirescope-app.zip` 83,854 bytes／`da3da0b6…31ad`、`wirescope-app.manifest.json` 2,339 bytes／`c654f7d1…10d7`、`bridge.oci.tar`
+    114,628,096 bytes／`b6a6feec…b100`（OCI index `sha256:5828304c…b84f`。registryへはまだ出していない）
+  - Scratch OCIのCOPY layer（2026-10-05）: Scratch担当が公開前のbuild（run `37266780367`、index `sha256:da7c9622…ff27`）を凍結した
+    OCIと比べ（run `37267805360`）、止めた。amd64とarm64とも先頭9 layerは同じで、最後のGUIのCOPY layerだけdigestが違う。
+    その1,746 entryのpath、中身のSHA、size、type、link先、mode、uid／gidはすべて同じで、違いは1,743 entryのmtimeだけ。GUI tarは
+    凍結値とbytesもSHA-256も同じ。human ownerの判断で、**このmtimeの差もpackagingとして受け入れる**。判定の条件を次へ改める:
+    各layerの中身（path、内容、size、type、link先、mode、所有者）が凍結したOCIと一致し、違いはmtimeとconfigの生成metadata
+    （versionラベル、作成時刻、それに伴う履歴とdiff_id）だけであること。固定workflowで公開し、公開したOCIにも同じ照合をして
+    返す。合わなければ公開を取り消せる状態で止めて返す。実機試験のPASSは再利用する
 - human owner（2026-10-05）: `minecraft-remote-tooling`の名前変更とpark解除はScratchに頼む。Pythonをmatureへ移す（`2026-10-05-03`。
   b9からPyPI.orgへpre-release）
 - human owner（2026-10-04）: WindowsでのPythonの導入手順の確認とPyPI.orgの準備は、今日中を目標にする。契約2件のcaseを
