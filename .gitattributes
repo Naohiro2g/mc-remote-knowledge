@@ -1,0 +1,2 @@
+# evidenceの素材はbytesのまま保存する（SHA-256で照合するため、改行を変換しない）
+14-evidence/artifacts/** -text
