@@ -219,7 +219,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   - McRemote: source `5cb33ebad4bf2c5e36c3433b0f70fe6070915b00`、`mc-remote-1.21.11-2320.0.0b9.jar` 261,016 bytes／
     `4feb90dbdba8550cd16800cc3d384e42fed16a5c5e20faa489a0381ad2cda58e`（CI run `37220994120`）
   - Python: source `b901c88fe41b67530ff353271683ece9fd453076`、wheel 196,221 bytes／`e166bc9c…38c6`、sdist 190,627 bytes／
-    `bd027b8b…e179`（CI run `37233244696`）
+    `bd027b8b94ff775bfb7a3c02ada9716ad8785e5499180bb0cfb26f1da4afe479`（CI run `37233244696`）
   - Scratch: source `7fbbf034488760d8fc7e034bf23f3e08e6e1807d`、Scratch OCI `sha256:6702b112…9e34`、`scratch-gui.tar.gz`
     `c0d08c26…c75d`、`contracts.tar.gz` `48948ba4…2390`（run `37232396741`）
   - minecraft-remote-tooling: source `dc1ab834183e29f2eb03059b07e99d2b463776ee`、WireScope ZIP 83,854 bytes／`da3da0b6…31ad`、
@@ -250,11 +250,14 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     Scratch OCI、contractsが凍結値と一致すること
   - McRemote: `feat/b9-contract-packaging`（`5cb33eb`）をmainへ統合し、tag `v1.21.11-2320.0.0b9`。tagのCIが作るJARが`4feb90db…a58e`と
     一致してから公開する（b9で権限bitを固定したので一致するはず）
-  - Python: mainを`b901c88`へfast-forwardし、tag `v2320.0.0b9`。CI成果物がwheel `e166bc9c…38c6`／sdist `bd027b8b…e179`と一致してから
+  - Python: mainを`b901c88`へfast-forwardし、tag `v2320.0.0b9`。CI成果物がwheel `e166bc9c…38c6`／sdist `bd027b8b94ff775bfb7a3c02ada9716ad8785e5499180bb0cfb26f1da4afe479`と一致してから
     公開する。tagを打つ前に、human ownerが変数`PYPI_PUBLISH_ENABLED`を`true`にする。PyPI.orgへのjobはhuman ownerの承認を待つ。
     TestPyPIへも固定triggerで出す
   - 一致しないもの（tagのCIのJAR、wheel、OCIのdigest等）が出たら、公開せずに止めてcoordinatorへ返す
   - 公開後、coordinatorがtag target、prerelease／draft、assetと`manifest.json`のidentity、PyPI.orgの版をGitHub APIとPyPIで読むだけ照合する
+  - sdistのdigestの誤記（2026-10-05）: Pythonが公開前の照合で止めた。凍結setとこの指示に書いたsdistの略記`bd027b8b…e179`は
+    coordinatorの書き誤りで、正しくは`bd027b8b…e479`（全桁`bd027b8b94ff775bfb7a3c02ada9716ad8785e5499180bb0cfb26f1da4afe479`、
+    Pythonの返却とcoordinatorの照合の値）。上の2箇所を全桁へ直した。凍結したartifactは変わらない
   - Scratch OCIのversionラベル（2026-10-05）: Scratch担当が公開前の照合で止めた。candidateのworkflowはOCIの
     `org.opencontainers.image.version`に`2320.0.0b9`を、公開workflowはtag名から`v2320.0.0b9`を入れるので、amd64とarm64の
     configが変わり、凍結したScratch OCI（`sha256:6702b112…9e34`）と同じdigestにならない。toolingとScratchのtag、Release、registryは
