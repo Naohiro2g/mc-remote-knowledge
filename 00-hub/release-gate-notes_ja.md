@@ -75,7 +75,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
-- current phase: **公開**（2026-10-05承認。下の「release authorization」の指示）
+- current phase: **公開済み・closeの前**（4 repoのprereleaseとPyPI.orgを照合済み）
 - 目標日: 2026-10-10 release（`2026-09-29-02`）
 - release mode: 軽量mode（release運用と責務分担 §14、`2026-08-28-02`）。移管はconsumerの取得経路とrelease workflowを
   変えるので、その部分は§14の但し書きにより検証を強める
@@ -289,6 +289,17 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     各layerの中身（path、内容、size、type、link先、mode、所有者）が凍結したOCIと一致し、違いはmtimeとconfigの生成metadata
     （versionラベル、作成時刻、それに伴う履歴とdiff_id）だけであること。固定workflowで公開し、公開したOCIにも同じ照合をして
     返す。合わなければ公開を取り消せる状態で止めて返す。実機試験のPASSは再利用する
+  - Scratchの公開（2026-10-05、coordinatorがGitHub APIとGHCRで照合）: [v2320.0.0b9](https://github.com/Naohiro2g/scratch-editor/releases/tag/v2320.0.0b9)、
+    title「mc-remote Scratch 2320.0.0b9」、prerelease=true、draft=false、Latestなし。annotated tagのtarget `7fbbf034488760d8fc7e034bf23f3e08e6e1807d`
+    で、developの先頭と一致。固定workflow（run `37270517123`、release event、head `7fbbf03`）がsuccess。asset: `wirescope-app.zip`
+    `da3da0b6…31ad`、`wirescope-app.manifest.json` `c654f7d1…10d7`、`contracts.tar.gz` `48948ba4…2390`（いずれも凍結値）、`manifest.json`
+    1,168 bytes／`cbc6af55…20da`。manifestのOCIは`scratch` `ghcr.io/naohiro2g/mc-remote-scratch@sha256:f44e7a6c1a3b041aba787eba5e052a3ae78ce4ce733732bc7213207a3b17f607`、
+    `bridge` `ghcr.io/naohiro2g/mc-remote-bridge@sha256:5828304c…b84f`（凍結値）で、どちらのdigestもGHCRにある。公開したScratch OCIを
+    凍結したOCIと比べた結果（run `37271363905`、success）は、amd64とarm64とも先頭9 layerが同じで、最後のCOPY layerは1,746 entryの
+    中身と属性が一致し、違いは1,743 entryのmtimeだけ。configの違いは許した生成metadataだけ（担当報告）。公開したScratch OCIの
+    digestは`f44e7a6c…f607`（試験した`6702b112…9e34`と中身は同じ）
+- gate result（公開）: **4 repoのGitHub prereleaseとPyPI.orgの公開identityを確認した（2026-10-05）**。残りはgateのclose（各repoの
+  `handoff-materials`の分類、parkの見直し、default branchへの統合の確認）
 - human owner（2026-10-05）: `minecraft-remote-tooling`の名前変更とpark解除はScratchに頼む。Pythonをmatureへ移す（`2026-10-05-03`。
   b9からPyPI.orgへpre-release）
 - human owner（2026-10-04）: WindowsでのPythonの導入手順の確認とPyPI.orgの準備は、今日中を目標にする。契約2件のcaseを
