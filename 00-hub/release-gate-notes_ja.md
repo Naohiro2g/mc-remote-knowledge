@@ -75,7 +75,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
-- current phase: **凍結済み・実機試験**（`b9-integrated-artifact-set-1`、`00-hub/b9-gate-live-test-sheet_ja.md`）
+- current phase: **GREEN・公開の承認待ち**（`b9-integrated-artifact-set-1`）
 - 目標日: 2026-10-10 release（`2026-09-29-02`）
 - release mode: 軽量mode（release運用と責務分担 §14、`2026-08-28-02`）。移管はconsumerの取得経路とrelease workflowを
   変えるので、その部分は§14の但し書きにより検証を強める
@@ -237,6 +237,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   - segment 3: 移管したBridgeでのpairing、代表ブロック、独立ChromiumのWireScopeで22 frames、列幅をhuman ownerが確認
   - 未検証の境界: Bridgeは、Docker daemonが無いため凍結OCIの中のcodeをhost-nativeのNodeで動かした。containerとしての起動は
     確かめていない
+- **判定: GREEN**（human owner 2026-10-05）。Bridge OCIのcontainerとしての起動は、ケータリング方式のVPSベータへのdeployで
+  human ownerが確かめる。起動しなければOCIのpackagingだけを直し、他のPASSは再利用する（release運用と責務分担 §7）
 - human owner（2026-10-05）: `minecraft-remote-tooling`の名前変更とpark解除はScratchに頼む。Pythonをmatureへ移す（`2026-10-05-03`。
   b9からPyPI.orgへpre-release）
 - human owner（2026-10-04）: WindowsでのPythonの導入手順の確認とPyPI.orgの準備は、今日中を目標にする。契約2件のcaseを
