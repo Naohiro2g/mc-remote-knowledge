@@ -75,7 +75,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
-- current phase: **公開済み・closeの前**（4 repoのprereleaseとPyPI.orgを照合済み）
+- current phase: **公開済み・closeの前**（4 repoのprereleaseとPyPI.orgを照合済み）。handoff-materialsの分類を依頼した
+  （`00-hub/b9-gate-close-instructions_ja.md`）
 - 目標日: 2026-10-10 release（`2026-09-29-02`）
 - release mode: 軽量mode（release運用と責務分担 §14、`2026-08-28-02`）。移管はconsumerの取得経路とrelease workflowを
   変えるので、その部分は§14の但し書きにより検証を強める

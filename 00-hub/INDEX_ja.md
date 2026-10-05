@@ -24,6 +24,7 @@ public 正本世代の入口です。ここに載る path は、このリポ内�
 | `00-hub/b9-gate-confirmation-instructions_ja.md` | b9横断release gateを開いたときにMcRemote／Python／Scratchへ出す確認票依頼（契約2件、PyPIの準備、移管の材料）と、gateの条件にしないJavaへの問い |
 | `00-hub/b9-gate-work-instructions_ja.md` | b9横断release gateの確認票の返却を受けて出す着手依頼（依存順、10/6の確認点、移管の実施、契約2件、PyPI.orgのjob） |
 | `00-hub/b9-gate-live-test-sheet_ja.md` | b9横断release gateの凍結後、devの通常環境で行う統一実施票（JARの差し替え、live-auto、Python、移管したBridgeとWireScope） |
+| `00-hub/b9-gate-close-instructions_ja.md` | b9横断release gateを閉じる前の、各repoの`handoff-materials`の分類の依頼 |
 | `00-hub/b8-gate-confirmation-instructions_ja.md` | b8横断release gateを開いたときにMcRemote／Python／Scratch／Stackへ出す確認票依頼 |
 | `00-hub/b8-gate-work-instructions_ja.md` | b8横断release gateの確認票の返却を受けて出す着手依頼（blockerと非blocker、依存順、日程の確認点） |
 | `00-hub/b8-gate-live-test-sheet_ja.md` | b8横断release gateの凍結後、devの通常環境で行う統一実施票（環境準備、live-auto、Python、Scratch、live-human） |
