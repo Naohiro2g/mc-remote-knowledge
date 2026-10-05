@@ -1,0 +1,45 @@
+{
+  "handoff_id": "2026-10-05-b8-close-review",
+  "status": "selected_materials_for_knowledge_owner_not_formal_evidence",
+  "date": "2026-10-05",
+  "knowledge_reference_commit": "099c40b0c312694712653885200f3114ea4bed33",
+  "stack_runthrough_commit": "6cdbe6e2f8bc654a3d21a6119de6c4154a559afc",
+  "stack_runbook_merge": "68b8d45af743cd56b70efe67a42e1e162b04c50c",
+  "source_images_included": false,
+  "private_runtime_archives_included": false,
+  "files": [
+    {
+      "file": "2026-10-03-human-check_ja.md",
+      "sha256": "1e257f49be361723c7de60d8c71ed7b9ca17bf47f0c7ce0fe6d2475bc31d7ccc",
+      "bytes": 1112,
+      "source_capture_sha256": "1e257f49be361723c7de60d8c71ed7b9ca17bf47f0c7ce0fe6d2475bc31d7ccc",
+      "provenance": "human report captured on filename date"
+    },
+    {
+      "file": "2026-10-05-human-check_ja.md",
+      "sha256": "f55157f336777fd18ace87dc2bb66ce96183fb8a3760d2785880ad3f8426b349",
+      "bytes": 1112,
+      "source_capture_sha256": "f549aa1409886bcb452fb113fda280ec8ef48da5a79936bcc74251a968faffc2",
+      "provenance": "human report captured on filename date"
+    },
+    {
+      "file": "release-intake.json",
+      "sha256": "6a787dc86736b89f83ce36a6905e86d3db77c13be23b49ab4fd65eafbe6be423",
+      "bytes": 2038,
+      "source_capture_sha256": "6a787dc86736b89f83ce36a6905e86d3db77c13be23b49ab4fd65eafbe6be423",
+      "provenance": "initial b8 release intake"
+    },
+    {
+      "file": "runtime-summary_ja.md",
+      "sha256": "15a92029e4fca96fa7fb0921be986475378e99d3c9962d0bc65160ca244a8363",
+      "bytes": 5318,
+      "provenance": "Stack close-review summary; source reports distinguished in text"
+    },
+    {
+      "file": "validation-summary_ja.md",
+      "sha256": "ef700968adbb3dae4bc0192c9422f9a269f90dabb9433136011c09f4cdc17067",
+      "bytes": 889,
+      "provenance": "Stack close-review summary; source reports distinguished in text"
+    }
+  ]
+}
