@@ -312,6 +312,12 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     （backstageへ移す対象）。③は54 file
   - human ownerの判断が要る②: Stackへの回答2件の受け取り（Stackはhuman ownerの直接管理）、privateな原画像のbackstageへの移管、
     手元の配信の終了。いずれもgateのcloseを止めない
+  - Scratch②の追跡（2026-10-06、Scratch担当の追跡更新票、収容先`14-evidence/artifacts/2026-10-05-b9-release/scratch/close-followup/`）:
+    Stackの受領待ちと原画像のbackstage移管待ちは解消した。Stackは回答2件の6 fileを全文とSHA-256で照合して受け取った（Scratchの元の
+    pathから収容先への対応は`materials/stack-received-inventory.json`）。backstageは28件を棚卸しし、必要な17件（原画像10件、起動関連
+    7件）を暗号化コピーで受け取った（管理名`scratch-private-intake-20261006`、担当報告。knowledgeは中身を見ていない）。Scratchは
+    knowledgeへ収容済みの180件を照合してから元を整理した（232 file）。残る②は手元の配信のruntimeとprivate（b9、b8の戻し先、旧配信）と
+    この追跡票で、ownerの終了判断と参照の終了を待つ
 - default branchへの統合（2026-10-05、coordinatorが照合）: McRemote main `5cb33eb`、Python mainは`b901c88`の1つ先の`39f2ec9`（公開後の
   文書だけ）、Scratch develop `7fbbf03`、minecraft-remote-tooling main `dc1ab83`。それぞれ公開tagを含む
 - gateを閉じるときのpark確認（`2026-09-30-09`、2026-10-06、human owner同意）: 契約2件と`2026-08-23-01`のrelease gate方法論の

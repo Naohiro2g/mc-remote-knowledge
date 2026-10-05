@@ -1,0 +1,1407 @@
+{
+  "knowledge_contract_commit": "5beaad2557abbc6e90ada03edf7d0a2918fa7a52",
+  "authorization": "Human owner instructed proceeding with receipt-based cleanup on 2026-10-06",
+  "files": [
+    {
+      "path": "handoff-materials/2026-10-04-b9-scratch-confirmation/MANIFEST_ja.md",
+      "bytes": 1782,
+      "sha256": "6b6fa7e7dc24ff4a790df1ace67600e647e7002aabbe6a4b0609c5a7dd3e2742",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-04-b9-scratch-confirmation/SHA256SUMS",
+      "bytes": 768,
+      "sha256": "770bf270a82af0dfa4aa866d45c6ed41660f5d7ad6070ce4e1dbe22cc1da87d1",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-04-b9-scratch-confirmation/materials/ASSESSMENT_ja.md",
+      "bytes": 19036,
+      "sha256": "a97d952ba2c252466b87a94fae7eb9d4cd2582e13a7f5b393fe1515dac3699aa",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-04-b9-scratch-confirmation/materials/CONFIRMATION_ja.md",
+      "bytes": 6740,
+      "sha256": "6cb245ecfdf24b414d5123d2caa4b9c8c8a689b7db40d797c565f366edc042a8",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-04-b9-scratch-confirmation/materials/audit-contracts.cjs",
+      "bytes": 3736,
+      "sha256": "986f481cd1c510cf988cb2df6b4d9c3d80541abeeb5ea5c639ad2448912b5961",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-04-b9-scratch-confirmation/materials/audit-fixtures.py",
+      "bytes": 833,
+      "sha256": "211f34d20afc16d9cf6c308bc11ed8ee635c6f53898b545bf69d057b82be6099",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-04-b9-scratch-confirmation/materials/b8-fixtures-baseline.json",
+      "bytes": 2822,
+      "sha256": "36afc76b707d12a534de9daea5887d23e2be294a75b2c08331a31a23ffc6d6d6",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-04-b9-scratch-confirmation/materials/contracts-audit-result.json",
+      "bytes": 757,
+      "sha256": "26605187d122e0cb01bd133891ba9fdc04a7caabea3f8d3d3df1c70397845078",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-04-b9-scratch-confirmation/materials/fixtures-audit-result.json",
+      "bytes": 208,
+      "sha256": "20c3f16fc46e10dadf7ba78fc63d3f85d7f8c06983982e5d84078c1071850127",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/INVENTORY.json",
+      "bytes": 7046,
+      "sha256": "a64b2431b0bc94d45bd65b7b5a6cd5f9fc26b5d70972e96c46724bbfdd26ab8a",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/MANIFEST_ja.md",
+      "bytes": 2582,
+      "sha256": "9b32b2a6aec19fae511aa7b49e866d3d480848b1a82e1322b6c8e9ff765af901",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/SHA256SUMS",
+      "bytes": 4616,
+      "sha256": "ebc7bc6ac5cd6ec3ec53262999e63025bb3eac36df32d1755be11073ea4d29d7",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/materials/CONFIRMATION_ja.md",
+      "bytes": 11146,
+      "sha256": "db1b2042bef00c0111f7f8854592c4ac6b6e815f6c86f5e0944fa376388c6187",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/materials/FIXTURE_IDENTITIES_ja.md",
+      "bytes": 1991,
+      "sha256": "ad9479a8a5904853294fc6b3b2fdfb0ef7f840d9accf6abbb56537d6f64ba188",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/materials/NEW_FIXTURE_ja.md",
+      "bytes": 1683,
+      "sha256": "b3f9fb7252f69313ddb3e6088251f7fc8bd8f71d78b093edbc181d1eaceeb33d",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/materials/before-migration/wirescope-app.manifest.json",
+      "bytes": 2321,
+      "sha256": "3b27b1daa2cd76e14b73645780a55f54d5ef14a7c642ae7f86a29a2eba5748bd",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/materials/consumer-source-identity.json",
+      "bytes": 3397,
+      "sha256": "f1f8db7aab67c83653d52fd974cfe03df504b5eefa6d855b3602999f6e5a0a04",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/materials/final-wirescope-app.manifest.json",
+      "bytes": 2339,
+      "sha256": "c654f7d1f0be2773d6737e889279b2587317088717f162b082c82be9cff910d7",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/materials/fixture-import-identity.json",
+      "bytes": 3284,
+      "sha256": "5e35e70c813a4c998ac7037920b182ba9ffa086b3ac6e52b685bb8bd3b8bf064",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/materials/logs/b9-consumer-block-value.log",
+      "bytes": 4314,
+      "sha256": "d4e0c809b8d53ef5b33e1e1d3b840d8acbea51d28964853c62852863b9742a82",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/materials/logs/b9-consumer-event.log",
+      "bytes": 3081,
+      "sha256": "681e1a042fce76e9772afc0aa508c9130b70a92070f49a404b3d47c3a63b72c4",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/materials/logs/b9-consumer-extension.log",
+      "bytes": 61254,
+      "sha256": "67c667064a8d98a5912719906608c2414db87cef1c4335a4d82b1b216656e20a",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/materials/logs/b9-consumer-glue-tests.log",
+      "bytes": 596,
+      "sha256": "2af5f310a0e7d5512bb018691468d01ba1bc1f644bc6c395a9e788f115441cc5",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/materials/logs/b9-consumer-gui-source.log",
+      "bytes": 480818,
+      "sha256": "0f25f617c09a90463af181e0e910f125a905746ef9edc2cc02f1855cef844804",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/materials/logs/b9-consumer-gui-target.log",
+      "bytes": 2716,
+      "sha256": "a9cad9468a99b01e3f6b2f49caade106a3cdef41f9d0e8211d277abf30e45ba2",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/materials/logs/b9-consumer-sign.log",
+      "bytes": 3684,
+      "sha256": "f398db2879aaf0e511543ff042c9b2f556128aba6795ec62160b9c8bbf2313a0",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/materials/logs/b9-final-candidate-verification.log",
+      "bytes": 2018,
+      "sha256": "1c3aee813c9ef574c6fcdd739ab0961535f829e5292f7682ba5ecf4cc90c8e81",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/materials/logs/b9-gui-ci-job.log",
+      "bytes": 950214,
+      "sha256": "ad20ec7ca1c6f3f773ba022347c98a5563d258694d5be509df0c4a87f10c8bca",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/materials/logs/b9-gui-lint-final.log",
+      "bytes": 2191,
+      "sha256": "fcd8f9772367820488eca44ddac62c82f0d90e46e53eaeabb649cadfe55dcb45",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/materials/logs/b9-gui-real-mock-lint.log",
+      "bytes": 668,
+      "sha256": "8ce1810d23224dd308fd6939681e40b800f3bd6cbce34c25f8fb052120c319cd",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/materials/logs/b9-gui-runtime-isolated-before.log",
+      "bytes": 2450,
+      "sha256": "394898c9e9306e0198f39840686440d021c69ee5b06a020a24316e3f0448e2fd",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/materials/logs/b9-gui-unit-after-real-mock.log",
+      "bytes": 493050,
+      "sha256": "16028d3ad3dffacd6271ceb30434ddfc46bcc70d6ae885af37d1e6d60b1f86c5",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/materials/logs/b9-gui-unit-real-mock.log",
+      "bytes": 487336,
+      "sha256": "e867acaabd76f60eaaab14ca7c67da0fbc2124721f7d3a128f4062f5e9b99dc9",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/materials/logs/b9-scratch-consumer-build.log",
+      "bytes": 323455,
+      "sha256": "dcc9eb736e310cf89ae4b0bd01eb83ebd3e13603ec5c12578737b308caafe5ee",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/materials/logs/b9-tooling-build.log",
+      "bytes": 1631,
+      "sha256": "e60530e2008044fa559bb42f8853e8ba61ef2607a71e1fed71fbf11d9c2eb19a",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/materials/logs/b9-tooling-tests.log",
+      "bytes": 1345,
+      "sha256": "769216bc463e3b4e0278407d55c4f105a4f5592c0c3f50b69dd90d5e4989e18e",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/materials/logs/b9-vm-lint-final.log",
+      "bytes": 96715,
+      "sha256": "7014a13596a9e0d0ba71e2bb71a7cd031ea4d409032e3531a4228bc3fd3d51ae",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/materials/scratch-candidate-artifact.json",
+      "bytes": 749,
+      "sha256": "4121eaa7d1c55bae1dcc5a672bb8409cf8c2c81666da4542c1a05ce0a0727b51",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/materials/scratch-candidate-manifest.json",
+      "bytes": 1821,
+      "sha256": "239f7f94cf31e732eff173744da105408b00b182d0aad73507623ea09b43bc6b",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/materials/scratch-candidate-run.json",
+      "bytes": 12594,
+      "sha256": "d1e200a8f02da3c2973a0c0dee38a1e2255d6520fef026b7fc7c70e29e8bbd58",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/materials/scratch-candidate-verification.json",
+      "bytes": 2018,
+      "sha256": "1c3aee813c9ef574c6fcdd739ab0961535f829e5292f7682ba5ecf4cc90c8e81",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/materials/scratch-ci-run.json",
+      "bytes": 12744,
+      "sha256": "e0dd9099d7d599f6fc89a41cecfc8953c1317c9e9467b0507731b469b476d164",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/materials/source-move-comparison.json",
+      "bytes": 33819,
+      "sha256": "5fa6472d0273c5ab075e6771306d50b1a82e823e532682de43cd11c74037bfb5",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/materials/tooling-actions-permissions.json",
+      "bytes": 69,
+      "sha256": "0bffee97e4ad52676c0127aacb5b4b304a2675f5c524de641acf1326e0b0e857",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/materials/tooling-candidate-artifact.json",
+      "bytes": 747,
+      "sha256": "be3ac4df00a1587ed1732b9e2e7eaf3328bcbcc957b5b9ab4b8fe7333111b16b",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/materials/tooling-candidate-run.json",
+      "bytes": 13509,
+      "sha256": "73d35d7f37fc026b0b7b6601602664cfcaccbc384a346f27c322de75fd7985d7",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/materials/tooling-lock.json",
+      "bytes": 3763,
+      "sha256": "5bd219b9c68eb804f0ff5ce5dd0973b5d38d68c4dfcb941e2fb9dd0772cb6c3c",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/materials/tooling-main-protection.json",
+      "bytes": 1362,
+      "sha256": "6bfcde78035f9cda05311c34029a1e74056d4304f9e8c98b81114c0cfdb229ec",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/materials/tooling-workflow-permissions.json",
+      "bytes": 80,
+      "sha256": "f6e178fc1e56cf43900da383f85398b61de9ae61c6b8433116c1856605745924",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/materials/verify-candidate.py",
+      "bytes": 6032,
+      "sha256": "f916d0fefc824f1aa04860d7da8cce553a3e4a98e2f9ae428335481a759076db",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/materials/wirescope-asset-comparison.json",
+      "bytes": 399,
+      "sha256": "ed96b7545c60eee2c2b66358fe9c8a5c7234ae6746027d67315572e8d40a672e",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/materials/wirescope-final-asset-comparison.json",
+      "bytes": 1093,
+      "sha256": "9690ff29933e3a75dbdbce00f0d4a831259ede32fbcc89016c612ee11fb02d83",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/INVENTORY.json",
+      "bytes": 13341,
+      "sha256": "8bf96aa13d90dd55718a18fe5152ef9e948be3dba4a23fddb0616753ee57ebdd",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/MANIFEST_ja.md",
+      "bytes": 3842,
+      "sha256": "0801d01956b78cc5b1ef8d928254399c7c5f87c94be512134f53e44a834df96f",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/SHA256SUMS",
+      "bytes": 8094,
+      "sha256": "b49fcbf96d36cce8239d6cf43801e248277c6a581da5da1fcb54abd2e90a7f9e",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/artifacts/published-comparison/bridge-index.json",
+      "bytes": 1609,
+      "sha256": "5828304c9bb1d60df8672f9189f503790050e09358bd375f39e4d59d190eb84f",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/artifacts/published-comparison/published-oci-comparison.json",
+      "bytes": 7469,
+      "sha256": "12417d60f77bf724448ddc1b3ed75418eec22d60ce38bb5b5a32dd8071d62520",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/artifacts/published-comparison/release.json",
+      "bytes": 8927,
+      "sha256": "1160adc38634ddbb92894e0e8a800a74fb899835d65d126bfe19579f6d99eb3e",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/artifacts/published-comparison/scratch-index.json",
+      "bytes": 1611,
+      "sha256": "f44e7a6c1a3b041aba787eba5e052a3ae78ce4ce733732bc7213207a3b17f607",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/CONFIRMATION_ja.md",
+      "bytes": 5379,
+      "sha256": "bca04a5fc7affc3a2a12048df64bea9e7694c2d71f38855f4142ff830c4a87da",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/PUBLICATION_ja.md",
+      "bytes": 8127,
+      "sha256": "799bf82cc664e0925a95cfba3634b81c6b827504c4bc55844113b636b6d18d67",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/PUBLISHED_ja.md",
+      "bytes": 8037,
+      "sha256": "84d3695096d6fb031fbb0161658632e916e4e1a32dd3ec353ec1cc5f87e5645d",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/RESUME_ja.md",
+      "bytes": 2160,
+      "sha256": "8d6c7671617d1e645d01403bff0e486a3da2e6fc95cdeaa7049ef1ba37eb6c64",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/audit-release-inputs.py",
+      "bytes": 4580,
+      "sha256": "292001c5e19c321e2d4f7d61ef5ee94f90756956c4abe691a06a6352eefcb70d",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/compare-published-scratch-oci.py",
+      "bytes": 8863,
+      "sha256": "459c2cacabb671053c6879d1e0e6b4032b5e01c03180ea6f148bda45253ebc69",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/compare-scratch-oci.py",
+      "bytes": 7436,
+      "sha256": "9fc7d7c3a2c8cf14c5c097065b812bbeb952cebfbd347133b47ed9345c520318",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/comparison-artifacts.json",
+      "bytes": 758,
+      "sha256": "fdfafb1e4f528335c038b7873589a5edc07e697150cf6ed688994917325928eb",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/comparison-jobs.json",
+      "bytes": 2428,
+      "sha256": "6475efa37f445bc5c4a8f3083e371fc6d2670c733ba0f93c1482abdc7503ab7f",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/copy-layer-authorization_ja.md",
+      "bytes": 1338,
+      "sha256": "700e8e6af9eeaed2a5c42f37ee8a4bcbc3d309685c8148d58c8c38c5b3239e3a",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/copy-layer-inspection.json",
+      "bytes": 926622,
+      "sha256": "eff7ec6ab01fc81ef02d460f802811648bfe59fd2768d2508531c8b47b47f271",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/fixed-publication-jobs.json",
+      "bytes": 8633,
+      "sha256": "51267af0aa5426c3db8730205e2bf5e55607a836f57932ee80e83829bd4407b0",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/frozen-candidate-workflow.yml",
+      "bytes": 3073,
+      "sha256": "ab7f16cafbe75dc37bb45bb2fd84d49c3e178984cfe04ded60abede38a2d4e21",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/frozen-release-workflow.yml",
+      "bytes": 15994,
+      "sha256": "2139c11e985b5ed29030b324f868ad9c61cffbfe82321d3269400ecf377d113b",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/inspect-copy-layer.py",
+      "bytes": 5236,
+      "sha256": "f738cf79da3d01e2cf9518b92840c29a42c2d9bc8f44483a6ad1fae72a2fddae",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/preflight-artifacts.json",
+      "bytes": 1540,
+      "sha256": "d089a406dc7cd0c853307095cd3644b913bb0f27cb8e8d7ad6cbd9097e226a6b",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/preflight-dispatch.json",
+      "bytes": 38,
+      "sha256": "c363fd561acb3e9d61f0ba044ac32239652c802160af8b5f11adfa6dab74947b",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/preflight-packaging-scope-comparison.json",
+      "bytes": 7469,
+      "sha256": "29bcad22b6b3ca700b85113251fc830d3ea8d9ea0ee20171fa4573e637f7fe65",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/preflight-runs.json",
+      "bytes": 12648,
+      "sha256": "37c67695d09ca7d171695cedf6b9a18f9f0462f5c8a94a34a31db50f8e033357",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/published-comparison-artifacts.json",
+      "bytes": 937,
+      "sha256": "64ce0b471aa401e32ac6b4e4eaaed74957072ae6e10bb7c039217a9e3e5c35f0",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/published-comparison-dispatch.json",
+      "bytes": 42,
+      "sha256": "f26d0a0b15cc8cabf94c6b55083751ab77c7bcb1adbef03e133afed99beecc04",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/published-comparison-jobs.json",
+      "bytes": 3685,
+      "sha256": "7e02ed64a128ff56482e6606da833fe7cc0ac48db364570fd8987bc1158a98ca",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/published-comparison-run.json",
+      "bytes": 13960,
+      "sha256": "02caa5237adb3e49f5bf928ef20aa14190d6421dbb465ecf6398ce5794ba6108",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/published-comparison-workflow.yml",
+      "bytes": 4066,
+      "sha256": "0c5dbd9a278c3bf9ccb0139c7063d82f2dd039b1a867095abaaf6532698039a1",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/rebuilt-candidate-manifest.json",
+      "bytes": 1821,
+      "sha256": "40cae50ae0c1b2070adb3891fdc0b27e7db4c6c54cad23ad6155c0b78fd06ea3",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/release-input-audit.json",
+      "bytes": 1561,
+      "sha256": "da65711535c1ef8b2912e39263d984cb9254805acb81f7fae5cc949850ab1d4f",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/scratch-b9-release-request.json",
+      "bytes": 1000,
+      "sha256": "e39986605d2e2aeb2f60d77e4c29fee5bf7bf52b1402529c98e5898229200748",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/scratch-b9-release-response.json",
+      "bytes": 2835,
+      "sha256": "42fc73f9b13cda0d9b8d9d0ad965d1e303a27ee5809e97d634eb2a7abf6abc3b",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/scratch-b9-tag-ref-request.json",
+      "bytes": 90,
+      "sha256": "4cee869aabe9b811e54765c0826637347c22816df7a2ac2f86ffac1ed7daa330",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/scratch-b9-tag-ref-response.json",
+      "bytes": 399,
+      "sha256": "356e6b70c13ff7f43fe5a460484398b1ab32a0864e1fd5ce980520633653f69f",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/scratch-b9-tag-refs.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/scratch-b9-tag-request.json",
+      "bytes": 148,
+      "sha256": "ccb7cf55576d6a85ada3d63961f73b459ce09be3419c663601c63d81c8cbc3db",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/scratch-b9-tag-response.json",
+      "bytes": 827,
+      "sha256": "c0871f86c40dfd3ed8c407ad340294e39d60a6bb1a9753fa2f06f0053cad5961",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/scratch-develop-ref.json",
+      "bytes": 356,
+      "sha256": "f846df291f842da62d560f386963b07a3cea6911bcb44854835c4ea3ff59fb19",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/scratch-develop-resume.json",
+      "bytes": 6459,
+      "sha256": "6f80f7db59002efb18601050e316a8020e1108ab5f8963ac9dcabc51856b24d4",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/scratch-frozen-resume.json",
+      "bytes": 6459,
+      "sha256": "6f80f7db59002efb18601050e316a8020e1108ab5f8963ac9dcabc51856b24d4",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/scratch-oci-comparison-ci.json",
+      "bytes": 10414,
+      "sha256": "9ebbc8b57475be90ebf6b6eecd7d7976bf9eb3ce8b51cb327880870adf534397",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/scratch-oci-comparison.json",
+      "bytes": 10410,
+      "sha256": "c68f43c17ebdd9e03cc6da9caff24bcff3e93129b2417bdd093d83008363c2fb",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/scratch-release-final-provider.json",
+      "bytes": 11697,
+      "sha256": "94e5d0ff4fd316f573a57aa4221f99039385025ad76c1004ad38845c7ae2afac",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/scratch-release-notes-request.json",
+      "bytes": 1330,
+      "sha256": "b68356515df64184d7e5a80c34a510fbbf4da576585936c4c9209980eafac2c0",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/scratch-release-notes_ja.md",
+      "bytes": 1303,
+      "sha256": "086139bed86888de906d5141fdeb349c7b651ac71e353997622bb136950c68b2",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/scratch-release-public-identity.json",
+      "bytes": 2916,
+      "sha256": "d9e09ed7b3f625b6be18ba26cc9b1ae7a348ba06dea101526f62e17642871b5a",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/scratch-release-public-provider.json",
+      "bytes": 10705,
+      "sha256": "aafb9a2f7a6a519aa58db2f736b453653a30cdb7fe038806987f6023e53050dc",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/scratch-release-workflow.json",
+      "bytes": 13911,
+      "sha256": "5220ac98787fdbb668b59137724e9c9d9b5b2c5b954bc10d83c131a009973192",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/scratch-releases-resume.json",
+      "bytes": 56958,
+      "sha256": "df1874ca6306be426747cc9136b05d297983aa238856afe326cb6bfc6acd04d9",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/tooling-b9-tag-refs.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/tooling-main-ref.json",
+      "bytes": 366,
+      "sha256": "2e09dfc8c75dbfdad487b980958f2a77b61f7e259708ddfe1e0d52b001ba977f",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/tooling-release-draft.json",
+      "bytes": 2936,
+      "sha256": "499db8744fd4569f5d8817f12b6f1e81b2510500ad20663502dc548a23b9f496",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/tooling-release-identity.json",
+      "bytes": 1071,
+      "sha256": "0cd406ea1ead5a4a117b95cfc41c12d196744de51e997bb99ba8f64272bf5c24",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/tooling-release-notes_ja.md",
+      "bytes": 1169,
+      "sha256": "35e660f699998cbce1e35107ab67827bf772f34b974bbfd5c622dd317bb53d50",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/tooling-release-publish-request.json",
+      "bytes": 61,
+      "sha256": "10c9a267f9468e460b416cd7e588b542bb01a2ef1197ee17d79ac038c08dba1e",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/tooling-release-published.json",
+      "bytes": 7630,
+      "sha256": "2d2c7a768368ee6a85880945e69b04188fd33ba5be2d36fe8848db1c76aa9ef2",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/tooling-release-request.json",
+      "bytes": 1386,
+      "sha256": "c96ef046477ed51284a9dc4a1776fa97d8d0a1ea7ff3315f8b954616bfdba1c8",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/tooling-release-uploaded.json",
+      "bytes": 7521,
+      "sha256": "8029e6aeb8ecdcf7dd3ce8fb71643d380073678b04590c46f5cbc300f6f9c63a",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/tooling-tag-object-request.json",
+      "bytes": 138,
+      "sha256": "4f42c209001108d62af3dac306fa78ffc87e2d74237f782bd2f577a03b603286",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/tooling-tag-object.json",
+      "bytes": 738,
+      "sha256": "5dd27a5f09cfc035d17cd126296a887a2bb77d9e6f92e050be1702ee42ffe39e",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/tooling-tag-ref-created.json",
+      "bytes": 380,
+      "sha256": "c6df9fff2ced8048350659745fa8fe799d1fd8530a8514c9efc79a2449bf708d",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/tooling-tag-ref-request.json",
+      "bytes": 84,
+      "sha256": "1aed732ecb05ddf0467ce758ee5d37e489d222e19b36443cfb76a5b2bd28493c",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/tooling-tag-target-verified.json",
+      "bytes": 51,
+      "sha256": "27da2e1288b2b4fc8902196bb2bff96ed7c991ebf6e866c7b80434845da4e2fc",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/verify-published-release.py",
+      "bytes": 3099,
+      "sha256": "9433236e93bdc105b574e9405484a85197ed27d502f7828747cb7129cc3e4c8f",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-scratch-dev/materials/picker-door.png",
+      "bytes": 59644,
+      "sha256": "dacaf7691205f693a9f1b5ecb271c3845d3b4c91e3a8e28fd1a47c25f56bd67c",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-scratch-dev/materials/picker-gold.png",
+      "bytes": 59232,
+      "sha256": "b687d991ab96f952180659e267863dd69e1fc049244047f883ea4c37cd7e1723",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-scratch-dev/materials/wirescope-b9-columns.png",
+      "bytes": 162322,
+      "sha256": "45906eefbd1a8418bb2241e2135f7010676aa8156d306c1bbc6f51a7721588e4",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-scratch-dev/materials/wirescope-b9.png",
+      "bytes": 345206,
+      "sha256": "f30946eff47e11b22c01136b4cdcb811b46bbcd2c3fe3272df1288e23c00c9eb",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-09-30-block-picker-names/MANIFEST_ja.md",
+      "bytes": 1809,
+      "sha256": "30c6c053b60e0a7a8b9727fcd15e1532ca2606ca5984845fddd30fffa7c0a7fd",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-09-30-block-picker-names/materials/block-picker-door-long.png",
+      "bytes": 152364,
+      "sha256": "c4920d0f68e370c831d01d5e9b50d602e6a8a26f18a8099fe518f8f28492ea1c",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-09-30-block-picker-names/materials/block-picker-door.png",
+      "bytes": 139152,
+      "sha256": "03c0c2b2d9638a90bf36d532990dcee2e19101fc38cd2e9a4d366bd5f1c232de",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-09-30-block-picker-names/materials/block-picker-gold.png",
+      "bytes": 139968,
+      "sha256": "66b9f0e4863ad3827a47e1b84f814a7868b5547460c41938ca11fdf5a88f42e9",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-09-30-block-picker-names/materials/block-picker.png",
+      "bytes": 123222,
+      "sha256": "bd93772a42f21055b5ea695ae85a047f66de9a986516730881d692272e377cf7",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-09-30-block-picker-names/materials/browser-smoke.cjs",
+      "bytes": 6171,
+      "sha256": "11735659aa9eebd06702b033f6abf13465597b8640173b339018426b3e195246",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-09-30-block-picker-names/materials/browser-smoke.log",
+      "bytes": 581,
+      "sha256": "35b6eacadcf3511762146ad807d317a744adb4faea7bd5a83bae2b50750520b8",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-09-30-block-picker-names/materials/knowledge-handoff_ja.md",
+      "bytes": 3057,
+      "sha256": "65fbd6ece453e2da951b6a1f1eb6ccbff9e22c9694de46517a5eadcf886a0fd7",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-01-b8-local-playtest/MANIFEST_ja.md",
+      "bytes": 3856,
+      "sha256": "a99218d5b4bbd08c2fd708344366e6098b71e9e433d80e26b8234a70d4545a24",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-01-b8-local-playtest/materials/catalog-lists.png",
+      "bytes": 91580,
+      "sha256": "2803545b169284fb193440383adbf2eaa85df5c4ca57e0af6aee3dac8b1f348a",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-01-b8-local-playtest/materials/scratch-ready.png",
+      "bytes": 154746,
+      "sha256": "09633da228716f98d590bfc4e054de59a25459639eb535eeda52e432647076b4",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-01-b8-local-playtest/materials/ui-check-2.log",
+      "bytes": 5270,
+      "sha256": "f27db3339e9858c27da897d1bb245150468bc4f79229782dd8ad0e9efcd2ef42",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-01-b8-local-playtest/materials/ui-check-final.log",
+      "bytes": 146,
+      "sha256": "67f4cf4c70afd72fb446a90ecbf1d267c69f59f5c30f7144559a887ba5d6d3ef",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-01-b8-local-playtest/materials/ui-check.log",
+      "bytes": 155,
+      "sha256": "4c7671213d9a74c66422190e30a3cc8b64e202acecbe9bd1ed0c20a1585c9187",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-03-wirescope-column-width/GATE-ADDENDUM_ja.md",
+      "bytes": 5344,
+      "sha256": "a790a045cb5eee7332b025e8063de6be8017a382455296f2c47ec26e1c5b01e5",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-03-wirescope-column-width/MANIFEST_ja.md",
+      "bytes": 2648,
+      "sha256": "9d8e0289f0541f667f0265fd442fd03d120d680bd113ecb39407ae337628ae10",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-03-wirescope-column-width/materials/artifact-build.log",
+      "bytes": 488,
+      "sha256": "c6b34180ea55736da6d0c2c4e02d8faa1b320fdc8ce1a96ccd95ac346c8c9254",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-03-wirescope-column-width/materials/artifact-identities.json",
+      "bytes": 820,
+      "sha256": "906c03ddd82a9d93a2c099ad847f07bb65c2fc3de9af10668867c5d39eca5089",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-03-wirescope-column-width/materials/build.log",
+      "bytes": 844,
+      "sha256": "1d3f35e460fdf8717bd2c70fd9cdd53ead2b5619542f5044dee071419ff4cd4f",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-03-wirescope-column-width/materials/column-measurements.json",
+      "bytes": 7225,
+      "sha256": "557970478d00abf5a1eae490c959abb946ec7ccd835f3095582fd89187b4b876",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-03-wirescope-column-width/materials/column-width.patch",
+      "bytes": 1804,
+      "sha256": "d5604b85332f8cd1eb57c4bfc666b0105d08442a63308f684d0f68dc60530a29",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-03-wirescope-column-width/materials/columns-after.png",
+      "bytes": 66150,
+      "sha256": "429503376ed53cd162ef8dece84cce9b5d277dedb2a9a7a1f8b9a7144c10bd9d",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-03-wirescope-column-width/materials/columns-before.png",
+      "bytes": 66978,
+      "sha256": "5c821b27e80f9c9e75f9a2008f0a9dbaa1314a4d88a0edde1c7c20e7087fb19d",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-03-wirescope-column-width/materials/full-build.log",
+      "bytes": 720,
+      "sha256": "7b7f7b54967fe15b4e5012ca045fc44599920f052e4cb99ae68c2db2a0e0f5fb",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-03-wirescope-column-width/materials/preview-columns.cjs",
+      "bytes": 8553,
+      "sha256": "d0988c9a038fd07d3c6e24a15c740141b4f858cffd1280a380866540726372c7",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-03-wirescope-column-width/materials/test.log",
+      "bytes": 465,
+      "sha256": "c4ed9f5f6832d3c535ef9b17c63f7d00db4678ff6e000528557620d1d013cefa",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-03-wirescope-column-width/materials/verify-artifacts.py",
+      "bytes": 2328,
+      "sha256": "9fb4d6bcc75d83b6d1bc7644d820c49b2f2955911d70a6f6f260200793bd781c",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-03-wirescope-column-width/materials/wirescope-app.manifest.json",
+      "bytes": 2321,
+      "sha256": "5588cdb1abd8d65004a393bc91b83cc6e947ef425125c0ec18c84a5ca2508fb4",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-close/INVENTORY.json",
+      "bytes": 2757,
+      "sha256": "5704373e4751dc07fd586f1218467ac147607eebdaa01a44b22077be1545fd13",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-close/MANIFEST_ja.md",
+      "bytes": 863,
+      "sha256": "bc9d67cfa5d0f64257e5de610326c132595e1bc8bb10ff9e18be300caa6dd687",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-close/SHA256SUMS",
+      "bytes": 890,
+      "sha256": "ebf113ec30659c271edb1a0ecd3da8d76a00d3e49adfc427dc277440e3555601",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-close/materials/CLOSE_ja.md",
+      "bytes": 10911,
+      "sha256": "4fc755dd005ae3dfd3131bea2b361ca2c1b892d5b9cca9ad0ec198acc3bcdd96",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-close/materials/EVIDENCE_FILES.tsv",
+      "bytes": 35092,
+      "sha256": "de2a71fc992ee70f93436a52b1fc8b8ea4572dd517af044b8da7de26e6738ac9",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-close/materials/b8-published-file-verification.json",
+      "bytes": 876,
+      "sha256": "5be1adcd3c5b9deec8fdd4f5fc82bd9eb19c04efac418a3ddec01748fcb99cb4",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-close/materials/classification-verification.json",
+      "bytes": 259,
+      "sha256": "d826e7a8d948fd19922e5c322ba18fa52cef507767720a853ceb6e0146550e12",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-close/materials/classification.json",
+      "bytes": 69090,
+      "sha256": "b8d84e7c06ed8699515707055d166f400be4ec432955423a08b3d3dafb3a2d38",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-close/materials/classify-handoffs.py",
+      "bytes": 6155,
+      "sha256": "51ef2579cabbeb6eae4cae9c915adbf5c00a040d93fd9a1e183498c4d6afd2e9",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-close/materials/landed-evidence-verification.json",
+      "bytes": 10085,
+      "sha256": "e2055cbe0346945802fbce4b288644f6995f8f746b62e88d62861eeef2106b9b",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-close/materials/verify-landed-evidence.py",
+      "bytes": 2033,
+      "sha256": "43538dec195e3f4e847df96f19233ffee65ced03c4f814bbe5bf6e2c54416c9c",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-scratch-dev/INVENTORY.json",
+      "bytes": 4363,
+      "sha256": "12053910a2083975c37d7b698e3c6889d6f2258b9dbbc6a30535fe0fa8252437",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-scratch-dev/MANIFEST_ja.md",
+      "bytes": 3222,
+      "sha256": "34bcf2e9545cfe7fffc7a88e240536ce401d3ea37be693f44fdd0e3dcb74838a",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-scratch-dev/SHA256SUMS",
+      "bytes": 2499,
+      "sha256": "f96bfc942017222ffe8ae9486acc83bfaf63f6617e9847740fcd578b37471c29",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-scratch-dev/materials/CONFIRMATION_ja.md",
+      "bytes": 10745,
+      "sha256": "3972dffd5e1d988dd9bae07cc779903ce512933852838d22e18c383014123a13",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-scratch-dev/materials/check-representative-blocks.cjs",
+      "bytes": 15893,
+      "sha256": "6bbc1a0c0d6fa4ad9d67ac53f40e936d2d70d5a18f50771f7a606747983dc330",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-scratch-dev/materials/completion.json",
+      "bytes": 228,
+      "sha256": "916c850af1412f1d480c4266f46027e81d425e5d0b50ea688924593c128f4f93",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-scratch-dev/materials/finalize-browser-check.cjs",
+      "bytes": 5413,
+      "sha256": "9a2ffc31a2bd6d8c585096927061d7a8f22be6e5177a151b791a91211d5cdb6c",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-scratch-dev/materials/human-width-review.json",
+      "bytes": 372,
+      "sha256": "70d317a45c0a04ddf72b1748e9fcc9178155e846c081081e308ea2b319aa78d4",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-scratch-dev/materials/independent-browser-hello.json",
+      "bytes": 256,
+      "sha256": "5a0385f4506b6018be55d27a6e0105661072066767e33bbde8611f8eddbdc519",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-scratch-dev/materials/open-validation-browser.cjs",
+      "bytes": 5308,
+      "sha256": "05da0c82081e9039baf3dcd7376ecc346eb38608c9d1660b77c9e4b9d5ce64b6",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-scratch-dev/materials/prepare-runtime.py",
+      "bytes": 5718,
+      "sha256": "b2d5451b7c38976e198b10e767f5b45caa3d51c0dca945d582390d51c9039c9a",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-scratch-dev/materials/readiness.json",
+      "bytes": 409,
+      "sha256": "08dab281e698acbe35ed12d2e6156d7eb897847c5d80829bf4513ba8cda94224",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-scratch-dev/materials/representative-results-display-check-failure.json",
+      "bytes": 14875,
+      "sha256": "e0c4bdc0cf834aeb694600bfeb95e170967f04f4c911f0b44e32a39c8878b134",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-scratch-dev/materials/representative-results-focus-failure.json",
+      "bytes": 1324,
+      "sha256": "6dc777af4dd54348bfc55d5c507f257ea35d27fd8d9f5c6f50c6dc2e37cdbddc",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-scratch-dev/materials/representative-results-harness-failure.json",
+      "bytes": 2647,
+      "sha256": "d6c2b3740570fa247bd4749eba636a2f6f08e6cb97590163bb60ef9f2f643213",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-scratch-dev/materials/representative-results.json",
+      "bytes": 32487,
+      "sha256": "df6d54de0ae78a7fc92564c40091796ff4481d05c82d11b19d41d67ae9f749c7",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-scratch-dev/materials/runtime-identity.json",
+      "bytes": 368579,
+      "sha256": "5dc05395aa13e2afa1b695de70471e247f25654163551f2568ad16ec64f1e803",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-scratch-dev/materials/user-b9-hello.json",
+      "bytes": 1727,
+      "sha256": "0cb866ebe745f9ad224a6274ce32384731a679c4dff58b5602f0866845d4e463",
+      "reason": "knowledge evidence received"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/artifacts/scratch-candidate-7fbbf03448.zip",
+      "bytes": 574809291,
+      "sha256": "27ade4f9b3d6a1e4b0cf814ef346b75613df8e8d446c82793b345665be9c4d7c",
+      "reason": "expired duplicate or temporary input"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-tooling-migration/materials/before-migration/wirescope-app.zip",
+      "bytes": 83854,
+      "sha256": "da3da0b6cf4d05265bc0c11abaa4913208c7cfc3600b0c3e78c93a356fc431ad",
+      "reason": "expired duplicate or temporary input"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/artifacts/published-assets/contracts.tar.gz",
+      "bytes": 1908,
+      "sha256": "48948ba47d55409f02a8ff8e0d44021b07859e11ffa5ca0f8598e6ef06082390",
+      "reason": "expired duplicate or temporary input"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/artifacts/published-assets/manifest.json",
+      "bytes": 1168,
+      "sha256": "cbc6af558a0633cd252d2f6e2192523e4d92f2602c629e9092677e2f2cb920da",
+      "reason": "expired duplicate or temporary input"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/artifacts/published-assets/wirescope-app.manifest.json",
+      "bytes": 2339,
+      "sha256": "c654f7d1f0be2773d6737e889279b2587317088717f162b082c82be9cff910d7",
+      "reason": "expired duplicate or temporary input"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/artifacts/published-assets/wirescope-app.zip",
+      "bytes": 83854,
+      "sha256": "da3da0b6cf4d05265bc0c11abaa4913208c7cfc3600b0c3e78c93a356fc431ad",
+      "reason": "expired duplicate or temporary input"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/artifacts/published-comparison/assets/contracts.tar.gz",
+      "bytes": 1908,
+      "sha256": "48948ba47d55409f02a8ff8e0d44021b07859e11ffa5ca0f8598e6ef06082390",
+      "reason": "expired duplicate or temporary input"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/artifacts/published-comparison/assets/manifest.json",
+      "bytes": 1168,
+      "sha256": "cbc6af558a0633cd252d2f6e2192523e4d92f2602c629e9092677e2f2cb920da",
+      "reason": "expired duplicate or temporary input"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/artifacts/published-comparison/assets/wirescope-app.manifest.json",
+      "bytes": 2339,
+      "sha256": "c654f7d1f0be2773d6737e889279b2587317088717f162b082c82be9cff910d7",
+      "reason": "expired duplicate or temporary input"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/artifacts/published-comparison/assets/wirescope-app.zip",
+      "bytes": 83854,
+      "sha256": "da3da0b6cf4d05265bc0c11abaa4913208c7cfc3600b0c3e78c93a356fc431ad",
+      "reason": "expired duplicate or temporary input"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/artifacts/scratch-oci-comparison.zip",
+      "bytes": 2312,
+      "sha256": "0aa3c57bd68c213cb78c867b6b53aa38411ea71e8bf5b39f8bda5410bf480dac",
+      "reason": "expired duplicate or temporary input"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/artifacts/scratch-published-oci-comparison.zip",
+      "bytes": 92127,
+      "sha256": "a5481e7599121513faec2a8c730216372b7b430ed7ffc100cee43862361bd4fc",
+      "reason": "expired duplicate or temporary input"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/artifacts/scratch-release-preflight-7fbbf03448.zip",
+      "bytes": 575032028,
+      "sha256": "846a09c29f1c19b6fee793c80863ced6950bed0c33b4207c318b8b05eec1ce1b",
+      "reason": "expired duplicate or temporary input"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-release/materials/__pycache__/verify-published-release.cpython-311.pyc",
+      "bytes": 5807,
+      "sha256": "74874f2943b19dd8cb4f970800772ae910d024d41bf755299b03f9bbdf61bf1e",
+      "reason": "expired duplicate or temporary input"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-scratch-dev/artifacts/bridge.oci.tar",
+      "bytes": 114628096,
+      "sha256": "b6a6feec07e8d7ae9805a81e8dc370e6220e91af145ef3117ce5ed12e703b100",
+      "reason": "expired duplicate or temporary input"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-scratch-dev/artifacts/candidate-manifest.json",
+      "bytes": 1821,
+      "sha256": "239f7f94cf31e732eff173744da105408b00b182d0aad73507623ea09b43bc6b",
+      "reason": "expired duplicate or temporary input"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-scratch-dev/artifacts/scratch-gui.tar.gz",
+      "bytes": 138376671,
+      "sha256": "c0d08c26b0d016c7cf4f57661022c631be0f2aa3d1d7d517ce97fd75e118c75d",
+      "reason": "expired duplicate or temporary input"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-scratch-dev/artifacts/wirescope-app.manifest.json",
+      "bytes": 2339,
+      "sha256": "c654f7d1f0be2773d6737e889279b2587317088717f162b082c82be9cff910d7",
+      "reason": "expired duplicate or temporary input"
+    },
+    {
+      "path": "handoff-materials/2026-10-05-b9-scratch-dev/artifacts/wirescope-app.zip",
+      "bytes": 83854,
+      "sha256": "da3da0b6cf4d05265bc0c11abaa4913208c7cfc3600b0c3e78c93a356fc431ad",
+      "reason": "expired duplicate or temporary input"
+    },
+    {
+      "path": "handoff-materials/2026-10-01-b8-fixture-preflight/MANIFEST_ja.md",
+      "bytes": 4274,
+      "sha256": "596af26e71dc776c716892b6a1bcb0d19a371f48e889a2bd8cedd75cec302f47",
+      "reason": "expired duplicate or temporary input"
+    },
+    {
+      "path": "handoff-materials/2026-10-03-wirescope-column-width/materials/commit-message.txt",
+      "bytes": 317,
+      "sha256": "717312ba06feb242104560cc31421ae475560e8140bbd8a4547ee7e0d6571d49",
+      "reason": "expired duplicate or temporary input"
+    },
+    {
+      "path": "handoff-materials/2026-10-03-wirescope-column-width/materials/preview-app/assets/index-Cyf0-Z5r.css",
+      "bytes": 9235,
+      "sha256": "7188a9e9ac2c001253b016567d02de343dd9a932eaf638e3eb73597c656b99df",
+      "reason": "expired duplicate or temporary input"
+    },
+    {
+      "path": "handoff-materials/2026-10-03-wirescope-column-width/materials/preview-app/assets/index-ipfi_vzC.js",
+      "bytes": 66354,
+      "sha256": "c538bcf1af31604106c4c091347735c6124123d9946cfbea9ec33271a90c16f9",
+      "reason": "expired duplicate or temporary input"
+    },
+    {
+      "path": "handoff-materials/2026-10-03-wirescope-column-width/materials/preview-app/assets/index-ipfi_vzC.js.map",
+      "bytes": 201503,
+      "sha256": "4eca42ebfa4380fc216ffd8b3a63693d95dc35d3445961f0b5a44ba01c1e0d68",
+      "reason": "expired duplicate or temporary input"
+    },
+    {
+      "path": "handoff-materials/2026-10-03-wirescope-column-width/materials/preview-app/index.html",
+      "bytes": 674,
+      "sha256": "d32381492adf8e6baa626923663f4e481ce3a99d8466d109cd2c6af3ee9d3e5d",
+      "reason": "expired duplicate or temporary input"
+    },
+    {
+      "path": "handoff-materials/2026-10-03-wirescope-column-width/materials/wirescope-app.zip",
+      "bytes": 83993,
+      "sha256": "7d66aa0d1cdf41ea98669185a988c046b736c4fa6a871b427e81f60e6e74e579",
+      "reason": "expired duplicate or temporary input"
+    },
+    {
+      "path": "handoff-materials/2026-10-01-b8-candidate-b7-fixes/materials/bridge-image-inputs.tar.gz",
+      "bytes": 38138,
+      "sha256": "fd43f714c77d2bc184bf882460dfc05a1ce345dc6d4f5b52505a6a9d2850908f",
+      "reason": "expired duplicate or temporary input"
+    },
+    {
+      "path": "handoff-materials/2026-10-01-b8-candidate-b7-fixes/materials/contracts.tar.gz",
+      "bytes": 1908,
+      "sha256": "48948ba47d55409f02a8ff8e0d44021b07859e11ffa5ca0f8598e6ef06082390",
+      "reason": "expired duplicate or temporary input"
+    },
+    {
+      "path": "handoff-materials/2026-10-01-b8-candidate-b7-fixes/materials/scratch-image-inputs.tar.gz",
+      "bytes": 152885920,
+      "sha256": "2b3eda9a42c09f326b2139848322aa955fe19099a139cd6935c18c2d9e6be458",
+      "reason": "expired duplicate or temporary input"
+    },
+    {
+      "path": "handoff-materials/2026-10-01-b8-candidate-b7-fixes/materials/wirescope-app.zip",
+      "bytes": 83746,
+      "sha256": "4cb349894b71d61d7ca143d8362a5b79deb1810e1d7a9e31ad30e29bfe370a07",
+      "reason": "expired duplicate or temporary input"
+    },
+    {
+      "path": "handoff-materials/2026-10-02-b8-candidate-local-fixes/materials/bridge-image-inputs.tar.gz",
+      "bytes": 38138,
+      "sha256": "fd43f714c77d2bc184bf882460dfc05a1ce345dc6d4f5b52505a6a9d2850908f",
+      "reason": "expired duplicate or temporary input"
+    },
+    {
+      "path": "handoff-materials/2026-10-02-b8-candidate-local-fixes/materials/contracts.tar.gz",
+      "bytes": 1908,
+      "sha256": "48948ba47d55409f02a8ff8e0d44021b07859e11ffa5ca0f8598e6ef06082390",
+      "reason": "expired duplicate or temporary input"
+    },
+    {
+      "path": "handoff-materials/2026-10-02-b8-candidate-local-fixes/materials/scratch-image-inputs.tar.gz",
+      "bytes": 138375344,
+      "sha256": "c7318efdfb22076c2d40501a526d7ca16a121510f7685d875fff34cdc4404843",
+      "reason": "expired duplicate or temporary input"
+    },
+    {
+      "path": "handoff-materials/2026-10-02-b8-candidate-local-fixes/materials/wirescope-app.zip",
+      "bytes": 83746,
+      "sha256": "4cb349894b71d61d7ca143d8362a5b79deb1810e1d7a9e31ad30e29bfe370a07",
+      "reason": "expired duplicate or temporary input"
+    },
+    {
+      "path": "handoff-materials/2026-10-03-b8-publication/materials/contracts.tar.gz",
+      "bytes": 1908,
+      "sha256": "48948ba47d55409f02a8ff8e0d44021b07859e11ffa5ca0f8598e6ef06082390",
+      "reason": "expired duplicate or temporary input"
+    },
+    {
+      "path": "handoff-materials/2026-10-03-b8-publication/materials/wirescope-app.zip",
+      "bytes": 83746,
+      "sha256": "4cb349894b71d61d7ca143d8362a5b79deb1810e1d7a9e31ad30e29bfe370a07",
+      "reason": "expired duplicate or temporary input"
+    },
+    {
+      "path": "handoff-materials/2026-10-02-home-scratch-contract-reply/MANIFEST_ja.md",
+      "bytes": 666,
+      "sha256": "924e075db8e6e0a604e9f6cfdc9ea30eaf00fca54e51e0416a9e8d803760faa3",
+      "reason": "Stack received; full byte comparison passed"
+    },
+    {
+      "path": "handoff-materials/2026-10-02-home-scratch-contract-reply/materials/reply_ja.md",
+      "bytes": 4180,
+      "sha256": "fb01870752b8e44ef822df336982daa7d0ceb0b519445856f0235a755784162b",
+      "reason": "Stack received; full byte comparison passed"
+    },
+    {
+      "path": "handoff-materials/2026-10-02-stack-wss-reply/MANIFEST_ja.md",
+      "bytes": 846,
+      "sha256": "0366ca9c3a8881c89e8cd4f6e65ed3d230236fc7b99eaaaf6c2f0ba5603ed48f",
+      "reason": "Stack received; full byte comparison passed"
+    },
+    {
+      "path": "handoff-materials/2026-10-02-stack-wss-reply/materials/probe-result.json",
+      "bytes": 270,
+      "sha256": "3f467ce926e8be58ad9036d2a2c9b3bacdb17b195198350501c52b99b1aac191",
+      "reason": "Stack received; full byte comparison passed"
+    },
+    {
+      "path": "handoff-materials/2026-10-02-stack-wss-reply/materials/probe-subprotocol.mjs",
+      "bytes": 1689,
+      "sha256": "500ede72fc00d7de2cc4c1c0e750a3e1a66bf9e5a32d818051ba6c9bc1437a31",
+      "reason": "Stack received; full byte comparison passed"
+    },
+    {
+      "path": "handoff-materials/2026-10-02-stack-wss-reply/materials/reply_ja.md",
+      "bytes": 6243,
+      "sha256": "92cf58a6137ec1dd756a1b7519df095578b392228960cfbfad08f8002f81ec18",
+      "reason": "Stack received; full byte comparison passed"
+    },
+    {
+      "path": "handoff-materials/2026-10-03-b8-scratch-live-human/private/block-particle-blocks.png",
+      "bytes": 92641,
+      "sha256": "c3fac186affffa8a3206cb54377b359c031dbcc8e5defacf81932d3c36b576b1",
+      "reason": "backstage reported encrypted receipt; no Scratch use remains"
+    },
+    {
+      "path": "handoff-materials/2026-10-03-b8-scratch-live-human/private/block-particle-followup.png",
+      "bytes": 135399,
+      "sha256": "31f5bab65269bdc087acbdbc8da5249a45a056dc4959274d0aa299d465cb727e",
+      "reason": "backstage reported encrypted receipt; no Scratch use remains"
+    },
+    {
+      "path": "handoff-materials/2026-10-03-b8-scratch-live-human/private/block-sound-five-kinds-blocks.png",
+      "bytes": 113708,
+      "sha256": "115376a9e01e0da38df429f71a83ea1a525d4537630b5376be5efe7a4a5f1070",
+      "reason": "backstage reported encrypted receipt; no Scratch use remains"
+    },
+    {
+      "path": "handoff-materials/2026-10-03-b8-scratch-live-human/private/dust-color-size-blocks.png",
+      "bytes": 138128,
+      "sha256": "478b53675a3df9d0e3ea0e86ce91e785a40445f40f73f82f46f2e85f1ed5ed9d",
+      "reason": "backstage reported encrypted receipt; no Scratch use remains"
+    },
+    {
+      "path": "handoff-materials/2026-10-03-b8-scratch-live-human/private/particle-java-render.png",
+      "bytes": 531994,
+      "sha256": "3107e58852460b7b1415179ca21ba23a374293c5c70ef837944d22d725989da2",
+      "reason": "backstage reported encrypted receipt; no Scratch use remains"
+    },
+    {
+      "path": "handoff-materials/2026-10-03-b8-scratch-live-human/private/particle-receiver-blocks.png",
+      "bytes": 80510,
+      "sha256": "e2d302a8886c0511fd69f60488163b2a76f894d45a6b1efd9d288ea4821da63b",
+      "reason": "backstage reported encrypted receipt; no Scratch use remains"
+    },
+    {
+      "path": "handoff-materials/2026-10-03-b8-scratch-live-human/private/sequential-sound-chord-blocks.png",
+      "bytes": 76289,
+      "sha256": "70d03456b629636f4fe02e467744302b215bf807f2f56b1e0fbb71363002d8be",
+      "reason": "backstage reported encrypted receipt; no Scratch use remains"
+    },
+    {
+      "path": "handoff-materials/2026-10-03-b8-scratch-live-human/private/sound-receiver-blocks.png",
+      "bytes": 106067,
+      "sha256": "13bf323c561ec2b8681764b2348470bf269d3c7631f4bd3a562f22e8d8adfaf7",
+      "reason": "backstage reported encrypted receipt; no Scratch use remains"
+    },
+    {
+      "path": "handoff-materials/2026-10-03-b8-scratch-live-human/private/sound-variable-assignment-followup.png",
+      "bytes": 84276,
+      "sha256": "1ac76c39085d1e250d2405696c0b8375065519a29d5743c1de24d894cb39b823",
+      "reason": "backstage reported encrypted receipt; no Scratch use remains"
+    },
+    {
+      "path": "handoff-materials/2026-10-03-b8-scratch-live-human/private/sound-variable-input-blocks.png",
+      "bytes": 87799,
+      "sha256": "99189f440149c1c13718aa86e8f238ccf118a9d1690b4e03c84b687e5a16ca52",
+      "reason": "backstage reported encrypted receipt; no Scratch use remains"
+    }
+  ],
+  "counts": {
+    "knowledge evidence received": 180,
+    "expired duplicate or temporary input": 36,
+    "Stack received; full byte comparison passed": 6,
+    "backstage reported encrypted receipt; no Scratch use remains": 10
+  },
+  "bytes": 1703300137,
+  "executed": true,
+  "protected_files_verified": 3537
+}

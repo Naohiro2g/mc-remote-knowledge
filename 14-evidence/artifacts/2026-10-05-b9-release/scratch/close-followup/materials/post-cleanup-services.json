@@ -1,0 +1,27 @@
+{
+  "b9_supervisor_alive": true,
+  "ports": {
+    "8611": {
+      "connected": true
+    },
+    "8612": {
+      "connected": true
+    },
+    "4183": {
+      "connected": true
+    },
+    "8601": {
+      "connected": false,
+      "errno": 111,
+      "type": "ConnectionRefusedError"
+    },
+    "8602": {
+      "connected": true
+    },
+    "4173": {
+      "connected": true
+    }
+  },
+  "b9_service_check_passed": true,
+  "boundary": "Old GUI port 8601 refused the connection; old Bridge 8602 and WireScope 4173 accepted it. No current pre-cleanup listener baseline was collected for the old GUI, and no service was stopped or restarted by this cleanup."
+}

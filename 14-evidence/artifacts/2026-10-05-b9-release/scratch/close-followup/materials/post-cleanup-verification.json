@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "deleted_targets_absent": 232,
+  "Stack_received_targets_still_bytes_sha256_equal": 6,
+  "source_commit": "7fbbf034488760d8fc7e034bf23f3e08e6e1807d",
+  "tracked_worktree_and_index_clean": true,
+  "untouched_user_untracked": [
+    "?? .markdownlint.jsonc",
+    "?? extension-card-reference/"
+  ],
+  "remaining_handoff_directories": [
+    "2026-10-01-b8-local-playtest",
+    "2026-10-03-b8-scratch-live-gate",
+    "2026-10-05-b9-scratch-dev",
+    "2026-10-06-stack-backstage-handoff"
+  ]
+}

@@ -10,6 +10,7 @@
 | --- | --- | --- |
 | `2026-10-05-b9-tooling-migration/scratch/` | 移管の前後の照合、追加fixtureの発行、consumerのpin、CI log。`initial-confirmation/`は10/4の確認票と移管評価の別紙 | scratch-editor `2026-10-05-b9-tooling-migration`、`2026-10-04-b9-scratch-confirmation` |
 | `2026-10-05-b9-release/scratch/` | 公開前の停止（OCIのversionラベル、COPY layerのmtime）、原因の調査、公開したOCIと凍結したOCIの比較、toolingとScratchの公開操作。`close/`はclose分類票 | scratch-editor `2026-10-05-b9-release`、`2026-10-05-b9-close` |
+| `2026-10-05-b9-release/scratch/close-followup/` | closeの②の追跡（2026-10-06）：Stackとbackstageへの搬送票、両者の受領票、knowledgeに収容済みの180件の照合、Scratch側の元の整理と残す条件 | scratch-editor `2026-10-06-stack-backstage-handoff` |
 | `2026-10-05-b9-mcremote-release/` | 公開前の凍結JARとの照合、tagのCI、公開assetとmanifest、API snapshot | McRemote `2026-10-05-b9-mcremote-release` |
 | `2026-10-05-b9-mcremote-close/` | close分類票、収容済み素材の全文照合 | McRemote `2026-10-05-b9-mcremote-close` |
 | `2026-10-05-b9-python-release/` | PyPI.orgへの初公開：公開の許可、tagのCI、GitHub Release、PyPI.orgとTestPyPI、新しいuv環境での取得 | minecraft-remote-api `2026-10-05-b9-python-release` |
@@ -34,4 +35,8 @@ Scratchの151 fileは、搬送元の一覧（`2026-10-05-b9-release/scratch/clos
 
 - 収容済みの素材は、3担当とも全文とSHA-256が収容先と一致した（McRemote 19 file、うち2 fileはpathの置き換えだけ、Python 12 file、
   Scratch 18 file）
+- Scratchは2026-10-06にknowledgeへ収容済みの180件（今回の151件、既に収容していた18件、close票11件）を収容先のblobと照合した。
+  176件は全文が一致し、4件は上のhome pathの置き換えだけが違う（`close-followup/materials/evidence-receipt-verification.json`）。
+  照合の後でScratchは元を整理したので、この記録の搬送元の名前は当時のidentityとして読む。Stackへ渡した6 fileの今の置き場所は
+  `close-followup/materials/stack-received-inventory.json`にある
 - Scratchのb8の公開物の残り2 file（`contracts.tar.gz`、`wirescope-app.zip`）は、公開b8のRelease assetと一致した（③）

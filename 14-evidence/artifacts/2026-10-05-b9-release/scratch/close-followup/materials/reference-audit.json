@@ -1,0 +1,247 @@
+{
+  "scanned_roots": [
+    "handoff-materials",
+    "scripts",
+    "mc-remote",
+    "packages/scratch-gui/src",
+    "packages/scratch-vm/src",
+    ".github"
+  ],
+  "exclusions": [
+    "runtime",
+    "tooling",
+    "node_modules",
+    "artifacts",
+    "dist",
+    "build",
+    ".git",
+    "binary or >2MB"
+  ],
+  "references": [
+    {
+      "file": "handoff-materials/2026-10-05-b9-close/materials/CLOSE_ja.md",
+      "line": 25,
+      "targets": [
+        "2026-10-02-home-scratch-contract-reply"
+      ]
+    },
+    {
+      "file": "handoff-materials/2026-10-05-b9-close/materials/CLOSE_ja.md",
+      "line": 26,
+      "targets": [
+        "2026-10-02-stack-wss-reply"
+      ]
+    },
+    {
+      "file": "handoff-materials/2026-10-05-b9-close/materials/classification.json",
+      "line": 165,
+      "targets": [
+        "2026-10-02-home-scratch-contract-reply"
+      ]
+    },
+    {
+      "file": "handoff-materials/2026-10-05-b9-close/materials/classification.json",
+      "line": 187,
+      "targets": [
+        "2026-10-02-stack-wss-reply"
+      ]
+    },
+    {
+      "file": "handoff-materials/2026-10-05-b9-close/materials/classify-handoffs.py",
+      "line": 14,
+      "targets": [
+        "2026-10-02-home-scratch-contract-reply"
+      ]
+    },
+    {
+      "file": "handoff-materials/2026-10-05-b9-close/materials/classify-handoffs.py",
+      "line": 15,
+      "targets": [
+        "2026-10-02-stack-wss-reply"
+      ]
+    },
+    {
+      "file": "handoff-materials/2026-10-05-b9-close/materials/classify-handoffs.py",
+      "line": 44,
+      "targets": [
+        "2026-10-02-home-scratch-contract-reply",
+        "2026-10-02-stack-wss-reply"
+      ]
+    },
+    {
+      "file": "handoff-materials/2026-10-02-stack-wss-reply/materials/reply_ja.md",
+      "line": 79,
+      "targets": [
+        "2026-10-02-stack-wss-reply"
+      ]
+    },
+    {
+      "file": "handoff-materials/2026-10-06-stack-backstage-handoff/materials/stack-received-inventory.json",
+      "line": 8,
+      "targets": [
+        "2026-10-02-home-scratch-contract-reply"
+      ]
+    },
+    {
+      "file": "handoff-materials/2026-10-06-stack-backstage-handoff/materials/stack-received-inventory.json",
+      "line": 15,
+      "targets": [
+        "2026-10-02-home-scratch-contract-reply"
+      ]
+    },
+    {
+      "file": "handoff-materials/2026-10-06-stack-backstage-handoff/materials/stack-received-inventory.json",
+      "line": 22,
+      "targets": [
+        "2026-10-02-stack-wss-reply"
+      ]
+    },
+    {
+      "file": "handoff-materials/2026-10-06-stack-backstage-handoff/materials/stack-received-inventory.json",
+      "line": 29,
+      "targets": [
+        "2026-10-02-stack-wss-reply"
+      ]
+    },
+    {
+      "file": "handoff-materials/2026-10-06-stack-backstage-handoff/materials/stack-received-inventory.json",
+      "line": 36,
+      "targets": [
+        "2026-10-02-stack-wss-reply"
+      ]
+    },
+    {
+      "file": "handoff-materials/2026-10-06-stack-backstage-handoff/materials/stack-received-inventory.json",
+      "line": 43,
+      "targets": [
+        "2026-10-02-stack-wss-reply"
+      ]
+    },
+    {
+      "file": "handoff-materials/2026-10-06-stack-backstage-handoff/materials/STACK_ja.md",
+      "line": 25,
+      "targets": [
+        "2026-10-02-home-scratch-contract-reply"
+      ]
+    },
+    {
+      "file": "handoff-materials/2026-10-06-stack-backstage-handoff/materials/STACK_ja.md",
+      "line": 26,
+      "targets": [
+        "2026-10-02-stack-wss-reply"
+      ]
+    },
+    {
+      "file": "handoff-materials/2026-10-06-stack-backstage-handoff/materials/stack-receipt-verification.json",
+      "line": 10,
+      "targets": [
+        "2026-10-02-home-scratch-contract-reply"
+      ]
+    },
+    {
+      "file": "handoff-materials/2026-10-06-stack-backstage-handoff/materials/stack-receipt-verification.json",
+      "line": 19,
+      "targets": [
+        "2026-10-02-home-scratch-contract-reply"
+      ]
+    },
+    {
+      "file": "handoff-materials/2026-10-06-stack-backstage-handoff/materials/stack-receipt-verification.json",
+      "line": 28,
+      "targets": [
+        "2026-10-02-stack-wss-reply"
+      ]
+    },
+    {
+      "file": "handoff-materials/2026-10-06-stack-backstage-handoff/materials/stack-receipt-verification.json",
+      "line": 37,
+      "targets": [
+        "2026-10-02-stack-wss-reply"
+      ]
+    },
+    {
+      "file": "handoff-materials/2026-10-06-stack-backstage-handoff/materials/stack-receipt-verification.json",
+      "line": 46,
+      "targets": [
+        "2026-10-02-stack-wss-reply"
+      ]
+    },
+    {
+      "file": "handoff-materials/2026-10-06-stack-backstage-handoff/materials/stack-receipt-verification.json",
+      "line": 55,
+      "targets": [
+        "2026-10-02-stack-wss-reply"
+      ]
+    },
+    {
+      "file": "handoff-materials/2026-10-06-stack-backstage-handoff/materials/stack-source-inventory.json",
+      "line": 6,
+      "targets": [
+        "2026-10-02-home-scratch-contract-reply"
+      ]
+    },
+    {
+      "file": "handoff-materials/2026-10-06-stack-backstage-handoff/materials/stack-source-inventory.json",
+      "line": 11,
+      "targets": [
+        "2026-10-02-home-scratch-contract-reply"
+      ]
+    },
+    {
+      "file": "handoff-materials/2026-10-06-stack-backstage-handoff/materials/stack-source-inventory.json",
+      "line": 16,
+      "targets": [
+        "2026-10-02-stack-wss-reply"
+      ]
+    },
+    {
+      "file": "handoff-materials/2026-10-06-stack-backstage-handoff/materials/stack-source-inventory.json",
+      "line": 21,
+      "targets": [
+        "2026-10-02-stack-wss-reply"
+      ]
+    },
+    {
+      "file": "handoff-materials/2026-10-06-stack-backstage-handoff/materials/stack-source-inventory.json",
+      "line": 26,
+      "targets": [
+        "2026-10-02-stack-wss-reply"
+      ]
+    },
+    {
+      "file": "handoff-materials/2026-10-06-stack-backstage-handoff/materials/stack-source-inventory.json",
+      "line": 31,
+      "targets": [
+        "2026-10-02-stack-wss-reply"
+      ]
+    },
+    {
+      "file": "handoff-materials/2026-10-06-stack-backstage-handoff/materials/STACK_ACK_ja.md",
+      "line": 33,
+      "targets": [
+        "2026-10-02-home-scratch-contract-reply"
+      ]
+    },
+    {
+      "file": "handoff-materials/2026-10-06-stack-backstage-handoff/materials/STACK_ACK_ja.md",
+      "line": 34,
+      "targets": [
+        "2026-10-02-stack-wss-reply"
+      ]
+    },
+    {
+      "file": "handoff-materials/2026-10-06-stack-backstage-handoff/materials/STACK_RECEIPT_ja.md",
+      "line": 54,
+      "targets": [
+        "2026-10-02-home-scratch-contract-reply"
+      ]
+    },
+    {
+      "file": "handoff-materials/2026-10-06-stack-backstage-handoff/materials/STACK_RECEIPT_ja.md",
+      "line": 55,
+      "targets": [
+        "2026-10-02-stack-wss-reply"
+      ]
+    }
+  ]
+}

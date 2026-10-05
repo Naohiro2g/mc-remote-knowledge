@@ -1,0 +1,50 @@
+{
+  "created_at": "2026-10-06",
+  "knowledge_commit": "5beaad2557abbc6e90ada03edf7d0a2918fa7a52",
+  "receiver_commit": "a30aa8b1b230e88ed92c515b357a088d97ddb0da",
+  "materials_version_control": "gitignored; uncommitted",
+  "files": [
+    {
+      "path": "handoff-materials/2026-10-02-home-scratch-contract-reply/MANIFEST_ja.md",
+      "bytes": 666,
+      "sha256": "924e075db8e6e0a604e9f6cfdc9ea30eaf00fca54e51e0416a9e8d803760faa3",
+      "received_path": "handoff-materials/2026-10-06-stack-backstage-handoff/materials/scratch-contract-reply/MANIFEST_ja.md",
+      "reused_existing": false
+    },
+    {
+      "path": "handoff-materials/2026-10-02-home-scratch-contract-reply/materials/reply_ja.md",
+      "bytes": 4180,
+      "sha256": "fb01870752b8e44ef822df336982daa7d0ceb0b519445856f0235a755784162b",
+      "received_path": "handoff-materials/2026-10-06-stack-backstage-handoff/materials/scratch-contract-reply/materials/reply_ja.md",
+      "reused_existing": false
+    },
+    {
+      "path": "handoff-materials/2026-10-02-stack-wss-reply/MANIFEST_ja.md",
+      "bytes": 846,
+      "sha256": "0366ca9c3a8881c89e8cd4f6e65ed3d230236fc7b99eaaaf6c2f0ba5603ed48f",
+      "received_path": "handoff-materials/2026-10-06-stack-backstage-handoff/materials/scratch-wss-reply/MANIFEST_ja.md",
+      "reused_existing": false
+    },
+    {
+      "path": "handoff-materials/2026-10-02-stack-wss-reply/materials/probe-result.json",
+      "bytes": 270,
+      "sha256": "3f467ce926e8be58ad9036d2a2c9b3bacdb17b195198350501c52b99b1aac191",
+      "received_path": "handoff-materials/2026-10-06-stack-backstage-handoff/materials/scratch-wss-reply/materials/probe-result.json",
+      "reused_existing": false
+    },
+    {
+      "path": "handoff-materials/2026-10-02-stack-wss-reply/materials/probe-subprotocol.mjs",
+      "bytes": 1689,
+      "sha256": "500ede72fc00d7de2cc4c1c0e750a3e1a66bf9e5a32d818051ba6c9bc1437a31",
+      "received_path": "handoff-materials/2026-10-06-stack-backstage-handoff/materials/scratch-wss-reply/materials/probe-subprotocol.mjs",
+      "reused_existing": false
+    },
+    {
+      "path": "handoff-materials/2026-10-02-stack-wss-reply/materials/reply_ja.md",
+      "bytes": 6243,
+      "sha256": "92cf58a6137ec1dd756a1b7519df095578b392228960cfbfad08f8002f81ec18",
+      "received_path": "handoff-materials/2026-10-02-home-wss-subprotocol/materials/scratch-reply_ja.md",
+      "reused_existing": true
+    }
+  ]
+}
