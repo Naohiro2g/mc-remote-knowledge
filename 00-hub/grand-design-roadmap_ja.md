@@ -44,7 +44,7 @@ Scratch固有の現状は[Scratch roadmap](../13-scratch-client/scratch-roadmap_
 | 2026-08末 | b6／protocol 23.0.0公開済み | sign、poke、browser保存を横断統合 |
 | 2026-09前半 | b7／23.1.0：direction、lightning、ParticleBuilder Stage 1 | README／sample Pass A、homepage骨格、Paper 26.2 pulse |
 | 2026-10-03 | b8：entity lifecycle＋particle Stage 2＋サウンド、Windowsでの検証。MCは1.21.11だけ（`2026-09-30-02`、`2026-09-30-07`） | README／sample Pass B、ケータリングPC／kitで更新・rollback検証開始 |
-| 2026-10-10 | b9：API freeze（APIは変えない）、Protocol／WireScope／Bridgeの移管、Python APIをPyPIへ登録（`2026-09-30-03`） | Javaは初回stable後に追従して移管を再検証（`2026-09-30-04`） |
+| 2026-10-05 | b9公開：API freeze（APIは変えない）、Protocol／WireScope／Bridgeを`minecraft-remote-tooling`へ移管、Python APIをPyPIへ登録（`2026-09-30-03`、`2026-10-05-01`〜`-03`） | Javaは初回stable後に追従して移管を再検証（`2026-09-30-04`） |
 | 2026-10-24まで | rc1（b10を挟まないのが基本線）。Paper 26.3がstableなら26.3対応 | 外部testerへ準備済み環境、手順、検証票、feedback導線を提供 |
 | 2026-11-01 | 初回stable | stable導入／更新情報と採用Paper 26.x supportを公開 |
 | 2026-12〜2027-01 | stable保守 | 運用手順化、機能実現位置とsampleを使った教材・学習path作成 |
@@ -54,9 +54,9 @@ Scratch固有の現状は[Scratch roadmap](../13-scratch-client/scratch-roadmap_
 
 ## 4. 現在の横断優先
 
-1. b8（protocol `23.2.0`／artifact `2320.0.0b8`）を2026-10-03に公開し、b8横断release gateを閉じた（`00-hub/release-gate-notes_ja.md`）。公開後に残るのは、Windowsでの導入手順の確認（b9のPyPI登録の判断材料）。
-2. 次はb9（2026-10-10）。APIを変えずにfreezeし、Protocol／WireScope／Bridgeの移管（Java以外のconsumer。起点はb8時点のfixture一覧）とPython APIのPyPI登録に集中する。freeze前の契約2件（`2026-10-03-01`／`-02`）の適合もb9 gateで確かめる。
-3. `lookAt`、空間query、player別previewを含むサウンド以外の新APIは、初回stable後へ送った（`2026-09-30-03`）。b9はAPIを変えずにfreezeし、移管とPyPI登録に集中する。
+1. b9（protocol `23.2.0`／artifact `2320.0.0b9`）を2026-10-05に公開し、b9横断release gateを閉じた（`00-hub/release-gate-notes_ja.md`）。APIは初回stableまで変えない。Python APIはmatureへ移り、PyPI.orgへpre-releaseを出した（`2026-10-05-03`）。Protocol／WireScope／Bridgeは`minecraft-remote-tooling`へ移した（`2026-10-05-01`、`2026-10-05-02`）
+2. 次はrc1（10月24日まで）。rc1 gateを開くときに、parkした行（rollbackの範囲、Scratch OCIを凍結と公開で揃える、製品noticeを一つに絞る、pickerのalias検索と読み上げ、クライアントAPI一覧とのつなぎ方、READMEのPass C）を拾う
+3. `lookAt`、空間query、player別previewを含むサウンド以外の新APIは、初回stable後へ送った（`2026-09-30-03`）。
 4. rc1（10月24日まで）から外部testerが会話履歴なしで開始・更新・復旧・feedbackできる入口を用意し、homepage／release情報／技術記事を並走させる。
 5. long-lived credentialの公開gateは閉じたまま、ケータリングで実需要を観察してから再開する。
 

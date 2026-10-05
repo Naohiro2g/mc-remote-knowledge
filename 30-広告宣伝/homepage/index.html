@@ -194,10 +194,10 @@
 
 				<div style="margin-top: 8px;">
 					<h4>Pythonモジュール（クライアント/API）のインストール：</h4>
-					<p><a href="https://docs.astral.sh/uv/getting-started/installation/" target="_blank" rel="noopener">uv</a>をインストールしたら、プロジェクトを作ってモジュールを追加します。現在は、新プロトコル版がPyPIに未登録なので、GitHub.comのリリース版を使います。</p>
+					<p><a href="https://docs.astral.sh/uv/getting-started/installation/" target="_blank" rel="noopener">uv</a>をインストールしたら、プロジェクトを作ってモジュールを追加します。新プロトコルのベータ版はPyPIにあり、版を指定して追加します（版を指定しないと旧プロトコルの安定版が入ります）。</p>
 					<pre><code>uv init --python 3.13 mc-hello
 cd mc-hello
-uv add https://github.com/Naohiro2g/minecraft-remote-api/releases/download/v2320.0.0b8/minecraft_remote_api-2320.0.0b8-py3-none-any.whl</code></pre>
+uv add "minecraft-remote-api==2320.0.0b9"</code></pre>
 				</div>
 				<p></p>
 				<p>VS CodeのJupyter Notebookで一行ずつ実行するのもオススメ。手順は<a href="https://github.com/Naohiro2g/minecraft-remote-api#jupyter" target="_blank" rel="noopener">minecraft-remote-apiのREADME</a>へ。</p>
@@ -385,7 +385,7 @@ mc.setBlock(5, 67, 5, "sea_lantern")</code></pre>
 
 			<div class="roadmap-box">
 				<div class="current-status">
-					<span>●</span> 現在地: <strong>R3（学べる・教えられる）進行中 / b8 公開中</strong>
+					<span>●</span> 現在地: <strong>R3（学べる・教えられる）進行中 / b9 公開中</strong>
 				</div>
 
 				<ul class="timeline-list">
@@ -405,11 +405,11 @@ mc.setBlock(5, 67, 5, "sea_lantern")</code></pre>
 						<div class="timeline-desc"><strong>b8 / Protocol 23.2.0</strong>: エンティティライフサイクル（近くのエンティティの検索、位置と向き、削除）、パーティクルStage 2（色・大きさ、見せる相手）、サウンド（位置とブロックの音）。Pythonの短いimport。Windowsでの導入手順の確認。</div>
 					</li>
 					<li class="timeline-item">
-						<div class="timeline-date">2026年10月10日【次】</div>
-						<div class="timeline-desc"><strong>b9</strong>: APIフリーズ（APIは追加・変更しない）。PythonモジュールをPyPIへ登録。</div>
+						<div class="timeline-date">2026年10月5日【公開】</div>
+						<div class="timeline-desc"><strong>b9 / Protocol 23.2.0</strong>: APIフリーズ（初回Stableまで、APIは追加・変更しない）。PythonモジュールをPyPIへ登録（ベータ版は版を指定して取得）。プロトコル定義、WireScope、Bridgeを共通の開発基盤リポジトリ（minecraft-remote-tooling）へ移管。</div>
 					</li>
 					<li class="timeline-item">
-						<div class="timeline-date">2026年10月24日まで</div>
+						<div class="timeline-date">2026年10月24日まで【次】</div>
 						<div class="timeline-desc"><strong>RC (Release Candidate)</strong>: 外部テスターによる実機検証。Paper 26.3の安定版が出ていれば26.3にも対応。b10を挟まずに進む予定です。</div>
 					</li>
 					<li class="timeline-item">
@@ -444,7 +444,7 @@ mc.setBlock(5, 67, 5, "sea_lantern")</code></pre>
 				<tbody>
 					<tr>
 						<td><strong>McRemote（Plugin、ベータ）</strong></td>
-						<td><code>2320.0.0b8</code></td>
+						<td><code>2320.0.0b9</code></td>
 						<td>23.2.0</td>
 						<td>Paper 1.21.11</td>
 					</tr>
@@ -456,21 +456,21 @@ mc.setBlock(5, 67, 5, "sea_lantern")</code></pre>
 					</tr>
 					<tr>
 						<td><strong>minecraft-remote-api (Python)</strong></td>
-						<td><code>2320.0.0b8</code></td>
+						<td><code>2320.0.0b9</code></td>
 						<td>23.2.0</td>
-						<td>Python 3.10以上対応。TestPyPIにも公開。PyPI安定版は旧プロトコル</td>
+						<td>Python 3.10以上対応。PyPIでベータ版を版指定で取得（<code>==2320.0.0b9</code>）。版指定なしでは旧プロトコルの安定版</td>
 					</tr>
 					<tr>
 						<td><strong>scratch-editor (Scratch)</strong></td>
-						<td><code>2320.0.0b8</code></td>
+						<td><code>2320.0.0b9</code></td>
 						<td>23.2.0</td>
 						<td>ブラウザ完結（Chrome, Safari, Edge等）</td>
 					</tr>
 					<tr>
 						<td><strong>WireScope</strong></td>
-						<td><code>2320.0.0b8</code></td>
+						<td><code>2320.0.0b9</code></td>
 						<td>23.2.0</td>
-						<td>共通パケット観察Webアプリ</td>
+						<td>共通パケット観察Webアプリ（minecraft-remote-tooling）</td>
 					</tr>
 					<tr>
 						<td><strong>公式箱庭マイクラサーバー（ベータ）</strong></td>
@@ -491,6 +491,12 @@ mc.setBlock(5, 67, 5, "sea_lantern")</code></pre>
 			<details>
 				<summary>📜 過去のリリース履歴を展開して確認する</summary>
 				<ul class="history-timeline" style="margin-top: 14px;">
+						<li>
+							<div class="history-meta"><span class="history-date">2026年10月5日</span><span
+									class="history-version">Protocol 23.2.0 (b9)</span></div>
+							<div class="history-description">APIフリーズ。<code>chat.post</code>の成功時の応答を<code>null</code>に固定し、知らない種類のイベントが届いても<code>events.poll</code>全体を失敗させないように統一。PythonモジュールをPyPIへ登録（<code>uv add "minecraft-remote-api==2320.0.0b9"</code>）。プロトコル定義・WireScope・Bridgeを<code>minecraft-remote-tooling</code>へ移管。
+							</div>
+						</li>
 						<li>
 							<div class="history-meta"><span class="history-date">2026年10月3日</span><span
 									class="history-version">Protocol 23.2.0 (b8)</span></div>

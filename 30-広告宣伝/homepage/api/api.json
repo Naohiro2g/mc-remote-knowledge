@@ -2,11 +2,11 @@
   "schema": "mc-remote.api-reference",
   "schema_version": 1,
   "release": {
-    "label": "b8",
+    "label": "b9",
     "protocol": "23.2.0",
-    "artifact": "2320.0.0b8",
+    "artifact": "2320.0.0b9",
     "minecraft": "1.21.11",
-    "published": "2026-10-03"
+    "published": "2026-10-05"
   },
   "source": {
     "wire": "10-protocol/wire-format-design_ja.md §4, §7.3",

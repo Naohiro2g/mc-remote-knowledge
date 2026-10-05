@@ -71,12 +71,11 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - non-claim: PyPI.orgへの公開はしない。mature判定はしない。Windowsでは検証していない
 - coordinator判定／human release owner承認: human ownerがpost2のsetへの組み入れを判定（2026-09-26、`2026-09-27-01`）。coordinatorはchange coneが閉じていることを確認し、単独更新gateを通過とする（2026-09-28）。**CLOSED**
 
-## 2026-10-04 b9横断release gate（OPEN）
+## 2026-10-04 b9横断release gate（CLOSED）
 
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
-- current phase: **公開済み・closeの前**（4 repoのprereleaseとPyPI.orgを照合済み）。handoff-materialsの分類を依頼した
-  （`00-hub/b9-gate-close-instructions_ja.md`）
+- current phase: **CLOSED**（2026-10-06、human ownerの判断）
 - 目標日: 2026-10-10 release（`2026-09-29-02`）
 - release mode: 軽量mode（release運用と責務分担 §14、`2026-08-28-02`）。移管はconsumerの取得経路とrelease workflowを
   変えるので、その部分は§14の但し書きにより検証を強める
@@ -315,6 +314,14 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     手元の配信の終了。いずれもgateのcloseを止めない
 - default branchへの統合（2026-10-05、coordinatorが照合）: McRemote main `5cb33eb`、Python mainは`b901c88`の1つ先の`39f2ec9`（公開後の
   文書だけ）、Scratch develop `7fbbf03`、minecraft-remote-tooling main `dc1ab83`。それぞれ公開tagを含む
+- gateを閉じるときのpark確認（`2026-09-30-09`、2026-10-06、human owner同意）: 契約2件と`2026-08-23-01`のrelease gate方法論の
+  残り（gate manifestは作らない）を閉じた。API一覧はb9へ更新し、クライアントAPI一覧とのつなぎ方をrc1へ。README／sampleの
+  Pass C、pickerのalias検索と読み上げはrc1へ、Scratch block value投影の残りは初回stable後へ回した。b9のgate中に起こした
+  park（Scratch OCIを凍結と公開で揃える、製品noticeを一つに絞る）はrc1 gateを開くときに再開する
+- close（2026-10-06、human ownerの判断）: **b9 gateをCLOSEDとする**。ホームページ（releases、roadmap、履歴、Pythonの導入を
+  PyPIの版指定へ）、API一覧、knowledgeのREADME、grand-design roadmapをb9へ更新した。Stack／Backstage（b9のVPSベータへの
+  deployとBridge OCIのcontainerとしての起動の確認を含む）はhuman ownerが扱う
+
 - human owner（2026-10-05）: `minecraft-remote-tooling`の名前変更とpark解除はScratchに頼む。Pythonをmatureへ移す（`2026-10-05-03`。
   b9からPyPI.orgへpre-release）
 - human owner（2026-10-04）: WindowsでのPythonの導入手順の確認とPyPI.orgの準備は、今日中を目標にする。契約2件のcaseを

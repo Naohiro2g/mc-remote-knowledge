@@ -3,11 +3,11 @@
   "schema_version": 1,
   "note": "API一覧（2026-09-30-05）の生成用metadata。契約の中身（params、result、reason）は書かず、wire-format-design_ja.mdの表から読む。ここに置くのは、載せる版、分類、一行の用途だけ。",
   "release": {
-    "label": "b8",
+    "label": "b9",
     "protocol": "23.2.0",
-    "artifact": "2320.0.0b8",
+    "artifact": "2320.0.0b9",
     "minecraft": "1.21.11",
-    "published": "2026-10-03"
+    "published": "2026-10-05"
   },
   "categories": [
     {

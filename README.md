@@ -109,12 +109,13 @@ Scratch や Python などで書いたプログラムから、マインクラフ�
 
 | リポジトリ | 役割 | リンク |
 | --- | --- | --- |
-| **`minecraft-remote-api`** | Python クライアント（`pip install minecraft-remote-api`） | [GitHub](https://github.com/Naohiro2g/minecraft-remote-api) |
+| **`minecraft-remote-api`** | Python クライアント（PyPI。新プロトコルのベータ版は`uv add "minecraft-remote-api==2320.0.0b9"`のように版を指定） | [GitHub](https://github.com/Naohiro2g/minecraft-remote-api) |
 | **`scratch-editor`** | Scratch 3.0 ベースのマイクラプログラミング環境 | [GitHub](https://github.com/Naohiro2g/scratch-editor) |
 | **`mc_remote_samples`** | 多言語対応の作例・サンプルコード集 | [GitHub](https://github.com/Naohiro2g/mc_remote_samples) |
 | **`McRemote`** | Minecraft Paper サーバー用プラグイン | [GitHub](https://github.com/Naohiro2g/McRemote) |
 | **`mc-remote-stack`** | サーバー環境デプロイ・Dockerパッケージ | [GitHub](https://github.com/Naohiro2g/mc-remote-stack) |
 | **`minecraft-remote-java`** | Java 向けクライアントライブラリ | [GitHub](https://github.com/Naohiro2g/minecraft-remote-java) |
+| **`minecraft-remote-tooling`** | 共通の開発基盤（プロトコル定義と共有fixture、WireScope、Bridge） | [GitHub](https://github.com/Naohiro2g/minecraft-remote-tooling) |
 
 ---
 
