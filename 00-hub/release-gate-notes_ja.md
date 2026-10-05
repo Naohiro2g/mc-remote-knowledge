@@ -274,6 +274,14 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     mainの先頭と一致。asset: `mc-remote-1.21.11-2320.0.0b9.jar` 261,016 bytes／`4feb90db…a58e`（凍結したJARと同じ。b9で権限bitを
     固定したので、b8のような食い違いは出なかった）、`manifest.json` 387 bytes／`1b18e60c…0fd6`（`release_tag` `v1.21.11-2320.0.0b9`、
     `source_commit` `5cb33eb`、role `jar`のdigestが一致）。Latestは`v1.21.8-1.4.0`のまま
+  - Pythonの公開（2026-10-05、coordinatorがGitHub APIとPyPIで照合）: [v2320.0.0b9](https://github.com/Naohiro2g/minecraft-remote-api/releases/tag/v2320.0.0b9)、
+    title「minecraft-remote-api 2320.0.0b9」、prerelease=true、draft=false。tag（lightweight）のtarget `b901c88fe41b67530ff353271683ece9fd453076`。
+    mainはその1つ先の`39f2ec9`（公開後の文書だけ: README、PUBLISHING、`docs/pypi-publication_ja.md`ほか）。asset: wheel 196,221 bytes／
+    `e166bc9c…38c6`、sdist 190,627 bytes／`bd027b8b…e479`、`manifest.json` 681 bytes／`da9887d1…e838`（`source_commit` `b901c88`、
+    `bundled_wirescope_source_commit` `dc1ab83`）。**PyPI.org**: [2320.0.0b9](https://pypi.org/project/minecraft-remote-api/2320.0.0b9/)の
+    wheelとsdistのSHA-256がReleaseと一致し、yankなし。無指定の取得は`1214.10.13`のまま（versioning-design §10.4）。TestPyPIの
+    2320.0.0b9も同じdigest。新しいuv環境での`uv add "minecraft-remote-api==2320.0.0b9"`とimportの成功は担当報告。Latestは
+    `v1214.10.11`のまま。**b9で初めてPyPI.orgへpre-releaseを出した**（`2026-10-05-03`）
   - Scratch OCIのCOPY layer（2026-10-05）: Scratch担当が公開前のbuild（run `37266780367`、index `sha256:da7c9622…ff27`）を凍結した
     OCIと比べ（run `37267805360`）、止めた。amd64とarm64とも先頭9 layerは同じで、最後のGUIのCOPY layerだけdigestが違う。
     その1,746 entryのpath、中身のSHA、size、type、link先、mode、uid／gidはすべて同じで、違いは1,743 entryのmtimeだけ。GUI tarは
