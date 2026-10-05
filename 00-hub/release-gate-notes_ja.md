@@ -255,6 +255,13 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     TestPyPIへも固定triggerで出す
   - 一致しないもの（tagのCIのJAR、wheel、OCIのdigest等）が出たら、公開せずに止めてcoordinatorへ返す
   - 公開後、coordinatorがtag target、prerelease／draft、assetと`manifest.json`のidentity、PyPI.orgの版をGitHub APIとPyPIで読むだけ照合する
+  - Scratch OCIのversionラベル（2026-10-05）: Scratch担当が公開前の照合で止めた。candidateのworkflowはOCIの
+    `org.opencontainers.image.version`に`2320.0.0b9`を、公開workflowはtag名から`v2320.0.0b9`を入れるので、amd64とarm64の
+    configが変わり、凍結したScratch OCI（`sha256:6702b112…9e34`）と同じdigestにならない。toolingとScratchのtag、Release、registryは
+    未操作。human ownerの判断で、**公開workflowでbuildし直し、ラベルの違いはpackagingの差として受け入れる**（release運用と責務分担
+    §7。b8のMcRemote JARの権限bitと同じ扱い）。条件: 公開する前にScratch担当が新しいOCIと凍結したOCIを比べ、amd64とarm64の
+    layerのdigestがすべて同じで、configの違いがversionラベルと生成のmetadata（作成時刻など）だけであることを確かめる。layerが
+    違えば止めて返す。実機試験のPASSは再利用する。公開するScratch OCIのdigestは、照合の後に記録する
 - human owner（2026-10-05）: `minecraft-remote-tooling`の名前変更とpark解除はScratchに頼む。Pythonをmatureへ移す（`2026-10-05-03`。
   b9からPyPI.orgへpre-release）
 - human owner（2026-10-04）: WindowsでのPythonの導入手順の確認とPyPI.orgの準備は、今日中を目標にする。契約2件のcaseを
