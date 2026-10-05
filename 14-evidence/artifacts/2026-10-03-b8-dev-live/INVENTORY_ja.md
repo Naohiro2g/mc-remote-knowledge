@@ -207,3 +207,38 @@ buildとtestのlogに残っていた手元の絶対path（`/home/<user>`）は�
 | `scratch-editor/handoff-materials/2026-09-30-b8-scratch-candidate/materials/scratch-image-inputs.tar.gz` | 152,986,359 | `e637c7e21ba6589e2d81742bed0b8af32c6598f5337b917b701dd8fcd51d69e2` | archive。公開済みReleaseにあるか、旧candidate／image入力 |
 | `scratch-editor/handoff-materials/2026-09-30-b8-scratch-candidate/materials/wirescope-app.zip` | 83,746 | `4cb349894b71d61d7ca143d8362a5b79deb1810e1d7a9e31ad30e29bfe370a07` | archive。公開済みReleaseにあるか、旧candidate／image入力 |
 | `private/`、`runtime/`（live-gate、live-human） | ― | ― | private設定・接続先・参加者名を含む原画像と、凍結artifactの展開物。公開搬送しない |
+
+## 2026-10-05の追加（b9 closeの分類）
+
+Scratchがb8から②として残していた素材のうち、b9で用が済んだものの①を収容した。4つのlogのhome directoryのpathを`~`へ置き換えた（`2026-09-30-block-picker-names/materials/browser-smoke.log`、`2026-10-03-wirescope-column-width/materials/`の`artifact-build.log`、`build.log`、`test.log`）。この4 fileは搬送元の一覧のdigestと一致しない。
+
+| path | bytes | SHA-256 |
+| --- | ---: | --- |
+| `scratch/2026-09-30-block-picker-names/MANIFEST_ja.md` | 1809 | `30c6c053b60e0a7a8b9727fcd15e1532ca2606ca5984845fddd30fffa7c0a7fd` |
+| `scratch/2026-09-30-block-picker-names/materials/block-picker-door-long.png` | 152364 | `c4920d0f68e370c831d01d5e9b50d602e6a8a26f18a8099fe518f8f28492ea1c` |
+| `scratch/2026-09-30-block-picker-names/materials/block-picker-door.png` | 139152 | `03c0c2b2d9638a90bf36d532990dcee2e19101fc38cd2e9a4d366bd5f1c232de` |
+| `scratch/2026-09-30-block-picker-names/materials/block-picker-gold.png` | 139968 | `66b9f0e4863ad3827a47e1b84f814a7868b5547460c41938ca11fdf5a88f42e9` |
+| `scratch/2026-09-30-block-picker-names/materials/block-picker.png` | 123222 | `bd93772a42f21055b5ea695ae85a047f66de9a986516730881d692272e377cf7` |
+| `scratch/2026-09-30-block-picker-names/materials/browser-smoke.cjs` | 6171 | `11735659aa9eebd06702b033f6abf13465597b8640173b339018426b3e195246` |
+| `scratch/2026-09-30-block-picker-names/materials/browser-smoke.log` | 561 | `db44fe6fbd02e415464544e96a77abbdbb53aee4fcacb73dd65d086720556e63` |
+| `scratch/2026-09-30-block-picker-names/materials/knowledge-handoff_ja.md` | 3057 | `65fbd6ece453e2da951b6a1f1eb6ccbff9e22c9694de46517a5eadcf886a0fd7` |
+| `scratch/2026-10-01-b8-local-playtest/MANIFEST_ja.md` | 3856 | `a99218d5b4bbd08c2fd708344366e6098b71e9e433d80e26b8234a70d4545a24` |
+| `scratch/2026-10-01-b8-local-playtest/materials/catalog-lists.png` | 91580 | `2803545b169284fb193440383adbf2eaa85df5c4ca57e0af6aee3dac8b1f348a` |
+| `scratch/2026-10-01-b8-local-playtest/materials/scratch-ready.png` | 154746 | `09633da228716f98d590bfc4e054de59a25459639eb535eeda52e432647076b4` |
+| `scratch/2026-10-01-b8-local-playtest/materials/ui-check-2.log` | 5270 | `f27db3339e9858c27da897d1bb245150468bc4f79229782dd8ad0e9efcd2ef42` |
+| `scratch/2026-10-01-b8-local-playtest/materials/ui-check-final.log` | 146 | `67f4cf4c70afd72fb446a90ecbf1d267c69f59f5c30f7144559a887ba5d6d3ef` |
+| `scratch/2026-10-01-b8-local-playtest/materials/ui-check.log` | 155 | `4c7671213d9a74c66422190e30a3cc8b64e202acecbe9bd1ed0c20a1585c9187` |
+| `scratch/2026-10-03-wirescope-column-width/GATE-ADDENDUM_ja.md` | 5344 | `a790a045cb5eee7332b025e8063de6be8017a382455296f2c47ec26e1c5b01e5` |
+| `scratch/2026-10-03-wirescope-column-width/MANIFEST_ja.md` | 2648 | `9d8e0289f0541f667f0265fd442fd03d120d680bd113ecb39407ae337628ae10` |
+| `scratch/2026-10-03-wirescope-column-width/materials/artifact-build.log` | 468 | `b4c319c5cff6faa27cf76b89ccc834ac912cce4506f9983acfe0d050fc2c0aec` |
+| `scratch/2026-10-03-wirescope-column-width/materials/artifact-identities.json` | 820 | `906c03ddd82a9d93a2c099ad847f07bb65c2fc3de9af10668867c5d39eca5089` |
+| `scratch/2026-10-03-wirescope-column-width/materials/build.log` | 834 | `cc8800589b03994a2f8ed2287129213a67a833a02d9f73cf30ba69117df2f3d3` |
+| `scratch/2026-10-03-wirescope-column-width/materials/column-measurements.json` | 7225 | `557970478d00abf5a1eae490c959abb946ec7ccd835f3095582fd89187b4b876` |
+| `scratch/2026-10-03-wirescope-column-width/materials/column-width.patch` | 1804 | `d5604b85332f8cd1eb57c4bfc666b0105d08442a63308f684d0f68dc60530a29` |
+| `scratch/2026-10-03-wirescope-column-width/materials/columns-after.png` | 66150 | `429503376ed53cd162ef8dece84cce9b5d277dedb2a9a7a1f8b9a7144c10bd9d` |
+| `scratch/2026-10-03-wirescope-column-width/materials/columns-before.png` | 66978 | `5c821b27e80f9c9e75f9a2008f0a9dbaa1314a4d88a0edde1c7c20e7087fb19d` |
+| `scratch/2026-10-03-wirescope-column-width/materials/full-build.log` | 720 | `7b7f7b54967fe15b4e5012ca045fc44599920f052e4cb99ae68c2db2a0e0f5fb` |
+| `scratch/2026-10-03-wirescope-column-width/materials/preview-columns.cjs` | 8553 | `d0988c9a038fd07d3c6e24a15c740141b4f858cffd1280a380866540726372c7` |
+| `scratch/2026-10-03-wirescope-column-width/materials/test.log` | 455 | `28ee0484b14880e3fec1eb4248892c3a8f1da3277e115d28da4301ba8bd0f755` |
+| `scratch/2026-10-03-wirescope-column-width/materials/verify-artifacts.py` | 2328 | `9fb4d6bcc75d83b6d1bc7644d820c49b2f2955911d70a6f6f260200793bd781c` |
+| `scratch/2026-10-03-wirescope-column-width/materials/wirescope-app.manifest.json` | 2321 | `5588cdb1abd8d65004a393bc91b83cc6e947ef425125c0ec18c84a5ca2508fb4` |

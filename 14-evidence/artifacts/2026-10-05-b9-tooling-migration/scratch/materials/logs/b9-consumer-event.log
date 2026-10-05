@@ -1,0 +1,95 @@
+TAP version 14
+# Subtest: compatible unknown events preserve cursor, order and loss accounting from the shared fixture
+    ok 1 - B9-E01
+    ok 2 - B9-E02
+    ok 3 - B9-E03
+    ok 4 - B9-E04
+    ok 5 - B9-E05
+    ok 6 - B9-E06
+    ok 7 - B9-E07
+    ok 8 - B9-E08
+    ok 9 - B9-E09
+    ok 10 - B9-E10
+    ok 11 - B9-E11
+    ok 12 - B9-E12
+    ok 13 - B9-E13
+    ok 14 - B9-E14
+    ok 15 - B9-E15
+    ok 16 - B9-E16
+    ok 17 - B9-E17
+    ok 18 - B9-E18
+    ok 19 - B9-E19
+    ok 20 - B9-E20
+    ok 21 - B9-E21
+    ok 22 - B9-E22
+    ok 23 - B9-E23
+    ok 24 - B9-E24
+    ok 25 - B9-E25
+    ok 26 - B9-E26
+    1..26
+ok 1 - compatible unknown events preserve cursor, order and loss accounting from the shared fixture # time=26.407ms
+
+# Subtest: event poll results validate the exact b6 fixture and advance through_sequence
+    ok 1 - should be equal
+    ok 2 - should be equal
+    ok 3 - should be equivalent
+    ok 4 - validated DTOs are immutable
+    1..4
+ok 2 - event poll results validate the exact b6 fixture and advance through_sequence # time=3.169ms
+
+# Subtest: event poll validation rejects unknown fields, future cursors and non-monotonic counters
+    ok 1 - expected to throw
+    ok 2 - expected to throw
+    ok 3 - expected to throw
+    1..3
+ok 3 - event poll validation rejects unknown fields, future cursors and non-monotonic counters # time=1.711ms
+
+# Subtest: event values are read from one immutable thread DTO without network parsing
+    ok 1 - should be equal
+    ok 2 - should be equal
+    ok 3 - should be equal
+    ok 4 - should be equal
+    ok 5 - should be equal
+    ok 6 - should be equal
+    ok 7 - should be equal
+    ok 8 - should be equal
+    ok 9 - should be equal
+    ok 10 - should be equal
+    ok 11 - should be equal
+    1..11
+ok 4 - event values are read from one immutable thread DTO without network parsing # time=3.782ms
+
+# Subtest: protocol 23 accepts an mcr_eh_ entity target handle
+    ok 1 - should be equal
+    1..1
+ok 5 - protocol 23 accepts an mcr_eh_ entity target handle # time=1.036ms
+
+# Subtest: protocol 23 rejects a protocol-22 mceh_ entity target handle
+    ok 1 - expected to throw
+    1..1
+ok 6 - protocol 23 rejects a protocol-22 mceh_ entity target handle # time=0.945ms
+
+# Subtest: protocol 23 rejects an invalid-prefix, empty, or non-string entity target handle
+    ok 1 - expected to throw
+    ok 2 - expected to throw
+    ok 3 - expected to throw
+    1..3
+ok 7 - protocol 23 rejects an invalid-prefix, empty, or non-string entity target handle # time=1.787ms
+
+# Subtest: the current events fixture carries no protocol-22 mceh_ handles
+    ok 1 - should not match pattern
+    1..1
+ok 8 - the current events fixture carries no protocol-22 mceh_ handles # time=4.286ms
+
+# Subtest: event status exposes cursor and distinct cumulative loss counters
+    ok 1 - should be equal
+    ok 2 - should be equal
+    ok 3 - should be equal
+    ok 4 - should be equal
+    ok 5 - should be equal
+    1..5
+ok 9 - event status exposes cursor and distinct cumulative loss counters # time=1.385ms
+
+1..9
+# { total: 55, pass: 55 }
+# time=96.892ms

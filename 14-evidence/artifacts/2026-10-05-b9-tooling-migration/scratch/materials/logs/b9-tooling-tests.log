@@ -1,0 +1,61 @@
+
+> minecraft-remote-tooling@0.1.0 test
+> npm test --workspaces
+
+
+> @mc-remote/protocol@0.1.0 test
+> npm run lint && vitest run
+
+
+> @mc-remote/protocol@0.1.0 lint
+> eslint && prettier --check .
+
+Checking formatting...
+All matched files use Prettier code style!
+
+ RUN  v4.1.9 /tmp/minecraft-remote-tooling-b9/packages/protocol
+
+
+ Test Files  4 passed (4)
+      Tests  39 passed (39)
+   Start at  02:11:41
+   Duration  690ms (transform 686ms, setup 0ms, import 1.05s, tests 86ms, environment 1ms)
+
+
+> @mc-remote/bridge@0.1.0 test
+> npm run lint && vitest run
+
+
+> @mc-remote/bridge@0.1.0 lint
+> eslint && prettier --check .
+
+Checking formatting...
+All matched files use Prettier code style!
+
+ RUN  v4.1.9 /tmp/minecraft-remote-tooling-b9/packages/bridge
+
+
+ Test Files  6 passed (6)
+      Tests  30 passed (30)
+   Start at  02:11:52
+   Duration  834ms (transform 574ms, setup 0ms, import 877ms, tests 165ms, environment 2ms)
+
+
+> @mc-remote/live@0.1.0 test
+> npm run lint && vitest run
+
+
+> @mc-remote/live@0.1.0 lint
+> eslint && prettier --check .
+
+Checking formatting...
+All matched files use Prettier code style!
+
+ RUN  v4.1.9 /tmp/minecraft-remote-tooling-b9/packages/live
+
+
+ Test Files  14 passed (14)
+      Tests  144 passed (144)
+   Start at  02:12:09
+   Duration  3.34s (transform 2.01s, setup 0ms, import 3.14s, tests 4.57s, environment 4ms)
+

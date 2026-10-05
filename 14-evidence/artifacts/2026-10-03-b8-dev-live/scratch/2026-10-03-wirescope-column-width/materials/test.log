@@ -1,0 +1,19 @@
+
+> @mc-remote/live@0.1.0 test
+> npm run lint && vitest run
+
+
+> @mc-remote/live@0.1.0 lint
+> eslint && prettier --check .
+
+Checking formatting...
+All matched files use Prettier code style!
+
+ RUN  v4.1.9 ~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/mc-remote/live
+
+
+ Test Files  13 passed (13)
+      Tests  142 passed (142)
+   Start at  10:17:20
+   Duration  3.98s (transform 2.42s, setup 0ms, import 4.49s, tests 5.33s, environment 5ms)
+

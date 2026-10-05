@@ -1,0 +1,68 @@
+{
+  "verified": true,
+  "source_commit": "7fbbf034488760d8fc7e034bf23f3e08e6e1807d",
+  "artifact_id": 11314795242,
+  "outer_bytes": 574809291,
+  "outer_sha256": "27ade4f9b3d6a1e4b0cf814ef346b75613df8e8d446c82793b345665be9c4d7c",
+  "artifacts": [
+    {
+      "role": "scratch-gui",
+      "kind": "file",
+      "file": "scratch-gui.tar.gz",
+      "bytes": 138376671,
+      "sha256": "c0d08c26b0d016c7cf4f57661022c631be0f2aa3d1d7d517ce97fd75e118c75d"
+    },
+    {
+      "role": "scratch",
+      "kind": "oci-archive",
+      "file": "scratch.oci.tar",
+      "bytes": 322922496,
+      "sha256": "48f4d808ff3d5a992c09101d075dfcd7d5c4ce4e91b907691fbf393db0b1f390",
+      "digest": "sha256:6702b112ad53b48efa2bf99fc0145fc7b23d24a1d20743018582f781f61c9e34"
+    },
+    {
+      "role": "bridge",
+      "kind": "oci-archive",
+      "file": "bridge.oci.tar",
+      "bytes": 114628096,
+      "sha256": "b6a6feec07e8d7ae9805a81e8dc370e6220e91af145ef3117ce5ed12e703b100",
+      "digest": "sha256:5828304c9bb1d60df8672f9189f503790050e09358bd375f39e4d59d190eb84f"
+    },
+    {
+      "role": "wirescope",
+      "kind": "file",
+      "file": "wirescope-app.zip",
+      "bytes": 83854,
+      "sha256": "da3da0b6cf4d05265bc0c11abaa4913208c7cfc3600b0c3e78c93a356fc431ad"
+    },
+    {
+      "role": "wirescope-manifest",
+      "kind": "file",
+      "file": "wirescope-app.manifest.json",
+      "bytes": 2339,
+      "sha256": "c654f7d1f0be2773d6737e889279b2587317088717f162b082c82be9cff910d7"
+    },
+    {
+      "role": "contracts",
+      "kind": "file",
+      "file": "contracts.tar.gz",
+      "bytes": 1908,
+      "sha256": "48948ba47d55409f02a8ff8e0d44021b07859e11ffa5ca0f8598e6ef06082390"
+    }
+  ],
+  "candidate_manifest": {
+    "bytes": 1821,
+    "sha256": "239f7f94cf31e732eff173744da105408b00b182d0aad73507623ea09b43bc6b"
+  },
+  "oci_platforms": {
+    "scratch": [
+      "linux/amd64",
+      "linux/arm64"
+    ],
+    "bridge": [
+      "linux/amd64",
+      "linux/arm64"
+    ]
+  },
+  "gui_configs_valid_and_connection_disabled": true
+}

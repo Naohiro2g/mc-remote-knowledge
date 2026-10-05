@@ -1,0 +1,179 @@
+{
+  "knowledge_contract_commit": "099c40b0c312694712653885200f3114ea4bed33",
+  "knowledge_contract_path": "00-hub/b9-gate-close-instructions_ja.md",
+  "directory": "2026-10-05-b9-scratch-dev",
+  "files": [
+    {
+      "source": "handoff-materials/2026-10-05-b9-scratch-dev/INVENTORY.json",
+      "knowledge_path": "14-evidence/artifacts/2026-10-05-b9-dev-live/scratch/segment-3/INVENTORY.json",
+      "bytes": 4363,
+      "sha256": "12053910a2083975c37d7b698e3c6889d6f2258b9dbbc6a30535fe0fa8252437",
+      "local_sha256": "12053910a2083975c37d7b698e3c6889d6f2258b9dbbc6a30535fe0fa8252437",
+      "full_bytes_equal": true,
+      "knowledge_git_blob_sha": "7fb691ae4663587785ee6c67648a1d5a613f9242"
+    },
+    {
+      "source": "handoff-materials/2026-10-05-b9-scratch-dev/MANIFEST_ja.md",
+      "knowledge_path": "14-evidence/artifacts/2026-10-05-b9-dev-live/scratch/segment-3/MANIFEST_ja.md",
+      "bytes": 3222,
+      "sha256": "34bcf2e9545cfe7fffc7a88e240536ce401d3ea37be693f44fdd0e3dcb74838a",
+      "local_sha256": "34bcf2e9545cfe7fffc7a88e240536ce401d3ea37be693f44fdd0e3dcb74838a",
+      "full_bytes_equal": true,
+      "knowledge_git_blob_sha": "0a9afc1ba246ddf149e52fdf261c086a9be74992"
+    },
+    {
+      "source": "handoff-materials/2026-10-05-b9-scratch-dev/SHA256SUMS",
+      "knowledge_path": "14-evidence/artifacts/2026-10-05-b9-dev-live/scratch/segment-3/SHA256SUMS",
+      "bytes": 2499,
+      "sha256": "f96bfc942017222ffe8ae9486acc83bfaf63f6617e9847740fcd578b37471c29",
+      "local_sha256": "f96bfc942017222ffe8ae9486acc83bfaf63f6617e9847740fcd578b37471c29",
+      "full_bytes_equal": true,
+      "knowledge_git_blob_sha": "e132fe242850aab1db0dc12d572fb71608c55a5f"
+    },
+    {
+      "source": "handoff-materials/2026-10-05-b9-scratch-dev/materials/CONFIRMATION_ja.md",
+      "knowledge_path": "14-evidence/artifacts/2026-10-05-b9-dev-live/scratch/segment-3/materials/CONFIRMATION_ja.md",
+      "bytes": 10745,
+      "sha256": "3972dffd5e1d988dd9bae07cc779903ce512933852838d22e18c383014123a13",
+      "local_sha256": "3972dffd5e1d988dd9bae07cc779903ce512933852838d22e18c383014123a13",
+      "full_bytes_equal": true,
+      "knowledge_git_blob_sha": "61cad48d0be978195a84b2517d80195ca99428d8"
+    },
+    {
+      "source": "handoff-materials/2026-10-05-b9-scratch-dev/materials/check-representative-blocks.cjs",
+      "knowledge_path": "14-evidence/artifacts/2026-10-05-b9-dev-live/scratch/segment-3/materials/check-representative-blocks.cjs",
+      "bytes": 15893,
+      "sha256": "6bbc1a0c0d6fa4ad9d67ac53f40e936d2d70d5a18f50771f7a606747983dc330",
+      "local_sha256": "6bbc1a0c0d6fa4ad9d67ac53f40e936d2d70d5a18f50771f7a606747983dc330",
+      "full_bytes_equal": true,
+      "knowledge_git_blob_sha": "bb15e9fcc5fffdbaae860b287adbd2407a1cffdd"
+    },
+    {
+      "source": "handoff-materials/2026-10-05-b9-scratch-dev/materials/completion.json",
+      "knowledge_path": "14-evidence/artifacts/2026-10-05-b9-dev-live/scratch/segment-3/materials/completion.json",
+      "bytes": 228,
+      "sha256": "916c850af1412f1d480c4266f46027e81d425e5d0b50ea688924593c128f4f93",
+      "local_sha256": "916c850af1412f1d480c4266f46027e81d425e5d0b50ea688924593c128f4f93",
+      "full_bytes_equal": true,
+      "knowledge_git_blob_sha": "f84844e7f4a8dbd870dc525ed3691de27cbc0eb9"
+    },
+    {
+      "source": "handoff-materials/2026-10-05-b9-scratch-dev/materials/finalize-browser-check.cjs",
+      "knowledge_path": "14-evidence/artifacts/2026-10-05-b9-dev-live/scratch/segment-3/materials/finalize-browser-check.cjs",
+      "bytes": 5413,
+      "sha256": "9a2ffc31a2bd6d8c585096927061d7a8f22be6e5177a151b791a91211d5cdb6c",
+      "local_sha256": "9a2ffc31a2bd6d8c585096927061d7a8f22be6e5177a151b791a91211d5cdb6c",
+      "full_bytes_equal": true,
+      "knowledge_git_blob_sha": "68bf87d1c730364ce77b9e1c5c3d0f00f61c95d8"
+    },
+    {
+      "source": "handoff-materials/2026-10-05-b9-scratch-dev/materials/human-width-review.json",
+      "knowledge_path": "14-evidence/artifacts/2026-10-05-b9-dev-live/scratch/segment-3/materials/human-width-review.json",
+      "bytes": 372,
+      "sha256": "70d317a45c0a04ddf72b1748e9fcc9178155e846c081081e308ea2b319aa78d4",
+      "local_sha256": "70d317a45c0a04ddf72b1748e9fcc9178155e846c081081e308ea2b319aa78d4",
+      "full_bytes_equal": true,
+      "knowledge_git_blob_sha": "c2661f83e388895e429f292c0907f270472dd958"
+    },
+    {
+      "source": "handoff-materials/2026-10-05-b9-scratch-dev/materials/independent-browser-hello.json",
+      "knowledge_path": "14-evidence/artifacts/2026-10-05-b9-dev-live/scratch/segment-3/materials/independent-browser-hello.json",
+      "bytes": 256,
+      "sha256": "5a0385f4506b6018be55d27a6e0105661072066767e33bbde8611f8eddbdc519",
+      "local_sha256": "5a0385f4506b6018be55d27a6e0105661072066767e33bbde8611f8eddbdc519",
+      "full_bytes_equal": true,
+      "knowledge_git_blob_sha": "42e3c243f49e0305a0ea81b8193cec5fcc55620b"
+    },
+    {
+      "source": "handoff-materials/2026-10-05-b9-scratch-dev/materials/open-validation-browser.cjs",
+      "knowledge_path": "14-evidence/artifacts/2026-10-05-b9-dev-live/scratch/segment-3/materials/open-validation-browser.cjs",
+      "bytes": 5308,
+      "sha256": "05da0c82081e9039baf3dcd7376ecc346eb38608c9d1660b77c9e4b9d5ce64b6",
+      "local_sha256": "05da0c82081e9039baf3dcd7376ecc346eb38608c9d1660b77c9e4b9d5ce64b6",
+      "full_bytes_equal": true,
+      "knowledge_git_blob_sha": "d25d0c4afc018b173da733b5f9e190bba1523162"
+    },
+    {
+      "source": "handoff-materials/2026-10-05-b9-scratch-dev/materials/prepare-runtime.py",
+      "knowledge_path": "14-evidence/artifacts/2026-10-05-b9-dev-live/scratch/segment-3/materials/prepare-runtime.py",
+      "bytes": 5718,
+      "sha256": "b2d5451b7c38976e198b10e767f5b45caa3d51c0dca945d582390d51c9039c9a",
+      "local_sha256": "b2d5451b7c38976e198b10e767f5b45caa3d51c0dca945d582390d51c9039c9a",
+      "full_bytes_equal": true,
+      "knowledge_git_blob_sha": "cca6fb775d42183eea297582dc789ea6e5f25cfe"
+    },
+    {
+      "source": "handoff-materials/2026-10-05-b9-scratch-dev/materials/readiness.json",
+      "knowledge_path": "14-evidence/artifacts/2026-10-05-b9-dev-live/scratch/segment-3/materials/readiness.json",
+      "bytes": 409,
+      "sha256": "08dab281e698acbe35ed12d2e6156d7eb897847c5d80829bf4513ba8cda94224",
+      "local_sha256": "08dab281e698acbe35ed12d2e6156d7eb897847c5d80829bf4513ba8cda94224",
+      "full_bytes_equal": true,
+      "knowledge_git_blob_sha": "0af914f1588c12c876413bab1905febc9cbd5979"
+    },
+    {
+      "source": "handoff-materials/2026-10-05-b9-scratch-dev/materials/representative-results-display-check-failure.json",
+      "knowledge_path": "14-evidence/artifacts/2026-10-05-b9-dev-live/scratch/segment-3/materials/representative-results-display-check-failure.json",
+      "bytes": 14875,
+      "sha256": "e0c4bdc0cf834aeb694600bfeb95e170967f04f4c911f0b44e32a39c8878b134",
+      "local_sha256": "e0c4bdc0cf834aeb694600bfeb95e170967f04f4c911f0b44e32a39c8878b134",
+      "full_bytes_equal": true,
+      "knowledge_git_blob_sha": "cd29294521cb1b2d18e7e7eb88cf34e0acc4b50c"
+    },
+    {
+      "source": "handoff-materials/2026-10-05-b9-scratch-dev/materials/representative-results-focus-failure.json",
+      "knowledge_path": "14-evidence/artifacts/2026-10-05-b9-dev-live/scratch/segment-3/materials/representative-results-focus-failure.json",
+      "bytes": 1324,
+      "sha256": "6dc777af4dd54348bfc55d5c507f257ea35d27fd8d9f5c6f50c6dc2e37cdbddc",
+      "local_sha256": "6dc777af4dd54348bfc55d5c507f257ea35d27fd8d9f5c6f50c6dc2e37cdbddc",
+      "full_bytes_equal": true,
+      "knowledge_git_blob_sha": "c0ac8bf7258faae637b109e0d4b010f524af1048"
+    },
+    {
+      "source": "handoff-materials/2026-10-05-b9-scratch-dev/materials/representative-results-harness-failure.json",
+      "knowledge_path": "14-evidence/artifacts/2026-10-05-b9-dev-live/scratch/segment-3/materials/representative-results-harness-failure.json",
+      "bytes": 2647,
+      "sha256": "d6c2b3740570fa247bd4749eba636a2f6f08e6cb97590163bb60ef9f2f643213",
+      "local_sha256": "d6c2b3740570fa247bd4749eba636a2f6f08e6cb97590163bb60ef9f2f643213",
+      "full_bytes_equal": true,
+      "knowledge_git_blob_sha": "455612b60f878e4d6f0bb16d3e34974ac2a72626"
+    },
+    {
+      "source": "handoff-materials/2026-10-05-b9-scratch-dev/materials/representative-results.json",
+      "knowledge_path": "14-evidence/artifacts/2026-10-05-b9-dev-live/scratch/segment-3/materials/representative-results.json",
+      "bytes": 32487,
+      "sha256": "df6d54de0ae78a7fc92564c40091796ff4481d05c82d11b19d41d67ae9f749c7",
+      "local_sha256": "df6d54de0ae78a7fc92564c40091796ff4481d05c82d11b19d41d67ae9f749c7",
+      "full_bytes_equal": true,
+      "knowledge_git_blob_sha": "6d8a7da2cb41196be6046a921e7930e7d2909504"
+    },
+    {
+      "source": "handoff-materials/2026-10-05-b9-scratch-dev/materials/runtime-identity.json",
+      "knowledge_path": "14-evidence/artifacts/2026-10-05-b9-dev-live/scratch/segment-3/materials/runtime-identity.json",
+      "bytes": 368579,
+      "sha256": "5dc05395aa13e2afa1b695de70471e247f25654163551f2568ad16ec64f1e803",
+      "local_sha256": "5dc05395aa13e2afa1b695de70471e247f25654163551f2568ad16ec64f1e803",
+      "full_bytes_equal": true,
+      "knowledge_git_blob_sha": "9fcb34bf265f491d47af0857f975ad7e1a7b05c2"
+    },
+    {
+      "source": "handoff-materials/2026-10-05-b9-scratch-dev/materials/user-b9-hello.json",
+      "knowledge_path": "14-evidence/artifacts/2026-10-05-b9-dev-live/scratch/segment-3/materials/user-b9-hello.json",
+      "bytes": 1727,
+      "sha256": "0cb866ebe745f9ad224a6274ce32384731a679c4dff58b5602f0866845d4e463",
+      "local_sha256": "0cb866ebe745f9ad224a6274ce32384731a679c4dff58b5602f0866845d4e463",
+      "full_bytes_equal": true,
+      "knowledge_git_blob_sha": "84fe2afae97366175bbd408c26489bd0faff1c62"
+    }
+  ],
+  "passed": true,
+  "not_included": [
+    "private/",
+    "runtime/",
+    "artifacts/",
+    "materials/picker-door.png",
+    "materials/picker-gold.png",
+    "materials/wirescope-b9-columns.png",
+    "materials/wirescope-b9.png"
+  ]
+}

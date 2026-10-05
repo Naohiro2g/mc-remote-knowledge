@@ -1,0 +1,714 @@
+{
+  "source_commit": "c7505c887c5c71a942d9f1f190b32a5da00544bc",
+  "tooling_commit": "dc1ab834183e29f2eb03059b07e99d2b463776ee",
+  "runtime_and_fixtures_bytes_equal": true,
+  "files": [
+    {
+      "source": "mc-remote/bridge/.dockerignore",
+      "target": "packages/bridge/.dockerignore",
+      "bytes_equal": true,
+      "source_sha256": "82d603468feb514acae5de02d4c9072af4c7ec2b26061ac211948a1b2d95f4a2",
+      "target_sha256": "82d603468feb514acae5de02d4c9072af4c7ec2b26061ac211948a1b2d95f4a2"
+    },
+    {
+      "source": "mc-remote/bridge/.gitignore",
+      "target": "packages/bridge/.gitignore",
+      "bytes_equal": true,
+      "source_sha256": "6a2f342e06649f6518433cb9d6cc490094cd0f37b50c9f3395635032f380cf0c",
+      "target_sha256": "6a2f342e06649f6518433cb9d6cc490094cd0f37b50c9f3395635032f380cf0c"
+    },
+    {
+      "source": "mc-remote/bridge/.prettierignore",
+      "target": "packages/bridge/.prettierignore",
+      "bytes_equal": true,
+      "source_sha256": "dc8a0ac39b9e6a0d8bc97493e0a54b59bd58386a2b2192df61109174657ca5ef",
+      "target_sha256": "dc8a0ac39b9e6a0d8bc97493e0a54b59bd58386a2b2192df61109174657ca5ef"
+    },
+    {
+      "source": "mc-remote/bridge/Dockerfile",
+      "target": "packages/bridge/Dockerfile",
+      "bytes_equal": false,
+      "source_sha256": "2e00f8fe9be56163fcdd6e2254bcd2e1c8fc9d043212e0868d73f0fb1a4a7436",
+      "target_sha256": "1a5937e23413316e113e209cf80b5c6ad946eb8b7d338b88b160f885f30a5b77"
+    },
+    {
+      "source": "mc-remote/bridge/README.md",
+      "target": "packages/bridge/README.md",
+      "bytes_equal": false,
+      "source_sha256": "a166fd06e70c54df09d21d0a78510b2df2aca2a6afa4490a18c7a68020790ed7",
+      "target_sha256": "57b950222f043f5320facc235f835a3a4d7cea590e7a8ff8f5e1a2e9de4c0c8c"
+    },
+    {
+      "source": "mc-remote/bridge/eslint.config.mjs",
+      "target": "packages/bridge/eslint.config.mjs",
+      "bytes_equal": true,
+      "source_sha256": "ffc310cf0f0beda8dec213d221ccb2ede10834056bb9edd610faaf7042830ce3",
+      "target_sha256": "ffc310cf0f0beda8dec213d221ccb2ede10834056bb9edd610faaf7042830ce3"
+    },
+    {
+      "source": "mc-remote/bridge/package.json",
+      "target": "packages/bridge/package.json",
+      "bytes_equal": true,
+      "source_sha256": "50ce9c77b59c65c3940c0235e7d3b485241dbd22c63801ca65e43799e6e78aa6",
+      "target_sha256": "50ce9c77b59c65c3940c0235e7d3b485241dbd22c63801ca65e43799e6e78aa6"
+    },
+    {
+      "source": "mc-remote/bridge/prettier.config.mjs",
+      "target": "packages/bridge/prettier.config.mjs",
+      "bytes_equal": true,
+      "source_sha256": "4f5a807bc53bca6771ad20898f7de924b34e977d5eb23114db4ca15fb5508d3a",
+      "target_sha256": "4f5a807bc53bca6771ad20898f7de924b34e977d5eb23114db4ca15fb5508d3a"
+    },
+    {
+      "source": "mc-remote/bridge/src/allowlist.ts",
+      "target": "packages/bridge/src/allowlist.ts",
+      "bytes_equal": true,
+      "source_sha256": "a3294292742fa9a9986325d0f91169ad7f4b689342a59af4f04d866c7745694f",
+      "target_sha256": "a3294292742fa9a9986325d0f91169ad7f4b689342a59af4f04d866c7745694f"
+    },
+    {
+      "source": "mc-remote/bridge/src/config.ts",
+      "target": "packages/bridge/src/config.ts",
+      "bytes_equal": true,
+      "source_sha256": "6a2e89c50cdfeb104822e3b0aa6b78b211956da49e2fc9ce605532030adc1ac3",
+      "target_sha256": "6a2e89c50cdfeb104822e3b0aa6b78b211956da49e2fc9ce605532030adc1ac3"
+    },
+    {
+      "source": "mc-remote/bridge/src/framing.ts",
+      "target": "packages/bridge/src/framing.ts",
+      "bytes_equal": true,
+      "source_sha256": "66b8d0e2db7e4ab6b934f4ded3e333a008ff9a05bb7264bf1eef712798db69c6",
+      "target_sha256": "66b8d0e2db7e4ab6b934f4ded3e333a008ff9a05bb7264bf1eef712798db69c6"
+    },
+    {
+      "source": "mc-remote/bridge/src/index.ts",
+      "target": "packages/bridge/src/index.ts",
+      "bytes_equal": true,
+      "source_sha256": "fbcc563026a28063be01f8f6dbbff4773bbfabdb5a7edcaa1b400c837eded661",
+      "target_sha256": "fbcc563026a28063be01f8f6dbbff4773bbfabdb5a7edcaa1b400c837eded661"
+    },
+    {
+      "source": "mc-remote/bridge/src/main.ts",
+      "target": "packages/bridge/src/main.ts",
+      "bytes_equal": true,
+      "source_sha256": "a240bcdb7a7ff2ac1886645b51ac298cf53343a27556378f8390a40918ac33e8",
+      "target_sha256": "a240bcdb7a7ff2ac1886645b51ac298cf53343a27556378f8390a40918ac33e8"
+    },
+    {
+      "source": "mc-remote/bridge/src/routing.ts",
+      "target": "packages/bridge/src/routing.ts",
+      "bytes_equal": true,
+      "source_sha256": "3399e1bea6d74a2700c79fe7e2f2c01e5560982ef4de9e66171c1a7580cb4174",
+      "target_sha256": "3399e1bea6d74a2700c79fe7e2f2c01e5560982ef4de9e66171c1a7580cb4174"
+    },
+    {
+      "source": "mc-remote/bridge/src/server.ts",
+      "target": "packages/bridge/src/server.ts",
+      "bytes_equal": true,
+      "source_sha256": "7a878353f90bd235fb6bb268eeef051bdc8f7f62e3fefe0068797ba83023041e",
+      "target_sha256": "7a878353f90bd235fb6bb268eeef051bdc8f7f62e3fefe0068797ba83023041e"
+    },
+    {
+      "source": "mc-remote/bridge/src/transport.ts",
+      "target": "packages/bridge/src/transport.ts",
+      "bytes_equal": true,
+      "source_sha256": "a627fa24c468d24a0652b1676695b0263198f2214ab311290cd295b5b026b102",
+      "target_sha256": "a627fa24c468d24a0652b1676695b0263198f2214ab311290cd295b5b026b102"
+    },
+    {
+      "source": "mc-remote/bridge/test/allowlist.test.ts",
+      "target": "packages/bridge/test/allowlist.test.ts",
+      "bytes_equal": true,
+      "source_sha256": "d2cd8e683f126a287f7c50a88625cd50d1cd8e97b5ba01fbeb678c8932d5dd28",
+      "target_sha256": "d2cd8e683f126a287f7c50a88625cd50d1cd8e97b5ba01fbeb678c8932d5dd28"
+    },
+    {
+      "source": "mc-remote/bridge/test/config.test.ts",
+      "target": "packages/bridge/test/config.test.ts",
+      "bytes_equal": true,
+      "source_sha256": "0ecad64dcf04a5588445e8af74298bb6378bc046ee54ad5c24bb5c7c25b291c2",
+      "target_sha256": "0ecad64dcf04a5588445e8af74298bb6378bc046ee54ad5c24bb5c7c25b291c2"
+    },
+    {
+      "source": "mc-remote/bridge/test/fixtures/one-shot-transport-v1.json",
+      "target": "packages/bridge/test/fixtures/one-shot-transport-v1.json",
+      "bytes_equal": true,
+      "source_sha256": "018d8fc8201dc8bf5689c53549df7be62b78c7e1d07e553f60c869a9ebcf7ec5",
+      "target_sha256": "018d8fc8201dc8bf5689c53549df7be62b78c7e1d07e553f60c869a9ebcf7ec5"
+    },
+    {
+      "source": "mc-remote/bridge/test/framing.test.ts",
+      "target": "packages/bridge/test/framing.test.ts",
+      "bytes_equal": true,
+      "source_sha256": "8ac67a19bc20704e837d9a949f7bfc9de0c8969ca8b0399d96cd39bbc3ae8adc",
+      "target_sha256": "8ac67a19bc20704e837d9a949f7bfc9de0c8969ca8b0399d96cd39bbc3ae8adc"
+    },
+    {
+      "source": "mc-remote/bridge/test/routing.test.ts",
+      "target": "packages/bridge/test/routing.test.ts",
+      "bytes_equal": true,
+      "source_sha256": "7e799c4eadb91ffa41eecbf4a234c92496eb92a99422c4701b07cebc7e987a89",
+      "target_sha256": "7e799c4eadb91ffa41eecbf4a234c92496eb92a99422c4701b07cebc7e987a89"
+    },
+    {
+      "source": "mc-remote/bridge/test/server.test.ts",
+      "target": "packages/bridge/test/server.test.ts",
+      "bytes_equal": true,
+      "source_sha256": "2bcc513e905b74ae0feb40479a501193c6119531a2730890a4240de055730182",
+      "target_sha256": "2bcc513e905b74ae0feb40479a501193c6119531a2730890a4240de055730182"
+    },
+    {
+      "source": "mc-remote/bridge/test/transport.test.ts",
+      "target": "packages/bridge/test/transport.test.ts",
+      "bytes_equal": true,
+      "source_sha256": "d80497fd1dc8facb79375ec78f4bae006f8dd0eda2321896e92a852c6297f0dd",
+      "target_sha256": "d80497fd1dc8facb79375ec78f4bae006f8dd0eda2321896e92a852c6297f0dd"
+    },
+    {
+      "source": "mc-remote/bridge/tsconfig.build.json",
+      "target": "packages/bridge/tsconfig.build.json",
+      "bytes_equal": true,
+      "source_sha256": "8d36f0eaeb1e30ff2a1631f69564ebac0ca9440cfd2ce363539241e35f160853",
+      "target_sha256": "8d36f0eaeb1e30ff2a1631f69564ebac0ca9440cfd2ce363539241e35f160853"
+    },
+    {
+      "source": "mc-remote/bridge/tsconfig.json",
+      "target": "packages/bridge/tsconfig.json",
+      "bytes_equal": true,
+      "source_sha256": "0252c7c0de597daa38aef4874a3253aaa61e1f0227160a3ccb7c97d4c2c4d7c6",
+      "target_sha256": "0252c7c0de597daa38aef4874a3253aaa61e1f0227160a3ccb7c97d4c2c4d7c6"
+    },
+    {
+      "source": "mc-remote/bridge/vite.config.js",
+      "target": "packages/bridge/vite.config.js",
+      "bytes_equal": true,
+      "source_sha256": "1a5ea3b161c42190fb284ee13e72b566ac378d6ee65370c1d82ce816e70a84be",
+      "target_sha256": "1a5ea3b161c42190fb284ee13e72b566ac378d6ee65370c1d82ce816e70a84be"
+    },
+    {
+      "source": "mc-remote/live/.prettierignore",
+      "target": "packages/live/.prettierignore",
+      "bytes_equal": true,
+      "source_sha256": "959d0fb078e05ffcb021e5b1d459302e3d4b63487c43a0153e8d9a371f529304",
+      "target_sha256": "959d0fb078e05ffcb021e5b1d459302e3d4b63487c43a0153e8d9a371f529304"
+    },
+    {
+      "source": "mc-remote/live/NOTICE",
+      "target": "packages/live/NOTICE",
+      "bytes_equal": true,
+      "source_sha256": "a5a1f4e50ffa47063bc2cd9c903d167f6723db3bcf38c76007f7be6824bde8b0",
+      "target_sha256": "a5a1f4e50ffa47063bc2cd9c903d167f6723db3bcf38c76007f7be6824bde8b0"
+    },
+    {
+      "source": "mc-remote/live/README.md",
+      "target": "packages/live/README.md",
+      "bytes_equal": false,
+      "source_sha256": "4794a6fde24d9cb547634fe04a2ce38e399005d65b8a229226b849ea4c25aa48",
+      "target_sha256": "10bfbd8b1c1a043866480fabcfc6518b10f784fe98c7af2f7abb30ceb81c8b0a"
+    },
+    {
+      "source": "mc-remote/live/eslint.config.mjs",
+      "target": "packages/live/eslint.config.mjs",
+      "bytes_equal": true,
+      "source_sha256": "877221c96d2a6407ea39eb58474bb7fde5ec0227429dc25173c096c1402dd06f",
+      "target_sha256": "877221c96d2a6407ea39eb58474bb7fde5ec0227429dc25173c096c1402dd06f"
+    },
+    {
+      "source": "mc-remote/live/index.html",
+      "target": "packages/live/index.html",
+      "bytes_equal": true,
+      "source_sha256": "a47394d9ad342465794fcc94fd68d483b0119c9b5d26175ecc32efd4a276a8bb",
+      "target_sha256": "a47394d9ad342465794fcc94fd68d483b0119c9b5d26175ecc32efd4a276a8bb"
+    },
+    {
+      "source": "mc-remote/live/package.json",
+      "target": "packages/live/package.json",
+      "bytes_equal": true,
+      "source_sha256": "84b74060253ef940952db82c24e1cee4d18d652ae11449ee601a92d1f72a6bbe",
+      "target_sha256": "84b74060253ef940952db82c24e1cee4d18d652ae11449ee601a92d1f72a6bbe"
+    },
+    {
+      "source": "mc-remote/live/prettier.config.mjs",
+      "target": "packages/live/prettier.config.mjs",
+      "bytes_equal": true,
+      "source_sha256": "4f5a807bc53bca6771ad20898f7de924b34e977d5eb23114db4ca15fb5508d3a",
+      "target_sha256": "4f5a807bc53bca6771ad20898f7de924b34e977d5eb23114db4ca15fb5508d3a"
+    },
+    {
+      "source": "mc-remote/live/scripts/artifact.d.mts",
+      "target": "packages/live/scripts/artifact.d.mts",
+      "bytes_equal": false,
+      "source_sha256": "c27fda7d57d726dd37c024fde18a0fcd3ac8b8793038288dc696e8d029a2ed54",
+      "target_sha256": "19047bd79623795bd0e94ad139b92e55302cb4c38458c15e8a0cd3ca5166a414"
+    },
+    {
+      "source": "mc-remote/live/scripts/artifact.mjs",
+      "target": "packages/live/scripts/artifact.mjs",
+      "bytes_equal": false,
+      "source_sha256": "305d3951cad9d198848cc85e22ee19a932e16a153c9a4f2c79b7bfb5a217e00a",
+      "target_sha256": "84e69dde2ddbe731e13fbe1b17fa9feae455d954f9c7ea6b69a7adbb38762cb6"
+    },
+    {
+      "source": "mc-remote/live/scripts/build-artifact.mjs",
+      "target": "packages/live/scripts/build-artifact.mjs",
+      "bytes_equal": false,
+      "source_sha256": "41dee953f8a7072f15c9590a664c890c9870c9b63136b172e3c773c6da26bd6e",
+      "target_sha256": "03ba71d2c4bbcf78a57a6e0afa62bf9a5abdc270e70026d72eb3627ee0c8a2a5"
+    },
+    {
+      "source": "mc-remote/live/src/client.ts",
+      "target": "packages/live/src/client.ts",
+      "bytes_equal": true,
+      "source_sha256": "aa83ee61d12a6e5c7caf029ddc7fc0a7ed6ed336195723460572f1f8e7bc96d7",
+      "target_sha256": "aa83ee61d12a6e5c7caf029ddc7fc0a7ed6ed336195723460572f1f8e7bc96d7"
+    },
+    {
+      "source": "mc-remote/live/src/frame-filter.ts",
+      "target": "packages/live/src/frame-filter.ts",
+      "bytes_equal": true,
+      "source_sha256": "5dcb1a8c48da1c10a1f7bf744614114d5082a436bfb75b58f33703d9106226ed",
+      "target_sha256": "5dcb1a8c48da1c10a1f7bf744614114d5082a436bfb75b58f33703d9106226ed"
+    },
+    {
+      "source": "mc-remote/live/src/frame-time.ts",
+      "target": "packages/live/src/frame-time.ts",
+      "bytes_equal": true,
+      "source_sha256": "da44165eee7ac89507cdd01ae427c6467629f3f1f13885d806b42e3950e7f37a",
+      "target_sha256": "da44165eee7ac89507cdd01ae427c6467629f3f1f13885d806b42e3950e7f37a"
+    },
+    {
+      "source": "mc-remote/live/src/handoff.ts",
+      "target": "packages/live/src/handoff.ts",
+      "bytes_equal": true,
+      "source_sha256": "fc3337eb3c0f50afa6472cf11c559eebd6a15640df88cc972a5cf574f4a52c93",
+      "target_sha256": "fc3337eb3c0f50afa6472cf11c559eebd6a15640df88cc972a5cf574f4a52c93"
+    },
+    {
+      "source": "mc-remote/live/src/index.ts",
+      "target": "packages/live/src/index.ts",
+      "bytes_equal": true,
+      "source_sha256": "29ef71665b2352591dd9b5d7271af2c382ce47e5328b7c37ceafc21f2a20f5dd",
+      "target_sha256": "29ef71665b2352591dd9b5d7271af2c382ce47e5328b7c37ceafc21f2a20f5dd"
+    },
+    {
+      "source": "mc-remote/live/src/l10n.ts",
+      "target": "packages/live/src/l10n.ts",
+      "bytes_equal": true,
+      "source_sha256": "c0b22afedca47e87f698ba95060606cf2599d84ef022fdc40b1ef60a21c4921f",
+      "target_sha256": "c0b22afedca47e87f698ba95060606cf2599d84ef022fdc40b1ef60a21c4921f"
+    },
+    {
+      "source": "mc-remote/live/src/main.ts",
+      "target": "packages/live/src/main.ts",
+      "bytes_equal": true,
+      "source_sha256": "9fbdb56f5c12a7051530f4bbb023d1144cb6d34be8ff81a86be5f126e67867b9",
+      "target_sha256": "9fbdb56f5c12a7051530f4bbb023d1144cb6d34be8ff81a86be5f126e67867b9"
+    },
+    {
+      "source": "mc-remote/live/src/observer.ts",
+      "target": "packages/live/src/observer.ts",
+      "bytes_equal": true,
+      "source_sha256": "b5dee75991921ba4ebc0af9c1470752081d4b053af87edb6e184c5043a502d46",
+      "target_sha256": "b5dee75991921ba4ebc0af9c1470752081d4b053af87edb6e184c5043a502d46"
+    },
+    {
+      "source": "mc-remote/live/src/scratch-adapter.ts",
+      "target": "packages/live/src/scratch-adapter.ts",
+      "bytes_equal": true,
+      "source_sha256": "05aa44f78453e91bc0e4a84285da6c46d0c0eb118fa60e47135cdb6bbf0929e7",
+      "target_sha256": "05aa44f78453e91bc0e4a84285da6c46d0c0eb118fa60e47135cdb6bbf0929e7"
+    },
+    {
+      "source": "mc-remote/live/src/session.ts",
+      "target": "packages/live/src/session.ts",
+      "bytes_equal": true,
+      "source_sha256": "107f12d27ebd8623655c5344ade76cfdd2af3071ff9654d632ba4261a53cf4a9",
+      "target_sha256": "107f12d27ebd8623655c5344ade76cfdd2af3071ff9654d632ba4261a53cf4a9"
+    },
+    {
+      "source": "mc-remote/live/src/station-adapter.ts",
+      "target": "packages/live/src/station-adapter.ts",
+      "bytes_equal": true,
+      "source_sha256": "c60267f50c5fe2ec125799b007aab6e70aa4452614c2fce6f8a28061ff41a1bd",
+      "target_sha256": "c60267f50c5fe2ec125799b007aab6e70aa4452614c2fce6f8a28061ff41a1bd"
+    },
+    {
+      "source": "mc-remote/live/src/station.ts",
+      "target": "packages/live/src/station.ts",
+      "bytes_equal": true,
+      "source_sha256": "13615ec67db882c36cfaffef453d32bb2f71aa700c7188ea710d6dd80bdfbed5",
+      "target_sha256": "13615ec67db882c36cfaffef453d32bb2f71aa700c7188ea710d6dd80bdfbed5"
+    },
+    {
+      "source": "mc-remote/live/src/styles.css",
+      "target": "packages/live/src/styles.css",
+      "bytes_equal": true,
+      "source_sha256": "c8e6cf724e23a1bb900ce25a2172e6dbd2a7ab4730014b053c3283a8696c9dc6",
+      "target_sha256": "c8e6cf724e23a1bb900ce25a2172e6dbd2a7ab4730014b053c3283a8696c9dc6"
+    },
+    {
+      "source": "mc-remote/live/src/view-state.ts",
+      "target": "packages/live/src/view-state.ts",
+      "bytes_equal": true,
+      "source_sha256": "42ee934504d8437d2513eda3ab4520837d0114b3f4371ff3f9a0400abfaa5e2f",
+      "target_sha256": "42ee934504d8437d2513eda3ab4520837d0114b3f4371ff3f9a0400abfaa5e2f"
+    },
+    {
+      "source": "mc-remote/live/test/artifact.test.ts",
+      "target": "packages/live/test/artifact.test.ts",
+      "bytes_equal": false,
+      "source_sha256": "305af63e04c7bd8b2919ead14b49370d0b5dc53ab32be29d939841ea4aca0880",
+      "target_sha256": "90cbf16b9b04faedeed661a3b8ca974c144c8dc31370b8ae19d395dc0cff210e"
+    },
+    {
+      "source": "mc-remote/live/test/chat-event-observer.test.ts",
+      "target": "packages/live/test/chat-event-observer.test.ts",
+      "bytes_equal": true,
+      "source_sha256": "4dda0efdcc7bc606bf4f9decf62b271eeca0242d8a31ab0e4701d17fd5fab952",
+      "target_sha256": "4dda0efdcc7bc606bf4f9decf62b271eeca0242d8a31ab0e4701d17fd5fab952"
+    },
+    {
+      "source": "mc-remote/live/test/client.test.ts",
+      "target": "packages/live/test/client.test.ts",
+      "bytes_equal": true,
+      "source_sha256": "a9f71930ca179fa8fb5fd85a8085e3ad1134c5ac22ab6fcff0d95eacece5617f",
+      "target_sha256": "a9f71930ca179fa8fb5fd85a8085e3ad1134c5ac22ab6fcff0d95eacece5617f"
+    },
+    {
+      "source": "mc-remote/live/test/display-alias.test.ts",
+      "target": "packages/live/test/display-alias.test.ts",
+      "bytes_equal": true,
+      "source_sha256": "5e914d8e6163a1dade9687cb6d00efabff606ffd80d248688bc9e7e68a490b90",
+      "target_sha256": "5e914d8e6163a1dade9687cb6d00efabff606ffd80d248688bc9e7e68a490b90"
+    },
+    {
+      "source": "mc-remote/live/test/fixtures/display-alias-v1.json",
+      "target": "packages/live/test/fixtures/display-alias-v1.json",
+      "bytes_equal": true,
+      "source_sha256": "85c8159a8b74788c0cf978078094d23a3cdae83c0be5e9aa9552bb820c8389ca",
+      "target_sha256": "85c8159a8b74788c0cf978078094d23a3cdae83c0be5e9aa9552bb820c8389ca"
+    },
+    {
+      "source": "mc-remote/live/test/fixtures/observer-session-lifecycle.ndjson",
+      "target": "packages/live/test/fixtures/observer-session-lifecycle.ndjson",
+      "bytes_equal": true,
+      "source_sha256": "4fb06188a97025248cf5deea3ff9e50578d08136f079428d9bbac86ca920680b",
+      "target_sha256": "4fb06188a97025248cf5deea3ff9e50578d08136f079428d9bbac86ca920680b"
+    },
+    {
+      "source": "mc-remote/live/test/fixtures/scratch-main-lifecycle.json",
+      "target": "packages/live/test/fixtures/scratch-main-lifecycle.json",
+      "bytes_equal": true,
+      "source_sha256": "3fe467c4e91fcbc2ccdee56a298d46b1b9dd7a1b4c2dfd0e9504ac2e6f609e2d",
+      "target_sha256": "3fe467c4e91fcbc2ccdee56a298d46b1b9dd7a1b4c2dfd0e9504ac2e6f609e2d"
+    },
+    {
+      "source": "mc-remote/live/test/fixtures/station-attach-v1.json",
+      "target": "packages/live/test/fixtures/station-attach-v1.json",
+      "bytes_equal": true,
+      "source_sha256": "b50ce8e0cb8a6bb06f75d9bdad59b83006c92683bd73ced84a18223dde21fa81",
+      "target_sha256": "b50ce8e0cb8a6bb06f75d9bdad59b83006c92683bd73ced84a18223dde21fa81"
+    },
+    {
+      "source": "mc-remote/live/test/frame-filter.test.ts",
+      "target": "packages/live/test/frame-filter.test.ts",
+      "bytes_equal": true,
+      "source_sha256": "ecfa7698c210de28b942c6564997931fff24c66db4f366e8873be8bcf1a7bc32",
+      "target_sha256": "ecfa7698c210de28b942c6564997931fff24c66db4f366e8873be8bcf1a7bc32"
+    },
+    {
+      "source": "mc-remote/live/test/frame-time.test.ts",
+      "target": "packages/live/test/frame-time.test.ts",
+      "bytes_equal": true,
+      "source_sha256": "3f17fdb4bb54dd8af8ea2a2504a8f19bb58b6decf3b0f629537d399fba8b281e",
+      "target_sha256": "3f17fdb4bb54dd8af8ea2a2504a8f19bb58b6decf3b0f629537d399fba8b281e"
+    },
+    {
+      "source": "mc-remote/live/test/l10n.test.ts",
+      "target": "packages/live/test/l10n.test.ts",
+      "bytes_equal": true,
+      "source_sha256": "421c882c2fa004d609ba740dbae00eb537d817a81b0ddcc9c2ab5c6c7c067622",
+      "target_sha256": "421c882c2fa004d609ba740dbae00eb537d817a81b0ddcc9c2ab5c6c7c067622"
+    },
+    {
+      "source": "mc-remote/live/test/observer.test.ts",
+      "target": "packages/live/test/observer.test.ts",
+      "bytes_equal": true,
+      "source_sha256": "eb78f85e4e7f9dad776bd2c6df078b01025cac5430663a80a819f1cf5a8cca44",
+      "target_sha256": "eb78f85e4e7f9dad776bd2c6df078b01025cac5430663a80a819f1cf5a8cca44"
+    },
+    {
+      "source": "mc-remote/live/test/scratch-adapter.test.ts",
+      "target": "packages/live/test/scratch-adapter.test.ts",
+      "bytes_equal": true,
+      "source_sha256": "683484f644216b96cebe1c594edda26917f95ecce8a91f2317af244a7c0ab9ac",
+      "target_sha256": "683484f644216b96cebe1c594edda26917f95ecce8a91f2317af244a7c0ab9ac"
+    },
+    {
+      "source": "mc-remote/live/test/session.test.ts",
+      "target": "packages/live/test/session.test.ts",
+      "bytes_equal": true,
+      "source_sha256": "b3b1fff04f6739fea8b3a1adddbb343ac127a651d4762e1a61b991240444122b",
+      "target_sha256": "b3b1fff04f6739fea8b3a1adddbb343ac127a651d4762e1a61b991240444122b"
+    },
+    {
+      "source": "mc-remote/live/test/sound-resource-observer.test.ts",
+      "target": "packages/live/test/sound-resource-observer.test.ts",
+      "bytes_equal": true,
+      "source_sha256": "8d78296974773bb4faaff0fbe1c5ab8e8f2c58180a2a1ca84e66ee7a3f4783ad",
+      "target_sha256": "8d78296974773bb4faaff0fbe1c5ab8e8f2c58180a2a1ca84e66ee7a3f4783ad"
+    },
+    {
+      "source": "mc-remote/live/test/station-adapter.test.ts",
+      "target": "packages/live/test/station-adapter.test.ts",
+      "bytes_equal": true,
+      "source_sha256": "47ca00a7229d14bcf87e04ffd40b3d15e7a7d261c787b88d3fd823e822d1dab8",
+      "target_sha256": "47ca00a7229d14bcf87e04ffd40b3d15e7a7d261c787b88d3fd823e822d1dab8"
+    },
+    {
+      "source": "mc-remote/live/test/station.test.ts",
+      "target": "packages/live/test/station.test.ts",
+      "bytes_equal": true,
+      "source_sha256": "628b137ecdd0f9149f2f4c6d891201200cae73f9e01878de0694da9bde9be0d3",
+      "target_sha256": "628b137ecdd0f9149f2f4c6d891201200cae73f9e01878de0694da9bde9be0d3"
+    },
+    {
+      "source": "mc-remote/live/test/view-state.test.ts",
+      "target": "packages/live/test/view-state.test.ts",
+      "bytes_equal": true,
+      "source_sha256": "6973f3b6075350eca4b0b7b911d374a4ebbcdd1aaec9a579f13312b65d33605c",
+      "target_sha256": "6973f3b6075350eca4b0b7b911d374a4ebbcdd1aaec9a579f13312b65d33605c"
+    },
+    {
+      "source": "mc-remote/live/tsconfig.build.json",
+      "target": "packages/live/tsconfig.build.json",
+      "bytes_equal": true,
+      "source_sha256": "6acdc6cb2a875ba3c98aaac45afbd1f8ae6f00e0f4c6900bdf823459bd2a692d",
+      "target_sha256": "6acdc6cb2a875ba3c98aaac45afbd1f8ae6f00e0f4c6900bdf823459bd2a692d"
+    },
+    {
+      "source": "mc-remote/live/tsconfig.json",
+      "target": "packages/live/tsconfig.json",
+      "bytes_equal": true,
+      "source_sha256": "05edc39148787b84ae4f8f69248a87723a1f91c45b2a825b713cb30e68262964",
+      "target_sha256": "05edc39148787b84ae4f8f69248a87723a1f91c45b2a825b713cb30e68262964"
+    },
+    {
+      "source": "mc-remote/live/vite.config.js",
+      "target": "packages/live/vite.config.js",
+      "bytes_equal": true,
+      "source_sha256": "be7cdcc4abefdd7bd847ccee283dc949bede61e0b6622a5bae3d64955701b9b7",
+      "target_sha256": "be7cdcc4abefdd7bd847ccee283dc949bede61e0b6622a5bae3d64955701b9b7"
+    },
+    {
+      "source": "mc-remote/live/vite.lib.config.js",
+      "target": "packages/live/vite.lib.config.js",
+      "bytes_equal": true,
+      "source_sha256": "794996e325212710b93bf9371eaca2b3bbc9132b8c1dc9efb6664addfc0202d3",
+      "target_sha256": "794996e325212710b93bf9371eaca2b3bbc9132b8c1dc9efb6664addfc0202d3"
+    },
+    {
+      "source": "mc-remote/protocol/.gitignore",
+      "target": "packages/protocol/.gitignore",
+      "bytes_equal": true,
+      "source_sha256": "6a2f342e06649f6518433cb9d6cc490094cd0f37b50c9f3395635032f380cf0c",
+      "target_sha256": "6a2f342e06649f6518433cb9d6cc490094cd0f37b50c9f3395635032f380cf0c"
+    },
+    {
+      "source": "mc-remote/protocol/.prettierignore",
+      "target": "packages/protocol/.prettierignore",
+      "bytes_equal": true,
+      "source_sha256": "dc8a0ac39b9e6a0d8bc97493e0a54b59bd58386a2b2192df61109174657ca5ef",
+      "target_sha256": "dc8a0ac39b9e6a0d8bc97493e0a54b59bd58386a2b2192df61109174657ca5ef"
+    },
+    {
+      "source": "mc-remote/protocol/README.md",
+      "target": "packages/protocol/README.md",
+      "bytes_equal": false,
+      "source_sha256": "4b4d37accbef8079c640d4cff6f461509279536112262abffc4dc6cf26cad430",
+      "target_sha256": "bc48c1f7eeb2f08b0118e21728c540704dddb068ba2cd3741d78113237d19b7c"
+    },
+    {
+      "source": "mc-remote/protocol/eslint.config.mjs",
+      "target": "packages/protocol/eslint.config.mjs",
+      "bytes_equal": true,
+      "source_sha256": "b489750bd4c755fbe2b020b2c472ec03f3d63e0fd48cf05e8cdfff5bc24102a1",
+      "target_sha256": "b489750bd4c755fbe2b020b2c472ec03f3d63e0fd48cf05e8cdfff5bc24102a1"
+    },
+    {
+      "source": "mc-remote/protocol/package.json",
+      "target": "packages/protocol/package.json",
+      "bytes_equal": true,
+      "source_sha256": "a053518d42e96997e8473e0de0be303c9d6d3c72f182598593f2d750edb143f8",
+      "target_sha256": "a053518d42e96997e8473e0de0be303c9d6d3c72f182598593f2d750edb143f8"
+    },
+    {
+      "source": "mc-remote/protocol/prettier.config.mjs",
+      "target": "packages/protocol/prettier.config.mjs",
+      "bytes_equal": true,
+      "source_sha256": "4f5a807bc53bca6771ad20898f7de924b34e977d5eb23114db4ca15fb5508d3a",
+      "target_sha256": "4f5a807bc53bca6771ad20898f7de924b34e977d5eb23114db4ca15fb5508d3a"
+    },
+    {
+      "source": "mc-remote/protocol/src/catalog.ts",
+      "target": "packages/protocol/src/catalog.ts",
+      "bytes_equal": true,
+      "source_sha256": "c4fb965fc383f26ba0e09d4b50bf440982b610e33ffd112904163f2ee6723f5b",
+      "target_sha256": "c4fb965fc383f26ba0e09d4b50bf440982b610e33ffd112904163f2ee6723f5b"
+    },
+    {
+      "source": "mc-remote/protocol/src/commands.ts",
+      "target": "packages/protocol/src/commands.ts",
+      "bytes_equal": true,
+      "source_sha256": "ff22995de9c2d2bf27ea80f0ff7ca98b98d756885354214fcd98ef82750b6a72",
+      "target_sha256": "ff22995de9c2d2bf27ea80f0ff7ca98b98d756885354214fcd98ef82750b6a72"
+    },
+    {
+      "source": "mc-remote/protocol/src/envelope.ts",
+      "target": "packages/protocol/src/envelope.ts",
+      "bytes_equal": true,
+      "source_sha256": "75fc629b0635da095602e18990f047a79d9c0ac8a8069cba05dbbc695554aab4",
+      "target_sha256": "75fc629b0635da095602e18990f047a79d9c0ac8a8069cba05dbbc695554aab4"
+    },
+    {
+      "source": "mc-remote/protocol/src/errors.ts",
+      "target": "packages/protocol/src/errors.ts",
+      "bytes_equal": true,
+      "source_sha256": "7725578845b0a19c846e626dc552e701af4f2354ef3108c1403f1c8104bbb923",
+      "target_sha256": "7725578845b0a19c846e626dc552e701af4f2354ef3108c1403f1c8104bbb923"
+    },
+    {
+      "source": "mc-remote/protocol/src/hello.ts",
+      "target": "packages/protocol/src/hello.ts",
+      "bytes_equal": true,
+      "source_sha256": "8ab4d8358c640d4df649ec9b42e6681e0173e0d1f4faa620e365ea31e5ccb770",
+      "target_sha256": "8ab4d8358c640d4df649ec9b42e6681e0173e0d1f4faa620e365ea31e5ccb770"
+    },
+    {
+      "source": "mc-remote/protocol/src/index.ts",
+      "target": "packages/protocol/src/index.ts",
+      "bytes_equal": true,
+      "source_sha256": "3cd2e44cc1f4adccf0291a2200ebf78de7ad7693699673e1f5f3b5f5bfdf8d0d",
+      "target_sha256": "3cd2e44cc1f4adccf0291a2200ebf78de7ad7693699673e1f5f3b5f5bfdf8d0d"
+    },
+    {
+      "source": "mc-remote/protocol/src/methods.ts",
+      "target": "packages/protocol/src/methods.ts",
+      "bytes_equal": true,
+      "source_sha256": "cfb145b0039fea9b22edecc35b60f5b57b222c5fcd01691e5cc07544e9c30a84",
+      "target_sha256": "cfb145b0039fea9b22edecc35b60f5b57b222c5fcd01691e5cc07544e9c30a84"
+    },
+    {
+      "source": "mc-remote/protocol/src/version.ts",
+      "target": "packages/protocol/src/version.ts",
+      "bytes_equal": true,
+      "source_sha256": "09dcba1a373e9bc942dd4bcfb106427c1c98176c7cad68d25b6cf84be2a3ccbe",
+      "target_sha256": "09dcba1a373e9bc942dd4bcfb106427c1c98176c7cad68d25b6cf84be2a3ccbe"
+    },
+    {
+      "source": "mc-remote/protocol/test/b8-owner-fixture.test.ts",
+      "target": "packages/protocol/test/b8-owner-fixture.test.ts",
+      "bytes_equal": true,
+      "source_sha256": "200eec2320eb1fed0f0a832f65e9e4ef1a7f9f06fdc28b25fb112ccc0589f75c",
+      "target_sha256": "200eec2320eb1fed0f0a832f65e9e4ef1a7f9f06fdc28b25fb112ccc0589f75c"
+    },
+    {
+      "source": "mc-remote/protocol/test/chat-event-owner-fixture.test.ts",
+      "target": "packages/protocol/test/chat-event-owner-fixture.test.ts",
+      "bytes_equal": true,
+      "source_sha256": "42c5489509da30d4148aca9c450767fc179b7134fbb08894c9a1ef32bc2af216",
+      "target_sha256": "42c5489509da30d4148aca9c450767fc179b7134fbb08894c9a1ef32bc2af216"
+    },
+    {
+      "source": "mc-remote/protocol/test/contract.test.ts",
+      "target": "packages/protocol/test/contract.test.ts",
+      "bytes_equal": true,
+      "source_sha256": "a1262490c6d7bef3f73190261ba7b16059e0209bed109a9fd69545415c8b7ac9",
+      "target_sha256": "a1262490c6d7bef3f73190261ba7b16059e0209bed109a9fd69545415c8b7ac9"
+    },
+    {
+      "source": "mc-remote/protocol/test/fixtures/block-value-v22.json",
+      "target": "packages/protocol/test/fixtures/block-value-v22.json",
+      "bytes_equal": true,
+      "source_sha256": "e8e108d59c40751d67a432543d75cb4bf9146ef9781721012085c80545b854f3",
+      "target_sha256": "e8e108d59c40751d67a432543d75cb4bf9146ef9781721012085c80545b854f3"
+    },
+    {
+      "source": "mc-remote/protocol/test/fixtures/chat-event-compat-v23.2.json",
+      "target": "packages/protocol/test/fixtures/chat-event-compat-v23.2.json",
+      "bytes_equal": true,
+      "source_sha256": "670b0a86df1956c0e44c6986a0a2598caab32c7328804f9c703190e62e9dd727",
+      "target_sha256": "670b0a86df1956c0e44c6986a0a2598caab32c7328804f9c703190e62e9dd727"
+    },
+    {
+      "source": "mc-remote/protocol/test/fixtures/dimensions-v22.json",
+      "target": "packages/protocol/test/fixtures/dimensions-v22.json",
+      "bytes_equal": true,
+      "source_sha256": "44993cce8d42fc8db15822788a2b6707971b5438edfb4eb77d774aad437c0628",
+      "target_sha256": "44993cce8d42fc8db15822788a2b6707971b5438edfb4eb77d774aad437c0628"
+    },
+    {
+      "source": "mc-remote/protocol/test/fixtures/direction-lightning-v23.1.json",
+      "target": "packages/protocol/test/fixtures/direction-lightning-v23.1.json",
+      "bytes_equal": true,
+      "source_sha256": "586d24bf40136eec31f1827f23ef5b317f15100a17a635d7fe9f165e0af40dce",
+      "target_sha256": "586d24bf40136eec31f1827f23ef5b317f15100a17a635d7fe9f165e0af40dce"
+    },
+    {
+      "source": "mc-remote/protocol/test/fixtures/entity-particle-v23.2.json",
+      "target": "packages/protocol/test/fixtures/entity-particle-v23.2.json",
+      "bytes_equal": true,
+      "source_sha256": "ca636b4a2685ea67f24d8e7931e3d30a84e7cec872bb5c5d2eadd178cdac39f2",
+      "target_sha256": "ca636b4a2685ea67f24d8e7931e3d30a84e7cec872bb5c5d2eadd178cdac39f2"
+    },
+    {
+      "source": "mc-remote/protocol/test/fixtures/events-v23.json",
+      "target": "packages/protocol/test/fixtures/events-v23.json",
+      "bytes_equal": true,
+      "source_sha256": "31760d267f3c2641042fbe8595fda9c259134a1c05423271a99cb74da1efa9aa",
+      "target_sha256": "31760d267f3c2641042fbe8595fda9c259134a1c05423271a99cb74da1efa9aa"
+    },
+    {
+      "source": "mc-remote/protocol/test/fixtures/sign-v23.json",
+      "target": "packages/protocol/test/fixtures/sign-v23.json",
+      "bytes_equal": true,
+      "source_sha256": "7ffb63c264602cba56117eefff1f9604b955df04c5cc655e877772b8ff7cd30e",
+      "target_sha256": "7ffb63c264602cba56117eefff1f9604b955df04c5cc655e877772b8ff7cd30e"
+    },
+    {
+      "source": "mc-remote/protocol/test/fixtures/spawn-v22.json",
+      "target": "packages/protocol/test/fixtures/spawn-v22.json",
+      "bytes_equal": true,
+      "source_sha256": "1120e6c8d41b05b65c916fa96f496b02884123ec7ef59b0a226eea48bebf3abd",
+      "target_sha256": "1120e6c8d41b05b65c916fa96f496b02884123ec7ef59b0a226eea48bebf3abd"
+    },
+    {
+      "source": "mc-remote/protocol/test/sound-resource-owner-fixture.test.ts",
+      "target": "packages/protocol/test/sound-resource-owner-fixture.test.ts",
+      "bytes_equal": true,
+      "source_sha256": "c422aa78c21de4ec43c7ea77cef5d64d2b4857be80d901b6841afc08a7ac81a8",
+      "target_sha256": "c422aa78c21de4ec43c7ea77cef5d64d2b4857be80d901b6841afc08a7ac81a8"
+    },
+    {
+      "source": "mc-remote/protocol/tsconfig.build.json",
+      "target": "packages/protocol/tsconfig.build.json",
+      "bytes_equal": true,
+      "source_sha256": "8d36f0eaeb1e30ff2a1631f69564ebac0ca9440cfd2ce363539241e35f160853",
+      "target_sha256": "8d36f0eaeb1e30ff2a1631f69564ebac0ca9440cfd2ce363539241e35f160853"
+    },
+    {
+      "source": "mc-remote/protocol/tsconfig.json",
+      "target": "packages/protocol/tsconfig.json",
+      "bytes_equal": true,
+      "source_sha256": "12f376ff083a2b0e48d7f1cde2a0a3e2699ad84a01906b104b290a2786195306",
+      "target_sha256": "12f376ff083a2b0e48d7f1cde2a0a3e2699ad84a01906b104b290a2786195306"
+    },
+    {
+      "source": "mc-remote/protocol/vite.config.js",
+      "target": "packages/protocol/vite.config.js",
+      "bytes_equal": true,
+      "source_sha256": "d2c4cc582946e35e7a3b7fe6d029e35f614949114a56f0dd8167f1ddc9291d28",
+      "target_sha256": "d2c4cc582946e35e7a3b7fe6d029e35f614949114a56f0dd8167f1ddc9291d28"
+    }
+  ]
+}

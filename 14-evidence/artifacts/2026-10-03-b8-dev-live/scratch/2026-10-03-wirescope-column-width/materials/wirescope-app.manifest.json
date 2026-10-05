@@ -1,0 +1,72 @@
+{
+  "manifest_schema": "mcremote.wirescope.app-manifest",
+  "manifest_version": 1,
+  "archive": {
+    "file": "wirescope-app.zip",
+    "format": "zip",
+    "format_version": 1,
+    "sha256": "7d66aa0d1cdf41ea98669185a988c046b736c4fa6a871b427e81f60e6e74e579"
+  },
+  "source": {
+    "repository": "https://github.com/Naohiro2g/scratch-editor",
+    "commit": "01cdb0bfee3a681697ffa44db5b890045b74b01c",
+    "subdirectory": "mc-remote/live",
+    "corresponding_source_url": "https://github.com/Naohiro2g/scratch-editor/tree/01cdb0bfee3a681697ffa44db5b890045b74b01c/mc-remote/live"
+  },
+  "build": {
+    "recipe": "npm ci && npm run build:artifact --workspace=@mc-remote/live -- --source-commit 01cdb0bfee3a681697ffa44db5b890045b74b01c",
+    "toolchain": {
+      "node": "24.19.0",
+      "rolldown-vite": "7.3.1",
+      "typescript": "5.9.3",
+      "jszip": "3.10.1"
+    },
+    "input_identity": {
+      "source_commit": "01cdb0bfee3a681697ffa44db5b890045b74b01c",
+      "package_json_sha256": "84b74060253ef940952db82c24e1cee4d18d652ae11449ee601a92d1f72a6bbe",
+      "package_lock_sha256": "9756bf3b70d4c00390a75eb49b22b364f3409665f8c356e4e8c959ffda2c4f2b"
+    }
+  },
+  "protocols": {
+    "observer_schema": {
+      "name": "mcremote.observer",
+      "version": 1
+    },
+    "observer_session": 1,
+    "scratch_handoff": 1,
+    "station_attach": 1
+  },
+  "assets": [
+    {
+      "path": "LICENSE",
+      "bytes": 34523,
+      "sha256": "8486a10c4393cee1c25392769ddd3b2d6c242d6ec7928e1414efff7dfb2f07ef"
+    },
+    {
+      "path": "NOTICE",
+      "bytes": 310,
+      "sha256": "a5a1f4e50ffa47063bc2cd9c903d167f6723db3bcf38c76007f7be6824bde8b0"
+    },
+    {
+      "path": "assets/index-Cyf0-Z5r.css",
+      "bytes": 9235,
+      "sha256": "7188a9e9ac2c001253b016567d02de343dd9a932eaf638e3eb73597c656b99df"
+    },
+    {
+      "path": "assets/index-ipfi_vzC.js",
+      "bytes": 66354,
+      "sha256": "c538bcf1af31604106c4c091347735c6124123d9946cfbea9ec33271a90c16f9"
+    },
+    {
+      "path": "assets/index-ipfi_vzC.js.map",
+      "bytes": 201215,
+      "sha256": "c3dc39e344647e82d9487ea2973e84eec7a0ac42d05abbb71bc662ca11aff696"
+    },
+    {
+      "path": "index.html",
+      "bytes": 674,
+      "sha256": "d32381492adf8e6baa626923663f4e481ce3a99d8466d109cd2c6af3ee9d3e5d"
+    }
+  ],
+  "license_expression": "AGPL-3.0-only"
+}

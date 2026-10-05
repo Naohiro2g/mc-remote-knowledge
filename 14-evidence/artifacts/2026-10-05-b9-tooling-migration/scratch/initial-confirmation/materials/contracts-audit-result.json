@@ -1,0 +1,27 @@
+{
+  "audit_completed": true,
+  "known_poll": {
+    "scratch_cursor": 3,
+    "wirescope_accepts": true,
+    "wirescope_accepts_compatible_minor": "23.3.0"
+  },
+  "unknown_event": {
+    "scratch": {
+      "reason": "invalid_event_response",
+      "message": "Invalid events.poll response: result.events[1].type is not a b6 event"
+    },
+    "wirescope": {
+      "reason": null,
+      "message": "frame.payload.result.events[1].type is not observable"
+    }
+  },
+  "chat_null": {
+    "scratch_command_accepts": true,
+    "wirescope_accepts": true
+  },
+  "chat_result_validation": {
+    "wirescope_also_accepts_true": true,
+    "strict_null_rule_missing": true
+  },
+  "non_claim": "This reproduces the current behavior; it does not establish b9 conformance."
+}

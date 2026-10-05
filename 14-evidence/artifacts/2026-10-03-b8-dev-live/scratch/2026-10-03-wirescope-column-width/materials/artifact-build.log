@@ -1,0 +1,10 @@
+{
+  "archive": {
+    "path": "~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/mc-remote/live/dist/artifacts/wirescope-app.zip",
+    "sha256": "7d66aa0d1cdf41ea98669185a988c046b736c4fa6a871b427e81f60e6e74e579"
+  },
+  "manifest": {
+    "path": "~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/mc-remote/live/dist/artifacts/wirescope-app.manifest.json",
+    "sha256": "5588cdb1abd8d65004a393bc91b83cc6e947ef425125c0ec18c84a5ca2508fb4"
+  }
+}

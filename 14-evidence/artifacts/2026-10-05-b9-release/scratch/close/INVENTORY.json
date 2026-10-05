@@ -1,0 +1,60 @@
+{
+  "knowledge_contract_commit": "099c40b0c312694712653885200f3114ea4bed33",
+  "category": 1,
+  "files": [
+    {
+      "path": "MANIFEST_ja.md",
+      "bytes": 863,
+      "sha256": "bc9d67cfa5d0f64257e5de610326c132595e1bc8bb10ff9e18be300caa6dd687",
+      "proposed_knowledge_path": "14-evidence/artifacts/2026-10-05-b9-release/scratch/close/MANIFEST_ja.md"
+    },
+    {
+      "path": "materials/CLOSE_ja.md",
+      "bytes": 10911,
+      "sha256": "4fc755dd005ae3dfd3131bea2b361ca2c1b892d5b9cca9ad0ec198acc3bcdd96",
+      "proposed_knowledge_path": "14-evidence/artifacts/2026-10-05-b9-release/scratch/close/materials/CLOSE_ja.md"
+    },
+    {
+      "path": "materials/EVIDENCE_FILES.tsv",
+      "bytes": 35092,
+      "sha256": "de2a71fc992ee70f93436a52b1fc8b8ea4572dd517af044b8da7de26e6738ac9",
+      "proposed_knowledge_path": "14-evidence/artifacts/2026-10-05-b9-release/scratch/close/materials/EVIDENCE_FILES.tsv"
+    },
+    {
+      "path": "materials/b8-published-file-verification.json",
+      "bytes": 876,
+      "sha256": "5be1adcd3c5b9deec8fdd4f5fc82bd9eb19c04efac418a3ddec01748fcb99cb4",
+      "proposed_knowledge_path": "14-evidence/artifacts/2026-10-05-b9-release/scratch/close/materials/b8-published-file-verification.json"
+    },
+    {
+      "path": "materials/classification-verification.json",
+      "bytes": 259,
+      "sha256": "d826e7a8d948fd19922e5c322ba18fa52cef507767720a853ceb6e0146550e12",
+      "proposed_knowledge_path": "14-evidence/artifacts/2026-10-05-b9-release/scratch/close/materials/classification-verification.json"
+    },
+    {
+      "path": "materials/classification.json",
+      "bytes": 69090,
+      "sha256": "b8d84e7c06ed8699515707055d166f400be4ec432955423a08b3d3dafb3a2d38",
+      "proposed_knowledge_path": "14-evidence/artifacts/2026-10-05-b9-release/scratch/close/materials/classification.json"
+    },
+    {
+      "path": "materials/classify-handoffs.py",
+      "bytes": 6155,
+      "sha256": "51ef2579cabbeb6eae4cae9c915adbf5c00a040d93fd9a1e183498c4d6afd2e9",
+      "proposed_knowledge_path": "14-evidence/artifacts/2026-10-05-b9-release/scratch/close/materials/classify-handoffs.py"
+    },
+    {
+      "path": "materials/landed-evidence-verification.json",
+      "bytes": 10085,
+      "sha256": "e2055cbe0346945802fbce4b288644f6995f8f746b62e88d62861eeef2106b9b",
+      "proposed_knowledge_path": "14-evidence/artifacts/2026-10-05-b9-release/scratch/close/materials/landed-evidence-verification.json"
+    },
+    {
+      "path": "materials/verify-landed-evidence.py",
+      "bytes": 2033,
+      "sha256": "43538dec195e3f4e847df96f19233ffee65ced03c4f814bbe5bf6e2c54416c9c",
+      "proposed_knowledge_path": "14-evidence/artifacts/2026-10-05-b9-release/scratch/close/materials/verify-landed-evidence.py"
+    }
+  ]
+}

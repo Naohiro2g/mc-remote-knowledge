@@ -1,0 +1,12 @@
+rolldown-vite v7.3.1 building client environment for production...
+[2Ktransforming...✓ 15 modules transformed.
+
+(!) outDir ~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/handoff-materials/2026-10-03-wirescope-column-width/materials/preview-app is not inside project root and will not be emptied.
+Use --emptyOutDir to override.
+
+rendering chunks...
+computing gzip size...
+../../handoff-materials/2026-10-03-wirescope-column-width/materials/preview-app/index.html                  0.67 kB │ gzip:  0.38 kB
+../../handoff-materials/2026-10-03-wirescope-column-width/materials/preview-app/assets/index-Cyf0-Z5r.css   9.23 kB │ gzip:  2.53 kB
+../../handoff-materials/2026-10-03-wirescope-column-width/materials/preview-app/assets/index-ipfi_vzC.js   66.35 kB │ gzip: 19.52 kB │ map: 201.50 kB
+✓ built in 279ms

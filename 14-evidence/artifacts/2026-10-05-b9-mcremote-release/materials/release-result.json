@@ -1,0 +1,40 @@
+{
+  "status": "PASS",
+  "authorization_commit": "d6d59d91032230a959b7288807179e1bd8100041",
+  "runtime_commit": "6df2d14033a4646ce958737c06849725fcaee51e",
+  "exact_set": "b9-integrated-artifact-set-1",
+  "main_commit": "5cb33ebad4bf2c5e36c3433b0f70fe6070915b00",
+  "source_commit": "5cb33ebad4bf2c5e36c3433b0f70fe6070915b00",
+  "tag": "v1.21.11-2320.0.0b9",
+  "annotated_tag_object": "b4e264ffae083106db9f3d9a9287b8075bb33e37",
+  "tag_target": "5cb33ebad4bf2c5e36c3433b0f70fe6070915b00",
+  "release_id": 403397549,
+  "release_url": "https://github.com/Naohiro2g/McRemote/releases/tag/v1.21.11-2320.0.0b9",
+  "release_name": "McRemote 1.21.11 / 2320.0.0b9",
+  "prerelease": true,
+  "draft": false,
+  "make_latest_requested": false,
+  "tag_ci_run": 37268144239,
+  "release_workflow_run": 37268629380,
+  "release_workflow_conclusion": "success",
+  "jar_bytes": 261016,
+  "jar_sha256": "4feb90dbdba8550cd16800cc3d384e42fed16a5c5e20faa489a0381ad2cda58e",
+  "manifest_sha256": "1b18e60c473116f450f75882814db7cf9640aa29d34839faa40bc02b7ed00fd6",
+  "manifest": {
+    "schema": "mc-remote.release-manifest",
+    "schema_version": 1,
+    "release_tag": "v1.21.11-2320.0.0b9",
+    "source_commit": "5cb33ebad4bf2c5e36c3433b0f70fe6070915b00",
+    "artifacts": [
+      {
+        "role": "jar",
+        "kind": "https-file",
+        "file": "mc-remote-1.21.11-2320.0.0b9.jar",
+        "sha256": "4feb90dbdba8550cd16800cc3d384e42fed16a5c5e20faa489a0381ad2cda58e"
+      }
+    ]
+  },
+  "published_at": "2026-10-05T05:37:41Z",
+  "verified_at_utc": "2026-10-05T05:45:03.457146+00:00",
+  "candidate_and_public_jar_bytes_equal": true
+}

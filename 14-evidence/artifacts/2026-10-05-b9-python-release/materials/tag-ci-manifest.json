@@ -1,0 +1,21 @@
+{
+  "schema": "mc-remote.release-manifest",
+  "schema_version": 1,
+  "release_tag": null,
+  "source_commit": "b901c88fe41b67530ff353271683ece9fd453076",
+  "bundled_wirescope_source_commit": "dc1ab834183e29f2eb03059b07e99d2b463776ee",
+  "artifacts": [
+    {
+      "role": "wheel",
+      "kind": "https-file",
+      "file": "minecraft_remote_api-2320.0.0b9-py3-none-any.whl",
+      "sha256": "e166bc9c14c425b3859f9af6c7af52900b58d1769fc077a3524a5368d05638c6"
+    },
+    {
+      "role": "sdist",
+      "kind": "https-file",
+      "file": "minecraft_remote_api-2320.0.0b9.tar.gz",
+      "sha256": "bd027b8b94ff775bfb7a3c02ada9716ad8785e5499180bb0cfb26f1da4afe479"
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "manifest_schema": "mcremote.wirescope.app-manifest",
+  "manifest_version": 1,
+  "archive": {
+    "file": "wirescope-app.zip",
+    "format": "zip",
+    "format_version": 1,
+    "sha256": "da3da0b6cf4d05265bc0c11abaa4913208c7cfc3600b0c3e78c93a356fc431ad"
+  },
+  "source": {
+    "repository": "https://github.com/Naohiro2g/scratch-editor",
+    "commit": "c7505c887c5c71a942d9f1f190b32a5da00544bc",
+    "subdirectory": "mc-remote/live",
+    "corresponding_source_url": "https://github.com/Naohiro2g/scratch-editor/tree/c7505c887c5c71a942d9f1f190b32a5da00544bc/mc-remote/live"
+  },
+  "build": {
+    "recipe": "npm ci && npm run build:artifact --workspace=@mc-remote/live -- --source-commit c7505c887c5c71a942d9f1f190b32a5da00544bc",
+    "toolchain": {
+      "node": "24.19.0",
+      "rolldown-vite": "7.3.1",
+      "typescript": "5.9.3",
+      "jszip": "3.10.1"
+    },
+    "input_identity": {
+      "source_commit": "c7505c887c5c71a942d9f1f190b32a5da00544bc",
+      "package_json_sha256": "84b74060253ef940952db82c24e1cee4d18d652ae11449ee601a92d1f72a6bbe",
+      "package_lock_sha256": "9756bf3b70d4c00390a75eb49b22b364f3409665f8c356e4e8c959ffda2c4f2b"
+    }
+  },
+  "protocols": {
+    "observer_schema": {
+      "name": "mcremote.observer",
+      "version": 1
+    },
+    "observer_session": 1,
+    "scratch_handoff": 1,
+    "station_attach": 1
+  },
+  "assets": [
+    {
+      "path": "LICENSE",
+      "bytes": 34523,
+      "sha256": "8486a10c4393cee1c25392769ddd3b2d6c242d6ec7928e1414efff7dfb2f07ef"
+    },
+    {
+      "path": "NOTICE",
+      "bytes": 310,
+      "sha256": "a5a1f4e50ffa47063bc2cd9c903d167f6723db3bcf38c76007f7be6824bde8b0"
+    },
+    {
+      "path": "assets/index-Cyf0-Z5r.css",
+      "bytes": 9235,
+      "sha256": "7188a9e9ac2c001253b016567d02de343dd9a932eaf638e3eb73597c656b99df"
+    },
+    {
+      "path": "assets/index-l-OCrrUC.js",
+      "bytes": 66280,
+      "sha256": "77a897ac49b79f9cc1551d2241d90a2c03d937c6bddd62d53ae2bcc9a263a048"
+    },
+    {
+      "path": "assets/index-l-OCrrUC.js.map",
+      "bytes": 200727,
+      "sha256": "13be23df5275321651a5c3f300cae8f278019fa79ca4f94e7a797b14fd1d11cb"
+    },
+    {
+      "path": "index.html",
+      "bytes": 674,
+      "sha256": "b5b076dce86902b8780356ee79f146d610113d0e6f90e8bd40db437fe57adb8d"
+    }
+  ],
+  "license_expression": "AGPL-3.0-only"
+}

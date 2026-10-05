@@ -1,0 +1,113 @@
+{
+  "sha": "7fbbf034488760d8fc7e034bf23f3e08e6e1807d",
+  "node_id": "C_kwDOS2_RItoAKDdmYmJmMDM0NDg4NzYwZDhmYzdlMDM0YmYyM2YzZTA4ZTZlMTgwN2Q",
+  "commit": {
+    "author": {
+      "name": "Naohiro2g",
+      "email": "587586+Naohiro2g@users.noreply.github.com",
+      "date": "2026-10-04T20:30:07Z"
+    },
+    "committer": {
+      "name": "Naohiro2g",
+      "email": "587586+Naohiro2g@users.noreply.github.com",
+      "date": "2026-10-04T20:30:07Z"
+    },
+    "message": "test(gui): mock the installed VM consistently",
+    "tree": {
+      "sha": "465690617125d68b244a408500fbd499335f62fa",
+      "url": "https://api.github.com/repos/Naohiro2g/scratch-editor/git/trees/465690617125d68b244a408500fbd499335f62fa"
+    },
+    "url": "https://api.github.com/repos/Naohiro2g/scratch-editor/git/commits/7fbbf034488760d8fc7e034bf23f3e08e6e1807d",
+    "comment_count": 0,
+    "verification": {
+      "verified": false,
+      "reason": "unsigned",
+      "signature": null,
+      "payload": null,
+      "verified_at": null
+    }
+  },
+  "url": "https://api.github.com/repos/Naohiro2g/scratch-editor/commits/7fbbf034488760d8fc7e034bf23f3e08e6e1807d",
+  "html_url": "https://github.com/Naohiro2g/scratch-editor/commit/7fbbf034488760d8fc7e034bf23f3e08e6e1807d",
+  "comments_url": "https://api.github.com/repos/Naohiro2g/scratch-editor/commits/7fbbf034488760d8fc7e034bf23f3e08e6e1807d/comments",
+  "author": {
+    "login": "Naohiro2g",
+    "id": 587586,
+    "node_id": "MDQ6VXNlcjU4NzU4Ng==",
+    "avatar_url": "https://avatars.githubusercontent.com/u/587586?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/Naohiro2g",
+    "html_url": "https://github.com/Naohiro2g",
+    "followers_url": "https://api.github.com/users/Naohiro2g/followers",
+    "following_url": "https://api.github.com/users/Naohiro2g/following{/other_user}",
+    "gists_url": "https://api.github.com/users/Naohiro2g/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/Naohiro2g/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/Naohiro2g/subscriptions",
+    "organizations_url": "https://api.github.com/users/Naohiro2g/orgs",
+    "repos_url": "https://api.github.com/users/Naohiro2g/repos",
+    "events_url": "https://api.github.com/users/Naohiro2g/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/Naohiro2g/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "committer": {
+    "login": "Naohiro2g",
+    "id": 587586,
+    "node_id": "MDQ6VXNlcjU4NzU4Ng==",
+    "avatar_url": "https://avatars.githubusercontent.com/u/587586?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/Naohiro2g",
+    "html_url": "https://github.com/Naohiro2g",
+    "followers_url": "https://api.github.com/users/Naohiro2g/followers",
+    "following_url": "https://api.github.com/users/Naohiro2g/following{/other_user}",
+    "gists_url": "https://api.github.com/users/Naohiro2g/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/Naohiro2g/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/Naohiro2g/subscriptions",
+    "organizations_url": "https://api.github.com/users/Naohiro2g/orgs",
+    "repos_url": "https://api.github.com/users/Naohiro2g/repos",
+    "events_url": "https://api.github.com/users/Naohiro2g/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/Naohiro2g/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "parents": [
+    {
+      "sha": "3e5ac5fcdb2817cf03b70f7618d25d3e0c923f76",
+      "url": "https://api.github.com/repos/Naohiro2g/scratch-editor/commits/3e5ac5fcdb2817cf03b70f7618d25d3e0c923f76",
+      "html_url": "https://github.com/Naohiro2g/scratch-editor/commit/3e5ac5fcdb2817cf03b70f7618d25d3e0c923f76"
+    }
+  ],
+  "stats": {
+    "total": 4,
+    "additions": 2,
+    "deletions": 2
+  },
+  "files": [
+    {
+      "sha": "0b55f4a7cade47764241001d8c4a2c7bc56f75bf",
+      "filename": "packages/scratch-gui/test/unit/components/notice-overlay.test.jsx",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 1,
+      "changes": 2,
+      "blob_url": "https://github.com/Naohiro2g/scratch-editor/blob/7fbbf034488760d8fc7e034bf23f3e08e6e1807d/packages%2Fscratch-gui%2Ftest%2Funit%2Fcomponents%2Fnotice-overlay.test.jsx",
+      "raw_url": "https://github.com/Naohiro2g/scratch-editor/raw/7fbbf034488760d8fc7e034bf23f3e08e6e1807d/packages%2Fscratch-gui%2Ftest%2Funit%2Fcomponents%2Fnotice-overlay.test.jsx",
+      "contents_url": "https://api.github.com/repos/Naohiro2g/scratch-editor/contents/packages%2Fscratch-gui%2Ftest%2Funit%2Fcomponents%2Fnotice-overlay.test.jsx?ref=7fbbf034488760d8fc7e034bf23f3e08e6e1807d",
+      "patch": "@@ -7,7 +7,7 @@ import NoticeOverlay from '../../../src/components/notice-overlay/notice-overlay\n import mcremoteMessages from '../../../src/lib/mcremote-l10n';\n import {HIGH_CONTRAST_MODE} from '../../../src/lib/settings/color-mode/index.js';\n \n-jest.mock('@scratch/scratch-vm', () => ({MCREMOTE_CLIENT_VERSION: '2320.0.0b8'}), {virtual: true});\n+jest.mock('@scratch/scratch-vm', () => ({MCREMOTE_CLIENT_VERSION: '2320.0.0b8'}));\n jest.mock('../../../src/lib/mcremote-runtime-config.js', () => ({\n     getMcRemoteRuntimeConfig: jest.fn()\n }));"
+    },
+    {
+      "sha": "8906457ea36147105d01c20a47917db6eddcaeb8",
+      "filename": "packages/scratch-gui/test/unit/util/mcremote-runtime-config.test.js",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 1,
+      "changes": 2,
+      "blob_url": "https://github.com/Naohiro2g/scratch-editor/blob/7fbbf034488760d8fc7e034bf23f3e08e6e1807d/packages%2Fscratch-gui%2Ftest%2Funit%2Futil%2Fmcremote-runtime-config.test.js",
+      "raw_url": "https://github.com/Naohiro2g/scratch-editor/raw/7fbbf034488760d8fc7e034bf23f3e08e6e1807d/packages%2Fscratch-gui%2Ftest%2Funit%2Futil%2Fmcremote-runtime-config.test.js",
+      "contents_url": "https://api.github.com/repos/Naohiro2g/scratch-editor/contents/packages%2Fscratch-gui%2Ftest%2Funit%2Futil%2Fmcremote-runtime-config.test.js?ref=7fbbf034488760d8fc7e034bf23f3e08e6e1807d",
+      "patch": "@@ -1,4 +1,4 @@\n-jest.mock('@scratch/scratch-vm', () => ({MCREMOTE_CLIENT_VERSION: '2301.0.0b7'}), {virtual: true});\n+jest.mock('@scratch/scratch-vm', () => ({MCREMOTE_CLIENT_VERSION: '2301.0.0b7'}));\n \n const runtimeValue = overrides => ({\n     schema_version: 1,"
+    }
+  ]
+}

@@ -1,8 +1,10 @@
 # b9 dev live 素材の一覧
 
+2026-10-05のclose分類で、Scratchのsegment 3の画面PNG 4枚（pickerの検索2枚、WireScopeの全体と列幅。列幅はhuman ownerが確認した画像）を追加で収容した。Scratch担当がtokenの省略とprivate address／player UUIDが出ていないことを目視で確かめている。
+
 各担当の搬送素材（Git外のhandoff-materials）から収容した。収容した後に変えたのは、McRemote segment 0の`restart-result_ja.md`と`deployment-result.json`のhome directoryのpathを`~`へ置き換えた2 fileだけで、この2 fileは搬送元のMANIFESTのdigestと一致しない。
 
-収容しなかったもの: Scratchの`private/`、`runtime/`、`artifacts/`（凍結artifactの本体。identityはrecordにある）、画面のPNG 4枚（Git外。human ownerが確認した列幅の画像を含む）、McRemoteの`__pycache__`。
+収容しなかったもの: Scratchの`private/`、`runtime/`、`artifacts/`（凍結artifactの本体。identityはrecordにある）、McRemoteの`__pycache__`。
 
 | path | bytes | SHA-256 |
 | --- | ---: | --- |
@@ -45,6 +47,8 @@
 | `scratch/segment-3/materials/human-width-review.json` | 372 | `70d317a45c0a04ddf72b1748e9fcc9178155e846c081081e308ea2b319aa78d4` |
 | `scratch/segment-3/materials/independent-browser-hello.json` | 256 | `5a0385f4506b6018be55d27a6e0105661072066767e33bbde8611f8eddbdc519` |
 | `scratch/segment-3/materials/open-validation-browser.cjs` | 5308 | `05da0c82081e9039baf3dcd7376ecc346eb38608c9d1660b77c9e4b9d5ce64b6` |
+| `scratch/segment-3/materials/picker-door.png` | 59644 | `dacaf7691205f693a9f1b5ecb271c3845d3b4c91e3a8e28fd1a47c25f56bd67c` |
+| `scratch/segment-3/materials/picker-gold.png` | 59232 | `b687d991ab96f952180659e267863dd69e1fc049244047f883ea4c37cd7e1723` |
 | `scratch/segment-3/materials/prepare-runtime.py` | 5718 | `b2d5451b7c38976e198b10e767f5b45caa3d51c0dca945d582390d51c9039c9a` |
 | `scratch/segment-3/materials/readiness.json` | 409 | `08dab281e698acbe35ed12d2e6156d7eb897847c5d80829bf4513ba8cda94224` |
 | `scratch/segment-3/materials/representative-results-display-check-failure.json` | 14875 | `e0c4bdc0cf834aeb694600bfeb95e170967f04f4c911f0b44e32a39c8878b134` |
@@ -53,3 +57,5 @@
 | `scratch/segment-3/materials/representative-results.json` | 32487 | `df6d54de0ae78a7fc92564c40091796ff4481d05c82d11b19d41d67ae9f749c7` |
 | `scratch/segment-3/materials/runtime-identity.json` | 368579 | `5dc05395aa13e2afa1b695de70471e247f25654163551f2568ad16ec64f1e803` |
 | `scratch/segment-3/materials/user-b9-hello.json` | 1727 | `0cb866ebe745f9ad224a6274ce32384731a679c4dff58b5602f0866845d4e463` |
+| `scratch/segment-3/materials/wirescope-b9-columns.png` | 162322 | `45906eefbd1a8418bb2241e2135f7010676aa8156d306c1bbc6f51a7721588e4` |
+| `scratch/segment-3/materials/wirescope-b9.png` | 345206 | `f30946eff47e11b22c01136b4cdcb811b46bbcd2c3fe3272df1288e23c00c9eb` |

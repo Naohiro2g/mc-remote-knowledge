@@ -1,0 +1,25 @@
+{
+  "result": "PASS",
+  "source_commit": "01cdb0bfee3a681697ffa44db5b890045b74b01c",
+  "proposed_artifacts": {
+    "wirescope-app.zip": {
+      "bytes": 83993,
+      "sha256": "7d66aa0d1cdf41ea98669185a988c046b736c4fa6a871b427e81f60e6e74e579"
+    },
+    "wirescope-app.manifest.json": {
+      "bytes": 2321,
+      "sha256": "5588cdb1abd8d65004a393bc91b83cc6e947ef425125c0ec18c84a5ca2508fb4"
+    }
+  },
+  "assets_verified": 6,
+  "frozen_set_preserved": "b8-integrated-artifact-set-1",
+  "fixture_unchanged": {
+    "owner": "Protocol",
+    "path": "mc-remote/protocol/test/fixtures/entity-particle-v23.2.json",
+    "bytes": 36481,
+    "sha256": "ca636b4a2685ea67f24d8e7931e3d30a84e7cec872bb5c5d2eadd178cdac39f2",
+    "schema": "mcremote.entity-particle.v23.2",
+    "protocol": "23.2.0",
+    "explicit_case_ids": 111
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "ci_run": 37268144239,
+  "source_commit": "5cb33ebad4bf2c5e36c3433b0f70fe6070915b00",
+  "jar_bytes": 261016,
+  "jar_sha256": "4feb90dbdba8550cd16800cc3d384e42fed16a5c5e20faa489a0381ad2cda58e",
+  "frozen_jar_match": true,
+  "status": "PASS"
+}

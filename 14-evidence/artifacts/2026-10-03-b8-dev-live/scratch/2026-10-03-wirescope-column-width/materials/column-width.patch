@@ -1,0 +1,53 @@
+diff --git a/mc-remote/live/src/main.ts b/mc-remote/live/src/main.ts
+index 10ee63c0b4..c38c24842a 100644
+--- a/mc-remote/live/src/main.ts
++++ b/mc-remote/live/src/main.ts
+@@ -538,10 +538,19 @@ const updateStreamFrames = (state: StreamFramesState, allFrames: readonly Observ
+     if (frameTime.iso) timeElement.dateTime = frameTime.iso
+     const timeCell = make('td', 'frame-time')
+     timeCell.append(timeElement)
++    const directionCell = make('td', `direction direction-${frame.direction}`)
++    const directionKey = directionMessageKey(frame)
++    const directionLabel = t(directionKey)
++    if (directionKey === 'directionSentUnconfirmed') {
++      const [sent, separator, unconfirmed] = directionLabel.split(/([·・])/u)
++      directionCell.append(sent, separator, document.createElement('wbr'), unconfirmed)
++    } else {
++      directionCell.textContent = directionLabel
++    }
+     row.append(
+       make('td', 'sequence', String(frame.sequence)),
+       timeCell,
+-      make('td', `direction direction-${frame.direction}`, t(directionMessageKey(frame))),
++      directionCell,
+       make('td', 'method', frame.method),
+       make('td', 'payload', valueText(frame.payload)),
+     )
+diff --git a/mc-remote/live/src/styles.css b/mc-remote/live/src/styles.css
+index 565b2a1bb2..208a9db07a 100644
+--- a/mc-remote/live/src/styles.css
++++ b/mc-remote/live/src/styles.css
+@@ -549,16 +549,20 @@ th {
+ }
+ 
+ .frame-time {
+-  width: 6.5rem;
++  width: 1%;
++  padding-inline: 0.4rem;
+   color: #9fb0bc;
+   font-variant-numeric: tabular-nums;
+   white-space: nowrap;
+ }
+ 
+ .direction {
+-  min-width: 3.25rem;
++  width: 1%;
++  min-width: 3.8rem;
++  padding-inline: 0.4rem;
+   font-weight: 750;
+-  white-space: nowrap;
++  white-space: normal;
++  word-break: keep-all;
+   text-transform: uppercase;
+ }
+ 

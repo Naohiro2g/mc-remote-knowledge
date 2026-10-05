@@ -1,0 +1,255 @@
+{
+  "result": "PASS",
+  "testClass": "browser UI with saved live frames; no MC connection",
+  "results": [
+    {
+      "locale": "ja-JP",
+      "before": {
+        "desktop": {
+          "timeWidth": 104,
+          "directionWidth": 139.078125,
+          "payloadWidth": 499.3125,
+          "directionLines": 1,
+          "directionText": "送信済み・結果未確認",
+          "timeText": "06:01:43",
+          "tooltip": "2026-10-03 06:01:43.406 Asia/Tokyo (UTC+09:00)",
+          "tableWidth": 920,
+          "viewportWidth": 920,
+          "timeFits": true,
+          "cells": [
+            44.453125,
+            104,
+            139.078125,
+            133.15625,
+            499.3125
+          ]
+        },
+        "narrow": {
+          "timeWidth": 68.109375,
+          "directionWidth": 139.078125,
+          "payloadWidth": 352,
+          "directionLines": 1,
+          "directionText": "送信済み・結果未確認",
+          "timeText": "06:01:43",
+          "tooltip": "2026-10-03 06:01:43.406 Asia/Tokyo (UTC+09:00)",
+          "tableWidth": 736.796875,
+          "viewportWidth": 527,
+          "timeFits": true,
+          "cells": [
+            44.453125,
+            68.109375,
+            139.078125,
+            133.15625,
+            352
+          ]
+        }
+      },
+      "after": {
+        "desktop": {
+          "timeWidth": 60.109375,
+          "directionWidth": 71.953125,
+          "payloadWidth": 610.328125,
+          "directionLines": 2,
+          "directionText": "送信済み・結果未確認",
+          "timeText": "06:01:43",
+          "tooltip": "2026-10-03 06:01:43.406 Asia/Tokyo (UTC+09:00)",
+          "tableWidth": 920,
+          "viewportWidth": 920,
+          "timeFits": true,
+          "cells": [
+            44.453125,
+            60.109375,
+            71.953125,
+            133.15625,
+            610.328125
+          ]
+        },
+        "narrow": {
+          "timeWidth": 60.109375,
+          "directionWidth": 71.953125,
+          "payloadWidth": 352,
+          "directionLines": 2,
+          "directionText": "送信済み・結果未確認",
+          "timeText": "06:01:43",
+          "tooltip": "2026-10-03 06:01:43.406 Asia/Tokyo (UTC+09:00)",
+          "tableWidth": 661.671875,
+          "viewportWidth": 527,
+          "timeFits": true,
+          "cells": [
+            44.453125,
+            60.109375,
+            71.953125,
+            133.15625,
+            352
+          ]
+        }
+      }
+    },
+    {
+      "locale": "en-US",
+      "before": {
+        "desktop": {
+          "timeWidth": 104,
+          "directionWidth": 128.328125,
+          "payloadWidth": 510.0625,
+          "directionLines": 1,
+          "directionText": "Sent · unconfirmed",
+          "timeText": "06:01:43",
+          "tooltip": "2026-10-03 06:01:43.406 Asia/Tokyo (UTC+09:00)",
+          "tableWidth": 920,
+          "viewportWidth": 920,
+          "timeFits": true,
+          "cells": [
+            44.453125,
+            104,
+            128.328125,
+            133.15625,
+            510.0625
+          ]
+        },
+        "narrow": {
+          "timeWidth": 68.109375,
+          "directionWidth": 128.328125,
+          "payloadWidth": 352,
+          "directionLines": 1,
+          "directionText": "Sent · unconfirmed",
+          "timeText": "06:01:43",
+          "tooltip": "2026-10-03 06:01:43.406 Asia/Tokyo (UTC+09:00)",
+          "tableWidth": 726.046875,
+          "viewportWidth": 527,
+          "timeFits": true,
+          "cells": [
+            44.453125,
+            68.109375,
+            128.328125,
+            133.15625,
+            352
+          ]
+        }
+      },
+      "after": {
+        "desktop": {
+          "timeWidth": 60.109375,
+          "directionWidth": 77.84375,
+          "payloadWidth": 604.4375,
+          "directionLines": 2,
+          "directionText": "Sent · unconfirmed",
+          "timeText": "06:01:43",
+          "tooltip": "2026-10-03 06:01:43.406 Asia/Tokyo (UTC+09:00)",
+          "tableWidth": 920,
+          "viewportWidth": 920,
+          "timeFits": true,
+          "cells": [
+            44.453125,
+            60.109375,
+            77.84375,
+            133.15625,
+            604.4375
+          ]
+        },
+        "narrow": {
+          "timeWidth": 60.109375,
+          "directionWidth": 77.84375,
+          "payloadWidth": 352,
+          "directionLines": 2,
+          "directionText": "Sent · unconfirmed",
+          "timeText": "06:01:43",
+          "tooltip": "2026-10-03 06:01:43.406 Asia/Tokyo (UTC+09:00)",
+          "tableWidth": 667.5625,
+          "viewportWidth": 527,
+          "timeFits": true,
+          "cells": [
+            44.453125,
+            60.109375,
+            77.84375,
+            133.15625,
+            352
+          ]
+        }
+      }
+    },
+    {
+      "locale": "ja-Hira",
+      "before": {
+        "desktop": {
+          "timeWidth": 104,
+          "directionWidth": 198.21875,
+          "payloadWidth": 440.171875,
+          "directionLines": 1,
+          "directionText": "そうしんずみ・けっかみかくにん",
+          "timeText": "06:01:43",
+          "tooltip": "2026-10-03 06:01:43.406 Asia/Tokyo (UTC+09:00)",
+          "tableWidth": 920,
+          "viewportWidth": 920,
+          "timeFits": true,
+          "cells": [
+            44.453125,
+            104,
+            198.21875,
+            133.15625,
+            440.171875
+          ]
+        },
+        "narrow": {
+          "timeWidth": 68.109375,
+          "directionWidth": 198.21875,
+          "payloadWidth": 352,
+          "directionLines": 1,
+          "directionText": "そうしんずみ・けっかみかくにん",
+          "timeText": "06:01:43",
+          "tooltip": "2026-10-03 06:01:43.406 Asia/Tokyo (UTC+09:00)",
+          "tableWidth": 795.9375,
+          "viewportWidth": 527,
+          "timeFits": true,
+          "cells": [
+            44.453125,
+            68.109375,
+            198.21875,
+            133.15625,
+            352
+          ]
+        }
+      },
+      "after": {
+        "desktop": {
+          "timeWidth": 60.109375,
+          "directionWidth": 107.421875,
+          "payloadWidth": 574.859375,
+          "directionLines": 2,
+          "directionText": "そうしんずみ・けっかみかくにん",
+          "timeText": "06:01:43",
+          "tooltip": "2026-10-03 06:01:43.406 Asia/Tokyo (UTC+09:00)",
+          "tableWidth": 920,
+          "viewportWidth": 920,
+          "timeFits": true,
+          "cells": [
+            44.453125,
+            60.109375,
+            107.421875,
+            133.15625,
+            574.859375
+          ]
+        },
+        "narrow": {
+          "timeWidth": 60.109375,
+          "directionWidth": 107.421875,
+          "payloadWidth": 352,
+          "directionLines": 2,
+          "directionText": "そうしんずみ・けっかみかくにん",
+          "timeText": "06:01:43",
+          "tooltip": "2026-10-03 06:01:43.406 Asia/Tokyo (UTC+09:00)",
+          "tableWidth": 697.140625,
+          "viewportWidth": 527,
+          "timeFits": true,
+          "cells": [
+            44.453125,
+            60.109375,
+            107.421875,
+            133.15625,
+            352
+          ]
+        }
+      }
+    }
+  ]
+}

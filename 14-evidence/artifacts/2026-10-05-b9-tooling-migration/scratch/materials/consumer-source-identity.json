@@ -1,0 +1,25 @@
+{
+  "scratch_commit": "7fbbf034488760d8fc7e034bf23f3e08e6e1807d",
+  "knowledge_contract_commit": "900f6f4b8027d265a62ba7f139d4f3b1bbe78100",
+  "tooling_commit": "dc1ab834183e29f2eb03059b07e99d2b463776ee",
+  "owner_runtime_sources_bytes_equal": true,
+  "old_owner_tracked_files": [],
+  "fixture_fixed_urls": {
+    "packages/bridge/test/fixtures/one-shot-transport-v1.json": "https://raw.githubusercontent.com/Naohiro2g/minecraft-remote-tooling/dc1ab834183e29f2eb03059b07e99d2b463776ee/packages/bridge/test/fixtures/one-shot-transport-v1.json",
+    "packages/live/test/fixtures/display-alias-v1.json": "https://raw.githubusercontent.com/Naohiro2g/minecraft-remote-tooling/dc1ab834183e29f2eb03059b07e99d2b463776ee/packages/live/test/fixtures/display-alias-v1.json",
+    "packages/live/test/fixtures/observer-session-lifecycle.ndjson": "https://raw.githubusercontent.com/Naohiro2g/minecraft-remote-tooling/dc1ab834183e29f2eb03059b07e99d2b463776ee/packages/live/test/fixtures/observer-session-lifecycle.ndjson",
+    "packages/live/test/fixtures/scratch-main-lifecycle.json": "https://raw.githubusercontent.com/Naohiro2g/minecraft-remote-tooling/dc1ab834183e29f2eb03059b07e99d2b463776ee/packages/live/test/fixtures/scratch-main-lifecycle.json",
+    "packages/live/test/fixtures/station-attach-v1.json": "https://raw.githubusercontent.com/Naohiro2g/minecraft-remote-tooling/dc1ab834183e29f2eb03059b07e99d2b463776ee/packages/live/test/fixtures/station-attach-v1.json",
+    "packages/protocol/test/fixtures/block-value-v22.json": "https://raw.githubusercontent.com/Naohiro2g/minecraft-remote-tooling/dc1ab834183e29f2eb03059b07e99d2b463776ee/packages/protocol/test/fixtures/block-value-v22.json",
+    "packages/protocol/test/fixtures/chat-event-compat-v23.2.json": "https://raw.githubusercontent.com/Naohiro2g/minecraft-remote-tooling/dc1ab834183e29f2eb03059b07e99d2b463776ee/packages/protocol/test/fixtures/chat-event-compat-v23.2.json",
+    "packages/protocol/test/fixtures/dimensions-v22.json": "https://raw.githubusercontent.com/Naohiro2g/minecraft-remote-tooling/dc1ab834183e29f2eb03059b07e99d2b463776ee/packages/protocol/test/fixtures/dimensions-v22.json",
+    "packages/protocol/test/fixtures/direction-lightning-v23.1.json": "https://raw.githubusercontent.com/Naohiro2g/minecraft-remote-tooling/dc1ab834183e29f2eb03059b07e99d2b463776ee/packages/protocol/test/fixtures/direction-lightning-v23.1.json",
+    "packages/protocol/test/fixtures/entity-particle-v23.2.json": "https://raw.githubusercontent.com/Naohiro2g/minecraft-remote-tooling/dc1ab834183e29f2eb03059b07e99d2b463776ee/packages/protocol/test/fixtures/entity-particle-v23.2.json",
+    "packages/protocol/test/fixtures/events-v23.json": "https://raw.githubusercontent.com/Naohiro2g/minecraft-remote-tooling/dc1ab834183e29f2eb03059b07e99d2b463776ee/packages/protocol/test/fixtures/events-v23.json",
+    "packages/protocol/test/fixtures/sign-v23.json": "https://raw.githubusercontent.com/Naohiro2g/minecraft-remote-tooling/dc1ab834183e29f2eb03059b07e99d2b463776ee/packages/protocol/test/fixtures/sign-v23.json",
+    "packages/protocol/test/fixtures/spawn-v22.json": "https://raw.githubusercontent.com/Naohiro2g/minecraft-remote-tooling/dc1ab834183e29f2eb03059b07e99d2b463776ee/packages/protocol/test/fixtures/spawn-v22.json"
+  },
+  "scratch_candidate_run": 37232396741,
+  "scratch_ci_run": 37232360354,
+  "tooling_candidate_run": 37220882228
+}

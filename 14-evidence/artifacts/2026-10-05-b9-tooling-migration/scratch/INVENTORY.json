@@ -1,0 +1,217 @@
+[
+  {
+    "path": "MANIFEST_ja.md",
+    "bytes": 2582,
+    "sha256": "9b32b2a6aec19fae511aa7b49e866d3d480848b1a82e1322b6c8e9ff765af901"
+  },
+  {
+    "path": "artifacts/scratch-candidate-7fbbf03448.zip",
+    "bytes": 574809291,
+    "sha256": "27ade4f9b3d6a1e4b0cf814ef346b75613df8e8d446c82793b345665be9c4d7c"
+  },
+  {
+    "path": "materials/CONFIRMATION_ja.md",
+    "bytes": 11146,
+    "sha256": "db1b2042bef00c0111f7f8854592c4ac6b6e815f6c86f5e0944fa376388c6187"
+  },
+  {
+    "path": "materials/FIXTURE_IDENTITIES_ja.md",
+    "bytes": 1991,
+    "sha256": "ad9479a8a5904853294fc6b3b2fdfb0ef7f840d9accf6abbb56537d6f64ba188"
+  },
+  {
+    "path": "materials/NEW_FIXTURE_ja.md",
+    "bytes": 1683,
+    "sha256": "b3f9fb7252f69313ddb3e6088251f7fc8bd8f71d78b093edbc181d1eaceeb33d"
+  },
+  {
+    "path": "materials/before-migration/wirescope-app.manifest.json",
+    "bytes": 2321,
+    "sha256": "3b27b1daa2cd76e14b73645780a55f54d5ef14a7c642ae7f86a29a2eba5748bd"
+  },
+  {
+    "path": "materials/before-migration/wirescope-app.zip",
+    "bytes": 83854,
+    "sha256": "da3da0b6cf4d05265bc0c11abaa4913208c7cfc3600b0c3e78c93a356fc431ad"
+  },
+  {
+    "path": "materials/consumer-source-identity.json",
+    "bytes": 3397,
+    "sha256": "f1f8db7aab67c83653d52fd974cfe03df504b5eefa6d855b3602999f6e5a0a04"
+  },
+  {
+    "path": "materials/final-wirescope-app.manifest.json",
+    "bytes": 2339,
+    "sha256": "c654f7d1f0be2773d6737e889279b2587317088717f162b082c82be9cff910d7"
+  },
+  {
+    "path": "materials/fixture-import-identity.json",
+    "bytes": 3284,
+    "sha256": "5e35e70c813a4c998ac7037920b182ba9ffa086b3ac6e52b685bb8bd3b8bf064"
+  },
+  {
+    "path": "materials/logs/b9-consumer-block-value.log",
+    "bytes": 4314,
+    "sha256": "d4e0c809b8d53ef5b33e1e1d3b840d8acbea51d28964853c62852863b9742a82"
+  },
+  {
+    "path": "materials/logs/b9-consumer-event.log",
+    "bytes": 3081,
+    "sha256": "681e1a042fce76e9772afc0aa508c9130b70a92070f49a404b3d47c3a63b72c4"
+  },
+  {
+    "path": "materials/logs/b9-consumer-extension.log",
+    "bytes": 61254,
+    "sha256": "67c667064a8d98a5912719906608c2414db87cef1c4335a4d82b1b216656e20a"
+  },
+  {
+    "path": "materials/logs/b9-consumer-glue-tests.log",
+    "bytes": 596,
+    "sha256": "2af5f310a0e7d5512bb018691468d01ba1bc1f644bc6c395a9e788f115441cc5"
+  },
+  {
+    "path": "materials/logs/b9-consumer-gui-source.log",
+    "bytes": 480818,
+    "sha256": "0f25f617c09a90463af181e0e910f125a905746ef9edc2cc02f1855cef844804"
+  },
+  {
+    "path": "materials/logs/b9-consumer-gui-target.log",
+    "bytes": 2716,
+    "sha256": "a9cad9468a99b01e3f6b2f49caade106a3cdef41f9d0e8211d277abf30e45ba2"
+  },
+  {
+    "path": "materials/logs/b9-consumer-sign.log",
+    "bytes": 3684,
+    "sha256": "f398db2879aaf0e511543ff042c9b2f556128aba6795ec62160b9c8bbf2313a0"
+  },
+  {
+    "path": "materials/logs/b9-final-candidate-verification.log",
+    "bytes": 2018,
+    "sha256": "1c3aee813c9ef574c6fcdd739ab0961535f829e5292f7682ba5ecf4cc90c8e81"
+  },
+  {
+    "path": "materials/logs/b9-gui-ci-job.log",
+    "bytes": 950214,
+    "sha256": "ad20ec7ca1c6f3f773ba022347c98a5563d258694d5be509df0c4a87f10c8bca"
+  },
+  {
+    "path": "materials/logs/b9-gui-lint-final.log",
+    "bytes": 2191,
+    "sha256": "fcd8f9772367820488eca44ddac62c82f0d90e46e53eaeabb649cadfe55dcb45"
+  },
+  {
+    "path": "materials/logs/b9-gui-real-mock-lint.log",
+    "bytes": 668,
+    "sha256": "8ce1810d23224dd308fd6939681e40b800f3bd6cbce34c25f8fb052120c319cd"
+  },
+  {
+    "path": "materials/logs/b9-gui-runtime-isolated-before.log",
+    "bytes": 2450,
+    "sha256": "394898c9e9306e0198f39840686440d021c69ee5b06a020a24316e3f0448e2fd"
+  },
+  {
+    "path": "materials/logs/b9-gui-unit-after-real-mock.log",
+    "bytes": 493050,
+    "sha256": "16028d3ad3dffacd6271ceb30434ddfc46bcc70d6ae885af37d1e6d60b1f86c5"
+  },
+  {
+    "path": "materials/logs/b9-gui-unit-real-mock.log",
+    "bytes": 487336,
+    "sha256": "e867acaabd76f60eaaab14ca7c67da0fbc2124721f7d3a128f4062f5e9b99dc9"
+  },
+  {
+    "path": "materials/logs/b9-scratch-consumer-build.log",
+    "bytes": 323455,
+    "sha256": "dcc9eb736e310cf89ae4b0bd01eb83ebd3e13603ec5c12578737b308caafe5ee"
+  },
+  {
+    "path": "materials/logs/b9-tooling-build.log",
+    "bytes": 1631,
+    "sha256": "e60530e2008044fa559bb42f8853e8ba61ef2607a71e1fed71fbf11d9c2eb19a"
+  },
+  {
+    "path": "materials/logs/b9-tooling-tests.log",
+    "bytes": 1345,
+    "sha256": "769216bc463e3b4e0278407d55c4f105a4f5592c0c3f50b69dd90d5e4989e18e"
+  },
+  {
+    "path": "materials/logs/b9-vm-lint-final.log",
+    "bytes": 96715,
+    "sha256": "7014a13596a9e0d0ba71e2bb71a7cd031ea4d409032e3531a4228bc3fd3d51ae"
+  },
+  {
+    "path": "materials/scratch-candidate-artifact.json",
+    "bytes": 749,
+    "sha256": "4121eaa7d1c55bae1dcc5a672bb8409cf8c2c81666da4542c1a05ce0a0727b51"
+  },
+  {
+    "path": "materials/scratch-candidate-manifest.json",
+    "bytes": 1821,
+    "sha256": "239f7f94cf31e732eff173744da105408b00b182d0aad73507623ea09b43bc6b"
+  },
+  {
+    "path": "materials/scratch-candidate-run.json",
+    "bytes": 12594,
+    "sha256": "d1e200a8f02da3c2973a0c0dee38a1e2255d6520fef026b7fc7c70e29e8bbd58"
+  },
+  {
+    "path": "materials/scratch-candidate-verification.json",
+    "bytes": 2018,
+    "sha256": "1c3aee813c9ef574c6fcdd739ab0961535f829e5292f7682ba5ecf4cc90c8e81"
+  },
+  {
+    "path": "materials/scratch-ci-run.json",
+    "bytes": 12744,
+    "sha256": "e0dd9099d7d599f6fc89a41cecfc8953c1317c9e9467b0507731b469b476d164"
+  },
+  {
+    "path": "materials/source-move-comparison.json",
+    "bytes": 33819,
+    "sha256": "5fa6472d0273c5ab075e6771306d50b1a82e823e532682de43cd11c74037bfb5"
+  },
+  {
+    "path": "materials/tooling-actions-permissions.json",
+    "bytes": 69,
+    "sha256": "0bffee97e4ad52676c0127aacb5b4b304a2675f5c524de641acf1326e0b0e857"
+  },
+  {
+    "path": "materials/tooling-candidate-artifact.json",
+    "bytes": 747,
+    "sha256": "be3ac4df00a1587ed1732b9e2e7eaf3328bcbcc957b5b9ab4b8fe7333111b16b"
+  },
+  {
+    "path": "materials/tooling-candidate-run.json",
+    "bytes": 13509,
+    "sha256": "73d35d7f37fc026b0b7b6601602664cfcaccbc384a346f27c322de75fd7985d7"
+  },
+  {
+    "path": "materials/tooling-lock.json",
+    "bytes": 3763,
+    "sha256": "5bd219b9c68eb804f0ff5ce5dd0973b5d38d68c4dfcb941e2fb9dd0772cb6c3c"
+  },
+  {
+    "path": "materials/tooling-main-protection.json",
+    "bytes": 1362,
+    "sha256": "6bfcde78035f9cda05311c34029a1e74056d4304f9e8c98b81114c0cfdb229ec"
+  },
+  {
+    "path": "materials/tooling-workflow-permissions.json",
+    "bytes": 80,
+    "sha256": "f6e178fc1e56cf43900da383f85398b61de9ae61c6b8433116c1856605745924"
+  },
+  {
+    "path": "materials/verify-candidate.py",
+    "bytes": 6032,
+    "sha256": "f916d0fefc824f1aa04860d7da8cce553a3e4a98e2f9ae428335481a759076db"
+  },
+  {
+    "path": "materials/wirescope-asset-comparison.json",
+    "bytes": 399,
+    "sha256": "ed96b7545c60eee2c2b66358fe9c8a5c7234ae6746027d67315572e8d40a672e"
+  },
+  {
+    "path": "materials/wirescope-final-asset-comparison.json",
+    "bytes": 1093,
+    "sha256": "9690ff29933e3a75dbdbce00f0d4a831259ede32fbcc89016c612ee11fb02d83"
+  }
+]

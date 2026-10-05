@@ -1,0 +1,39 @@
+jest-haste-map: duplicate manual mock found: index
+  The following files share their name; please delete one of them:
+    * <rootDir>/src/lib/settings/color-mode/dark/__mocks__/index.js
+    * <rootDir>/src/lib/settings/color-mode/default/__mocks__/index.js
+
+Browserslist: browsers data (caniuse-lite) is 10 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+PASS test/unit/util/mcremote-wirescope-source.test.js
+  B8 WireScope sound and resource projection
+    ✓ projects sound requests, notifications, and null results (25 ms)
+    ✓ drops malformed sound inputs and preserves valid resource references (5 ms)
+    ✓ applies the shared resource reference matrix to all five input types (3 ms)
+    ✓ projects entity lifecycle results with only allowed fields (2 ms)
+  McRemote WireScope source adapter
+    ✓ projects a connected Scratch observation through a generation-side allowlist (5 ms)
+    ✓ projects protocol 22 FAST notifications and connection.flush without synthetic results (2 ms)
+    ✓ projects strict events.poll requests and results without changing schema_version (4 ms)
+    ✓ projects opaque event summaries and rejects malformed shared compatibility cases (10 ms)
+    ✓ projects only null chat.post success results from the shared fixture (2 ms)
+    ✓ does not project pairing or disconnected observations (1 ms)
+    ✓ projects player pose requests and strict pose results (1 ms)
+    ✓ preserves a raw DimensionRef and validates the canonical setter result (1 ms)
+    ✓ projects height and coordinate-first spawn requests and results (2 ms)
+    ✓ projects all five protocol 23.1 methods from the owner fixture without changing values (4 ms)
+    ✓ keeps b7 handles opaque and projects reasons, bounds, and lightning notifications (3 ms)
+    ✓ filters malformed direction, malformed lightning, and the effect-only method (1 ms)
+    ✓ rejects legacy spawn order and malformed particle params (1 ms)
+    ✓ accepts a protocol 23 mcr_eh_ entity handle and rejects a protocol-22 mceh_ handle (2 ms)
+    ✓ hands a one-time grant over MessageChannel and ends it with the target (14 ms)
+    ✓ forwards the observation's droppedFrames as history_window.dropped_frames, not a hardcoded 0 (4 ms)
+    ✓ treats a missing, negative, or non-integer droppedFrames as 0 rather than forwarding it (12 ms)
+    ✓ ends an active observer with source-closed when the Scratch page is hidden (3 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       22 passed, 22 total
+Snapshots:   0 total
+Time:        3.099 s
+Ran all test suites within paths "test/unit/util/mcremote-wirescope-source.test.js".

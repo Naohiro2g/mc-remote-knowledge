@@ -301,6 +301,20 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     digestは`f44e7a6c…f607`（試験した`6702b112…9e34`と中身は同じ）
 - gate result（公開）: **4 repoのGitHub prereleaseとPyPI.orgの公開identityを確認した（2026-10-05）**。残りはgateのclose（各repoの
   `handoff-materials`の分類、parkの見直し、default branchへの統合の確認）
+- handoff-materialsの分類（2026-10-05、knowledge `099c40b`の依頼）: 3担当が返した①を`14-evidence/artifacts/`へ収容した（記録
+  `14-evidence/records/2026-10-05-b9-release_ja.md`。Scratchの151 fileは搬送元の一覧と照合して不一致0、4つのlogのpathを`~`へ置換、
+  McRemoteのJARの複製2つは収容していない）。収容済みだった素材は、3担当とも全文とSHA-256が一致したと返した
+  - McRemote: ①は公開の照合とclose票。②はcandidateの比較（rc1でJARの再現性を確かめた後に捨てる）。③は5件（b8のJARの権限bitの
+    比較を含む。b9で固定したので用が済んだ）
+  - Python: ①は公開の照合（PyPI.orgへの初公開）とclose票。②は`b9-python-work`（TestPyPIを手動へ絞る後続作業）と`b9-python-tooling`
+    （次の入力更新の比較基準）。③は4件
+  - Scratch: ①は移管、公開、b8から残していたもののうち用が済んだもの、b9の画面PNG。②は手元の配信のruntimeとprivate（b9とb8の
+    戻し先）、Stackへの回答2件（`home-scratch-contract-reply`、`stack-wss-reply`。Stackの受領待ち）、b8のlive-humanのprivateな原画像
+    （backstageへ移す対象）。③は54 file
+  - human ownerの判断が要る②: Stackへの回答2件の受け取り（Stackはhuman ownerの直接管理）、privateな原画像のbackstageへの移管、
+    手元の配信の終了。いずれもgateのcloseを止めない
+- default branchへの統合（2026-10-05、coordinatorが照合）: McRemote main `5cb33eb`、Python mainは`b901c88`の1つ先の`39f2ec9`（公開後の
+  文書だけ）、Scratch develop `7fbbf03`、minecraft-remote-tooling main `dc1ab83`。それぞれ公開tagを含む
 - human owner（2026-10-05）: `minecraft-remote-tooling`の名前変更とpark解除はScratchに頼む。Pythonをmatureへ移す（`2026-10-05-03`。
   b9からPyPI.orgへpre-release）
 - human owner（2026-10-04）: WindowsでのPythonの導入手順の確認とPyPI.orgの準備は、今日中を目標にする。契約2件のcaseを

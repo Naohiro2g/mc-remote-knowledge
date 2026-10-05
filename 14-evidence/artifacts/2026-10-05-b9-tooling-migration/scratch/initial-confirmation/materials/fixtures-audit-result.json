@@ -1,0 +1,6 @@
+{
+  "result": "PASS",
+  "baseline_commit": "691576f60b7f0824e1753bd6823901d01fbe2422",
+  "fixtures_verified": 12,
+  "comparison": "working files == published b8 source == knowledge inventory bytes/SHA-256"
+}

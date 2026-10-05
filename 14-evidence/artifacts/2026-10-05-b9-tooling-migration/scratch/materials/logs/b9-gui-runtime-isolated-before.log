@@ -1,0 +1,39 @@
+jest-haste-map: duplicate manual mock found: index
+  The following files share their name; please delete one of them:
+    * <rootDir>/src/lib/settings/color-mode/dark/__mocks__/index.js
+    * <rootDir>/src/lib/settings/color-mode/default/__mocks__/index.js
+
+Browserslist: browsers data (caniuse-lite) is 10 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+PASS test/unit/util/mcremote-runtime-config.test.js
+  McRemote runtime config
+    ✓ loads the deployment and image-owned files independently (255 ms)
+    ✓ places operator notices before product notices (107 ms)
+    ✓ accepts a disabled deployment without connection fields (91 ms)
+    ✓ allows a plain WebSocket bridge only for HTTP loopback development (75 ms)
+    ✓ rejects a plain WebSocket bridge outside loopback development (83 ms)
+    ✓ allows WireScope only on a distinct trusted origin (95 ms)
+    ✓ fails closed when the deployment file cannot be loaded (69 ms)
+    ✓ fails closed for an invalid runtime schema version (91 ms)
+    ✓ fails closed for an invalid runtime top-level unknown field (96 ms)
+    ✓ fails closed for an invalid runtime nested unknown field (104 ms)
+    ✓ fails closed for an invalid runtime missing enabled fields (107 ms)
+    ✓ fails closed when the default sandbox is absent from connection targets (92 ms)
+    ✓ fails closed when a connection target is missing its label (120 ms)
+    ✓ normalizes operator notices with an optional link (80 ms)
+    ✓ fails closed when an operator notice is missing its body (74 ms)
+    ✓ fails closed when a notice link uses a non-http(s) scheme (76 ms)
+    ✓ keeps a valid runtime connection when product config is invalid (84 ms)
+    ✓ normalizes the image-owned homepage URL (68 ms)
+    ✓ keeps the runtime connection when the product homepage is absent (58 ms)
+    ✓ keeps the runtime connection when the product homepage uses a non-http scheme (71 ms)
+    ✓ defaults storage persistence to false when the optional field is absent (63 ms)
+    ✓ normalizes an explicit storage persistence opt-in (104 ms)
+    ✓ fails closed when storage persistence is not a boolean (107 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       23 passed, 23 total
+Snapshots:   0 total
+Time:        5.886 s, estimated 7 s
+Ran all test suites within paths "test/unit/util/mcremote-runtime-config.test.js".

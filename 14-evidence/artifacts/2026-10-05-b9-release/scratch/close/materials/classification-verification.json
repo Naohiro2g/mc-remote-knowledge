@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "directories": 15,
+  "evidence_files": 151,
+  "evidence_bytes": 5966766,
+  "discard_candidates": 54,
+  "sets_disjoint": true,
+  "runtime_and_private_excluded": true,
+  "source_evidence_bytes_sha256_rechecked": true,
+  "deleted": false
+}

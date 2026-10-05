@@ -1,0 +1,24 @@
+{
+  "node_id": "TA_kwDOS2_RItoAKDBjZTE2ZTE2ZDJhMWZkZDg4NDU3OGY2YmJhNWI0OGI3MzBlY2YxMmQ",
+  "sha": "0ce16e16d2a1fdd884578f6bba5b48b730ecf12d",
+  "url": "https://api.github.com/repos/Naohiro2g/scratch-editor/git/tags/0ce16e16d2a1fdd884578f6bba5b48b730ecf12d",
+  "tagger": {
+    "name": "Naohiro Tsuji",
+    "email": "587586+Naohiro2g@users.noreply.github.com",
+    "date": "2026-10-05T06:03:17Z"
+  },
+  "object": {
+    "sha": "7fbbf034488760d8fc7e034bf23f3e08e6e1807d",
+    "type": "commit",
+    "url": "https://api.github.com/repos/Naohiro2g/scratch-editor/git/commits/7fbbf034488760d8fc7e034bf23f3e08e6e1807d"
+  },
+  "tag": "v2320.0.0b9",
+  "message": "mc-remote Scratch 2320.0.0b9",
+  "verification": {
+    "verified": false,
+    "reason": "unsigned",
+    "signature": null,
+    "payload": null,
+    "verified_at": null
+  }
+}

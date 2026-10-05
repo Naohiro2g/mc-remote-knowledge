@@ -1,0 +1,184 @@
+{
+  "knowledge_contract_commit": "7eec4255e1b820cf996dc71c42b34d672dea44f8",
+  "source_commit": "7fbbf034488760d8fc7e034bf23f3e08e6e1807d",
+  "frozen_digest": "sha256:6702b112ad53b48efa2bf99fc0145fc7b23d24a1d20743018582f781f61c9e34",
+  "published_digest": "sha256:f44e7a6c1a3b041aba787eba5e052a3ae78ce4ce733732bc7213207a3b17f607",
+  "verified_oci_blob_counts": {
+    "frozen": 29,
+    "published": 31
+  },
+  "platforms": [
+    {
+      "architecture": "amd64",
+      "identical_digest_layer_count": 9,
+      "changed_layers": [
+        {
+          "index": 9,
+          "frozen_digest": "sha256:cdb149aa0817af22517e725c7d8c76498451ba9070dbc4b4ed2a20ede2c8b37f",
+          "published_digest": "sha256:e221cdbc9a25d964aac8f6b4d1a3f620dfc4a373e0988552fcb2d9ada3998187",
+          "frozen_entry_count": 1746,
+          "published_entry_count": 1746,
+          "mtime_change_count": 1743,
+          "unexpected_changes": [],
+          "content_and_metadata_equal_except_mtime": true
+        }
+      ],
+      "config_differences": [
+        {
+          "path": "config.Labels.org.opencontainers.image.version",
+          "before": "2320.0.0b9",
+          "after": "v2320.0.0b9",
+          "allowed": true
+        },
+        {
+          "path": "created",
+          "before": "2026-10-04T20:39:58.841329864Z",
+          "after": "2026-10-05T06:12:12.760125445Z",
+          "allowed": true
+        },
+        {
+          "path": "history[27].created",
+          "before": "2026-10-04T20:39:58.841329864Z",
+          "after": "2026-10-05T06:12:12.760125445Z",
+          "allowed": true
+        },
+        {
+          "path": "history[28].created",
+          "before": "2026-10-04T20:39:58.841329864Z",
+          "after": "2026-10-05T06:12:12.760125445Z",
+          "allowed": true
+        },
+        {
+          "path": "history[28].created_by",
+          "before": "ARG RELEASE_VERSION=2320.0.0b9",
+          "after": "ARG RELEASE_VERSION=v2320.0.0b9",
+          "allowed": true
+        },
+        {
+          "path": "history[29].created",
+          "before": "2026-10-04T20:39:58.841329864Z",
+          "after": "2026-10-05T06:12:12.760125445Z",
+          "allowed": true
+        },
+        {
+          "path": "history[29].created_by",
+          "before": "LABEL org.opencontainers.image.source=https://github.com/Naohiro2g/scratch-editor org.opencontainers.image.revision=7fbbf034488760d8fc7e034bf23f3e08e6e1807d org.opencontainers.image.version=2320.0.0b9 org.opencontainers.image.title=McRemote Scratch editor org.opencontainers.image.licenses=AGPL-3.0-only",
+          "after": "LABEL org.opencontainers.image.source=https://github.com/Naohiro2g/scratch-editor org.opencontainers.image.revision=7fbbf034488760d8fc7e034bf23f3e08e6e1807d org.opencontainers.image.version=v2320.0.0b9 org.opencontainers.image.title=McRemote Scratch editor org.opencontainers.image.licenses=AGPL-3.0-only",
+          "allowed": true
+        },
+        {
+          "path": "history[30].created",
+          "before": "2026-10-04T20:39:58.841329864Z",
+          "after": "2026-10-05T06:12:12.760125445Z",
+          "allowed": true
+        },
+        {
+          "path": "history[31].created",
+          "before": "2026-10-04T20:39:58.841329864Z",
+          "after": "2026-10-05T06:12:12.760125445Z",
+          "allowed": true
+        },
+        {
+          "path": "history[31].created_by",
+          "before": "EXPOSE &{[{{15 0} {15 0}}] 0xc0002bc180}",
+          "after": "EXPOSE &{[{{15 0} {15 0}}] 0xc0002ac200}",
+          "allowed": true
+        },
+        {
+          "path": "rootfs.diff_ids[9]",
+          "before": "sha256:5528c1fc85c27dbc865a30a961fc177a206a2c66623cc3e8be720665622c1093",
+          "after": "sha256:97f49740e4ea49afbccb5c918034903d51d8a8e84cbff510455d876361f7297b",
+          "allowed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "architecture": "arm64",
+      "identical_digest_layer_count": 9,
+      "changed_layers": [
+        {
+          "index": 9,
+          "frozen_digest": "sha256:ac2c682b5f6bb4f60976b08da483049a762425f9fa7ce7e4b33bb87d34e6ec85",
+          "published_digest": "sha256:f48d829d2ad88afd4dec0ec327ddf2fb1f2e5e349f01aa3dbcff43ac7052d57a",
+          "frozen_entry_count": 1746,
+          "published_entry_count": 1746,
+          "mtime_change_count": 1743,
+          "unexpected_changes": [],
+          "content_and_metadata_equal_except_mtime": true
+        }
+      ],
+      "config_differences": [
+        {
+          "path": "config.Labels.org.opencontainers.image.version",
+          "before": "2320.0.0b9",
+          "after": "v2320.0.0b9",
+          "allowed": true
+        },
+        {
+          "path": "created",
+          "before": "2026-10-04T20:39:58.841881409Z",
+          "after": "2026-10-05T06:12:09.204594833Z",
+          "allowed": true
+        },
+        {
+          "path": "history[27].created",
+          "before": "2026-10-04T20:39:58.841881409Z",
+          "after": "2026-10-05T06:12:09.204594833Z",
+          "allowed": true
+        },
+        {
+          "path": "history[28].created",
+          "before": "2026-10-04T20:39:58.841881409Z",
+          "after": "2026-10-05T06:12:09.204594833Z",
+          "allowed": true
+        },
+        {
+          "path": "history[28].created_by",
+          "before": "ARG RELEASE_VERSION=2320.0.0b9",
+          "after": "ARG RELEASE_VERSION=v2320.0.0b9",
+          "allowed": true
+        },
+        {
+          "path": "history[29].created",
+          "before": "2026-10-04T20:39:58.841881409Z",
+          "after": "2026-10-05T06:12:09.204594833Z",
+          "allowed": true
+        },
+        {
+          "path": "history[29].created_by",
+          "before": "LABEL org.opencontainers.image.source=https://github.com/Naohiro2g/scratch-editor org.opencontainers.image.revision=7fbbf034488760d8fc7e034bf23f3e08e6e1807d org.opencontainers.image.version=2320.0.0b9 org.opencontainers.image.title=McRemote Scratch editor org.opencontainers.image.licenses=AGPL-3.0-only",
+          "after": "LABEL org.opencontainers.image.source=https://github.com/Naohiro2g/scratch-editor org.opencontainers.image.revision=7fbbf034488760d8fc7e034bf23f3e08e6e1807d org.opencontainers.image.version=v2320.0.0b9 org.opencontainers.image.title=McRemote Scratch editor org.opencontainers.image.licenses=AGPL-3.0-only",
+          "allowed": true
+        },
+        {
+          "path": "history[30].created",
+          "before": "2026-10-04T20:39:58.841881409Z",
+          "after": "2026-10-05T06:12:09.204594833Z",
+          "allowed": true
+        },
+        {
+          "path": "history[31].created",
+          "before": "2026-10-04T20:39:58.841881409Z",
+          "after": "2026-10-05T06:12:09.204594833Z",
+          "allowed": true
+        },
+        {
+          "path": "history[31].created_by",
+          "before": "EXPOSE &{[{{15 0} {15 0}}] 0xc000244700}",
+          "after": "EXPOSE &{[{{15 0} {15 0}}] 0xc0000aca80}",
+          "allowed": true
+        },
+        {
+          "path": "rootfs.diff_ids[9]",
+          "before": "sha256:bc4a6e17d7ef7bdd1ce31d84a147b9685b30bd21e67de74ec264271436751ab8",
+          "after": "sha256:7dc90a61193e4e84b23c7a82ed07f3a99066439b4c85973e36c4c85d1508dfc8",
+          "allowed": true
+        }
+      ],
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "non_claim": "Attestation and SBOM descriptors are generated metadata; runtime manifests, configs, and all changed runtime layers are compared. Equal layer digests prove equal bytes."
+}

@@ -1,0 +1,23 @@
+[project]
+name = "mcr-b9-pypi-entry-check"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Naohiro2g", email = "587586+Naohiro2g@users.noreply.github.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "minecraft-remote-api==2320.0.0b9",
+]
+
+[project.scripts]
+mcr-b9-pypi-entry-check = "mcr_b9_pypi_entry_check:main"
+
+[[tool.uv.index]]
+url = "https://pypi.org/simple"
+default = true
+
+[build-system]
+requires = ["uv_build>=0.12.19,<0.13.0"]
+build-backend = "uv_build"

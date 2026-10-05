@@ -1,0 +1,10 @@
+mc-remote Scratch の b9 prereleaseです。Protocol 23.2.0。
+
+WireScope・Bridgeの共通toolingを [minecraft-remote-tooling](https://github.com/Naohiro2g/minecraft-remote-tooling/releases/tag/v2320.0.0b9) へ移管しました。sourceは凍結した `7fbbf034488760d8fc7e034bf23f3e08e6e1807d` です。
+
+配布物の取得先とidentityは添付の `manifest.json` に記録しています（Scratch OCI、Bridge OCI、WireScope ZIP・detached manifest、contracts）。
+
+- Scratch: `ghcr.io/naohiro2g/mc-remote-scratch@sha256:f44e7a6c1a3b041aba787eba5e052a3ae78ce4ce733732bc7213207a3b17f607`
+- Bridge: `ghcr.io/naohiro2g/mc-remote-bridge@sha256:5828304c9bb1d60df8672f9189f503790050e09358bd375f39e4d59d190eb84f`
+
+[固定公開workflow](https://github.com/Naohiro2g/scratch-editor/actions/runs/37270517123) と [公開OCIの比較](https://github.com/Naohiro2g/scratch-editor/actions/runs/37271363905) は成功しました。amd64・arm64とも凍結OCIとruntimeの内容が一致し、差はCOPY layerのmtimeと許可されたversionラベル・生成metadataだけでした。WireScope・contractsのbytes／SHA-256とBridge OCIのindex digestは凍結値と一致しています。packaging差はhuman ownerの承認に基づき受け入れ、実機試験のPASSを再利用しています。

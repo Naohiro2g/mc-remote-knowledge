@@ -1,0 +1,223 @@
+{
+  "knowledge_contract_commit": "ede3d0fc8d548e76eefadc93b6dd415f9dce7b1b",
+  "source_commit": "7fbbf034488760d8fc7e034bf23f3e08e6e1807d",
+  "frozen_scratch_oci": {
+    "role": "scratch",
+    "kind": "oci-archive",
+    "file": "scratch.oci.tar",
+    "bytes": 322922496,
+    "sha256": "48f4d808ff3d5a992c09101d075dfcd7d5c4ce4e91b907691fbf393db0b1f390",
+    "digest": "sha256:6702b112ad53b48efa2bf99fc0145fc7b23d24a1d20743018582f781f61c9e34"
+  },
+  "rebuilt_scratch_oci": {
+    "role": "scratch",
+    "kind": "oci-archive",
+    "file": "scratch.oci.tar",
+    "bytes": 324857856,
+    "sha256": "00f1b4afd50663bb2cf975d7e7bb0db9e409a283493853651b9d14c90e648f23",
+    "digest": "sha256:da7c9622f18ad7d6e45782b57c470605cebc978271c41280240192625de8ff27"
+  },
+  "verified_oci_blob_counts": {
+    "frozen": 29,
+    "rebuilt": 31
+  },
+  "platforms": [
+    {
+      "architecture": "amd64",
+      "frozen_layers": [
+        "sha256:589002ba0eaed121a1dbf42f6648f29e5be55d5c8a6ee0f8eaa0285cc21ac153",
+        "sha256:3c475034fb31ad022fd7204d86a517aca32f71e1ab7f9519099bf04f7ffedb0a",
+        "sha256:867c786d7ba2084c47d15b0eb697c61125f01c351f28c1d113d7a0a0108f3b3a",
+        "sha256:17da046895adbd97dc1cd1d4ae3d387c7c173560de78605de7ab60da80190543",
+        "sha256:a53da24fedaaf2d8450e61a28d202ad4f2142fdc2c4d2228ab934c9b522ab9e5",
+        "sha256:f7fbbce131bfd31164b560e4536a98e973886c0e0e1e21997e6f2b58ecc1353b",
+        "sha256:7a1f96b73f3080117cb71d0f3fd25e0e80c1072a27bbb67f3acbaed8bc172d38",
+        "sha256:41fd06ab736d27f9e3dd9188bf8d1887c3b8468da0e53f0a456f26c39a1d1a42",
+        "sha256:d397d97c8a0b4d6851b0e17843054adb9c0d9b6a25e7933fe448cf87d6489f8d",
+        "sha256:cdb149aa0817af22517e725c7d8c76498451ba9070dbc4b4ed2a20ede2c8b37f"
+      ],
+      "rebuilt_layers": [
+        "sha256:589002ba0eaed121a1dbf42f6648f29e5be55d5c8a6ee0f8eaa0285cc21ac153",
+        "sha256:3c475034fb31ad022fd7204d86a517aca32f71e1ab7f9519099bf04f7ffedb0a",
+        "sha256:867c786d7ba2084c47d15b0eb697c61125f01c351f28c1d113d7a0a0108f3b3a",
+        "sha256:17da046895adbd97dc1cd1d4ae3d387c7c173560de78605de7ab60da80190543",
+        "sha256:a53da24fedaaf2d8450e61a28d202ad4f2142fdc2c4d2228ab934c9b522ab9e5",
+        "sha256:f7fbbce131bfd31164b560e4536a98e973886c0e0e1e21997e6f2b58ecc1353b",
+        "sha256:7a1f96b73f3080117cb71d0f3fd25e0e80c1072a27bbb67f3acbaed8bc172d38",
+        "sha256:41fd06ab736d27f9e3dd9188bf8d1887c3b8468da0e53f0a456f26c39a1d1a42",
+        "sha256:d397d97c8a0b4d6851b0e17843054adb9c0d9b6a25e7933fe448cf87d6489f8d",
+        "sha256:44162b9203117753ac6d1dc2af36d0718b0dd2a177911e907d5b5f4084b280f1"
+      ],
+      "all_layer_digests_equal": false,
+      "config_differences": [
+        {
+          "path": "config.Labels.org.opencontainers.image.version",
+          "before": "2320.0.0b9",
+          "after": "v2320.0.0b9",
+          "allowed": true
+        },
+        {
+          "path": "created",
+          "before": "2026-10-04T20:39:58.841329864Z",
+          "after": "2026-10-05T05:20:48.800216257Z",
+          "allowed": true
+        },
+        {
+          "path": "history[27].created",
+          "before": "2026-10-04T20:39:58.841329864Z",
+          "after": "2026-10-05T05:20:48.800216257Z",
+          "allowed": true
+        },
+        {
+          "path": "history[28].created",
+          "before": "2026-10-04T20:39:58.841329864Z",
+          "after": "2026-10-05T05:20:48.800216257Z",
+          "allowed": true
+        },
+        {
+          "path": "history[28].created_by",
+          "before": "ARG RELEASE_VERSION=2320.0.0b9",
+          "after": "ARG RELEASE_VERSION=v2320.0.0b9",
+          "allowed": true
+        },
+        {
+          "path": "history[29].created",
+          "before": "2026-10-04T20:39:58.841329864Z",
+          "after": "2026-10-05T05:20:48.800216257Z",
+          "allowed": true
+        },
+        {
+          "path": "history[29].created_by",
+          "before": "LABEL org.opencontainers.image.source=https://github.com/Naohiro2g/scratch-editor org.opencontainers.image.revision=7fbbf034488760d8fc7e034bf23f3e08e6e1807d org.opencontainers.image.version=2320.0.0b9 org.opencontainers.image.title=McRemote Scratch editor org.opencontainers.image.licenses=AGPL-3.0-only",
+          "after": "LABEL org.opencontainers.image.source=https://github.com/Naohiro2g/scratch-editor org.opencontainers.image.revision=7fbbf034488760d8fc7e034bf23f3e08e6e1807d org.opencontainers.image.version=v2320.0.0b9 org.opencontainers.image.title=McRemote Scratch editor org.opencontainers.image.licenses=AGPL-3.0-only",
+          "allowed": true
+        },
+        {
+          "path": "history[30].created",
+          "before": "2026-10-04T20:39:58.841329864Z",
+          "after": "2026-10-05T05:20:48.800216257Z",
+          "allowed": true
+        },
+        {
+          "path": "history[31].created",
+          "before": "2026-10-04T20:39:58.841329864Z",
+          "after": "2026-10-05T05:20:48.800216257Z",
+          "allowed": true
+        },
+        {
+          "path": "history[31].created_by",
+          "before": "EXPOSE &{[{{15 0} {15 0}}] 0xc0002bc180}",
+          "after": "EXPOSE &{[{{15 0} {15 0}}] 0xc00033a400}",
+          "allowed": true
+        },
+        {
+          "path": "rootfs.diff_ids[9]",
+          "before": "sha256:5528c1fc85c27dbc865a30a961fc177a206a2c66623cc3e8be720665622c1093",
+          "after": "sha256:7b93cabf614d86ca899b24220b45630cd661ebf90333dc0deaf46ba904faee3f",
+          "allowed": false
+        }
+      ],
+      "config_difference_scope_allowed": false
+    },
+    {
+      "architecture": "arm64",
+      "frozen_layers": [
+        "sha256:d8ad8cd72600f46cc068e16c39046ebc76526e41051f43a8c249884b200936c0",
+        "sha256:330aaf297596241b1df0002370dccb6c04e0f79763e72407669cb0452848e13c",
+        "sha256:c1580897feff9b7bef745eeff784a2370b343ba6958f9c8a61691f5fed316796",
+        "sha256:17da046895adbd97dc1cd1d4ae3d387c7c173560de78605de7ab60da80190543",
+        "sha256:3e60a759ad956e82a20c40925cbfa3bfb5dac5ca60369576480ddab1aaf1727b",
+        "sha256:bfcbf8e2bbcf8565149efeabaaec3c224aa1734896c07e006219f6c4204b34fa",
+        "sha256:9ba0fac76149c6891a4d0811ecae1967f086fb7ed96013ee518bd50b0745fd44",
+        "sha256:27e40827b76649ad68cf51300b8b1f9ac8ff4df5093581a77c23c44d1801fab0",
+        "sha256:11fe849dcd0171cf20df535f1a94e1f509801ab3ca94d3edbeb286b90026a664",
+        "sha256:ac2c682b5f6bb4f60976b08da483049a762425f9fa7ce7e4b33bb87d34e6ec85"
+      ],
+      "rebuilt_layers": [
+        "sha256:d8ad8cd72600f46cc068e16c39046ebc76526e41051f43a8c249884b200936c0",
+        "sha256:330aaf297596241b1df0002370dccb6c04e0f79763e72407669cb0452848e13c",
+        "sha256:c1580897feff9b7bef745eeff784a2370b343ba6958f9c8a61691f5fed316796",
+        "sha256:17da046895adbd97dc1cd1d4ae3d387c7c173560de78605de7ab60da80190543",
+        "sha256:3e60a759ad956e82a20c40925cbfa3bfb5dac5ca60369576480ddab1aaf1727b",
+        "sha256:bfcbf8e2bbcf8565149efeabaaec3c224aa1734896c07e006219f6c4204b34fa",
+        "sha256:9ba0fac76149c6891a4d0811ecae1967f086fb7ed96013ee518bd50b0745fd44",
+        "sha256:27e40827b76649ad68cf51300b8b1f9ac8ff4df5093581a77c23c44d1801fab0",
+        "sha256:11fe849dcd0171cf20df535f1a94e1f509801ab3ca94d3edbeb286b90026a664",
+        "sha256:2898029c1cadfd00c089acbf3359b11bce903b88ac4b2780ad9d08fbab559055"
+      ],
+      "all_layer_digests_equal": false,
+      "config_differences": [
+        {
+          "path": "config.Labels.org.opencontainers.image.version",
+          "before": "2320.0.0b9",
+          "after": "v2320.0.0b9",
+          "allowed": true
+        },
+        {
+          "path": "created",
+          "before": "2026-10-04T20:39:58.841881409Z",
+          "after": "2026-10-05T05:20:48.800826571Z",
+          "allowed": true
+        },
+        {
+          "path": "history[27].created",
+          "before": "2026-10-04T20:39:58.841881409Z",
+          "after": "2026-10-05T05:20:48.800826571Z",
+          "allowed": true
+        },
+        {
+          "path": "history[28].created",
+          "before": "2026-10-04T20:39:58.841881409Z",
+          "after": "2026-10-05T05:20:48.800826571Z",
+          "allowed": true
+        },
+        {
+          "path": "history[28].created_by",
+          "before": "ARG RELEASE_VERSION=2320.0.0b9",
+          "after": "ARG RELEASE_VERSION=v2320.0.0b9",
+          "allowed": true
+        },
+        {
+          "path": "history[29].created",
+          "before": "2026-10-04T20:39:58.841881409Z",
+          "after": "2026-10-05T05:20:48.800826571Z",
+          "allowed": true
+        },
+        {
+          "path": "history[29].created_by",
+          "before": "LABEL org.opencontainers.image.source=https://github.com/Naohiro2g/scratch-editor org.opencontainers.image.revision=7fbbf034488760d8fc7e034bf23f3e08e6e1807d org.opencontainers.image.version=2320.0.0b9 org.opencontainers.image.title=McRemote Scratch editor org.opencontainers.image.licenses=AGPL-3.0-only",
+          "after": "LABEL org.opencontainers.image.source=https://github.com/Naohiro2g/scratch-editor org.opencontainers.image.revision=7fbbf034488760d8fc7e034bf23f3e08e6e1807d org.opencontainers.image.version=v2320.0.0b9 org.opencontainers.image.title=McRemote Scratch editor org.opencontainers.image.licenses=AGPL-3.0-only",
+          "allowed": true
+        },
+        {
+          "path": "history[30].created",
+          "before": "2026-10-04T20:39:58.841881409Z",
+          "after": "2026-10-05T05:20:48.800826571Z",
+          "allowed": true
+        },
+        {
+          "path": "history[31].created",
+          "before": "2026-10-04T20:39:58.841881409Z",
+          "after": "2026-10-05T05:20:48.800826571Z",
+          "allowed": true
+        },
+        {
+          "path": "history[31].created_by",
+          "before": "EXPOSE &{[{{15 0} {15 0}}] 0xc000244700}",
+          "after": "EXPOSE &{[{{15 0} {15 0}}] 0xc0002ceb40}",
+          "allowed": true
+        },
+        {
+          "path": "rootfs.diff_ids[9]",
+          "before": "sha256:bc4a6e17d7ef7bdd1ce31d84a147b9685b30bd21e67de74ec264271436751ab8",
+          "after": "sha256:18e6ddfa60b94f15d96e3ec4c7b5fc1839ed015bab26ee456648348574fce0a7",
+          "allowed": false
+        }
+      ],
+      "config_difference_scope_allowed": false
+    }
+  ],
+  "passed": false,
+  "publication_allowed_by_comparison": false,
+  "non_claim": "Attestation/SBOM layers are generation metadata; the compared layers belong to the linux/amd64 and linux/arm64 runtime images."
+}

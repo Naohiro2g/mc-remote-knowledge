@@ -1,0 +1,480 @@
+{
+  "knowledge_contract_commit": "099c40b0c312694712653885200f3114ea4bed33",
+  "inputs_identity": {
+    "bytes": 79365,
+    "sha256": "474742e5de00a0762bd1fe1ea5c089ddac4bb9ac19364d4d86d10cee0d768239"
+  },
+  "result": "PASS",
+  "transferred_file_count": 12,
+  "transferred_bytes": 53876,
+  "directory_sets": [
+    {
+      "directory": "2026-10-05-b9-python-live",
+      "knowledge_destination": "14-evidence/artifacts/2026-10-05-b9-dev-live/python/segment-2",
+      "file_set_match": true,
+      "file_count": 6,
+      "local_not_transferred": []
+    },
+    {
+      "directory": "2026-10-05-b9-dev-hello",
+      "knowledge_destination": "14-evidence/artifacts/2026-10-05-b9-dev-live/python/saved-token-check",
+      "file_set_match": true,
+      "file_count": 4,
+      "local_not_transferred": []
+    },
+    {
+      "directory": "2026-10-05-python-windows-entry",
+      "knowledge_destination": "14-evidence/artifacts/2026-10-05-python-windows-entry",
+      "file_set_match": true,
+      "file_count": 2,
+      "local_not_transferred": [
+        "MANIFEST_ja.md"
+      ]
+    }
+  ],
+  "comparisons": [
+    {
+      "local_path": "handoff-materials/2026-10-05-b9-python-live/MANIFEST_ja.md",
+      "knowledge_path": "14-evidence/artifacts/2026-10-05-b9-dev-live/python/segment-2/MANIFEST_ja.md",
+      "local": {
+        "bytes": 1800,
+        "sha256": "cf0221ea8164f7706c95db43950a33b1f5c0f0edf6e00a026790dc4ba7889bf8"
+      },
+      "knowledge": {
+        "bytes": 1800,
+        "sha256": "cf0221ea8164f7706c95db43950a33b1f5c0f0edf6e00a026790dc4ba7889bf8"
+      },
+      "full_bytes_equal": true
+    },
+    {
+      "local_path": "handoff-materials/2026-10-05-b9-python-live/materials/confirmation_ja.md",
+      "knowledge_path": "14-evidence/artifacts/2026-10-05-b9-dev-live/python/segment-2/materials/confirmation_ja.md",
+      "local": {
+        "bytes": 7049,
+        "sha256": "35dee1710d4b2f5d5672dbdb0cda7f6ac0e8cbe2c609267c913e3d9e347c293b"
+      },
+      "knowledge": {
+        "bytes": 7049,
+        "sha256": "35dee1710d4b2f5d5672dbdb0cda7f6ac0e8cbe2c609267c913e3d9e347c293b"
+      },
+      "full_bytes_equal": true
+    },
+    {
+      "local_path": "handoff-materials/2026-10-05-b9-python-live/materials/human-wirescope-observation_ja.md",
+      "knowledge_path": "14-evidence/artifacts/2026-10-05-b9-dev-live/python/segment-2/materials/human-wirescope-observation_ja.md",
+      "local": {
+        "bytes": 2909,
+        "sha256": "d26ee1b173146b89c5e7f8c0317ed66ad1b6a68c9e2732cf586fe6817f346a29"
+      },
+      "knowledge": {
+        "bytes": 2909,
+        "sha256": "d26ee1b173146b89c5e7f8c0317ed66ad1b6a68c9e2732cf586fe6817f346a29"
+      },
+      "full_bytes_equal": true
+    },
+    {
+      "local_path": "handoff-materials/2026-10-05-b9-python-live/materials/observer_snapshot.json",
+      "knowledge_path": "14-evidence/artifacts/2026-10-05-b9-dev-live/python/segment-2/materials/observer_snapshot.json",
+      "local": {
+        "bytes": 9513,
+        "sha256": "ef4d0bdf2ed8fbb3919b1a8cfadfcc79a7c749517a19efd669befe4d84c042fe"
+      },
+      "knowledge": {
+        "bytes": 9513,
+        "sha256": "ef4d0bdf2ed8fbb3919b1a8cfadfcc79a7c749517a19efd669befe4d84c042fe"
+      },
+      "full_bytes_equal": true
+    },
+    {
+      "local_path": "handoff-materials/2026-10-05-b9-python-live/materials/result.json",
+      "knowledge_path": "14-evidence/artifacts/2026-10-05-b9-dev-live/python/segment-2/materials/result.json",
+      "local": {
+        "bytes": 2492,
+        "sha256": "53f8b414f0a45df9932c3542d7e720faaebd12581e46aec1eee94decdb4767ea"
+      },
+      "knowledge": {
+        "bytes": 2492,
+        "sha256": "53f8b414f0a45df9932c3542d7e720faaebd12581e46aec1eee94decdb4767ea"
+      },
+      "full_bytes_equal": true
+    },
+    {
+      "local_path": "handoff-materials/2026-10-05-b9-python-live/materials/run_segment2.py",
+      "knowledge_path": "14-evidence/artifacts/2026-10-05-b9-dev-live/python/segment-2/materials/run_segment2.py",
+      "local": {
+        "bytes": 9550,
+        "sha256": "50d7c0d46186a2f534ff79ceb6e37578d876ae6e8b646a3789a58a28e9c7fd83"
+      },
+      "knowledge": {
+        "bytes": 9550,
+        "sha256": "50d7c0d46186a2f534ff79ceb6e37578d876ae6e8b646a3789a58a28e9c7fd83"
+      },
+      "full_bytes_equal": true
+    },
+    {
+      "local_path": "handoff-materials/2026-10-05-b9-dev-hello/MANIFEST_ja.md",
+      "knowledge_path": "14-evidence/artifacts/2026-10-05-b9-dev-live/python/saved-token-check/MANIFEST_ja.md",
+      "local": {
+        "bytes": 1207,
+        "sha256": "b6cd7fda93d4e881d6ba694fed1d84abf5c874cf1b968ff43ef6d03532bf3c9a"
+      },
+      "knowledge": {
+        "bytes": 1207,
+        "sha256": "b6cd7fda93d4e881d6ba694fed1d84abf5c874cf1b968ff43ef6d03532bf3c9a"
+      },
+      "full_bytes_equal": true
+    },
+    {
+      "local_path": "handoff-materials/2026-10-05-b9-dev-hello/materials/check_saved_token.py",
+      "knowledge_path": "14-evidence/artifacts/2026-10-05-b9-dev-live/python/saved-token-check/materials/check_saved_token.py",
+      "local": {
+        "bytes": 5249,
+        "sha256": "cb6ca3084c0bf0a1493ae566b4337c3826c712a2a2f6181cc37ea094ece2ade7"
+      },
+      "knowledge": {
+        "bytes": 5249,
+        "sha256": "cb6ca3084c0bf0a1493ae566b4337c3826c712a2a2f6181cc37ea094ece2ade7"
+      },
+      "full_bytes_equal": true
+    },
+    {
+      "local_path": "handoff-materials/2026-10-05-b9-dev-hello/materials/confirmation_ja.md",
+      "knowledge_path": "14-evidence/artifacts/2026-10-05-b9-dev-live/python/saved-token-check/materials/confirmation_ja.md",
+      "local": {
+        "bytes": 6912,
+        "sha256": "1f7b654804787833efe9f8ac13bda96ca1d5cc4d0361c44f1881803ea8a5c874"
+      },
+      "knowledge": {
+        "bytes": 6912,
+        "sha256": "1f7b654804787833efe9f8ac13bda96ca1d5cc4d0361c44f1881803ea8a5c874"
+      },
+      "full_bytes_equal": true
+    },
+    {
+      "local_path": "handoff-materials/2026-10-05-b9-dev-hello/materials/result.json",
+      "knowledge_path": "14-evidence/artifacts/2026-10-05-b9-dev-live/python/saved-token-check/materials/result.json",
+      "local": {
+        "bytes": 986,
+        "sha256": "31af3cae137368eee5e5476728e221bba7ad59ec805d5ae60c87987022ead70e"
+      },
+      "knowledge": {
+        "bytes": 986,
+        "sha256": "31af3cae137368eee5e5476728e221bba7ad59ec805d5ae60c87987022ead70e"
+      },
+      "full_bytes_equal": true
+    },
+    {
+      "local_path": "handoff-materials/2026-10-05-python-windows-entry/materials/handoff_ja.md",
+      "knowledge_path": "14-evidence/artifacts/2026-10-05-python-windows-entry/handoff_ja.md",
+      "local": {
+        "bytes": 3736,
+        "sha256": "68379f4e962021bdfb920ec43c90cfb0df0e276599530105f6278850d4feadb8"
+      },
+      "knowledge": {
+        "bytes": 3736,
+        "sha256": "68379f4e962021bdfb920ec43c90cfb0df0e276599530105f6278850d4feadb8"
+      },
+      "full_bytes_equal": true
+    },
+    {
+      "local_path": "handoff-materials/2026-10-05-python-windows-entry/materials/windows-user-report_ja.md",
+      "knowledge_path": "14-evidence/artifacts/2026-10-05-python-windows-entry/windows-user-report_ja.md",
+      "local": {
+        "bytes": 2473,
+        "sha256": "21c3376f5384658fb9fcee2dbd7dfc57263fe9fcf76a996096ddbcf165a24fff"
+      },
+      "knowledge": {
+        "bytes": 2473,
+        "sha256": "21c3376f5384658fb9fcee2dbd7dfc57263fe9fcf76a996096ddbcf165a24fff"
+      },
+      "full_bytes_equal": true
+    }
+  ],
+  "inventory": [
+    {
+      "directory": "2026-10-04-b9-python-confirmation",
+      "category": "③",
+      "file_count": 5,
+      "bytes": 22679,
+      "files": [
+        {
+          "path": "MANIFEST_ja.md",
+          "bytes": 2964,
+          "sha256": "1312050cc71a000cc9fbd51f8815c3f0a0b7aa698413b5aafec7e197a77dc465"
+        },
+        {
+          "path": "materials/confirmation_ja.md",
+          "bytes": 13513,
+          "sha256": "837abaa6f061d1f86a37ebeabcc236e49ae6ed35646846c88bcae3b09c5bdbdc"
+        },
+        {
+          "path": "materials/current-observation.json",
+          "bytes": 2110,
+          "sha256": "dd4b9deb6d87d57db5f7bf92c1f04e97ab9157888d2f0707008d16f4c7db8517"
+        },
+        {
+          "path": "materials/observe_current.py",
+          "bytes": 3914,
+          "sha256": "547a21f24bc0a9e55366aceff7a9d46161a657f7ba905f82a7f628822fab10bd"
+        },
+        {
+          "path": "materials/targeted-checks.log",
+          "bytes": 178,
+          "sha256": "08157b2f166327643bf568ea31bda276c93fdd63f9e812d22e242172e4e30861"
+        }
+      ]
+    },
+    {
+      "directory": "2026-10-05-b9-python-work",
+      "category": "②",
+      "file_count": 4,
+      "bytes": 15424,
+      "files": [
+        {
+          "path": "MANIFEST_ja.md",
+          "bytes": 1037,
+          "sha256": "7a5d5675831b149a94a6ae7779ba7494777350431b46f9df97096fce8cd802bf"
+        },
+        {
+          "path": "materials/ci-identities.json",
+          "bytes": 2490,
+          "sha256": "19f8ca8c7051a6ec84e934c9aaf5b8b40d88359be0f09616471e88c8f9077fc2"
+        },
+        {
+          "path": "materials/confirmation_ja.md",
+          "bytes": 9086,
+          "sha256": "4aae3f73a8ace4980673c3f1b2fa6cb65d0399e87869da19730113a3bd975c97"
+        },
+        {
+          "path": "materials/verification_ja.md",
+          "bytes": 2811,
+          "sha256": "d35f2598fa7432dccb60a5de1ba4322aef196fdf4e9a75a0b60da87c8035ca94"
+        }
+      ]
+    },
+    {
+      "directory": "2026-10-05-b9-python-tooling",
+      "category": "②",
+      "file_count": 8,
+      "bytes": 28187,
+      "files": [
+        {
+          "path": "MANIFEST_ja.md",
+          "bytes": 1757,
+          "sha256": "57009a18b4cb5dfe8c4119a6ab4a42872183a347aa4e3b2946822e4aa3d525f8"
+        },
+        {
+          "path": "materials/candidate-manifest.json",
+          "bytes": 672,
+          "sha256": "10b8e5cc102df5f53b0726a41df8b3f110656b1760cc0918e902684661645121"
+        },
+        {
+          "path": "materials/ci-identities.json",
+          "bytes": 2617,
+          "sha256": "da521ade3080fb91e78db776d402344e12f9d8f925d9b6cef432e991fe953375"
+        },
+        {
+          "path": "materials/confirmation_ja.md",
+          "bytes": 12183,
+          "sha256": "b288e11536510ad8efb74ec77580b797bff5c8c1ec50fff074ef3fd1c21fe082"
+        },
+        {
+          "path": "materials/fixture-comparison.json",
+          "bytes": 4051,
+          "sha256": "7b05452e51fe71a8858a6ec1a50d402f23260f34a671c9c609a0ecd35e511aa5"
+        },
+        {
+          "path": "materials/tooling-input-identities.json",
+          "bytes": 929,
+          "sha256": "c5fc3ecd7ee79064d467dd931b8f96afa65b1719e47c969217715da533af0606"
+        },
+        {
+          "path": "materials/verification_ja.md",
+          "bytes": 4333,
+          "sha256": "a9aa99b28c699af62fe6f180e131277a37df050307f067ba86169100b4c63d4e"
+        },
+        {
+          "path": "materials/wirescope-comparison.json",
+          "bytes": 1645,
+          "sha256": "ade14ec1d2e00d44133e9c1dcf34b46740919ca3d2f5c3f1b2deb1c23c139897"
+        }
+      ]
+    },
+    {
+      "directory": "2026-10-05-b9-python-release",
+      "category": "①",
+      "file_count": 15,
+      "bytes": 28841,
+      "files": [
+        {
+          "path": "MANIFEST_ja.md",
+          "bytes": 2816,
+          "sha256": "c6b6c772c51e4d3709c93468474447e69f4b4233cec458750aa4cc0724f88ab3"
+        },
+        {
+          "path": "materials/authorization-preflight_ja.md",
+          "bytes": 1699,
+          "sha256": "95bdcb1154a249e195c8cf83c6a6fbde1589156f786df45714acf6ab5e8282c9"
+        },
+        {
+          "path": "materials/preflight.json",
+          "bytes": 2071,
+          "sha256": "866b3fc6e6cffff15e79e7b4fb396c056dc047f54e377b3f3e286c5995a8e0ad"
+        },
+        {
+          "path": "materials/pypi-entry-check.json",
+          "bytes": 680,
+          "sha256": "e6967a42d29ae14d6e59b9398d50c48ca4aa3b2155c0ceedd540de2d43feff21"
+        },
+        {
+          "path": "materials/pypi-entry-check.pyproject.toml",
+          "bytes": 530,
+          "sha256": "a68bf648b1cea7900bfeb8a73f7e49ff43e18502fa105c167416cedb45f241b4"
+        },
+        {
+          "path": "materials/pypi-entry-check.uv.lock",
+          "bytes": 1048,
+          "sha256": "f3a4f158c0c0e600a9e7df91ac368dd19cdde199cc75c8d943d6c46af3df6145"
+        },
+        {
+          "path": "materials/pypi-verification.json",
+          "bytes": 1176,
+          "sha256": "b9b6e3ae276c4759b69c0583af51df84caf408b7d3367c0a06403a7987b3719a"
+        },
+        {
+          "path": "materials/release-manifest.json",
+          "bytes": 681,
+          "sha256": "da9887d12e57d929a93531bbcffc7795895aa0bbc7eef1792e2d03cb4979e838"
+        },
+        {
+          "path": "materials/release-notes_ja.md",
+          "bytes": 1674,
+          "sha256": "33e3795ecf661a64e9f287f8009a9b644d0efed0d1976b8f049b1ecc96288ed7"
+        },
+        {
+          "path": "materials/release-return_ja.md",
+          "bytes": 7810,
+          "sha256": "863af82f8b6d3487f9956f1ad693dfe11988cfccacc2f5595f5d7548209028b1"
+        },
+        {
+          "path": "materials/release-verification.json",
+          "bytes": 1469,
+          "sha256": "9c39a550838f91e5fce424c2e8d582f1a8c2e0e6776b5825297460345f08485e"
+        },
+        {
+          "path": "materials/tag-ci-manifest.json",
+          "bytes": 672,
+          "sha256": "10b8e5cc102df5f53b0726a41df8b3f110656b1760cc0918e902684661645121"
+        },
+        {
+          "path": "materials/tag-ci-verification.json",
+          "bytes": 631,
+          "sha256": "fffe0292e8485484d4edf120cfbd3e7d6558fdb4edc0b121bfeabdf22416ad83"
+        },
+        {
+          "path": "materials/testpypi-verification.json",
+          "bytes": 1200,
+          "sha256": "3c563a57ce61d1e0c456d89ca8235b8fdc9aa427f9842bca730b85b13eaaa05f"
+        },
+        {
+          "path": "materials/verify_publication.py",
+          "bytes": 4684,
+          "sha256": "9ede7a96d9a7525106987916e6f83977878a72f26ff418e0474772f672decfe3"
+        }
+      ]
+    },
+    {
+      "directory": "2026-10-05-b9-python-live",
+      "category": "③",
+      "file_count": 6,
+      "bytes": 33313,
+      "files": [
+        {
+          "path": "MANIFEST_ja.md",
+          "bytes": 1800,
+          "sha256": "cf0221ea8164f7706c95db43950a33b1f5c0f0edf6e00a026790dc4ba7889bf8"
+        },
+        {
+          "path": "materials/confirmation_ja.md",
+          "bytes": 7049,
+          "sha256": "35dee1710d4b2f5d5672dbdb0cda7f6ac0e8cbe2c609267c913e3d9e347c293b"
+        },
+        {
+          "path": "materials/human-wirescope-observation_ja.md",
+          "bytes": 2909,
+          "sha256": "d26ee1b173146b89c5e7f8c0317ed66ad1b6a68c9e2732cf586fe6817f346a29"
+        },
+        {
+          "path": "materials/observer_snapshot.json",
+          "bytes": 9513,
+          "sha256": "ef4d0bdf2ed8fbb3919b1a8cfadfcc79a7c749517a19efd669befe4d84c042fe"
+        },
+        {
+          "path": "materials/result.json",
+          "bytes": 2492,
+          "sha256": "53f8b414f0a45df9932c3542d7e720faaebd12581e46aec1eee94decdb4767ea"
+        },
+        {
+          "path": "materials/run_segment2.py",
+          "bytes": 9550,
+          "sha256": "50d7c0d46186a2f534ff79ceb6e37578d876ae6e8b646a3789a58a28e9c7fd83"
+        }
+      ]
+    },
+    {
+      "directory": "2026-10-05-b9-dev-hello",
+      "category": "③",
+      "file_count": 4,
+      "bytes": 14354,
+      "files": [
+        {
+          "path": "MANIFEST_ja.md",
+          "bytes": 1207,
+          "sha256": "b6cd7fda93d4e881d6ba694fed1d84abf5c874cf1b968ff43ef6d03532bf3c9a"
+        },
+        {
+          "path": "materials/check_saved_token.py",
+          "bytes": 5249,
+          "sha256": "cb6ca3084c0bf0a1493ae566b4337c3826c712a2a2f6181cc37ea094ece2ade7"
+        },
+        {
+          "path": "materials/confirmation_ja.md",
+          "bytes": 6912,
+          "sha256": "1f7b654804787833efe9f8ac13bda96ca1d5cc4d0361c44f1881803ea8a5c874"
+        },
+        {
+          "path": "materials/result.json",
+          "bytes": 986,
+          "sha256": "31af3cae137368eee5e5476728e221bba7ad59ec805d5ae60c87987022ead70e"
+        }
+      ]
+    },
+    {
+      "directory": "2026-10-05-python-windows-entry",
+      "category": "③",
+      "file_count": 3,
+      "bytes": 8072,
+      "files": [
+        {
+          "path": "MANIFEST_ja.md",
+          "bytes": 1863,
+          "sha256": "8958b97b4012486e1398d1a36ab77b5634ae279a01128541632d669bc999b274"
+        },
+        {
+          "path": "materials/handoff_ja.md",
+          "bytes": 3736,
+          "sha256": "68379f4e962021bdfb920ec43c90cfb0df0e276599530105f6278850d4feadb8"
+        },
+        {
+          "path": "materials/windows-user-report_ja.md",
+          "bytes": 2473,
+          "sha256": "21c3376f5384658fb9fcee2dbd7dfc57263fe9fcf76a996096ddbcf165a24fff"
+        }
+      ]
+    }
+  ],
+  "mutations": {
+    "target_directories": false,
+    "deletions": false
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "result": "PASS",
+  "source_before": "c7505c887c5c71a942d9f1f190b32a5da00544bc",
+  "source_after": "98e42081ec89e9d94742ce4a019750d84bd18f76",
+  "entries": [
+    "LICENSE",
+    "NOTICE",
+    "assets/index-Cyf0-Z5r.css",
+    "assets/index-l-OCrrUC.js",
+    "assets/index-l-OCrrUC.js.map",
+    "index.html"
+  ],
+  "zip_sha256": "da3da0b6cf4d05265bc0c11abaa4913208c7cfc3600b0c3e78c93a356fc431ad"
+}

@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "platform": "Linux",
+  "python": "3.13.13",
+  "uv": "uv 0.12.19 (x86_64-unknown-linux-gnu)",
+  "registry": "https://pypi.org/simple",
+  "requirement": "minecraft-remote-api==2320.0.0b9",
+  "import_stdout": [
+    "2320.0.0b9",
+    "Minecraft"
+  ],
+  "server_connection": false,
+  "commands": [
+    "uv init --python 3.13",
+    "uv add --default-index https://pypi.org/simple --no-sources minecraft-remote-api==2320.0.0b9",
+    "uv run python -c \"from mc_remote import Minecraft; from importlib.metadata import version; print(version('minecraft-remote-api')); print(Minecraft.__name__)\""
+  ],
+  "installed_origin_verified": "fresh uv venv site-packages"
+}

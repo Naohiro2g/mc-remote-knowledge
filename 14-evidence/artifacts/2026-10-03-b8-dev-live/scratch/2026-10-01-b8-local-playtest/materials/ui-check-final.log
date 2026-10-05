@@ -1,0 +1,5 @@
+Page: Scratch 3.0 GUI
+locator.click: Timeout 10000ms exceeded.
+Call log:
+[2m  - waiting for getByText('McRemote', { exact: true }).first()[22m
+

@@ -1,0 +1,318 @@
+name: Build McRemote OCI Images
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: Existing GitHub release tag to build images for
+        required: true
+        type: string
+
+permissions:
+  actions: read # to collect the pinned common tooling artifact
+  contents: write # to attach the image identity record to the release
+  packages: write
+
+concurrency:
+  group: mc-remote-images-${{ github.event.release.tag_name || inputs.release_tag }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build and publish
+    runs-on: ubuntu-latest
+    # npm package releases (from publish.yml, e.g. v15.1.0) and McRemote releases
+    # (e.g. v2301.0.0b7) are two unrelated tag series on this repo -- see
+    # 10-protocol/versioning-design_ja.md in the knowledge repo for why McRemote
+    # deliberately uses a 4-digit-or-larger major. Only the latter carries a
+    # matching Scratch/Bridge image; skip the job rather than build one for an
+    # npm-only release. workflow_dispatch always runs: a human chose the tag.
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      startsWith(github.event.release.tag_name, 'v1') == false
+    steps:
+      # The release tag is the single collection point for this build: the resulting
+      # OCI images and the identity record are attached to this same release, the way
+      # the McRemote plugin JAR already is. `github.sha` is not used here because a
+      # manual rerun (workflow_dispatch) would resolve it against the ref the run was
+      # started from, not against the release tag's commit.
+      - name: Resolve release tag and commit
+        id: release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ github.event.release.tag_name || inputs.release_tag }}
+        run: |
+          test -n "$TAG"
+          # A workflow_dispatch rerun must target an actual published release, not any
+          # ref -- that gap is exactly how an unmerged branch commit ended up pushed to
+          # GHCR and pinned by a production preset (DECISIONS 2026-09-06-02).
+          gh api "repos/${{ github.repository }}/releases/tags/$TAG" > /dev/null
+          COMMIT="$(gh api "repos/${{ github.repository }}/commits/$TAG" --jq .sha)"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "commit=$COMMIT" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
+        with:
+          ref: ${{ steps.release.outputs.commit }}
+          fetch-depth: 0 # the baseline commit must be diffable against this one
+
+      # The newest earlier release that carries a manifest is the baseline this run
+      # compares against. Absent one (the first manifest-bearing release), every
+      # artifact is built. This runs after checkout because checkout cleans the
+      # workspace, which would delete a directory written before it.
+      - name: Resolve the baseline release manifest
+        id: baseline
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ steps.release.outputs.tag }}
+        run: |
+          mkdir -p baseline
+          for candidate in $(gh release list --repo "${{ github.repository }}" --limit 20 \
+              --json tagName,createdAt -q 'sort_by(.createdAt) | reverse | .[].tagName'); do
+            if [ "$candidate" = "$TAG" ]; then
+              continue
+            fi
+            if gh release download "$candidate" --repo "${{ github.repository }}" \
+                --pattern manifest.json --dir baseline 2>/dev/null; then
+              echo "tag=$candidate" >> "$GITHUB_OUTPUT"
+              echo "commit=$(jq -r .source_commit baseline/manifest.json)" >> "$GITHUB_OUTPUT"
+              echo "baseline release: $candidate"
+              exit 0
+            fi
+          done
+          echo "no baseline release with a manifest; building every artifact"
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6
+        with:
+          cache: npm
+          node-version-file: .nvmrc
+
+      - name: Set mc-remote Scratch release title
+        if: github.event_name == 'release'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ steps.release.outputs.tag }}
+        run: |
+          node --test scripts/mcremote-scratch-release-title.test.mjs
+          TITLE="$(node scripts/mcremote-scratch-release-title.mjs "$TAG")"
+          gh release edit "$TAG" --repo "${{ github.repository }}" --title "$TITLE"
+
+      - uses: ./.github/actions/install-dependencies
+
+      # Workspace packages consume each other's compiled dist in this declared order.
+      - name: Build workspace packages
+        run: npm run build
+
+      - name: Verify image inputs
+        run: |
+          test -f packages/scratch-gui/build/index.html
+          test -f packages/scratch-gui/build/mc-remote-product-config.json
+          test -f packages/scratch-gui/build/mc-remote-runtime-config.json
+          test "$(jq -r .schema_version packages/scratch-gui/build/mc-remote-product-config.json)" = "1"
+          test "$(jq -r .schema_version packages/scratch-gui/build/mc-remote-runtime-config.json)" = "1"
+          test "$(jq -r .connection_enabled packages/scratch-gui/build/mc-remote-runtime-config.json)" = "false"
+
+      - name: Acquire pinned WireScope and Bridge artifacts
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm run tooling:artifacts
+
+      # The contract directory is plain source with no build step, so a candidate
+      # consumer keeps reading it straight from the commit via `git archive` or the
+      # Git Data API (DECISIONS 2026-09-06-02) -- that path is untouched. This tarball
+      # is the same bytes offered as a release asset for the formal-stage manifest.
+      # Fixed entry order, timestamps, ownership and permissions, and a gzip header
+      # without its own timestamp, so identical contract bytes hash the same however
+      # and wherever the archive is produced. Without this the checkout time and the
+      # building machine's umask leak into the archive: the manifest sha256 churns for
+      # content that never changed, and nobody can rebuild the archive from the commit
+      # to check it against the manifest.
+      - name: Archive Scratch contract directory
+        run: |
+          tar --sort=name --mtime='UTC 1980-01-01' --owner=0 --group=0 --numeric-owner \
+            --mode='a+rX,u+w,go-w' \
+            -cf - -C packages/scratch-gui contracts | gzip -n > contracts.tar.gz
+          test -s contracts.tar.gz
+
+      # Whether an image needs building is decided by whether its own sources changed
+      # since the baseline release, not by the fact that a release happened
+      # (DECISIONS 2026-09-07-01). Unchanged sources reuse the baseline's exact image
+      # digest, which also keeps one identity across releases instead of minting a new
+      # digest for identical content. This is a criterion, not a ban on rebuilding: with
+      # no baseline, or any doubt about the paths below, everything builds.
+      #
+      # The path sets come from the workspace dependency graph in package.json:
+      # scratch-gui depends on scratch-paint/render/storage/svg-renderer/vm, and
+      # scratch-vm pulls render/storage/svg-renderer, so a change anywhere in that set
+      # can reach the Scratch bundle. package-lock.json and .nvmrc pin its inputs.
+      # Bridge is already built by the common owner and pinned in tooling-lock.json.
+      - name: Decide which images need a rebuild
+        id: rebuild
+        env:
+          BASELINE_COMMIT: ${{ steps.baseline.outputs.commit }}
+          RELEASE_COMMIT: ${{ steps.release.outputs.commit }}
+        run: |
+          if [ -n "$BASELINE_COMMIT" ] && ! git cat-file -e "${BASELINE_COMMIT}^{commit}" 2>/dev/null; then
+            echo "baseline commit ${BASELINE_COMMIT} is not in this repository; building every artifact"
+            BASELINE_COMMIT=""
+          fi
+          decide() {
+            name="$1"
+            shift
+            if [ -z "$BASELINE_COMMIT" ]; then
+              verdict=true
+              reason="no usable baseline"
+            elif git diff --quiet "$BASELINE_COMMIT" "$RELEASE_COMMIT" -- "$@"; then
+              verdict=false
+              reason="unchanged since ${BASELINE_COMMIT}"
+            else
+              verdict=true
+              reason="changed since ${BASELINE_COMMIT}"
+            fi
+            echo "$name=$verdict" >> "$GITHUB_OUTPUT"
+            echo "$name: build=$verdict ($reason)"
+          }
+          decide scratch \
+            packages/scratch-gui packages/scratch-vm packages/scratch-render \
+            packages/scratch-svg-renderer packages/scratch-storage packages/scratch-paint \
+            package-lock.json .nvmrc
+
+      - uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130 # v3
+      - uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3
+
+      # Images are tagged both by commit (stable, always-correct identity) and by the
+      # release tag (the human-facing name a collector already knows, matching how the
+      # release notes and the McRemote plugin JAR are found).
+      - name: Build and push Scratch image
+        id: scratch
+        if: steps.rebuild.outputs.scratch == 'true'
+        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6
+        with:
+          context: packages/scratch-gui
+          file: packages/scratch-gui/Dockerfile.mc-remote
+          platforms: linux/amd64,linux/arm64
+          push: true
+          provenance: mode=max
+          sbom: true
+          tags: |
+            ghcr.io/naohiro2g/mc-remote-scratch:sha-${{ steps.release.outputs.commit }}
+            ghcr.io/naohiro2g/mc-remote-scratch:${{ steps.release.outputs.tag }}
+          build-args: |
+            SOURCE_REVISION=${{ steps.release.outputs.commit }}
+            RELEASE_VERSION=${{ steps.release.outputs.tag }}
+
+      - name: Publish pinned Bridge image
+        id: bridge
+        env:
+          REGISTRY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REGISTRY_USER: ${{ github.actor }}
+          RELEASE_TAG: ${{ steps.release.outputs.tag }}
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y skopeo
+          printf '%s' "$REGISTRY_TOKEN" | skopeo login --username "$REGISTRY_USER" --password-stdin ghcr.io
+          SOURCE="$(jq -r .source.commit mc-remote/tooling-lock.json)"
+          EXPECTED="$(jq -r .artifacts.bridge_digest mc-remote/tooling-lock.json)"
+          for tag in "sha-$SOURCE" "$RELEASE_TAG"; do
+            skopeo copy --all --preserve-digests --digestfile bridge-digest.txt \
+              oci-archive:mc-remote/tooling/artifacts/bridge.oci.tar \
+              "docker://ghcr.io/naohiro2g/mc-remote-bridge:$tag"
+            test "$(cat bridge-digest.txt)" = "$EXPECTED"
+          done
+          echo "digest=$EXPECTED" >> "$GITHUB_OUTPUT"
+
+      # A reused image is not rebuilt; the baseline digest is given this release's tag
+      # as well, so a collector can pull any release's images by that release's tag and
+      # not only by digest. This is registry metadata, not a build.
+      - name: Tag reused images for this release
+        if: steps.rebuild.outputs.scratch != 'true'
+        env:
+          TAG: ${{ steps.release.outputs.tag }}
+          REBUILT_SCRATCH: ${{ steps.rebuild.outputs.scratch }}
+        run: |
+          retag() {
+            role="$1"
+            locator="$2"
+            digest="$(jq -r --arg role "$role" \
+              '.artifacts[] | select(.role == $role) | .digest' baseline/manifest.json)"
+            test -n "$digest"
+            test "$digest" != "null"
+            docker buildx imagetools create --tag "${locator}:${TAG}" "${locator}@${digest}"
+          }
+          if [ "$REBUILT_SCRATCH" != "true" ]; then
+            retag scratch ghcr.io/naohiro2g/mc-remote-scratch
+          fi
+
+      # One manifest, one collection step (DECISIONS 2026-09-06-02/03/04): a collector
+      # reads this single file off the release instead of cross-referencing GHCR, the
+      # release notes, and rebuilt-from-source bytes to work out what belongs to this
+      # release. `kind` is always explicit (oci: locator+digest; https-file: file+
+      # sha256) -- no implicit default, so an unrecognized shape fails closed instead
+      # of being silently misread. scratch/bridge stay OCI; only the shape is shared.
+      # schema/schema_version let a future shape change fail closed the same way.
+      - name: Build release manifest
+        env:
+          RELEASE_TAG: ${{ steps.release.outputs.tag }}
+          RELEASE_COMMIT: ${{ steps.release.outputs.commit }}
+          SCRATCH_DIGEST: ${{ steps.scratch.outputs.digest }}
+          BRIDGE_DIGEST: ${{ steps.bridge.outputs.digest }}
+        run: |
+          wirescope_zip_sha256="$(sha256sum mc-remote/tooling/artifacts/wirescope-app.zip | cut -d' ' -f1)"
+          wirescope_manifest_sha256="$(sha256sum mc-remote/tooling/artifacts/wirescope-app.manifest.json | cut -d' ' -f1)"
+          contracts_sha256="$(sha256sum contracts.tar.gz | cut -d' ' -f1)"
+          # A skipped build leaves its digest output empty; that role carries the
+          # baseline digest forward instead.
+          baseline_digest() {
+            jq -r --arg role "$1" \
+              '.artifacts[] | select(.role == $role) | .digest' baseline/manifest.json
+          }
+          scratch_digest="${SCRATCH_DIGEST:-$(baseline_digest scratch)}"
+          bridge_digest="$BRIDGE_DIGEST"
+          test -n "$scratch_digest" && test "$scratch_digest" != "null"
+          test -n "$bridge_digest" && test "$bridge_digest" != "null"
+          jq -n \
+            --arg release_tag "$RELEASE_TAG" \
+            --arg source_commit "$RELEASE_COMMIT" \
+            --arg scratch_locator "ghcr.io/naohiro2g/mc-remote-scratch" \
+            --arg scratch_digest "$scratch_digest" \
+            --arg bridge_locator "ghcr.io/naohiro2g/mc-remote-bridge" \
+            --arg bridge_digest "$bridge_digest" \
+            --arg wirescope_sha256 "$wirescope_zip_sha256" \
+            --arg wirescope_manifest_sha256 "$wirescope_manifest_sha256" \
+            --arg contracts_sha256 "$contracts_sha256" \
+            '{
+              schema: "mc-remote.release-manifest",
+              schema_version: 1,
+              release_tag: $release_tag,
+              source_commit: $source_commit,
+              artifacts: [
+                {role: "scratch", kind: "oci", locator: $scratch_locator, digest: $scratch_digest},
+                {role: "bridge", kind: "oci", locator: $bridge_locator, digest: $bridge_digest},
+                {role: "wirescope", kind: "https-file", file: "wirescope-app.zip", sha256: $wirescope_sha256},
+                {role: "wirescope-manifest", kind: "https-file", file: "wirescope-app.manifest.json", sha256: $wirescope_manifest_sha256},
+                {role: "contracts", kind: "https-file", file: "contracts.tar.gz", sha256: $contracts_sha256}
+              ]
+            }' \
+            > manifest.json
+
+      # Release assets, not workflow-run artifacts: workflow-run artifacts expire
+      # (90 days) and aren't reachable from the release page. The release is meant to
+      # be the one place a collector looks, the same way it already is for the
+      # McRemote plugin JAR.
+      - name: Attach manifest and files to the release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release upload "${{ steps.release.outputs.tag }}" \
+            manifest.json \
+            contracts.tar.gz \
+            mc-remote/tooling/artifacts/wirescope-app.zip \
+            mc-remote/tooling/artifacts/wirescope-app.manifest.json \
+            --repo "${{ github.repository }}" \
+            --clobber

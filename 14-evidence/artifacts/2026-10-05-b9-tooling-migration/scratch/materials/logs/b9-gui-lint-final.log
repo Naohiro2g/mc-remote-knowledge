@@ -1,0 +1,29 @@
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-gui/src/lib/mcremote-wirescope-source.js
+   45:56  warning  Expected parentheses around arrow function argument  arrow-parens
+  214:74  warning  Expected parentheses around arrow function argument  arrow-parens
+  257:38  warning  Expected parentheses around arrow function argument  arrow-parens
+  359:25  warning  Expected parentheses around arrow function argument  arrow-parens
+  473:43  warning  Expected parentheses around arrow function argument  arrow-parens
+  557:25  warning  Expected parentheses around arrow function argument  arrow-parens
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-gui/test/unit/util/mcremote-wirescope-source.test.js
+   10:1   warning  This line has a length of 129. Maximum allowed is 120  @stylistic/max-len
+   94:13  warning  Expected parentheses around arrow function argument    arrow-parens
+  105:60  warning  Expected parentheses around arrow function argument    arrow-parens
+  492:28  warning  Expected parentheses around arrow function argument    arrow-parens
+  492:72  warning  Expected parentheses around arrow function argument    arrow-parens
+  497:65  warning  Expected parentheses around arrow function argument    arrow-parens
+  498:63  warning  Expected parentheses around arrow function argument    arrow-parens
+  562:66  warning  Expected parentheses around arrow function argument    arrow-parens
+  573:47  warning  Expected parentheses around arrow function argument    arrow-parens
+  592:77  warning  Expected parentheses around arrow function argument    arrow-parens
+  593:72  warning  Expected parentheses around arrow function argument    arrow-parens
+  792:39  warning  Expected parentheses around arrow function argument    arrow-parens
+  818:38  warning  Expected parentheses around arrow function argument    arrow-parens
+  839:43  warning  Expected parentheses around arrow function argument    arrow-parens
+  886:39  warning  Expected parentheses around arrow function argument    arrow-parens
+
+✖ 21 problems (0 errors, 21 warnings)
+  0 errors and 20 warnings potentially fixable with the `--fix` option.
+

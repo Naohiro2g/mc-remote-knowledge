@@ -1,0 +1,22 @@
+{
+  "knowledge_contract_commit": "099c40b0c312694712653885200f3114ea4bed33",
+  "files": [
+    {
+      "source": "handoff-materials/2026-10-03-b8-publication/materials/contracts.tar.gz",
+      "bytes": 1908,
+      "sha256": "48948ba47d55409f02a8ff8e0d44021b07859e11ffa5ca0f8598e6ef06082390",
+      "release_asset_id": 607558762,
+      "release_url": "https://github.com/Naohiro2g/scratch-editor/releases/download/v2320.0.0b8/contracts.tar.gz",
+      "equal": true
+    },
+    {
+      "source": "handoff-materials/2026-10-03-b8-publication/materials/wirescope-app.zip",
+      "bytes": 83746,
+      "sha256": "4cb349894b71d61d7ca143d8362a5b79deb1810e1d7a9e31ad30e29bfe370a07",
+      "release_asset_id": 607558760,
+      "release_url": "https://github.com/Naohiro2g/scratch-editor/releases/download/v2320.0.0b8/wirescope-app.zip",
+      "equal": true
+    }
+  ],
+  "passed": true
+}

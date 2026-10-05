@@ -1,0 +1,11 @@
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-gui/test/unit/util/mcremote-runtime-config.test.js
+    3:22  warning  Expected parentheses around arrow function argument  arrow-parens
+   15:22  warning  Expected parentheses around arrow function argument  arrow-parens
+   22:18  warning  Expected parentheses around arrow function argument  arrow-parens
+   25:37  warning  Expected parentheses around arrow function argument  arrow-parens
+  134:41  warning  Expected parentheses around arrow function argument  arrow-parens
+
+✖ 5 problems (0 errors, 5 warnings)
+  0 errors and 5 warnings potentially fixable with the `--fix` option.
+

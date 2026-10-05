@@ -1,0 +1,74 @@
+{
+  "knowledge_commit": "099c40b0c312694712653885200f3114ea4bed33",
+  "instruction": "00-hub/b9-gate-close-instructions_ja.md",
+  "requested_directory_count": 7,
+  "requested_counts": {
+    "1": 1,
+    "2": 1,
+    "3": 5
+  },
+  "new_close_material_classification": 1,
+  "classification_only": true,
+  "directories_deleted": [],
+  "directories": [
+    {
+      "directory": "2026-10-04-b9-mcremote-confirmation",
+      "classification": 3,
+      "reason": "Static initial report superseded by the final candidate; findings recorded in B9 gate, old source and tests retained in Git. No independent live observation.",
+      "canonical_reference": "00-hub/release-gate-notes_ja.md / B9 confirmation return; McRemote 14cd3b733169c246215d39af122688cb2de525f1"
+    },
+    {
+      "directory": "2026-10-05-b9-mcremote-candidate",
+      "classification": 2,
+      "reason": "Local rc1 JAR reproducibility and fixture provenance comparison baseline.",
+      "use": "Compare file0644/dir0755, entry bytes/metadata/order and whole JAR for local umask002/022 and rc1 CI.",
+      "discard_when": "The rc1 exact source passes the comparisons and the result plus successor baseline has landed, or coordinator explicitly ends the use.",
+      "reference_identity": "5cb33ebad4bf2c5e36c3433b0f70fe6070915b00 / JAR 4feb90dbdba8550cd16800cc3d384e42fed16a5c5e20faa489a0381ad2cda58e / CI37220994120"
+    },
+    {
+      "directory": "2026-10-05-b9-mcremote-release",
+      "classification": 1,
+      "reason": "High-cost publication-time observations and candidate/public byte verification.",
+      "proposed_destination": "14-evidence/artifacts/2026-10-05-b9-mcremote-release/",
+      "files": 21,
+      "delete_after": "Coordinator confirms full file transfer by bytes and SHA-256."
+    },
+    {
+      "directory": "2026-10-05-tooling-repo-name",
+      "classification": 3,
+      "reason": "Decision and rationale landed and were confirmed; migration use completed.",
+      "canonical_reference": "00-hub/DECISIONS_ja.md / 2026-10-05-02; original landing 945807b4f0b13e9f0a3aa3b5fc02127db01f119a"
+    },
+    {
+      "directory": "2026-10-05-b9-dev-restart",
+      "classification": 3,
+      "reason": "All five files transferred to formal evidence; three exact, two match only the documented home path sanitization.",
+      "canonical_reference": "14-evidence/artifacts/2026-10-05-b9-dev-live/mcremote/segment-0/"
+    },
+    {
+      "directory": "2026-10-05-b9-mcremote-live-auto",
+      "classification": 3,
+      "reason": "All fourteen evidence files transferred byte-for-byte, including initial expired attempt; excluded pycache is reproducible.",
+      "canonical_reference": "14-evidence/artifacts/2026-10-05-b9-dev-live/mcremote/segment-1/"
+    },
+    {
+      "directory": "2026-10-03-b8-mcremote-release",
+      "classification": 3,
+      "reason": "B8 permission-bit comparison use completed by B9 fixed permissions and reproducibility. B8 stop/resume/difference identities remain in gate notes and public assets; future baseline is B9 candidate.",
+      "canonical_reference": "00-hub/release-gate-notes_ja.md / B8 146 external_attr differences and accepted fdffaf0c6e8bf0928ef9872c519ec0ad0c609547cd087040bc2d44daf14d80c6 / published B8 tag"
+    },
+    {
+      "directory": "2026-10-05-b9-mcremote-close",
+      "classification": 1,
+      "reason": "Close classification return and exact full-transfer verification receipt.",
+      "proposed_destination": "14-evidence/artifacts/2026-10-05-b9-mcremote-close/",
+      "files": 6,
+      "exclude_transfer": [
+        "materials/evidence-transfer-files.json",
+        "materials/evidence-transfer-files_ja.md"
+      ],
+      "excluded_reason": "Transport inventory metadata; knowledge authors its formal inventory.",
+      "delete_after": "Coordinator confirms full file transfer by bytes and SHA-256."
+    }
+  ]
+}

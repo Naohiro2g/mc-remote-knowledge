@@ -1,0 +1,14 @@
+{
+  "schema": "mc-remote.release-manifest",
+  "schema_version": 1,
+  "release_tag": "v1.21.11-2320.0.0b9",
+  "source_commit": "5cb33ebad4bf2c5e36c3433b0f70fe6070915b00",
+  "artifacts": [
+    {
+      "role": "jar",
+      "kind": "https-file",
+      "file": "mc-remote-1.21.11-2320.0.0b9.jar",
+      "sha256": "4feb90dbdba8550cd16800cc3d384e42fed16a5c5e20faa489a0381ad2cda58e"
+    }
+  ]
+}

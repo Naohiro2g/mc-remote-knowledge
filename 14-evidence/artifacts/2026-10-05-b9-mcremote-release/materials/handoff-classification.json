@@ -1,0 +1,57 @@
+{
+  "authorization_commit": "d6d59d91032230a959b7288807179e1bd8100041",
+  "scope": "all seven current handoff directories",
+  "formal_live_record_content_checked": true,
+  "formal_live_artifacts_byte_transfer_checked": false,
+  "directories": [
+    {
+      "directory": "handoff-materials/2026-10-03-b8-mcremote-release",
+      "classification": 2,
+      "recipient": "B9 knowledge gate coordinator (Claude Code)",
+      "reference_identity": "knowledge 2a8c3eae4e489e67f044111b0d1e6cdd22ead86a / B8 JAR permissions comparison; B9 source 5cb33ebad4bf2c5e36c3433b0f70fe6070915b00",
+      "next_action": "Use for B9 release close provenance; compare preserved source materials with formal records and INVENTORY, then issue the receipt/classification for local cleanup. No deletion in this task."
+    },
+    {
+      "directory": "handoff-materials/2026-10-04-b9-mcremote-confirmation",
+      "classification": 2,
+      "recipient": "B9 knowledge gate coordinator (Claude Code)",
+      "reference_identity": "knowledge 71814e4a478c4e7095e732d4ef6c8dafb41de1f3 / McRemote main 14cd3b733169c246215d39af122688cb2de525f1 / B9 initial report",
+      "next_action": "Use for B9 release close provenance; compare preserved source materials with formal records and INVENTORY, then issue the receipt/classification for local cleanup. No deletion in this task."
+    },
+    {
+      "directory": "handoff-materials/2026-10-05-b9-dev-restart",
+      "classification": 2,
+      "recipient": "B9 knowledge gate coordinator (Claude Code)",
+      "reference_identity": "knowledge d6d59d91032230a959b7288807179e1bd8100041 / 14-evidence/records/2026-10-05-b9-dev-live_ja.md / segment 0",
+      "next_action": "Use for B9 release close provenance; compare preserved source materials with formal records and INVENTORY, then issue the receipt/classification for local cleanup. No deletion in this task."
+    },
+    {
+      "directory": "handoff-materials/2026-10-05-b9-mcremote-candidate",
+      "classification": 2,
+      "recipient": "B9 knowledge gate coordinator (Claude Code)",
+      "reference_identity": "knowledge 900f6f4b8027d265a62ba7f139d4f3b1bbe78100 / CI 37220994120 / source 5cb33ebad4bf2c5e36c3433b0f70fe6070915b00 / JAR 4feb90dbdba8550cd16800cc3d384e42fed16a5c5e20faa489a0381ad2cda58e",
+      "next_action": "Use for B9 release close provenance; compare preserved source materials with formal records and INVENTORY, then issue the receipt/classification for local cleanup. No deletion in this task."
+    },
+    {
+      "directory": "handoff-materials/2026-10-05-b9-mcremote-live-auto",
+      "classification": 2,
+      "recipient": "B9 knowledge gate coordinator (Claude Code)",
+      "reference_identity": "knowledge d6d59d91032230a959b7288807179e1bd8100041 / 14-evidence/records/2026-10-05-b9-dev-live_ja.md / segment 1 / transcript dc8b5f5c9260c6850f7bc11912dfdc0a27361608db015d8b2bf81ce45aa53b76",
+      "next_action": "Use for B9 release close provenance; compare preserved source materials with formal records and INVENTORY, then issue the receipt/classification for local cleanup. No deletion in this task."
+    },
+    {
+      "directory": "handoff-materials/2026-10-05-b9-mcremote-release",
+      "classification": 2,
+      "recipient": "B9 knowledge gate coordinator (Claude Code)",
+      "reference_identity": "knowledge d6d59d91032230a959b7288807179e1bd8100041 / b9-integrated-artifact-set-1 / v1.21.11-2320.0.0b9 / tag CI 37268144239",
+      "next_action": "Use for B9 release close provenance; compare preserved source materials with formal records and INVENTORY, then issue the receipt/classification for local cleanup. No deletion in this task."
+    },
+    {
+      "directory": "handoff-materials/2026-10-05-tooling-repo-name",
+      "classification": 2,
+      "recipient": "B9 knowledge gate coordinator (Claude Code)",
+      "reference_identity": "knowledge 945807b4f0b13e9f0a3aa3b5fc02127db01f119a / DEC 2026-10-05-02",
+      "next_action": "Use for B9 release close provenance; compare preserved source materials with formal records and INVENTORY, then issue the receipt/classification for local cleanup. No deletion in this task."
+    }
+  ]
+}

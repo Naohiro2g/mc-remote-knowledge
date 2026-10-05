@@ -26,3 +26,4 @@
 | `2026-10-03-b8-dev-live` | `live-auto` + `live-human` | b8 exact set `b8-integrated-artifact-set-1`をdevの通常環境で確認：実tokenの継続、McRemote live-auto、Python代表往復、Scratch学習面とreal-browser WireScope、2-playerのlive-human |
 | `2026-10-05-python-windows-entry` | `live-human`（報告ベース） | Python `2320.0.0b8`のWindows入口：クリーンなWindows 11からGitなしでuv、Release wheel、import、JupyterLabまで成功。PyPIの遷移ゲート④で残っていたWindows |
 | `2026-10-05-b9-dev-live` | `live-auto` + `live-human` | b9 exact set `b9-integrated-artifact-set-1`をdevの通常環境で確認：実tokenの継続、McRemote live-autoと`chat.post`の`null`、Python代表往復と同梱WireScope、移管したBridgeとWireScopeでのScratch代表往復と列幅 |
+| `2026-10-05-b9-release` | `unit/deterministic` + 公開identity | b9の移管の前後の照合、公開前の停止（Scratch OCIのversionラベルとmtime）と公開したOCIの比較、McRemote／Python（PyPI.orgへの初公開）／Scratch／toolingの公開照合、close分類 |

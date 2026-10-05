@@ -1,0 +1,14 @@
+✔ fixed source and fixture bytes are accepted (2.939687ms)
+✔ corrupted same-length data and truncated data fail closed (0.96802ms)
+✔ floating source refs, wrong owners and path traversal are rejected (0.551452ms)
+✔ duplicate fixture paths and invalid file digests are rejected (0.508345ms)
+✔ candidate records its own source and preserves pinned tooling identities (76.295953ms)
+✔ candidate rejects corrupted tooling bytes and floating source identities (144.016504ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 272.026677

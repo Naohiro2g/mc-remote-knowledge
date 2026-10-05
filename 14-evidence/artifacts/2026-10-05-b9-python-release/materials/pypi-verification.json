@@ -1,0 +1,26 @@
+{
+  "channel": "pypi",
+  "version": "2320.0.0b9",
+  "source_commit": "b901c88fe41b67530ff353271683ece9fd453076",
+  "knowledge_contract_commit": "6df2d14033a4646ce958737c06849725fcaee51e",
+  "checked_at_utc": "2026-10-05T05:35:36.774774+00:00",
+  "status": "PASS",
+  "url": "https://pypi.org/project/minecraft-remote-api/2320.0.0b9/",
+  "metadata_url": "https://pypi.org/pypi/minecraft-remote-api/2320.0.0b9/json",
+  "artifacts": [
+    {
+      "file": "minecraft_remote_api-2320.0.0b9-py3-none-any.whl",
+      "bytes": 196221,
+      "sha256": "e166bc9c14c425b3859f9af6c7af52900b58d1769fc077a3524a5368d05638c6",
+      "url": "https://files.pythonhosted.org/packages/d1/17/cca9e5ef1cac48f7681a7c01daeb555c12a6994e53dd0705a30243a26e11/minecraft_remote_api-2320.0.0b9-py3-none-any.whl",
+      "yanked": false
+    },
+    {
+      "file": "minecraft_remote_api-2320.0.0b9.tar.gz",
+      "bytes": 190627,
+      "sha256": "bd027b8b94ff775bfb7a3c02ada9716ad8785e5499180bb0cfb26f1da4afe479",
+      "url": "https://files.pythonhosted.org/packages/1d/97/a6b2f4870ba0667a6898fd008240f5b84ede8acd52a7a2da987d1697fbfb/minecraft_remote_api-2320.0.0b9.tar.gz",
+      "yanked": false
+    }
+  ]
+}

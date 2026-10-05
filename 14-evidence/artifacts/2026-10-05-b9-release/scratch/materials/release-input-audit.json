@@ -1,0 +1,37 @@
+{
+  "knowledge_contract_commit": "d6d59d91032230a959b7288807179e1bd8100041",
+  "exact_set": "b9-integrated-artifact-set-1",
+  "tag": "v2320.0.0b9",
+  "scratch_source": "7fbbf034488760d8fc7e034bf23f3e08e6e1807d",
+  "tooling_source": "dc1ab834183e29f2eb03059b07e99d2b463776ee",
+  "frozen_scratch_oci": {
+    "role": "scratch",
+    "kind": "oci-archive",
+    "file": "scratch.oci.tar",
+    "bytes": 322922496,
+    "sha256": "48f4d808ff3d5a992c09101d075dfcd7d5c4ce4e91b907691fbf393db0b1f390",
+    "digest": "sha256:6702b112ad53b48efa2bf99fc0145fc7b23d24a1d20743018582f781f61c9e34"
+  },
+  "frozen_image_configs": [
+    {
+      "config_digest": "22b5da1fda212e5e4c140a747eae9ae70dcd1c1cd2c27746aaac89c6c69d2f68",
+      "architecture": "arm64",
+      "revision": "7fbbf034488760d8fc7e034bf23f3e08e6e1807d",
+      "version": "2320.0.0b9"
+    },
+    {
+      "config_digest": "30b12e7625e97fb6d7e8be556c9783e479e50fe10f97e789453a87b2ec04762d",
+      "architecture": "amd64",
+      "revision": "7fbbf034488760d8fc7e034bf23f3e08e6e1807d",
+      "version": "2320.0.0b9"
+    }
+  ],
+  "candidate_release_version": "2320.0.0b9",
+  "release_workflow_version_expression": "${{ steps.release.outputs.tag }}",
+  "release_workflow_resolved_version": "v2320.0.0b9",
+  "preflight_result": "STOP: version label input mismatch prevents the frozen OCI digest from being reproduced",
+  "non_claim": "No new image was built; no actual new OCI digest or runtime failure was observed.",
+  "publication_operations_performed": false,
+  "scratch_b9_tag_refs": [],
+  "tooling_b9_tag_refs": []
+}

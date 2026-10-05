@@ -1,0 +1,919 @@
+
+> @scratch/scratch-vm@15.0.1 lint
+> eslint && format-message lint src/**/*.js
+
+(node:22) ESLintEnvWarning: /* eslint-env */ comments are no longer recognized when linting with flat config and will be reported as errors as of v10.0.0. Replace them with /* global */ comments or define globals in your config file. See https://eslint.org/docs/latest/use/configure/migration-guide#eslint-env-configuration-comments for details. Found in ~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/extension-support/extension-worker.js at line 1.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/blocks/scratch3_control.js
+   7:1  warning  The type 'Runtime' is undefined                                                                jsdoc/no-undefined-types
+  22:1  warning  Use object shorthand or index signatures instead of `object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+  22:1  warning  Prefer a more specific type to `Function`                                                      jsdoc/reject-function-type
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/blocks/scratch3_core_example.js
+  16:1  warning  The type 'Runtime' is undefined  jsdoc/no-undefined-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/blocks/scratch3_data.js
+    7:1  warning  The type 'Runtime' is undefined                                                                jsdoc/no-undefined-types
+   14:1  warning  Use object shorthand or index signatures instead of `object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+   14:1  warning  Prefer a more specific type to `Function`                                                      jsdoc/reject-function-type
+  248:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/blocks/scratch3_event.js
+   7:1  warning  The type 'Runtime' is undefined                                                                jsdoc/no-undefined-types
+  23:1  warning  Use object shorthand or index signatures instead of `object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+  23:1  warning  Prefer a more specific type to `Function`                                                      jsdoc/reject-function-type
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/blocks/scratch3_looks.js
+   12:1   warning  The type 'int' is undefined                                                                    jsdoc/no-undefined-types
+   23:1   warning  The type 'Runtime' is undefined                                                                jsdoc/no-undefined-types
+   63:5   warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   73:5   warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   81:5   warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   89:5   warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   98:1   warning  The type 'Target' is undefined                                                                 jsdoc/no-undefined-types
+  155:1   warning  The type 'Target' is undefined                                                                 jsdoc/no-undefined-types
+  165:18  warning  'error_' is defined but never used                                                             no-unused-vars
+  214:1   warning  The type 'Target' is undefined                                                                 jsdoc/no-undefined-types
+  268:1   warning  The type 'Target' is undefined                                                                 jsdoc/no-undefined-types
+  283:1   warning  Use object shorthand or index signatures instead of `object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+  283:1   warning  Prefer a more specific type to `Function`                                                      jsdoc/reject-function-type
+  384:1   warning  The type 'Target' is undefined                                                                 jsdoc/no-undefined-types
+  385:1   warning  The type 'Any' is undefined                                                                    jsdoc/no-undefined-types
+  387:1   warning  The type 'Thread' is undefined                                                                 jsdoc/no-undefined-types
+  418:1   warning  The type 'Target' is undefined                                                                 jsdoc/no-undefined-types
+  419:1   warning  The type 'Any' is undefined                                                                    jsdoc/no-undefined-types
+  421:1   warning  The type 'Thread' is undefined                                                                 jsdoc/no-undefined-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/blocks/scratch3_motion.js
+   9:1  warning  The type 'Runtime' is undefined                                                                jsdoc/no-undefined-types
+  16:1  warning  Use object shorthand or index signatures instead of `object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+  16:1  warning  Prefer a more specific type to `Function`                                                      jsdoc/reject-function-type
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/blocks/scratch3_operators.js
+   8:1  warning  The type 'Runtime' is undefined                                                                jsdoc/no-undefined-types
+  15:1  warning  Use object shorthand or index signatures instead of `object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+  15:1  warning  Prefer a more specific type to `Function`                                                      jsdoc/reject-function-type
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/blocks/scratch3_procedures.js
+   5:1  warning  The type 'Runtime' is undefined                                                                jsdoc/no-undefined-types
+  12:1  warning  Use object shorthand or index signatures instead of `object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+  12:1  warning  Prefer a more specific type to `Function`                                                      jsdoc/reject-function-type
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/blocks/scratch3_sensing.js
+    9:1   warning  The type 'Runtime' is undefined                                                                jsdoc/no-undefined-types
+   52:1   warning  Use object shorthand or index signatures instead of `object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+   52:1   warning  Prefer a more specific type to `Function`                                                      jsdoc/reject-function-type
+  335:16  warning  'args' is defined but never used                                                               no-unused-vars
+  335:22  warning  'util' is defined but never used                                                               no-unused-vars
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/blocks/scratch3_sound.js
+   15:1  warning  The type 'Runtime' is undefined                                                                jsdoc/no-undefined-types
+   48:1  warning  The type 'SoundState' is undefined                                                             jsdoc/no-undefined-types
+   96:1  warning  The type 'Target' is undefined                                                                 jsdoc/no-undefined-types
+   97:1  warning  The type 'SoundState' is undefined                                                             jsdoc/no-undefined-types
+  112:1  warning  The type 'Target' is undefined                                                                 jsdoc/no-undefined-types
+  113:1  warning  The type 'Target' is undefined                                                                 jsdoc/no-undefined-types
+  129:1  warning  Use object shorthand or index signatures instead of `object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+  129:1  warning  Prefer a more specific type to `Function`                                                      jsdoc/reject-function-type
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/dispatch/central-dispatch.js
+   21:1  warning  Use object shorthand or index signatures instead of `object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+   27:1  warning  Prefer a more specific type to `Function`                                                      jsdoc/reject-function-type
+   43:1  warning  Prefer a more specific type to `*`                                                             jsdoc/reject-any-type
+   44:1  warning  Prefer a more specific type to `*`                                                             jsdoc/reject-any-type
+  126:1  warning  The type 'DispatchCallMessage' is undefined                                                    jsdoc/no-undefined-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/dispatch/shared-dispatch.js
+    5:1  warning  Prefer a more specific type to `*`         jsdoc/reject-any-type
+   13:1  warning  Prefer a more specific type to `*`         jsdoc/reject-any-type
+   14:1  warning  Prefer a more specific type to `*`         jsdoc/reject-any-type
+   15:1  warning  Prefer a more specific type to `*`         jsdoc/reject-any-type
+   25:1  warning  The type 'CentralDispatch' is undefined    jsdoc/no-undefined-types
+   25:1  warning  The type 'WorkerDispatch' is undefined     jsdoc/no-undefined-types
+   33:1  warning  Prefer a more specific type to `Function`  jsdoc/reject-function-type
+   39:1  warning  The type 'int' is undefined                jsdoc/no-undefined-types
+   55:1  warning  Prefer a more specific type to `*`         jsdoc/reject-any-type
+   74:1  warning  Prefer a more specific type to `*`         jsdoc/reject-any-type
+  111:1  warning  Prefer a more specific type to `*`         jsdoc/reject-any-type
+  124:1  warning  Prefer a more specific type to `*`         jsdoc/reject-any-type
+  131:1  warning  Invalid JSDoc tag name "TODO:"             jsdoc/check-tag-names
+  146:1  warning  Prefer a more specific type to `Function`  jsdoc/reject-function-type
+  147:1  warning  Prefer a more specific type to `Function`  jsdoc/reject-function-type
+  148:1  warning  Prefer a more specific type to `*`         jsdoc/reject-any-type
+  159:1  warning  The type 'int' is undefined                jsdoc/no-undefined-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/dispatch/worker-dispatch.js
+  88:1  warning  The type 'DispatchCallMessage' is undefined  jsdoc/no-undefined-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/engine/adapter.js
+  162:1  warning  JSDoc @returns declaration present but return expression not available in function  jsdoc/require-returns-check
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/engine/block-utility.js
+   14:1  warning  The type 'Sequencer' is undefined   jsdoc/no-undefined-types
+   32:1  warning  The type 'Target' is undefined      jsdoc/no-undefined-types
+   40:1  warning  The type 'Runtime' is undefined     jsdoc/no-undefined-types
+   49:1  warning  Syntax error in type: function      jsdoc/valid-types
+  185:1  warning  Prefer a more specific type to `*`  jsdoc/reject-any-type
+  194:1  warning  Prefer a more specific type to `*`  jsdoc/reject-any-type
+  204:1  warning  The type 'Target' is undefined      jsdoc/no-undefined-types
+  226:1  warning  Prefer a more specific type to `*`  jsdoc/reject-any-type
+  227:1  warning  Prefer a more specific type to `*`  jsdoc/reject-any-type
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/engine/blocks-execute-cache.js
+  11:1  warning  The type 'Blocks' is undefined                                 jsdoc/no-undefined-types
+  11:1  warning  @param "blocks" does not match an existing function parameter  jsdoc/check-param-names
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/engine/blocks-runtime-cache.js
+  12:1  warning  The type 'Blocks' is undefined                                    jsdoc/no-undefined-types
+  19:1  warning  The type 'Blocks' is undefined                                    jsdoc/no-undefined-types
+  65:1  warning  The type 'Blocks' is undefined                                    jsdoc/no-undefined-types
+  65:1  warning  @param "container" does not match an existing function parameter  jsdoc/check-param-names
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/engine/blocks.js
+    21:1  warning  The type 'Runtime' is undefined                                                                jsdoc/no-undefined-types
+    32:1  warning  Use object shorthand or index signatures instead of `Object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+    45:1  warning  No empty object type                                                                           jsdoc/ts-no-empty-object-type
+    45:1  warning  No empty object type                                                                           jsdoc/ts-no-empty-object-type
+    45:1  warning  No empty object type                                                                           jsdoc/ts-no-empty-object-type
+    52:1  warning  Use object shorthand or index signatures instead of `object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+    57:1  warning  Use object shorthand or index signatures instead of `object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+    62:1  warning  Use object shorthand or index signatures instead of `object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+    69:1  warning  Use object shorthand or index signatures instead of `object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+    76:1  warning  The type 'Target' is undefined                                                                 jsdoc/no-undefined-types
+    82:1  warning  Use object shorthand or index signatures instead of `object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+    99:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   102:1  warning  Invalid JSDoc tag name "const{string}"                                                         jsdoc/check-tag-names
+  1132:1  warning  Use object shorthand or index signatures instead of `object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+  1139:5  warning  JSDoc @returns declaration present but return expression not available in function             jsdoc/require-returns-check
+  1143:1  warning  Use object shorthand or index signatures instead of `object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+  1267:5  warning  JSDoc @returns declaration present but return expression not available in function             jsdoc/require-returns-check
+  1308:1  warning  Syntax error in type: function                                                                 jsdoc/valid-types
+  1345:1  warning  Syntax error in type: function                                                                 jsdoc/valid-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/engine/execute.js
+   28:1  warning  Prefer a more specific type to `*`                                                                                                                                                             jsdoc/reject-any-type
+   42:1  warning  Prefer a more specific type to `*`                                                                                                                                                             jsdoc/reject-any-type
+   43:1  warning  The type 'Sequencer' is undefined                                                                                                                                                              jsdoc/no-undefined-types
+   46:1  warning  Expected @param names to be "resolvedValue, sequencer, thread, blockCached, lastOperation". Got "resolvedValue, sequencer, thread, currentBlockId, opcode, isHat, blockCached, lastOperation"  jsdoc/check-param-names
+   50:1  warning  Missing JSDoc @param "blockCached" description                                                                                                                                                 jsdoc/require-param-description
+   50:1  warning  Missing JSDoc @param "blockCached" type                                                                                                                                                        jsdoc/require-param-type
+   51:1  warning  Missing JSDoc @param "lastOperation" description                                                                                                                                               jsdoc/require-param-description
+   51:1  warning  Missing JSDoc @param "lastOperation" type                                                                                                                                                      jsdoc/require-param-type
+  160:1  warning  The type 'Blocks' is undefined                                                                                                                                                                 jsdoc/no-undefined-types
+  203:1  warning  The type 'ProfilerFrame' is undefined                                                                                                                                                          jsdoc/no-undefined-types
+  215:1  warning  Prefer a more specific type to `Function`                                                                                                                                                      jsdoc/reject-function-type
+  233:1  warning  Prefer a more specific type to `any`                                                                                                                                                           jsdoc/reject-any-type
+  397:1  warning  The type 'Sequencer' is undefined                                                                                                                                                              jsdoc/no-undefined-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/engine/profiler.js
+   24:1  warning  Use object shorthand or index signatures instead of `Object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+   98:1  warning  Prefer a more specific type to `*`                                                             jsdoc/reject-any-type
+  131:1  warning  Prefer a more specific type to `*`                                                             jsdoc/reject-any-type
+  187:1  warning  Prefer a more specific type to `*`                                                             jsdoc/reject-any-type
+  216:1  warning  Prefer a more specific type to `*`                                                             jsdoc/reject-any-type
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/engine/runtime.js
+    67:1  warning  Use object shorthand or index signatures instead of `object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+   137:1  warning  Syntax error in type: function                                                                 jsdoc/valid-types
+   139:1  warning  Syntax error in type: function                                                                 jsdoc/valid-types
+   141:1  warning  Syntax error in type: function                                                                 jsdoc/valid-types
+   143:1  warning  Syntax error in type: function                                                                 jsdoc/valid-types
+   209:1  warning  The type 'Target' is undefined                                                                 jsdoc/no-undefined-types
+   215:1  warning  The type 'Target' is undefined                                                                 jsdoc/no-undefined-types
+   245:1  warning  The type 'Target' is undefined                                                                 jsdoc/no-undefined-types
+   252:1  warning  Use object shorthand or index signatures instead of `Object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+   252:1  warning  Prefer a more specific type to `Function`                                                      jsdoc/reject-function-type
+   258:1  warning  The type 'CategoryInfo' is undefined                                                           jsdoc/no-undefined-types
+   266:1  warning  Use object shorthand or index signatures instead of `Object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+   363:1  warning  Use object shorthand or index signatures instead of `Object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+   412:1  warning  Syntax error in type: function                                                                 jsdoc/valid-types
+   421:1  warning  Syntax error in type: function                                                                 jsdoc/valid-types
+   432:1  warning  Syntax error in type: function                                                                 jsdoc/valid-types
+   440:1  warning  Syntax error in type: function                                                                 jsdoc/valid-types
+   456:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   464:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   472:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   480:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   488:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   496:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   504:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   513:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   521:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   529:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   538:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   547:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   556:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   565:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   574:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   582:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   590:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   598:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   606:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   614:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   622:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   630:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   638:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   646:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   654:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   664:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   673:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   682:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   691:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   700:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   709:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   718:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   730:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   738:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   746:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   754:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   762:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   770:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   778:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   786:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   793:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   800:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+   888:1  warning  The type 'Target' is undefined                                                                 jsdoc/no-undefined-types
+   901:1  warning  The type 'ExtensionMetadata' is undefined                                                      jsdoc/no-undefined-types
+   944:1  warning  The type 'ExtensionMetadata' is undefined                                                      jsdoc/no-undefined-types
+   960:1  warning  The type 'CategoryInfo' is undefined                                                           jsdoc/no-undefined-types
+   961:1  warning  The type 'ExtensionMetadata' is undefined                                                      jsdoc/no-undefined-types
+  1043:1  warning  Prefer a more specific type to `*`                                                             jsdoc/reject-any-type
+  1045:1  warning  The type 'CategoryInfo' is undefined                                                           jsdoc/no-undefined-types
+  1123:1  warning  The type 'ExtensionBlockMetadata' is undefined                                                 jsdoc/no-undefined-types
+  1124:1  warning  The type 'CategoryInfo' is undefined                                                           jsdoc/no-undefined-types
+  1125:1  warning  The type 'ConvertedBlockInfo' is undefined                                                     jsdoc/no-undefined-types
+  1142:1  warning  The type 'ExtensionBlockMetadata' is undefined                                                 jsdoc/no-undefined-types
+  1143:1  warning  The type 'CategoryInfo' is undefined                                                           jsdoc/no-undefined-types
+  1144:1  warning  The type 'ConvertedBlockInfo' is undefined                                                     jsdoc/no-undefined-types
+  1293:1  warning  The type 'ExtensionBlockMetadata' is undefined                                                 jsdoc/no-undefined-types
+  1294:1  warning  The type 'CategoryInfo' is undefined                                                           jsdoc/no-undefined-types
+  1294:1  warning  @param "categoryInfo" does not match an existing function parameter                            jsdoc/check-param-names
+  1295:1  warning  The type 'ConvertedBlockInfo' is undefined                                                     jsdoc/no-undefined-types
+  1307:1  warning  The type 'ExtensionBlockMetadata' is undefined                                                 jsdoc/no-undefined-types
+  1309:1  warning  The type 'CategoryInfo' is undefined                                                           jsdoc/no-undefined-types
+  1309:1  warning  @param "categoryInfo" does not match an existing function parameter                            jsdoc/check-param-names
+  1310:1  warning  The type 'ConvertedBlockInfo' is undefined                                                     jsdoc/no-undefined-types
+  1475:1  warning  The type 'Target' is undefined                                                                 jsdoc/no-undefined-types
+  1566:1  warning  The type 'ScratchLinkSocket' is undefined                                                      jsdoc/no-undefined-types
+  1576:1  warning  Prefer a more specific type to `Function`                                                      jsdoc/reject-function-type
+  1585:1  warning  The type 'ScratchLinkSocket' is undefined                                                      jsdoc/no-undefined-types
+  1664:1  warning  Prefer a more specific type to `Function`                                                      jsdoc/reject-function-type
+  1692:1  warning  The type 'AudioEngine' is undefined                                                            jsdoc/no-undefined-types
+  1700:1  warning  The type 'RenderWebGL' is undefined                                                            jsdoc/no-undefined-types
+  1710:1  warning  Prefer a more specific type to `Function`                                                      jsdoc/reject-function-type
+  1767:1  warning  The type 'Target' is undefined                                                                 jsdoc/no-undefined-types
+  1883:1  warning  The type 'Target' is undefined                                                                 jsdoc/no-undefined-types
+  1903:1  warning  Prefer a more specific type to `Function`                                                      jsdoc/reject-function-type
+  1904:1  warning  The type 'Target' is undefined                                                                 jsdoc/no-undefined-types
+  1935:5  warning  JSDoc @returns declaration present but return expression not available in function             jsdoc/require-returns-check
+  1939:1  warning  The type 'Target' is undefined                                                                 jsdoc/no-undefined-types
+  2064:1  warning  The type 'Target' is undefined                                                                 jsdoc/no-undefined-types
+  2076:1  warning  The type 'Target' is undefined                                                                 jsdoc/no-undefined-types
+  2103:1  warning  The type 'Target' is undefined                                                                 jsdoc/no-undefined-types
+  2114:1  warning  The type 'Target' is undefined                                                                 jsdoc/no-undefined-types
+  2125:1  warning  The type 'Target' is undefined                                                                 jsdoc/no-undefined-types
+  2139:1  warning  The type 'Target' is undefined                                                                 jsdoc/no-undefined-types
+  2311:1  warning  The type 'Target' is undefined                                                                 jsdoc/no-undefined-types
+  2559:1  warning  The type 'MonitorRecord' is undefined                                                          jsdoc/no-undefined-types
+  2635:5  warning  JSDoc @returns declaration present but return expression not available in function             jsdoc/require-returns-check
+  2638:1  warning  The type 'Target' is undefined                                                                 jsdoc/no-undefined-types
+  2649:5  warning  JSDoc @returns declaration present but return expression not available in function             jsdoc/require-returns-check
+  2652:1  warning  The type 'Target' is undefined                                                                 jsdoc/no-undefined-types
+  2666:5  warning  JSDoc @returns declaration present but return expression not available in function             jsdoc/require-returns-check
+  2669:1  warning  The type 'Target' is undefined                                                                 jsdoc/no-undefined-types
+  2711:1  warning  The type 'Target' is undefined                                                                 jsdoc/no-undefined-types
+  2712:1  warning  The type 'Target' is undefined                                                                 jsdoc/no-undefined-types
+  2721:1  warning  The type 'Target' is undefined                                                                 jsdoc/no-undefined-types
+  2728:5  warning  JSDoc @returns declaration present but return expression not available in function             jsdoc/require-returns-check
+  2730:1  warning  The type 'Target' is undefined                                                                 jsdoc/no-undefined-types
+  2743:1  warning  The type 'Target' is undefined                                                                 jsdoc/no-undefined-types
+  2758:5  warning  JSDoc @returns declaration present but return expression not available in function             jsdoc/require-returns-check
+  2763:1  warning  Prefer a more specific type to `Function`                                                      jsdoc/reject-function-type
+  2813:1  warning  The type 'Target' is undefined                                                                 jsdoc/no-undefined-types
+  2863:1  warning  Syntax error in type: Profiler/FrameCallback                                                   jsdoc/valid-types
+  2892:1  warning  The type 'Target' is undefined                                                                 jsdoc/no-undefined-types
+  2893:1  warning  The type 'Target' is undefined                                                                 jsdoc/no-undefined-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/engine/scratch-blocks-constants.js
+  3:1  warning  Invalid JSDoc tag name "TODO"  jsdoc/check-tag-names
+  5:1  warning  The type 'int' is undefined    jsdoc/no-undefined-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/engine/sequencer.js
+  51:1  warning  The type 'Runtime' is undefined  jsdoc/no-undefined-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/engine/target.js
+   21:1  warning  The type 'Runtime' is undefined                                                                jsdoc/no-undefined-types
+   34:1  warning  The type 'Runtime' is undefined                                                                jsdoc/no-undefined-types
+   50:1  warning  Use object shorthand or index signatures instead of `Object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+   50:1  warning  Prefer a more specific type to `*`                                                             jsdoc/reject-any-type
+   56:1  warning  Use object shorthand or index signatures instead of `Object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+   56:1  warning  Prefer a more specific type to `*`                                                             jsdoc/reject-any-type
+   63:1  warning  Use object shorthand or index signatures instead of `Object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+   63:1  warning  Prefer a more specific type to `*`                                                             jsdoc/reject-any-type
+   70:1  warning  Use object shorthand or index signatures instead of `Object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+   70:1  warning  Prefer a more specific type to `*`                                                             jsdoc/reject-any-type
+   94:1  warning  Prefer a more specific type to `*`                                                             jsdoc/reject-any-type
+   95:1  warning  Prefer a more specific type to `*`                                                             jsdoc/reject-any-type
+  134:5  warning  JSDoc @returns declaration present but return expression not available in function             jsdoc/require-returns-check
+  163:5  warning  JSDoc @returns declaration present but return expression not available in function             jsdoc/require-returns-check
+  180:5  warning  JSDoc @returns declaration present but return expression not available in function             jsdoc/require-returns-check
+  184:1  warning  @param "name" does not match an existing function parameter                                    jsdoc/check-param-names
+  201:5  warning  JSDoc @returns declaration present but return expression not available in function             jsdoc/require-returns-check
+  207:1  warning  The type 'bool' is undefined                                                                   jsdoc/no-undefined-types
+  242:1  warning  The type 'Varible' is undefined                                                                jsdoc/no-undefined-types
+  457:1  warning  @param "data" does not match an existing function parameter                                    jsdoc/check-param-names
+  465:1  warning  Prefer a more specific type to `*`                                                             jsdoc/reject-any-type
+  474:1  warning  Prefer a more specific type to `*`                                                             jsdoc/reject-any-type
+  500:1  warning  The type 'bool' is undefined                                                                   jsdoc/no-undefined-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/engine/thread.js
+    3:1  warning  Tag @type must have a type          jsdoc/valid-types
+   31:1  warning  The type 'Any' is undefined         jsdoc/no-undefined-types
+  167:1  warning  The type 'Target' is undefined      jsdoc/no-undefined-types
+  173:1  warning  The type 'Blocks' is undefined      jsdoc/no-undefined-types
+  192:1  warning  The type 'Timer' is undefined       jsdoc/no-undefined-types
+  199:5  warning  Missing JSDoc @returns declaration  jsdoc/require-returns
+  209:5  warning  Missing JSDoc @returns declaration  jsdoc/require-returns
+  218:5  warning  Missing JSDoc @returns declaration  jsdoc/require-returns
+  226:5  warning  Missing JSDoc @returns declaration  jsdoc/require-returns
+  235:5  warning  Missing JSDoc @returns declaration  jsdoc/require-returns
+  325:1  warning  Prefer a more specific type to `*`  jsdoc/reject-any-type
+  345:1  warning  Prefer a more specific type to `*`  jsdoc/reject-any-type
+  355:1  warning  Prefer a more specific type to `*`  jsdoc/reject-any-type
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/engine/variable.js
+  43:5  warning  Missing JSDoc @returns declaration  jsdoc/require-returns
+  53:5  warning  Missing JSDoc @returns declaration  jsdoc/require-returns
+  61:5  warning  Missing JSDoc @returns declaration  jsdoc/require-returns
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/extension-support/define-messages.js
+  11:1  warning  Use object shorthand or index signatures instead of `object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+  12:1  warning  Use object shorthand or index signatures instead of `object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/extension-support/extension-manager.js
+   33:1  warning  The type 'ArgumentType' is undefined            jsdoc/no-undefined-types
+   34:1  warning  Prefer a more specific type to `*`              jsdoc/reject-any-type
+   39:1  warning  The type 'ExtensionBlockMetadata' is undefined  jsdoc/no-undefined-types
+   59:1  warning  Prefer a more specific type to `Function`       jsdoc/reject-function-type
+   60:1  warning  Prefer a more specific type to `Function`       jsdoc/reject-function-type
+   67:1  warning  The type 'int' is undefined                     jsdoc/no-undefined-types
+   94:1  warning  The type 'Runtime' is undefined                 jsdoc/no-undefined-types
+  125:1  warning  Invalid JSDoc tag name "TODO"                   jsdoc/check-tag-names
+  145:1  warning  Invalid JSDoc tag name "TODO"                   jsdoc/check-tag-names
+  214:1  warning  The type 'int' is undefined                     jsdoc/no-undefined-types
+  215:1  warning  Prefer a more specific type to `*`              jsdoc/reject-any-type
+  244:1  warning  The type 'ExtensionInfo' is undefined           jsdoc/no-undefined-types
+  268:1  warning  The type 'ExtensionInfo' is undefined           jsdoc/no-undefined-types
+  269:1  warning  The type 'ExtensionInfo' is undefined           jsdoc/no-undefined-types
+  306:1  warning  The type 'MenuInfo' is undefined                jsdoc/no-undefined-types
+  307:1  warning  The type 'MenuInfo' is undefined                jsdoc/no-undefined-types
+  377:1  warning  The type 'ExtensionBlockMetadata' is undefined  jsdoc/no-undefined-types
+  378:1  warning  The type 'ExtensionBlockMetadata' is undefined  jsdoc/no-undefined-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/extension-support/extension-metadata.js
+  10:1  warning  Use object shorthand or index signatures instead of `Object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+  18:1  warning  The type 'BlockType' is undefined                                                              jsdoc/no-undefined-types
+  23:1  warning  The type 'ReporterScope' is undefined                                                          jsdoc/no-undefined-types
+  26:1  warning  The type 'int' is undefined                                                                    jsdoc/no-undefined-types
+  27:1  warning  Use object shorthand or index signatures instead of `Object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+  33:1  warning  The type 'ArgumentType' is undefined                                                           jsdoc/no-undefined-types
+  34:1  warning  Prefer a more specific type to `*`                                                             jsdoc/reject-any-type
+  62:1  warning  Prefer a more specific type to `*`                                                             jsdoc/reject-any-type
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/extensions/scratch3_boost/index.js
+   257:1  warning  Invalid JSDoc tag name "readyonly"                                                             jsdoc/check-tag-names
+   335:1  warning  The type 'int' is undefined                                                                    jsdoc/no-undefined-types
+   347:1  warning  The type 'int' is undefined                                                                    jsdoc/no-undefined-types
+   421:1  warning  The type 'int' is undefined                                                                    jsdoc/no-undefined-types
+   428:1  warning  The type 'int' is undefined                                                                    jsdoc/no-undefined-types
+   439:1  warning  The type 'int' is undefined                                                                    jsdoc/no-undefined-types
+   446:1  warning  The type 'int' is undefined                                                                    jsdoc/no-undefined-types
+   461:1  warning  The type 'int' is undefined                                                                    jsdoc/no-undefined-types
+   468:1  warning  The type 'int' is undefined                                                                    jsdoc/no-undefined-types
+   519:1  warning  Syntax error in type: function                                                                 jsdoc/valid-types
+   621:1  warning  Prefer a more specific type to `Function`                                                      jsdoc/reject-function-type
+   622:1  warning  The type 'int' is undefined                                                                    jsdoc/no-undefined-types
+   663:1  warning  The type 'Runtime' is undefined                                                                jsdoc/no-undefined-types
+   690:1  warning  Use object shorthand or index signatures instead of `Object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+   776:1  warning  The type 'int' is undefined                                                                    jsdoc/no-undefined-types
+   799:1  warning  The type 'int' is undefined                                                                    jsdoc/no-undefined-types
+  1269:1  warning  The type 'Runtime' is undefined                                                                jsdoc/no-undefined-types
+  1274:1  warning  The type 'Runtime' is undefined                                                                jsdoc/no-undefined-types
+  1731:1  warning  The type 'MotorID' is undefined                                                                jsdoc/no-undefined-types
+  1732:1  warning  The type 'int' is undefined                                                                    jsdoc/no-undefined-types
+  1753:1  warning  The type 'MotorID' is undefined                                                                jsdoc/no-undefined-types
+  1754:1  warning  The type 'int' is undefined                                                                    jsdoc/no-undefined-types
+  1795:1  warning  The type 'MotorID' is undefined                                                                jsdoc/no-undefined-types
+  1815:1  warning  The type 'MotorID' is undefined                                                                jsdoc/no-undefined-types
+  1835:1  warning  The type 'MotorID' is undefined                                                                jsdoc/no-undefined-types
+  1836:1  warning  The type 'int' is undefined                                                                    jsdoc/no-undefined-types
+  1867:1  warning  The type 'MotorID' is undefined                                                                jsdoc/no-undefined-types
+  1868:1  warning  The type 'MotorDirection' is undefined                                                         jsdoc/no-undefined-types
+  1949:1  warning  The type 'MotorID' is undefined                                                                jsdoc/no-undefined-types
+  1950:1  warning  Prefer a more specific type to `Function`                                                      jsdoc/reject-function-type
+  1987:1  warning  The type 'TiltDirection' is undefined                                                          jsdoc/no-undefined-types
+  1997:1  warning  The type 'TiltDirection' is undefined                                                          jsdoc/no-undefined-types
+  2006:1  warning  The type 'TiltDirection' is undefined                                                          jsdoc/no-undefined-types
+  2016:1  warning  The type 'TiltDirection' is undefined                                                          jsdoc/no-undefined-types
+  2031:1  warning  The type 'TiltDirection' is undefined                                                          jsdoc/no-undefined-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/extensions/scratch3_ev3/index.js
+   154:1  warning  The type 'int' is undefined                jsdoc/no-undefined-types
+   167:1  warning  The type 'int' is undefined                jsdoc/no-undefined-types
+   232:1  warning  The type 'int' is undefined                jsdoc/no-undefined-types
+   239:1  warning  The type 'int' is undefined                jsdoc/no-undefined-types
+   250:1  warning  The type 'int' is undefined                jsdoc/no-undefined-types
+   257:1  warning  The type 'int' is undefined                jsdoc/no-undefined-types
+   264:1  warning  The type 'int' is undefined                jsdoc/no-undefined-types
+   271:1  warning  The type 'int' is undefined                jsdoc/no-undefined-types
+   435:1  warning  The type 'Runtime' is undefined            jsdoc/no-undefined-types
+   535:1  warning  The type 'int' is undefined                jsdoc/no-undefined-types
+   939:1  warning  The type 'Runtime' is undefined            jsdoc/no-undefined-types
+  1288:1  warning  The type 'MotorID' is undefined            jsdoc/no-undefined-types
+  1289:1  warning  Prefer a more specific type to `Function`  jsdoc/reject-function-type
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/extensions/scratch3_face_sensing/index.js
+   54:1  warning  The type 'Runtime' is undefined       jsdoc/no-undefined-types
+   61:1  warning  The type 'Runtime' is undefined       jsdoc/no-undefined-types
+  524:1  warning  The type 'BlockUtility' is undefined  jsdoc/no-undefined-types
+  568:1  warning  The type 'BlockUtility' is undefined  jsdoc/no-undefined-types
+  614:1  warning  The type 'BlockUtility' is undefined  jsdoc/no-undefined-types
+  625:1  warning  The type 'BlockUtility' is undefined  jsdoc/no-undefined-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/extensions/scratch3_gdx_for/index.js
+  120:1  warning  The type 'Runtime' is undefined                                                                jsdoc/no-undefined-types
+  127:1  warning  The type 'Runtime' is undefined                                                                jsdoc/no-undefined-types
+  140:1  warning  Unexpected inline JSDoc tag. Did you mean to use {@vernier}, \@vernier, or `@vernier`?         jsdoc/escape-inline-tags
+  141:1  warning  The type 'Device' is undefined                                                                 jsdoc/no-undefined-types
+  155:1  warning  Use object shorthand or index signatures instead of `Object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+  614:1  warning  The type 'Runtime' is undefined                                                                jsdoc/no-undefined-types
+  619:1  warning  The type 'Runtime' is undefined                                                                jsdoc/no-undefined-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/extensions/scratch3_makeymakey/index.js
+  70:1  warning  The type 'Runtime' is undefined  jsdoc/no-undefined-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/extensions/scratch3_mcremote/index.js
+  3626:1  warning  The type 'BlockUtility' is undefined  jsdoc/no-undefined-types
+  3647:1  warning  The type 'BlockUtility' is undefined  jsdoc/no-undefined-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/extensions/scratch3_microbit/index.js
+   66:1  warning  The type 'Runtime' is undefined                                                                jsdoc/no-undefined-types
+   73:1  warning  The type 'Runtime' is undefined                                                                jsdoc/no-undefined-types
+   93:1  warning  Use object shorthand or index signatures instead of `Object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+  108:1  warning  Use object shorthand or index signatures instead of `Object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+  570:1  warning  The type 'Runtime' is undefined                                                                jsdoc/no-undefined-types
+  575:1  warning  The type 'Runtime' is undefined                                                                jsdoc/no-undefined-types
+  907:1  warning  The type 'TiltDirection' is undefined                                                          jsdoc/no-undefined-types
+  917:1  warning  The type 'TiltDirection' is undefined                                                          jsdoc/no-undefined-types
+  926:1  warning  The type 'TiltDirection' is undefined                                                          jsdoc/no-undefined-types
+  936:1  warning  The type 'TiltDirection' is undefined                                                          jsdoc/no-undefined-types
+  951:1  warning  The type 'TiltDirection' is undefined                                                          jsdoc/no-undefined-types
+  971:5  warning  JSDoc @returns declaration present but return expression not available in function             jsdoc/require-returns-check
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/extensions/scratch3_music/index.js
+    16:10  warning  'e' is defined but never used                                                       no-unused-vars
+    36:1   warning  The type 'Runtime' is undefined                                                     jsdoc/no-undefined-types
+    43:1   warning  The type 'Runtime' is undefined                                                     jsdoc/no-undefined-types
+   117:5   warning  JSDoc @returns declaration present but return expression not available in function  jsdoc/require-returns-check
+   172:1   warning  @param "name" does not match an existing function parameter                         jsdoc/check-param-names
+   327:1   warning  @param "name" does not match an existing function parameter                         jsdoc/check-param-names
+   682:1   warning  The type 'MusicState' is undefined                                                  jsdoc/no-undefined-types
+   724:1   warning  The type 'Target' is undefined                                                      jsdoc/no-undefined-types
+   725:1   warning  The type 'MusicState' is undefined                                                  jsdoc/no-undefined-types
+   739:1   warning  The type 'Target' is undefined                                                      jsdoc/no-undefined-types
+   740:1   warning  The type 'Target' is undefined                                                      jsdoc/no-undefined-types
+   931:1   warning  The type 'int' is undefined                                                         jsdoc/no-undefined-types
+  1168:1   warning  The type 'index' is undefined                                                       jsdoc/no-undefined-types
+  1251:1   warning  The type 'int' is undefined                                                         jsdoc/no-undefined-types
+  1262:1   warning  The type 'int' is undefined                                                         jsdoc/no-undefined-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/extensions/scratch3_pen/index.js
+   36:1  warning  The type 'PenAttributes' is undefined  jsdoc/no-undefined-types
+   42:1  warning  The type 'Runtime' is undefined        jsdoc/no-undefined-types
+   49:1  warning  The type 'Runtime' is undefined        jsdoc/no-undefined-types
+   55:1  warning  The type 'int' is undefined            jsdoc/no-undefined-types
+   62:1  warning  The type 'int' is undefined            jsdoc/no-undefined-types
+  129:1  warning  The type 'int' is undefined            jsdoc/no-undefined-types
+  142:1  warning  The type 'Target' is undefined         jsdoc/no-undefined-types
+  157:1  warning  The type 'Target' is undefined         jsdoc/no-undefined-types
+  158:1  warning  The type 'Target' is undefined         jsdoc/no-undefined-types
+  562:1  warning  The type 'int' is undefined            jsdoc/no-undefined-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/extensions/scratch3_speech2text/index.js
+   34:1   warning  The type 'int' is undefined                   jsdoc/no-undefined-types
+   43:1   warning  The type 'int' is undefined                   jsdoc/no-undefined-types
+   52:1   warning  The type 'Runtime' is undefined               jsdoc/no-undefined-types
+  215:1   warning  Invalid JSDoc tag name "private."             jsdoc/check-tag-names
+  365:18  warning  'e' is defined but never used                 no-unused-vars
+  506:1   warning  Prefer a more specific type to `Function`     jsdoc/reject-function-type
+  507:1   warning  Prefer a more specific type to `Function`     jsdoc/reject-function-type
+  582:1   warning  The type 'audioProcessingEvent' is undefined  jsdoc/no-undefined-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/extensions/scratch3_text2speech/index.js
+   34:1  warning  The type 'int' is undefined                                                         jsdoc/no-undefined-types
+  114:1  warning  The type 'Runtime' is undefined                                                     jsdoc/no-undefined-types
+  120:1  warning  The type 'SoundPlayer' is undefined                                                 jsdoc/no-undefined-types
+  141:5  warning  Missing JSDoc @returns declaration                                                  jsdoc/require-returns
+  194:5  warning  Missing JSDoc @returns declaration                                                  jsdoc/require-returns
+  353:1  warning  The type 'Text2SpeechState' is undefined                                            jsdoc/no-undefined-types
+  370:1  warning  The type 'Target' is undefined                                                      jsdoc/no-undefined-types
+  371:1  warning  The type 'Text2SpeechState' is undefined                                            jsdoc/no-undefined-types
+  385:1  warning  The type 'Target' is undefined                                                      jsdoc/no-undefined-types
+  386:1  warning  The type 'Target' is undefined                                                      jsdoc/no-undefined-types
+  540:5  warning  JSDoc @returns declaration present but return expression not available in function  jsdoc/require-returns-check
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/extensions/scratch3_translate/index.js
+   31:1  warning  The type 'int' is undefined                                                                    jsdoc/no-undefined-types
+   51:1  warning  Use object shorthand or index signatures instead of `object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+  160:1  warning  Use object shorthand or index signatures instead of `object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/extensions/scratch3_video_sensing/index.js
+  142:1  warning  The type 'MotionState' is undefined                          jsdoc/no-undefined-types
+  279:1  warning  The type 'Target' is undefined                               jsdoc/no-undefined-types
+  280:1  warning  The type 'MotionState' is undefined                          jsdoc/no-undefined-types
+  301:1  warning  @param "name" does not match an existing function parameter  jsdoc/check-param-names
+  333:1  warning  @param "name" does not match an existing function parameter  jsdoc/check-param-names
+  360:1  warning  @param "name" does not match an existing function parameter  jsdoc/check-param-names
+  506:1  warning  The type 'Target' is undefined                               jsdoc/no-undefined-types
+  507:1  warning  The type 'MotionState' is undefined                          jsdoc/no-undefined-types
+  521:1  warning  The type 'BlockUtility' is undefined                         jsdoc/no-undefined-types
+  543:1  warning  The type 'BlockUtility' is undefined                         jsdoc/no-undefined-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/extensions/scratch3_video_sensing/library.js
+  273:1  warning  The type 'Drawable' is undefined     jsdoc/no-undefined-types
+  274:1  warning  The type 'MotionState' is undefined  jsdoc/no-undefined-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/extensions/scratch3_video_sensing/math.js
+  10:1  warning  The type 'UV' is undefined  jsdoc/no-undefined-types
+  22:1  warning  The type 'UV' is undefined  jsdoc/no-undefined-types
+  23:1  warning  The type 'UV' is undefined  jsdoc/no-undefined-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/extensions/scratch3_video_sensing/view.js
+  150:1  warning  The type 'VideoMotion' is undefined               jsdoc/no-undefined-types
+  158:1  warning  The type 'VideoMotion' is undefined               jsdoc/no-undefined-types
+  172:1  warning  The type 'CanvasRendering2DContext' is undefined  jsdoc/no-undefined-types
+  201:1  warning  The type 'nubmer' is undefined                    jsdoc/no-undefined-types
+  203:1  warning  Syntax error in type: function                    jsdoc/valid-types
+  223:1  warning  Syntax error in type: function                    jsdoc/valid-types
+  257:1  warning  Syntax error in type: function                    jsdoc/valid-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/extensions/scratch3_wedo2/index.js
+   133:1  warning  The type 'int' is undefined                                                                    jsdoc/no-undefined-types
+   145:1  warning  The type 'int' is undefined                                                                    jsdoc/no-undefined-types
+   206:1  warning  The type 'int' is undefined                                                                    jsdoc/no-undefined-types
+   213:1  warning  The type 'int' is undefined                                                                    jsdoc/no-undefined-types
+   224:1  warning  The type 'int' is undefined                                                                    jsdoc/no-undefined-types
+   231:1  warning  The type 'int' is undefined                                                                    jsdoc/no-undefined-types
+   347:1  warning  Prefer a more specific type to `Function`                                                      jsdoc/reject-function-type
+   348:1  warning  The type 'int' is undefined                                                                    jsdoc/no-undefined-types
+   376:1  warning  The type 'Runtime' is undefined                                                                jsdoc/no-undefined-types
+   403:1  warning  Use object shorthand or index signatures instead of `Object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+   464:1  warning  The type 'int' is undefined                                                                    jsdoc/no-undefined-types
+   487:1  warning  The type 'int' is undefined                                                                    jsdoc/no-undefined-types
+   539:1  warning  The type 'int' is undefined                                                                    jsdoc/no-undefined-types
+   540:1  warning  The type 'int' is undefined                                                                    jsdoc/no-undefined-types
+   908:1  warning  The type 'Runtime' is undefined                                                                jsdoc/no-undefined-types
+   913:1  warning  The type 'Runtime' is undefined                                                                jsdoc/no-undefined-types
+  1297:1  warning  The type 'MotorID' is undefined                                                                jsdoc/no-undefined-types
+  1298:1  warning  The type 'int' is undefined                                                                    jsdoc/no-undefined-types
+  1321:1  warning  The type 'MotorID' is undefined                                                                jsdoc/no-undefined-types
+  1343:1  warning  The type 'MotorID' is undefined                                                                jsdoc/no-undefined-types
+  1365:1  warning  The type 'MotorID' is undefined                                                                jsdoc/no-undefined-types
+  1366:1  warning  The type 'int' is undefined                                                                    jsdoc/no-undefined-types
+  1390:1  warning  The type 'MotorID' is undefined                                                                jsdoc/no-undefined-types
+  1391:1  warning  The type 'MotorDirection' is undefined                                                         jsdoc/no-undefined-types
+  1456:5  warning  JSDoc @returns declaration present but return expression not available in function             jsdoc/require-returns-check
+  1499:1  warning  The type 'TiltDirection' is undefined                                                          jsdoc/no-undefined-types
+  1516:1  warning  The type 'TiltDirection' is undefined                                                          jsdoc/no-undefined-types
+  1525:1  warning  The type 'TiltDirection' is undefined                                                          jsdoc/no-undefined-types
+  1535:1  warning  The type 'TiltDirection' is undefined                                                          jsdoc/no-undefined-types
+  1552:1  warning  The type 'TiltDirection' is undefined                                                          jsdoc/no-undefined-types
+  1574:1  warning  The type 'MotorID' is undefined                                                                jsdoc/no-undefined-types
+  1575:1  warning  Prefer a more specific type to `Function`                                                      jsdoc/reject-function-type
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/import/load-costume.js
+   95:1  warning  The type 'Runtime' is undefined                                                                                                          jsdoc/no-undefined-types
+   98:1  warning  @property path declaration ("costume.bitmapResolution") appears before any real property                                                 jsdoc/check-property-names
+  305:1  warning  The type 'int' is undefined                                                                                                              jsdoc/no-undefined-types
+  309:1  warning  @property path declaration ("costume.asset") root node name ("costume") does not match previous real property name ("bitmapResolution")  jsdoc/check-property-names
+  309:1  warning  The type 'Asset' is undefined                                                                                                            jsdoc/no-undefined-types
+  310:1  warning  The type 'Runtime' is undefined                                                                                                          jsdoc/no-undefined-types
+  311:1  warning  The type 'int' is undefined                                                                                                              jsdoc/no-undefined-types
+  351:1  warning  The type 'int' is undefined                                                                                                              jsdoc/no-undefined-types
+  355:1  warning  The type 'Runtime' is undefined                                                                                                          jsdoc/no-undefined-types
+  356:1  warning  The type 'int' is undefined                                                                                                              jsdoc/no-undefined-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/import/load-sound.js
+   8:1  warning  The type 'Buffer' is undefined     jsdoc/no-undefined-types
+   9:1  warning  The type 'Asset' is undefined      jsdoc/no-undefined-types
+  10:1  warning  The type 'Runtime' is undefined    jsdoc/no-undefined-types
+  11:1  warning  The type 'SoundBank' is undefined  jsdoc/no-undefined-types
+  79:1  warning  The type 'Buffer' is undefined     jsdoc/no-undefined-types
+  80:1  warning  The type 'Runtime' is undefined    jsdoc/no-undefined-types
+  81:1  warning  The type 'SoundBank' is undefined  jsdoc/no-undefined-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/io/ble.js
+    8:1  warning  The type 'Runtime' is undefined                                                     jsdoc/no-undefined-types
+   92:1  warning  The type 'bool' is undefined                                                        jsdoc/no-undefined-types
+  165:5  warning  JSDoc @returns declaration present but return expression not available in function  jsdoc/require-returns-check
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/io/bt.js
+    8:1  warning  The type 'Runtime' is undefined                                                     jsdoc/no-undefined-types
+   99:1  warning  The type 'bool' is undefined                                                        jsdoc/no-undefined-types
+  112:5  warning  JSDoc @returns declaration present but return expression not available in function  jsdoc/require-returns-check
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/io/clock.js
+  11:1  warning  Invalid JSDoc tag name "type{!Runtime}"  jsdoc/check-tag-names
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/io/cloud.js
+   18:1  warning  Prefer a more specific type to `Function`  jsdoc/reject-function-type
+   40:1  warning  The type 'Runtime' is undefined            jsdoc/no-undefined-types
+   52:1  warning  The type 'Runtime' is undefined            jsdoc/no-undefined-types
+   59:1  warning  The type 'Target' is undefined             jsdoc/no-undefined-types
+   75:1  warning  The type 'Target' is undefined             jsdoc/no-undefined-types
+  140:1  warning  The type 'VarData' is undefined            jsdoc/no-undefined-types
+  140:1  warning  The type 'VarData' is undefined            jsdoc/no-undefined-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/io/keyboard.js
+   31:1  warning  Invalid JSDoc tag name "type{Array.<string>}"  jsdoc/check-tag-names
+   37:1  warning  Invalid JSDoc tag name "type{!Runtime}"        jsdoc/check-tag-names
+  134:1  warning  The type 'Any' is undefined                    jsdoc/no-undefined-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/io/mouse.js
+  11:1  warning  Invalid JSDoc tag name "type{!Runtime}"  jsdoc/check-tag-names
+  18:1  warning  The type 'Target' is undefined           jsdoc/no-undefined-types
+  37:1  warning  The type 'Target' is undefined           jsdoc/no-undefined-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/io/mouseWheel.js
+  5:1  warning  Invalid JSDoc tag name "type{!Runtime}"  jsdoc/check-tag-names
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/io/video.js
+    9:1  warning  Prefer a more specific type to `Function`                     jsdoc/reject-function-type
+   11:1  warning  Prefer a more specific type to `Function`                     jsdoc/reject-function-type
+   12:1  warning  Prefer a more specific type to `Function`                     jsdoc/reject-function-type
+   27:1  warning  The type 'Drawable' is undefined                              jsdoc/no-undefined-types
+  108:1  warning  The type 'Canvas' is undefined                                jsdoc/no-undefined-types
+  194:1  warning  Syntax error in namepath: -                                   jsdoc/valid-types
+  195:1  warning  Syntax error in namepath: -.forceTransparentPreview           jsdoc/valid-types
+  195:1  warning  Missing JSDoc @param "-.forceTransparentPreview" description  jsdoc/require-param-description
+  195:1  warning  Missing JSDoc @param "-.forceTransparentPreview" type         jsdoc/require-param-type
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/playground/benchmark.js
+  86:1  warning  The type 'Asset' is undefined  jsdoc/no-undefined-types
+  99:1  warning  The type 'Asset' is undefined  jsdoc/no-undefined-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/serialization/deserialize-assets.js
+   9:1  warning  The type 'Runtime' is undefined  jsdoc/no-undefined-types
+  67:1  warning  The type 'Runtime' is undefined  jsdoc/no-undefined-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/serialization/sb2.js
+  120:1  warning  Prefer a more specific type to `Function`                                                      jsdoc/reject-function-type
+  121:1  warning  Prefer a more specific type to `Function`                                                      jsdoc/reject-function-type
+  122:1  warning  The type 'ImportedExtensionsInfo' is undefined                                                 jsdoc/no-undefined-types
+  123:1  warning  The type 'ParseState' is undefined                                                             jsdoc/no-undefined-types
+  124:1  warning  Use object shorthand or index signatures instead of `object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+  124:1  warning  The type 'int' is undefined                                                                    jsdoc/no-undefined-types
+  127:1  warning  The type 'int' is undefined                                                                    jsdoc/no-undefined-types
+  129:1  warning  The type 'int' is undefined                                                                    jsdoc/no-undefined-types
+  161:1  warning  Prefer a more specific type to `Function`                                                      jsdoc/reject-function-type
+  162:1  warning  Prefer a more specific type to `Function`                                                      jsdoc/reject-function-type
+  163:1  warning  The type 'ImportedExtensionsInfo' is undefined                                                 jsdoc/no-undefined-types
+  254:1  warning  The type 'Runtime' is undefined                                                                jsdoc/no-undefined-types
+  255:1  warning  The type 'Target' is undefined                                                                 jsdoc/no-undefined-types
+  256:1  warning  The type 'ImportedExtensionsInfo' is undefined                                                 jsdoc/no-undefined-types
+  399:1  warning  The type 'Runtime' is undefined                                                                jsdoc/no-undefined-types
+  402:1  warning  The type 'SoundBank' is undefined                                                              jsdoc/no-undefined-types
+  517:1  warning  The type 'Runtime' is undefined                                                                jsdoc/no-undefined-types
+  518:1  warning  The type 'ImportedExtensionsInfo' is undefined                                                 jsdoc/no-undefined-types
+  523:1  warning  The type 'Target' is undefined                                                                 jsdoc/no-undefined-types
+  855:1  warning  The type 'Runtime' is undefined                                                                jsdoc/no-undefined-types
+  858:1  warning  The type 'ImportedProject' is undefined                                                        jsdoc/no-undefined-types
+  900:1  warning  Prefer a more specific type to `Function`                                                      jsdoc/reject-function-type
+  901:1  warning  Prefer a more specific type to `Function`                                                      jsdoc/reject-function-type
+  902:1  warning  The type 'ImportedExtensionsInfo' is undefined                                                 jsdoc/no-undefined-types
+  903:1  warning  The type 'ParseState' is undefined                                                             jsdoc/no-undefined-types
+  904:1  warning  Use object shorthand or index signatures instead of `object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+  904:1  warning  The type 'int' is undefined                                                                    jsdoc/no-undefined-types
+  907:1  warning  The type 'int' is undefined                                                                    jsdoc/no-undefined-types
+  909:1  warning  The type 'int' is undefined                                                                    jsdoc/no-undefined-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/serialization/sb2_specmap.js
+  42:1  warning  Use object shorthand or index signatures instead of `object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/serialization/sb3.js
+    28:1  warning  The type 'Target' is undefined                                                      jsdoc/no-undefined-types
+   324:1  warning  The type 'objec' is undefined                                                       jsdoc/no-undefined-types
+   353:1  warning  JSDoc @returns declaration present but return expression not available in function  jsdoc/require-returns-check
+   617:1  warning  The type 'Runtime' is undefined                                                     jsdoc/no-undefined-types
+  1044:1  warning  The type 'Runtime' is undefined                                                     jsdoc/no-undefined-types
+  1045:1  warning  The type 'JSZip' is undefined                                                       jsdoc/no-undefined-types
+  1046:1  warning  The type 'SoundBank' is undefined                                                   jsdoc/no-undefined-types
+  1127:1  warning  The type 'Runtime' is undefined                                                     jsdoc/no-undefined-types
+  1129:1  warning  The type 'JSZip' is undefined                                                       jsdoc/no-undefined-types
+  1132:1  warning  The type 'Target' is undefined                                                      jsdoc/no-undefined-types
+  1438:1  warning  The type 'Runtime' is undefined                                                     jsdoc/no-undefined-types
+  1439:1  warning  The type 'JSZip' is undefined                                                       jsdoc/no-undefined-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/serialization/serialize-assets.js
+   6:1  warning  The type 'Runtime' is undefined  jsdoc/no-undefined-types
+  37:1  warning  The type 'Runtime' is undefined  jsdoc/no-undefined-types
+  49:1  warning  The type 'Runtime' is undefined  jsdoc/no-undefined-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/sprites/rendered-target.js
+   13:1  warning  The type 'Sprite' is undefined                                                                 jsdoc/no-undefined-types
+   14:1  warning  The type 'Runtime' is undefined                                                                jsdoc/no-undefined-types
+   22:1  warning  The type 'Sprite' is undefined                                                                 jsdoc/no-undefined-types
+   27:1  warning  The type 'RenderWebGL' is undefined                                                            jsdoc/no-undefined-types
+   49:1  warning  Use object shorthand or index signatures instead of `Object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+  247:5  warning  Missing JSDoc @returns declaration                                                             jsdoc/require-returns
+  290:1  warning  Use object shorthand or index signatures instead of `object`, e.g., `{[key: string]: string}`  jsdoc/check-types
+  455:1  warning  The type 'int' is undefined                                                                    jsdoc/no-undefined-types
+  467:1  warning  The type 'int' is undefined                                                                    jsdoc/no-undefined-types
+  524:1  warning  The type 'int' is undefined                                                                    jsdoc/no-undefined-types
+  538:1  warning  The type 'int' is undefined                                                                    jsdoc/no-undefined-types
+  935:5  warning  JSDoc @returns declaration present but return expression not available in function             jsdoc/require-returns-check
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/sprites/sprite.js
+  15:1  warning  The type 'Runtime' is undefined  jsdoc/no-undefined-types
+  83:1  warning  The type 'int' is undefined      jsdoc/no-undefined-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/util/cast.js
+   19:1  warning  Prefer a more specific type to `*`  jsdoc/reject-any-type
+   46:1  warning  Prefer a more specific type to `*`  jsdoc/reject-any-type
+   70:1  warning  Prefer a more specific type to `*`  jsdoc/reject-any-type
+   79:1  warning  Prefer a more specific type to `*`  jsdoc/reject-any-type
+   89:1  warning  Prefer a more specific type to `*`  jsdoc/reject-any-type
+   90:1  warning  The type 'RGBOject' is undefined    jsdoc/no-undefined-types
+  107:1  warning  Prefer a more specific type to `*`  jsdoc/reject-any-type
+  117:1  warning  Prefer a more specific type to `*`  jsdoc/reject-any-type
+  118:1  warning  Prefer a more specific type to `*`  jsdoc/reject-any-type
+  154:1  warning  Prefer a more specific type to `*`  jsdoc/reject-any-type
+  188:1  warning  Prefer a more specific type to `*`  jsdoc/reject-any-type
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/util/fetch-with-timeout.js
+  3:1  warning  The type 'RequestInfo' is undefined  jsdoc/no-undefined-types
+  4:1  warning  The type 'RequestInit' is undefined  jsdoc/no-undefined-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/util/get-monitor-id.js
+  1:1  warning  Missing JSDoc @returns declaration                                  jsdoc/require-returns
+  6:1  warning  Expected @param names to be "id, fields". Got "baseId, id, fields"  jsdoc/check-param-names
+  7:1  warning  Missing JSDoc @param "id" description                               jsdoc/require-param-description
+  7:1  warning  Missing JSDoc @param "id" type                                      jsdoc/require-param-type
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/util/jsonrpc.js
+  36:1  warning  @param "method" does not match an existing function parameter  jsdoc/check-param-names
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/util/maybe-format-message.js
+  6:1  warning  Prefer a more specific type to `*`  jsdoc/reject-any-type
+  9:1  warning  Prefer a more specific type to `*`  jsdoc/reject-any-type
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/util/timer.js
+  39:5  warning  Missing JSDoc @returns declaration  jsdoc/require-returns
+  51:5  warning  Missing JSDoc @returns declaration  jsdoc/require-returns
+  85:1  warning  Syntax error in type: function      jsdoc/valid-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/util/variable-util.js
+  16:1  warning  The type 'Target' is undefined  jsdoc/no-undefined-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/virtual-machine.js
+    61:1  warning  The type 'Target' is undefined                  jsdoc/no-undefined-types
+    67:1  warning  The type 'Target' is undefined                  jsdoc/no-undefined-types
+   574:1  warning  The type 'Target' is undefined                  jsdoc/no-undefined-types
+   575:1  warning  The type 'ImportedExtensionsInfo' is undefined  jsdoc/no-undefined-types
+   594:1  warning  Tag @type must have a type                      jsdoc/valid-types
+   718:1  warning  The type 'int' is undefined                     jsdoc/no-undefined-types
+   748:1  warning  The type 'int' is undefined                     jsdoc/no-undefined-types
+   763:1  warning  The type 'int' is undefined                     jsdoc/no-undefined-types
+   779:1  warning  The type 'int' is undefined                     jsdoc/no-undefined-types
+   793:1  warning  The type 'int' is undefined                     jsdoc/no-undefined-types
+   803:1  warning  The type 'int' is undefined                     jsdoc/no-undefined-types
+   804:1  warning  Prefer a more specific type to `Function`       jsdoc/reject-function-type
+   841:1  warning  The type 'int' is undefined                     jsdoc/no-undefined-types
+   851:1  warning  The type 'int' is undefined                     jsdoc/no-undefined-types
+   864:1  warning  The type 'int' is undefined                     jsdoc/no-undefined-types
+   906:1  warning  The type 'int' is undefined                     jsdoc/no-undefined-types
+   907:1  warning  Prefer a more specific type to `Function`       jsdoc/reject-function-type
+   926:1  warning  The type 'int' is undefined                     jsdoc/no-undefined-types
+   946:1  warning  The type 'int' is undefined                     jsdoc/no-undefined-types
+  1008:1  warning  The type 'int' is undefined                     jsdoc/no-undefined-types
+  1060:1  warning  The type 'int' is undefined                     jsdoc/no-undefined-types
+  1113:1  warning  Prefer a more specific type to `Function`       jsdoc/reject-function-type
+  1179:1  warning  The type 'AudioEngine' is undefined             jsdoc/no-undefined-types
+  1187:1  warning  The type 'RenderWebGL' is undefined             jsdoc/no-undefined-types
+  1194:1  warning  The type 'RenderWebGL' is undefined             jsdoc/no-undefined-types
+  1207:1  warning  Prefer a more specific type to `Function`       jsdoc/reject-function-type
+  1215:1  warning  The type 'ScratchStorage' is undefined          jsdoc/no-undefined-types
+  1245:1  warning  The type 'Blockly.Event' is undefined           jsdoc/no-undefined-types
+  1255:1  warning  The type 'Blockly.Event' is undefined           jsdoc/no-undefined-types
+  1263:1  warning  The type 'Blockly.Event' is undefined           jsdoc/no-undefined-types
+  1275:1  warning  The type 'Blockly.Event' is undefined           jsdoc/no-undefined-types
+  1420:1  warning  The type 'bool' is undefined                    jsdoc/no-undefined-types
+  1502:1  warning  The type 'int' is undefined                     jsdoc/no-undefined-types
+  1621:1  warning  Prefer a more specific type to `*`              jsdoc/reject-any-type
+  1645:1  warning  Prefer a more specific type to `*`              jsdoc/reject-any-type
+  1660:1  warning  Prefer a more specific type to `Function`       jsdoc/reject-function-type
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/test/fixtures/make-test-storage.js
+   7:1  warning  The type 'Asset' is undefined  jsdoc/no-undefined-types
+  20:1  warning  The type 'Asset' is undefined  jsdoc/no-undefined-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/test/fixtures/mock-timer.js
+   9:1  warning  Prefer a more specific type to `*`         jsdoc/reject-any-type
+  40:1  warning  Prefer a more specific type to `Function`  jsdoc/reject-function-type
+  98:1  warning  Syntax error in type: function             jsdoc/valid-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/test/fixtures/patch-timers.js
+  10:1  warning  Expected only 0 lines after block description  jsdoc/tag-lines
+  12:1  warning  Prefer a more specific type to `any`           jsdoc/reject-any-type
+  12:1  warning  Missing JSDoc @returns description             jsdoc/require-returns-description
+  21:1  warning  Prefer a more specific type to `any`           jsdoc/reject-any-type
+  32:1  warning  Prefer a more specific type to `any`           jsdoc/reject-any-type
+  41:1  warning  Prefer a more specific type to `any`           jsdoc/reject-any-type
+  61:1  warning  Prefer a more specific type to `any`           jsdoc/reject-any-type
+  61:1  warning  Missing JSDoc @returns description             jsdoc/require-returns-description
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/test/integration/load-extensions.js
+  52:21  warning  Unexpected use of undefined  no-undefined
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/test/integration/pen.js
+  30:1  warning  The type 'PenState' is undefined  jsdoc/no-undefined-types
+  33:1  warning  The type 'PenState' is undefined  jsdoc/no-undefined-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/test/integration/vm-state-snapshot.js
+   55:1  warning  Prefer a more specific type to `any`       jsdoc/reject-any-type
+   57:1  warning  Prefer a more specific type to `Function`  jsdoc/reject-function-type
+   69:1  warning  Prefer a more specific type to `any`       jsdoc/reject-any-type
+   84:1  warning  Prefer a more specific type to `any`       jsdoc/reject-any-type
+  107:1  warning  Prefer a more specific type to `any`       jsdoc/reject-any-type
+  121:1  warning  Prefer a more specific type to `any`       jsdoc/reject-any-type
+  139:1  warning  Missing JSDoc @param "vm" description      jsdoc/require-param-description
+  140:1  warning  Missing JSDoc @returns description         jsdoc/require-returns-description
+  194:1  warning  Prefer a more specific type to `any`       jsdoc/reject-any-type
+  194:1  warning  Prefer a more specific type to `any`       jsdoc/reject-any-type
+  204:1  warning  Prefer a more specific type to `any`       jsdoc/reject-any-type
+  214:1  warning  Prefer a more specific type to `any`       jsdoc/reject-any-type
+  236:1  warning  Prefer a more specific type to `any`       jsdoc/reject-any-type
+  243:1  warning  Prefer a more specific type to `any`       jsdoc/reject-any-type
+  243:1  warning  Prefer a more specific type to `any`       jsdoc/reject-any-type
+  247:1  warning  Prefer a more specific type to `any`       jsdoc/reject-any-type
+  247:1  warning  Prefer a more specific type to `any`       jsdoc/reject-any-type
+  295:1  warning  Prefer a more specific type to `any`       jsdoc/reject-any-type
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/test/unit/engine_thread.js
+  43:28  warning  Unexpected use of undefined  no-undefined
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/test/unit/extension_conversion.js
+  9:1  warning  The type 'ExtensionMetadata' is undefined  jsdoc/no-undefined-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/test/unit/serialization_procedures.js
+   4:1  warning  Missing JSDoc @returns declaration  jsdoc/require-returns
+  60:1  warning  Missing JSDoc @returns declaration  jsdoc/require-returns
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/test/unit/serialization_sb3.js
+  463:41  warning  Unexpected use of undefined  no-undefined
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/test/unit/util_cast.js
+   24:27  warning  Unexpected use of undefined  no-undefined
+   48:28  warning  Unexpected use of undefined  no-undefined
+   71:27  warning  Unexpected use of undefined  no-undefined
+  135:26  warning  Unexpected use of undefined  no-undefined
+  135:37  warning  Unexpected use of undefined  no-undefined
+  136:26  warning  Unexpected use of undefined  no-undefined
+  162:24  warning  Unexpected use of undefined  no-undefined
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/test/unit/util_color.js
+   6:1  warning  The type 'Test' is undefined       jsdoc/no-undefined-types
+   7:1  warning  The type 'HSVObject' is undefined  jsdoc/no-undefined-types
+   8:1  warning  The type 'HSVObject' is undefined  jsdoc/no-undefined-types
+  24:1  warning  The type 'Test' is undefined       jsdoc/no-undefined-types
+  25:1  warning  The type 'RGBObject' is undefined  jsdoc/no-undefined-types
+  26:1  warning  The type 'RGBObject' is undefined  jsdoc/no-undefined-types
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/test/unit/util_variable.js
+  60:43  warning  Unexpected use of undefined  no-undefined
+
+✖ 718 problems (0 errors, 718 warnings)
+  0 errors and 1 warning potentially fixable with the `--fix` option.
+
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/engine/runtime.js
+   907:38  warning  Pattern is not a string literal  format-message/literal-pattern
+   950:52  warning  Pattern is not a string literal  format-message/literal-pattern
+  1025:58  warning  Pattern is not a string literal  format-message/literal-pattern
+  1030:48  warning  Pattern is not a string literal  format-message/literal-pattern
+  1240:53  warning  Pattern is not a string literal  format-message/literal-pattern
+  1321:47  warning  Pattern is not a string literal  format-message/literal-pattern
+  1386:50  warning  Pattern is not a string literal  format-message/literal-pattern
+  1407:50  warning  Pattern is not a string literal  format-message/literal-pattern
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/extension-support/extension-manager.js
+  354:43  warning  Pattern is not a string literal  format-message/literal-pattern
+  358:44  warning  Pattern is not a string literal  format-message/literal-pattern
+
+~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/packages/scratch-vm/src/util/maybe-format-message.js
+  13:30  warning  Pattern is not a string literal  format-message/literal-pattern
+  13:50  warning  Locale is not a string literal   format-message/literal-locale
+
+✖ 12 problems (0 errors, 12 warnings)
+
