@@ -1,0 +1,11 @@
+{
+  "source_commit": "7fbbf034488760d8fc7e034bf23f3e08e6e1807d",
+  "version": "2320.0.0b9",
+  "tooling_commit": "dc1ab834183e29f2eb03059b07e99d2b463776ee",
+  "served_assets_match": true,
+  "runtime_settings_match": true,
+  "bridge_pair_begin": true,
+  "authenticated_hello": false,
+  "minecraft_operations": false,
+  "bridge_execution": "OCI /app files extracted; host-native Node, not container execution"
+}

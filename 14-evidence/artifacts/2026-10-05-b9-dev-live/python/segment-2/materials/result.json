@@ -1,0 +1,117 @@
+{
+  "knowledge_contract_commit": "561de98b5c15864ac9b86cb6dcaeef1f20ce635b",
+  "exact_set": "b9-integrated-artifact-set-1",
+  "python_source_commit": "b901c88fe41b67530ff353271683ece9fd453076",
+  "runner_sha256": "50d7c0d46186a2f534ff79ceb6e37578d876ae6e8b646a3789a58a28e9c7fd83",
+  "endpoint_profile": "normal-dev",
+  "token_emitted": false,
+  "started_at_utc": "2026-10-04T23:29:12.796882+00:00",
+  "status": "PASS",
+  "checks": {
+    "wheel_identity": {
+      "status": "PASS",
+      "detail": null
+    },
+    "installed_package": {
+      "status": "PASS",
+      "detail": null
+    },
+    "wirescope-app.zip": {
+      "status": "PASS",
+      "detail": null
+    },
+    "wirescope-app.manifest.json": {
+      "status": "PASS",
+      "detail": null
+    },
+    "authorized_endpoint": {
+      "status": "PASS",
+      "detail": null
+    },
+    "wirescope_started": {
+      "status": "PASS",
+      "detail": null
+    },
+    "authenticated_hello": {
+      "status": "PASS",
+      "detail": null
+    },
+    "browser_attached": {
+      "status": "PASS",
+      "detail": null
+    },
+    "postToChat": {
+      "status": "PASS",
+      "detail": "null decoded as None"
+    },
+    "pollEvents": {
+      "status": "PASS",
+      "detail": null
+    },
+    "entity_spawn_and_pose": {
+      "status": "PASS",
+      "detail": null
+    },
+    "entity_remove": {
+      "status": "PASS",
+      "detail": null
+    },
+    "particle": {
+      "status": "PASS",
+      "detail": {
+        "result": 8
+      }
+    },
+    "sound": {
+      "status": "PASS",
+      "detail": null
+    },
+    "human_wirescope": {
+      "status": "PASS",
+      "detail": null
+    }
+  },
+  "stage": "sound",
+  "pairing_replaced_stored_token": true,
+  "hello_result": {
+    "protocol": "23.2.0",
+    "mc_version": "1.21.11",
+    "supported_mc_versions": [
+      "1.21.11"
+    ],
+    "dimension": "minecraft:overworld",
+    "origin": [
+      200,
+      0,
+      200
+    ],
+    "world_constants": {
+      "y_sea": 62
+    },
+    "permissions": {
+      "online": true,
+      "offline": true,
+      "buildRange": 1000
+    }
+  },
+  "human_controls": [
+    "RUN",
+    "OBSERVED"
+  ],
+  "event_batch": {
+    "types": [
+      "chat_posted"
+    ],
+    "through_sequence": 1,
+    "latest_sequence": 1,
+    "filtered_out": 0,
+    "loss_totals": {
+      "overflow": 0,
+      "capacity": 0,
+      "explicitly_discarded": 0
+    }
+  },
+  "human_wirescope_observation": "confirmed",
+  "close": "PASS",
+  "finished_at_utc": "2026-10-04T23:43:01.007948+00:00"
+}

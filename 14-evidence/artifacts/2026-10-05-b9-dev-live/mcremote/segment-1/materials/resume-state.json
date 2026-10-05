@@ -1,0 +1,32 @@
+{
+  "status": "completed",
+  "reason": "human owner approved new pairing; live-auto and chat null completed",
+  "knowledge_commit": "561de98b5c15864ac9b86cb6dcaeef1f20ce635b",
+  "instruction": "00-hub/b9-gate-live-test-sheet_ja.md",
+  "exact_set": "b9-integrated-artifact-set-1",
+  "source_commit": "5cb33ebad4bf2c5e36c3433b0f70fe6070915b00",
+  "jar_sha256": "4feb90dbdba8550cd16800cc3d384e42fed16a5c5e20faa489a0381ad2cda58e",
+  "first_attempt_exit": 1,
+  "expired_pair_code": "212-814",
+  "body_executed": true,
+  "chat_null_executed": true,
+  "world_test_mutations": "258 spawned entities and 9 saved block positions; cleanup verified",
+  "ssh_tunnel_closed": true,
+  "next_action": "Return confirmation and sanitized materials to the B9 knowledge coordinator for formal evidence and cross-repository gate judgment.",
+  "expired_attempt_path": "attempt-1-expired",
+  "successful_pair_code": "284-264",
+  "successful_run_exit": 0,
+  "live_auto_pass_lines": 60,
+  "chat_null_pass_lines": 1,
+  "fail_lines": 0,
+  "cleanup": {
+    "spawned": 258,
+    "removed_in_test": 1,
+    "removed_after_test": 257,
+    "already_absent": 0,
+    "blocks_saved": 9,
+    "blocks_restored": 9,
+    "failures": []
+  },
+  "confirmation": "confirmation_ja.md"
+}

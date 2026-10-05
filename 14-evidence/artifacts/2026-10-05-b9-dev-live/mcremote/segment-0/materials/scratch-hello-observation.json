@@ -1,0 +1,56 @@
+{
+  "source": "human owner report in this session",
+  "test_class": "live-human",
+  "reported_time": "08:02:10",
+  "date": "2026-10-05",
+  "session_timezone": "Asia/Tokyo",
+  "reported_behavior": "b9 Scratch connected to the b9 plugin without pairing again",
+  "request_display": {
+    "params": {
+      "protocol": "23.2.0",
+      "client": {
+        "name": "scratch-mcremote",
+        "version": "2320.0.0b9",
+        "locale": "ja"
+      }
+    }
+  },
+  "response_display": {
+    "result": {
+      "protocol": "23.2.0",
+      "mc_version": "1.21.11",
+      "supported_mc_versions": [
+        "1.21.11"
+      ],
+      "catalog_hash": "6d0f8524b70e37fb8d7b34d0fdb45c2b058dcfea82920d86ca9aaabb9fcadc83",
+      "dimension": "minecraft:overworld",
+      "origin": [
+        200,
+        0,
+        200
+      ],
+      "world_constants": {
+        "y_sea": 62
+      },
+      "permissions": {
+        "online": true,
+        "offline": true,
+        "build_range": 1000
+      }
+    }
+  },
+  "checks": {
+    "no_repairing_reported": true,
+    "protocol_matches": true,
+    "minecraft_version_matches": true,
+    "scratch_client_version_matches": true
+  },
+  "boundaries": [
+    "This is the human owner observation; Codex did not repeat this hello.",
+    "Client artifact source commit was not exposed in this trace.",
+    "No token, pairing_id, private address or player UUID was provided.",
+    "Full JSON-RPC envelopes were not provided; the display payloads are preserved as received."
+  ],
+  "knowledge_contract_commit": "561de98b5c15864ac9b86cb6dcaeef1f20ce635b",
+  "knowledge_contract_path": "00-hub/b9-gate-live-test-sheet_ja.md: common and segment 0 step 3"
+}

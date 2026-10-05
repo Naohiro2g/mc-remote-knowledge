@@ -1,0 +1,387 @@
+{
+  "schema": "mcremote.observer",
+  "schema_version": 1,
+  "emitted_at": 1791157380730,
+  "target": {
+    "id": "target-75aa6ebfe39cf335e80cf717736a3158",
+    "display_alias": "BRAIN-MINSKY-921832",
+    "source_kind": "python"
+  },
+  "streams": [
+    {
+      "id": "main",
+      "kind": "main",
+      "status": "connected",
+      "hello": {
+        "protocol": "23.2.0",
+        "mc_version": "1.21.11",
+        "supported_mc_versions": [
+          "1.21.11"
+        ],
+        "catalog_hash": "6d0f8524b70e37fb8d7b34d0fdb45c2b058dcfea82920d86ca9aaabb9fcadc83",
+        "dimension": "minecraft:overworld",
+        "origin": [
+          200,
+          0,
+          200
+        ],
+        "world_constants": {
+          "y_sea": 62
+        },
+        "permissions": {
+          "online": true,
+          "offline": true,
+          "build_range": 1000
+        }
+      },
+      "frames": [
+        {
+          "sequence": 1,
+          "observed_at": 1791156569523,
+          "direction": "send",
+          "request_id": 1,
+          "method": "hello",
+          "payload": {
+            "params": {
+              "protocol": "23.2.0"
+            }
+          }
+        },
+        {
+          "sequence": 2,
+          "observed_at": 1791156569567,
+          "direction": "receive",
+          "request_id": 1,
+          "method": "hello",
+          "payload": {
+            "result": {
+              "protocol": "23.2.0",
+              "mc_version": "1.21.11",
+              "supported_mc_versions": [
+                "1.21.11"
+              ],
+              "catalog_hash": "6d0f8524b70e37fb8d7b34d0fdb45c2b058dcfea82920d86ca9aaabb9fcadc83",
+              "dimension": "minecraft:overworld",
+              "origin": [
+                200,
+                0,
+                200
+              ],
+              "world_constants": {
+                "y_sea": 62
+              },
+              "permissions": {
+                "online": true,
+                "offline": true,
+                "build_range": 1000
+              }
+            }
+          }
+        },
+        {
+          "sequence": 3,
+          "observed_at": 1791157337203,
+          "direction": "send",
+          "request_id": 2,
+          "method": "chat.post",
+          "payload": {
+            "params": [
+              "[b9 Python] representative round trip"
+            ]
+          }
+        },
+        {
+          "sequence": 4,
+          "observed_at": 1791157337208,
+          "direction": "receive",
+          "request_id": 2,
+          "method": "chat.post",
+          "payload": {
+            "result": null
+          }
+        },
+        {
+          "sequence": 5,
+          "observed_at": 1791157337213,
+          "direction": "send",
+          "request_id": 3,
+          "method": "events.poll",
+          "payload": {
+            "params": [
+              0,
+              {
+                "max_events": 32
+              }
+            ]
+          }
+        },
+        {
+          "sequence": 6,
+          "observed_at": 1791157337261,
+          "direction": "receive",
+          "request_id": 3,
+          "method": "events.poll",
+          "payload": {
+            "result": {
+              "events": [
+                {
+                  "sequence": 1,
+                  "type": "chat_posted",
+                  "dimension": "minecraft:overworld",
+                  "origin": [
+                    200,
+                    0,
+                    200
+                  ],
+                  "message": "b9-python-live"
+                }
+              ],
+              "through_sequence": 1,
+              "latest_sequence": 1,
+              "filtered_out": 0,
+              "overflow_dropped_total": 0,
+              "capacity_dropped_total": 0,
+              "explicitly_discarded_total": 0
+            }
+          }
+        },
+        {
+          "sequence": 7,
+          "observed_at": 1791157337269,
+          "direction": "send",
+          "request_id": 4,
+          "method": "player.getPos",
+          "payload": {
+            "params": []
+          }
+        },
+        {
+          "sequence": 8,
+          "observed_at": 1791157337317,
+          "direction": "receive",
+          "request_id": 4,
+          "method": "player.getPos",
+          "payload": {
+            "result": {
+              "dimension": "minecraft:overworld",
+              "pos": [
+                -16.538,
+                120.499,
+                12.869
+              ]
+            }
+          }
+        },
+        {
+          "sequence": 9,
+          "observed_at": 1791157337340,
+          "direction": "send",
+          "request_id": 5,
+          "method": "build.setDimension",
+          "payload": {
+            "params": [
+              "minecraft:overworld"
+            ]
+          }
+        },
+        {
+          "sequence": 10,
+          "observed_at": 1791157337357,
+          "direction": "receive",
+          "request_id": 5,
+          "method": "build.setDimension",
+          "payload": {
+            "result": {
+              "dimension": "minecraft:overworld",
+              "origin": [
+                200,
+                0,
+                200
+              ]
+            }
+          }
+        },
+        {
+          "sequence": 11,
+          "observed_at": 1791157337361,
+          "direction": "send",
+          "request_id": 6,
+          "method": "build.setOrigin",
+          "payload": {
+            "params": [
+              183,
+              120,
+              212
+            ]
+          }
+        },
+        {
+          "sequence": 12,
+          "observed_at": 1791157337407,
+          "direction": "receive",
+          "request_id": 6,
+          "method": "build.setOrigin",
+          "payload": {
+            "result": {
+              "dimension": "minecraft:overworld",
+              "origin": [
+                183,
+                120,
+                212
+              ]
+            }
+          }
+        },
+        {
+          "sequence": 13,
+          "observed_at": 1791157337410,
+          "direction": "send",
+          "request_id": 7,
+          "method": "world.spawnEntity",
+          "payload": {
+            "params": [
+              2,
+              1,
+              2,
+              "cow"
+            ]
+          }
+        },
+        {
+          "sequence": 14,
+          "observed_at": 1791157337486,
+          "direction": "receive",
+          "request_id": 7,
+          "method": "world.spawnEntity",
+          "payload": {
+            "result": "mcr_eh_x09LV9iBC8PC7BIsGESkig"
+          }
+        },
+        {
+          "sequence": 15,
+          "observed_at": 1791157337488,
+          "direction": "send",
+          "request_id": 8,
+          "method": "entity.getPose",
+          "payload": {
+            "params": [
+              "mcr_eh_x09LV9iBC8PC7BIsGESkig"
+            ]
+          }
+        },
+        {
+          "sequence": 16,
+          "observed_at": 1791157337508,
+          "direction": "receive",
+          "request_id": 8,
+          "method": "entity.getPose",
+          "payload": {
+            "result": {
+              "dimension": "minecraft:overworld",
+              "pos": [
+                2,
+                1,
+                2
+              ],
+              "yaw": 0,
+              "pitch": 0
+            }
+          }
+        },
+        {
+          "sequence": 17,
+          "observed_at": 1791157337520,
+          "direction": "send",
+          "request_id": 9,
+          "method": "entity.remove",
+          "payload": {
+            "params": [
+              "mcr_eh_x09LV9iBC8PC7BIsGESkig"
+            ]
+          }
+        },
+        {
+          "sequence": 18,
+          "observed_at": 1791157337561,
+          "direction": "receive",
+          "request_id": 9,
+          "method": "entity.remove",
+          "payload": {
+            "result": null
+          }
+        },
+        {
+          "sequence": 19,
+          "observed_at": 1791157337566,
+          "direction": "send",
+          "request_id": 10,
+          "method": "world.spawnParticle",
+          "payload": {
+            "params": [
+              0,
+              2,
+              2,
+              0.2,
+              0.2,
+              0.2,
+              {
+                "particle_id": "dust",
+                "receiver": "self",
+                "data": {
+                  "color": [
+                    64,
+                    160,
+                    255
+                  ],
+                  "size": 1
+                }
+              },
+              0,
+              8
+            ]
+          }
+        },
+        {
+          "sequence": 20,
+          "observed_at": 1791157337625,
+          "direction": "receive",
+          "request_id": 10,
+          "method": "world.spawnParticle",
+          "payload": {
+            "result": 8
+          }
+        },
+        {
+          "sequence": 21,
+          "observed_at": 1791157337639,
+          "direction": "send",
+          "request_id": 11,
+          "method": "world.playSound",
+          "payload": {
+            "params": [
+              0,
+              1,
+              1,
+              "block.note_block.harp",
+              {
+                "volume": 0.5,
+                "note": 18,
+                "receiver": "self"
+              }
+            ]
+          }
+        },
+        {
+          "sequence": 22,
+          "observed_at": 1791157337661,
+          "direction": "receive",
+          "request_id": 11,
+          "method": "world.playSound",
+          "payload": {
+            "result": null
+          }
+        }
+      ]
+    }
+  ]
+}

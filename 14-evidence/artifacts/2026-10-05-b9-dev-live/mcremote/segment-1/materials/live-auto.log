@@ -1,0 +1,62 @@
+PASS protocol 21 rejection: protocol_mismatch
+/mcremote pair 284-264
+PASS hello/build state: two independent connection epochs
+PASS legacy build.setWorld removal: method_not_found
+PASS DimensionRef case rejection: invalid_params
+PASS world is not an overworld alias: unknown_dimension
+PASS DimensionKey aliases removed and invalid refs rejected
+PASS world.getHeight: relative height=72
+PASS legacy string union rejection: invalid_params
+PASS missing state rejection: invalid_params
+PASS unknown field rejection: invalid_params
+PASS non-scalar state rejection: invalid_params
+PASS unknown block: unknown_block
+PASS unknown property: unknown_property
+PASS invalid property value: invalid_property_value
+PASS world.getBlocks axis limit: work_limit_exceeded
+PASS world.getBlocks integer validation: invalid_params
+PASS legacy world.getBlockWithData removal: method_not_found
+PASS structured BlockSpec/BlockValue: strict shape, defaults, set/get/getBlocks/setBlocks
+PASS connection.flush exact params: invalid_params
+PASS connection FIFO/flush: no synthetic response, invalid notification terminal, 1041 notification capacity burst preserved
+PASS height fractional integer rejection: invalid_params
+PASS height JSON string rejection: invalid_params
+PASS height empty lower layer: height_not_found
+PASS events future cursor: invalid_params
+PASS events legacy flat limit: invalid_params
+PASS events unknown option: invalid_params
+PASS events.poll: default/options shape, legacy rejection, epoch independence
+PASS events.clear is b6-only: method_not_found
+PASS world.spawnParticle: canonical no-data particle
+PASS particle unknown ID: unknown_particle
+PASS particle typed-data rejection: particle_data_required
+PASS particle negative count: invalid_params
+PASS particle work limit: work_limit_exceeded
+PASS world.spawnParticle: unloaded chunk loaded before spawn
+PASS entity unknown ID: unknown_entity
+PASS entity player rejection: entity_not_spawnable
+PASS entity handle capacity: entity_capacity_exhausted
+PASS world.spawnEntity: opaque handles, capacity, epoch independence
+PASS entity.getPose: dimension/pos/yaw/pitch
+PASS world.getNearbyEntities: reuses same-dimension handle, {handle,type,pos}
+PASS nearby radius over cap: invalid_params
+PASS nearby zero max_entities: invalid_params
+PASS entity.setPose: teleport and re-read pose
+PASS entity.remove: result null
+PASS removed handle: entity_not_found
+PASS world.spawnParticle: object default receiver
+PASS world.spawnParticle: dust typed data
+PASS world.spawnParticle: block typed data
+PASS particle data on data-free particle: invalid_params
+PASS particle unsupported typed data: particle_data_unsupported
+PASS world.playSound: note and pitch accepted
+PASS resource id: minecraft: filled in for sound and particle
+PASS playSound unknown sound: unknown_sound
+PASS playSound pitch and note together: invalid_params
+PASS world.playBlockSound: block sound group resolved
+PASS playBlockSound air: no_block
+PASS playBlockSound unknown kind: invalid_params
+PASS world.spawnParticle: self receiver accepted
+PASS block coordinate fraction rejection: invalid_params
+PASS: McRemote live-auto (non-human subset)
+PASS chat.post: id response has exact result:null

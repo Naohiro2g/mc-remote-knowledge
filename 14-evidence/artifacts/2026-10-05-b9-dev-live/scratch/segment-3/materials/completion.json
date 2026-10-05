@@ -1,0 +1,9 @@
+{
+  "test_browser_closed": true,
+  "localhost_services": {
+    "scratch": 200,
+    "wirescope": 200
+  },
+  "existing_user_browser_untouched": true,
+  "test_world_cleanup": "entity removed; original air restored and read back"
+}

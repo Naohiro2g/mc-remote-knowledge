@@ -1,0 +1,9 @@
+{
+  "spawned": 0,
+  "removed_in_test": 0,
+  "removed_after_test": 0,
+  "already_absent": 0,
+  "blocks_saved": 0,
+  "blocks_restored": 0,
+  "failures": []
+}

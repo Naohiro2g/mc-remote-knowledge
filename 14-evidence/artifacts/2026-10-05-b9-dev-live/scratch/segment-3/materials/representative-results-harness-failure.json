@@ -1,0 +1,101 @@
+{
+  "source_commit": "7fbbf034488760d8fc7e034bf23f3e08e6e1807d",
+  "tooling_commit": "dc1ab834183e29f2eb03059b07e99d2b463776ee",
+  "runs": [
+    {
+      "opcode": "postToChat",
+      "arguments": {
+        "MSG": "[mc-remote b9 Scratch] representative block test"
+      },
+      "nested": {},
+      "frames": [
+        {
+          "sequence": 2736,
+          "timestamp": 1791158800340,
+          "streamId": "default",
+          "direction": "send",
+          "id": 2688,
+          "method": "chat.post",
+          "payload": {
+            "jsonrpc": "2.0",
+            "id": 2688,
+            "method": "chat.post",
+            "params": [
+              "[mc-remote b9 Scratch] representative block test"
+            ]
+          }
+        },
+        {
+          "sequence": 2737,
+          "timestamp": 1791158800374,
+          "streamId": "default",
+          "direction": "receive",
+          "id": 2688,
+          "method": "chat.post",
+          "payload": {
+            "jsonrpc": "2.0",
+            "id": 2688,
+            "result": null
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "opcode": "getBlock",
+      "arguments": {
+        "X": "3",
+        "Y": "130",
+        "Z": "3"
+      },
+      "nested": {},
+      "reporter": "minecraft:air",
+      "frames": [
+        {
+          "sequence": 2739,
+          "timestamp": 1791158800672,
+          "streamId": "default",
+          "direction": "send",
+          "id": 2690,
+          "method": "world.getBlock",
+          "payload": {
+            "jsonrpc": "2.0",
+            "id": 2690,
+            "method": "world.getBlock",
+            "params": [
+              3,
+              130,
+              3
+            ]
+          }
+        },
+        {
+          "sequence": 2740,
+          "timestamp": 1791158800724,
+          "streamId": "default",
+          "direction": "receive",
+          "id": 2690,
+          "method": "world.getBlock",
+          "payload": {
+            "jsonrpc": "2.0",
+            "id": 2690,
+            "result": {
+              "block_id": "minecraft:air",
+              "state": {}
+            }
+          }
+        }
+      ],
+      "passed": true
+    }
+  ],
+  "picker": [],
+  "cleanup": {},
+  "hello": {
+    "protocol": "23.2.0",
+    "mc_version": "1.21.11"
+  },
+  "chat_post_null": true,
+  "passed": false,
+  "failure": "page.evaluate: Error: Missing block field setBlock.STATE\n    at window.__b9GateMakeBlock (eval at evaluate (:311:30), <anonymous>:25:35)\n    at eval (eval at evaluate (:311:30), <anonymous>:2:16)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+}

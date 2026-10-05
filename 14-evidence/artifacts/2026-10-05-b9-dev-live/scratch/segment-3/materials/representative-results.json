@@ -1,0 +1,1429 @@
+{
+  "source_commit": "7fbbf034488760d8fc7e034bf23f3e08e6e1807d",
+  "tooling_commit": "dc1ab834183e29f2eb03059b07e99d2b463776ee",
+  "runs": [
+    {
+      "opcode": "postToChat",
+      "arguments": {
+        "MSG": "[mc-remote b9 Scratch] representative block test"
+      },
+      "nested": {},
+      "frames": [
+        {
+          "sequence": 40871,
+          "timestamp": 1791170363490,
+          "streamId": "default",
+          "direction": "send",
+          "id": 40819,
+          "method": "chat.post",
+          "payload": {
+            "jsonrpc": "2.0",
+            "id": 40819,
+            "method": "chat.post",
+            "params": [
+              "[mc-remote b9 Scratch] representative block test"
+            ]
+          }
+        },
+        {
+          "sequence": 40872,
+          "timestamp": 1791170363535,
+          "streamId": "default",
+          "direction": "receive",
+          "id": 40819,
+          "method": "chat.post",
+          "payload": {
+            "jsonrpc": "2.0",
+            "id": 40819,
+            "result": null
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "opcode": "getBlock",
+      "arguments": {
+        "X": "3",
+        "Y": "130",
+        "Z": "3"
+      },
+      "nested": {},
+      "reporter": "minecraft:air",
+      "frames": [
+        {
+          "sequence": 40874,
+          "timestamp": 1791170364198,
+          "streamId": "default",
+          "direction": "send",
+          "id": 40821,
+          "method": "world.getBlock",
+          "payload": {
+            "jsonrpc": "2.0",
+            "id": 40821,
+            "method": "world.getBlock",
+            "params": [
+              3,
+              130,
+              3
+            ]
+          }
+        },
+        {
+          "sequence": 40876,
+          "timestamp": 1791170364296,
+          "streamId": "default",
+          "direction": "receive",
+          "id": 40821,
+          "method": "world.getBlock",
+          "payload": {
+            "jsonrpc": "2.0",
+            "id": 40821,
+            "result": {
+              "block_id": "minecraft:air",
+              "state": {}
+            }
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "opcode": "setBlock",
+      "arguments": {
+        "X": "3",
+        "Y": "130",
+        "Z": "3",
+        "BLOCK": "gold_block",
+        "STATE": ""
+      },
+      "nested": {},
+      "frames": [
+        {
+          "sequence": 40924,
+          "timestamp": 1791170380702,
+          "streamId": "default",
+          "direction": "send",
+          "id": 40870,
+          "method": "world.setBlock",
+          "payload": {
+            "jsonrpc": "2.0",
+            "id": 40870,
+            "method": "world.setBlock",
+            "params": [
+              3,
+              130,
+              3,
+              {
+                "block_id": "gold_block",
+                "state": {}
+              }
+            ]
+          }
+        },
+        {
+          "sequence": 40925,
+          "timestamp": 1791170380747,
+          "streamId": "default",
+          "direction": "receive",
+          "id": 40870,
+          "method": "world.setBlock",
+          "payload": {
+            "jsonrpc": "2.0",
+            "id": 40870,
+            "result": null
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "opcode": "getBlock",
+      "arguments": {
+        "X": "3",
+        "Y": "130",
+        "Z": "3"
+      },
+      "nested": {},
+      "reporter": "minecraft:gold_block",
+      "frames": [
+        {
+          "sequence": 40928,
+          "timestamp": 1791170381304,
+          "streamId": "default",
+          "direction": "send",
+          "id": 40873,
+          "method": "world.getBlock",
+          "payload": {
+            "jsonrpc": "2.0",
+            "id": 40873,
+            "method": "world.getBlock",
+            "params": [
+              3,
+              130,
+              3
+            ]
+          }
+        },
+        {
+          "sequence": 40929,
+          "timestamp": 1791170381378,
+          "streamId": "default",
+          "direction": "receive",
+          "id": 40873,
+          "method": "world.getBlock",
+          "payload": {
+            "jsonrpc": "2.0",
+            "id": 40873,
+            "result": {
+              "block_id": "minecraft:gold_block",
+              "state": {}
+            }
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "opcode": "spawnEntity",
+      "arguments": {
+        "X": "3",
+        "Y": "130",
+        "Z": "3",
+        "ENTITY": "armor_stand",
+        "VARIABLE": {
+          "id": "b9-gate-entity-handle",
+          "name": "b9 gate entity handle",
+          "type": ""
+        }
+      },
+      "nested": {},
+      "frames": [
+        {
+          "sequence": 40931,
+          "timestamp": 1791170381955,
+          "streamId": "default",
+          "direction": "send",
+          "id": 40875,
+          "method": "world.spawnEntity",
+          "payload": {
+            "jsonrpc": "2.0",
+            "id": 40875,
+            "method": "world.spawnEntity",
+            "params": [
+              3,
+              130,
+              3,
+              "armor_stand"
+            ]
+          }
+        },
+        {
+          "sequence": 40933,
+          "timestamp": 1791170382012,
+          "streamId": "default",
+          "direction": "receive",
+          "id": 40875,
+          "method": "world.spawnEntity",
+          "payload": {
+            "jsonrpc": "2.0",
+            "id": 40875,
+            "result": "mcr_eh_YJq6aOm6eHUFKLIQlxbdDQ"
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "opcode": "getEntityPose",
+      "arguments": {
+        "HANDLE": "mcr_eh_YJq6aOm6eHUFKLIQlxbdDQ"
+      },
+      "nested": {},
+      "reporter": "{\"dimension\":\"minecraft:overworld\",\"pos\":[3,121,3],\"yaw\":0,\"pitch\":0}",
+      "frames": [
+        {
+          "sequence": 40937,
+          "timestamp": 1791170383215,
+          "streamId": "default",
+          "direction": "send",
+          "id": 40880,
+          "method": "entity.getPose",
+          "payload": {
+            "jsonrpc": "2.0",
+            "id": 40880,
+            "method": "entity.getPose",
+            "params": [
+              "mcr_eh_YJq6aOm6eHUFKLIQlxbdDQ"
+            ]
+          }
+        },
+        {
+          "sequence": 40938,
+          "timestamp": 1791170383302,
+          "streamId": "default",
+          "direction": "receive",
+          "id": 40880,
+          "method": "entity.getPose",
+          "payload": {
+            "jsonrpc": "2.0",
+            "id": 40880,
+            "result": {
+              "dimension": "minecraft:overworld",
+              "pos": [
+                3,
+                121,
+                3
+              ],
+              "yaw": 0,
+              "pitch": 0
+            }
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "opcode": "spawnParticle",
+      "arguments": {
+        "X": "3",
+        "Y": "130",
+        "Z": "3",
+        "OFFSET_X": ".1",
+        "OFFSET_Y": ".1",
+        "OFFSET_Z": ".1",
+        "SPEED": "0",
+        "COUNT": "10",
+        "FORCE": "true"
+      },
+      "nested": {
+        "PARTICLE": {
+          "opcode": "dustParticleSpec",
+          "arguments": {
+            "RED": "255",
+            "GREEN": "0",
+            "BLUE": "0",
+            "SIZE": "1",
+            "RECEIVER": "self"
+          }
+        }
+      },
+      "frames": [
+        {
+          "sequence": 40941,
+          "timestamp": 1791170383802,
+          "streamId": "default",
+          "direction": "send",
+          "id": 40883,
+          "method": "world.spawnParticle",
+          "payload": {
+            "jsonrpc": "2.0",
+            "id": 40883,
+            "method": "world.spawnParticle",
+            "params": [
+              3,
+              130,
+              3,
+              0.1,
+              0.1,
+              0.1,
+              {
+                "particle_id": "minecraft:dust",
+                "receiver": "self",
+                "data": {
+                  "color": [
+                    255,
+                    0,
+                    0
+                  ],
+                  "size": 1
+                }
+              },
+              0,
+              10,
+              true
+            ]
+          }
+        },
+        {
+          "sequence": 40942,
+          "timestamp": 1791170383842,
+          "streamId": "default",
+          "direction": "receive",
+          "id": 40883,
+          "method": "world.spawnParticle",
+          "payload": {
+            "jsonrpc": "2.0",
+            "id": 40883,
+            "result": 10
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "opcode": "playSound",
+      "arguments": {
+        "X": "3",
+        "Y": "130",
+        "Z": "3",
+        "SOUND": "block.note_block.harp"
+      },
+      "nested": {
+        "OPTIONS": {
+          "opcode": "soundOptions",
+          "arguments": {
+            "VOLUME": ".25",
+            "HEIGHT": "N12",
+            "RECEIVER": "self"
+          }
+        }
+      },
+      "frames": [
+        {
+          "sequence": 40945,
+          "timestamp": 1791170384595,
+          "streamId": "default",
+          "direction": "send",
+          "id": 40886,
+          "method": "world.playSound",
+          "payload": {
+            "jsonrpc": "2.0",
+            "id": 40886,
+            "method": "world.playSound",
+            "params": [
+              3,
+              130,
+              3,
+              "block.note_block.harp",
+              {
+                "volume": 0.25,
+                "note": 12,
+                "receiver": "self"
+              }
+            ]
+          }
+        },
+        {
+          "sequence": 40946,
+          "timestamp": 1791170384694,
+          "streamId": "default",
+          "direction": "receive",
+          "id": 40886,
+          "method": "world.playSound",
+          "payload": {
+            "jsonrpc": "2.0",
+            "id": 40886,
+            "result": null
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "opcode": "catalogToList",
+      "arguments": {
+        "KIND": "block",
+        "LIST": {
+          "id": "b9-gate-catalog-list",
+          "name": "b9 gate catalog IDs",
+          "type": "list"
+        }
+      },
+      "nested": {},
+      "frames": [],
+      "passed": true
+    },
+    {
+      "opcode": "removeEntity",
+      "arguments": {
+        "HANDLE": "mcr_eh_YJq6aOm6eHUFKLIQlxbdDQ"
+      },
+      "nested": {},
+      "frames": [
+        {
+          "sequence": 40964,
+          "timestamp": 1791170390288,
+          "streamId": "default",
+          "direction": "send",
+          "id": 40904,
+          "method": "entity.remove",
+          "payload": {
+            "jsonrpc": "2.0",
+            "id": 40904,
+            "method": "entity.remove",
+            "params": [
+              "mcr_eh_YJq6aOm6eHUFKLIQlxbdDQ"
+            ]
+          }
+        },
+        {
+          "sequence": 40965,
+          "timestamp": 1791170390342,
+          "streamId": "default",
+          "direction": "receive",
+          "id": 40904,
+          "method": "entity.remove",
+          "payload": {
+            "jsonrpc": "2.0",
+            "id": 40904,
+            "result": null
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "opcode": "setBlock",
+      "arguments": {
+        "X": "3",
+        "Y": "130",
+        "Z": "3",
+        "BLOCK": "minecraft:air",
+        "STATE": ""
+      },
+      "nested": {},
+      "frames": [
+        {
+          "sequence": 40971,
+          "timestamp": 1791170391792,
+          "streamId": "default",
+          "direction": "send",
+          "id": 40910,
+          "method": "world.setBlock",
+          "payload": {
+            "jsonrpc": "2.0",
+            "id": 40910,
+            "method": "world.setBlock",
+            "params": [
+              3,
+              130,
+              3,
+              {
+                "block_id": "minecraft:air",
+                "state": {}
+              }
+            ]
+          }
+        },
+        {
+          "sequence": 40972,
+          "timestamp": 1791170391820,
+          "streamId": "default",
+          "direction": "receive",
+          "id": 40910,
+          "method": "world.setBlock",
+          "payload": {
+            "jsonrpc": "2.0",
+            "id": 40910,
+            "result": null
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "opcode": "getBlock",
+      "arguments": {
+        "X": "3",
+        "Y": "130",
+        "Z": "3"
+      },
+      "nested": {},
+      "reporter": "minecraft:air",
+      "frames": [
+        {
+          "sequence": 40983,
+          "timestamp": 1791170394967,
+          "streamId": "default",
+          "direction": "send",
+          "id": 40921,
+          "method": "world.getBlock",
+          "payload": {
+            "jsonrpc": "2.0",
+            "id": 40921,
+            "method": "world.getBlock",
+            "params": [
+              3,
+              130,
+              3
+            ]
+          }
+        },
+        {
+          "sequence": 40984,
+          "timestamp": 1791170395024,
+          "streamId": "default",
+          "direction": "receive",
+          "id": 40921,
+          "method": "world.getBlock",
+          "payload": {
+            "jsonrpc": "2.0",
+            "id": 40921,
+            "result": {
+              "block_id": "minecraft:air",
+              "state": {}
+            }
+          }
+        }
+      ],
+      "passed": true
+    }
+  ],
+  "picker": [
+    {
+      "query": "gold",
+      "count": 5,
+      "expected_id_present": true,
+      "example": {
+        "id": "minecraft:gold_block",
+        "label": "gold_block 金ブロック\nBlock of Gold"
+      }
+    },
+    {
+      "query": "金ブロック",
+      "count": 1,
+      "expected_id_present": true,
+      "example": {
+        "id": "minecraft:gold_block",
+        "label": "gold_block 金ブロック\nBlock of Gold"
+      }
+    },
+    {
+      "query": "Block of Gold",
+      "count": 2,
+      "expected_id_present": true,
+      "example": {
+        "id": "minecraft:gold_block",
+        "label": "gold_block 金ブロック\nBlock of Gold"
+      }
+    },
+    {
+      "query": "door",
+      "count": 42,
+      "expected_id_present": true,
+      "example": {
+        "id": "minecraft:oak_door",
+        "label": "oak_door オークのドア\nOak Door"
+      }
+    }
+  ],
+  "cleanup": {
+    "entity_removed": true,
+    "original_block_restored": true
+  },
+  "hello": {
+    "protocol": "23.2.0",
+    "mc_version": "1.21.11"
+  },
+  "chat_post_null": true,
+  "picker_applied": {
+    "BLOCK": "gold_block",
+    "STATE": ""
+  },
+  "placement_readback": true,
+  "entity_handle_and_pose": true,
+  "catalog_list": {
+    "count": 1166,
+    "sorted": true,
+    "gold_block_present": true,
+    "fully_qualified": true
+  },
+  "passed": true,
+  "wirescope": {
+    "row_count": 32,
+    "status": "1 本のストリームを観測中",
+    "columns": {
+      "time": 60.109375,
+      "direction": 60.796875
+    },
+    "rows": [
+      {
+        "sequence": 93,
+        "method": "hello",
+        "direction": "send",
+        "time": "08:53:11"
+      },
+      {
+        "sequence": 94,
+        "method": "hello",
+        "direction": "receive",
+        "time": "08:53:11"
+      },
+      {
+        "sequence": 2736,
+        "method": "chat.post",
+        "direction": "send",
+        "time": "09:06:40"
+      },
+      {
+        "sequence": 2737,
+        "method": "chat.post",
+        "direction": "receive",
+        "time": "09:06:40"
+      },
+      {
+        "sequence": 2739,
+        "method": "world.getBlock",
+        "direction": "send",
+        "time": "09:06:40"
+      },
+      {
+        "sequence": 2740,
+        "method": "world.getBlock",
+        "direction": "receive",
+        "time": "09:06:40"
+      },
+      {
+        "sequence": 3153,
+        "method": "chat.post",
+        "direction": "send",
+        "time": "09:08:59"
+      },
+      {
+        "sequence": 3154,
+        "method": "chat.post",
+        "direction": "receive",
+        "time": "09:08:59"
+      },
+      {
+        "sequence": 3159,
+        "method": "world.getBlock",
+        "direction": "send",
+        "time": "09:09:01"
+      },
+      {
+        "sequence": 3160,
+        "method": "world.getBlock",
+        "direction": "receive",
+        "time": "09:09:01"
+      },
+      {
+        "sequence": 40871,
+        "method": "chat.post",
+        "direction": "send",
+        "time": "12:19:23"
+      },
+      {
+        "sequence": 40872,
+        "method": "chat.post",
+        "direction": "receive",
+        "time": "12:19:23"
+      },
+      {
+        "sequence": 40874,
+        "method": "world.getBlock",
+        "direction": "send",
+        "time": "12:19:24"
+      },
+      {
+        "sequence": 40876,
+        "method": "world.getBlock",
+        "direction": "receive",
+        "time": "12:19:24"
+      },
+      {
+        "sequence": 40924,
+        "method": "world.setBlock",
+        "direction": "send",
+        "time": "12:19:40"
+      },
+      {
+        "sequence": 40925,
+        "method": "world.setBlock",
+        "direction": "receive",
+        "time": "12:19:40"
+      },
+      {
+        "sequence": 40928,
+        "method": "world.getBlock",
+        "direction": "send",
+        "time": "12:19:41"
+      },
+      {
+        "sequence": 40929,
+        "method": "world.getBlock",
+        "direction": "receive",
+        "time": "12:19:41"
+      },
+      {
+        "sequence": 40931,
+        "method": "world.spawnEntity",
+        "direction": "send",
+        "time": "12:19:41"
+      },
+      {
+        "sequence": 40933,
+        "method": "world.spawnEntity",
+        "direction": "receive",
+        "time": "12:19:42"
+      },
+      {
+        "sequence": 40937,
+        "method": "entity.getPose",
+        "direction": "send",
+        "time": "12:19:43"
+      },
+      {
+        "sequence": 40938,
+        "method": "entity.getPose",
+        "direction": "receive",
+        "time": "12:19:43"
+      },
+      {
+        "sequence": 40941,
+        "method": "world.spawnParticle",
+        "direction": "send",
+        "time": "12:19:43"
+      },
+      {
+        "sequence": 40942,
+        "method": "world.spawnParticle",
+        "direction": "receive",
+        "time": "12:19:43"
+      },
+      {
+        "sequence": 40945,
+        "method": "world.playSound",
+        "direction": "send",
+        "time": "12:19:44"
+      },
+      {
+        "sequence": 40946,
+        "method": "world.playSound",
+        "direction": "receive",
+        "time": "12:19:44"
+      },
+      {
+        "sequence": 40964,
+        "method": "entity.remove",
+        "direction": "send",
+        "time": "12:19:50"
+      },
+      {
+        "sequence": 40965,
+        "method": "entity.remove",
+        "direction": "receive",
+        "time": "12:19:50"
+      },
+      {
+        "sequence": 40971,
+        "method": "world.setBlock",
+        "direction": "send",
+        "time": "12:19:51"
+      },
+      {
+        "sequence": 40972,
+        "method": "world.setBlock",
+        "direction": "receive",
+        "time": "12:19:51"
+      },
+      {
+        "sequence": 40983,
+        "method": "world.getBlock",
+        "direction": "send",
+        "time": "12:19:54"
+      },
+      {
+        "sequence": 40984,
+        "method": "world.getBlock",
+        "direction": "receive",
+        "time": "12:19:55"
+      }
+    ],
+    "expected_methods_visible": [
+      "hello",
+      "chat.post",
+      "world.setBlock",
+      "world.getBlock",
+      "world.spawnEntity",
+      "entity.getPose",
+      "world.spawnParticle",
+      "world.playSound",
+      "entity.remove"
+    ],
+    "representative_frames_verified": 22,
+    "time_direction_human_review": "PASS",
+    "human_review_record": "materials/human-width-review.json"
+  },
+  "screenshot_masked_payloads": 0,
+  "frames": [
+    {
+      "sequence": 93,
+      "timestamp": 1791157991588,
+      "streamId": "default",
+      "direction": "send",
+      "id": 47,
+      "method": "hello",
+      "payload": {
+        "jsonrpc": "2.0",
+        "id": 47,
+        "method": "hello",
+        "params": {
+          "protocol": "23.2.0",
+          "client": {
+            "name": "scratch-mcremote",
+            "version": "2320.0.0b9",
+            "locale": "ja"
+          },
+          "auth": {
+            "token": "[redacted]"
+          }
+        }
+      }
+    },
+    {
+      "sequence": 94,
+      "timestamp": 1791157991621,
+      "streamId": "default",
+      "direction": "receive",
+      "id": 47,
+      "method": "hello",
+      "payload": {
+        "jsonrpc": "2.0",
+        "id": 47,
+        "result": {
+          "protocol": "23.2.0",
+          "mc_version": "1.21.11",
+          "supported_mc_versions": [
+            "1.21.11"
+          ],
+          "world_constants": {
+            "y_sea": 62
+          },
+          "catalogHash": "6d0f8524b70e37fb8d7b34d0fdb45c2b058dcfea82920d86ca9aaabb9fcadc83",
+          "player": "[redacted uuid]",
+          "dimension": "minecraft:overworld",
+          "origin": [
+            200,
+            0,
+            200
+          ],
+          "permissions": {
+            "online": true,
+            "offline": true,
+            "buildRange": 1000
+          }
+        }
+      }
+    },
+    {
+      "sequence": 2736,
+      "timestamp": 1791158800340,
+      "streamId": "default",
+      "direction": "send",
+      "id": 2688,
+      "method": "chat.post",
+      "payload": {
+        "jsonrpc": "2.0",
+        "id": 2688,
+        "method": "chat.post",
+        "params": [
+          "[mc-remote b9 Scratch] representative block test"
+        ]
+      }
+    },
+    {
+      "sequence": 2737,
+      "timestamp": 1791158800374,
+      "streamId": "default",
+      "direction": "receive",
+      "id": 2688,
+      "method": "chat.post",
+      "payload": {
+        "jsonrpc": "2.0",
+        "id": 2688,
+        "result": null
+      }
+    },
+    {
+      "sequence": 2739,
+      "timestamp": 1791158800672,
+      "streamId": "default",
+      "direction": "send",
+      "id": 2690,
+      "method": "world.getBlock",
+      "payload": {
+        "jsonrpc": "2.0",
+        "id": 2690,
+        "method": "world.getBlock",
+        "params": [
+          3,
+          130,
+          3
+        ]
+      }
+    },
+    {
+      "sequence": 2740,
+      "timestamp": 1791158800724,
+      "streamId": "default",
+      "direction": "receive",
+      "id": 2690,
+      "method": "world.getBlock",
+      "payload": {
+        "jsonrpc": "2.0",
+        "id": 2690,
+        "result": {
+          "block_id": "minecraft:air",
+          "state": {}
+        }
+      }
+    },
+    {
+      "sequence": 3153,
+      "timestamp": 1791158939836,
+      "streamId": "default",
+      "direction": "send",
+      "id": 3103,
+      "method": "chat.post",
+      "payload": {
+        "jsonrpc": "2.0",
+        "id": 3103,
+        "method": "chat.post",
+        "params": [
+          "[mc-remote b9 Scratch] representative block test"
+        ]
+      }
+    },
+    {
+      "sequence": 3154,
+      "timestamp": 1791158939913,
+      "streamId": "default",
+      "direction": "receive",
+      "id": 3103,
+      "method": "chat.post",
+      "payload": {
+        "jsonrpc": "2.0",
+        "id": 3103,
+        "result": null
+      }
+    },
+    {
+      "sequence": 3159,
+      "timestamp": 1791158941242,
+      "streamId": "default",
+      "direction": "send",
+      "id": 3108,
+      "method": "world.getBlock",
+      "payload": {
+        "jsonrpc": "2.0",
+        "id": 3108,
+        "method": "world.getBlock",
+        "params": [
+          3,
+          130,
+          3
+        ]
+      }
+    },
+    {
+      "sequence": 3160,
+      "timestamp": 1791158941277,
+      "streamId": "default",
+      "direction": "receive",
+      "id": 3108,
+      "method": "world.getBlock",
+      "payload": {
+        "jsonrpc": "2.0",
+        "id": 3108,
+        "result": {
+          "block_id": "minecraft:air",
+          "state": {}
+        }
+      }
+    },
+    {
+      "sequence": 40871,
+      "timestamp": 1791170363490,
+      "streamId": "default",
+      "direction": "send",
+      "id": 40819,
+      "method": "chat.post",
+      "payload": {
+        "jsonrpc": "2.0",
+        "id": 40819,
+        "method": "chat.post",
+        "params": [
+          "[mc-remote b9 Scratch] representative block test"
+        ]
+      }
+    },
+    {
+      "sequence": 40872,
+      "timestamp": 1791170363535,
+      "streamId": "default",
+      "direction": "receive",
+      "id": 40819,
+      "method": "chat.post",
+      "payload": {
+        "jsonrpc": "2.0",
+        "id": 40819,
+        "result": null
+      }
+    },
+    {
+      "sequence": 40874,
+      "timestamp": 1791170364198,
+      "streamId": "default",
+      "direction": "send",
+      "id": 40821,
+      "method": "world.getBlock",
+      "payload": {
+        "jsonrpc": "2.0",
+        "id": 40821,
+        "method": "world.getBlock",
+        "params": [
+          3,
+          130,
+          3
+        ]
+      }
+    },
+    {
+      "sequence": 40876,
+      "timestamp": 1791170364296,
+      "streamId": "default",
+      "direction": "receive",
+      "id": 40821,
+      "method": "world.getBlock",
+      "payload": {
+        "jsonrpc": "2.0",
+        "id": 40821,
+        "result": {
+          "block_id": "minecraft:air",
+          "state": {}
+        }
+      }
+    },
+    {
+      "sequence": 40924,
+      "timestamp": 1791170380702,
+      "streamId": "default",
+      "direction": "send",
+      "id": 40870,
+      "method": "world.setBlock",
+      "payload": {
+        "jsonrpc": "2.0",
+        "id": 40870,
+        "method": "world.setBlock",
+        "params": [
+          3,
+          130,
+          3,
+          {
+            "block_id": "gold_block",
+            "state": {}
+          }
+        ]
+      }
+    },
+    {
+      "sequence": 40925,
+      "timestamp": 1791170380747,
+      "streamId": "default",
+      "direction": "receive",
+      "id": 40870,
+      "method": "world.setBlock",
+      "payload": {
+        "jsonrpc": "2.0",
+        "id": 40870,
+        "result": null
+      }
+    },
+    {
+      "sequence": 40928,
+      "timestamp": 1791170381304,
+      "streamId": "default",
+      "direction": "send",
+      "id": 40873,
+      "method": "world.getBlock",
+      "payload": {
+        "jsonrpc": "2.0",
+        "id": 40873,
+        "method": "world.getBlock",
+        "params": [
+          3,
+          130,
+          3
+        ]
+      }
+    },
+    {
+      "sequence": 40929,
+      "timestamp": 1791170381378,
+      "streamId": "default",
+      "direction": "receive",
+      "id": 40873,
+      "method": "world.getBlock",
+      "payload": {
+        "jsonrpc": "2.0",
+        "id": 40873,
+        "result": {
+          "block_id": "minecraft:gold_block",
+          "state": {}
+        }
+      }
+    },
+    {
+      "sequence": 40931,
+      "timestamp": 1791170381955,
+      "streamId": "default",
+      "direction": "send",
+      "id": 40875,
+      "method": "world.spawnEntity",
+      "payload": {
+        "jsonrpc": "2.0",
+        "id": 40875,
+        "method": "world.spawnEntity",
+        "params": [
+          3,
+          130,
+          3,
+          "armor_stand"
+        ]
+      }
+    },
+    {
+      "sequence": 40933,
+      "timestamp": 1791170382012,
+      "streamId": "default",
+      "direction": "receive",
+      "id": 40875,
+      "method": "world.spawnEntity",
+      "payload": {
+        "jsonrpc": "2.0",
+        "id": 40875,
+        "result": "mcr_eh_YJq6aOm6eHUFKLIQlxbdDQ"
+      }
+    },
+    {
+      "sequence": 40937,
+      "timestamp": 1791170383215,
+      "streamId": "default",
+      "direction": "send",
+      "id": 40880,
+      "method": "entity.getPose",
+      "payload": {
+        "jsonrpc": "2.0",
+        "id": 40880,
+        "method": "entity.getPose",
+        "params": [
+          "mcr_eh_YJq6aOm6eHUFKLIQlxbdDQ"
+        ]
+      }
+    },
+    {
+      "sequence": 40938,
+      "timestamp": 1791170383302,
+      "streamId": "default",
+      "direction": "receive",
+      "id": 40880,
+      "method": "entity.getPose",
+      "payload": {
+        "jsonrpc": "2.0",
+        "id": 40880,
+        "result": {
+          "dimension": "minecraft:overworld",
+          "pos": [
+            3,
+            121,
+            3
+          ],
+          "yaw": 0,
+          "pitch": 0
+        }
+      }
+    },
+    {
+      "sequence": 40941,
+      "timestamp": 1791170383802,
+      "streamId": "default",
+      "direction": "send",
+      "id": 40883,
+      "method": "world.spawnParticle",
+      "payload": {
+        "jsonrpc": "2.0",
+        "id": 40883,
+        "method": "world.spawnParticle",
+        "params": [
+          3,
+          130,
+          3,
+          0.1,
+          0.1,
+          0.1,
+          {
+            "particle_id": "minecraft:dust",
+            "receiver": "self",
+            "data": {
+              "color": [
+                255,
+                0,
+                0
+              ],
+              "size": 1
+            }
+          },
+          0,
+          10,
+          true
+        ]
+      }
+    },
+    {
+      "sequence": 40942,
+      "timestamp": 1791170383842,
+      "streamId": "default",
+      "direction": "receive",
+      "id": 40883,
+      "method": "world.spawnParticle",
+      "payload": {
+        "jsonrpc": "2.0",
+        "id": 40883,
+        "result": 10
+      }
+    },
+    {
+      "sequence": 40945,
+      "timestamp": 1791170384595,
+      "streamId": "default",
+      "direction": "send",
+      "id": 40886,
+      "method": "world.playSound",
+      "payload": {
+        "jsonrpc": "2.0",
+        "id": 40886,
+        "method": "world.playSound",
+        "params": [
+          3,
+          130,
+          3,
+          "block.note_block.harp",
+          {
+            "volume": 0.25,
+            "note": 12,
+            "receiver": "self"
+          }
+        ]
+      }
+    },
+    {
+      "sequence": 40946,
+      "timestamp": 1791170384694,
+      "streamId": "default",
+      "direction": "receive",
+      "id": 40886,
+      "method": "world.playSound",
+      "payload": {
+        "jsonrpc": "2.0",
+        "id": 40886,
+        "result": null
+      }
+    },
+    {
+      "sequence": 40964,
+      "timestamp": 1791170390288,
+      "streamId": "default",
+      "direction": "send",
+      "id": 40904,
+      "method": "entity.remove",
+      "payload": {
+        "jsonrpc": "2.0",
+        "id": 40904,
+        "method": "entity.remove",
+        "params": [
+          "mcr_eh_YJq6aOm6eHUFKLIQlxbdDQ"
+        ]
+      }
+    },
+    {
+      "sequence": 40965,
+      "timestamp": 1791170390342,
+      "streamId": "default",
+      "direction": "receive",
+      "id": 40904,
+      "method": "entity.remove",
+      "payload": {
+        "jsonrpc": "2.0",
+        "id": 40904,
+        "result": null
+      }
+    },
+    {
+      "sequence": 40971,
+      "timestamp": 1791170391792,
+      "streamId": "default",
+      "direction": "send",
+      "id": 40910,
+      "method": "world.setBlock",
+      "payload": {
+        "jsonrpc": "2.0",
+        "id": 40910,
+        "method": "world.setBlock",
+        "params": [
+          3,
+          130,
+          3,
+          {
+            "block_id": "minecraft:air",
+            "state": {}
+          }
+        ]
+      }
+    },
+    {
+      "sequence": 40972,
+      "timestamp": 1791170391820,
+      "streamId": "default",
+      "direction": "receive",
+      "id": 40910,
+      "method": "world.setBlock",
+      "payload": {
+        "jsonrpc": "2.0",
+        "id": 40910,
+        "result": null
+      }
+    },
+    {
+      "sequence": 40983,
+      "timestamp": 1791170394967,
+      "streamId": "default",
+      "direction": "send",
+      "id": 40921,
+      "method": "world.getBlock",
+      "payload": {
+        "jsonrpc": "2.0",
+        "id": 40921,
+        "method": "world.getBlock",
+        "params": [
+          3,
+          130,
+          3
+        ]
+      }
+    },
+    {
+      "sequence": 40984,
+      "timestamp": 1791170395024,
+      "streamId": "default",
+      "direction": "receive",
+      "id": 40921,
+      "method": "world.getBlock",
+      "payload": {
+        "jsonrpc": "2.0",
+        "id": 40921,
+        "result": {
+          "block_id": "minecraft:air",
+          "state": {}
+        }
+      }
+    }
+  ],
+  "harness_diagnostics": [
+    "Added missing text shadow field when constructing test blocks; candidate unchanged.",
+    "Closed previous reporter bubble via workspace background click before each script; manual UI report then succeeds.",
+    "Matched WireScope assertions to source allowlist: auth methods and catalog.get are intentionally excluded."
+  ],
+  "browser_checks_passed": true
+}

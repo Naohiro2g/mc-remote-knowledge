@@ -1,0 +1,14 @@
+{
+  "jar_sha256": "4feb90dbdba8550cd16800cc3d384e42fed16a5c5e20faa489a0381ad2cda58e",
+  "jar_bytes": 261016,
+  "startup_identity": [
+    "[07:50:03] [Server thread/INFO]: Starting minecraft server version 1.21.11",
+    "[07:50:03] [Server thread/INFO]: This server is running Paper version 1.21.11-132-ver/1.21.11@c5eb079 (2026-05-11T11:43:09Z) (Implementing API version 1.21.11-R0.1-SNAPSHOT)",
+    "[07:50:11] [Server thread/INFO]: [McRemote] Enabling McRemote v1.21.11-2320.0.0b9",
+    "[07:50:11] [Server thread/INFO]: [McRemote] Auth enforcement: true",
+    "[07:50:11] [Server thread/INFO]: [McRemote] Credential domain health: HEALTHY",
+    "[07:50:15] [Server thread/INFO]: Done (21.340s)! For help, type \"help\""
+  ],
+  "auth_enforcement": true,
+  "credential_healthy": true
+}

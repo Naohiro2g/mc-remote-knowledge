@@ -1,0 +1,60 @@
+{
+  "test_class": "live-human",
+  "source": "human owner provided WireScope rows and connection report",
+  "scratch_commit": "7fbbf034488760d8fc7e034bf23f3e08e6e1807d",
+  "tooling_commit": "dc1ab834183e29f2eb03059b07e99d2b463776ee",
+  "plugin_version": "b9 (human owner report; JAR digest not collected here)",
+  "pairing_required": false,
+  "authenticated_hello_success": true,
+  "protocol_matches_expected": true,
+  "mc_version_matches_expected": true,
+  "frames": [
+    {
+      "sequence": 1,
+      "time": "08:02:10",
+      "direction": "send",
+      "method": "hello",
+      "payload": {
+        "params": {
+          "protocol": "23.2.0",
+          "client": {
+            "name": "scratch-mcremote",
+            "version": "2320.0.0b9",
+            "locale": "ja"
+          }
+        }
+      }
+    },
+    {
+      "sequence": 2,
+      "time": "08:02:10",
+      "direction": "receive",
+      "method": "hello",
+      "payload": {
+        "result": {
+          "protocol": "23.2.0",
+          "mc_version": "1.21.11",
+          "supported_mc_versions": [
+            "1.21.11"
+          ],
+          "catalog_hash": "6d0f8524b70e37fb8d7b34d0fdb45c2b058dcfea82920d86ca9aaabb9fcadc83",
+          "dimension": "minecraft:overworld",
+          "origin": [
+            200,
+            0,
+            200
+          ],
+          "world_constants": {
+            "y_sea": 62
+          },
+          "permissions": {
+            "online": true,
+            "offline": true,
+            "build_range": 1000
+          }
+        }
+      }
+    }
+  ],
+  "boundary": "WireScope display supplied by user; token omitted from displayed params. No raw credential read or copied. Representative blocks and full segment result not assessed."
+}

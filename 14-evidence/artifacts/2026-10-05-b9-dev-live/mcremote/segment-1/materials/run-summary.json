@@ -1,0 +1,35 @@
+{
+  "start_utc": "2026-10-04T23:44:49.101760+00:00",
+  "finish_utc": "2026-10-04T23:45:41.109754+00:00",
+  "exit_code": 0,
+  "pass_lines_total": 61,
+  "live_auto_pass_lines": 60,
+  "chat_null_pass_lines": 1,
+  "fail_lines": 0,
+  "authenticated_hello_count": 4,
+  "protocol": "23.2.0",
+  "mc_version": "1.21.11",
+  "chat_response": {
+    "jsonrpc": "2.0",
+    "id": 5,
+    "result": null
+  },
+  "cleanup": {
+    "spawned": 258,
+    "removed_in_test": 1,
+    "removed_after_test": 257,
+    "already_absent": 0,
+    "blocks_saved": 9,
+    "blocks_restored": 9,
+    "failures": []
+  },
+  "artifact_sha256": {
+    "rpc-transcript.jsonl": "dc8b5f5c9260c6850f7bc11912dfdc0a27361608db015d8b2bf81ce45aa53b76",
+    "live-auto.log": "84c03f7d74ddf2c7b7fe340b9bc06e5587c572e1e6c35d38d98c32611bee4b6a",
+    "run_with_transcript.py": "96299d693f479a5e6b04e2210b7eb06cf04a487555f32e1d95522ebd3e21dfd1",
+    "environment.json": "909c7dbda8bd6c174e9c485b5bc07bda8c69e05d817fd7401700f6abbb9b7ebf",
+    "cleanup-summary.json": "d408a6345cfc8ea1b762ad926cf5b8f53ce1d0b8d023df34ad22c262249f2af2"
+  },
+  "sanitization_checks": "PASS",
+  "rpc_transcript_records": 2407
+}

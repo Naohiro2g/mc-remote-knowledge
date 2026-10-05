@@ -1,0 +1,134 @@
+{
+  "files": [
+    {
+      "path": "MANIFEST_ja.md",
+      "bytes": 3222,
+      "sha256": "34bcf2e9545cfe7fffc7a88e240536ce401d3ea37be693f44fdd0e3dcb74838a"
+    },
+    {
+      "path": "artifacts/bridge.oci.tar",
+      "bytes": 114628096,
+      "sha256": "b6a6feec07e8d7ae9805a81e8dc370e6220e91af145ef3117ce5ed12e703b100"
+    },
+    {
+      "path": "artifacts/candidate-manifest.json",
+      "bytes": 1821,
+      "sha256": "239f7f94cf31e732eff173744da105408b00b182d0aad73507623ea09b43bc6b"
+    },
+    {
+      "path": "artifacts/scratch-gui.tar.gz",
+      "bytes": 138376671,
+      "sha256": "c0d08c26b0d016c7cf4f57661022c631be0f2aa3d1d7d517ce97fd75e118c75d"
+    },
+    {
+      "path": "artifacts/wirescope-app.manifest.json",
+      "bytes": 2339,
+      "sha256": "c654f7d1f0be2773d6737e889279b2587317088717f162b082c82be9cff910d7"
+    },
+    {
+      "path": "artifacts/wirescope-app.zip",
+      "bytes": 83854,
+      "sha256": "da3da0b6cf4d05265bc0c11abaa4913208c7cfc3600b0c3e78c93a356fc431ad"
+    },
+    {
+      "path": "materials/CONFIRMATION_ja.md",
+      "bytes": 10745,
+      "sha256": "3972dffd5e1d988dd9bae07cc779903ce512933852838d22e18c383014123a13"
+    },
+    {
+      "path": "materials/check-representative-blocks.cjs",
+      "bytes": 15893,
+      "sha256": "6bbc1a0c0d6fa4ad9d67ac53f40e936d2d70d5a18f50771f7a606747983dc330"
+    },
+    {
+      "path": "materials/completion.json",
+      "bytes": 228,
+      "sha256": "916c850af1412f1d480c4266f46027e81d425e5d0b50ea688924593c128f4f93"
+    },
+    {
+      "path": "materials/finalize-browser-check.cjs",
+      "bytes": 5413,
+      "sha256": "9a2ffc31a2bd6d8c585096927061d7a8f22be6e5177a151b791a91211d5cdb6c"
+    },
+    {
+      "path": "materials/human-width-review.json",
+      "bytes": 372,
+      "sha256": "70d317a45c0a04ddf72b1748e9fcc9178155e846c081081e308ea2b319aa78d4"
+    },
+    {
+      "path": "materials/independent-browser-hello.json",
+      "bytes": 256,
+      "sha256": "5a0385f4506b6018be55d27a6e0105661072066767e33bbde8611f8eddbdc519"
+    },
+    {
+      "path": "materials/open-validation-browser.cjs",
+      "bytes": 5308,
+      "sha256": "05da0c82081e9039baf3dcd7376ecc346eb38608c9d1660b77c9e4b9d5ce64b6"
+    },
+    {
+      "path": "materials/picker-door.png",
+      "bytes": 59644,
+      "sha256": "dacaf7691205f693a9f1b5ecb271c3845d3b4c91e3a8e28fd1a47c25f56bd67c"
+    },
+    {
+      "path": "materials/picker-gold.png",
+      "bytes": 59232,
+      "sha256": "b687d991ab96f952180659e267863dd69e1fc049244047f883ea4c37cd7e1723"
+    },
+    {
+      "path": "materials/prepare-runtime.py",
+      "bytes": 5718,
+      "sha256": "b2d5451b7c38976e198b10e767f5b45caa3d51c0dca945d582390d51c9039c9a"
+    },
+    {
+      "path": "materials/readiness.json",
+      "bytes": 409,
+      "sha256": "08dab281e698acbe35ed12d2e6156d7eb897847c5d80829bf4513ba8cda94224"
+    },
+    {
+      "path": "materials/representative-results-display-check-failure.json",
+      "bytes": 14875,
+      "sha256": "e0c4bdc0cf834aeb694600bfeb95e170967f04f4c911f0b44e32a39c8878b134"
+    },
+    {
+      "path": "materials/representative-results-focus-failure.json",
+      "bytes": 1324,
+      "sha256": "6dc777af4dd54348bfc55d5c507f257ea35d27fd8d9f5c6f50c6dc2e37cdbddc"
+    },
+    {
+      "path": "materials/representative-results-harness-failure.json",
+      "bytes": 2647,
+      "sha256": "d6c2b3740570fa247bd4749eba636a2f6f08e6cb97590163bb60ef9f2f643213"
+    },
+    {
+      "path": "materials/representative-results.json",
+      "bytes": 32487,
+      "sha256": "df6d54de0ae78a7fc92564c40091796ff4481d05c82d11b19d41d67ae9f749c7"
+    },
+    {
+      "path": "materials/runtime-identity.json",
+      "bytes": 368579,
+      "sha256": "5dc05395aa13e2afa1b695de70471e247f25654163551f2568ad16ec64f1e803"
+    },
+    {
+      "path": "materials/user-b9-hello.json",
+      "bytes": 1727,
+      "sha256": "0cb866ebe745f9ad224a6274ce32384731a679c4dff58b5602f0866845d4e463"
+    },
+    {
+      "path": "materials/wirescope-b9-columns.png",
+      "bytes": 162322,
+      "sha256": "45906eefbd1a8418bb2241e2135f7010676aa8156d306c1bbc6f51a7721588e4"
+    },
+    {
+      "path": "materials/wirescope-b9.png",
+      "bytes": 345206,
+      "sha256": "f30946eff47e11b22c01136b4cdcb811b46bbcd2c3fe3272df1288e23c00c9eb"
+    }
+  ],
+  "excluded": [
+    "private/",
+    "runtime/"
+  ],
+  "formal_evidence_status": "handoff only; knowledge authoring pending"
+}

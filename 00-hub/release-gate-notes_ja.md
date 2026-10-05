@@ -230,6 +230,13 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   とtagの制限、repositoryの変数`PYPI_PUBLISH_ENABLED`は`false`。coordinatorがGitHub APIで照合した（承認者`Naohiro2g`、
   `prevent_self_review: false`、deployment policyはtag `v*`、変数は`false`）。b9の公開の前に`true`にする。TestPyPIの予行は
   b9では自動のまま、以降は手動のときだけにする（Pythonの案を採用）
+- 実機試験（2026-10-05、`14-evidence/records/2026-10-05-b9-dev-live_ja.md`）: segment 0〜3がすべてPASS
+  - segment 0: b9のJARへ一件だけ差し替え、b8とb9のScratchから保存tokenのまま再pairingなしで`hello`が通った（human owner）
+  - segment 1: live-autoのPASS行60、FAIL行0。id付き`chat.post`の応答が`result: null`
+  - segment 2: Pythonの代表往復と同梱WireScopeの22 frames。Pythonのb8の保存tokenは`token_expired`で、新しくpairingして行った
+  - segment 3: 移管したBridgeでのpairing、代表ブロック、独立ChromiumのWireScopeで22 frames、列幅をhuman ownerが確認
+  - 未検証の境界: Bridgeは、Docker daemonが無いため凍結OCIの中のcodeをhost-nativeのNodeで動かした。containerとしての起動は
+    確かめていない
 - human owner（2026-10-05）: `minecraft-remote-tooling`の名前変更とpark解除はScratchに頼む。Pythonをmatureへ移す（`2026-10-05-03`。
   b9からPyPI.orgへpre-release）
 - human owner（2026-10-04）: WindowsでのPythonの導入手順の確認とPyPI.orgの準備は、今日中を目標にする。契約2件のcaseを

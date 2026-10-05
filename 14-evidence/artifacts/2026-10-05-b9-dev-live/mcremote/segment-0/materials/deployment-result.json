@@ -1,0 +1,54 @@
+{
+  "checked_at_utc": "2026-10-04T22:53:12.876230+00:00",
+  "source_commit": "5cb33ebad4bf2c5e36c3433b0f70fe6070915b00",
+  "old_jar": "mc-remote-1.21.11-2320.0.0b8.jar",
+  "old_sha256": "7ab24fa1ff6c20513e46cbf3629f1f4860365acbf3a7e191e48a4e75af1677fb",
+  "new_jar": "mc-remote-1.21.11-2320.0.0b9.jar",
+  "plugin_version": "1.21.11-2320.0.0b9",
+  "bytes": 261016,
+  "sha256": "4feb90dbdba8550cd16800cc3d384e42fed16a5c5e20faa489a0381ad2cda58e",
+  "backup_jar": "~/MINECRAFT_SERVERS/PaperMC/.mcremote-updates/2026-10-05-b9-8qo329e0/mc-remote-1.21.11-2320.0.0b8.jar",
+  "backup_sha256": "7ab24fa1ff6c20513e46cbf3629f1f4860365acbf3a7e191e48a4e75af1677fb",
+  "paper_jar_sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+  "paper_unchanged": true,
+  "run_script_unchanged": true,
+  "config_unchanged": true,
+  "plugin_data_files_unchanged": false,
+  "plugin_data_file_count": 10,
+  "java_pid": 807331,
+  "java_version": "openjdk version \"21.0.12.1\" 2026-08-18",
+  "startup_checks": {
+    "minecraft_version": true,
+    "b9_enabled": true,
+    "auth_enforcement": true,
+    "credential_healthy": true,
+    "paper_ready": true
+  },
+  "listener_checks": {
+    "25575": true,
+    "25565": true
+  },
+  "startup_identity": [
+    "[07:50:03] [Server thread/INFO]: Starting minecraft server version 1.21.11",
+    "[07:50:03] [Server thread/INFO]: This server is running Paper version 1.21.11-132-ver/1.21.11@c5eb079 (2026-05-11T11:43:09Z) (Implementing API version 1.21.11-R0.1-SNAPSHOT)",
+    "[07:50:11] [Server thread/INFO]: [McRemote] Enabling McRemote v1.21.11-2320.0.0b9",
+    "[07:50:11] [Server thread/INFO]: [McRemote] Auth enforcement: true",
+    "[07:50:11] [Server thread/INFO]: [McRemote] Credential domain health: HEALTHY",
+    "[07:50:15] [Server thread/INFO]: Done (21.340s)! For help, type \"help\""
+  ],
+  "screen": "There is a screen on:\n\t807330.Minecraf_server\t(2026\u5e7410\u670805\u65e5 07\u664249\u520648\u79d2)\t(Detached)\n1 Socket in /run/screen/S-tsuji.",
+  "verification_note": "Initial log matcher omitted the Minecraft prefix in the plugin version. Corrected verification derives the version from the installed JAR plugin.yml; no server change was made for this verification correction.",
+  "plugin_data_changes": {
+    "changed_files": [
+      "credential-store/snapshot.json"
+    ],
+    "credential_snapshot_unchanged": false,
+    "revocation_files_unchanged": true
+  },
+  "credential_runtime_observation": {
+    "record_count": 19,
+    "preexisting_records_used_after_restart": 1,
+    "records_issued_after_restart": 0,
+    "raw_credentials_printed": false
+  }
+}

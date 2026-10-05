@@ -1,0 +1,9 @@
+{
+  "source_commit": "7fbbf034488760d8fc7e034bf23f3e08e6e1807d",
+  "client_version": "2320.0.0b9",
+  "new_pairing_completed": true,
+  "protocol": "23.2.0",
+  "mc_version": "1.21.11",
+  "pairing_command": "/mcremote pair 600-717",
+  "status": "connected"
+}

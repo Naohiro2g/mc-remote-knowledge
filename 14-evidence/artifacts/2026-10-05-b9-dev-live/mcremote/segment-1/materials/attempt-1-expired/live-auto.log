@@ -1,0 +1,3 @@
+PASS protocol 21 rejection: protocol_mismatch
+/mcremote pair 212-814
+FAIL: interactive pairing expired before approval

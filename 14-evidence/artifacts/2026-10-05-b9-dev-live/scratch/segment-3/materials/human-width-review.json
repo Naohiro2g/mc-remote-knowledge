@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-05",
+  "reviewer": "human owner",
+  "question": "WireScopeの時刻列・方向列の幅の目視確認",
+  "answer": "画像確認しました。オッケーです。",
+  "result": "PASS",
+  "image": "materials/wirescope-b9-columns.png",
+  "image_bytes": 162322,
+  "image_sha256": "45906eefbd1a8418bb2241e2135f7010676aa8156d306c1bbc6f51a7721588e4"
+}
