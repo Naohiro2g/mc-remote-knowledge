@@ -75,7 +75,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
-- current phase: **OPEN**（2026-10-07、human ownerの判断）。実装・検証・公開はいずれも未実施
+- current phase: **OPEN**（2026-10-07、human ownerの判断）。公開は未実施
 - 目標日: b10 2026-10-17。rc1（10/24まで）と初回stable（11/1）の目標日は維持する
 - release mode: 軽量mode（release運用と責務分担 §14、`2026-08-28-02`）。単一JARとケータリング型簡易版のZIPは新しい配布の形
   なので、その部分は§14の但し書きにより検証を強める（b9の移管と同じ扱い）
@@ -108,14 +108,36 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     - 公開するZIPと同じSHA-256でWindows 11、macOS、Linuxを検証し、構築の手順と運用で要る調整（OSの警告、firewall、接続先、
       ペアリング）を観察して記録する。Windowsは、SmartScreenの個別許可と、アプリ単位の許可が無いSmart App Controlを分けて
       観察する。署名・公証の要否はこの結果で判断する。同梱物のライセンスは`2026-08-11-01`の配布前確認を通す
+  - Stack（2026-10-07からhuman ownerの直接管理を解き、担当sessionへ渡す。releaseからのdeploy手順の完成度が上がったため）:
+    単一JARの名前の変更（tagとJAR名にMinecraft版を入れない）と、`mc-remote.release-manifest` v1へ足すfield（McRemoteの
+    `minecraft_compatibility`、Scratchの`os`／`arch`と同じroleの複数artifact）を、Stackの収集とdeployの手順が受け入れるかを
+    確かめる。受け入れないならv2へ上げるかを返す
   - 不参加: Python（APIが変わらず、簡易版の案内先もMcRemote README）。minecraft-remote-toolingは、Bridgeの配布入力として
     固定版を使うだけなら新しいreleaseを出さない（Scratchの確認票で確かめる）
+  - McRemote（2026-10-07に追加）:
+    - FASTのparticleが負荷のもとで黙って描かれない件：particleのnotificationがwork不足で消費されたときだけ数える理由を1種、
+      認証前と同じ集計に足す（軽く済むとの回答を受けてb10に入れた。認証前の10理由の意味は変えない）
+    - 「LuckPermsの使い方」の案内：LuckPermsを入れるとmeta（`mcr.build.range`、`mcr.build.blocks`）が無いplayerは建築も
+      setBlocksもできなくなる。入れた途端に何もできなくなった、を防ぐため、metaの設定手順を短い案内にまとめる。置き場所は
+      McRemoteが提案する
 - 範囲に入れないもの: 未生成chunkの制限（hub NOTES 2026-10-07の候補）、新しいmethodやclientのjob／progress API
 - gateを開くときのpark確認（`2026-09-30-09`、`tools/list-reopen-conditions.py`）: b10に結びつく2件を拾った。
   setBlocksのtick分割はMcRemoteの範囲として着手する。FASTのparticleが負荷のもとで黙って描かれない件は、b10の範囲に入れず、
   消費した件数を認証前と同じ理由別の集計に足す程度で軽く済むかをMcRemote担当に聞く（軽く済まなければ初回stableの後へ送る）。
   rc1に結びつく行（製品notice、OCIのversionラベル、API一覧、rollback、README再編、block value投影の残り、未生成chunk、
   認証前テーブルの較正）はrc1 gateで見る
+- 進捗（2026-10-07）:
+  - McRemote `main@ce1e08a8e749c60ba1ea5cf4f2a63462bd6ecb10`：`default_build_blocks`を実装（313 tests PASS、担当報告）。
+    LuckPermsがあってmetaが無いplayerは`0`になる
+  - McRemote Paper 26.2のexact build：build 132（2026-10-06、server JAR SHA-256 `5ab560a769c1ab413cb7f637dd0dc697974571f2db0a667cfbac511422e51b26`、
+    APIの宣言値）。metadataの取得だけで、JARのdigest照合とpulseはまだ
+  - McRemote setBlocksのtick分割：着手前の整理を受け、着手を許可した。開始前に予算がまったく無ければ副作用前の`backpressure`
+    （FASTはFIFO先頭で延期）。一度施工を始めたら`backpressure`を返さず次のtickで同じ要求として続け、全量の後に`result:null`を
+    1回。途中のPaper例外やworldの失効は`internal_error`で終え、自動retryしない。施工済みの部分は残し、rollbackしない。切断で
+    残りを止める。予約したworkは失敗しても戻さない。1接続で途中のjobは1件、tickごとに巡回の開始位置を回す
+  - McRemote単一JARの宣言：tracked `release/minecraft-targets.json`（`["1.21.11", "26.2"]`）をbuild前に固定し、同梱resource、
+    configの配布既定、title、本文をここから作る。検証素材はJARのdigestで結ぶ。既存configの`supported_mc_versions`は、hello
+    では同梱の宣言を正とし、値は書き換えず、違えばwarningを出す（`2026-10-07-07`）
 
 ## 2026-10-04 b9横断release gate（CLOSED）
 
