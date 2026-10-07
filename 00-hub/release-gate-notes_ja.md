@@ -81,7 +81,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   なので、その部分は§14の但し書きにより検証を強める（b9の移管と同じ扱い）
 - contract: protocol `23.2.0`のまま、artifact `2320.0.0b10`。APIは変えない
   - b10の範囲: `2026-10-07-03`（tick分割、単一JAR、名前）、`2026-10-07-04`（ケータリング型簡易版）、`2026-10-07-05`
-    （`mcr.build.blocks`の既定）、`2026-10-07-06`（対応版の一覧の作り方）
+    （`mcr.build.blocks`の既定）、`2026-10-07-06`／`-07`（対応版の一覧の作り方、helloは同梱の宣言を正とする）、
+    `2026-10-07-08`（release manifest v2）
   - 前提の決定: `2026-10-07-01`（1要求32768、TPSの位置づけ）、`2026-10-07-02`（認証前の上限超過は閉じるだけ）
   - gate開閉時のpark確認: `2026-09-30-09`
 - 基準set: b9（McRemote `v1.21.11-2320.0.0b9`、Python `v2320.0.0b9`、Scratch `v2320.0.0b9`、minecraft-remote-tooling
@@ -103,23 +104,38 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     - ケータリング型簡易版：標準からDocker、証明書の設定、Stackのpreset／orderを除いたもの。Scratch、Bridge、実行環境、
       ランチャーをOS別のZIP（Scratch Local版）にまとめ、1台構成とLAN構成に対応する。認証はON。
       `mc-remote-scratch-local-2320.0.0b10-{windows-x64,macos-arm64,linux-x64}.zip`をScratchのrelease `v2320.0.0b10`の
-      assetとし、公開releaseの`manifest.json`（`mc-remote.release-manifest` v1）へrole `scratch-local`、kind `https-file`、
-      `os`、`arch`で載せる。サーバー側はMcRemote READMEのクイックスタートへ案内する
+      assetとし、公開releaseの`manifest.json`（`mc-remote.release-manifest` v2、`2026-10-07-08`）へrole `scratch-local`、
+      kind `https-file`、`os`、`arch`、`bytes`で載せる。サーバー側はMcRemote READMEのクイックスタートへ案内する
     - 公開するZIPと同じSHA-256でWindows 11、macOS、Linuxを検証し、構築の手順と運用で要る調整（OSの警告、firewall、接続先、
       ペアリング）を観察して記録する。Windowsは、SmartScreenの個別許可と、アプリ単位の許可が無いSmart App Controlを分けて
       観察する。署名・公証の要否はこの結果で判断する。同梱物のライセンスは`2026-08-11-01`の配布前確認を通す
   - Stack（2026-10-07からhuman ownerの直接管理を解き、担当sessionへ渡す。releaseからのdeploy手順の完成度が上がったため）:
     単一JARの名前の変更（tagとJAR名にMinecraft版を入れない）と、`mc-remote.release-manifest` v1へ足すfield（McRemoteの
     `minecraft_compatibility`、Scratchの`os`／`arch`と同じroleの複数artifact）を、Stackの収集とdeployの手順が受け入れるかを
-    確かめる。受け入れないならv2へ上げるかを返す
-  - 不参加: Python（APIが変わらず、簡易版の案内先もMcRemote README）。minecraft-remote-toolingは、Bridgeの配布入力として
-    固定版を使うだけなら新しいreleaseを出さない（Scratchの確認票で確かめる）
+    確かめる。受け入れないならv2へ上げるかを返す。2026-10-07の回答（`main@f9b558769375cf704e3bf55c6aa3db93bb2aa3cf`）：名前の
+    変更は受け入れる（tagやJAR名から版を読まず、deployするMinecraftの版はpresetの明示値で選ぶ）。追加fieldと同じroleの重複は
+    v1のparserが拒否するので、v2を提案した。b10ではv1とv2の両方を読む実装を行う（`2026-10-07-08`）
+  - minecraft-remote-tooling（Scratch担当）: release manifest v2のJSON Schemaの正本を置く（`2026-10-07-08`）。下のたたき台の
+    reviewが済んでから書く。producerとconsumerが固定版を使う方法（tooling-lockのcommitか、toolingのrelease）を確認票で返す
+  - 不参加: Python（APIが変わらず、簡易版の案内先もMcRemote README。manifest v2へは次のreleaseで移る）
   - McRemote（2026-10-07に追加）:
     - FASTのparticleが負荷のもとで黙って描かれない件：particleのnotificationがwork不足で消費されたときだけ数える理由を1種、
       認証前と同じ集計に足す（軽く済むとの回答を受けてb10に入れた。認証前の10理由の意味は変えない）
     - 「LuckPermsの使い方」の案内：LuckPermsを入れるとmeta（`mcr.build.range`、`mcr.build.blocks`）が無いplayerは建築も
       setBlocksもできなくなる。入れた途端に何もできなくなった、を防ぐため、metaの設定手順を短い案内にまとめる。置き場所は
       McRemoteが提案する
+    - release manifest v2の生成（`minecraft_compatibility`を含む、`2026-10-07-08`）
+- release manifest v2のたたき台（`2026-10-07-08`。McRemote、Scratch、Stackのreview前）:
+  - top-level: `schema`は`mc-remote.release-manifest`のまま、`schema_version` `2`、`release_tag`、`source_commit`、`artifacts`
+  - https-fileのartifact: `role`、`kind`、`file`、`sha256`、`bytes`（必須）、`os`と`arch`（任意、付けるなら両方。`os`は
+    `windows`／`macos`／`linux`、`arch`は`x64`／`arm64`）。`(role, os, arch)`の重複は拒否し、一つのroleの項目は全部が
+    `os`／`arch`を持つか、全部が持たないかに揃える。ociのartifactは変えない
+  - `minecraft_compatibility`（McRemoteのv2で必須）: `declaration`（`path`、`sha256`、`minecraft_versions`）と
+    `verifications[]`（`minecraft_version`、`paper_build`、`server_sha256`、`java_version`、`jar_sha256`、`result`、検証記録の
+    fileとsha256）。PASSした版の集合が宣言と完全に一致し、すべての`jar_sha256`が`jar`のsha256と一致すること
+  - consumer: 1件だけのrole（`scratch`、`bridge`、`jar`など）は1件を要求する。変種のあるroleは`(role, os, arch)`で選び、
+    不足・重複・曖昧は拒否する。使わないroleは選ばないだけにする。deployするMinecraftの版はpresetで明示し、
+    `minecraft_compatibility`の対応集合に入っていることを照合する。最小値や最新値を自動で選ばない
 - 範囲に入れないもの: 未生成chunkの制限（hub NOTES 2026-10-07の候補）、新しいmethodやclientのjob／progress API
 - gateを開くときのpark確認（`2026-09-30-09`、`tools/list-reopen-conditions.py`）: b10に結びつく2件を拾った。
   setBlocksのtick分割はMcRemoteの範囲として着手する。FASTのparticleが負荷のもとで黙って描かれない件は、b10の範囲に入れず、
