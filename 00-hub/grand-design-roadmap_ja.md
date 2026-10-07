@@ -55,7 +55,7 @@ Scratch固有の現状は[Scratch roadmap](../13-scratch-client/scratch-roadmap_
 ## 4. 現在の横断優先
 
 1. b9（protocol `23.2.0`／artifact `2320.0.0b9`）を2026-10-05に公開し、b9横断release gateを閉じた（`00-hub/release-gate-notes_ja.md`）。APIは初回stableまで変えない。Python APIはmatureへ移り、PyPI.orgへpre-releaseを出した（`2026-10-05-03`）。Protocol／WireScope／Bridgeは`minecraft-remote-tooling`へ移した（`2026-10-05-01`、`2026-10-05-02`）
-2. 次はrc1（10月24日まで）。rc1 gateを開くときに、parkした行（rollbackの範囲、Scratch OCIを凍結と公開で揃える、製品noticeを一つに絞る、pickerのalias検索と読み上げ、クライアントAPI一覧とのつなぎ方、READMEのPass C）を拾う
+2. b10横断release gateを2026-10-07に開いた（目標10月17日、`2026-10-07-03`〜`-06`）。McRemoteのsetBlocksのtick分割、1.21.11と26.2で同じJARを使う単一JAR、`mcr.build.blocks`の既定32768、Scratchのケータリング型簡易版（ScratchとBridgeを各PCで動かすOS別ZIP）を入れる。APIは変えない。その後にrc1（10月24日まで）。rc1 gateを開くときに、parkした行（rollbackの範囲、Scratch OCIを凍結と公開で揃える、製品noticeを一つに絞る、pickerのalias検索と読み上げ、クライアントAPI一覧とのつなぎ方、READMEのPass C）を拾う
 3. `lookAt`、空間query、player別previewを含むサウンド以外の新APIは、初回stable後へ送った（`2026-09-30-03`）。
 4. rc1（10月24日まで）から外部testerが会話履歴なしで開始・更新・復旧・feedbackできる入口を用意し、homepage／release情報／技術記事を並走させる。
 5. long-lived credentialの公開gateは閉じたまま、ケータリングで実需要を観察してから再開する。
