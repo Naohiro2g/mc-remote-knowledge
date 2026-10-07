@@ -84,7 +84,10 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     整理する（McRemoteの検討案`setblocks-tick-slicing-proposal_ja.md`。未実装）
   - McRemote単一JAR：Java 21／Paper 1.21.11を開発の床とし、対象ごとに同じSHA-256のJARを検証する。b10の第二の対象は26.2
     で、§4のpulseを通す。初回stableの26.xを26.2か26.3かはrc1のgateを開くときに判断する。名前はtag `v2320.0.0b10`、JAR `mc-remote-2320.0.0b10.jar`、titleは対応版を
-    列挙（versioning §10.12.1の2026-10-07改訂）
+    列挙（versioning §10.12.1の2026-10-07改訂）。helloの`supported_mc_versions`とrelease titleの対応版を何から作るかは未定で、
+    gateを開くときの確認票で決める。今はhelloが`config.yml`の値（空なら稼働サーバーの版）、titleが旧形式tagのmc-targetから
+    作られる。McRemote担当の提案（未採用）：candidateのbuild前に対応対象の宣言を固定し、同じJARで各対象を検証して、宣言と
+    PASSの集合が一致することを公開時に確かめる。値を埋めてbuildし直すとhashが変わるので、新しいcandidateとして検証し直す
 - 範囲に入れないもの: 未生成chunkの制限（hub NOTES 2026-10-07の候補）、新しいmethodやclientのjob／progress API
 - 参加component: McRemote。Python、Scratch、toolingは、change coneに入るかをgateを開くときにcoordinatorが判断し、b10へ一律に
   上げない
