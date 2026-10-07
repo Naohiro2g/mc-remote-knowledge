@@ -71,6 +71,26 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - non-claim: PyPI.orgへの公開はしない。mature判定はしない。Windowsでは検証していない
 - coordinator判定／human release owner承認: human ownerがpost2のsetへの組み入れを判定（2026-09-26、`2026-09-27-01`）。coordinatorはchange coneが閉じていることを確認し、単独更新gateを通過とする（2026-09-28）。**CLOSED**
 
+## 2026-10-07 b10横断release gate（範囲確定、gateは未開始）
+
+- gate coordinator: knowledge担当session（Claude Code）
+- human release owner: プロジェクトオーナー
+- current phase: **範囲確定**（2026-10-07、`2026-10-07-03`）。gateはまだ開いていない。実装・検証・公開はいずれも未実施
+- 目標日: b10はrc1の前。rc1（10/24まで）と初回stable（11/1）の目標日は維持する
+- contract: protocol `23.2.0`のまま、artifact `2320.0.0b10`。APIは変えない
+- 範囲:
+  - McRemote setBlocksのtick分割：既定の1要求32768（`2026-10-07-01`）を既定のtick予算のまま施工できるようにする。同じ接続の
+    後続を追い越させず、id付き要求は全量の施工後に`result:null`。切断、途中の失敗、複数接続・同じplayerの進み方は実装前に
+    整理する（McRemoteの検討案`setblocks-tick-slicing-proposal_ja.md`。未実装）
+  - McRemote単一JAR：Java 21／Paper 1.21.11を開発の床とし、対象ごとに同じSHA-256のJARを検証する。b10の第二の対象は26.2
+    で、§4のpulseを通す。初回stableの26.xを26.2か26.3かはrc1のgateを開くときに判断する。名前はtag `v2320.0.0b10`、JAR `mc-remote-2320.0.0b10.jar`、titleは対応版を
+    列挙（versioning §10.12.1の2026-10-07改訂）
+- 範囲に入れないもの: 未生成chunkの制限（hub NOTES 2026-10-07の候補）、新しいmethodやclientのjob／progress API
+- 参加component: McRemote。Python、Scratch、toolingは、change coneに入るかをgateを開くときにcoordinatorが判断し、b10へ一律に
+  上げない
+- 基準: McRemote `main@cff92c09c39159bb1fe7964bfbb35de9a1c0f4d5`（認証前の制限、`mcr.build.blocks`、1要求32768まで。
+  platform-design §8.2・§8.3）
+
 ## 2026-10-04 b9横断release gate（CLOSED）
 
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない

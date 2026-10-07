@@ -48,8 +48,8 @@ betaは旧b6へ集めていたAPIを一度に完成させる箱ではなく、co
 | b7 | `23.1.0`／`2301.0.0b7`（公開済みfold誤採番） | direction、damage-capableな`world.strikeLightning`、ParticleBuilder内部移行 | 2026-09前半 |
 | b8 | `23.2.0`／`2320.0.0b8` | entity lifecycle、particle receiver／typed data、サウンド（`world.playSound`／`world.playBlockSound`）、Python surface、Windowsでの検証。MC targetは1.21.11だけ | 2026-10-03 |
 | b9 | `23.2.0`／`2320.0.0b9` | API freeze（APIは変えない）、Protocol／WireScope／Bridgeの移管、Python APIのPyPI登録 | 2026-10-10 |
-| b10、b11 | b9と同じcore | 基本線は挟まない。追加が要る場合は理由を示して再判断する | rc1の前 |
-| rc1 | b9と同じcore | capacity、soak、rollback。Paper 26.3がstableなら26.3対応（見込み） | 2026-10-24まで |
+| b10 | b9と同じcore（`2320.0.0b10`） | McRemoteのsetBlocksのtick分割、複数Minecraft版で同じJARを使う単一JAR（1.21.11と26.2で検証）。APIは変えない（`2026-10-07-03`） | rc1の前 |
+| rc1 | b9と同じcore | capacity、soak、rollback。初回stableの26.xを26.2か26.3か、gateを開くときに判断（`2026-10-07-03`） | 2026-10-24まで |
 | 初回stable | rcと同じcore | 全component mature、配布・運用説明を固定 | 2026-11-01 |
 
 公開済みb7の`2301.0.0b7`はidentityを維持します。正しいfoldは`2310`であり、b8以降は
@@ -61,6 +61,10 @@ betaは旧b6へ集めていたAPIを一度に完成させる箱ではなく、co
 > 2026-09-29 改訂（`2026-09-29-02`）：日程を改めた。b8は10月3日、b9は10月10日でAPI freeze、rc1は10月24日まで（必要ならb10、b11の後）、初回stableは11月1日。b9はAPI freezeの版として必ず出し、範囲はb8の後に決める。この節に残る「条件付きb9」「9月末で新API追加を止める」「9月末のAPI freeze」は、この改訂で置き換えた。
 >
 > 2026-09-30 改訂（`2026-09-30-03`、`2026-09-30-07`）：初回stableまでに足すAPIはb8のサウンド2 methodまでとし、他の新API候補は初回stable後へ送る。b9はAPIを変えずにfreezeし、移管とPyPI登録に集中する。b9のprotocolは`23.2.0`のままなので、上の「b9を使う場合のstable coreは`2330.0.0`」は当てはまらず、初回stableのcoreは`2320.0.0`になる。rc1へはb10を挟まずに進むのが基本線。初回stableでsupportする26.xは26.3とし、Paper 26.3がstableになっていれば対応する（§4）。
+>
+> 2026-10-07 改訂（`2026-10-07-03`）：b9の次にb10を出してからrc1へ進む。b10の範囲はMcRemoteのsetBlocksのtick分割と
+> 単一JARの二つで、どちらもrcで初めて入れるには変更が大きいのでbetaで固める。rc1（10/24まで）と初回stable（11/1）の
+> 目標日は維持する。上の「rc1へはb10を挟まずに進むのが基本線」は、この改訂で置き換えた。
 
 この表のb7 direction、b8 entity lifecycle、条件付きb9は、2026-08-26時点で概念別縦sliceを作るための
 有力な計画仮説であり、method名を固定した不変のscope freezeではありません。Paper APIとmcpiから見つかるAPI、
@@ -357,6 +361,10 @@ enable／disable、通常再起動、DimensionKey、resource registry、block／
 > 2026-09-30 改訂（`2026-09-30-07`）：26.xの対象を26.3にした。Paper 26.3はbetaに移り、stableまで2週間ほどの
 > 見込み。Paper 26.3がstableになっていれば、初回stableまでに26.3へ対応する（入れるreleaseの見込みはrc1）。
 > b8は1.21.11だけで出す。Paper 26.3の初期の問題が11月までに解消しているというのは見込みで、確かめる手段は今は無い。
+>
+> 2026-10-07 改訂（`2026-10-07-03`）：b10は26.2を第二の対象として単一JARの仕組みを作り、1.21.11と26.2で同じJAR
+> （同じSHA-256）を上のpulseで検証する。初回stableでsupportする26.xを26.2にするか26.3にするかは、rc1のgateを開くときに
+> 判断する。26.2と26.3の差分は、1.21.11と26.xの差分と比較すると十分小さい、という見立て（未検証）に立つ。
 
 plugin compatibility pulseと公開serverのworld migrationを同じgateにしません。公開server移行はclone上の
 world upgrade、旧runtime＋旧world snapshotへのrollback、credential store非包含、Stack lock更新、

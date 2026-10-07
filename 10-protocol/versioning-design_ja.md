@@ -166,6 +166,8 @@ DECISIONS `2026-06-19-02` で確定。
 - **「1ビルド=1MC版」の厳密管理（範囲なし）から始める。**
 - 複数 MC を1ビルドに列挙するのは、テスト体制（踊り場ごとの動作確認）が整ってから。
 - 却下：最初から複数 MC 列挙 ＝ 未テストの組み合わせを「対応」と宣言してしまうリスク・リリース工数増。
+- 2026-10-07 改訂（`2026-10-07-03`）：McRemoteはb10から単一JARで複数MC版を対応版にする。対象ごとに同じSHA-256のJARを
+  検証することを「テスト体制」とし、検証していない版は対応版に入れない。
 
 ### 7.2 旧 protocol の EOL ポリシー
 
@@ -713,7 +715,14 @@ plugin は Git tag / GitHub release title / JAR artifact 名を分離する（DE
 PythonAPI は repo-local tag `v<mc-remote-version>`（例 `v2100.0.0b2`）と package `minecraft-remote-api==<mc-remote-version>` を使う。Scratch editor も b2 以降は repo-local tag `v<mc-remote-version>` を使う。
 
 GitHub release title は、PythonAPI が `minecraft-remote-api <mc-remote-version>`、Scratch editor が `mc-remote Scratch <mc-remote-version>` とする。Scratch の title に plugin 名の `McRemote` を使わない。`<mc-remote-version>` は tag から先頭の `v` を除いた文字列で、公開済み `v2301.0.0b7-post1` の title は `mc-remote Scratch 2301.0.0b7-post1` とする（`2026-09-27-03`）。
-plugin だけは対応 MC バージョンを tag から特定する必要があるため、上表の `v<mc-target>-<mc-remote-version>` とする。scratch-editor b1 の `scratch-editor-2100.0.0b1` は既存 release identity として変更しない（DECISIONS `2026-07-11-02`）。
+plugin だけは対応 MC バージョンを tag から特定する必要があるため、上表の `v<mc-target>-<mc-remote-version>` とする。
+
+> 2026-10-07 改訂（`2026-10-07-03`）：b10から、pluginは単一JARで複数MC版を対応版にするので、tagとJAR名にmc-targetを
+> 入れない。Git tagは`v<mc-remote-version>`（例 `v2320.0.0b10`）、JARは`mc-remote-<mc-remote-version>.jar`、release titleは
+> `McRemote <mc-remote-version> (Minecraft <対応版の列挙>)`とし、対応版はreleaseの本文とhelloの`supported_mc_versions`で
+> 示す。`1.21.11`のような版を名前に入れると、その版専用と受け取られるのが普通なため。b9までの公開identityは変えない。
+> 上表と本段落の旧形式は、b9までの履歴として読む。
+scratch-editor b1 の `scratch-editor-2100.0.0b1` は既存 release identity として変更しない（DECISIONS `2026-07-11-02`）。
 
 ### 10.12.2 bN の mc-target 束縛（床値規則）
 
@@ -728,6 +737,10 @@ bN（beta）の mc-target は開発都合で**床値**（サポート対象範�
 版の時計（Mojang の四半期リズム `F-mojang-release-cadence`）は規則的だが Paper stable 化ラグ（`F-paper-support-flags`）は不規則ゆえ、二変数予測に依存せず床値規則で予測不要にする。`supported_mc_versions` は離散踊り場リスト（§5）＋当面1ビルド=1MC版（§7.1）なので、床束縛は後から天井版（例 26.2）対応を足すことを妨げない。
 
 **開発の床 vs 配布の床（Java21↔25 境界への拡張）**：§10.12.2 の床値規則は mc-target 宣言（配布の床）の規則だが、1.21.11(Java21)↔26.x(Java25) のように JVM 互換が片方向に割れる境界では「開発の床」も固定する＝コードが依存してよい最小 API・Java を Java21/1.21.11 互換ベースラインに置く。Java21 バイトコードは JVM25 で動くが逆は不可（UnsupportedClassVersionError）ゆえ床開発の成果物のみ両系に届く。実装形は単一コードベース＝Java21 互換の共有コア＋薄い platform-paper アダプタで、必要なら mc-target ごとに artifact を分ける（mc-remote-1.21.11-<ver> / mc-remote-26.1.2-<ver> 等）。1.21.11 は凍結リリース（b1）とは別に active な床トラックとして維持を既定とし、ドロップは固定日付・固定版・固定トリガーを置かず毎リリースの都度判断（rc/stable の天井判断と同型）＝Paper 現況（F-paper-support-flags）・踊り場生態系現況・Java21 互換維持コスト・実利用を入力に畳む。b2以降は複数 MC トラックの並走確認を必須にせず、1.21.11 floor で機能を収束させ、rc 前の凍結判断で 1.21.11 / 26.1.2 / 26.2 / 複数 artifact のどれにするかを決める。Java21↔25 のギャップは mod 生態系にも効いて 1.21.x 踊り場を長命化させる公算が高く、維持既定はその想定に整合。backport は方向・土台・Java 互換の非対称ゆえ採らない。DECISIONS `2026-07-04-05` / `2026-07-08-02`。
+
+> 2026-10-07 改訂（`2026-10-07-03`）：「必要なら mc-target ごとに artifact を分ける」「rc 前に複数 artifact にするかを決める」は、
+> b10で単一JARに決めた。開発の床はJava 21／Paper 1.21.11のままで、版の差はplugin内で吸収する。差が大きくなり吸収が
+> 重くなれば、mc-targetごとのartifactへ戻す判断をする。
 
 ### 10.13 他言語クライアントの pre-release（将来・作り込まない）
 

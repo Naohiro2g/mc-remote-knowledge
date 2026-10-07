@@ -535,7 +535,8 @@ admission→WorkAdmission→chunk→Paper full strike、と固定する。
 protocol定数やclient側の送信保証へ昇格させない。
 
 WorkAdmission costは固定`256`で、既存のper-session／player／global per-tick budgetへ副作用前に計上する。一時拒否は
-`backpressure`、`max_work_per_request < 256`なら`work_limit_exceeded`である。配布既定`4096`では後者へ到達しないが、
+`backpressure`、`max_work_per_request < 256`なら`work_limit_exceeded`である。配布既定（b5 fixtureでは`4096`、
+`2026-10-07-01`から`32768`）では後者へ到達しないが、
 operatorがpolicyを下げられる。rateと同様、work受理後に後続失敗があっても払い戻さない。id付きrequestの
 `backpressure`／`work_limit_exceeded`はerrorで終端する。notificationの一時的`backpressure`はconnection FIFO先頭で
 延期し、後続を追越させない。permanentな`work_limit_exceeded` notificationはresponseなしで消費し、再実行しない。

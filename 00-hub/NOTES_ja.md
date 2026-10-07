@@ -8,6 +8,22 @@
 
 ## Inbox
 
+- 2026-10-07 [park] McRemoteの1要求がtick予算を超えても接続のFIFOが止まらない仕組み（`2026-10-07-01`） / `cff92c0`で1要求の
+  既定を32768にしたが、tick予算は4096のままで、超えるFAST要求は一時的な`backpressure`のまま通らず、その接続のFIFOが先頭で
+  止まる。human ownerの方向はsetBlocksの処理の中で複数tickへ分けること（McRemoteの検討案
+  `handoff-materials/2026-10-06-mcremote-preauth-limits/materials/setblocks-tick-slicing-proposal_ja.md`：接続ごとに未完了jobを1件、
+  座標cursor、tick予算の残りまで施工、成功応答は全量の完了後。未実装）。あわせて、setBlocks以外にtick予算を超えるcostを1回で積めるhandlerがあるかを、McRemote担当への
+  確認票で聞く（coordinatorは実装を読んで判定しない） / 再開＝rc1 gateを開くとき（McRemote担当へ着手依頼） / 閉じる＝McRemoteの
+  実装報告で、tick予算を超える要求でもFIFOが止まらないことをtestで確かめた時
+- 2026-10-07 [park] 未生成chunkへの操作の制限（荒らし対策の候補） / McRemote担当の候補（`chunk-generation-and-load-observation-handoff_ja.md`）：新規生成を許すrole／playerの権限と、UUID別・server全体の有限な生成予算。生成を起こす書込み・height・spawn／lightning・
+  teleportの経路を揃える。permission／meta key、既定値、計数期間、待機か拒否か、auth bypass、拒否reason、部分施工の扱いは
+  未決。wire `2026-07-01-08`（許可された操作ならload／generationする。必要ならbNで別reasonを設計）と照合してから契約にする
+  （platform-design §8.4） / 再開＝未生成chunkへの反復操作による負荷やworld拡大を観察したとき、またはrc1 gateを開くとき（coordinatorが
+  採否を確認票で聞く） / 閉じる＝採用して契約にした、または不要と判断した時
+- 2026-10-07 [park] 認証前の内部テーブル（16／24／32人）の授業相当の較正 / McRemote `43ab1c6`は起動時のmax-playersで値を選び、
+  上限に当たった理由を10種で集計してlogへ出す（platform-design §8.3）。値は試用値で、授業相当の一斉接続・pairing・再接続で、
+  どの理由に当たるかを観察して見直す / 再開＝rc1 gateで授業相当のloadを行うとき（coordinatorが集計logの採取を依頼に入れる） /
+  閉じる＝授業相当の観察で値を見直した（または変えないと判断した）時
 - 2026-10-06 [park] Claude Codeのauto modeが、knowledgeへのhandoff着地のpushを止めた / Scratchの追跡更新票（scratch-editor
   `handoff-materials/2026-10-06-stack-backstage-handoff/`）をknowledgeの`14-evidence/artifacts/2026-10-05-b9-release/scratch/close-followup/`へ
   複製し、commit `e0eaaf4`のpushで`Out-of-Place Publication`として拒否された。続く`git rev-parse HEAD`も拒否された（読むだけの操作）。

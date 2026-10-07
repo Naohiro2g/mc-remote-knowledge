@@ -188,8 +188,8 @@ bulk APIは「大きいから拒否」だけにせず、bounded queueへ受け�
 
 `world.strikeLightning`だけはfull lightning固有のburstを既存の汎用work budgetだけへ委ねず、専用rate admissionを
 先に持つ。配布既定／fixtureはconnection epoch 1回/20 tick、同じbound playerの全connection横断1回/20 tick、
-global同一tick 2回かつrolling 20 tick 8回である。続くWorkAdmission costは256、配布既定
-`max_work_per_request=4096`。rate／work通過後はchunk loadやPaper呼出しが失敗してもslotを戻さない。
+global同一tick 2回かつrolling 20 tick 8回である。続くWorkAdmission costは256で、1要求の上限（§8.2）には
+届かない。rate／work通過後はchunk loadやPaper呼出しが失敗してもslotを戻さない。
 数値はoperatorが変更できるruntime policyであり、clientやprotocol versionに焼き込まない。exact判定窓、FIFOと
 notification、chunk／Paper副作用境界はwire §5.8.2を正とする。
 
@@ -226,6 +226,60 @@ McRemote `fix/auth-enforcement-default@3ff052eeb532cf1312a7e284af996cb4ef13b52f`
 設定変更は秘密の実値を正本へ書かず、対象field、変更理由、再起動／reload要否、適用先、rollbackをreviewできる形で
 管理する。upgradeやcontainer再作成でoperator選択を黙って初期defaultへ戻さない。default変更を全configの
 編集不能化で守らず、schema／fallback、render validation、effective behaviorを確かめるdoctorで守る。
+
+### 8.2 1要求のwork上限とTPSの位置づけ（`2026-10-07-01`）
+
+budgetは、サーバーが止まることと際限のない連打を防ぐguardであり、TPSの維持を保証するものではない。work計算を
+詰めても、未生成chunkの生成・loadやTNTの連鎖のように抑えきれない負荷は残る。重い操作で処理が重くなることは、
+仕組みを知る観察の対象として扱い、spark／Cockpitの観測（§8冒頭）で見えるようにする。
+負荷や待ちをすべて隠すことを改善の目標にせず、TPS、操作の完了時間、応答性、処理の進みやすさ、実装の複雑さを比べて
+決める。観察を先に置くのは学習ループの正典順序（`20-教材/ai-learning-design_ja.md` §1）と同じである。TNTの連鎖のような
+Minecraft側の波及負荷は、必要なら別の対策として扱い、block操作の分割で解消したとは扱わない。
+
+1要求のwork上限（`work.per_request`）の配布既定は32768とする。各人に割り当てた100×100の建築範囲の整地が4096では
+できないためである。tickごとのwork予算（session 4096／player 8192／global 32768）は別に持つ。1要求がtick予算を
+超えても接続のFIFOが止まらない仕組みはMcRemoteが用意する（setBlocksの処理を複数tickへ分けるなど。手段は
+契約にしない）。32768はprotocolの固定上限ではなく、operatorが変えられるserver-localの既定値である。既存configに明示した
+値は自動で上書きしない。b5 fixtureの4096は当時の凍結値として残る。getBlocksの各軸10以下・最大1000（wire §7.1.1）は
+当面維持し、広い範囲はloopで取得する。setBlocksの上限と混同しない。
+
+player別の1操作の量は、LuckPermsのeffective user meta `mcr.build.blocks`で別に制限する。未設定とLuckPerms未導入は
+4096、`0`はsetBlock／setBlocksの禁止、負値や不正な値はwarningを出して`0`とする。値は接続時のsnapshotで、変更は
+再接続で反映する。setBlocksは両端を含む直方体の体積を数え、超過はworld変更とwork消費の前に既存の`build_denied`で
+拒否する。tokenに束縛されないauth bypassの接続はmetaの対象外で、work上限だけがかかる。helloのpermissionsは
+変えない。
+
+到達点（McRemote担当の報告。unit／deterministicのみで、live・load・MSPT較正は未実施）:
+
+- `a5584fbbe6f2cdac2583a1185c9d35069445e467`: `mcr.build.blocks`の導入（307 tests PASS）
+- `cff92c09c39159bb1fe7964bfbb35de9a1c0f4d5`: 1要求の既定32768（311 tests PASS）。FIFOが止まらない仕組みは未実装で、
+  metaを4096より大きくしたplayerやauth bypassの接続がtick予算を超えるFAST要求を送ると、その接続のFIFOが先頭で
+  止まる。この状態のままrc1のcandidateにしない。setBlocksの施工を複数tickへ分ける作業はb10で行う（`2026-10-07-03`）
+
+### 8.3 認証前の資源制限の到達点（`2026-10-07-02`）
+
+§8冒頭の認証前budget（同時connection、accept rate、frame size、idle／hello timeout、pair begin／poll rate、
+pending pair数）はMcRemote `43ab1c665d54fa54da1db7ae3ff523b862664dd5`で実装済みである（300 tests PASS、担当報告。
+live・授業相当loadは未実施）。
+
+- 値はoperatorが調整するconfigではなく、起動時のPaperの有効max-playersで16／24／32人用の内部テーブルを選ぶ
+  （32人を超えるとwarningを出して32人用）。値の正本はMcRemoteのsourceで、ここへ写さない。先行commit `e9563ad`の
+  10個の設定keyは起動時の移行で消し、logで知らせる
+- 上限超過、frame超過、timeout、pairingの上限は接続を閉じるだけで、新しいwireのreason、tokenの発行、自動retryを
+  足さない。clientには応答の前に接続が切れたように見える
+- helloは接続からの絶対期限を持ち（既定180秒、pair codeのTTLを120秒より長くした場合はTTL＋60秒）、pairingや
+  入力の途中でも延長しない
+- 上限に当たった理由を固定の10種で数え、件数と使用量の最高値を、変化があったときだけ約30秒ごとにlogへ出す。
+  token、pairing_id、IP、UUID、入力本文は持たない。授業相当の較正は、この理由別の集計を観察して行う
+
+### 8.4 未生成chunkへの操作の制限（候補・未確定）
+
+生成済みで未loadのchunkは読み込んで使う。未生成のchunkへの反復操作は新しい地形の生成とworldの拡大を起こすので、
+通常のblock数の制限とは分けて、荒らし対策の候補として検討する（McRemote担当の候補。数値・期間・permissionは未採用）。
+候補は、新規生成を許すrole／playerの権限と、許可された人にもUUID別・server全体で有限な生成の予算を持つこと。読み取り
+だけでなく、生成を起こす書込み、height、spawn／lightning、teleportの経路を揃える。導入するときは、wireの
+「許可された操作ならload／generationして処理する。chunk generation policyが必要になればbNで別reasonとして設計する」
+（`2026-07-01-08`、wire §7.3）と照合し、clientからの見え方を決めてから契約にする。
 
 ---
 
