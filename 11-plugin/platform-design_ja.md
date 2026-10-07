@@ -243,9 +243,10 @@ Minecraft側の波及負荷は、必要なら別の対策として扱い、block
 値は自動で上書きしない。b5 fixtureの4096は当時の凍結値として残る。getBlocksの各軸10以下・最大1000（wire §7.1.1）は
 当面維持し、広い範囲はloopで取得する。setBlocksの上限と混同しない。
 
-player別の1操作の量は、LuckPermsのeffective user meta `mcr.build.blocks`で別に制限する。未設定とLuckPerms未導入は
-4096、`0`はsetBlock／setBlocksの禁止、負値や不正な値はwarningを出して`0`とする。値は接続時のsnapshotで、変更は
-再接続で反映する。setBlocksは両端を含む直方体の体積を数え、超過はworld変更とwork消費の前に既存の`build_denied`で
+player別の1操作の量は、LuckPermsのeffective user meta `mcr.build.blocks`で別に制限する。`0`はsetBlock／setBlocksの禁止、負値や不正な値はwarningを出して`0`とする。値は接続時のsnapshotで、変更は
+再接続で反映する。既定値はconfigに持ち（配布既定32768）、build.rangeと同じく、LuckPermsが無いときはconfigの値、
+LuckPermsがあってmetaが無いときは`0`とする（`2026-10-07-05`。b10で実装。`a5584fb`は未設定とLuckPerms未導入を4096と
+していた）。setBlocksは両端を含む直方体の体積を数え、超過はworld変更とwork消費の前に既存の`build_denied`で
 拒否する。tokenに束縛されないauth bypassの接続はmetaの対象外で、work上限だけがかかる。helloのpermissionsは
 変えない。
 

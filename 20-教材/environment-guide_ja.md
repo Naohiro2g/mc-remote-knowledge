@@ -58,10 +58,14 @@ Python の定数（`mc_constants.py`）は**同梱されず、初回の接続成
 
 - **公開VPS profile**：学校と家庭から同じ公開HTTPS／WSS／Minecraftへ継続接続する。
 - **`classroom-all-in-one` profile**：Ubuntu notebook、AP、Scratch、Bridge、Paper、McRemote等を一台へ
-  まとめる教室向け参考構成。ケータリング型の一例であり定義そのものではない。
+  まとめる教室向け参考構成。ケータリング型の一例であり定義そのものではない。生徒の端末がブラウザしか使えない、または管理されて
+  いて何も入れられないという学校由来の制約を越えるための構成で、ケータリング型の原点である（`2026-07-25-04`の補足）。
 - **deployment LAN profile**：stationやMinecraftをLAN、VPN、閉域網内で提供する。all-in-one hostである
   必要はない。
 - **限定公開／OSS operator profile**：利用者が管理するLANまたはHTTPS deploymentとして提供する。
+- **ケータリング型簡易版**（自分のPC／LANの最短構成、b10から、`2026-10-07-04`）：標準のケータリング型から、Docker、証明書の設定、
+  Stackのpreset／orderを除いたもの。OS別ZIP（Scratch Local版）でScratchとBridgeを各PCのlocalhostに置き、Minecraftサーバーは
+  同じPCかLAN内の1台に置く。証明書が無いので、ZIPを動かせない端末（iPad、Chromebookなど）は対象にならない。
 
 WireScopeを使う場合、browserは対象deploymentのtop-level WireScopeを直接開く。QRはそのtop-level URLを
 示し、公開案内pageからlocal resourceをfetchしない（`2026-08-10-02`）。

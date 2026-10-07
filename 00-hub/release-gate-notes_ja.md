@@ -88,9 +88,16 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     gateを開くときの確認票で決める。今はhelloが`config.yml`の値（空なら稼働サーバーの版）、titleが旧形式tagのmc-targetから
     作られる。McRemote担当の提案（未採用）：candidateのbuild前に対応対象の宣言を固定し、同じJARで各対象を検証して、宣言と
     PASSの集合が一致することを公開時に確かめる。値を埋めてbuildし直すとhashが変わるので、新しいcandidateとして検証し直す
+  - McRemote `mcr.build.blocks`の既定：configに持ち（配布既定32768）、LuckPermsが無いときはconfigの値、LuckPermsがあってmetaが
+    無いときは`0`（`2026-10-07-05`）
+  - ケータリング型簡易版（`2026-10-07-04`。優先度を上げる）：標準からDocker、証明書の設定、Stackのpreset／orderを除いたもの。
+    Scratch、Bridge、実行環境、ランチャーをOS別のZIP（Scratch Local版）にまとめ、1台構成とLAN構成に対応する。認証はON。`mc-remote-scratch-local-2320.0.0b10-{windows-x64,macos-arm64,linux-x64}.zip`をScratchの
+    release `v2320.0.0b10`のassetとし、`manifest.json`へrole `scratch-local`で載せる。公開するZIPと同じSHA-256でWindows 11、
+    macOS、Linuxを検証し、構築の手順と運用で要る調整（OSの警告、firewall、接続先、ペアリング）を観察して記録する。同梱物のライセンスは`2026-08-11-01`の配布前確認を通す。サーバー側はMcRemote READMEの
+    クイックスタートへ案内する
 - 範囲に入れないもの: 未生成chunkの制限（hub NOTES 2026-10-07の候補）、新しいmethodやclientのjob／progress API
-- 参加component: McRemote。Python、Scratch、toolingは、change coneに入るかをgateを開くときにcoordinatorが判断し、b10へ一律に
-  上げない
+- 参加component: McRemote、Scratch（toolingのBridgeを配布入力にする）。Pythonは、change coneに入るかをgateを開くときに
+  coordinatorが判断し、b10へ一律に上げない
 - 基準: McRemote `main@cff92c09c39159bb1fe7964bfbb35de9a1c0f4d5`（認証前の制限、`mcr.build.blocks`、1要求32768まで。
   platform-design §8.2・§8.3）
 

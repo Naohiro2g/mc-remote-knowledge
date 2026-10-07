@@ -48,7 +48,7 @@ betaは旧b6へ集めていたAPIを一度に完成させる箱ではなく、co
 | b7 | `23.1.0`／`2301.0.0b7`（公開済みfold誤採番） | direction、damage-capableな`world.strikeLightning`、ParticleBuilder内部移行 | 2026-09前半 |
 | b8 | `23.2.0`／`2320.0.0b8` | entity lifecycle、particle receiver／typed data、サウンド（`world.playSound`／`world.playBlockSound`）、Python surface、Windowsでの検証。MC targetは1.21.11だけ | 2026-10-03 |
 | b9 | `23.2.0`／`2320.0.0b9` | API freeze（APIは変えない）、Protocol／WireScope／Bridgeの移管、Python APIのPyPI登録 | 2026-10-10 |
-| b10 | b9と同じcore（`2320.0.0b10`） | McRemoteのsetBlocksのtick分割、複数Minecraft版で同じJARを使う単一JAR（1.21.11と26.2で検証）。APIは変えない（`2026-10-07-03`） | rc1の前 |
+| b10 | b9と同じcore（`2320.0.0b10`） | McRemoteのsetBlocksのtick分割、複数Minecraft版で同じJARを使う単一JAR（1.21.11と26.2で検証）、`mcr.build.blocks`の既定をconfigへ、ケータリング型簡易版（ScratchとBridgeを各PCで動かすOS別ZIP、Windows 11／macOS／Linux）。APIは変えない（`2026-10-07-03`〜`-05`） | rc1の前 |
 | rc1 | b9と同じcore | capacity、soak、rollback。初回stableの26.xを26.2か26.3か、gateを開くときに判断（`2026-10-07-03`） | 2026-10-24まで |
 | 初回stable | rcと同じcore | 全component mature、配布・運用説明を固定 | 2026-11-01 |
 
