@@ -71,35 +71,51 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - non-claim: PyPI.orgへの公開はしない。mature判定はしない。Windowsでは検証していない
 - coordinator判定／human release owner承認: human ownerがpost2のsetへの組み入れを判定（2026-09-26、`2026-09-27-01`）。coordinatorはchange coneが閉じていることを確認し、単独更新gateを通過とする（2026-09-28）。**CLOSED**
 
-## 2026-10-07 b10横断release gate（範囲確定、gateは未開始）
+## 2026-10-07 b10横断release gate（OPEN）
 
-- gate coordinator: knowledge担当session（Claude Code）
+- gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
-- current phase: **範囲確定**（2026-10-07、`2026-10-07-03`）。gateはまだ開いていない。実装・検証・公開はいずれも未実施
-- 目標日: b10はrc1の前。rc1（10/24まで）と初回stable（11/1）の目標日は維持する
+- current phase: **OPEN**（2026-10-07、human ownerの判断）。実装・検証・公開はいずれも未実施
+- 目標日: b10 2026-10-17。rc1（10/24まで）と初回stable（11/1）の目標日は維持する
+- release mode: 軽量mode（release運用と責務分担 §14、`2026-08-28-02`）。単一JARとケータリング型簡易版のZIPは新しい配布の形
+  なので、その部分は§14の但し書きにより検証を強める（b9の移管と同じ扱い）
 - contract: protocol `23.2.0`のまま、artifact `2320.0.0b10`。APIは変えない
-- 範囲:
-  - McRemote setBlocksのtick分割：既定の1要求32768（`2026-10-07-01`）を既定のtick予算のまま施工できるようにする。同じ接続の
-    後続を追い越させず、id付き要求は全量の施工後に`result:null`。切断、途中の失敗、複数接続・同じplayerの進み方は実装前に
-    整理する（McRemoteの検討案`setblocks-tick-slicing-proposal_ja.md`。未実装）
-  - McRemote単一JAR：Java 21／Paper 1.21.11を開発の床とし、対象ごとに同じSHA-256のJARを検証する。b10の第二の対象は26.2
-    で、§4のpulseを通す。初回stableの26.xを26.2か26.3かはrc1のgateを開くときに判断する。名前はtag `v2320.0.0b10`、JAR `mc-remote-2320.0.0b10.jar`、titleは対応版を
-    列挙（versioning §10.12.1の2026-10-07改訂）。helloの`supported_mc_versions`とrelease titleの対応版を何から作るかは未定で、
-    gateを開くときの確認票で決める。今はhelloが`config.yml`の値（空なら稼働サーバーの版）、titleが旧形式tagのmc-targetから
-    作られる。McRemote担当の提案（未採用）：candidateのbuild前に対応対象の宣言を固定し、同じJARで各対象を検証して、宣言と
-    PASSの集合が一致することを公開時に確かめる。値を埋めてbuildし直すとhashが変わるので、新しいcandidateとして検証し直す
-  - McRemote `mcr.build.blocks`の既定：configに持ち（配布既定32768）、LuckPermsが無いときはconfigの値、LuckPermsがあってmetaが
-    無いときは`0`（`2026-10-07-05`）
-  - ケータリング型簡易版（`2026-10-07-04`。優先度を上げる）：標準からDocker、証明書の設定、Stackのpreset／orderを除いたもの。
-    Scratch、Bridge、実行環境、ランチャーをOS別のZIP（Scratch Local版）にまとめ、1台構成とLAN構成に対応する。認証はON。`mc-remote-scratch-local-2320.0.0b10-{windows-x64,macos-arm64,linux-x64}.zip`をScratchの
-    release `v2320.0.0b10`のassetとし、`manifest.json`へrole `scratch-local`で載せる。公開するZIPと同じSHA-256でWindows 11、
-    macOS、Linuxを検証し、構築の手順と運用で要る調整（OSの警告、firewall、接続先、ペアリング）を観察して記録する。同梱物のライセンスは`2026-08-11-01`の配布前確認を通す。サーバー側はMcRemote READMEの
-    クイックスタートへ案内する
+  - b10の範囲: `2026-10-07-03`（tick分割、単一JAR、名前）、`2026-10-07-04`（ケータリング型簡易版）、`2026-10-07-05`
+    （`mcr.build.blocks`の既定）、`2026-10-07-06`（対応版の一覧の作り方）
+  - 前提の決定: `2026-10-07-01`（1要求32768、TPSの位置づけ）、`2026-10-07-02`（認証前の上限超過は閉じるだけ）
+  - gate開閉時のpark確認: `2026-09-30-09`
+- 基準set: b9（McRemote `v1.21.11-2320.0.0b9`、Python `v2320.0.0b9`、Scratch `v2320.0.0b9`、minecraft-remote-tooling
+  `v2320.0.0b9`）。McRemoteはその後の`main@cff92c09c39159bb1fe7964bfbb35de9a1c0f4d5`（認証前の制限、`mcr.build.blocks`、
+  1要求32768。platform-design §8.2・§8.3）から始める
+- 参加component:
+  - McRemote:
+    - setBlocksのtick分割：既定の1要求32768を既定のtick予算のまま施工できるようにする。同じ接続の後続を追い越させず、
+      id付き要求は全量の施工後に`result:null`。切断、途中の失敗、複数接続・同じplayerの進み方は実装前に整理する
+      （McRemoteの検討案`setblocks-tick-slicing-proposal_ja.md`）
+    - 単一JAR：Java 21／Paper 1.21.11を開発の床とし、1.21.11と26.2で同じSHA-256のJARを検証する（§4のpulse）。Paper 26.2の
+      exact buildは公式Downloads Serviceから取得して確認票で固定する。初回stableの26.xを26.2か26.3かはrc1のgateを開くときに
+      判断する。名前はtag `v2320.0.0b10`、JAR `mc-remote-2320.0.0b10.jar`、titleは対応版を列挙（versioning §10.12.1）
+    - 対応版の一覧（`2026-10-07-06`）：candidateのbuild前に対応対象を宣言し、同じJARで各対象を検証し、宣言とPASSの集合が
+      一致することを公開時に確かめる。その一覧からhelloの`supported_mc_versions`の配布値、release title、本文を揃える
+    - `mcr.build.blocks`の既定：configのトップレベル`default_build_blocks`（配布既定32768）。LuckPermsが無いときはこの値、
+      LuckPermsがあってmetaが無いときは`0`。既存configの明示値は上書きしない（platform-design §8.2）
+  - Scratch（toolingのBridgeを配布入力にする）:
+    - ケータリング型簡易版：標準からDocker、証明書の設定、Stackのpreset／orderを除いたもの。Scratch、Bridge、実行環境、
+      ランチャーをOS別のZIP（Scratch Local版）にまとめ、1台構成とLAN構成に対応する。認証はON。
+      `mc-remote-scratch-local-2320.0.0b10-{windows-x64,macos-arm64,linux-x64}.zip`をScratchのrelease `v2320.0.0b10`の
+      assetとし、公開releaseの`manifest.json`（`mc-remote.release-manifest` v1）へrole `scratch-local`、kind `https-file`、
+      `os`、`arch`で載せる。サーバー側はMcRemote READMEのクイックスタートへ案内する
+    - 公開するZIPと同じSHA-256でWindows 11、macOS、Linuxを検証し、構築の手順と運用で要る調整（OSの警告、firewall、接続先、
+      ペアリング）を観察して記録する。Windowsは、SmartScreenの個別許可と、アプリ単位の許可が無いSmart App Controlを分けて
+      観察する。署名・公証の要否はこの結果で判断する。同梱物のライセンスは`2026-08-11-01`の配布前確認を通す
+  - 不参加: Python（APIが変わらず、簡易版の案内先もMcRemote README）。minecraft-remote-toolingは、Bridgeの配布入力として
+    固定版を使うだけなら新しいreleaseを出さない（Scratchの確認票で確かめる）
 - 範囲に入れないもの: 未生成chunkの制限（hub NOTES 2026-10-07の候補）、新しいmethodやclientのjob／progress API
-- 参加component: McRemote、Scratch（toolingのBridgeを配布入力にする）。Pythonは、change coneに入るかをgateを開くときに
-  coordinatorが判断し、b10へ一律に上げない
-- 基準: McRemote `main@cff92c09c39159bb1fe7964bfbb35de9a1c0f4d5`（認証前の制限、`mcr.build.blocks`、1要求32768まで。
-  platform-design §8.2・§8.3）
+- gateを開くときのpark確認（`2026-09-30-09`、`tools/list-reopen-conditions.py`）: b10に結びつく2件を拾った。
+  setBlocksのtick分割はMcRemoteの範囲として着手する。FASTのparticleが負荷のもとで黙って描かれない件は、b10の範囲に入れず、
+  消費した件数を認証前と同じ理由別の集計に足す程度で軽く済むかをMcRemote担当に聞く（軽く済まなければ初回stableの後へ送る）。
+  rc1に結びつく行（製品notice、OCIのversionラベル、API一覧、rollback、README再編、block value投影の残り、未生成chunk、
+  認証前テーブルの較正）はrc1 gateで見る
 
 ## 2026-10-04 b9横断release gate（CLOSED）
 

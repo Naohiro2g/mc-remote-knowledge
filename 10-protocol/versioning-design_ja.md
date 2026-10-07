@@ -722,6 +722,8 @@ plugin だけは対応 MC バージョンを tag から特定する必要があ�
 > `McRemote <mc-remote-version> (Minecraft <対応版の列挙>)`とし、対応版はreleaseの本文とhelloの`supported_mc_versions`で
 > 示す。`1.21.11`のような版を名前に入れると、その版専用と受け取られるのが普通なため。b9までの公開identityは変えない。
 > 上表と本段落の旧形式は、b9までの履歴として読む。
+> 対応版の一覧は、candidateのbuild前に宣言して固定し、同じJARで各対象を検証して、宣言とPASSの集合の一致を公開時に
+> 確かめる。helloの`supported_mc_versions`の配布値、title、本文はこの一覧から揃える（`2026-10-07-06`）。
 scratch-editor b1 の `scratch-editor-2100.0.0b1` は既存 release identity として変更しない（DECISIONS `2026-07-11-02`）。
 
 ### 10.12.2 bN の mc-target 束縛（床値規則）
