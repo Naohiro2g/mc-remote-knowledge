@@ -226,6 +226,29 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   - Scratch：実装をcommitし、ライセンスの残り135件を分類して、CIでcandidateを作り、3つのZIPのSHA-256を固定する。固定できたら
     coordinatorがWindows 11、macOS、Linuxの実施票を出す。日程上いちばん時間がかかるのはこの後の人の操作なので急ぐ
   - Stack：作業branchのまま置き、mainへはb10のclose（default branchへの統合の確認）で入れる
+- 進捗（2026-10-09）:
+  - McRemote candidate：最終source `main@8f76574e2185b5b502e186d15e4b553ad0912da0`のCI（run `37802721957`、success、artifact ID
+    `11561402977`）のJARは、pulseで試したJARとbytesまで同じ（282,260 bytes、SHA-256
+    `60ca6e17fb89ed8474e2341d710c23ab62f4ddfd366c49afc1d233f6526c3ef7`、ZIP entryの内容・属性・順序も一致）。宣言もbytesが同じ。
+    そこで`bd1ce15`での1.21.11と26.2のpulseと通常再起動の観測を引き継いだ（新しい実行はしていない）。版ごとのrecordは、root
+    の`source_commit`をcandidateの`8f76574`、`observations`を観測時の`bd1ce15`のままとし、`observation_reuse`に引き継ぎの根拠を
+    書いた。manifest v2（`minecraft_compatibility`と2件のPASS）を作り、固定schema、共有fixture 85件、Pythonとtoolingの
+    referenceで検証してPASS。tagとReleaseはまだ
+  - Scratch candidate：`agent/b10-scratch-local@c717d0c2ed9b045b8c3bb925b0e1fcd8ee33010b`のCI（run `37808012407`、success、artifact
+    ID `11563852835`、外側ZIPの`sha256:75b1df3df6d659514ee6eb3a2913a7d9bf6e062a449316c352e9a59078a89aea`）で3つのZIPを固定した
+    （全て`working_tree_dirty:false`）：
+    - `mc-remote-scratch-local-2320.0.0b10-windows-x64.zip` 260,361,934 bytes、`08340c801c1196c30a1227a7e495feb32131a95e4816ffbb29278557cadab9c1`
+    - `mc-remote-scratch-local-2320.0.0b10-macos-arm64.zip` 264,713,598 bytes、`60d69479079eb5f7b7022547d417abc5dc31b237eb12766354885e4db53e6908`
+    - `mc-remote-scratch-local-2320.0.0b10-linux-x64.zip` 269,950,028 bytes、`245d83aeab8f6a10bc3703547e0f897b3e82a8c9152c1a131378454f0debdf8b`
+    手元の対象tests 687件PASS。CIでLinuxのZIPを日本語と空白を含むpathに展開し、模擬peerとの往復まで確かめた（実際の
+    Minecraft、ペアリング、OSのダウンロード警告は未確認）。ライセンスは最終のCI入力130件（runtime 26、buildのみ104）を
+    分類し、runtimeの26件は本文とnoticeを補った。未確定が1件：`microee 0.0.6`の原表記は「BSD」で、条項数の分かる原本文が
+    見つからない（BSD-3-Clauseの標準本文を参考として収め、ライセンスを読み替えたとはしていない）
+- 次の操作（2026-10-09、human owner「案A、ライセンスそのままで」）:
+  - 3つのOSの人間参加試験（live-human）を、上の固定した3つのZIPとMcRemote candidateのJARで行う。取得はGitHub Actionsの
+    run `37808012407`のArtifactsから各PCのブラウザで落とし、中の該当ZIPを取り出して、SHA-256を照合してから始める。外側の
+    artifactから取り出す一手間は本番と違うので、公開した後にReleaseのassetで初回の警告だけ短く見直す
+  - `microee 0.0.6`は、原表記の「BSD」と参考として収めたBSD-3-Clauseの標準本文をnoticeに明記したまま出す（置き換えない）
 
 ## 2026-10-04 b9横断release gate（CLOSED）
 
