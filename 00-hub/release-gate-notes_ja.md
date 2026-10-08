@@ -193,6 +193,16 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     PASS。HTTPとWSは127.0.0.1だけで待ち受け、設定はhostとportだけでtokenを保存しない。toolingの新しいreleaseは要らない。
     同梱物のライセンスinventory 3,363件のうち、LICENSE本文が見つからない135件の分類が残る。manifestはv2の形の確定待ち。
     Windows 11とApple Silicon Macはhuman ownerの手元にあり、最終ZIPを固定してから実施票で案内する
+  - minecraft-remote-tooling `agent/b10-release-manifest-v2@fb6880b192a0063241f95c44a5fa6b836f5e7394`（2026-10-08、Scratch担当、
+    remoteのbranch targetと一致を確認。mainへの統合はまだ）：`schemas/release-manifest-v2.schema.json`（5,654 bytes、SHA-256
+    `537684f063c5604ccb1e99a69fed51a16a73ef6e88c71ee85a410ab6f5ff5b4c`）、共有fixture `schemas/fixtures/release-manifest-v2.json`
+    （66 case、受入8・拒否58、112,472 bytes、SHA-256 `757d1b7661ca1c65b071253ef95161730b1050df85c4f6be6299905823a15a26`）、
+    整合性検査のreference `schemas/release-manifest-checks.mjs`、回帰用にStackのv1 schemaをbytesのまま収容。tooling 280 tests、
+    owner test 67件PASS。fixtureのMinecraftの値は合成で、実機の証拠ではない
+  - Scratch（未commit、担当報告）：schema用の`mc-remote/release-manifest-lock.json`で上のcommitを固定し、公開manifestをv2にした
+    （OCI 2件、https-file 6件。scratch-local 3件と既存3件に`bytes`）。74 tests PASS。公開b9のmanifestをv1として読めることも
+    確かめた。Bridge／WireScopeの`tooling-lock.json`は`dc1ab83`のまま。試作ZIPは旧snapshotのままで、最終ZIPは今後のcommitと
+    candidateから作る。3つのOSでの検証は、McRemoteとStackのv2実装が済んでから行う（human owner 2026-10-08）
 
 ## 2026-10-04 b9横断release gate（CLOSED）
 
