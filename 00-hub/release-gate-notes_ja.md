@@ -141,6 +141,10 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     - `declaration`：`path`（manifestの`source_commit`の時点のproducer repoの相対path。McRemoteは`release/minecraft-targets.json`）、
       `sha256`（そのfileの生のbyte列）、`minecraft_versions`（空でなく重複の無い文字列の配列。fileの内容と一致）。producerは
       JARに同梱した宣言とbytesが一致することも確かめる
+    - 宣言fileの形（2026-10-08に追記、human owner「objectを正とする案でOK」）：rootはobjectで、`schema`
+      （`mc-remote.minecraft-targets`）、`schema_version`（`1`）、`minecraft_versions`（空でなく重複の無い文字列の配列）を持つ。
+      知らないfieldと裸の配列は拒否する。照合は`minecraft_versions`の値、fileの生のbytesのdigest、JARに同梱した宣言のbytesの
+      一致で行う。McRemoteの提案と実装の形で、manifestと同じくversionで知らない形を検出できる
     - `verifications[]`：宣言した版ごとにちょうど1件。`minecraft_version`、`paper_build`（1以上の整数）、`server_sha256`、
       `java_version`（実測したruntimeの版の文字列をそのまま。例 `21.0.12.1+1-1-24.04.4-Ubuntu`）、`jar_sha256`（`jar`の
       sha256と一致）、`result`（`"PASS"`だけ。失敗や未実施はcandidateの記録に残し、公開manifestには載せない）、
@@ -173,7 +177,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     （FASTはFIFO先頭で延期）。一度施工を始めたら`backpressure`を返さず次のtickで同じ要求として続け、全量の後に`result:null`を
     1回。途中のPaper例外やworldの失効は`internal_error`で終え、自動retryしない。施工済みの部分は残し、rollbackしない。切断で
     残りを止める。予約したworkは失敗しても戻さない。1接続で途中のjobは1件、tickごとに巡回の開始位置を回す
-  - McRemote単一JARの宣言：tracked `release/minecraft-targets.json`（`["1.21.11", "26.2"]`）をbuild前に固定し、同梱resource、
+  - McRemote単一JARの宣言：tracked `release/minecraft-targets.json`（object。対応版は`minecraft_versions`の`["1.21.11", "26.2"]`。
+    形は下の「release manifest v2の形」）をbuild前に固定し、同梱resource、
     configの配布既定、title、本文をここから作る。検証素材はJARのdigestで結ぶ。既存configの`supported_mc_versions`は、hello
     では同梱の宣言を正とし、値は書き換えず、違えばwarningを出す（`2026-10-07-07`）
   - McRemote `main@bd1ce15d90dc14dc59b23441df8677bed021a897`（担当報告、unit／deterministicと隔離ローカルPaperでのlive-auto。
@@ -203,6 +208,12 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     （OCI 2件、https-file 6件。scratch-local 3件と既存3件に`bytes`）。74 tests PASS。公開b9のmanifestをv1として読めることも
     確かめた。Bridge／WireScopeの`tooling-lock.json`は`dc1ab83`のまま。試作ZIPは旧snapshotのままで、最終ZIPは今後のcommitと
     candidateから作る。3つのOSでの検証は、McRemoteとStackのv2実装が済んでから行う（human owner 2026-10-08）
+  - 2026-10-08：toolingの`fb6880b`をmainへfast-forwardで統合した（CI成功）。McRemote `main@d0c548f`（v2の生成と固定素材の
+    取り込み、Python 47 tests、共有fixture 66件PASS）とStack `8e3b0b1`（作業branch。v1・v2の読み取りと選択、presetの構成が
+    verificationと違えば`release_manifest_foundation_unverified`、pytest 511件PASS）が、宣言fileの形の食い違いを返した：
+    toolingのreference、README、fixtureは宣言fileを裸の配列として扱い、McRemoteの実際のobjectを内容の段階で拒否する。
+    knowledgeの記録がrootの形を決めておらず、進捗の欄の略記が配列のように読めたことも一因。objectを正とし、toolingの
+    reference、README、fixtureを直して出し直し、McRemoteとStackが固定し直して照合する
 
 ## 2026-10-04 b9横断release gate（CLOSED）
 
