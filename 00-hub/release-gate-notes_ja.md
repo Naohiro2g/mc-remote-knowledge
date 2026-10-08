@@ -125,17 +125,39 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
       setBlocksもできなくなる。入れた途端に何もできなくなった、を防ぐため、metaの設定手順を短い案内にまとめる。置き場所は
       McRemoteが提案する
     - release manifest v2の生成（`minecraft_compatibility`を含む、`2026-10-07-08`）
-- release manifest v2のたたき台（`2026-10-07-08`。McRemote、Scratch、Stackのreview前）:
-  - top-level: `schema`は`mc-remote.release-manifest`のまま、`schema_version` `2`、`release_tag`、`source_commit`、`artifacts`
-  - https-fileのartifact: `role`、`kind`、`file`、`sha256`、`bytes`（必須）、`os`と`arch`（任意、付けるなら両方。`os`は
-    `windows`／`macos`／`linux`、`arch`は`x64`／`arm64`）。`(role, os, arch)`の重複は拒否し、一つのroleの項目は全部が
-    `os`／`arch`を持つか、全部が持たないかに揃える。ociのartifactは変えない
-  - `minecraft_compatibility`（McRemoteのv2で必須）: `declaration`（`path`、`sha256`、`minecraft_versions`）と
-    `verifications[]`（`minecraft_version`、`paper_build`、`server_sha256`、`java_version`、`jar_sha256`、`result`、検証記録の
-    fileとsha256）。PASSした版の集合が宣言と完全に一致し、すべての`jar_sha256`が`jar`のsha256と一致すること
-  - consumer: 1件だけのrole（`scratch`、`bridge`、`jar`など）は1件を要求する。変種のあるroleは`(role, os, arch)`で選び、
-    不足・重複・曖昧は拒否する。使わないroleは選ばないだけにする。deployするMinecraftの版はpresetで明示し、
-    `minecraft_compatibility`の対応集合に入っていることを照合する。最小値や最新値を自動で選ばない
+- release manifest v2の形（`2026-10-07-09`。McRemote、Scratch、Stackのreviewを突き合わせて確定）:
+  - versionで分ける：`schema_version`を見て固定したv1またはv2のschemaで文書全体を検査する。知らないversionと知らない
+    fieldは拒否する。v1の規則と挙動は変えない。不正なv2をv1として読み直さない
+  - top-level：`schema`（`mc-remote.release-manifest`）、`schema_version`（`2`）、`release_tag`、`source_commit`、`artifacts`。
+    v1の任意field `bundled_wirescope_source_commit`（小文字16進40桁）はv2でも任意で残す。`minecraft_compatibility`は下記
+  - 全artifact：v1の任意field `artifact_version`（空でない文字列）を残す。ociのartifactはほかを変えない
+  - https-fileのartifact：`role`（文字列。roleの語彙をschemaで列挙しない）、`kind`（`"https-file"`）、`file`（空でない文字列。
+    同じReleaseのasset名。名前から`os`／`arch`を推定しない）、`sha256`（小文字16進64桁）、`bytes`（必須、0以上の整数。公開する
+    fileの生のbyte数）、`os`（`windows`／`macos`／`linux`）と`arch`（`x64`／`arm64`）は任意で、付けるなら両方。片方だけ、
+    `null`、空文字、別表記（`amd64`など）は拒否する
+  - artifactの鍵：`(role, os, arch)`。`os`／`arch`の無い項目は`(role, なし, なし)`。ociを含む全artifactの間で鍵の重複を拒否する
+    （fileやhashが違っても同じ鍵なら重複）。一つのroleの中で`os`／`arch`のある項目と無い項目を混ぜない
+  - `minecraft_compatibility`：artifactsにrole `jar`があるv2で必須（producerの名前やtagから判断しない）
+    - `declaration`：`path`（manifestの`source_commit`の時点のproducer repoの相対path。McRemoteは`release/minecraft-targets.json`）、
+      `sha256`（そのfileの生のbyte列）、`minecraft_versions`（空でなく重複の無い文字列の配列。fileの内容と一致）。producerは
+      JARに同梱した宣言とbytesが一致することも確かめる
+    - `verifications[]`：宣言した版ごとにちょうど1件。`minecraft_version`、`paper_build`（1以上の整数）、`server_sha256`、
+      `java_version`（実測したruntimeの版の文字列をそのまま。例 `21.0.12.1+1-1-24.04.4-Ubuntu`）、`jar_sha256`（`jar`の
+      sha256と一致）、`result`（`"PASS"`だけ。失敗や未実施はcandidateの記録に残し、公開manifestには載せない）、
+      `record`（`{file, sha256}`。`file`は同じReleaseのassetのbasenameで、pathや外部URLを含めない。recordは`artifacts`には
+      載せず、`verifications`からだけ参照する）。Paper以外のserverを足すときは、文字列に詰めず新しいfieldかversionで扱う
+  - schemaで表せない検査（鍵の重複、roleの中の混在、宣言とverificationの版の集合の一致、`jar_sha256`の一致、recordと
+    宣言fileのdigest照合）は、producerとconsumerの両方が文書全体の整合性検査として行う。toolingに受入と拒否の共有fixtureを
+    置き、言語ごとの判定の差を確かめる
+  - consumer：1件だけのrole（`scratch`、`bridge`、`jar`など）はちょうど1件と期待するkindを要求する。変種のあるroleは
+    呼び出し側が`os`と`arch`を明示して1件を選び、該当0件・複数件・指定不足は拒否する。別のOSやarchへfallbackしない。使わない
+    roleは選ばず取得もしないが、文書全体の検査は省かない。deployするMinecraftの版はpresetで明示し、対応集合への包含を確かめる。
+    presetのPaper build、server JARのSHA、Java runtimeがverificationの構成と違う場合は「検証済み」とせず、coordinatorへ返す
+    （どの観測を引き継げるかはcoordinatorが決める）
+  - JSON Schema：Draft 2020-12で、toolingのroot `schemas/release-manifest-v2.schema.json`に置く。共有fixtureも同じcommitに置く。
+    取得は固定のGit commit、path、bytes、SHA-256で行い、実行時に`main`やremoteを取りに行かない。schema用のlockはBridge／
+    WireScopeのlock（`mc-remote/tooling-lock.json`）と分ける（Scratch案は`mc-remote/release-manifest-lock.json`）。lockの置き場所は
+    各repoが決め、同じcontract commitとfileのhashを記録する
 - 範囲に入れないもの: 未生成chunkの制限（hub NOTES 2026-10-07の候補）、新しいmethodやclientのjob／progress API
 - gateを開くときのpark確認（`2026-09-30-09`、`tools/list-reopen-conditions.py`）: b10に結びつく2件を拾った。
   setBlocksのtick分割はMcRemoteの範囲として着手する。FASTのparticleが負荷のもとで黙って描かれない件は、b10の範囲に入れず、
@@ -154,6 +176,23 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   - McRemote単一JARの宣言：tracked `release/minecraft-targets.json`（`["1.21.11", "26.2"]`）をbuild前に固定し、同梱resource、
     configの配布既定、title、本文をここから作る。検証素材はJARのdigestで結ぶ。既存configの`supported_mc_versions`は、hello
     では同梱の宣言を正とし、値は書き換えず、違えばwarningを出す（`2026-10-07-07`）
+  - McRemote `main@bd1ce15d90dc14dc59b23441df8677bed021a897`（担当報告、unit／deterministicと隔離ローカルPaperでのlive-auto。
+    live-humanは無し）：setBlocksのtick分割、単一JARと同梱の宣言、helloの宣言、particleの集計
+    （`PARTICLE_NOTIFICATION_WORK_BACKPRESSURE`）、READMEの「LuckPermsを入れたときの設定」（`mcr.online`、`mcr.build.range`、
+    `mcr.build.blocks`をgroup defaultへ設定する例。LuckPermsでの実地試験は未実施）。Java 325 tests、Python 21 tests PASS。
+    同じJAR（282,260 bytes、SHA-256 `60ca6e17fb89ed8474e2341d710c23ab62f4ddfd366c49afc1d233f6526c3ef7`、class major 65）を
+    Paper 1.21.11 build 130（Java 21）と26.2 build 132（Java 25）で、認証済みhello、宣言、catalog、block、sign、entity handle、
+    events.poll、particle／chat、32768のtick分割、FASTとflush、通常再起動の後のread／writeまで確認した。宣言のSHA-256は
+    `a202a11a104767c289266f4baf7692d499ed15b717dd4d5a31eca48abc17ca26`。初回の26.2のrunで、bulkの完了直後のsign setterが副作用前の
+    `backpressure`を返し、runnerをそのreasonだけ有限回待つ形へ直した。初回のtargeted unitで既存のparticle self receiverの
+    caseが1回だけFAIL（receiversがnull）し、再実行と全325 testsでは再現せず、原因は特定されていない。公開candidateとmanifest
+    v2の生成はまだ
+  - Scratch `agent/b10-scratch-local`（親`271d1ca4ba5374b8f2a370666cf7ecaaabf0d206`、未commit、担当報告）：3つのOSの試作ZIPを
+    生成した（`working_tree_dirty`で公開identityではない）。Linuxで実際のランチャー、HTTP配信、固定Bridge（tooling
+    `dc1ab83`のOCIから`/app`を取り出し、同梱Node 24.19.0で起動）、模擬peerとのhello往復、終了が通り、対象tests 591件が
+    PASS。HTTPとWSは127.0.0.1だけで待ち受け、設定はhostとportだけでtokenを保存しない。toolingの新しいreleaseは要らない。
+    同梱物のライセンスinventory 3,363件のうち、LICENSE本文が見つからない135件の分類が残る。manifestはv2の形の確定待ち。
+    Windows 11とApple Silicon Macはhuman ownerの手元にあり、最終ZIPを固定してから実施票で案内する
 
 ## 2026-10-04 b9横断release gate（CLOSED）
 
