@@ -214,6 +214,18 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     toolingのreference、README、fixtureは宣言fileを裸の配列として扱い、McRemoteの実際のobjectを内容の段階で拒否する。
     knowledgeの記録がrootの形を決めておらず、進捗の欄の略記が配列のように読めたことも一因。objectを正とし、toolingの
     reference、README、fixtureを直して出し直し、McRemoteとStackが固定し直して照合する
+  - 2026-10-08：toolingの修正版`main@5f567f14adaa24603e9dee3c0ec9909d428b7c4b`（reference、README、共有fixture 85件。schema本体は
+    不変。coordinatorが変更4 fileのbytesとSHA-256を照合）。McRemote `main@8f76574e2185b5b502e186d15e4b553ad0912da0`とStack
+    `agent/b10-manifest-v2-consumer@2eaf41bee5f11c361b0fe7bb53cdbcf966e39be7`が固定し直し、共有fixture 85件の判定が全件一致し、
+    `bd1ce15`の実際のJAR、宣言、版ごとのrecordでmanifest v2の照合がPASSした（McRemote 49 tests、Stack 542 tests）。宣言fileの
+    形の食い違いは解消した。どちらも`bd1ce15`の観測をそのsourceのまま使い、新しいcommitのPASSへ付け替えていない
+- 次の操作（2026-10-08、human owner「その案でOK」）:
+  - McRemote：最終のsourceからCIでcandidateを作り、JARのSHA-256を見る。`bd1ce15`の後の変更はrelease scriptとlockだけで
+    Javaは変えていない（担当報告）。CIのJARがpulseで試したJAR（`60ca6e17fb89ed8474e2341d710c23ab62f4ddfd366c49afc1d233f6526c3ef7`）と
+    同じbytesなら、両方の版のpulseを引き継ぐ。違えば新しいJARで1.21.11と26.2のpulseをやり直す。tagはまだ打たない
+  - Scratch：実装をcommitし、ライセンスの残り135件を分類して、CIでcandidateを作り、3つのZIPのSHA-256を固定する。固定できたら
+    coordinatorがWindows 11、macOS、Linuxの実施票を出す。日程上いちばん時間がかかるのはこの後の人の操作なので急ぐ
+  - Stack：作業branchのまま置き、mainへはb10のclose（default branchへの統合の確認）で入れる
 
 ## 2026-10-04 b9横断release gate（CLOSED）
 
