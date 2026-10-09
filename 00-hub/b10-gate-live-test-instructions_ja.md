@@ -8,6 +8,8 @@
 > 2026-10-09 改訂：初回の試行（Windows、macOS）で、Windowsで認証ONの接続ができない問題と、独立WireScopeが同梱されて
 > いない問題が見つかった。McRemoteとScratchの両方のcandidateを作り直すので、下の「使うもの」の表は新しいcandidateが
 > そろったら差し替える。今すぐ行うのは「Windowsの診断（今すぐ）」だけ。3 OSの試験は、新しいcandidateがそろってからやり直す。
+>
+> 2026-10-09 追記：Windowsの診断は実施済みで、原因が確定した（release-gate-notes b10）。
 
 ## Windowsの診断（今すぐ）
 
@@ -16,7 +18,8 @@ Windowsで認証ONの接続ができない原因を確かめる。McRemote担当
 
 コマンドはGit Bashで行う。
 
-1. Windowsで、試験に使ったPaperサーバーのフォルダ（`plugins`がある場所）をGit Bashで開く（`cd`する）
+1. Windowsで、試験に使ったPaperサーバーのフォルダ（`plugins`の一つ上。例 `paper-1.21.11`）へGit Bashで`cd`する。
+   以下のコマンドは、すべてこの場所で実行する（`plugins`の中で実行すると、対象が見つからず`stage=validate-directory`で止まる）
 2. 実際に使ったJARと環境の版を採る
 
    ```bash

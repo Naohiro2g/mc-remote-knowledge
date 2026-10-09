@@ -265,6 +265,12 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     止まる。logとは整合するが、Windows実機のstack traceはまだ無い。この処理はsnapshotの書き込み、authorityのmanifest、
     revokeのtombstoneにも使うので、初回起動だけを通しても直らない。platform-design §9.3（directoryの同期をrevokeの確定点
     とする）と§9.4（永続化してから成功を返す）があるので、Windowsで同期を飛ばす・例外を握りつぶすのは契約違反になる
+  - Windowsの原因の確定（2026-10-09、human ownerがWindows 11で診断。Microsoft Build of OpenJDK `21.0.12.1+1-LTS`、実際に使った
+    JARはcandidateと同じ`60ca6e17fb89ed8474e2341d710c23ab62f4ddfd366c49afc1d233f6526c3ef7`）：`DirectoryForceProbe`
+    （`14-evidence/artifacts/2026-10-09-b10-live/mcremote/DirectoryForceProbe.java`、SHA-256
+    `4d9c9abda5059ac73f1b85b22a4bec0dbff9058cf74b1db01c0d783563c2302c`）が、`stage=open-directory-read`で
+    `java.nio.file.AccessDeniedException`（`WindowsFileSystemProvider.newFileChannel`）になった。Windowsでは
+    `FileChannel.open(directory, READ)`でdirectoryを開けず、静的点検の原因候補のとおり
 - 次の操作（2026-10-09、human owner「はい」）:
   1. human owner：Windowsで診断（`00-hub/b10-gate-live-test-instructions_ja.md`の「Windowsの診断」）を実行し、原因を確かめる
   2. McRemote：Windowsでの永続化の方式の案を出す（§9.3と§9.4を満たす方法。Windows固有の永続化の手段か、§9.4が許す別の
