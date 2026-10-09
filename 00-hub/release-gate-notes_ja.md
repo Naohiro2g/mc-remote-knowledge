@@ -250,6 +250,29 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     run `37808012407`のArtifactsから各PCのブラウザで落とし、中の該当ZIPを取り出して、SHA-256を照合してから始める。外側の
     artifactから取り出す一手間は本番と違うので、公開した後にReleaseのassetで初回の警告だけ短く見直す
   - `microee 0.0.6`は、原表記の「BSD」と参考として収めたBSD-3-Clauseの標準本文をnoticeに明記したまま出す（置き換えない）
+- 初回のlive-human（2026-10-09、human owner。正式なrecordはまだ）:
+  - Windows 11、Paper 1.21.11：ランチャーは警告なく起動。ペアリングのcodeが出て承認されるが、Scratchの接続が完了しない。
+    serverのlogは、snapshotとauthority manifestが無いので新しいcredential domainを作り始め、途中でfail closedして
+    `UNHEALTHY`。認証OFFにすると接続でき、hello worldも通った（認証ONの試験の成功には数えない）。実際に使ったJARの
+    SHA-256、OSとPaperの正確な版、Smart App Controlの状態は採れていない
+  - macOS（Apple Silicon）、Minecraft 1.21.11：最初にLinux用のZIPのNodeを実行して失敗（OSの取り違え）。macOS用では警告なく
+    起動し、ペアリングに成功、`Hello, Minecraft!`まで通った。版やhashは採れていない
+  - Windowsとmacの両方で、独立WireScopeへのリンクが出ない。Scratch担当の静的点検で、3つのZIPのどれにもWireScopeが入って
+    おらず、`wirescope_url`も無いと確認（`2026-10-07-04`で中身にWireScopeを書いていなかった抜け）
+  - Windowsの原因候補（McRemote担当の静的点検、`McRemote/handoff-materials/2026-10-09-b10-windows-credential-investigation/`）：
+    credential storeの`forceDirectory`が`FileChannel.open(directory, READ)`でdirectoryを開いて同期する処理が、Windowsでは
+    できない（directoryを開くのに要るflagをJavaが付けない）。初回起動でauthorityのdirectoryを作った直後、その親の同期で
+    止まる。logとは整合するが、Windows実機のstack traceはまだ無い。この処理はsnapshotの書き込み、authorityのmanifest、
+    revokeのtombstoneにも使うので、初回起動だけを通しても直らない。platform-design §9.3（directoryの同期をrevokeの確定点
+    とする）と§9.4（永続化してから成功を返す）があるので、Windowsで同期を飛ばす・例外を握りつぶすのは契約違反になる
+- 次の操作（2026-10-09、human owner「はい」）:
+  1. human owner：Windowsで診断（`00-hub/b10-gate-live-test-instructions_ja.md`の「Windowsの診断」）を実行し、原因を確かめる
+  2. McRemote：Windowsでの永続化の方式の案を出す（§9.3と§9.4を満たす方法。Windows固有の永続化の手段か、§9.4が許す別の
+     backend）。あわせて、失敗した操作名、例外の型、cause chainを起動logに出す（credentialの値は出さない）。案をcoordinatorが
+     §9と突き合わせ、human ownerが決める。Windowsの問題はb10の範囲に入れる（認証ONは実施の条件）
+  3. Scratch：独立WireScopeを同梱した新しいcandidateを作る（`2026-10-09-01`）
+  4. 3つのOSの試験は、McRemoteとScratchの新しいcandidateがそろってからやり直す。初回の観測は新しいcandidateに引き継がず、
+     問題を見つけた記録として残す。実施票は2段の取得、ランチャーの場所、JARの取得先、始める前に採る項目を足して直した
 
 ## 2026-10-04 b9横断release gate（CLOSED）
 
