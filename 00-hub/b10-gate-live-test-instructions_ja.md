@@ -14,26 +14,37 @@
 Windowsで認証ONの接続ができない原因を確かめる。McRemote担当の静的点検では、credential storeの「directoryを開いて同期する」
 処理がWindowsでできないことが最有力の原因候補。次の手順は、credentialのfileを作らず、消さず、中身も読まない。
 
-1. Windowsで、試験に使ったPaperサーバーのフォルダ（`plugins`がある場所）をPowerShellで開く
+コマンドはGit Bashで行う。
+
+1. Windowsで、試験に使ったPaperサーバーのフォルダ（`plugins`がある場所）をGit Bashで開く（`cd`する）
 2. 実際に使ったJARと環境の版を採る
 
-   ```powershell
-   Get-FileHash .\plugins\mc-remote-2320.0.0b10.jar -Algorithm SHA256
+   ```bash
+   sha256sum plugins/mc-remote-2320.0.0b10.jar
    java -version
    ```
 
 3. 診断プログラム`DirectoryForceProbe.java`（McRemote `handoff-materials/2026-10-09-b10-windows-credential-investigation/materials/`）
-   を任意の場所へコピーし、Paperのフォルダから実行する
+   を任意の場所へコピーし、Paperのフォルダから実行する。pathはコピーした場所に合わせる
 
-   ```powershell
-   java C:\path\to\DirectoryForceProbe.java .\plugins\McRemote
+   ```bash
+   java /c/path/to/DirectoryForceProbe.java ./plugins/McRemote
    ```
 
-   原因候補どおりなら`result=ERROR`、`stage=open-directory-read`、`exception=java.nio.file.AccessDeniedException`と出る
-4. 次のものがあるか、種類（directory／file）だけを見る。中身は送らない。削除や変更はしない
-   - `plugins\McRemote\credential-revocations`（directory）
-   - その中の`manifest.json`と`.bootstrap-pending.json`
-   - `plugins\McRemote\credential-store\snapshot.json`
+   Git Bashは`/c/...`を`C:\...`に直して`java`へ渡す。うまく動かなければ`java "C:\\path\\to\\DirectoryForceProbe.java" ./plugins/McRemote`
+   のようにWindowsの形で書く。原因候補どおりなら`result=ERROR`、`stage=open-directory-read`、
+   `exception=java.nio.file.AccessDeniedException`と出る
+4. 次のものがあるか、種類（directory／file）だけを見る。中身は見ない。削除や変更はしない。「No such file or directory」も
+   結果としてそのまま返す
+
+   ```bash
+   ls -ld plugins/McRemote/credential-revocations
+   ls -la plugins/McRemote/credential-revocations
+   ls -l  plugins/McRemote/credential-store/snapshot.json
+   ```
+
+   見たいのは、`credential-revocations`（directory）、その中の`manifest.json`と`.bootstrap-pending.json`、
+   `credential-store/snapshot.json`の有無
 5. 2〜4の出力を、private path（ユーザー名を含むpath）を伏せて返す
 
 ## 使うもの
@@ -71,8 +82,7 @@ WindowsのMark of the Webが本番と違う）。公開した後に、Releaseの
    展開する。中に3つのOSのZIPが入っている
 2. **自分のOSのZIPだけ**を選ぶ（Windowsは`windows-x64`、Apple Siliconのmacは`macos-arm64`、Linuxは`linux-x64`）。
    ほかのOSのZIPを展開して動かさない（初回の試行で、macOSでLinux用のNodeを実行して失敗した）
-3. 選んだZIPのSHA-256を照合する（Windows: `certutil -hashfile <file> SHA256`、macOS: `shasum -a 256 <file>`、
-   Linux: `sha256sum <file>`）
+3. 選んだZIPのSHA-256を照合する（Windows（Git Bash）とLinux: `sha256sum <file>`、macOS: `shasum -a 256 <file>`）
 
 ## 手順（各OSで、まず1台構成、次にLAN構成）
 
