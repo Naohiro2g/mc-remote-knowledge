@@ -21,6 +21,7 @@ public 正本世代の入口です。ここに載る path は、このリポ内�
 | `00-hub/llm-agent-boundary-guide_ja.md` | agent の権限・実行・検証境界 |
 | `00-hub/release-operations-responsibility-design_ja.md` | 公開runbook、物理host、deployment、component担当、gate coordinator、人間release ownerの責務、test tier／change cone／常設dev harness／gate manifest／release close |
 | `00-hub/release-gate-notes_ja.md` | 公開release gateの確認票、coordinator、phase、exact set、許可済み次操作の状態集約 |
+| `00-hub/b10-gate-live-test-instructions_ja.md` | b10横断release gateで、ケータリング型簡易版の固定した3つのZIPをWindows 11／macOS／Linuxで試すhuman owner向けの実施票（取得、警告の記録、1台構成とLAN構成、記録の注意） |
 | `00-hub/b9-gate-confirmation-instructions_ja.md` | b9横断release gateを開いたときにMcRemote／Python／Scratchへ出す確認票依頼（契約2件、PyPIの準備、移管の材料）と、gateの条件にしないJavaへの問い |
 | `00-hub/b9-gate-work-instructions_ja.md` | b9横断release gateの確認票の返却を受けて出す着手依頼（依存順、10/6の確認点、移管の実施、契約2件、PyPI.orgのjob） |
 | `00-hub/b9-gate-live-test-sheet_ja.md` | b9横断release gateの凍結後、devの通常環境で行う統一実施票（JARの差し替え、live-auto、Python、移管したBridgeとWireScope） |

@@ -245,7 +245,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     分類し、runtimeの26件は本文とnoticeを補った。未確定が1件：`microee 0.0.6`の原表記は「BSD」で、条項数の分かる原本文が
     見つからない（BSD-3-Clauseの標準本文を参考として収め、ライセンスを読み替えたとはしていない）
 - 次の操作（2026-10-09、human owner「案A、ライセンスそのままで」）:
-  - 3つのOSの人間参加試験（live-human）を、上の固定した3つのZIPとMcRemote candidateのJARで行う。取得はGitHub Actionsの
+  - 3つのOSの人間参加試験（live-human）を、上の固定した3つのZIPとMcRemote candidateのJARで行う（実施票は
+    `00-hub/b10-gate-live-test-instructions_ja.md`）。取得はGitHub Actionsの
     run `37808012407`のArtifactsから各PCのブラウザで落とし、中の該当ZIPを取り出して、SHA-256を照合してから始める。外側の
     artifactから取り出す一手間は本番と違うので、公開した後にReleaseのassetで初回の警告だけ短く見直す
   - `microee 0.0.6`は、原表記の「BSD」と参考として収めたBSD-3-Clauseの標準本文をnoticeに明記したまま出す（置き換えない）
