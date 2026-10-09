@@ -279,6 +279,17 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   3. Scratch：独立WireScopeを同梱した新しいcandidateを作る（`2026-10-09-01`）
   4. 3つのOSの試験は、McRemoteとScratchの新しいcandidateがそろってからやり直す。初回の観測は新しいcandidateに引き継がず、
      問題を見つけた記録として残す。実施票は2段の取得、ランチャーの場所、JARの取得先、始める前に採る項目を足して直した
+- Windowsの永続化の方式（2026-10-09、`2026-10-09-02`）：McRemoteの比較票（ESE、SQLite、Win32のfile API）を§9.3・§9.4と突き合わせ、
+  human ownerがWindowsに限るSQLiteのbackendを選んだ（platform-design §9.4の追記）。Xerial SQLite JDBCをJARに同梱し、Windowsの
+  旧fileは読まず、移行も退避もしない。CIのWindows runner（Java 21と25）で、commitの前後で子JVMを止める試験まで行い、そのあと
+  Windows 11の実機で認証ONの接続、再起動、revokeを確かめる。電源を落とす試験はしない
+- 進捗（2026-10-09）：Scratch `agent/b10-scratch-local@ec29372dadac9c51b2812c746e72032d48d987b6`のCI（run `37933218014`、
+  artifact ID `11616819485`、外側`sha256:f747f3b537b060aacfa24bbcdbc1e42575169d7cd11b5d3219fdb6a7c0767159`）で、独立WireScopeを
+  同梱した3つのZIPを作った（Windows `f9d09ee84eb8cc54324c6b9d83dc3ab9371d7592ec0535346cf527d3db931a77`、macOS
+  `16e20e5b2ecbfe1a7070d18f3700739bf2d4d567920347398e7ff82d1a40edc0`、Linux
+  `3717f4dd55c0996c8e35ce121f293b06ed78e1a1c1bd7e4dad8c1a297fc186fc`）。固定済みの共通WireScope（`da3da0b6…31ad`）をそのまま
+  同梱し、別のloopbackのport（8603）で配信する。CIのLinuxの試験で、日本語と空白を含むpathでの起動とWireScopeの配信まで
+  確かめた。3つのOSの試験は、McRemoteのWindowsの修正版がそろってから行う
 
 ## 2026-10-04 b9横断release gate（CLOSED）
 
