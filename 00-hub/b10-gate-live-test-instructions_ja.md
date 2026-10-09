@@ -10,6 +10,8 @@
 > そろったら差し替える。今すぐ行うのは「Windowsの診断（今すぐ）」だけ。3 OSの試験は、新しいcandidateがそろってからやり直す。
 >
 > 2026-10-09 追記：Windowsの診断は実施済みで、原因が確定した（release-gate-notes b10）。
+>
+> 2026-10-09 追記：両方の新しいcandidateがそろった。下の「使うもの」で3 OSの試験をやり直す。
 
 ## Windowsの診断（今すぐ）
 
@@ -55,27 +57,31 @@ Windowsで認証ONの接続ができない原因を確かめる。McRemote担当
 
 ## 使うもの
 
-### ZIP（Scratch candidate）
+> 2026-10-09 差し替え：Scratchは独立WireScopeを同梱したcandidate、McRemoteはWindowsのcredential storeをSQLiteにした
+> candidate。初回の試行のcandidate（Scratch run 37808012407、McRemote `60ca6e17…3ef7`）は使わない。
 
-> 初回の試行で使ったcandidate（CI run 37808012407、artifact ID 11563852835）。WireScopeを同梱した新しいcandidateで差し替える。
+### ZIP（Scratch candidate、source `ec29372`、CI run 37933218014、artifact ID 11616819485）
 
 | OS | file | bytes | SHA-256 |
 | --- | --- | ---: | --- |
-| Windows 11 | `mc-remote-scratch-local-2320.0.0b10-windows-x64.zip` | 260361934 | `08340c801c1196c30a1227a7e495feb32131a95e4816ffbb29278557cadab9c1` |
-| macOS（Apple Silicon） | `mc-remote-scratch-local-2320.0.0b10-macos-arm64.zip` | 264713598 | `60d69479079eb5f7b7022547d417abc5dc31b237eb12766354885e4db53e6908` |
-| Linux | `mc-remote-scratch-local-2320.0.0b10-linux-x64.zip` | 269950028 | `245d83aeab8f6a10bc3703547e0f897b3e82a8c9152c1a131378454f0debdf8b` |
+| Windows 11 | `mc-remote-scratch-local-2320.0.0b10-windows-x64.zip` | 260532718 | `f9d09ee84eb8cc54324c6b9d83dc3ab9371d7592ec0535346cf527d3db931a77` |
+| macOS（Apple Silicon） | `mc-remote-scratch-local-2320.0.0b10-macos-arm64.zip` | 264884384 | `16e20e5b2ecbfe1a7070d18f3700739bf2d4d567920347398e7ff82d1a40edc0` |
+| Linux | `mc-remote-scratch-local-2320.0.0b10-linux-x64.zip` | 270120781 | `3717f4dd55c0996c8e35ce121f293b06ed78e1a1c1bd7e4dad8c1a297fc186fc` |
 
-### Minecraftサーバー側（McRemote candidate）
+### Minecraftサーバー側（McRemote candidate、source `61ba539`、CI run 37943254478、artifact ID 11622727242）
 
-> 初回の試行で使ったcandidate。Windowsの永続化を直した新しいcandidateで差し替える。
-
-- JAR: `mc-remote-2320.0.0b10.jar`、282260 bytes、SHA-256 `60ca6e17fb89ed8474e2341d710c23ab62f4ddfd366c49afc1d233f6526c3ef7`
-- 取得先: McRemoteのActions run 37802721957（<https://github.com/Naohiro2g/McRemote/actions/runs/37802721957>）のArtifacts
-  `mc-remote-candidate`（artifact ID 11561402977）。落としたzipの中にJARがある。手元のMcRemote
-  `handoff-materials/2026-10-09-b10-ci-candidate/materials/`にも同じJARがある。サーバー側のJARは警告の観察の対象では
-  ないので、どこから持ってきてもよい。使う前にSHA-256を確かめる
+- JAR: `mc-remote-2320.0.0b10.jar`、12320559 bytes、SHA-256 `9902507a3b3f92459da1dbcf9621059425de8966a50289c080aee14a0f9ed7d2`
+  （Xerial SQLite JDBCを同梱したので大きくなった）
+- 取得先: McRemoteのActions run 37943254478（<https://github.com/Naohiro2g/McRemote/actions/runs/37943254478>）のArtifacts
+  `mc-remote-candidate`。落としたzipの中にJARがある。サーバー側のJARは警告の観察の対象ではないので、どこから持ってきても
+  よい。使う前にSHA-256を確かめ、`plugins`の古いJAR（`60ca6e17…`）と置き換える
 - Paper: 1.21.11 build 130、または 26.2 build 132（どちらか一つでよい。使った方を記録する）
 - 準備はMcRemote READMEのクイックスタートのとおり。認証ON（既定）、LuckPermsは入れない
+- Windowsでは、認証情報を`plugins/McRemote/credential-store/snapshot.json.sqlite`と
+  `plugins/McRemote/credential-revocations-sqlite/authority.sqlite`に保存する。初回の試行で残ったJSONのfileは読まれない
+  （消さなくてよい）。Java 25ではSQLiteの読み込みで警告が出ることがあるが、動作には影響しない
+- Minecraftサーバーのフォルダを、OneDriveなどのクラウド同期の対象に置かない（SQLiteのDBとWALが同期でつかまれたり
+  食い違ったりする）。試験でも同期の対象の外で行う
 
 ## 取得のしかた（案A、human owner 2026-10-09）
 
@@ -84,7 +90,8 @@ WindowsのMark of the Webが本番と違う）。公開した後に、Releaseの
 
 取得は2段になる。
 
-1. ScratchのActions runのページのArtifactsから、artifact（`scratch-candidate-…`、約1.36 GB）を各PCのブラウザで落とし、
+1. ScratchのActions run 37933218014（<https://github.com/Naohiro2g/scratch-editor/actions/runs/37933218014>）のArtifacts
+   から、artifact（`scratch-candidate-ec29372…`、約1.36 GB）を各PCのブラウザで落とし、
    展開する。中に3つのOSのZIPが入っている
 2. **自分のOSのZIPだけ**を選ぶ（Windowsは`windows-x64`、Apple Siliconのmacは`macos-arm64`、Linuxは`linux-x64`）。
    ほかのOSのZIPを展開して動かさない（初回の試行で、macOSでLinux用のNodeを実行して失敗した）
@@ -119,11 +126,15 @@ WindowsのMark of the Webが本番と違う）。公開した後に、Releaseの
    重さを一言（TPSを守ることが目的ではなく、重くなる様子の観察）
 8. 独立WireScopeへのリンクが出るか、開いて通信が見えるか
 9. ランチャーを閉じて、もう一度起動。二度目に警告が出るか、設定が残っているか、再接続できるか
+10. Minecraftサーバーを通常の手順で止めて、もう一度起動し、ペアリングし直さずに再接続できるか（認証情報が保存されて
+    いるか）。Windowsでは、とくにこの手順を確かめる。revokeは実機では行わない（revokeに特有の非上書き、矛盾の検出、
+    commitの前後での停止はCIのWindows runnerで確かめた。実機の環境の影響は、ペアリングと再起動で同じDBの書き込みと
+    読み直しを通るので、この手順で見える）
 
 ### LAN構成（Minecraftサーバーは別のPC）
 
-10. 接続先を、LAN内の別PCのMinecraftサーバー（hostはIPかホスト名、port）に変えて保存
-11. 6〜8と同じ。firewallの警告、接続できなかったときの表示を記録
+11. 接続先を、LAN内の別PCのMinecraftサーバー（hostはIPかホスト名、port）に変えて保存
+12. 6〜8と同じ。firewallの警告、接続できなかったときの表示を記録
 
 ## 記録してほしいこと（OSごと）
 

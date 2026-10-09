@@ -290,6 +290,20 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   `3717f4dd55c0996c8e35ce121f293b06ed78e1a1c1bd7e4dad8c1a297fc186fc`）。固定済みの共通WireScope（`da3da0b6…31ad`）をそのまま
   同梱し、別のloopbackのport（8603）で配信する。CIのLinuxの試験で、日本語と空白を含むpathでの起動とWireScopeの配信まで
   確かめた。3つのOSの試験は、McRemoteのWindowsの修正版がそろってから行う
+- 進捗（2026-10-09）：McRemote `main@61ba5398a61c4f545b1ff780adf2dc3cad429f46`でWindowsに限るSQLiteのbackendを実装した（担当報告。
+  remoteのmainの一致はcoordinatorが確認）。CI run `37943254478`（3 OS × Java 21／25、全job success）、artifact ID `11622727242`。
+  JARは12,320,559 bytes、SHA-256 `9902507a3b3f92459da1dbcf9621059425de8966a50289c080aee14a0f9ed7d2`（Xerial SQLite JDBCとそのnative
+  library、ライセンスを同梱。手元のfileでcoordinatorがSHA-256を照合）。宣言は不変（`a202a11a…ca26`）。旧JARのpulseは引き継がず、
+  新しいJARでPaper 1.21.11 build 130（Java 21）と26.2 build 132（Java 25）のpulseと通常再起動を認証ONでやり直してPASS。
+  manifest v2の検証もPASS。Windowsは既定で`credential-store/snapshot.json.sqlite`と`credential-revocations-sqlite/authority.sqlite`を
+  使い、旧JSONは読まない。Windows 11の実機での確認はまだ
+- 次の操作（2026-10-09）：実施票`00-hub/b10-gate-live-test-instructions_ja.md`の「使うもの」をScratch `ec29372`とMcRemote
+  `61ba539`のcandidateに差し替えた。human ownerが3つのOSで試験をやり直す。Windowsでは、サーバーの通常の再起動の後に
+  ペアリングし直さずに再接続できるか（認証情報が保存されているか）を確かめる。revokeは実機では行わず、CIのWindows
+  runnerの結果に任せる（revokeに特有の論理はCIで確かめ、実機の環境の影響はペアリングと再起動で同じDBの書き込みと読み直しを
+  通るので見える）。Minecraftサーバーのフォルダは、OneDriveなどのクラウド同期の対象に置かない（human owner 2026-10-09「同期
+  対象にすべきではない」。試験のWindowsのサーバーも同期の対象ではない）。McRemote READMEのWindowsの保存先の説明に、この
+  注意を1行足すようMcRemoteへ依頼する
 
 ## 2026-10-04 b9横断release gate（CLOSED）
 
