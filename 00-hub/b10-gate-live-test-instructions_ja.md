@@ -24,15 +24,18 @@ Windowsで認証ONの接続ができない原因を確かめる。McRemote担当
    java -version
    ```
 
-3. 診断プログラム`DirectoryForceProbe.java`（McRemote `handoff-materials/2026-10-09-b10-windows-credential-investigation/materials/`）
-   を任意の場所へコピーし、Paperのフォルダから実行する。pathはコピーした場所に合わせる
+3. 診断プログラム[`DirectoryForceProbe.java`](../14-evidence/artifacts/2026-10-09-b10-live/mcremote/DirectoryForceProbe.java)
+   （McRemote担当が作った41行のJava。directoryを開いて同期するだけで、fileの作成・削除・読み取りをしない）を、Paperの
+   フォルダへ落として、SHA-256を確かめてから実行する
 
    ```bash
-   java /c/path/to/DirectoryForceProbe.java ./plugins/McRemote
+   curl -fsSLO https://raw.githubusercontent.com/Naohiro2g/mc-remote-knowledge/main/14-evidence/artifacts/2026-10-09-b10-live/mcremote/DirectoryForceProbe.java
+   sha256sum DirectoryForceProbe.java
+   # 4d9c9abda5059ac73f1b85b22a4bec0dbff9058cf74b1db01c0d783563c2302c と一致すること
+   java DirectoryForceProbe.java ./plugins/McRemote
    ```
 
-   Git Bashは`/c/...`を`C:\...`に直して`java`へ渡す。うまく動かなければ`java "C:\\path\\to\\DirectoryForceProbe.java" ./plugins/McRemote`
-   のようにWindowsの形で書く。原因候補どおりなら`result=ERROR`、`stage=open-directory-read`、
+   原因候補どおりなら`result=ERROR`、`stage=open-directory-read`、
    `exception=java.nio.file.AccessDeniedException`と出る
 4. 次のものがあるか、種類（directory／file）だけを見る。中身は見ない。削除や変更はしない。「No such file or directory」も
    結果としてそのまま返す
