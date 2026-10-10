@@ -12,6 +12,8 @@
 > 2026-10-09 追記：Windowsの診断は実施済みで、原因が確定した（release-gate-notes b10）。
 >
 > 2026-10-09 追記：両方の新しいcandidateがそろった。下の「使うもの」で3 OSの試験をやり直す。
+>
+> 2026-10-10 追記：McRemoteをPaperのSQLiteを使うcandidate（`56af938`）に差し替えた。Scratchは`ec29372`のまま。
 
 ## Windowsの診断（今すぐ）
 
@@ -68,18 +70,21 @@ Windowsで認証ONの接続ができない原因を確かめる。McRemote担当
 | macOS（Apple Silicon） | `mc-remote-scratch-local-2320.0.0b10-macos-arm64.zip` | 264884384 | `16e20e5b2ecbfe1a7070d18f3700739bf2d4d567920347398e7ff82d1a40edc0` |
 | Linux | `mc-remote-scratch-local-2320.0.0b10-linux-x64.zip` | 270120781 | `3717f4dd55c0996c8e35ce121f293b06ed78e1a1c1bd7e4dad8c1a297fc186fc` |
 
-### Minecraftサーバー側（McRemote candidate、source `61ba539`、CI run 37943254478、artifact ID 11622727242）
+### Minecraftサーバー側（McRemote candidate、source `56af938`、CI run 38033919529、artifact ID 11663343578）
 
-- JAR: `mc-remote-2320.0.0b10.jar`、12320559 bytes、SHA-256 `9902507a3b3f92459da1dbcf9621059425de8966a50289c080aee14a0f9ed7d2`
-  （Xerial SQLite JDBCを同梱したので大きくなった）
-- 取得先: McRemoteのActions run 37943254478（<https://github.com/Naohiro2g/McRemote/actions/runs/37943254478>）のArtifacts
+> 2026-10-10 差し替え：SQLite JDBCはPaperが提供するものを使い、全OSでSQLiteに保存する candidate（`2026-10-10-01`）。
+> `9902507a…d7d2`（Xerial同梱）は使わない。
+
+- JAR: `mc-remote-2320.0.0b10.jar`、315352 bytes、SHA-256 `bed7508603d849d92b37ff38ee6e6bba29b65ff503ec3fb4a12f2298ce07ada1`
+- 取得先: McRemoteのActions run 38033919529（<https://github.com/Naohiro2g/McRemote/actions/runs/38033919529>）のArtifacts
   `mc-remote-candidate`。落としたzipの中にJARがある。サーバー側のJARは警告の観察の対象ではないので、どこから持ってきても
-  よい。使う前にSHA-256を確かめ、`plugins`の古いJAR（`60ca6e17…`）と置き換える
+  よい。使う前にSHA-256を確かめ、`plugins`の古いJARと置き換える
 - Paper: 1.21.11 build 130、または 26.2 build 132（どちらか一つでよい。使った方を記録する）
 - 準備はMcRemote READMEのクイックスタートのとおり。認証ON（既定）、LuckPermsは入れない
-- Windowsでは、認証情報を`plugins/McRemote/credential-store/snapshot.json.sqlite`と
-  `plugins/McRemote/credential-revocations-sqlite/authority.sqlite`に保存する。初回の試行で残ったJSONのfileは読まれない
-  （消さなくてよい）。Java 25ではSQLiteの読み込みで警告が出ることがあるが、動作には影響しない
+- 全OSで、認証情報を`plugins/McRemote/credential-store/snapshot.json.sqlite`と
+  `plugins/McRemote/credential-revocations-sqlite/authority.sqlite`に保存する。旧JSONのfileは読まれない（消さなくてよい）。
+  SQLiteのDBが無いサーバーでは新しい認証のdomainができるので、初回はペアリングし直す。起動logにSQLiteの提供元のJARの名前と
+  版が出る（Paperの`sqlite-jdbc-3.49.1.0.jar`など）。Java 25ではSQLiteの読み込みで警告が出ることがあるが、動作には影響しない
 - Minecraftサーバーのフォルダを、OneDriveなどのクラウド同期の対象に置かない（SQLiteのDBとWALが同期でつかまれたり
   食い違ったりする）。試験でも同期の対象の外で行う
 

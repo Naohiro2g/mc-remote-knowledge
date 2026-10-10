@@ -319,6 +319,14 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     やり直し、使ったSQLiteの出所と版を返す。manifest v2を作り直す
   - 3つのOSの試験は、McRemoteの新しいcandidateがそろってから、Scratch `ec29372`と組み合わせてやり直す。Windowsは通常の起動、
     ペアリング、サーバーの再起動の後の再接続を確かめる。実機のrevokeは引き続きCIに任せる
+- 進捗（2026-10-10）：McRemote `main@56af9389d1a688ed5ba88df7512b008499d75d7d`で`2026-10-10-01`を実装した（担当報告。remoteの
+  mainの一致とJARのSHA-256はcoordinatorが確認）。CI run `38033919529`（全job success）、artifact ID `11663343578`。JARは
+  315,352 bytes、SHA-256 `bed7508603d849d92b37ff38ee6e6bba29b65ff503ec3fb4a12f2298ce07ada1`で、`org/sqlite`のclassとnative
+  resourceは0件（coordinatorも確認）。宣言は不変。両方のPaper（1.21.11 build 130とJava 21、26.2 build 132とJava 25）で、Paperの
+  `sqlite-jdbc-3.49.1.0.jar`（engine 3.49.1）を使い、認証ONでpulseと通常の再起動がPASS。同じDBへの接続は、DBのpathごとの
+  lockで接続を開く前からcloseまで重ならないようにした。旧candidate（Xerial 3.53.4）で作ったSQLiteのDBとsessionを、新しい
+  candidateがPaperの3.49.1で続けて使えることも確かめた。manifest v2を作り直して検証しPASS。READMEにSQLiteの説明、
+  再ペアリング、クラウド同期の注意を入れた。実施票のMcRemoteの欄を差し替えた。3つのOSの試験はこれとScratch `ec29372`で行う
 
 ## 2026-10-04 b9横断release gate（CLOSED）
 
