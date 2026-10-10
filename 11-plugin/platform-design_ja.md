@@ -385,14 +385,14 @@ step 4 以降は credential が失効済みであり、**step 6 が失敗して�
 
 保存 path と serialization は plugin 内部実装であり **wire 契約にしない**。別 backend（SQLite 等）へ交換しても、同じ線形化・create-only / idempotency・domain 整合・durable-before-success を保証する。
 
-**Windows の SQLite backend（`2026-10-09-02`、b10）**：Windows では Java の `FileChannel.open(directory, READ)` で directory を開けず、
-上の directory `fsync` ができない。そのため Windows に限り、snapshot と authority を別々の SQLite DB（別々の WAL）に置き、
+**SQLite backend（`2026-10-09-02`、`2026-10-10-01`、b10）**：Windows では Java の `FileChannel.open(directory, READ)` で directory を
+開けず、上の directory `fsync` ができなかった。b10 からは全 OS で、snapshot と authority を別々の SQLite DB（別々の WAL）に置き、
 `journal_mode=WAL` と `synchronous=FULL` を設定して読み戻しで確かめる。§9.3 の step 2〜4（temporary file、file `fsync`、非上書き
 publish、directory `fsync`）は、authority DB の一つの write transaction（未存在なら INSERT、既存なら全内容の比較、commit）に
 置き換わり、**その commit の完了を revoke の線形化点とする**。`INSERT OR REPLACE` は使わず、同じ ID で内容が違えば fail closed に
-する。snapshot と authority を一つの DB にまとめない（§9.1、§9.7）。DB と WAL は一組の復旧単位として扱う。Linux と macOS は上の
-file backend のまま。Windows では旧 file backend の file を読まず、移行も退避もしない（Windows では正常な状態が一度も作れて
-いなかった）。全 OS を揃えるかは初回 stable の後に見直す。
+する。snapshot と authority を一つの DB にまとめない（§9.1、§9.7）。DB と WAL は一組の復旧単位として扱う。SQLite JDBC は Paper が
+提供するものを使い、使えなければ原因の分かる診断を出して fail closed にする。旧 file backend の token は引き継がず、旧 file は読まず、
+消さず、退避しない（SQLite の DB が無ければ新しい domain を作る）。上の file backend の契約は b9 までの実装として読む。
 
 ### 9.5 初期化 / reset の所有境界
 

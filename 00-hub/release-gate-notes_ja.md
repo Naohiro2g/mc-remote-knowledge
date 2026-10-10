@@ -304,6 +304,21 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   通るので見える）。Minecraftサーバーのフォルダは、OneDriveなどのクラウド同期の対象に置かない（human owner 2026-10-09「同期
   対象にすべきではない」。試験のWindowsのサーバーも同期の対象ではない）。McRemote READMEのWindowsの保存先の説明に、この
   注意を1行足すようMcRemoteへ依頼する
+- Windowsの実機（2026-10-10、human owner、McRemote `61ba539`）：認証ONで動作した。途中、Windowsセキュリティの「スマートアプリ
+  コントロール」と「メモリ整合性」をオフからオンへ変えたとき、一度認証できなくなった。その後は両方オンでも動き、原因は分からない
+  （hub NOTES 2026-10-10のpark）
+- 依存の方式の見直し（2026-10-10、`2026-10-10-01`）：human ownerの指摘でPaperが同梱するSQLiteを調べ、Windows実機の比較でPaper版
+  3.49.1.0もJava 21／25でロードとJNIの初期化に成功した。SQLite JDBCはPaperが提供するものを使い（Xerialの同梱をやめる）、保存の
+  方式を全OSでSQLiteに揃える。旧fileのtokenは引き継がない（公開の利用者はsession tokenしか持たない）。McRemoteが再実装して新しい
+  candidateを作り、b10のまま進める（b11へ送らない）
+- 次の操作（2026-10-10）：
+  - McRemote：`2026-10-10-01`のとおり再実装する。Paperのdriverを実際に使っていること（classの出所とengineの版）を確かめられる
+    ようにし、JARに`org/sqlite`のclassやnative resourceが残らないことを確かめる。起動・停止・再初期化で同じDBへの接続が重ならない
+    ことを試験する。Linux、macOS、Windowsで、fileしか無い環境での新しいdomainの初期化と、SQLiteのDBがある環境での継続を
+    確かめる。CIで新しいcandidateを作り、Paper 1.21.11 build 130（Java 21）と26.2 build 132（Java 25）のpulseと通常の再起動を
+    やり直し、使ったSQLiteの出所と版を返す。manifest v2を作り直す
+  - 3つのOSの試験は、McRemoteの新しいcandidateがそろってから、Scratch `ec29372`と組み合わせてやり直す。Windowsは通常の起動、
+    ペアリング、サーバーの再起動の後の再接続を確かめる。実機のrevokeは引き続きCIに任せる
 
 ## 2026-10-04 b9横断release gate（CLOSED）
 
