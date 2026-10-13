@@ -1,11 +1,11 @@
 # マイクラリモコン (mc-remote) ナレッジベース
 
-Knowledge base of Minecraft Remote Project for learning/working along with LLM  
+Knowledge base of Minecraft Remote Project for learning/working along with LLM
 （Naohiro2g/mc-remote-knowledge）
 
 > [!NOTE]
-> **🌐 言語方針について / Language Policy**  
-> 本プロジェクトは、一次情報（SSOT）の鮮度と正確性を保つため、リポジトリ全体を日本語で記述しています。従来の英語優先から方針転換した背景や、Issue/PRにおける多言語参加については [主要言語についての方針転換 / Language Policy](LANGUAGE_POLICY.md)（または [00-hub/language-policy_ja.md](00-hub/language-policy_ja.md)）をご覧ください。  
+> **🌐 言語方針について / Language Policy**
+> 本プロジェクトは、一次情報（SSOT）の鮮度と正確性を保つため、リポジトリ全体を日本語で記述しています。従来の英語優先から方針転換した背景や、Issue/PRにおける多言語参加については [主要言語についての方針転換 / Language Policy](LANGUAGE_POLICY.md)（または [00-hub/language-policy_ja.md](00-hub/language-policy_ja.md)）をご覧ください。
 > *This repository is maintained in Japanese as its primary Single Source of Truth (SSOT). For the background behind this policy change and our open support for multi-language contributions, please see our [Language Policy](LANGUAGE_POLICY.md).*
 
 > **人間とLLMが「学びながら開発し、共創する」ためのナレッジベース型開発システム**
@@ -34,27 +34,18 @@ Scratch や Python などで書いたプログラムから、マインクラフ�
 ## 🚀 あなたの目的に合わせた最短入口
 
 ### 1. マイクラをプログラミングで動かしたい（学習者・子ども・教育関係者）
-- 🌐 **まずはホームページへ**: はじめかたと接続先の案内をまとめています。  
-  👉 [mc-remote.com](https://mc-remote.com/)
-- 🐱 **Scratchで動かす**: ブラウザから即座にブロックプログラミングでマイクラの世界を動かせます。  
-  👉 [scratch-editor (GitHub)](https://github.com/Naohiro2g/scratch-editor) / [Web版エディタ](https://scratch-beta.mc-remote.com/)
-- 🐍 **Pythonで動かす**: わずか3行のコードでブロック設置やチャット送信ができます。  
-  👉 [minecraft-remote-api (GitHub)](https://github.com/Naohiro2g/minecraft-remote-api)
-- 🎮 **作品サンプル・作例を見る**: 建築、ドット絵、ミニゲームなどの動くコード集。  
-  👉 [mc_remote_samples (GitHub)](https://github.com/Naohiro2g/mc_remote_samples)
-- 🏰 **サーバーを立てたい**: 教室や自宅でサーバーを構築・運用するパッケージ。  
-  👉 [mc-remote-stack (GitHub)](https://github.com/Naohiro2g/mc-remote-stack) / [McRemote Plugin (GitHub)](https://github.com/Naohiro2g/McRemote)
+- 🌐 **まずはホームページへ**: はじめかたと接続先の案内をまとめています。  👉 [mc-remote.com](https://mc-remote.com/)
+- 🐱 **Scratchで動かす**: ブラウザから即座にブロックプログラミングでマイクラの世界を動かせます。  👉 [scratch-editor (GitHub)](https://github.com/Naohiro2g/scratch-editor) / [Web版エディタ](https://scratch-beta.mc-remote.com/)
+- 🐍 **Pythonで動かす**: わずか3行のコードでブロック設置やチャット送信ができます。  👉 [minecraft-remote-api (GitHub)](https://github.com/Naohiro2g/minecraft-remote-api)
+- 🎮 **作品サンプル・作例を見る**: 建築、ドット絵、ミニゲームなどの動くコード集。  👉 [mc_remote_samples (GitHub)](https://github.com/Naohiro2g/mc_remote_samples)
+- 🏰 **サーバーを立てたい**: 教室や自宅でサーバーを構築・運用するパッケージ。  👉 [mc-remote-stack (GitHub)](https://github.com/Naohiro2g/mc-remote-stack) / [McRemote Plugin (GitHub)](https://github.com/Naohiro2g/McRemote)
 
 ### 2. 人間×LLMの開発システムを学びたい（エンジニア・開発者・AI共創学習者）
-「AIに丸投げして破綻するのではなく、人間が意思決定の主権を握りながら、LLMの爆発的な推論・実装力を活かす仕組み」を学べます。
-- 📖 **学習と開発の思想**: なぜ言語化より先に「観察」から入るのか？  
-  👉 [AIアシストと学習支援 (ai-learning-design_ja.md)](20-教材/ai-learning-design_ja.md)
-- 🏗️ **ナレッジベース構造**: ハブ＆スポーク構造、文書三層モデル（拘束・説明・投影）  
-  👉 [ナレッジリポジトリ設計 (knowledge-repo-design_ja.md)](00-hub/knowledge-repo-design_ja.md)
-- 📜 **意思決定の記録（SSOT）**: 結論・理由・却下案を消さずに残す「追記只進」の規律  
-  👉 [横断決定ログ (DECISIONS_ja.md)](00-hub/DECISIONS_ja.md)
-- 🧭 **ドキュメントの書き方**: 「文書は説明し、台帳が拘束する」  
-  👉 [説明文書の様式ガイド (document-style-guide_ja.md)](00-hub/document-style-guide_ja.md)
+「AIに丸投げするのではなく、人間が意思決定の主権を握りながら、LLMの爆発的な推論・実装力を活かす仕組み」を学べます。
+- 📖 **学習と開発の思想**: なぜ言語化より先に「観察」から入るのか？  👉 [AIアシストと学習支援 (ai-learning-design_ja.md)](20-教材/ai-learning-design_ja.md)
+- 🏗️ **ナレッジベース構造**: ハブ＆スポーク構造、文書三層モデル（拘束・説明・投影）  👉 [ナレッジリポジトリ設計 (knowledge-repo-design_ja.md)](00-hub/knowledge-repo-design_ja.md)
+- 📜 **意思決定の記録（SSOT）**: 結論・理由・却下案を消さずに残す「追記只進」の規律  👉 [横断決定ログ (DECISIONS_ja.md)](00-hub/DECISIONS_ja.md)
+- 🧭 **ドキュメントの書き方**: 「文書は説明し、台帳が拘束する  👉 [説明文書の様式ガイド (document-style-guide_ja.md)](00-hub/document-style-guide_ja.md)
 
 ---
 
@@ -62,15 +53,15 @@ Scratch や Python などで書いたプログラムから、マインクラフ�
 
 本システムは、教材開発から実開発・検証・運用まで、一貫して以下の原理で運用されています。
 
-1. **正典順序：観察 → 痕跡を残す → 言語化 → 比較・検証 → 自己判定 → 共有・再検証**  
+1. **正典順序：観察 → 痕跡を残す → 言語化 → 比較・検証 → 自己判定 → 共有・再検証**
    言語化を最初の入場条件にしません。まず動かし、観察し、痕跡を残すことから始めます。
-2. **委譲と責任：未検証の正しさや設計判断をLLMに代行させない**  
+2. **委譲と責任：未検証の正しさや設計判断をLLMに代行させない**
    コード生成はAIに委譲しても、判断・検証・統合の責任は人間が握ります。証拠のスコープを超えて確約しません。
-3. **判断理由を残す：結論・理由・却下案をセットで記録する**  
+3. **判断理由を残す：結論・理由・却下案をセットで記録する**
    方針変更時も過去の判断を上書きで消さず、新しい決定を追記して参照で繋ぎます。
-4. **メタ判断と跳躍：疑う規律と跳ぶ直感の両方を置く**  
+4. **メタ判断と跳躍：疑う規律と跳ぶ直感の両方を置く**
    過去の決定が今も最適かを常に問い直す（メタ判断）と同時に、根拠が薄くても直感で踏み出す跳躍を排除しません。
-5. **不要な禁止ルールを作らない（`2026-09-04-05`）**  
+5. **不要な禁止ルールを作らない（`2026-09-04-05`）**
    局所最適による禁止ルールの増殖を防ぎ、誤りと判明したルールは判断履歴を残したまま現行拘束から外します。
 
 > より深い運用哲学や設計背景は [knowledge repository design](00-hub/knowledge-repo-design_ja.md) および [CLAUDE.md](CLAUDE.md) を参照してください。
