@@ -97,6 +97,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     - 単一JAR：Java 21／Paper 1.21.11を開発の床とし、1.21.11と26.2で同じSHA-256のJARを検証する（§4のpulse）。Paper 26.2の
       exact buildは公式Downloads Serviceから取得して確認票で固定する。初回stableの26.xを26.2か26.3かはrc1のgateを開くときに
       判断する。名前はtag `v2320.0.0b10`、JAR `mc-remote-2320.0.0b10.jar`、titleは対応版を列挙（versioning §10.12.1）
+      - 2026-10-13改訂（`2026-10-13-07`）：Paper 26.3がstableになったので、対象を1.21.11と26.3にする（26.2を置き換える）。
+        26.2から26.3へコードの変更が要るときは、b10を26.2で出し、26.3はb11で入れる
     - 対応版の一覧（`2026-10-07-06`）：candidateのbuild前に対応対象を宣言し、同じJARで各対象を検証し、宣言とPASSの集合が
       一致することを公開時に確かめる。その一覧からhelloの`supported_mc_versions`の配布値、release title、本文を揃える
     - `mcr.build.blocks`の既定：configのトップレベル`default_build_blocks`（配布既定32768）。LuckPermsが無いときはこの値、
@@ -340,7 +342,10 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   - Scratch：次のcandidateに、Scratch LANパッケージの設計（名前、置き場所、最上位のもの、設定画面、`はじめに.html`）、
     拡張機能のカードのPNG化、カタログピッカーの説明の見直し、Windowsのネットワークを「プライベート」にする案内を入れ、
     pre-releaseのb10として出す
-  - coordinator：Scratch LANパッケージの設計 §8に沿って実施票を作り直し、human ownerが3 OSでやり直す
+  - McRemote：26.2から26.3への静的点検（コードの変更の要否）。対応版の一覧を1.21.11と26.3にしたcandidateを作り、
+    同じJARで両方のpulseを通す（`2026-10-13-07`）
+  - coordinator：Scratch LANパッケージの設計 §8に沿って実施票を作り直し、human ownerが3 OSでやり直す（Minecraftサーバーは
+    1.21.11と26.3）
   - サーバーの再起動の後に接続の表示が残る問題（hub NOTES）：「b10はこのまま、初回stableの後に考える」は中間判断で、
     見直し中。方向は利用者の操作なしに復帰すること。体験の仕様を先に決める（human owner 2026-10-12）
 

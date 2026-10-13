@@ -590,6 +590,7 @@ particle実装は`2026-08-29-02`に従い三段階で移す。b7 Stage 1は同�
 同じspecを使うbounded batchだけを候補とし、builder再利用をwire batchやpacket削減と同義にしない。
 `2026-09-30-03`によりStage 3は初回stable後の候補になった。26.xの対象は`2026-09-30-07`で26.2から26.3へ切り替え、
 b8は1.21.11だけで出す。Paper 26.3がstableになっていれば、初回stableまでに同じcompatibility pulseを26.3で通す。
+2026-10-13、Paper 26.3がstableになり、b10で1.21.11と26.3を対象にする（`2026-10-13-07`）。
 
 `world.strikeLightning`はb7のdamage-capableなfull lightning methodとして扱う。旧候補
 `world.strikeLightningEffect`はhandler、alias、fallbackへ入れない。params／identity／permission／range／rate／

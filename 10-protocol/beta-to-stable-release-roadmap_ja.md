@@ -48,9 +48,9 @@ betaは旧b6へ集めていたAPIを一度に完成させる箱ではなく、co
 | b7 | `23.1.0`／`2301.0.0b7`（公開済みfold誤採番） | direction、damage-capableな`world.strikeLightning`、ParticleBuilder内部移行 | 2026-09前半 |
 | b8 | `23.2.0`／`2320.0.0b8` | entity lifecycle、particle receiver／typed data、サウンド（`world.playSound`／`world.playBlockSound`）、Python surface、Windowsでの検証。MC targetは1.21.11だけ | 2026-10-03 |
 | b9 | `23.2.0`／`2320.0.0b9` | API freeze（APIは変えない）、Protocol／WireScope／Bridgeの移管、Python APIのPyPI登録 | 2026-10-10 |
-| b10 | b9と同じcore（`2320.0.0b10`） | McRemoteのsetBlocksのtick分割、複数Minecraft版で同じJARを使う単一JAR（1.21.11と26.2で検証）、`mcr.build.blocks`の既定をconfigへ、ケータリング型簡易版（ScratchとBridgeを各PCで動かすOS別ZIP、Windows 11／macOS／Linux）。APIは変えない（`2026-10-07-03`〜`-05`） | rc1の前 |
-| rc1 | b9と同じcore | capacity、soak、rollback。初回stableの26.xを26.2か26.3か、gateを開くときに判断（`2026-10-07-03`） | 2026-10-24まで |
-| 初回stable | rcと同じcore | 全component mature、配布・運用説明を固定 | 2026-11-01 |
+| b10 | b9と同じcore（`2320.0.0b10`） | McRemoteのsetBlocksのtick分割、複数Minecraft版で同じJARを使う単一JAR（1.21.11と26.3で検証、`2026-10-13-07`）、`mcr.build.blocks`の既定をconfigへ、ケータリング型簡易版（ScratchとBridgeを各PCで動かすOS別ZIP、Windows 11／macOS／Linux）。APIは変えない（`2026-10-07-03`〜`-05`） | rc1の前 |
+| rc1 | b9と同じcore | capacity、soak、rollback。初回stableの26.xは26.3で、b10で入れる（`2026-10-13-07`） | 2026-10-24まで |
+| 初回stable | rcと同じcore | 全component mature、配布・運用説明を固定 | 2026-11-07（`2026-10-13-06`） |
 
 公開済みb7の`2301.0.0b7`はidentityを維持します。正しいfoldは`2310`であり、b8以降は
 [versioning §9.3](versioning-design_ja.md)に従います。b9を使わない場合のstable coreは`2320.0.0`、
@@ -365,6 +365,9 @@ enable／disable、通常再起動、DimensionKey、resource registry、block／
 > 2026-10-07 改訂（`2026-10-07-03`）：b10は26.2を第二の対象として単一JARの仕組みを作り、1.21.11と26.2で同じJAR
 > （同じSHA-256）を上のpulseで検証する。初回stableでsupportする26.xを26.2にするか26.3にするかは、rc1のgateを開くときに
 > 判断する。26.2と26.3の差分は、1.21.11と26.xの差分と比較すると十分小さい、という見立て（未検証）に立つ。
+>
+> 2026-10-13 改訂（`2026-10-13-07`）：Paper 26.3がstableになった（build 175、10/11）。b10の対象を1.21.11と26.3にし、
+> 26.2を置き換える。26.3にコードの変更が要るときは、b10を26.2で出し、26.3はrc1の前にb11で入れる。
 
 plugin compatibility pulseと公開serverのworld migrationを同じgateにしません。公開server移行はclone上の
 world upgrade、旧runtime＋旧world snapshotへのrollback、credential store非包含、Stack lock更新、

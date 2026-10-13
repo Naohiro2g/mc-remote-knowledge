@@ -45,8 +45,9 @@ Scratch固有の現状は[Scratch roadmap](../13-scratch-client/scratch-roadmap_
 | 2026-09前半 | b7／23.1.0：direction、lightning、ParticleBuilder Stage 1 | README／sample Pass A、homepage骨格、Paper 26.2 pulse |
 | 2026-10-03 | b8：entity lifecycle＋particle Stage 2＋サウンド、Windowsでの検証。MCは1.21.11だけ（`2026-09-30-02`、`2026-09-30-07`） | README／sample Pass B、ケータリングPC／kitで更新・rollback検証開始 |
 | 2026-10-05 | b9公開：API freeze（APIは変えない）、Protocol／WireScope／Bridgeを`minecraft-remote-tooling`へ移管、Python APIをPyPIへ登録（`2026-09-30-03`、`2026-10-05-01`〜`-03`） | Javaは初回stable後に追従して移管を再検証（`2026-09-30-04`） |
-| 2026-10-24まで | rc1（b10を挟まないのが基本線）。Paper 26.3がstableなら26.3対応 | 外部testerへ準備済み環境、手順、検証票、feedback導線を提供 |
-| 2026-11-01 | 初回stable | stable導入／更新情報と採用Paper 26.x supportを公開 |
+| 2026-10-17 | b10：setBlocksのtick分割、単一JAR（1.21.11と26.3）、Scratch LANパッケージ。pre-releaseで試し、止まればb11（`2026-10-07-03`、`2026-10-13-02`、`2026-10-13-05`、`2026-10-13-07`） | 3 OSでのdogfooding |
+| 2026-10-24まで | rc1 | 外部testerへ準備済み環境、手順、検証票、feedback導線を提供 |
+| 2026-11-07 | 初回stable（`2026-10-13-06`） | stable導入／更新情報と採用Paper 26.x supportを公開 |
 | 2026-12〜2027-01 | stable保守 | 運用手順化、機能実現位置とsampleを使った教材・学習path作成 |
 | 2027-02 | fixes中心 | 別支援者によるcold setup、開始、障害復旧rehearsal |
 | 2027-03 | classroom artifact freeze | 教材固定、本番相当dry run、修正だけを許可 |
