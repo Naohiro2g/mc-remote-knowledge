@@ -34,18 +34,36 @@ Scratch や Python などで書いたプログラムから、マインクラフ�
 ## 🚀 あなたの目的に合わせた最短入口
 
 ### 1. マイクラをプログラミングで動かしたい（学習者・子ども・教育関係者）
-- 🌐 **まずはホームページへ**: はじめかたと接続先の案内をまとめています。  👉 [mc-remote.com](https://mc-remote.com/)
-- 🐱 **Scratchで動かす**: ブラウザから即座にブロックプログラミングでマイクラの世界を動かせます。  👉 [scratch-editor (GitHub)](https://github.com/Naohiro2g/scratch-editor) / [Web版エディタ](https://scratch-beta.mc-remote.com/)
-- 🐍 **Pythonで動かす**: わずか3行のコードでブロック設置やチャット送信ができます。  👉 [minecraft-remote-api (GitHub)](https://github.com/Naohiro2g/minecraft-remote-api)
-- 🎮 **作品サンプル・作例を見る**: 建築、ドット絵、ミニゲームなどの動くコード集。  👉 [mc_remote_samples (GitHub)](https://github.com/Naohiro2g/mc_remote_samples)
-- 🏰 **サーバーを立てたい**: 教室や自宅でサーバーを構築・運用するパッケージ。  👉 [mc-remote-stack (GitHub)](https://github.com/Naohiro2g/mc-remote-stack) / [McRemote Plugin (GitHub)](https://github.com/Naohiro2g/McRemote)
+- 🌐 **まずはホームページへ**: はじめかたと接続先の案内をまとめています。
+
+     👉 [mc-remote.com](https://mc-remote.com/)
+- 🐱 **Scratchで動かす**: ブラウザから即座にブロックプログラミングでマイクラの世界を動かせます。
+
+     👉 [scratch-editor (GitHub)](https://github.com/Naohiro2g/scratch-editor) / [Web版エディタ](https://scratch-beta.mc-remote.com/)
+- 🐍 **Pythonで動かす**: わずか3行のコードでブロック設置やチャット送信ができます。
+
+    👉 [minecraft-remote-api (GitHub)](https://github.com/Naohiro2g/minecraft-remote-api)
+- 🎮 **作品サンプル・作例を見る**: 建築、ドット絵、ミニゲームなどの動くコード集。
+
+    👉 [mc_remote_samples (GitHub)](https://github.com/Naohiro2g/mc_remote_samples)
+- 🏰 **サーバーを立てたい**: 教室や自宅でサーバーを構築・運用するパッケージ。
+
+    👉 [mc-remote-stack (GitHub)](https://github.com/Naohiro2g/mc-remote-stack) / [McRemote Plugin (GitHub)](https://github.com/Naohiro2g/McRemote)
 
 ### 2. 人間×LLMの開発システムを学びたい（エンジニア・開発者・AI共創学習者）
 「AIに丸投げするのではなく、人間が意思決定の主権を握りながら、LLMの爆発的な推論・実装力を活かす仕組み」を学べます。
-- 📖 **学習と開発の思想**: なぜ言語化より先に「観察」から入るのか？  👉 [AIアシストと学習支援 (ai-learning-design_ja.md)](20-教材/ai-learning-design_ja.md)
-- 🏗️ **ナレッジベース構造**: ハブ＆スポーク構造、文書三層モデル（拘束・説明・投影）  👉 [ナレッジリポジトリ設計 (knowledge-repo-design_ja.md)](00-hub/knowledge-repo-design_ja.md)
-- 📜 **意思決定の記録（SSOT）**: 結論・理由・却下案を消さずに残す「追記只進」の規律  👉 [横断決定ログ (DECISIONS_ja.md)](00-hub/DECISIONS_ja.md)
-- 🧭 **ドキュメントの書き方**: 「文書は説明し、台帳が拘束する  👉 [説明文書の様式ガイド (document-style-guide_ja.md)](00-hub/document-style-guide_ja.md)
+- 📖 **学習と開発の思想**: なぜ言語化より先に「観察」から入るのか？
+
+     👉 [AIアシストと学習支援 (ai-learning-design_ja.md)](20-教材/ai-learning-design_ja.md)
+- 🏗️ **ナレッジベース構造**: ハブ＆スポーク構造、文書三層モデル（拘束・説明・投影）
+
+     👉 [ナレッジリポジトリ設計 (knowledge-repo-design_ja.md)](00-hub/knowledge-repo-design_ja.md)
+- 📜 **意思決定の記録（SSOT）**: 結論・理由・却下案を消さずに残す「追記只進」の規律
+
+     👉 [横断決定ログ (DECISIONS_ja.md)](00-hub/DECISIONS_ja.md)
+- 🧭 **ドキュメントの書き方**: 「文書は説明し、台帳が拘束する
+
+     👉 [説明文書の様式ガイド (document-style-guide_ja.md)](00-hub/document-style-guide_ja.md)
 
 ---
 
