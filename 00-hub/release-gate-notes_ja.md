@@ -348,6 +348,20 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     1.21.11と26.3）
   - サーバーの再起動の後に接続の表示が残る問題（hub NOTES）：「b10はこのまま、初回stableの後に考える」は中間判断で、
     見直し中。方向は利用者の操作なしに復帰すること。体験の仕様を先に決める（human owner 2026-10-12）
+- 進捗（2026-10-13、McRemote、`2026-10-13-07`）：静的点検で、26.3（STABLE build 178）のAPIに対して全main sourceのcompileが通り、
+  コードの変更は要らないと判断した（`ParticleBuilder.extra(double)`と`Sound.getKey()`に削除予定の非推奨警告。将来版への対応は
+  McRemoteが追う）。McRemote `main@17bcf2645c112133935bc9d993d4fdd4669ceb98`で対応版の一覧を`["1.21.11", "26.3"]`にした（remoteの
+  mainの一致はcoordinatorが確認）。CI run `38347345527`（全7 job success）、artifact ID `11789398049`。JARは315,352 bytes、SHA-256
+  `96ddf09f765a77811740d5c62f3787f7a87c8be6cd7247d345f6dfe9e93512a4`（coordinatorも照合）。旧`bed7508…`との差は
+  `minecraft-targets.json`と`config.yml`だけ。同じJARで、Paper 1.21.11 build 130（Java 21）と26.3 STABLE build 178（Java 25）の
+  pulseと通常の再起動を認証ONでやり直し、全項目PASS。manifest v2は1,761 bytes、SHA-256
+  `508a34b9ea29357105e6fcc124a7ab0c0eba8ec9fa258eee52bb196222856627`でPASS。READMEにサーバーのフォルダーごとのmiseとJavaの案内を
+  入れた。helloは同梱の宣言を使い、configの旧値は比較とwarningだけに使うことを実地で確かめた（hub NOTES 2026-09-28のparkを
+  閉じた）。返却packetはMcRemote `handoff-materials/2026-10-13-b10-paper263/`。未検証：pre-releaseのassetからの3 OSの人間試験、
+  Windows／macOSでの26.3のPaperの起動、実playerのevent callback
+- 決定（2026-10-13、human owner「McRemote b10とする」）：上のcandidateをb10のMcRemoteとして採用する。`56af938`と26.2の試験は
+  b10の根拠にしない。McRemoteのpre-releaseは、Scratchのcandidateがそろってから一緒に作る。箱庭サーバーの版とホームページの
+  箱庭の記述は検証次第で、今は変えない
 
 ## 2026-10-04 b9横断release gate（CLOSED）
 
