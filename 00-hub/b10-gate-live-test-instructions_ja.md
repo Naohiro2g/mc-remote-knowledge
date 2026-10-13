@@ -14,6 +14,10 @@
 > 2026-10-09 追記：両方の新しいcandidateがそろった。下の「使うもの」で3 OSの試験をやり直す。
 >
 > 2026-10-10 追記：McRemoteをPaperのSQLiteを使うcandidate（`56af938`）に差し替えた。Scratchは`ec29372`のまま。
+>
+> 2026-10-12 追記：この組み合わせで実施済み（`14-evidence/records/2026-10-12-b10-scratch-local-3os-live-human_ja.md`）。
+> 次の試験は`2026-10-12-01`（dogfooding）と`13-scratch-client/scratch-lan-package-design_ja.md` §8に沿ってこの票を
+> 作り直す。取得はpre-releaseのb10のassetから（`2026-10-13-05`）。
 
 ## Windowsの診断（今すぐ）
 

@@ -76,7 +76,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
 - current phase: **OPEN**（2026-10-07、human ownerの判断）。公開は未実施
-- 目標日: b10 2026-10-17。rc1（10/24まで）と初回stable（11/1）の目標日は維持する
+- 目標日: b10 2026-10-17、rc1 10/24まで、初回stable 11/7（`2026-10-13-06`）。b10がpre-releaseでの試験で止まればb11を挟む
+  （`2026-10-13-05`）
 - release mode: 軽量mode（release運用と責務分担 §14、`2026-08-28-02`）。単一JARとケータリング型簡易版のZIPは新しい配布の形
   なので、その部分は§14の但し書きにより検証を強める（b9の移管と同じ扱い）
 - contract: protocol `23.2.0`のまま、artifact `2320.0.0b10`。APIは変えない
@@ -327,6 +328,21 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   lockで接続を開く前からcloseまで重ならないようにした。旧candidate（Xerial 3.53.4）で作ったSQLiteのDBとsessionを、新しい
   candidateがPaperの3.49.1で続けて使えることも確かめた。manifest v2を作り直して検証しPASS。READMEにSQLiteの説明、
   再ペアリング、クラウド同期の注意を入れた。実施票のMcRemoteの欄を差し替えた。3つのOSの試験はこれとScratch `ec29372`で行う
+- 3つのOSの試験（2026-10-11〜12、Scratch `ec29372`とMcRemote `56af938`、record
+  `14-evidence/records/2026-10-12-b10-scratch-local-3os-live-human_ja.md`）：動作はPASS。ただし実施票はdogfoodingの視点を欠き
+  （ターミナルからの起動、CIの一括artifactからの取得）、ランチャーの体験は「OSSの利用者向けには遠い」（human owner）。体験の
+  目標と検証の範囲を`2026-10-12-01`で、Javaの管理を`2026-10-12-02`で決めた
+- 決定（2026-10-13）：呼び名をScratch LANパッケージ、ZIPを`mc-remote-scratch-LAN-<version>-<os>-<arch>.zip`に改めた
+  （`2026-10-13-02`）。置き場所（`2026-10-13-03`）と取得から更新までの設計は`13-scratch-client/scratch-lan-package-design_ja.md`。
+  b10は各releaseをGitHubのpre-releaseで作って試し、通れば公開、止まればb11（`2026-10-13-05`）。release manifest v2の
+  role名`scratch-local`は機械用の識別子なので、変えるかはScratch担当とtooling担当に聞く
+- 次の操作（2026-10-13）：
+  - Scratch：次のcandidateに、Scratch LANパッケージの設計（名前、置き場所、最上位のもの、設定画面、`はじめに.html`）、
+    拡張機能のカードのPNG化、カタログピッカーの説明の見直し、Windowsのネットワークを「プライベート」にする案内を入れ、
+    pre-releaseのb10として出す
+  - coordinator：Scratch LANパッケージの設計 §8に沿って実施票を作り直し、human ownerが3 OSでやり直す
+  - サーバーの再起動の後に接続の表示が残る問題（hub NOTES）：「b10はこのまま、初回stableの後に考える」は中間判断で、
+    見直し中。方向は利用者の操作なしに復帰すること。体験の仕様を先に決める（human owner 2026-10-12）
 
 ## 2026-10-04 b9横断release gate（CLOSED）
 

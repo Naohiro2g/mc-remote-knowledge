@@ -463,6 +463,12 @@ browser smokeする。Python loopback stationの`COOP: same-origin`をpublic han
 per-sprite 第 4 tab は stream が実在するまで park する。main stream／substreamとScratch objectの写像は
 `2026-08-16-08`によりb4 scope freeze前gateから外し、post-b4の独立sliceで再開する。
 
+### Scratch LANパッケージ
+
+取得から再開・更新までの設計は`13-scratch-client/scratch-lan-package-design_ja.md`（`2026-10-13-02`、`2026-10-13-03`）。
+ファイルの書き出しは`13-scratch-client/scratch-project-storage-transfer-design_ja.md` §14（`2026-10-13-04`）。Scratchの設定 →
+Minecraft Remoteには、保存した接続先が`connection_targets`として出る。
+
 ### protocol 22／b5とprotocol 23／b6 plugin APIのScratch投影
 
 b5／b6の横断scopeはDECISIONS `2026-08-16-04`〜`07`／`2026-08-26-06`と
