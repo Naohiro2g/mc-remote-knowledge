@@ -1,157 +1,135 @@
-# b10 ケータリング型簡易版：3 OS 実施票（human owner 向け）
+# b10 Scratch LANパッケージ：3 OS 実施票（human owner 向け）
 
-- 根拠: `00-hub/release-gate-notes_ja.md` b10、DECISIONS `2026-10-07-04`、`2026-10-09-01`
-- 目的: 公開するのと同じZIP（同じSHA-256）で、利用者がする手順のとおりに取得・展開・起動・接続・ペアリングまで進め、
-  途中の警告やつまずきを記録する。動けばよい、ではなく「どこで止まりそうか」を見る
+- 根拠: `00-hub/release-gate-notes_ja.md` b10、DECISIONS `2026-10-12-01`、`2026-10-13-05`、`2026-10-14-01`、
+  `13-scratch-client/scratch-lan-package-design_ja.md` §8
+- 目的: 利用者と同じ経路（pre-releaseのReleaseのページからブラウザで取得、OS標準の展開、案内のとおりの起動）で、取得から
+  保存・再開までを通す。動けばよい、ではなく「案内だけで進めるか、どこで止まるか」を見る。開発者が用意したフォルダーで
+  接続できたことと、利用者の導入を通せたことを分ける
 - test class: live-human
 
-> 2026-10-09 改訂：初回の試行（Windows、macOS）で、Windowsで認証ONの接続ができない問題と、独立WireScopeが同梱されて
-> いない問題が見つかった。McRemoteとScratchの両方のcandidateを作り直すので、下の「使うもの」の表は新しいcandidateが
-> そろったら差し替える。今すぐ行うのは「Windowsの診断（今すぐ）」だけ。3 OSの試験は、新しいcandidateがそろってからやり直す。
->
-> 2026-10-09 追記：Windowsの診断は実施済みで、原因が確定した（release-gate-notes b10）。
->
-> 2026-10-09 追記：両方の新しいcandidateがそろった。下の「使うもの」で3 OSの試験をやり直す。
->
-> 2026-10-10 追記：McRemoteをPaperのSQLiteを使うcandidate（`56af938`）に差し替えた。Scratchは`ec29372`のまま。
->
-> 2026-10-12 追記：この組み合わせで実施済み（`14-evidence/records/2026-10-12-b10-scratch-local-3os-live-human_ja.md`）。
-> 次の試験は`2026-10-12-01`（dogfooding）と`13-scratch-client/scratch-lan-package-design_ja.md` §8に沿ってこの票を
-> 作り直す。取得はpre-releaseのb10のassetから（`2026-10-13-05`）。
-
-## Windowsの診断（今すぐ）
-
-Windowsで認証ONの接続ができない原因を確かめる。McRemote担当の静的点検では、credential storeの「directoryを開いて同期する」
-処理がWindowsでできないことが最有力の原因候補。次の手順は、credentialのfileを作らず、消さず、中身も読まない。
-
-コマンドはGit Bashで行う。
-
-1. Windowsで、試験に使ったPaperサーバーのフォルダ（`plugins`の一つ上。例 `paper-1.21.11`）へGit Bashで`cd`する。
-   以下のコマンドは、すべてこの場所で実行する（`plugins`の中で実行すると、対象が見つからず`stage=validate-directory`で止まる）
-2. 実際に使ったJARと環境の版を採る
-
-   ```bash
-   sha256sum plugins/mc-remote-2320.0.0b10.jar
-   java -version
-   ```
-
-3. 診断プログラム[`DirectoryForceProbe.java`](../14-evidence/artifacts/2026-10-09-b10-live/mcremote/DirectoryForceProbe.java)
-   （McRemote担当が作った41行のJava。directoryを開いて同期するだけで、fileの作成・削除・読み取りをしない）を、Paperの
-   フォルダへ落として、SHA-256を確かめてから実行する
-
-   ```bash
-   curl -fsSLO https://raw.githubusercontent.com/Naohiro2g/mc-remote-knowledge/main/14-evidence/artifacts/2026-10-09-b10-live/mcremote/DirectoryForceProbe.java
-   sha256sum DirectoryForceProbe.java
-   # 4d9c9abda5059ac73f1b85b22a4bec0dbff9058cf74b1db01c0d783563c2302c と一致すること
-   java DirectoryForceProbe.java ./plugins/McRemote
-   ```
-
-   原因候補どおりなら`result=ERROR`、`stage=open-directory-read`、
-   `exception=java.nio.file.AccessDeniedException`と出る
-4. 次のものがあるか、種類（directory／file）だけを見る。中身は見ない。削除や変更はしない。「No such file or directory」も
-   結果としてそのまま返す
-
-   ```bash
-   ls -ld plugins/McRemote/credential-revocations
-   ls -la plugins/McRemote/credential-revocations
-   ls -l  plugins/McRemote/credential-store/snapshot.json
-   ```
-
-   見たいのは、`credential-revocations`（directory）、その中の`manifest.json`と`.bootstrap-pending.json`、
-   `credential-store/snapshot.json`の有無
-5. 2〜4の出力を、private path（ユーザー名を含むpath）を伏せて返す
+> 2026-10-14 作り直し：前の版（ケータリング型簡易版、Scratch `ec29372`とMcRemote `56af938`）は2026-10-11〜12に実施済み
+> （`14-evidence/records/2026-10-12-b10-scratch-local-3os-live-human_ja.md`）。前の版の本文はGitの履歴にある。
 
 ## 使うもの
 
-> 2026-10-09 差し替え：Scratchは独立WireScopeを同梱したcandidate、McRemoteはWindowsのcredential storeをSQLiteにした
-> candidate。初回の試行のcandidate（Scratch run 37808012407、McRemote `60ca6e17…3ef7`）は使わない。
+pre-release `v2320.0.0b10`のasset。Releaseを作った後、coordinatorがassetのSHA-256を下の値と照合してから、この票を
+渡す。試験ではSHA-256を照合しなくてよい（同一性は開発側が記録する）。ファイル名とサイズだけ記録する。
 
-### ZIP（Scratch candidate、source `ec29372`、CI run 37933218014、artifact ID 11616819485）
+### Scratch LANパッケージ（Scratch `0809eb5`、Release：作成後に記入）
 
-| OS | file | bytes | SHA-256 |
+| OS | ZIP | bytes | SHA-256 |
 | --- | --- | ---: | --- |
-| Windows 11 | `mc-remote-scratch-local-2320.0.0b10-windows-x64.zip` | 260532718 | `f9d09ee84eb8cc54324c6b9d83dc3ab9371d7592ec0535346cf527d3db931a77` |
-| macOS（Apple Silicon） | `mc-remote-scratch-local-2320.0.0b10-macos-arm64.zip` | 264884384 | `16e20e5b2ecbfe1a7070d18f3700739bf2d4d567920347398e7ff82d1a40edc0` |
-| Linux | `mc-remote-scratch-local-2320.0.0b10-linux-x64.zip` | 270120781 | `3717f4dd55c0996c8e35ce121f293b06ed78e1a1c1bd7e4dad8c1a297fc186fc` |
+| Windows 11 x64 | `mc-remote-scratch-LAN-2320.0.0b10-windows-x64.zip` | 261,590,008 | `00e73b71d63859f088595257abdec7ce204a09282d79f26daa8d851e0f4af1e8` |
+| macOS（Apple Silicon） | `mc-remote-scratch-LAN-2320.0.0b10-macos-arm64.zip` | 265,941,672 | `edcc757b931d8b89fc18487ee385c20d9ecbdc398b7f34f017e2137fe26c12d2` |
+| Linux x64 | `mc-remote-scratch-LAN-2320.0.0b10-linux-x64.zip` | 271,197,726 | `b69e5b1118dba284604c217b0f3b06ea40b9876014166461705fdc400f647526` |
 
-### Minecraftサーバー側（McRemote candidate、source `56af938`、CI run 38033919529、artifact ID 11663343578）
+### Minecraftサーバー側（McRemote `17bcf26`、Release：作成後に記入）
 
-> 2026-10-10 差し替え：SQLite JDBCはPaperが提供するものを使い、全OSでSQLiteに保存する candidate（`2026-10-10-01`）。
-> `9902507a…d7d2`（Xerial同梱）は使わない。
+- JAR: `mc-remote-2320.0.0b10.jar`、315,352 bytes、SHA-256 `96ddf09f765a77811740d5c62f3787f7a87c8be6cd7247d345f6dfe9e93512a4`。
+  McRemoteのpre-releaseのassetから取る。`plugins`の古いJARと置き換える
+- Paper: 1.21.11（build 130、Java 21）か26.3（STABLEのbuild、Java 25）。**3つのOSの試験全体で、両方の版を一度は使う**。
+  使った版とbuildを記録する。Javaはサーバーのフォルダーごとにmiseで固定する（McRemote README、`2026-10-12-02`）
+- 認証ON（既定）、LuckPermsは入れない。サーバーのフォルダーをOneDriveなどのクラウド同期の対象に置かない
+- **少なくとも一つのOSでは、McRemoteのDBが無い新しいサーバーのフォルダーで始める**。保存済みのtokenが使えない状態で、
+  ペアリング待ちの画面（WireScope miniの自動展開とコマンドの表示）を見るため。前の試験では見ていない
 
-- JAR: `mc-remote-2320.0.0b10.jar`、315352 bytes、SHA-256 `bed7508603d849d92b37ff38ee6e6bba29b65ff503ec3fb4a12f2298ce07ada1`
-- 取得先: McRemoteのActions run 38033919529（<https://github.com/Naohiro2g/McRemote/actions/runs/38033919529>）のArtifacts
-  `mc-remote-candidate`。落としたzipの中にJARがある。サーバー側のJARは警告の観察の対象ではないので、どこから持ってきても
-  よい。使う前にSHA-256を確かめ、`plugins`の古いJARと置き換える
-- Paper: 1.21.11 build 130、または 26.2 build 132（どちらか一つでよい。使った方を記録する）
-- 準備はMcRemote READMEのクイックスタートのとおり。認証ON（既定）、LuckPermsは入れない
-- 全OSで、認証情報を`plugins/McRemote/credential-store/snapshot.json.sqlite`と
-  `plugins/McRemote/credential-revocations-sqlite/authority.sqlite`に保存する。旧JSONのfileは読まれない（消さなくてよい）。
-  SQLiteのDBが無いサーバーでは新しい認証のdomainができるので、初回はペアリングし直す。起動logにSQLiteの提供元のJARの名前と
-  版が出る（Paperの`sqlite-jdbc-3.49.1.0.jar`など）。Java 25ではSQLiteの読み込みで警告が出ることがあるが、動作には影響しない
-- Minecraftサーバーのフォルダを、OneDriveなどのクラウド同期の対象に置かない（SQLiteのDBとWALが同期でつかまれたり
-  食い違ったりする）。試験でも同期の対象の外で行う
+## 始める前に採ること
 
-## 取得のしかた（案A、human owner 2026-10-09）
-
-警告を本番と同じ形で見るため、各PCのブラウザでインターネット側から取ってくる（USBやLAN内のコピーでは、Macの隔離属性や
-WindowsのMark of the Webが本番と違う）。公開した後に、Releaseのassetで初回の警告だけ短く見直す。
-
-取得は2段になる。
-
-1. ScratchのActions run 37933218014（<https://github.com/Naohiro2g/scratch-editor/actions/runs/37933218014>）のArtifacts
-   から、artifact（`scratch-candidate-ec29372…`、約1.36 GB）を各PCのブラウザで落とし、
-   展開する。中に3つのOSのZIPが入っている
-2. **自分のOSのZIPだけ**を選ぶ（Windowsは`windows-x64`、Apple Siliconのmacは`macos-arm64`、Linuxは`linux-x64`）。
-   ほかのOSのZIPを展開して動かさない（初回の試行で、macOSでLinux用のNodeを実行して失敗した）
-3. 選んだZIPのSHA-256を照合する（Windows（Git Bash）とLinux: `sha256sum <file>`、macOS: `shasum -a 256 <file>`）
+- OSの正確な版（Windows 11のbuild、macOSの版、Linuxのdistro）、CPU、ブラウザとその版
+- Windowsは「Windowsセキュリティ → アプリとブラウザーの制御 → Smart App Control」の状態（オン／評価／オフ）
+- Paperの版とbuild、`java -version`
+- 前の試験の`HOME/mc-remote/mc-remote-scratch-LAN/2320.0.0b10/`が残っていたら、別の名前に変えて退けておく（同じ版の
+  フォルダーに重ねない）
 
 ## 手順（各OSで、まず1台構成、次にLAN構成）
 
-### 始める前に採ること
+結果は場面ごとに「案内だけで完了」「口頭の補助で完了」「停止」に分ける。案内はReleaseの本文、`はじめに.html`、設定画面、
+Scratchの画面の表示。案内に無い操作をしたら、それを記録する。
 
-- OSの正確な版（Windows 11のbuild、macOSの版、Linuxのdistro）、CPU、ブラウザ
-- Windowsは「Windowsセキュリティ → アプリとブラウザーの制御 → Smart App Control」の状態（オン／評価／オフ）
-- 使うZIPとJARのSHA-256、Paperの版とbuild、`java -version`
+### 1. 選択・取得
 
-### 1台構成（そのPCでMinecraftサーバーも動かす）
+1. ブラウザで`v2320.0.0b10`のReleaseのページを開き、本文を読んで自分のOSのZIPを**一つだけ**取る
+2. ブラウザのダウンロードの警告、保存の確認が出たら、文言を記録する
 
-1. 自分のOSのZIPを展開する（OS標準の方法で）。展開先のpathを記録（日本語や空白を含む場所も一度試せるとよい）。
-   展開すると`mc-remote-scratch-local-2320.0.0b10-<os>-<arch>/`というフォルダができ、その直下にランチャー、`README_ja.md`、
-   `NOTICE_ja.md`、`SOURCE_ja.md`、`identity.json`がある
-2. ランチャーを起動する（Windows `start-mc-remote.cmd`、macOS `start-mc-remote.command`、Linux `start-mc-remote.sh`）
-3. 出た警告を、文言と画面のまま記録する（スクリーンショット）。許可は公式の個別の方法だけで行い、OSの保護を全体で
-   切らない
-   - macOS: Gatekeeperに止められたら「システム設定 → プライバシーとセキュリティ → このまま開く」。`.command`と同梱の
-     Node（runtime）のどちらで警告が出たかを分けて記録
-   - Windows: SmartScreenなら「詳細情報 → 実行」。Smart App Controlがオンで止まった場合はそのことを記録する（オフにして
-     進めた結果を、オンの端末での成功とは数えない）
-   - firewallの許可を求められたら記録（localhostだけで待ち受けるので、出ない見込み）
-4. ブラウザで設定ページが開くか。開かなければ、どのURLを手で開いたか
-5. 接続先に、同じPCのMinecraftサーバー（host `localhost`、port）を入れて保存
-6. Scratchで拡張を追加し、接続のブロックを実行する。従来のペアリング（ゲーム内での承認）を行い、helloが通るまで。
-   認証はONのまま行う（OFFにして通った結果は、この試験の成功に数えない）
-7. 簡単な命令（例: chat、setBlock）が通るか。可能なら setBlocks 32×32×32（32768）を一度。完了までの時間と、ゲームの
-   重さを一言（TPSを守ることが目的ではなく、重くなる様子の観察）
-8. 独立WireScopeへのリンクが出るか、開いて通信が見えるか
-9. ランチャーを閉じて、もう一度起動。二度目に警告が出るか、設定が残っているか、再接続できるか
-10. Minecraftサーバーを通常の手順で止めて、もう一度起動し、ペアリングし直さずに再接続できるか（認証情報が保存されて
-    いるか）。Windowsでは、とくにこの手順を確かめる。revokeは実機では行わない（revokeに特有の非上書き、矛盾の検出、
-    commitの前後での停止はCIのWindows runnerで確かめた。実機の環境の影響は、ペアリングと再起動で同じDBの書き込みと
-    読み直しを通るので、この手順で見える）
+### 2. 展開・配置
 
-### LAN構成（Minecraftサーバーは別のPC）
+1. Windows：本文のとおり、**展開の前に**ZIPを右クリック →「プロパティ」→「全般」の「許可する」にチェック →「適用」
+2. OS標準の方法で、既定の展開先に展開する（展開先を選び直さない）。長いファイル名などの警告が出たら記録する
+3. 外側のフォルダーの内側にある`mc-remote-scratch-LAN`を、ホームフォルダーの`mc-remote`へコピーする
+4. `mc-remote-scratch-LAN/2320.0.0b10/`に起動ファイル、`settings.json`は無し、`data/`、`README_ja.md`、`はじめに.html`、
+   `NOTICE_ja.md`が並ぶか。迷わず起動ファイルを見つけられたか
 
-11. 接続先を、LAN内の別PCのMinecraftサーバー（hostはIPかホスト名、port）に変えて保存
-12. 6〜8と同じ。firewallの警告、接続できなかったときの表示を記録
+### 3. 案内を読む
+
+1. 起動の前に`はじめに.html`を開く。追加のアプリなしで読めるか、今の版と起動の方法が分かるか
+
+### 4. 初回起動
+
+1. 起動ファイルを開く
+   - Windows：`start-mc-remote.cmd`をダブルクリック
+   - macOS：`start-mc-remote.command`をダブルクリック。止められたら「システム設定 → プライバシーとセキュリティ →
+     このまま開く」
+   - Linux：`start-mc-remote.sh`を右クリック →「プログラムとして実行」、または端末で`./start-mc-remote.sh`
+2. 出た警告を、文言と画面のまま記録する（スクリーンショット）。起動ファイルへの警告と、同梱のNode.jsへの警告を分ける。
+   firewallの許可を求められたら記録する
+3. ターミナルの画面と、ブラウザで設定画面が開くか。開かなければ、何をして開いたか
+
+### 5. 設定画面
+
+1. 「マイクラサーバーは、どのPCで動いていますか？」で「このPC」を選び、保存する。起動ファイルの隣に`settings.json`が
+   できるか
+2. 「改造版のScratchを開く」で、別のタブにScratchが開くか
+3. Scratchを開いたまま設定画面で接続先を変えようとして、変えられない理由の表示が分かるか
+4. 設定画面のタブを閉じて、Scratchを使い続けられるか。設定画面を開き直す方法が分かるか
+
+### 6. 1台構成：接続
+
+1. Scratchで「接続する」を一度クリックする
+2. ペアリングが要るときは、WireScope miniにペアリングのコマンドが出るか。Minecraftのチャットに貼って実行し、接続できるか
+3. 「チャットに［こんにちは］と言う」がMinecraftのチャットに届くか。簡単なsetBlock
+4. 可能なら setBlocks 32×32×32（32768）を一度。完了までの時間と、ゲームの重さを一言
+5. WireScopeを開いて、通信が見えるか
+
+### 7. 保存・再開
+
+1. 作品をブラウザに保存する。別の`.sb3`（「ファイル」→「コンピューターに保存」で作ったものでよい）を、開いている
+   Scratchの画面へドラッグ＆ドロップする。今の作品が保存されてから切り替わるか。保存した作品が一覧に残っているか
+2. ランチャーを終える（ターミナルの画面を閉じる、またはCtrl+C）
+3. 時間をおいて（できれば翌日）、**作者の誘導なしに**、いつもの起動ファイルからもう一度始める。保存した接続先でScratchが
+   開き、作品を見つけて開き、ペアリングし直さずに接続できるか
+4. Minecraftサーバーを通常の手順で止めて、もう一度起動し、ペアリングし直さずに接続できるか。サーバーの再起動の後に
+   Scratchが「接続」の表示のまま失敗する問題は既知（hub NOTES 2026-10-12）。起きたら、ブラウザの再読み込みの後に
+   接続し直して進め、起きたことだけ記録する
+
+### 8. LAN構成（Minecraftサーバーは別のPC）
+
+1. 設定画面で「LAN内の別のPC」を選び、サーバー役のPCのIPアドレスかホスト名と、McRemoteのポート（通常`25575`）を入れる
+2. 6の1〜3と同じ。firewallの警告、つながらなかったときの表示と、そこから次の操作を選べたかを記録する
+3. 可能なら、2台のPCでそれぞれ別のプレイヤーとしてつなぎ、互いの接続とペアリングを混同しないか
+
+### 9. つまずき（どれか一つでよい）
+
+- Minecraftサーバーを止めたまま接続する、接続先のポートを間違える、など。表示から次の操作を選べるか
+
+## 範囲の外
+
+- 版の更新（新しい版を隣に置く）：同じ版しか無いので、今回は試さない
+- File System Accessの書き出し：b10に入らない（初回stableの後）
+- ホームページからの取得：入口はrc1までに作る。今回はReleaseのページから取る
 
 ## 記録してほしいこと（OSごと）
 
-- 「始める前に採ること」の全項目
-- 取得の方法と、SHA-256の照合結果
-- 各手順で、出た警告の文言とスクリーンショット、行った許可の操作、止まった箇所
-- 構築にかかったおおよその時間、迷った箇所、説明が欲しかった箇所
-- 1台構成とLAN構成それぞれの成否
-- 記録にtoken、pairingのcode、実際のIPアドレス、player UUIDを書かない（IPは「LANの別PC」などで足りる）
+- 「始める前に採ること」の全項目、使ったZIPのファイル名とサイズ
+- 場面ごとの結果（「案内だけで完了」「口頭の補助で完了」「停止」）と、補助した内容
+- 警告の文言とスクリーンショット、行った許可の操作、止まった箇所
+- かかったおおよその時間、迷った箇所、説明が欲しかった箇所
+- 記録にtoken、ペアリングのコマンド、実際のIPアドレス、player UUIDを書かない（IPは「LANの別PC」などで足りる）
 
 結果はknowledgeへ返してください。coordinatorがsanitized recordとして`14-evidence/`へ起こします。
+
+## 判定（案、human ownerが決める）
+
+- 3つのOSで、1台構成の取得から保存・再開までが「停止」なしで通り、LAN構成が少なくとも1組で通れば、pre-releaseを
+  公開へ進めてrc1へ
+- 「停止」があれば、その原因をcandidateで直すかを決める。直すならpre-releaseに失敗を記して残し、b11（`2026-10-13-05`）
+- 「口頭の補助で完了」は、案内の文言で直せるものをrc1までに直す。中身の変更が要るものはb11を挟むかをその場で決める
