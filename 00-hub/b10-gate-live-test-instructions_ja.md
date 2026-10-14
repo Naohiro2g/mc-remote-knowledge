@@ -26,7 +26,7 @@ pre-release `v2320.0.0b10`のasset。Releaseを作った後、coordinatorがasse
 
 - JAR: `mc-remote-2320.0.0b10.jar`、315,352 bytes、SHA-256 `96ddf09f765a77811740d5c62f3787f7a87c8be6cd7247d345f6dfe9e93512a4`。
   McRemoteのpre-releaseのassetから取る。`plugins`の古いJARと置き換える
-- Paper: 1.21.11（build 130、Java 21）か26.3（STABLEのbuild、Java 25）。**3つのOSの試験全体で、両方の版を一度は使う**。
+- Paper: 1.21.11（build 130、Java 21）か26.3（build 181、Java 25）。McRemoteのpulseは26.3 build 178、b10の前の試験は180。**3つのOSの試験全体で、両方の版を一度は使う**。
   使った版とbuildを記録する。Javaはサーバーのフォルダーごとにmiseで固定する（McRemote README、`2026-10-12-02`）
 - 認証ON（既定）、LuckPermsは入れない。サーバーのフォルダーをOneDriveなどのクラウド同期の対象に置かない
 - **少なくとも一つのOSでは、McRemoteのDBが無い新しいサーバーのフォルダーで始める**。保存済みのtokenが使えない状態で、

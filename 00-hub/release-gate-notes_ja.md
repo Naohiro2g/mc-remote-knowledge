@@ -365,7 +365,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - 進捗（2026-10-13〜14、Scratch、pre-releaseを使わない試験）：`ec29372`に未commitの変更を載せた試作ZIP（どれも
   `working_tree_dirty:true`で、正式candidateではない）を、一時的なLANのページから取得してhuman ownerが試した（記録は
   scratch-editor `mc-remote/local/PREFLIGHT_3OS_ja.md`、`LAN_EXPERIENCE_DESIGN_ja.md` §15、packet
-  `handoff-materials/2026-10-14-b10-quickstart-source/`）。Minecraftサーバーは26.3 build 180
+  `handoff-materials/2026-10-14-b10-quickstart-source/`）。Minecraftサーバーは26.3 build 180（試験を始めたときの最新は
+  179、途中で180が出た）
   - Windows 11：起動のたびにファイルマネージャーが2回開き設定画面が開かない問題を直し、設定画面とScratchが開いた。
     ペアリング、チャット、ブラウザ保存、Scratchとランチャーとサーバーの再起動の後の再接続も通った。署名の無い
     `start-mc-remote.cmd`のダブルクリックはSmart App Controlに止められる（`2026-10-14-01`）。配信のときにZIPへ長い別名を
@@ -423,7 +424,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   PowerShellも案内する。human ownerがPowerShell 5.1と7.6.7で確かめた（2026-10-14）
 - 方針（2026-10-14、human owner）：実施票（`00-hub/b10-gate-live-test-instructions_ja.md`）を作り直した。結果に分類を
   設けず、判断は結果から行う。b10の最終の試作でかなり改善したが、流れにはまだ改善の余地がある。b10は多少緩くても通す。
-  ホームページからの案内と文言はrcからstableにかけて改善し、コードが変わる改善はstableにまとめて実装する。これらの準備は
+  ホームページからの案内と文言はrcからstableにかけて改善し、コードが変わる改善は初回stableの後にまとめて実装する
+  （human owner「stable後にまとめて実装」）。これらの準備は
   ケータリングのPCにも有効な部分が多いので、併せて進める。文言はすぐにドリフトするので、意味のない説明や筋の通らない
   理屈を混ぜない
 
