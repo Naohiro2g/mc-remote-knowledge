@@ -420,7 +420,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   ブラウザ保存とファイルのダウンロードのまま）。role名は`scratch-local`のまま。pre-releaseを作ってよい。ScratchのRelease
   本文はhuman ownerが編集した`handoff-materials/2026-10-14-b10-candidate/materials/RELEASE_NOTES_DRAFT_ja.md`（SHA-256
   `90f8957f81ce73136a7b1cb87338985f5033ee3c944f041e1b6bb0c4c6a83f2e`）を使う。Windowsのターミナルの起動はGit Bashのほか
-  PowerShellも案内しているので、実施票で確かめる
+  PowerShellも案内する。human ownerがPowerShell 5.1と7.6.7で確かめた（2026-10-14）
 
 ## 2026-10-04 b9横断release gate（CLOSED）
 
