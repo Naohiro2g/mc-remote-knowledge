@@ -192,6 +192,11 @@ custom block、costume、sound、ID 衝突、再 import を fixture で確認す
 wrapperを作らない。credential、接続先、token、WireScope data を含めず、対応する McRemote Editor へ
 持ち込み直せることを fixture で支える。
 
+開いている Editor へ単一の`.sb3`をドロップすると、作品全体を読み込む。「コンピューターから読み込む」と同じく、
+読み込む前に今の作品をブラウザ保存作品へ保存し（§5）、成功してから読み込む。保存が成功したときは置き換えの確認を
+出さない。保存できなければ読み込まず、今の作品を残してエラーを出す。OS での`.sb3`の関連付けやダブルクリックでの
+起動は扱わない（scratch-editor 2026-10-13 の局所決定、b10）。
+
 McRemote block を含む作品が公式 Scratch で必ず開けるとは保証しない。ファイル保存は長期保管に利用できるが、
 消失しないことを McRemote が保証するものではない。
 

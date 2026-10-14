@@ -257,6 +257,9 @@ Scratch-visibleなStateText／BlockInfoText、Picker、ErrorTextとfixtureは
   （`2026-08-26-02`）。
 - OS clipboardによるブロック移送と審査済み教材は独立trackとし、b5／b6へ自動追加しない。前者は
   `deferred`で確定し、ブラウザ保存スプライトの運用評価後、別originまたはstack単位の実需が残った時だけ再開する。
+- b10：開いているEditorへの`.sb3`のドロップ読み込み。今の作品をブラウザ保存に保存してから切り替え、失敗したら
+  今の作品を残す（storage design §8）。上流Scratchへの貢献の候補（human owner 2026-10-13）。上流へはこのフォークの
+  ブラウザ保存を前提にした「確認なし」を持ち込まず、上流の置き換え確認の規則に合わせる。issue／PRは未作成
 - McRemote Tutorial / Debug 導線と、最初の1 blockまでの教材を揃える。
 - iPad Safari／ChromeでのIndexedDB保存・eviction、Home Screen差分、`persist()`の実効性を実測する。
   `persist()`だけを耐久性保証にせず、重要な作品／スプライトのfile退避を維持する。これらの長期実測はb6 blockerに

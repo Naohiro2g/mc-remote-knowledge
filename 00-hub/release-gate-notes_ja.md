@@ -362,6 +362,42 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - 決定（2026-10-13、human owner「McRemote b10とする」）：上のcandidateをb10のMcRemoteとして採用する。`56af938`と26.2の試験は
   b10の根拠にしない。McRemoteのpre-releaseは、Scratchのcandidateがそろってから一緒に作る。箱庭サーバーの版とホームページの
   箱庭の記述は検証次第で、今は変えない
+- 進捗（2026-10-13〜14、Scratch、pre-releaseを使わない試験）：`ec29372`に未commitの変更を載せた試作ZIP（どれも
+  `working_tree_dirty:true`で、正式candidateではない）を、一時的なLANのページから取得してhuman ownerが試した（記録は
+  scratch-editor `mc-remote/local/PREFLIGHT_3OS_ja.md`、`LAN_EXPERIENCE_DESIGN_ja.md` §15、packet
+  `handoff-materials/2026-10-14-b10-quickstart-source/`）。Minecraftサーバーは26.3 build 180
+  - Windows 11：起動のたびにファイルマネージャーが2回開き設定画面が開かない問題を直し、設定画面とScratchが開いた。
+    ペアリング、チャット、ブラウザ保存、Scratchとランチャーとサーバーの再起動の後の再接続も通った。署名の無い
+    `start-mc-remote.cmd`のダブルクリックはSmart App Controlに止められる（`2026-10-14-01`）。配信のときにZIPへ長い別名を
+    付けたら、展開先のフォルダー名の長さでWindowsが警告を出した（長いパスを許すWindowsの設定でも消えない）。ZIPの通常の
+    名前なら起きない見込みで、配る名前に試験用の接尾辞を付けない
+  - macOS：初回は「このまま開く」と管理者の認証、2回目からダブルクリックで起動。ペアリング、チャット、再接続が通った
+  - Ubuntu：`.sh`のダブルクリックはテキストエディターが開き、右クリックの「プログラムとして実行」で起動した。設定の
+    保存とScratchを開く操作を分け（「流れが良くなった」、human owner）、WireScope miniを自動で開くようにした。Scratchが
+    別のタブで開いている間は接続先を変えられない理由を設定画面に出す。保存済みのtokenで接続したので、ペアリング待ちの
+    画面はまだ見ていない
+  - 公開の配布からのダウンロードで出るOSの警告は、まだ見ていない（pre-releaseで見る）
+- 決定（2026-10-14）：
+  - `.sb3`のドロップ読み込み（scratch-editor packet `2026-10-13-sb3-drop-browser-save`。今の作品をブラウザに保存してから
+    切り替え、失敗したら今の作品を残す）をb10に入れる（human owner「入れる」）。storage design §8
+  - LANパッケージは当面、署名と公証をしない。Windowsは、展開の前にZIPのプロパティで「許可する」にチェックしてから
+    ダブルクリックで起動する経路を主に案内し、ターミナルも案内する（`2026-10-14-01`）。human ownerが2026-10-14に、
+    ブラウザで取得した試作ZIP（276,292,480 bytes）で、Smart App Controlをオンのまま、チェックせずに展開すると
+    ダブルクリックが警告で止まり、チェックしてから展開すると問題なく起動することを確かめた。b10の実施票のWindowsはこの経路で行う。チェックは展開の前の操作なので、
+    ZIPの中の`はじめに.html`では間に合わない。取得する場所（Releaseの本文、rc1までに作るホームページの取得の入口）に置く。Releaseにはプロパティの画面の画像を
+    添付してよい（human owner）
+  - ホームページの画像（`scratch-MC-connect.png`は旧表示「ペアリン…」、`scratch-stack.png`は「接続する」をスタックに
+    入れている）は、human ownerが作り直す
+- 次の操作（2026-10-14）：
+  - Scratch：作業ツリーをcommitし、CIでb10のcandidateを作る。中身はScratch LANパッケージの設計、`.sb3`のドロップ読み込み、
+    設定画面の改善、Windowsのブラウザの起動の修正、ライセンスの本文の短いパス、拡張機能のカードのPNG化、カタログ
+    ピッカーの説明、Windowsのネットワークを「プライベート」にする案内。返すものは、source commit、CI run、ZIP 3つ
+    （`mc-remote-scratch-LAN-2320.0.0b10-{windows-x64,macos-arm64,linux-x64}.zip`）のbytesとSHA-256（全桁）、manifest v2、
+    ライセンスの一覧の更新。あわせて、manifestのrole名`scratch-local`を変えるか、File System Accessの書き出し
+    （`2026-10-13-04`）がb10に入るか（入るなら対応するブラウザと、対応しないときの案内）
+  - coordinator：Scratchのcandidateがそろったら、McRemote（`17bcf26`）とScratchにpre-release `v2320.0.0b10`の作成を頼み、
+    assetのSHA-256をcandidateと照合する。実施票をLANの設計 §8で作り直す（取得はpre-releaseのReleaseのページから。
+    1.21.11と26.3の両方をどこかの試験で使う）
 
 ## 2026-10-04 b9横断release gate（CLOSED）
 
