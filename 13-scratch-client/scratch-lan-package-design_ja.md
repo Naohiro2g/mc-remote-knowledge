@@ -80,7 +80,8 @@ HOME/mc-remote/
 ## 5. 起動と終了
 
 ダブルクリックで安定して起動できるOSはそれを主な経路にし、できないOSは最初からターミナルで案内する。クリックの数でなく、
-迷わず再現できるかで決める（実物で評価）。Windowsのターミナルの案内はGit Bashを正準とする。
+迷わず再現できるかで決める（実物で評価）。Windowsのターミナルの案内はGit Bashを正準とし、PowerShellでも同じコマンドを
+案内する（b10のRelease本文。実施票で確かめる）。
 
 | OS | 主な経路の候補 | ターミナルの経路 |
 | --- | --- | --- |
@@ -123,7 +124,8 @@ HOME/mc-remote/
 境界は伝える。
 
 ファイルの保存先は`HOME/mc-remote/clients/scratch/projects/`（`.sb3`）と`sprites/`（`.sprite3`）で、パッケージの版の
-フォルダーから独立させる。書き出しの方式は`13-scratch-client/scratch-project-storage-transfer-design_ja.md` §14。
+フォルダーから独立させる。書き出しの方式は`13-scratch-client/scratch-project-storage-transfer-design_ja.md` §14で、
+入れるのは初回stableの後（b10とrc1はブラウザ保存とファイルのダウンロード。それまで案内でこの置き場所への保存を約束しない）。
 
 `.sb3`をOS上でダブルクリックしても開かないので、教材のファイルは取得ボタンのすぐ近くで「Scratchの『ファイル』→
 『コンピューターから読み込む』で開く」と案内する。開いているScratchの画面へ`.sb3`をドラッグ＆ドロップしても開ける（b10。

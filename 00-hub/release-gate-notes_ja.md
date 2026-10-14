@@ -398,6 +398,29 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   - coordinator：Scratchのcandidateがそろったら、McRemote（`17bcf26`）とScratchにpre-release `v2320.0.0b10`の作成を頼み、
     assetのSHA-256をcandidateと照合する。実施票をLANの設計 §8で作り直す（取得はpre-releaseのReleaseのページから。
     1.21.11と26.3の両方をどこかの試験で使う）
+- 進捗（2026-10-14、Scratch candidate）：`agent/b10-scratch-local@0809eb5e49e4b83c17a4e91b435d151b9d1b0655`（remoteの一致は
+  coordinatorが確認）。CI run `38495047680`（success）、artifact ID `11862469927`、外側
+  `sha256:6576a64d75f7eb46f2245ea5d38b336e18388131c79b0db869e693edc3a1fb23`。ZIP 3つ（すべて`working_tree_dirty:false`）：
+  - `mc-remote-scratch-LAN-2320.0.0b10-windows-x64.zip` 261,590,008 bytes、`00e73b71d63859f088595257abdec7ce204a09282d79f26daa8d851e0f4af1e8`
+  - `mc-remote-scratch-LAN-2320.0.0b10-macos-arm64.zip` 265,941,672 bytes、`edcc757b931d8b89fc18487ee385c20d9ecbdc398b7f34f017e2137fe26c12d2`
+  - `mc-remote-scratch-LAN-2320.0.0b10-linux-x64.zip` 271,197,726 bytes、`b69e5b1118dba284604c217b0f3b06ea40b9876014166461705fdc400f647526`
+  `candidate-manifest.json` 2,676 bytes、`02d82f0cfabfa7caa5120f53c19c811ad7a913132dda2a5add9ed97c67a3b923`。固定のBridgeとWireScopeは
+  tooling `dc1ab834183e29f2eb03059b07e99d2b463776ee`のまま（WireScope ZIP `da3da0b6cf4d05265bc0c11abaa4913208c7cfc3600b0c3e78c93a356fc431ad`）。
+  ライセンスは配布物の`data/licenses/review.json`の130件（runtime 26、buildのみ104）が正で、`microee 0.0.6`は2026-10-09の
+  「案A」のまま。tests：GUI unit 535、Scratch Local Node 22とPython 11、manifest v2の共有fixture 93など、全てPASS。CIで
+  LinuxのZIPの同梱Nodeの起動とBridgeの往復まで確かめた。公開用のmanifest v2はRelease作成後に公開workflowが作る
+  （事前生成した版は予告値でない）。返却packetはscratch-editor `handoff-materials/2026-10-14-b10-candidate/`。
+  未確認：このZIPでの3 OSの取得から接続まで、ペアリング待ちの画面、配布ZIPでの`.sb3`のドロップ
+  - 公開の前に要ること（Scratch担当）：b10の公開workflowは作業branchで変えたので、`develop`を`0809eb5`へfast-forwardで
+    統合する。repository variablesに固定candidateのartifact IDとdigestを入れる（`release`イベントには入力が来ないため）
+  - Scratch担当の答え：manifestのrole名は`scratch-local`のまま（Scratchのproducerとstackのconsumerが実装済みで、変えるには
+    両者とrelease contractの更新が要る）。File System Accessの書き出し（`2026-10-13-04`）はb10に入れず、初回stableの後の
+    候補（ブラウザ保存とファイルのダウンロードのまま）
+- 決定（2026-10-14、human owner）：File System Accessの書き出しはb10に入れない（rc1でも足さないので、初回stableは
+  ブラウザ保存とファイルのダウンロードのまま）。role名は`scratch-local`のまま。pre-releaseを作ってよい。ScratchのRelease
+  本文はhuman ownerが編集した`handoff-materials/2026-10-14-b10-candidate/materials/RELEASE_NOTES_DRAFT_ja.md`（SHA-256
+  `90f8957f81ce73136a7b1cb87338985f5033ee3c944f041e1b6bb0c4c6a83f2e`）を使う。Windowsのターミナルの起動はGit Bashのほか
+  PowerShellも案内しているので、実施票で確かめる
 
 ## 2026-10-04 b9横断release gate（CLOSED）
 
