@@ -14,7 +14,7 @@
 pre-release `v2320.0.0b10`のasset。Releaseを作った後、coordinatorがassetのSHA-256を下の値と照合してから、この票を
 渡す。試験ではSHA-256を照合しなくてよい（同一性は開発側が記録する）。ファイル名とサイズだけ記録する。
 
-### Scratch LANパッケージ（Scratch `0809eb5`、Release：作成後に記入）
+### Scratch LANパッケージ（Scratch `0809eb5`、<https://github.com/Naohiro2g/scratch-editor/releases/tag/v2320.0.0b10>）
 
 | OS | ZIP | bytes | SHA-256 |
 | --- | --- | ---: | --- |

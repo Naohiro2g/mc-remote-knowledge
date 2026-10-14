@@ -428,6 +428,21 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   （human owner「stable後にまとめて実装」）。これらの準備は
   ケータリングのPCにも有効な部分が多いので、併せて進める。文言はすぐにドリフトするので、意味のない説明や筋の通らない
   理屈を混ぜない
+- 進捗（2026-10-14、Scratch pre-release）：<https://github.com/Naohiro2g/scratch-editor/releases/tag/v2320.0.0b10>。tagは
+  `0809eb5e49e4b83c17a4e91b435d151b9d1b0655`、`develop`も同じcommitへfast-forward。`prerelease=true`、latestにしていない。本文は
+  human ownerが編集した案（作成後に冒頭の重複のtitleを消した）。公開workflow run `38525643511`（success）。asset 7つのbytesと
+  SHA-256をcoordinatorがGitHub APIで照合し、3つのZIPはcandidateの値と一致（返却packet scratch-editor
+  `handoff-materials/2026-10-14-b10-prerelease/`）：
+  - `manifest.json`（v2）2,105 bytes、`7c90c4b0041447f132a1da4bb20bdbdd259eed8a4023d79993f4976295708741`
+  - `wirescope-app.zip` 83,854 bytes、`da3da0b6cf4d05265bc0c11abaa4913208c7cfc3600b0c3e78c93a356fc431ad`、
+    `wirescope-app.manifest.json` 2,339 bytes、`c654f7d1f0be2773d6737e889279b2587317088717f162b082c82be9cff910d7`、
+    `contracts.tar.gz` 1,908 bytes、`48948ba47d55409f02a8ff8e0d44021b07859e11ffa5ca0f8598e6ef06082390`
+  - Scratch OCI `ghcr.io/naohiro2g/mc-remote-scratch:v2320.0.0b10`、`sha256:1c7bccb32444e7263841ce87add0547cf798f95df2b47971b9be78db847d3be5`。
+    Bridge OCIは固定の`sha256:5828304c9bb1d60df8672f9189f503790050e09358bd375f39e4d59d190eb84f`
+  - Windowsの「許可する」の画像はhuman ownerが添付する（まだ無い）
+- 進捗（2026-10-14、McRemote pre-release）：tag `v2320.0.0b10`は`17bcf26`を指す（annotated、coordinatorが確認）。tagのCI run
+  `38525157673`（success）の4 fileはcandidateと同じ（担当の照合）。Releaseは下書きで、JARとmanifestはまだ載っていない
+  （2026-10-14の確認）。返却を待つ
 
 ## 2026-10-04 b9横断release gate（CLOSED）
 
