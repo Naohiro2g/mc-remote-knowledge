@@ -440,9 +440,16 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   - Scratch OCI `ghcr.io/naohiro2g/mc-remote-scratch:v2320.0.0b10`、`sha256:1c7bccb32444e7263841ce87add0547cf798f95df2b47971b9be78db847d3be5`。
     Bridge OCIは固定の`sha256:5828304c9bb1d60df8672f9189f503790050e09358bd375f39e4d59d190eb84f`
   - Windowsの「許可する」の画像はhuman ownerが添付する（まだ無い）
-- 進捗（2026-10-14、McRemote pre-release）：tag `v2320.0.0b10`は`17bcf26`を指す（annotated、coordinatorが確認）。tagのCI run
-  `38525157673`（success）の4 fileはcandidateと同じ（担当の照合）。Releaseは下書きで、JARとmanifestはまだ載っていない
-  （2026-10-14の確認）。返却を待つ
+- 進捗（2026-10-14、McRemote pre-release）：<https://github.com/Naohiro2g/McRemote/releases/tag/v2320.0.0b10>。tag（annotated）は
+  `17bcf2645c112133935bc9d993d4fdd4669ceb98`を指す。`prerelease=true`、latestは`v1.21.8-1.4.0`のまま。tagのCI run `38525157673`の
+  4 fileはcandidateと同じbytesで、公開workflow run `38528358810`（success）は作り直さずに載せた。asset 5つのbytesとSHA-256を
+  coordinatorがGitHub APIで照合（返却packet McRemote `handoff-materials/2026-10-14-b10-prerelease/`）：JAR 315,352 bytes、
+  `96ddf09f765a77811740d5c62f3787f7a87c8be6cd7247d345f6dfe9e93512a4`。`manifest.json` 1,761 bytes、
+  `508a34b9ea29357105e6fcc124a7ab0c0eba8ec9fa258eee52bb196222856627`。`minecraft-targets.json` 126 bytes、
+  `8e830732decd6bcde13f91eb6c071d062ba6993342a7edb52e6ea543b9e0c361`。版ごとのrecord（1.21.11は
+  `c79ca8e667f46b0df4f6703ce3173c40741e9c37427e4de7908cc396390674f9`、26.3は
+  `e07fd1513f731d587302621b95234fb135fa95553ca87111829bcda3618b1754`）
+- 次の操作（2026-10-14）：human ownerが実施票で3つのOSを試す。pre-releaseの解除とshared deployは、その結果の後に別に頼む
 
 ## 2026-10-04 b9横断release gate（CLOSED）
 

@@ -11,8 +11,7 @@
 
 ## 使うもの
 
-pre-release `v2320.0.0b10`のasset。Releaseを作った後、coordinatorがassetのSHA-256を下の値と照合してから、この票を
-渡す。試験ではSHA-256を照合しなくてよい（同一性は開発側が記録する）。ファイル名とサイズだけ記録する。
+pre-release `v2320.0.0b10`のasset。coordinatorがassetのSHA-256を下の値と照合済み（2026-10-14）。試験ではSHA-256を照合しなくてよい（同一性は開発側が記録する）。ファイル名とサイズだけ記録する。
 
 ### Scratch LANパッケージ（Scratch `0809eb5`、<https://github.com/Naohiro2g/scratch-editor/releases/tag/v2320.0.0b10>）
 
@@ -22,7 +21,7 @@ pre-release `v2320.0.0b10`のasset。Releaseを作った後、coordinatorがasse
 | macOS（Apple Silicon） | `mc-remote-scratch-LAN-2320.0.0b10-macos-arm64.zip` | 265,941,672 | `edcc757b931d8b89fc18487ee385c20d9ecbdc398b7f34f017e2137fe26c12d2` |
 | Linux x64 | `mc-remote-scratch-LAN-2320.0.0b10-linux-x64.zip` | 271,197,726 | `b69e5b1118dba284604c217b0f3b06ea40b9876014166461705fdc400f647526` |
 
-### Minecraftサーバー側（McRemote `17bcf26`、Release：作成後に記入）
+### Minecraftサーバー側（McRemote `17bcf26`、<https://github.com/Naohiro2g/McRemote/releases/tag/v2320.0.0b10>）
 
 - JAR: `mc-remote-2320.0.0b10.jar`、315,352 bytes、SHA-256 `96ddf09f765a77811740d5c62f3787f7a87c8be6cd7247d345f6dfe9e93512a4`。
   McRemoteのpre-releaseのassetから取る。`plugins`の古いJARと置き換える
