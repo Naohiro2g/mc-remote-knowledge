@@ -421,6 +421,11 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   本文はhuman ownerが編集した`handoff-materials/2026-10-14-b10-candidate/materials/RELEASE_NOTES_DRAFT_ja.md`（SHA-256
   `90f8957f81ce73136a7b1cb87338985f5033ee3c944f041e1b6bb0c4c6a83f2e`）を使う。Windowsのターミナルの起動はGit Bashのほか
   PowerShellも案内する。human ownerがPowerShell 5.1と7.6.7で確かめた（2026-10-14）
+- 方針（2026-10-14、human owner）：実施票（`00-hub/b10-gate-live-test-instructions_ja.md`）を作り直した。結果に分類を
+  設けず、判断は結果から行う。b10の最終の試作でかなり改善したが、流れにはまだ改善の余地がある。b10は多少緩くても通す。
+  ホームページからの案内と文言はrcからstableにかけて改善し、コードが変わる改善はstableにまとめて実装する。これらの準備は
+  ケータリングのPCにも有効な部分が多いので、併せて進める。文言はすぐにドリフトするので、意味のない説明や筋の通らない
+  理屈を混ぜない
 
 ## 2026-10-04 b9横断release gate（CLOSED）
 
