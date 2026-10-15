@@ -8,6 +8,7 @@
 
 ## Inbox
 
+- 2026-10-15 [park] デベロッパー登録と、実行形式の配布への制限（`2026-10-14-01`） / LANパッケージは今は署名も公証もしない。OSのセキュリティが強まれば、配布にデベロッパー登録が要る見込み（human owner「近いうちにデベロッパー登録が必要になるだろう」）。需要の高まりを考えて早めに動く。①登録の調査と検討：Appleのデベロッパー登録（年間の登録料がある）、Microsoft Storeへの登録（無料で比較的短期間という情報がある。未確認）、Ubuntu（何が要るか不明）②継続して見ること：ターミナルでの自由度が、どのように、どの程度制限されていくか。実行形式のファイルのダウンロードと実行への制限。実行形式が配れなくなったら、利用者が自分でbuildする方式へ移る。JAR（McRemote、Paper）は既に危ないかもしれない / 影響＝Scratch LANパッケージ、将来のPaper＋プラグイン LANパッケージ、McRemoteの配布、ホームページの案内 / 再開＝2027年1月（human owner。①の調査と検討。②はそれまでも気づいたら書き足す） / 閉じる＝登録の要否と配り方を決めた時
 - 2026-10-13 [park] Paper＋プラグイン LANパッケージ（`2026-10-13-02`） / McRemoteが配る、Paper、McRemote、おすすめプラグインのセットアップ（Javaはmise、`2026-10-12-02`）。Scratch LANパッケージと併せてLANパッケージになる。それまでのサーバーの準備はMcRemote READMEのクイックスタート / 再開＝初回stableの後（coordinatorがMcRemote担当へ設計を依頼する） / 閉じる＝最初の版を出した時
 - 2026-10-13 [park] LANパッケージの教材の部分の収録 / Scratchの設計書（scratch-editor `mc-remote/local/LAN_EXPERIENCE_DESIGN_ja.md`）の共通教材、整地とXYZ軸、並行動作の混乱を経験にすること、マイクラ課題への接続、短い案内と調べられる説明 / 再開＝rc1のgateを開くとき（RCの間に`20-教材`へ収録する。human owner「初回stableの後は遅い」） / 閉じる＝収録した時
 - 2026-10-13 [park] 座標・時刻HUD（`2026-10-13-01`） / 方向は確定。未決（表示方式、トグルのキー、HUDのAPIとWireScope IDを取得するAPIのexact contract、クリックリンクの可能性、照準の細部、投入release）は`11-plugin/platform-design_ja.md` §11 / 再開＝初回stableの後（coordinatorがMcRemote担当へ設計の続きを依頼する） / 閉じる＝APIの契約とHUDの実装が着地した時
