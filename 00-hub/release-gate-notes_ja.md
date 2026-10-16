@@ -75,7 +75,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
-- current phase: **OPEN**（2026-10-07、human ownerの判断）。公開は未実施
+- current phase: **OPEN**（2026-10-07、human ownerの判断）。2026-10-14にpre-releaseとして公開、2026-10-17にhuman ownerが合格とした。closeの準備中
 - 目標日: b10 2026-10-17、rc1 10/24まで、初回stable 11/7（`2026-10-13-06`）。b10がpre-releaseでの試験で止まればb11を挟む
   （`2026-10-13-05`）
 - release mode: 軽量mode（release運用と責務分担 §14、`2026-08-28-02`）。単一JARとケータリング型簡易版のZIPは新しい配布の形
@@ -439,7 +439,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     `contracts.tar.gz` 1,908 bytes、`48948ba47d55409f02a8ff8e0d44021b07859e11ffa5ca0f8598e6ef06082390`
   - Scratch OCI `ghcr.io/naohiro2g/mc-remote-scratch:v2320.0.0b10`、`sha256:1c7bccb32444e7263841ce87add0547cf798f95df2b47971b9be78db847d3be5`。
     Bridge OCIは固定の`sha256:5828304c9bb1d60df8672f9189f503790050e09358bd375f39e4d59d190eb84f`
-  - Windowsの「許可する」の画像はhuman ownerが添付する（まだ無い）
+  - Windowsの「許可する」の画像はhuman ownerが添付する（まだ無い）。2026-10-17：本文に添付済みを確認
 - 進捗（2026-10-14、McRemote pre-release）：<https://github.com/Naohiro2g/McRemote/releases/tag/v2320.0.0b10>。tag（annotated）は
   `17bcf2645c112133935bc9d993d4fdd4669ceb98`を指す。`prerelease=true`、latestは`v1.21.8-1.4.0`のまま。tagのCI run `38525157673`の
   4 fileはcandidateと同じbytesで、公開workflow run `38528358810`（success）は作り直さずに載せた。asset 5つのbytesとSHA-256を
@@ -458,7 +458,17 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   のが設計どおり）
 - 決定（2026-10-17、human owner）：b10は合格（`2026-10-13-05`の「通れば」）。翌日に誘導なしで始める回は、今回の改善点を直せば
   合格の見込みとし、b10とrc1を使う中でフィードバックを得る
-- 次の操作（2026-10-17）：McRemoteとScratchのpre-releaseの印を外してb10を公開し、shared deployを行う（指示票）。その後にrc1
+- 決定（2026-10-17、human owner）：pre-releaseの印は外さない。今は特殊なbootstrapの期間で、ベータの版をpre-releaseの状態で出す
+  （versioning §10.9、b4〜b9も`prerelease=true`）。b10の公開は2026-10-14に作ったpre-releaseのままとする。`2026-10-13-05`の
+  「印を外して公開」はこれに合わせて読む（coordinatorは前から外す前提で話していたが、human ownerは「まだ」と考えていた）
+- 確認（2026-10-17、coordinatorがGitHub APIで照合）：McRemote `main`と`v2320.0.0b10`のtag targetは同じ
+  `17bcf2645c112133935bc9d993d4fdd4669ceb98`、Scratch `develop`とtag targetは同じ`0809eb5e49e4b83c17a4e91b435d151b9d1b0655`。
+  どちらも`prerelease=true`、`draft=false`。ScratchのRelease本文の冒頭にWindowsの「許可する」の画像がある（human ownerが添付）
+- 方針（2026-10-17、human owner）：shared deployはリリースの作業を終えてから行う。VPSベータのMinecraftの版はhuman ownerが
+  調査中（Paper 26.3はまだ若く、他の勧めるプラグインの対応を調べている。逆に1.21.11とJava 21の対応を外したものもある。
+  DirectionHUDがその例で、McRemoteに取り込みたい動機もそこにある）。rc1、latest、その後で、サーバーの使い分けも変わる
+- 次の操作（2026-10-17）：McRemoteとScratchにb10の`handoff-materials`の分類を頼む（`00-hub/b10-gate-close-instructions_ja.md`）。
+  返ってきたら、gateを閉じるときのparkの確認（`2026-09-30-09`）をしてcloseをhuman ownerに諮る。その後にshared deployとrc1
 
 ## 2026-10-04 b9横断release gate（CLOSED）
 
