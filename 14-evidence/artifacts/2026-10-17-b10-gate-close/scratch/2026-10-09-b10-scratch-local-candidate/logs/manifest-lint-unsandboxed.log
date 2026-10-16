@@ -1,0 +1,4 @@
+
+> scratch-editor@15.0.1 release-manifest:lint
+> eslint --config mc-remote/local/eslint.config.mjs scripts/*release-manifest*.mjs
+

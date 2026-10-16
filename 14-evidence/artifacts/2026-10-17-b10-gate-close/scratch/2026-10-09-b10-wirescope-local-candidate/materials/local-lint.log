@@ -1,0 +1,4 @@
+
+> scratch-editor@15.0.1 local:lint
+> eslint --config mc-remote/local/eslint.config.mjs mc-remote/local/*.mjs scripts/acquire-mcremote-local*.mjs scripts/mcremote-local-artifacts*.mjs scripts/test-mcremote-local.mjs
+

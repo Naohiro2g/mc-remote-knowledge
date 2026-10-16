@@ -1,0 +1,68 @@
+{
+  "schema": "mc-remote.release-manifest",
+  "schema_version": 2,
+  "release_tag": "v2320.0.0b10",
+  "source_commit": "0809eb5e49e4b83c17a4e91b435d151b9d1b0655",
+  "artifacts": [
+    {
+      "role": "scratch",
+      "kind": "oci",
+      "locator": "ghcr.io/naohiro2g/mc-remote-scratch",
+      "digest": "sha256:3add03deeb308c22439d01badffe984ba6076d8ea18a40d6538a5c294f611339"
+    },
+    {
+      "role": "bridge",
+      "kind": "oci",
+      "locator": "ghcr.io/naohiro2g/mc-remote-bridge",
+      "digest": "sha256:5828304c9bb1d60df8672f9189f503790050e09358bd375f39e4d59d190eb84f"
+    },
+    {
+      "role": "wirescope",
+      "kind": "https-file",
+      "file": "wirescope-app.zip",
+      "bytes": 83854,
+      "sha256": "da3da0b6cf4d05265bc0c11abaa4913208c7cfc3600b0c3e78c93a356fc431ad"
+    },
+    {
+      "role": "wirescope-manifest",
+      "kind": "https-file",
+      "file": "wirescope-app.manifest.json",
+      "bytes": 2339,
+      "sha256": "c654f7d1f0be2773d6737e889279b2587317088717f162b082c82be9cff910d7"
+    },
+    {
+      "role": "contracts",
+      "kind": "https-file",
+      "file": "contracts.tar.gz",
+      "bytes": 1908,
+      "sha256": "48948ba47d55409f02a8ff8e0d44021b07859e11ffa5ca0f8598e6ef06082390"
+    },
+    {
+      "role": "scratch-local",
+      "kind": "https-file",
+      "os": "windows",
+      "arch": "x64",
+      "file": "mc-remote-scratch-LAN-2320.0.0b10-windows-x64.zip",
+      "bytes": 261590008,
+      "sha256": "00e73b71d63859f088595257abdec7ce204a09282d79f26daa8d851e0f4af1e8"
+    },
+    {
+      "role": "scratch-local",
+      "kind": "https-file",
+      "os": "macos",
+      "arch": "arm64",
+      "file": "mc-remote-scratch-LAN-2320.0.0b10-macos-arm64.zip",
+      "bytes": 265941672,
+      "sha256": "edcc757b931d8b89fc18487ee385c20d9ecbdc398b7f34f017e2137fe26c12d2"
+    },
+    {
+      "role": "scratch-local",
+      "kind": "https-file",
+      "os": "linux",
+      "arch": "x64",
+      "file": "mc-remote-scratch-LAN-2320.0.0b10-linux-x64.zip",
+      "bytes": 271197726,
+      "sha256": "b69e5b1118dba284604c217b0f3b06ea40b9876014166461705fdc400f647526"
+    }
+  ]
+}

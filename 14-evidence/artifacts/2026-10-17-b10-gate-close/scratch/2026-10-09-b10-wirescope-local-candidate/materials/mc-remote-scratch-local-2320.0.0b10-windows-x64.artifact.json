@@ -1,0 +1,11 @@
+{
+  "role": "scratch-local",
+  "kind": "file",
+  "file": "mc-remote-scratch-local-2320.0.0b10-windows-x64.zip",
+  "os": "windows",
+  "arch": "x64",
+  "bytes": 260532718,
+  "sha256": "f9d09ee84eb8cc54324c6b9d83dc3ab9371d7592ec0535346cf527d3db931a77",
+  "source_commit": "ec29372dadac9c51b2812c746e72032d48d987b6",
+  "working_tree_dirty": false
+}

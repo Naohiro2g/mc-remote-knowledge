@@ -1,0 +1,14 @@
+﻿2026-10-09T13:01:09.2807508Z ##[group]Run python3 scripts/build-mcremote-local.py --os windows --arch x64 --commit "ec29372dadac9c51b2812c746e72032d48d987b6"
+2026-10-09T13:01:09.2808267Z [36;1mpython3 scripts/build-mcremote-local.py --os windows --arch x64 --commit "ec29372dadac9c51b2812c746e72032d48d987b6"[0m
+2026-10-09T13:01:09.2809037Z [36;1mpython3 scripts/build-mcremote-local.py --os macos --arch arm64 --commit "ec29372dadac9c51b2812c746e72032d48d987b6"[0m
+2026-10-09T13:01:09.2809671Z [36;1mpython3 scripts/build-mcremote-local.py --os linux --arch x64 --commit "ec29372dadac9c51b2812c746e72032d48d987b6"[0m
+2026-10-09T13:01:09.2810287Z [36;1mnode scripts/test-mcremote-local.mjs candidate/mc-remote-scratch-local-2320.0.0b10-linux-x64.zip[0m
+2026-10-09T13:01:09.2846371Z shell: /usr/bin/bash -e {0}
+2026-10-09T13:01:09.2846635Z ##[endgroup]
+2026-10-09T13:01:31.3831057Z {"role": "scratch-local", "kind": "file", "file": "mc-remote-scratch-local-2320.0.0b10-windows-x64.zip", "os": "windows", "arch": "x64", "bytes": 260532718, "sha256": "f9d09ee84eb8cc54324c6b9d83dc3ab9371d7592ec0535346cf527d3db931a77", "source_commit": "ec29372dadac9c51b2812c746e72032d48d987b6", "working_tree_dirty": false}
+2026-10-09T13:01:54.3711214Z {"role": "scratch-local", "kind": "file", "file": "mc-remote-scratch-local-2320.0.0b10-macos-arm64.zip", "os": "macos", "arch": "arm64", "bytes": 264884384, "sha256": "16e20e5b2ecbfe1a7070d18f3700739bf2d4d567920347398e7ff82d1a40edc0", "source_commit": "ec29372dadac9c51b2812c746e72032d48d987b6", "working_tree_dirty": false}
+2026-10-09T13:02:18.0204480Z {"role": "scratch-local", "kind": "file", "file": "mc-remote-scratch-local-2320.0.0b10-linux-x64.zip", "os": "linux", "arch": "x64", "bytes": 270120781, "sha256": "3717f4dd55c0996c8e35ce121f293b06ed78e1a1c1bd7e4dad8c1a297fc186fc", "source_commit": "ec29372dadac9c51b2812c746e72032d48d987b6", "working_tree_dirty": false}
+2026-10-09T13:02:21.8928957Z Scratch Local Linux ZIP: hash/source, Japanese/spaced path, bundled Node startup PASS
+2026-10-09T13:02:21.8930698Z HTTP GUI/config, distinct loopback WireScope/pinned assets, fixed Bridge WS→TCP PASS
+2026-10-09T13:02:21.8931694Z Graceful exit and Scratch/Bridge/WireScope port release PASS
+2026-10-09T13:02:21.8932704Z Minecraft/pairing/OS download warnings are not tested by this deterministic stub.

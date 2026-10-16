@@ -1,0 +1,19 @@
+sdk install java 21.0.12+1.1-zulu
+
+Downloading: java 21.0.12+1.1-zulu
+
+In progress...
+
+#=#=- #    #
+
+Repackaging Java 21.0.12+1.1-zulu...
+__sdkman_post_installation_hook:16: no matches found: ~/.sdkman/tmp/out/*/Contents/Home
+__sdkman_post_installation_hook:20: no matches found: ~/.sdkman/tmp/out/*
+
+zip error: Nothing to do! (try: zip -qyr ~/.sdkman/tmp/java-21.0.12+1.1-zulu.zip . -i Java-21.0.12+1.1-zulu)
+
+Done repackaging...
+Cleaning up residual files...
+unzip:  cannot find or open ~/.sdkman/tmp/java-21.0.12+1.1-zulu.zip, ~/.sdkman/tmp/java-21.0.12+1.1-zulu.zip.zip or ~/.sdkman/tmp/java-21.0.12+1.1-zulu.zip.ZIP.
+
+Stop! The archive was corrupt and has been removed! Please try installing again.

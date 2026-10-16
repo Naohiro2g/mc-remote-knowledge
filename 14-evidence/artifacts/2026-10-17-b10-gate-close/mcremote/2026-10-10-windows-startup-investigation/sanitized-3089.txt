@@ -1,0 +1,61 @@
+ログの名前:         Microsoft-Windows-CodeIntegrity/Operational
+ソース:           Microsoft-Windows-CodeIntegrity
+日付:            2026/10/10 3:23:14
+イベント ID:       3089
+タスクのカテゴリ:      (1)
+レベル:           情報
+キーワード:         
+ユーザー:          [COMPUTER]\[USER]
+コンピューター:       [COMPUTER]
+説明:
+Signature information for another event. Match using the Correlation Id.
+イベント XML:
+<Event xmlns="http://schemas.microsoft.com/win/2004/08/events/event">
+  <System>
+    <Provider Name="Microsoft-Windows-CodeIntegrity" Guid="{REDACTED_ID_004}" />
+    <EventID>3089</EventID>
+    <Version>3</Version>
+    <Level>4</Level>
+    <Task>1</Task>
+    <Opcode>130</Opcode>
+    <Keywords>0x8000000000000000</Keywords>
+    <TimeCreated SystemTime="2026-10-09T18:23:14.7658359Z" />
+    <EventRecordID>141</EventRecordID>
+    <Correlation ActivityID="{REDACTED_ID_001}" />
+    <Execution ProcessID="4560" ThreadID="9584" />
+    <Channel>Microsoft-Windows-CodeIntegrity/Operational</Channel>
+    <Computer>[REDACTED_HOST]</Computer>
+    <Security UserID="[USER_SID]" />
+  </System>
+  <EventData>
+    <Data Name="TotalSignatureCount">0</Data>
+    <Data Name="Signature">0</Data>
+    <Data Name="CacheState">3</Data>
+    <Data Name="Hash Size">20</Data>
+    <Data Name="Hash">75524FFC37C23D7ADA3B3F6491B0018D0B090EA1</Data>
+    <Data Name="PageHash">false</Data>
+    <Data Name="SignatureType">0</Data>
+    <Data Name="ValidatedSigningLevel">0</Data>
+    <Data Name="VerificationError">0</Data>
+    <Data Name="Flags">0</Data>
+    <Data Name="PolicyBits">0</Data>
+    <Data Name="NotValidBefore">1601-01-01T00:00:00.0000000Z</Data>
+    <Data Name="NotValidAfter">1601-01-01T00:00:00.0000000Z</Data>
+    <Data Name="PublisherNameLength">7</Data>
+    <Data Name="PublisherName">Unknown</Data>
+    <Data Name="IssuerNameLength">7</Data>
+    <Data Name="IssuerName">Unknown</Data>
+    <Data Name="PublisherTBSHashSize">0</Data>
+    <Data Name="PublisherTBSHash">
+    </Data>
+    <Data Name="IssuerTBSHashSize">0</Data>
+    <Data Name="IssuerTBSHash">
+    </Data>
+    <Data Name="OPUSInfoLength">4</Data>
+    <Data Name="OPUSInfo">None</Data>
+    <Data Name="EKUsSize">0</Data>
+    <Data Name="EKUs">
+    </Data>
+    <Data Name="KnownRoot">0</Data>
+  </EventData>
+</Event>

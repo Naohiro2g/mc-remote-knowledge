@@ -1,0 +1,4 @@
+﻿2026-10-08T16:27:43.0243720Z ##[group]Run node scripts/build-mcremote-candidate-manifest.mjs "c717d0c2ed9b045b8c3bb925b0e1fcd8ee33010b" "sha256:78be826b8802ae72b5f23d713b35d8330735eef85b4c47957f012a0c7c247314"
+2026-10-08T16:27:43.0244464Z [36;1mnode scripts/build-mcremote-candidate-manifest.mjs "c717d0c2ed9b045b8c3bb925b0e1fcd8ee33010b" "sha256:78be826b8802ae72b5f23d713b35d8330735eef85b4c47957f012a0c7c247314"[0m
+2026-10-08T16:27:43.0300785Z shell: /usr/bin/bash -e {0}
+2026-10-08T16:27:43.0300936Z ##[endgroup]

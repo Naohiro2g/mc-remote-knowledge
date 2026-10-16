@@ -1,0 +1,12 @@
+verified range bytes received: 134217728 elapsed_s: 52
+verified range bytes received: 268435456 elapsed_s: 65
+verified range bytes received: 402653184 elapsed_s: 104
+verified range bytes received: 536870912 elapsed_s: 118
+verified range bytes received: 671088640 elapsed_s: 155
+verified range bytes received: 805306368 elapsed_s: 173
+verified range bytes received: 939524096 elapsed_s: 209
+verified range bytes received: 1073741824 elapsed_s: 237
+verified range bytes received: 1207959552 elapsed_s: 260
+verified range bytes received: 1342177280 elapsed_s: 270
+verified range bytes received: 1362315280 elapsed_s: 275
+parallel artifact bytes complete: 1362315280

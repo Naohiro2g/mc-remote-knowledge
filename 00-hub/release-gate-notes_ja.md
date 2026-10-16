@@ -469,6 +469,11 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   DirectionHUDがその例で、McRemoteに取り込みたい動機もそこにある）。rc1、latest、その後で、サーバーの使い分けも変わる
 - 次の操作（2026-10-17）：McRemoteとScratchにb10の`handoff-materials`の分類を頼む（`00-hub/b10-gate-close-instructions_ja.md`）。
   返ってきたら、gateを閉じるときのparkの確認（`2026-09-30-09`）をしてcloseをhuman ownerに諮る。その後にshared deployとrc1
+- 進捗（2026-10-17、close分類）：両担当がknowledge `91e7f4e`を読んで返した（McRemote `handoff-materials/2026-10-17-b10-close/`、
+  Scratch `handoff-materials/2026-10-17-b10-close-inventory/`）。①はScratch 79 file、McRemote 20 fileで、coordinatorがbytesと
+  SHA-256で照合して`14-evidence/artifacts/2026-10-17-b10-gate-close/`へ収容した（`14-evidence/records/2026-10-17-b10-gate-close_ja.md`）。
+  human ownerの指示で、設計とアイデアの文書は遅延削除（Scratchは該当のdirectoryを②、McRemoteは③のMarkdown 57件を保護）。
+  Scratchは2026-10-12のparkへの⑥〜⑪の追記が元の票と両立すると返し、WireScope miniの層別の診断の案が未収容と返した（parkへ追記）
 
 ## 2026-10-04 b9横断release gate（CLOSED）
 

@@ -1,0 +1,52 @@
+{
+  "knowledge_contract_commit": "7d1b3809b0987f7fc0e5c5c2f365a42e9046e240",
+  "source_commit": "c717d0c2ed9b045b8c3bb925b0e1fcd8ee33010b",
+  "workflow_run_id": 37808012407,
+  "artifact_id": 11563852835,
+  "test_class": "live-human",
+  "observations": [
+    {
+      "os": "windows",
+      "arch": "x64",
+      "file": "mc-remote-scratch-local-2320.0.0b10-windows-x64.zip",
+      "candidate_expected_bytes": 260361934,
+      "candidate_expected_sha256": "08340c801c1196c30a1227a7e495feb32131a95e4816ffbb29278557cadab9c1",
+      "sha256_match_reported": true,
+      "observation_source": "human owner report in conversation",
+      "commands_reported": [
+        "sha256sum.exe mc-remote-scratch-local-2320.0.0b10-windows-x64.zip",
+        "certutil -hashfile mc-remote-scratch-local-2320.0.0b10-windows-x64.zip SHA256"
+      ],
+      "literal_sha256_output_received": false,
+      "installation_and_connection_verified": false
+    },
+    {
+      "os": "macos",
+      "arch": "arm64",
+      "file": "mc-remote-scratch-local-2320.0.0b10-macos-arm64.zip",
+      "candidate_expected_bytes": 264713598,
+      "candidate_expected_sha256": "60d69479079eb5f7b7022547d417abc5dc31b237eb12766354885e4db53e6908",
+      "sha256_match_reported": true,
+      "observation_source": "human owner report in conversation",
+      "commands_reported": [
+        "shasum -a 256 mc-remote-scratch-local-2320.0.0b10-macos-arm64.zip"
+      ],
+      "literal_sha256_output_received": true,
+      "installation_and_connection_verified": false
+    },
+    {
+      "os": "linux",
+      "arch": "x64",
+      "file": "mc-remote-scratch-local-2320.0.0b10-linux-x64.zip",
+      "candidate_expected_bytes": 269950028,
+      "candidate_expected_sha256": "245d83aeab8f6a10bc3703547e0f897b3e82a8c9152c1a131378454f0debdf8b",
+      "sha256_match_reported": true,
+      "observation_source": "human owner report in conversation",
+      "commands_reported": [
+        "sha256sum mc-remote-scratch-local-2320.0.0b10-linux-x64.zip"
+      ],
+      "literal_sha256_output_received": true,
+      "installation_and_connection_verified": false
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+﻿2026-10-08T16:22:04.3649691Z ##[group]Run sudo apt-get update
+2026-10-08T16:22:04.3649901Z [36;1msudo apt-get update[0m
+2026-10-08T16:22:04.3650051Z [36;1msudo apt-get install -y skopeo[0m
+2026-10-08T16:22:04.3650279Z [36;1mEXPECTED="$(jq -r .artifacts.bridge_digest mc-remote/tooling-lock.json)"[0m
+2026-10-08T16:22:04.3650569Z [36;1mskopeo copy --all --preserve-digests --digestfile bridge-digest.txt \[0m
+2026-10-08T16:22:04.3650829Z [36;1m  oci-archive:mc-remote/tooling/artifacts/bridge.oci.tar \[0m
+2026-10-08T16:22:04.3651040Z [36;1m  "oci:$RUNNER_TEMP/bridge-check:bridge"[0m
+2026-10-08T16:22:04.3651230Z [36;1mtest "$(cat bridge-digest.txt)" = "$EXPECTED"[0m
+2026-10-08T16:22:04.3705422Z shell: /usr/bin/bash -e {0}
+2026-10-08T16:22:04.3705582Z ##[endgroup]
+2026-10-08T16:22:04.4216348Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+2026-10-08T16:22:04.4519641Z Hit:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
+2026-10-08T16:22:04.4546035Z Hit:6 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease
+2026-10-08T16:22:04.4555474Z Hit:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease
+2026-10-08T16:22:04.4564740Z Hit:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease
+2026-10-08T16:22:04.4573026Z Hit:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease
+2026-10-08T16:22:05.3721360Z Reading package lists...
+2026-10-08T16:22:05.3957845Z Reading package lists...
+2026-10-08T16:22:05.5804027Z Building dependency tree...
+2026-10-08T16:22:05.5809594Z Reading state information...
+2026-10-08T16:22:05.7357776Z skopeo is already the newest version (1.13.3+ds1-2ubuntu0.24.04.3).
+2026-10-08T16:22:05.7358245Z 0 upgraded, 0 newly installed, 0 to remove and 19 not upgraded.
+2026-10-08T16:22:09.6430563Z Getting image list signatures
+2026-10-08T16:22:09.6431130Z Copying 4 images generated from 4 images in list
+2026-10-08T16:22:09.6432174Z Copying image sha256:8283e71dce026294c3473a1d54319edfcd82e428816d21935637d4e002183f25 (1/4)
+2026-10-08T16:22:09.6437309Z Getting image source signatures
+2026-10-08T16:22:09.6438361Z Copying blob sha256:84f5eff04246b56d48d1ed6cbd82d6bc7e53f7e790db6a467f92571c69f3289e
+2026-10-08T16:22:09.7065276Z Copying blob sha256:126bf1d44e01352b4664f2c79ad94f72ff6f941d5d5c0b0dea7902c8f7639c6f
+2026-10-08T16:22:10.0010611Z Copying blob sha256:33c4ddc95d6e31ba8fd418a9535b313f40d0399d35d610f19661899b3d91e667
+2026-10-08T16:22:10.0041992Z Copying blob sha256:2e6679aac46e2d53f0af33f5c0359e8d4cef99245602979a9774901e4643b147
+2026-10-08T16:22:10.0056716Z Copying blob sha256:a77145ad474df1e8291f43608c2b14fd3b98ae00a553202a34256748c02fdd85
+2026-10-08T16:22:10.0071261Z Copying blob sha256:95ebc1f19f728407f0de405b7aa2ddaa6136443538f4df253fb00d5d1027a123
+2026-10-08T16:22:10.0081257Z Copying blob sha256:e0fd26917466ab00bac9777b26254cc50f56afe1dbd95321a08e609339f24cf0
+2026-10-08T16:22:10.0093717Z Copying blob sha256:0130e458868e385dc71abf9a7f7a66f33f71893bedcb29e2cce8323a8133ca3f
+2026-10-08T16:22:10.0105168Z Copying config sha256:a8988480f2216a080edf2e591b02b13ed09efaa331e0d7543a2d9e97ab59880c
+2026-10-08T16:22:10.0119709Z Writing manifest to image destination
+2026-10-08T16:22:10.0120431Z Copying image sha256:e3d079a575b43d7e4b93000da23850da9a46c019b649596828c1352e9bab2e98 (2/4)
+2026-10-08T16:22:10.0121318Z Getting image source signatures
+2026-10-08T16:22:10.0122256Z Copying blob sha256:58e777220c395c319866c5d73ea32a5ea574bbd12f4eb289b392f584d0cd953e
+2026-10-08T16:22:10.0360571Z Copying blob sha256:b7887d1aa89c3b8e2dd9fc6a8a9fa707da49f3becce54f4d8348755c4a336a10
+2026-10-08T16:22:10.3372570Z Copying blob sha256:ccc3d76279b10a41e4213ad7c35ae615739bb0ca0c6939adbed68a85fbd33561
+2026-10-08T16:22:10.3460620Z Copying blob sha256:89dde9d0bfd3b985283d2d50a4698528073b00d1462b04f727c62ddb0b4bbc82
+2026-10-08T16:22:10.3470930Z Copying blob sha256:a77145ad474df1e8291f43608c2b14fd3b98ae00a553202a34256748c02fdd85
+2026-10-08T16:22:10.3471677Z Copying blob sha256:95ebc1f19f728407f0de405b7aa2ddaa6136443538f4df253fb00d5d1027a123
+2026-10-08T16:22:10.3472266Z Copying blob sha256:e0fd26917466ab00bac9777b26254cc50f56afe1dbd95321a08e609339f24cf0
+2026-10-08T16:22:10.3473080Z Copying blob sha256:0130e458868e385dc71abf9a7f7a66f33f71893bedcb29e2cce8323a8133ca3f
+2026-10-08T16:22:10.3473611Z Copying config sha256:43e68ea7f060ed9d7973769ed684a51bcb9b2f923eb9e844c7770733edefc4d1
+2026-10-08T16:22:10.3482622Z Writing manifest to image destination
+2026-10-08T16:22:10.3483321Z Copying image sha256:d53423851c4b7d63ff3964af4b6caeb5ac46affcc013ca7e8eb9bf6d21cf3959 (3/4)
+2026-10-08T16:22:10.3484035Z Getting image source signatures
+2026-10-08T16:22:10.3484748Z Copying blob sha256:8d6b3075db8387f6f404d7fed78dddc0cd5a68bb488ea04767c45ea8c610222b
+2026-10-08T16:22:10.3523753Z Copying config sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+2026-10-08T16:22:10.3557177Z Writing manifest to image destination
+2026-10-08T16:22:10.3557732Z Copying image sha256:99c49d0180e4384f117c0a93af60974d6b45159376e5efdf08abfa65065fda91 (4/4)
+2026-10-08T16:22:10.3558164Z Getting image source signatures
+2026-10-08T16:22:10.3558648Z Copying blob sha256:96ce500c5c8228cd9a4f0e4f7304816fd80f3cd09c223bd4cf3e9a219313d785
+2026-10-08T16:22:10.3575296Z Copying config sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+2026-10-08T16:22:10.3587829Z Writing manifest to image destination
+2026-10-08T16:22:10.3588366Z Writing manifest list to image destination
+2026-10-08T16:22:10.3589485Z Storing list signatures

@@ -1,0 +1,69 @@
+{
+  "release_id": 412440460,
+  "release_url": "https://github.com/Naohiro2g/McRemote/releases/tag/v2320.0.0b10",
+  "tag_name": "v2320.0.0b10",
+  "title": "McRemote 2320.0.0b10 (Minecraft 1.21.11, 26.3)",
+  "draft": false,
+  "prerelease": true,
+  "published_at": "2026-10-14T07:26:42Z",
+  "latest_tag_unchanged": "v1.21.8-1.4.0",
+  "release_body_matches_prepared_except_trailing_newline": true,
+  "asset_count": 5,
+  "assets": [
+    {
+      "name": "manifest.json",
+      "asset_id": 639599337,
+      "bytes": 1761,
+      "github_digest": "sha256:508a34b9ea29357105e6fcc124a7ab0c0eba8ec9fa258eee52bb196222856627",
+      "download_sha256": "508a34b9ea29357105e6fcc124a7ab0c0eba8ec9fa258eee52bb196222856627",
+      "github_size_matches": true,
+      "github_digest_matches": true,
+      "same_bytes_as_approved_candidate": true,
+      "url": "https://github.com/Naohiro2g/McRemote/releases/download/v2320.0.0b10/manifest.json"
+    },
+    {
+      "name": "mc-remote-2320.0.0b10.jar",
+      "asset_id": 639599332,
+      "bytes": 315352,
+      "github_digest": "sha256:96ddf09f765a77811740d5c62f3787f7a87c8be6cd7247d345f6dfe9e93512a4",
+      "download_sha256": "96ddf09f765a77811740d5c62f3787f7a87c8be6cd7247d345f6dfe9e93512a4",
+      "github_size_matches": true,
+      "github_digest_matches": true,
+      "same_bytes_as_approved_candidate": true,
+      "url": "https://github.com/Naohiro2g/McRemote/releases/download/v2320.0.0b10/mc-remote-2320.0.0b10.jar"
+    },
+    {
+      "name": "mc-remote-verification-1.21.11.json",
+      "asset_id": 639589436,
+      "bytes": 63177,
+      "github_digest": "sha256:c79ca8e667f46b0df4f6703ce3173c40741e9c37427e4de7908cc396390674f9",
+      "download_sha256": "c79ca8e667f46b0df4f6703ce3173c40741e9c37427e4de7908cc396390674f9",
+      "github_size_matches": true,
+      "github_digest_matches": true,
+      "same_bytes_as_approved_candidate": true,
+      "url": "https://github.com/Naohiro2g/McRemote/releases/download/v2320.0.0b10/mc-remote-verification-1.21.11.json"
+    },
+    {
+      "name": "mc-remote-verification-26.3.json",
+      "asset_id": 639589437,
+      "bytes": 63717,
+      "github_digest": "sha256:e07fd1513f731d587302621b95234fb135fa95553ca87111829bcda3618b1754",
+      "download_sha256": "e07fd1513f731d587302621b95234fb135fa95553ca87111829bcda3618b1754",
+      "github_size_matches": true,
+      "github_digest_matches": true,
+      "same_bytes_as_approved_candidate": true,
+      "url": "https://github.com/Naohiro2g/McRemote/releases/download/v2320.0.0b10/mc-remote-verification-26.3.json"
+    },
+    {
+      "name": "minecraft-targets.json",
+      "asset_id": 639599336,
+      "bytes": 126,
+      "github_digest": "sha256:8e830732decd6bcde13f91eb6c071d062ba6993342a7edb52e6ea543b9e0c361",
+      "download_sha256": "8e830732decd6bcde13f91eb6c071d062ba6993342a7edb52e6ea543b9e0c361",
+      "github_size_matches": true,
+      "github_digest_matches": true,
+      "same_bytes_as_approved_candidate": true,
+      "url": "https://github.com/Naohiro2g/McRemote/releases/download/v2320.0.0b10/minecraft-targets.json"
+    }
+  ]
+}

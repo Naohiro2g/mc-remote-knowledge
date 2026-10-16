@@ -1,0 +1,31 @@
+.EF.E.
+======================================================================
+ERROR: test_nested_source_map_path_marks_only_the_embedded_package_as_runtime (__main__.LocalBuildTest.test_nested_source_map_path_marks_only_the_embedded_package_as_runtime)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/scripts/build-mcremote-local.test.py", line 50, in test_nested_source_map_path_marks_only_the_embedded_package_as_runtime
+    self.assertEqual(inventory[0]['distribution'], 'build-only')
+                     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+KeyError: 'distribution'
+
+======================================================================
+ERROR: test_supplemental_license_hash_is_checked_and_attribution_is_preserved (__main__.LocalBuildTest.test_supplemental_license_hash_is_checked_and_attribution_is_preserved)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/scripts/build-mcremote-local.test.py", line 70, in test_supplemental_license_hash_is_checked_and_attribution_is_preserved
+    self.assertEqual(inventory[0]['distribution'], 'runtime')
+                     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+KeyError: 'distribution'
+
+======================================================================
+FAIL: test_runtime_dependency_without_license_body_stops_packaging (__main__.LocalBuildTest.test_runtime_dependency_without_license_body_stops_packaging)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "~/Documents/GitHub/AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor/scripts/build-mcremote-local.test.py", line 38, in test_runtime_dependency_without_license_body_stops_packaging
+    with self.assertRaisesRegex(ValueError, 'Runtime license text missing: example@1.0.0'):
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.028s
+
+FAILED (failures=1, errors=2)

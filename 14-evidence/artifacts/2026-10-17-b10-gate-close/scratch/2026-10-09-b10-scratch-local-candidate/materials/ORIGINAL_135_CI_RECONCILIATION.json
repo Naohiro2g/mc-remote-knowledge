@@ -1,0 +1,1481 @@
+{
+  "original_count": 135,
+  "ci_count": 130,
+  "ci_runtime": 26,
+  "ci_build_only": 104,
+  "removed_instances": [
+    {
+      "name": "@rolldown/binding-linux-x64-gnu",
+      "version": "1.0.0-beta.53"
+    },
+    {
+      "name": "@rolldown/binding-linux-x64-gnu",
+      "version": "1.0.0-beta.53"
+    },
+    {
+      "name": "@rolldown/binding-linux-x64-gnu",
+      "version": "1.0.0-beta.53"
+    },
+    {
+      "name": "@napi-rs/wasm-runtime",
+      "version": "1.1.1"
+    },
+    {
+      "name": "@tybys/wasm-util",
+      "version": "0.10.1"
+    }
+  ],
+  "added_instances": [],
+  "entries": [
+    {
+      "original_index": 1,
+      "name": "@rolldown/binding-linux-x64-gnu",
+      "version": "1.0.0-beta.53",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 2,
+      "name": "@rolldown/binding-linux-x64-gnu",
+      "version": "1.0.0-beta.53",
+      "distribution": "absent-from-ci-gap-set",
+      "license_status": "installation-count-reduced",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 3,
+      "name": "@rolldown/binding-linux-x64-gnu",
+      "version": "1.0.0-beta.53",
+      "distribution": "absent-from-ci-gap-set",
+      "license_status": "installation-count-reduced",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 4,
+      "name": "@alcalzone/ansi-tokenize",
+      "version": "0.1.3",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 5,
+      "name": "@jsonjoy.com/json-pointer",
+      "version": "1.0.2",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 6,
+      "name": "@mediapipe/face_detection",
+      "version": "0.4.1646425229",
+      "distribution": "runtime",
+      "license_status": "supplemented",
+      "review_open": false,
+      "evidence": [
+        "CopyWebpackPlugin: chunks/mediapipe/face_detection"
+      ],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 7,
+      "name": "@napi-rs/wasm-runtime",
+      "version": "1.1.1",
+      "distribution": "absent-from-ci-gap-set",
+      "license_status": "installation-count-reduced",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 8,
+      "name": "@nicolo-ribaudo/chokidar-2",
+      "version": "2.1.8-no-fsevents.3",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 9,
+      "name": "@npmcli/agent",
+      "version": "4.0.0",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 10,
+      "name": "@pkgr/core",
+      "version": "0.2.9",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 11,
+      "name": "@pnpm/config.env-replace",
+      "version": "1.1.0",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 12,
+      "name": "@pnpm/network.ca-file",
+      "version": "1.0.2",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 13,
+      "name": "@rolldown/binding-linux-x64-gnu",
+      "version": "1.0.0-rc.11",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 14,
+      "name": "@rolldown/binding-linux-x64-musl",
+      "version": "1.0.0-rc.11",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 15,
+      "name": "@npmcli/agent",
+      "version": "4.0.0",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 16,
+      "name": "@sigstore/verify",
+      "version": "3.1.0",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 17,
+      "name": "spdx-exceptions",
+      "version": "2.5.0",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 18,
+      "name": "spdx-license-ids",
+      "version": "3.0.23",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 19,
+      "name": "@sigstore/verify",
+      "version": "3.1.0",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 20,
+      "name": "@tensorflow-models/face-detection",
+      "version": "1.0.3",
+      "distribution": "runtime",
+      "license_status": "supplemented",
+      "review_open": false,
+      "evidence": [
+        "blocksonly.js.map: webpack://GUI/../node_modules/@tensorflow-models/face-detection/dist/face-detection.esm.js",
+        "compatibilitytesting.js.map: webpack://GUI/../node_modules/@tensorflow-models/face-detection/dist/face-detection.esm.js",
+        "gui.js.map: webpack://GUI/../node_modules/@tensorflow-models/face-detection/dist/face-detection.esm.js"
+      ],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 21,
+      "name": "@tensorflow/tfjs",
+      "version": "4.22.0",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 22,
+      "name": "@tensorflow/tfjs-backend-cpu",
+      "version": "4.22.0",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 23,
+      "name": "@tensorflow/tfjs-backend-webgl",
+      "version": "4.22.0",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 24,
+      "name": "@tensorflow/tfjs-converter",
+      "version": "4.22.0",
+      "distribution": "runtime",
+      "license_status": "supplemented",
+      "review_open": false,
+      "evidence": [
+        "blocksonly.js.map: webpack://GUI/../node_modules/@tensorflow/tfjs-converter/dist/data/compiled_api.js",
+        "blocksonly.js.map: webpack://GUI/../node_modules/@tensorflow/tfjs-converter/dist/flags.js",
+        "blocksonly.js.map: webpack://GUI/../node_modules/@tensorflow/tfjs-converter/dist/operations/custom_op/register.js"
+      ],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 25,
+      "name": "@tensorflow/tfjs-core",
+      "version": "4.22.0",
+      "distribution": "runtime",
+      "license_status": "supplemented",
+      "review_open": false,
+      "evidence": [
+        "blocksonly.js.map: webpack://GUI/../node_modules/@tensorflow/tfjs-core/dist/backends/backend.js",
+        "blocksonly.js.map: webpack://GUI/../node_modules/@tensorflow/tfjs-core/dist/util_base.js",
+        "blocksonly.js.map: webpack://GUI/../node_modules/@tensorflow/tfjs-core/dist/environment.js"
+      ],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 26,
+      "name": "@tensorflow/tfjs-data",
+      "version": "4.22.0",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 27,
+      "name": "@tensorflow/tfjs-layers",
+      "version": "4.22.0",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 28,
+      "name": "@transifex/api",
+      "version": "7.1.6",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 29,
+      "name": "@tybys/wasm-util",
+      "version": "0.10.1",
+      "distribution": "absent-from-ci-gap-set",
+      "license_status": "installation-count-reduced",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 30,
+      "name": "@unicode/unicode-17.0.0",
+      "version": "1.6.16",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 31,
+      "name": "@unrs/resolver-binding-linux-x64-gnu",
+      "version": "1.11.1",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 32,
+      "name": "@unrs/resolver-binding-linux-x64-musl",
+      "version": "1.11.1",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 33,
+      "name": "adm-zip",
+      "version": "0.4.11",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 34,
+      "name": "array-ify",
+      "version": "1.0.0",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 35,
+      "name": "assert-plus",
+      "version": "1.0.0",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 36,
+      "name": "audio-context",
+      "version": "1.0.3",
+      "distribution": "runtime",
+      "license_status": "supplemented",
+      "review_open": false,
+      "evidence": [
+        "blocksonly.js.map: webpack://GUI/../node_modules/audio-context/index.js",
+        "compatibilitytesting.js.map: webpack://GUI/../node_modules/audio-context/index.js",
+        "gui.js.map: webpack://GUI/../node_modules/audio-context/index.js"
+      ],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 37,
+      "name": "babel-core",
+      "version": "7.0.0-bridge.0",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 38,
+      "name": "babel-plugin-extract-format-message",
+      "version": "6.2.4",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 39,
+      "name": "babel-plugin-transform-format-message",
+      "version": "6.2.4",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 40,
+      "name": "base64-loader",
+      "version": "1.0.0",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 41,
+      "name": "blockly",
+      "version": "12.4.1",
+      "distribution": "runtime",
+      "license_status": "supplemented",
+      "review_open": false,
+      "evidence": [
+        "Blockly is embedded in scratch-blocks/dist/main.mjs"
+      ],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 42,
+      "name": "saxes",
+      "version": "6.0.0",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 43,
+      "name": "boolbase",
+      "version": "1.0.0",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 44,
+      "name": "browser-stdout",
+      "version": "1.3.0",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 45,
+      "name": "bser",
+      "version": "2.1.1",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 46,
+      "name": "buffer-equal",
+      "version": "0.0.1",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 47,
+      "name": "callsite",
+      "version": "1.0.0",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 48,
+      "name": "colors",
+      "version": "0.6.2",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 49,
+      "name": "cookie-signature",
+      "version": "1.0.7",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 50,
+      "name": "cssstyle",
+      "version": "1.4.0",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 51,
+      "name": "eastasianwidth",
+      "version": "0.2.0",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 52,
+      "name": "err-code",
+      "version": "2.0.3",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 53,
+      "name": "eslint-plugin-format-message",
+      "version": "6.2.4",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 54,
+      "name": "esrecurse",
+      "version": "4.3.0",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 55,
+      "name": "fb-watchman",
+      "version": "2.0.2",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 56,
+      "name": "findup",
+      "version": "0.1.5",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 57,
+      "name": "commander",
+      "version": "2.1.0",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 58,
+      "name": "format",
+      "version": "0.2.2",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 59,
+      "name": "format-message",
+      "version": "6.2.4",
+      "distribution": "runtime",
+      "license_status": "supplemented",
+      "review_open": false,
+      "evidence": [
+        "blocksonly.js.map: webpack://GUI/../node_modules/format-message/index.js",
+        "compatibilitytesting.js.map: webpack://GUI/../node_modules/format-message/index.js",
+        "gui.js.map: webpack://GUI/../node_modules/format-message/index.js"
+      ],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 60,
+      "name": "format-message-cli",
+      "version": "6.2.4",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 61,
+      "name": "format-message-estree-util",
+      "version": "6.2.4",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 62,
+      "name": "format-message-formats",
+      "version": "6.2.4",
+      "distribution": "runtime",
+      "license_status": "supplemented",
+      "review_open": false,
+      "evidence": [
+        "blocksonly.js.map: webpack://GUI/../node_modules/format-message-formats/index.js",
+        "compatibilitytesting.js.map: webpack://GUI/../node_modules/format-message-formats/index.js",
+        "gui.js.map: webpack://GUI/../node_modules/format-message-formats/index.js"
+      ],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 63,
+      "name": "format-message-generate-id",
+      "version": "6.2.4",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 64,
+      "name": "format-message-interpret",
+      "version": "6.2.4",
+      "distribution": "runtime",
+      "license_status": "supplemented",
+      "review_open": false,
+      "evidence": [
+        "blocksonly.js.map: webpack://GUI/../node_modules/format-message-interpret/index.js",
+        "blocksonly.js.map: webpack://GUI/../node_modules/format-message-interpret/plurals.js",
+        "compatibilitytesting.js.map: webpack://GUI/../node_modules/format-message-interpret/index.js"
+      ],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 65,
+      "name": "format-message-parse",
+      "version": "6.2.4",
+      "distribution": "runtime",
+      "license_status": "supplemented",
+      "review_open": false,
+      "evidence": [
+        "blocksonly.js.map: webpack://GUI/../node_modules/format-message-parse/index.js",
+        "compatibilitytesting.js.map: webpack://GUI/../node_modules/format-message-parse/index.js",
+        "gui.js.map: webpack://GUI/../node_modules/format-message-parse/index.js"
+      ],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 66,
+      "name": "format-message-print",
+      "version": "6.2.4",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 67,
+      "name": "get-float-time-domain-data",
+      "version": "0.1.0",
+      "distribution": "runtime",
+      "license_status": "supplemented",
+      "review_open": false,
+      "evidence": [
+        "blocksonly.js.map: webpack://GUI/../node_modules/get-float-time-domain-data/lib/get-float-time-domain-data.js",
+        "compatibilitytesting.js.map: webpack://GUI/../node_modules/get-float-time-domain-data/lib/get-float-time-domain-data.js",
+        "gui.js.map: webpack://GUI/../node_modules/get-float-time-domain-data/lib/get-float-time-domain-data.js"
+      ],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 68,
+      "name": "get-user-media-promise",
+      "version": "1.1.4",
+      "distribution": "runtime",
+      "license_status": "supplemented",
+      "review_open": false,
+      "evidence": [
+        "blocksonly.js.map: webpack://GUI/../node_modules/get-user-media-promise/lib/get-user-media-promise.js",
+        "compatibilitytesting.js.map: webpack://GUI/../node_modules/get-user-media-promise/lib/get-user-media-promise.js",
+        "gui.js.map: webpack://GUI/../node_modules/get-user-media-promise/lib/get-user-media-promise.js"
+      ],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 69,
+      "name": "glob-to-regex.js",
+      "version": "1.2.0",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 70,
+      "name": "grapheme-breaker",
+      "version": "0.3.2",
+      "distribution": "runtime",
+      "license_status": "supplemented",
+      "review_open": false,
+      "evidence": [
+        "blocksonly.js.map: webpack://GUI/../node_modules/ify-loader/node_modules/grapheme-breaker/src/GraphemeBreaker.js",
+        "compatibilitytesting.js.map: webpack://GUI/../node_modules/ify-loader/node_modules/grapheme-breaker/src/GraphemeBreaker.js",
+        "gui.js.map: webpack://GUI/../node_modules/ify-loader/node_modules/grapheme-breaker/src/GraphemeBreaker.js"
+      ],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 71,
+      "name": "growl",
+      "version": "1.10.3",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 72,
+      "name": "handle-thing",
+      "version": "2.0.1",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 73,
+      "name": "hpack.js",
+      "version": "2.1.6",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 74,
+      "name": "http-deceiver",
+      "version": "1.2.7",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 75,
+      "name": "imurmurhash",
+      "version": "0.1.4",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 76,
+      "name": "is-in-browser",
+      "version": "1.1.3",
+      "distribution": "runtime",
+      "license_status": "supplemented",
+      "review_open": false,
+      "evidence": [
+        "blocksonly.js.map: webpack://GUI/../node_modules/is-in-browser/dist/module.js",
+        "compatibilitytesting.js.map: webpack://GUI/../node_modules/is-in-browser/dist/module.js",
+        "gui.js.map: webpack://GUI/../node_modules/is-in-browser/dist/module.js"
+      ],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 77,
+      "name": "saxes",
+      "version": "6.0.0",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 78,
+      "name": "java-properties",
+      "version": "1.0.2",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 79,
+      "name": "javascript-natural-sort",
+      "version": "0.7.1",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 80,
+      "name": "agent-base",
+      "version": "6.0.2",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 81,
+      "name": "http-proxy-agent",
+      "version": "5.0.0",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 82,
+      "name": "https-proxy-agent",
+      "version": "5.0.1",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 83,
+      "name": "saxes",
+      "version": "6.0.0",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 84,
+      "name": "jest-pnp-resolver",
+      "version": "1.2.3",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 85,
+      "name": "parse5",
+      "version": "5.1.0",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 86,
+      "name": "jsonify",
+      "version": "0.0.1",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 87,
+      "name": "keymirror",
+      "version": "0.1.1",
+      "distribution": "runtime",
+      "license_status": "supplemented",
+      "review_open": false,
+      "evidence": [
+        "blocksonly.js.map: webpack://GUI/../node_modules/keymirror/index.js",
+        "compatibilitytesting.js.map: webpack://GUI/../node_modules/keymirror/index.js",
+        "gui.js.map: webpack://GUI/../node_modules/keymirror/index.js"
+      ],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 88,
+      "name": "keyv",
+      "version": "4.5.4",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 89,
+      "name": "language-subtag-registry",
+      "version": "0.3.23",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 90,
+      "name": "language-tags",
+      "version": "1.0.9",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 91,
+      "name": "linebreak",
+      "version": "0.3.0",
+      "distribution": "runtime",
+      "license_status": "supplemented",
+      "review_open": false,
+      "evidence": [
+        "blocksonly.js.map: webpack://GUI/../node_modules/ify-loader/node_modules/linebreak/src/linebreaker.js",
+        "blocksonly.js.map: webpack://GUI/../node_modules/linebreak/src/classes.js",
+        "blocksonly.js.map: webpack://GUI/../node_modules/linebreak/src/pairs.js"
+      ],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 92,
+      "name": "lookup-closest-locale",
+      "version": "6.2.0",
+      "distribution": "runtime",
+      "license_status": "supplemented",
+      "review_open": false,
+      "evidence": [
+        "blocksonly.js.map: webpack://GUI/../node_modules/lookup-closest-locale/index.js",
+        "compatibilitytesting.js.map: webpack://GUI/../node_modules/lookup-closest-locale/index.js",
+        "gui.js.map: webpack://GUI/../node_modules/lookup-closest-locale/index.js"
+      ],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 93,
+      "name": "microee",
+      "version": "0.0.6",
+      "distribution": "runtime",
+      "license_status": "supplemented",
+      "review_open": true,
+      "evidence": [
+        "blocksonly.js.map: webpack://GUI/../node_modules/microee/index.js",
+        "compatibilitytesting.js.map: webpack://GUI/../node_modules/microee/index.js",
+        "gui.js.map: webpack://GUI/../node_modules/microee/index.js"
+      ],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 94,
+      "name": "multipipe",
+      "version": "0.3.1",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 95,
+      "name": "natural-compare",
+      "version": "1.4.0",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 96,
+      "name": "nerf-dart",
+      "version": "1.0.0",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 97,
+      "name": "tr46",
+      "version": "0.0.3",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 98,
+      "name": "node-options-to-argv",
+      "version": "1.0.0",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 99,
+      "name": "@npmcli/agent",
+      "version": "3.0.0",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 100,
+      "name": "@sigstore/verify",
+      "version": "2.1.1",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 101,
+      "name": "eastasianwidth",
+      "version": "0.2.0",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 102,
+      "name": "err-code",
+      "version": "2.0.3",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 103,
+      "name": "imurmurhash",
+      "version": "0.1.4",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 104,
+      "name": "spdx-exceptions",
+      "version": "2.5.0",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 105,
+      "name": "spdx-license-ids",
+      "version": "3.0.23",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 106,
+      "name": "omggif",
+      "version": "1.0.10",
+      "distribution": "runtime",
+      "license_status": "supplemented",
+      "review_open": false,
+      "evidence": [
+        "blocksonly.js.map: webpack://GUI/../node_modules/omggif/omggif.js",
+        "compatibilitytesting.js.map: webpack://GUI/../node_modules/omggif/omggif.js",
+        "gui.js.map: webpack://GUI/../node_modules/omggif/omggif.js"
+      ],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 107,
+      "name": "pn",
+      "version": "1.1.0",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 108,
+      "name": "react-popover",
+      "version": "0.5.10",
+      "distribution": "runtime",
+      "license_status": "supplemented",
+      "review_open": false,
+      "evidence": [
+        "blocksonly.js.map: webpack://GUI/../node_modules/react-popover/build/index.js",
+        "blocksonly.js.map: webpack://GUI/../node_modules/react-popover/build/layout.js",
+        "blocksonly.js.map: webpack://GUI/../node_modules/react-popover/build/on-resize.js"
+      ],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 109,
+      "name": "react-remove-scroll-bar",
+      "version": "2.3.8",
+      "distribution": "runtime",
+      "license_status": "supplemented",
+      "review_open": false,
+      "evidence": [
+        "blocksonly.js.map: webpack://GUI/../node_modules/react-remove-scroll-bar/dist/es2015/constants.js",
+        "blocksonly.js.map: webpack://GUI/../node_modules/react-remove-scroll-bar/dist/es2015/utils.js",
+        "blocksonly.js.map: webpack://GUI/../node_modules/react-remove-scroll-bar/dist/es2015/component.js"
+      ],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 110,
+      "name": "isarray",
+      "version": "1.0.0",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 111,
+      "name": "redux-throttle",
+      "version": "0.1.1",
+      "distribution": "runtime",
+      "license_status": "supplemented",
+      "review_open": false,
+      "evidence": [
+        "blocksonly.js.map: webpack://GUI/../node_modules/redux-throttle/build/index.js",
+        "compatibilitytesting.js.map: webpack://GUI/../node_modules/redux-throttle/build/index.js",
+        "gui.js.map: webpack://GUI/../node_modules/redux-throttle/build/index.js"
+      ],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 112,
+      "name": "raw-loader",
+      "version": "0.5.1",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 113,
+      "name": "seedrandom",
+      "version": "3.0.5",
+      "distribution": "runtime",
+      "license_status": "supplemented",
+      "review_open": false,
+      "evidence": [
+        "blocksonly.js.map: webpack://GUI/../node_modules/seedrandom/index.js",
+        "blocksonly.js.map: webpack://GUI/../node_modules/seedrandom/lib/alea.js",
+        "blocksonly.js.map: webpack://GUI/../node_modules/seedrandom/lib/tychei.js"
+      ],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 114,
+      "name": "select-hose",
+      "version": "2.0.0",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 115,
+      "name": "spdx-exceptions",
+      "version": "2.5.0",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 116,
+      "name": "spdx-license-ids",
+      "version": "3.0.22",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 117,
+      "name": "spdy",
+      "version": "4.0.2",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 118,
+      "name": "spdy-transport",
+      "version": "3.0.0",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 119,
+      "name": "stackback",
+      "version": "0.0.2",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 120,
+      "name": "magic-string",
+      "version": "0.22.5",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 121,
+      "name": "type-fest",
+      "version": "2.19.0",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 122,
+      "name": "to-style",
+      "version": "1.3.3",
+      "distribution": "runtime",
+      "license_status": "supplemented",
+      "review_open": false,
+      "evidence": [
+        "blocksonly.js.map: webpack://GUI/../node_modules/to-style/index.js",
+        "blocksonly.js.map: webpack://GUI/../node_modules/to-style/src/cssPrefix.js",
+        "blocksonly.js.map: webpack://GUI/../node_modules/to-style/src/cssUnitless.js"
+      ],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 123,
+      "name": "@esbuild/linux-x64",
+      "version": "0.28.0",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 124,
+      "name": "unicode-trie",
+      "version": "0.3.1",
+      "distribution": "runtime",
+      "license_status": "supplemented",
+      "review_open": false,
+      "evidence": [
+        "blocksonly.js.map: webpack://GUI/../node_modules/unicode-trie/index.js",
+        "compatibilitytesting.js.map: webpack://GUI/../node_modules/unicode-trie/index.js",
+        "gui.js.map: webpack://GUI/../node_modules/unicode-trie/index.js"
+      ],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 125,
+      "name": "unrs-resolver",
+      "version": "1.11.1",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 126,
+      "name": "w3c-xmlserializer",
+      "version": "1.1.2",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 127,
+      "name": "wav-encoder",
+      "version": "1.3.0",
+      "distribution": "runtime",
+      "license_status": "supplemented",
+      "review_open": false,
+      "evidence": [
+        "blocksonly.js.map: webpack://GUI/../node_modules/wav-encoder/index.js",
+        "compatibilitytesting.js.map: webpack://GUI/../node_modules/wav-encoder/index.js",
+        "gui.js.map: webpack://GUI/../node_modules/wav-encoder/index.js"
+      ],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 128,
+      "name": "wbuf",
+      "version": "1.7.3",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 129,
+      "name": "web-audio-test-api",
+      "version": "0.5.2",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 130,
+      "name": "yoga-layout",
+      "version": "3.2.1",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 131,
+      "name": "canvas",
+      "version": "3.2.3",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 132,
+      "name": "raw-loader",
+      "version": "0.5.1",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 133,
+      "name": "canvas",
+      "version": "3.2.3",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 134,
+      "name": "@rolldown/binding-linux-x64-gnu",
+      "version": "1.0.0-beta.53",
+      "distribution": "absent-from-ci-gap-set",
+      "license_status": "installation-count-reduced",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    },
+    {
+      "original_index": 135,
+      "name": "@rolldown/binding-linux-x64-musl",
+      "version": "1.0.0-beta.53",
+      "distribution": "build-only",
+      "license_status": "not-distributed",
+      "review_open": false,
+      "evidence": [],
+      "match_basis": "name/version occurrence counts; original snapshot did not record installation locations"
+    }
+  ]
+}

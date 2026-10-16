@@ -1,0 +1,86 @@
+{
+  "schema": "mc-remote.candidate-manifest",
+  "schema_version": 1,
+  "version": "2320.0.0b10",
+  "source": {
+    "repository": "https://github.com/Naohiro2g/scratch-editor",
+    "commit": "c717d0c2ed9b045b8c3bb925b0e1fcd8ee33010b"
+  },
+  "tooling": {
+    "repository": "Naohiro2g/minecraft-remote-tooling",
+    "commit": "dc1ab834183e29f2eb03059b07e99d2b463776ee"
+  },
+  "artifacts": [
+    {
+      "role": "scratch-gui",
+      "kind": "file",
+      "file": "scratch-gui.tar.gz",
+      "bytes": 138368101,
+      "sha256": "21efc8831c839d86afafb4c89bc8e9e8adad0cee4764b085c819854137135256"
+    },
+    {
+      "role": "scratch",
+      "kind": "oci-archive",
+      "file": "scratch.oci.tar",
+      "bytes": 322935808,
+      "sha256": "29767113dab795dbda1ff3c404c13a2b4392386a1f32b44879e95877f23b2eac",
+      "digest": "sha256:78be826b8802ae72b5f23d713b35d8330735eef85b4c47957f012a0c7c247314"
+    },
+    {
+      "role": "bridge",
+      "kind": "oci-archive",
+      "file": "bridge.oci.tar",
+      "bytes": 114628096,
+      "sha256": "b6a6feec07e8d7ae9805a81e8dc370e6220e91af145ef3117ce5ed12e703b100",
+      "digest": "sha256:5828304c9bb1d60df8672f9189f503790050e09358bd375f39e4d59d190eb84f"
+    },
+    {
+      "role": "wirescope",
+      "kind": "file",
+      "file": "wirescope-app.zip",
+      "bytes": 83854,
+      "sha256": "da3da0b6cf4d05265bc0c11abaa4913208c7cfc3600b0c3e78c93a356fc431ad"
+    },
+    {
+      "role": "wirescope-manifest",
+      "kind": "file",
+      "file": "wirescope-app.manifest.json",
+      "bytes": 2339,
+      "sha256": "c654f7d1f0be2773d6737e889279b2587317088717f162b082c82be9cff910d7"
+    },
+    {
+      "role": "contracts",
+      "kind": "file",
+      "file": "contracts.tar.gz",
+      "bytes": 1908,
+      "sha256": "48948ba47d55409f02a8ff8e0d44021b07859e11ffa5ca0f8598e6ef06082390"
+    },
+    {
+      "role": "scratch-local",
+      "kind": "file",
+      "os": "windows",
+      "arch": "x64",
+      "file": "mc-remote-scratch-local-2320.0.0b10-windows-x64.zip",
+      "bytes": 260361934,
+      "sha256": "08340c801c1196c30a1227a7e495feb32131a95e4816ffbb29278557cadab9c1"
+    },
+    {
+      "role": "scratch-local",
+      "kind": "file",
+      "os": "macos",
+      "arch": "arm64",
+      "file": "mc-remote-scratch-local-2320.0.0b10-macos-arm64.zip",
+      "bytes": 264713598,
+      "sha256": "60d69479079eb5f7b7022547d417abc5dc31b237eb12766354885e4db53e6908"
+    },
+    {
+      "role": "scratch-local",
+      "kind": "file",
+      "os": "linux",
+      "arch": "x64",
+      "file": "mc-remote-scratch-local-2320.0.0b10-linux-x64.zip",
+      "bytes": 269950028,
+      "sha256": "245d83aeab8f6a10bc3703547e0f897b3e82a8c9152c1a131378454f0debdf8b"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+
+> scratch-editor@15.0.1 local:test
+> node --test mc-remote/local/launcher.test.mjs scripts/mcremote-local-artifacts.test.mjs scripts/acquire-mcremote-local.test.mjs && python3 scripts/build-mcremote-local.test.py
+
+✔ target accepts loopback/LAN hostnames and rejects URLs, lists and invalid ports (9.076559ms)
+✔ serves editor and runtime settings on loopback and preserves pairing storage origin (132.89433ms)
+✔ changing target updates both Bridge and editor and persists only host/port (51.880358ms)
+✔ serves WireScope at a distinct loopback origin and exposes its URL to Scratch (72.798756ms)
+✔ occupied WireScope port aborts startup, releases Scratch and preserves existing service (19.842992ms)
+✔ refuses cross-origin writes, rebinding hosts, unknown fields and private files (28.81492ms)
+✔ restores target after restart and leaves broken user settings visible (10.830173ms)
+✔ stops the replacement Bridge when shutdown occurs during a target change (18.510309ms)
+✔ accepts only explicitly pinned candidate identity (3.429814ms)
+✔ requires completed successful owner build rather than a matching fork or unrelated workflow (0.664486ms)
+✔ keeps candidate file kind and emits release https-file with unambiguous OS/arch (20.230765ms)
+✔ rejects corrupt bytes, swapped platforms and source mismatch (12.117353ms)
+✔ permits explicit local drafts for candidate but prevents publishing them (15.603551ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 592.813441
+........
+----------------------------------------------------------------------
+Ran 8 tests in 0.046s
+
+OK

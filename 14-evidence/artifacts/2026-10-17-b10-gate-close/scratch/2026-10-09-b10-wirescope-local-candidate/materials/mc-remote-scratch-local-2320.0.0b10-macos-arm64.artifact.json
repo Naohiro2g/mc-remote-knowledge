@@ -1,0 +1,11 @@
+{
+  "role": "scratch-local",
+  "kind": "file",
+  "file": "mc-remote-scratch-local-2320.0.0b10-macos-arm64.zip",
+  "os": "macos",
+  "arch": "arm64",
+  "bytes": 264884384,
+  "sha256": "16e20e5b2ecbfe1a7070d18f3700739bf2d4d567920347398e7ff82d1a40edc0",
+  "source_commit": "ec29372dadac9c51b2812c746e72032d48d987b6",
+  "working_tree_dirty": false
+}

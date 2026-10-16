@@ -1,0 +1,50 @@
+{
+  "events": [
+    {
+      "event_id": 3033,
+      "event_record_id": 138,
+      "time_utc": "2026-10-09T18:23:14.7544086Z",
+      "time_jst": "2026-10-10T03:23:14.754408+09:00",
+      "activity_id": "{REDACTED_ID_001}",
+      "process_id": "4560",
+      "thread_id": "9584",
+      "dll_basename": "sqlite-3.53.4.0-REDACTED_ID_002-sqlitejdbc.dll",
+      "java_path_suffix": "mise/installs/java/21.0.2/bin/java.exe",
+      "policy_name": null,
+      "policy_guid": null,
+      "requested_signing_level": "2",
+      "validated_signing_level": "1",
+      "status": "3236495362",
+      "dll_flat_sha256": null,
+      "source_file_bytes": 1305,
+      "source_file_sha256": "05dc80ada9791ecf39ce0f38537f6cfaf6da47b8518433943af9f416adfc7808"
+    },
+    {
+      "event_id": 3077,
+      "event_record_id": 140,
+      "time_utc": "2026-10-09T18:23:14.7658306Z",
+      "time_jst": "2026-10-10T03:23:14.765830+09:00",
+      "activity_id": "{REDACTED_ID_001}",
+      "process_id": "4560",
+      "thread_id": "9584",
+      "dll_basename": "sqlite-3.53.4.0-REDACTED_ID_002-sqlitejdbc.dll",
+      "java_path_suffix": "mise/installs/java/21.0.2/bin/java.exe",
+      "policy_name": "VerifiedAndReputableDesktop",
+      "policy_guid": "{REDACTED_ID_003}",
+      "requested_signing_level": "2",
+      "validated_signing_level": "1",
+      "status": "0xc0e90002",
+      "dll_flat_sha256": "F16882D2EDED914EDD1E1D313E7C8579E040B0DA090A52EA99AD7B0C5D961C45",
+      "source_file_bytes": 2858,
+      "source_file_sha256": "455632b89a8577628d176109907e5f8d2fc97512f26c342fc53c5796f4ea5b24"
+    }
+  ],
+  "same_activity": true,
+  "candidate_jar_sha256": "9902507a3b3f92459da1dbcf9621059425de8966a50289c080aee14a0f9ed7d2",
+  "bundled_windows_x64_dll": {
+    "bytes": 1014784,
+    "sha256": "f16882d2eded914edd1e1d313e7c8579e040b0da090a52ea99ad7b0c5d961c45",
+    "matches_blocked_file_flat_hash": true
+  },
+  "conclusion": "SAC VerifiedAndReputableDesktop blocked the exact Windows x64 native DLL bytes shipped in candidate 9902507a. Signature details and reason for later success remain unknown."
+}

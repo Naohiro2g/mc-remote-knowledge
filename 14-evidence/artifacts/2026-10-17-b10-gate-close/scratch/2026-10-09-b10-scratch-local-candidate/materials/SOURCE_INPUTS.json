@@ -1,0 +1,21 @@
+{
+  "source_commit": "c717d0c2ed9b045b8c3bb925b0e1fcd8ee33010b",
+  "knowledge_contract": "5e248a9cd9243c1ca654abfbed65ee2646087316",
+  "locks": [
+    {
+      "path": "mc-remote/local-runtime-lock.json",
+      "bytes": 745,
+      "sha256": "86fed4a5cd301779bcbac9d5bd94bcc29794e0d5b326f0ab24f30091ada6d923"
+    },
+    {
+      "path": "mc-remote/tooling-lock.json",
+      "bytes": 3763,
+      "sha256": "5bd219b9c68eb804f0ff5ce5dd0973b5d38d68c4dfcb941e2fb9dd0772cb6c3c"
+    },
+    {
+      "path": "mc-remote/release-manifest-lock.json",
+      "bytes": 1411,
+      "sha256": "c7de38a3316656d183632b4ca58e8904d67ae722cc9e9959a03fff626ab39298"
+    }
+  ]
+}

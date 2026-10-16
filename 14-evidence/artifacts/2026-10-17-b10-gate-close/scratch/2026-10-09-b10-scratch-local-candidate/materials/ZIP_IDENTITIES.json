@@ -1,0 +1,32 @@
+{
+  "source_commit": "c717d0c2ed9b045b8c3bb925b0e1fcd8ee33010b",
+  "artifact_id": 11563852835,
+  "artifact_digest": "sha256:75b1df3df6d659514ee6eb3a2913a7d9bf6e062a449316c352e9a59078a89aea",
+  "workflow_run_id": 37808012407,
+  "zips": [
+    {
+      "file": "mc-remote-scratch-local-2320.0.0b10-windows-x64.zip",
+      "os": "windows",
+      "arch": "x64",
+      "bytes": 260361934,
+      "sha256": "08340c801c1196c30a1227a7e495feb32131a95e4816ffbb29278557cadab9c1",
+      "local_path": "candidate/ci-37808012407/mc-remote-scratch-local-2320.0.0b10-windows-x64.zip"
+    },
+    {
+      "file": "mc-remote-scratch-local-2320.0.0b10-macos-arm64.zip",
+      "os": "macos",
+      "arch": "arm64",
+      "bytes": 264713598,
+      "sha256": "60d69479079eb5f7b7022547d417abc5dc31b237eb12766354885e4db53e6908",
+      "local_path": "candidate/ci-37808012407/mc-remote-scratch-local-2320.0.0b10-macos-arm64.zip"
+    },
+    {
+      "file": "mc-remote-scratch-local-2320.0.0b10-linux-x64.zip",
+      "os": "linux",
+      "arch": "x64",
+      "bytes": 269950028,
+      "sha256": "245d83aeab8f6a10bc3703547e0f897b3e82a8c9152c1a131378454f0debdf8b",
+      "local_path": "candidate/ci-37808012407/mc-remote-scratch-local-2320.0.0b10-linux-x64.zip"
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+- <Event xmlns="http://schemas.microsoft.com/win/2004/08/events/event">
+- <System>
+  <Provider Name="Microsoft-Windows-CodeIntegrity" Guid="{REDACTED_ID_004}" /> 
+  <EventID>3077</EventID> 
+  <Version>5</Version> 
+  <Level>2</Level> 
+  <Task>18</Task> 
+  <Opcode>111</Opcode> 
+  <Keywords>0x8000000000000000</Keywords> 
+  <TimeCreated SystemTime="2026-10-09T18:23:14.7658306Z" /> 
+  <EventRecordID>140</EventRecordID> 
+  <Correlation ActivityID="{REDACTED_ID_001}" /> 
+  <Execution ProcessID="4560" ThreadID="9584" /> 
+  <Channel>Microsoft-Windows-CodeIntegrity/Operational</Channel> 
+  <Computer>[REDACTED_HOST]</Computer> 
+  <Security UserID="<USER_SID>" /> 
+  </System>
+- <EventData>
+  <Data Name="FileNameLength">122</Data> 
+  <Data Name="File Name">[REDACTED_LOCAL_PATH] 
+  <Data Name="ProcessNameLength">88</Data> 
+  <Data Name="Process Name">[REDACTED_LOCAL_PATH] 
+  <Data Name="Requested Signing Level">2</Data> 
+  <Data Name="Validated Signing Level">1</Data> 
+  <Data Name="Status">0xc0e90002</Data> 
+  <Data Name="SHA1 Hash Size">20</Data> 
+  <Data Name="SHA1 Hash">75524FFC37C23D7ADA3B3F6491B0018D0B090EA1</Data> 
+  <Data Name="SHA256 Hash Size">32</Data> 
+  <Data Name="SHA256 Hash">2A073BF1AFAD98C6E8E9B6873E97B0B33B9BB06FFEE46496556D0BB945B19EF2</Data> 
+  <Data Name="SHA1 Flat Hash Size">20</Data> 
+  <Data Name="SHA1 Flat Hash">8DD0D458809FB6782B1EF9779B1AF75BF271A1E0</Data> 
+  <Data Name="SHA256 Flat Hash Size">32</Data> 
+  <Data Name="SHA256 Flat Hash">F16882D2EDED914EDD1E1D313E7C8579E040B0DA090A52EA99AD7B0C5D961C45</Data> 
+  <Data Name="USN">11944941048</Data> 
+  <Data Name="SI Signing Scenario">1</Data> 
+  <Data Name="PolicyNameLength">27</Data> 
+  <Data Name="PolicyName">VerifiedAndReputableDesktop</Data> 
+  <Data Name="PolicyIDLength">17</Data> 
+  <Data Name="PolicyID">27555.1000.240208</Data> 
+  <Data Name="PolicyHashSize">32</Data> 
+  <Data Name="PolicyHash">2668895A5B233A80432D00D67251D7B7F52686A3FB13780F4B242C5A1F937A01</Data> 
+  <Data Name="OriginalFileNameLength">0</Data> 
+  <Data Name="OriginalFileName" /> 
+  <Data Name="InternalNameLength">0</Data> 
+  <Data Name="InternalName" /> 
+  <Data Name="FileDescriptionLength">0</Data> 
+  <Data Name="FileDescription" /> 
+  <Data Name="ProductNameLength">0</Data> 
+  <Data Name="ProductName" /> 
+  <Data Name="FileVersion">[REDACTED_ADDRESS]</Data> 
+  <Data Name="PolicyGUID">{REDACTED_ID_003}</Data> 
+  <Data Name="UserWriteable">false</Data> 
+  <Data Name="PackageFamilyNameLength">0</Data> 
+  <Data Name="PackageFamilyName" /> 
+  </EventData>
+  </Event>

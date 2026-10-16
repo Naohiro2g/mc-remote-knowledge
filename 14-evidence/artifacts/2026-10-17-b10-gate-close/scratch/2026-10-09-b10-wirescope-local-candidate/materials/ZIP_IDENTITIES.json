@@ -1,0 +1,23 @@
+[
+  {
+    "file": "mc-remote-scratch-local-2320.0.0b10-windows-x64.zip",
+    "os": "windows",
+    "arch": "x64",
+    "bytes": 260532718,
+    "sha256": "f9d09ee84eb8cc54324c6b9d83dc3ab9371d7592ec0535346cf527d3db931a77"
+  },
+  {
+    "file": "mc-remote-scratch-local-2320.0.0b10-macos-arm64.zip",
+    "os": "macos",
+    "arch": "arm64",
+    "bytes": 264884384,
+    "sha256": "16e20e5b2ecbfe1a7070d18f3700739bf2d4d567920347398e7ff82d1a40edc0"
+  },
+  {
+    "file": "mc-remote-scratch-local-2320.0.0b10-linux-x64.zip",
+    "os": "linux",
+    "arch": "x64",
+    "bytes": 270120781,
+    "sha256": "3717f4dd55c0996c8e35ce121f293b06ed78e1a1c1bd7e4dad8c1a297fc186fc"
+  }
+]

@@ -1,0 +1,165 @@
+﻿2026-10-08T16:21:53.6839122Z ##[group]Run npm run tooling:release-manifest
+2026-10-08T16:21:53.6839343Z [36;1mnpm run tooling:release-manifest[0m
+2026-10-08T16:21:53.6839506Z [36;1mnpm run release-manifest:test[0m
+2026-10-08T16:21:53.6839659Z [36;1mnpm run release-manifest:lint[0m
+2026-10-08T16:21:53.6840187Z [36;1mnode --test scripts/acquire-mcremote-tooling.test.mjs scripts/build-mcremote-candidate-manifest.test.mjs scripts/mcremote-local-artifacts.test.mjs scripts/acquire-mcremote-local.test.mjs mc-remote/local/launcher.test.mjs[0m
+2026-10-08T16:21:53.6840741Z [36;1mpython3 scripts/build-mcremote-local.test.py[0m
+2026-10-08T16:21:53.6840933Z [36;1mnpm run local:lint[0m
+2026-10-08T16:21:53.6841075Z [36;1mnpm run tooling:artifacts[0m
+2026-10-08T16:21:53.6894391Z shell: /usr/bin/bash -e {0}
+2026-10-08T16:21:53.6894536Z env:
+2026-10-08T16:21:53.6896241Z   GH_TOKEN: ***
+2026-10-08T16:21:53.6896364Z ##[endgroup]
+2026-10-08T16:21:53.7547799Z 
+2026-10-08T16:21:53.7548513Z > scratch-editor@15.0.1 tooling:release-manifest
+2026-10-08T16:21:53.7549093Z > node scripts/acquire-release-manifest-contract.mjs
+2026-10-08T16:21:53.7549318Z 
+2026-10-08T16:21:55.9183132Z release manifest contract: 6 files verified at 5f567f14adaa24603e9dee3c0ec9909d428b7c4b
+2026-10-08T16:21:55.9931195Z 
+2026-10-08T16:21:55.9931990Z > scratch-editor@15.0.1 release-manifest:test
+2026-10-08T16:21:55.9932645Z > node --test --test-isolation=none scripts/acquire-release-manifest-contract.test.mjs scripts/release-manifest-contract.test.mjs scripts/build-mcremote-release-manifest.test.mjs
+2026-10-08T16:21:55.9933028Z 
+2026-10-08T16:21:56.1572992Z ✔ acquisition pins source, checks bytes, and uses verified cache offline (19.091816ms)
+2026-10-08T16:21:56.1574093Z ✔ acquisition and loading reject corrupted files instead of repairing silently (2.815422ms)
+2026-10-08T16:21:56.1574838Z ✔ contract lock rejects floating commits, duplicate files, and paths outside schemas (0.316757ms)
+2026-10-08T16:21:56.1575493Z ✔ public v2 records the actual six file sizes and preserves OCI digests (3.609669ms)
+2026-10-08T16:21:56.1576191Z ✔ release rejects changed pinned bytes, dirty native ZIPs, and Bridge digest drift (1.897068ms)
+2026-10-08T16:21:56.1576879Z ✔ baseline OCI selection accepts v1 and v2 and rejects malformed unused entries (2.098772ms)
+2026-10-08T16:21:56.1577393Z ✔ shared release manifest: v1.basic (0.734858ms)
+2026-10-08T16:21:56.1577809Z ✔ shared release manifest: v1.optional-fields (0.144989ms)
+2026-10-08T16:21:56.1578244Z ✔ shared release manifest: v1.reject-new-field (0.124568ms)
+2026-10-08T16:21:56.1578716Z ✔ shared release manifest: v1.reject-duplicate-role (0.16582ms)
+2026-10-08T16:21:56.1579200Z ✔ shared release manifest: v2.scratch-local-three (1.058525ms)
+2026-10-08T16:21:56.1579629Z ✔ shared release manifest: v2.nonvariant-roles (0.081843ms)
+2026-10-08T16:21:56.1580075Z ✔ shared release manifest: v2.optional-fields (0.094091ms)
+2026-10-08T16:21:56.1580486Z ✔ shared release manifest: v2.zero-bytes (0.264288ms)
+2026-10-08T16:21:56.1580871Z ✔ shared release manifest: v2.mcremote (0.287393ms)
+2026-10-08T16:21:56.1581339Z ✔ shared release manifest: v2.mcremote-content-digests (0.1792ms)
+2026-10-08T16:21:56.1581812Z ✔ shared release manifest: unknown-schema-version (0.034782ms)
+2026-10-08T16:21:56.1582269Z ✔ shared release manifest: string-schema-version (0.022604ms)
+2026-10-08T16:21:56.1582706Z ✔ shared release manifest: wrong-schema-name (0.045028ms)
+2026-10-08T16:21:56.1583119Z ✔ shared release manifest: unknown-top-level (0.036425ms)
+2026-10-08T16:21:56.1583705Z ✔ shared release manifest: unknown-artifact-field (0.043796ms)
+2026-10-08T16:21:56.1584165Z ✔ shared release manifest: invalid-source-commit (0.035524ms)
+2026-10-08T16:21:56.1584989Z ✔ shared release manifest: empty-release-tag (0.031998ms)
+2026-10-08T16:21:56.1585396Z ✔ shared release manifest: missing-bytes (0.03943ms)
+2026-10-08T16:21:56.1585777Z ✔ shared release manifest: bytes-null (0.028953ms)
+2026-10-08T16:21:56.1586157Z ✔ shared release manifest: bytes-string (0.029434ms)
+2026-10-08T16:21:56.1586560Z ✔ shared release manifest: bytes-negative (0.052079ms)
+2026-10-08T16:21:56.1587175Z ✔ shared release manifest: bytes-fraction (0.027792ms)
+2026-10-08T16:21:56.1587564Z ✔ shared release manifest: bytes-boolean (0.02665ms)
+2026-10-08T16:21:56.1587933Z ✔ shared release manifest: os-only (0.03335ms)
+2026-10-08T16:21:56.1588288Z ✔ shared release manifest: arch-only (0.033ms)
+2026-10-08T16:21:56.1588627Z ✔ shared release manifest: os-None (0.044818ms)
+2026-10-08T16:21:56.1588978Z ✔ shared release manifest: arch-None (0.032559ms)
+2026-10-08T16:21:56.1589329Z ✔ shared release manifest: os- (0.028573ms)
+2026-10-08T16:21:56.1589682Z ✔ shared release manifest: arch- (0.036384ms)
+2026-10-08T16:21:56.1590042Z ✔ shared release manifest: os-darwin (0.03333ms)
+2026-10-08T16:21:56.1590411Z ✔ shared release manifest: arch-amd64 (0.029444ms)
+2026-10-08T16:21:56.1590811Z ✔ shared release manifest: invalid-file-sha (0.027742ms)
+2026-10-08T16:21:56.1591233Z ✔ shared release manifest: oci-reject-os-arch (0.054893ms)
+2026-10-08T16:21:56.1591669Z ✔ shared release manifest: oci-missing-digest (0.030606ms)
+2026-10-08T16:21:56.1592186Z ✔ shared release manifest: duplicate-tuple-different-file-hash (0.038348ms)
+2026-10-08T16:21:56.1592718Z ✔ shared release manifest: mixed-variant-and-generic (0.037216ms)
+2026-10-08T16:21:56.1593210Z ✔ shared release manifest: duplicate-key-across-kinds (0.031798ms)
+2026-10-08T16:21:56.1612969Z ✔ shared release manifest: jar-missing-compatibility (0.051628ms)
+2026-10-08T16:21:56.1613650Z ✔ shared release manifest: unknown-compatibility-field (0.041793ms)
+2026-10-08T16:21:56.1614186Z ✔ shared release manifest: empty-declared-versions (0.030346ms)
+2026-10-08T16:21:56.1614595Z ✔ shared release manifest: duplicate-declared-version (0.594946ms)
+2026-10-08T16:21:56.1614911Z ✔ shared release manifest: missing-verification-version (0.065018ms)
+2026-10-08T16:21:56.1615234Z ✔ shared release manifest: unexpected-verification-version (0.05345ms)
+2026-10-08T16:21:56.1615555Z ✔ shared release manifest: duplicate-verification-version (0.053511ms)
+2026-10-08T16:21:56.1615852Z ✔ shared release manifest: jar-sha-mismatch (0.033691ms)
+2026-10-08T16:21:56.1616136Z ✔ shared release manifest: verification-result-FAIL (0.026781ms)
+2026-10-08T16:21:56.1616431Z ✔ shared release manifest: verification-result-SKIP (0.022514ms)
+2026-10-08T16:21:56.1616722Z ✔ shared release manifest: verification-result-pass (0.018527ms)
+2026-10-08T16:21:56.1617009Z ✔ shared release manifest: verification-result-None (0.018958ms)
+2026-10-08T16:21:56.1617280Z ✔ shared release manifest: paper-build-zero (0.057357ms)
+2026-10-08T16:21:56.1617550Z ✔ shared release manifest: java-version-empty (0.052519ms)
+2026-10-08T16:21:56.1617846Z ✔ shared release manifest: record-file-dir/record.json (0.063565ms)
+2026-10-08T16:21:56.1618145Z ✔ shared release manifest: record-file-dir\record.json (0.064307ms)
+2026-10-08T16:21:56.1618510Z ✔ shared release manifest: record-file-https://example.test/record.json (0.041502ms)
+2026-10-08T16:21:56.1618829Z ✔ shared release manifest: record-file-.. (0.020301ms)
+2026-10-08T16:21:56.1619097Z ✔ shared release manifest: record-sha-invalid (0.022975ms)
+2026-10-08T16:21:56.1619384Z ✔ shared release manifest: record-listed-as-artifact (0.054051ms)
+2026-10-08T16:21:56.1619684Z ✔ shared release manifest: declaration-absolute-path (0.031868ms)
+2026-10-08T16:21:56.1620005Z ✔ shared release manifest: declaration-traversal-path (0.020521ms)
+2026-10-08T16:21:56.1620428Z ✔ shared release manifest: declaration-digest-mismatch (0.052469ms)
+2026-10-08T16:21:56.1620754Z ✔ shared release manifest: record-digest-mismatch (0.05331ms)
+2026-10-08T16:21:56.1621250Z ✔ shared release manifest: declaration-file-versions-mismatch (0.035594ms)
+2026-10-08T16:21:56.1621587Z ✔ shared release manifest: jar-declaration-bytes-mismatch (0.033961ms)
+2026-10-08T16:21:56.1621889Z ✔ shared release manifest: record-content-missing (0.033871ms)
+2026-10-08T16:21:56.1622195Z ✔ shared release manifest: artifact-content-size-mismatch (0.022564ms)
+2026-10-08T16:21:56.1622524Z ✔ shared release manifest: artifact-content-digest-mismatch (0.021052ms)
+2026-10-08T16:21:56.1622967Z ✔ shared release manifest: v2.mcremote-actual-declaration (0.062084ms)
+2026-10-08T16:21:56.1623294Z ✔ shared release manifest: v2.declaration-reordered-versions (0.118859ms)
+2026-10-08T16:21:56.1623915Z ✔ shared release manifest: declaration-bare-array (0.044276ms)
+2026-10-08T16:21:56.1624396Z ✔ shared release manifest: declaration-unknown-field (0.034732ms)
+2026-10-08T16:21:56.1624698Z ✔ shared release manifest: declaration-wrong-schema (0.029595ms)
+2026-10-08T16:21:56.1625223Z ✔ shared release manifest: declaration-wrong-schema-version (0.025909ms)
+2026-10-08T16:21:56.1625829Z ✔ shared release manifest: declaration-wrong-schema-version-string (0.025408ms)
+2026-10-08T16:21:56.1626462Z ✔ shared release manifest: declaration-wrong-schema-version-boolean (0.023876ms)
+2026-10-08T16:21:56.1627122Z ✔ shared release manifest: declaration-versions-empty (0.025178ms)
+2026-10-08T16:21:56.1627635Z ✔ shared release manifest: declaration-versions-duplicate (0.030796ms)
+2026-10-08T16:21:56.1628147Z ✔ shared release manifest: declaration-versions-not-array (0.027451ms)
+2026-10-08T16:21:56.1628648Z ✔ shared release manifest: declaration-versions-not-string (0.024897ms)
+2026-10-08T16:21:56.1629167Z ✔ shared release manifest: declaration-versions-empty-string (0.024356ms)
+2026-10-08T16:21:56.1629666Z ✔ shared release manifest: declaration-missing-schema (0.030255ms)
+2026-10-08T16:21:56.1630232Z ✔ shared release manifest: declaration-missing-schema-version (0.061333ms)
+2026-10-08T16:21:56.1630821Z ✔ shared release manifest: declaration-missing-minecraft-versions (0.028914ms)
+2026-10-08T16:21:56.1631479Z ✔ shared release manifest: declaration-null-root (0.023546ms)
+2026-10-08T16:21:56.1631971Z ✔ shared release manifest: declaration-string-root (0.023065ms)
+2026-10-08T16:21:56.1632457Z ✔ shared release manifest: declaration-invalid-json (0.044347ms)
+2026-10-08T16:21:56.1632993Z ✔ selection requires an exact OS/arch pair and never falls back (0.189416ms)
+2026-10-08T16:21:56.1633742Z ✔ singleton selection validates the entire manifest, including unused roles (0.148995ms)
+2026-10-08T16:21:56.1650194Z ℹ tests 93
+2026-10-08T16:21:56.1650437Z ℹ suites 0
+2026-10-08T16:21:56.1650626Z ℹ pass 93
+2026-10-08T16:21:56.1650814Z ℹ fail 0
+2026-10-08T16:21:56.1651008Z ℹ cancelled 0
+2026-10-08T16:21:56.1651223Z ℹ skipped 0
+2026-10-08T16:21:56.1651409Z ℹ todo 0
+2026-10-08T16:21:56.1651632Z ℹ duration_ms 145.594712
+2026-10-08T16:21:56.2386275Z 
+2026-10-08T16:21:56.2386807Z > scratch-editor@15.0.1 release-manifest:lint
+2026-10-08T16:21:56.2387214Z > eslint --config mc-remote/local/eslint.config.mjs scripts/*release-manifest*.mjs
+2026-10-08T16:21:56.2387460Z 
+2026-10-08T16:21:58.2077590Z ✔ target accepts loopback/LAN hostnames and rejects URLs, lists and invalid ports (1.890969ms)
+2026-10-08T16:21:58.2619403Z ✔ serves editor and runtime settings on loopback and preserves pairing storage origin (59.507406ms)
+2026-10-08T16:21:58.2884103Z ✔ changing target updates both Bridge and editor and persists only host/port (24.543258ms)
+2026-10-08T16:21:58.3145912Z ✔ refuses cross-origin writes, rebinding hosts, unknown fields and private files (26.204921ms)
+2026-10-08T16:21:58.3214621Z ✔ restores target after restart and leaves broken user settings visible (8.945537ms)
+2026-10-08T16:21:58.3294375Z ✔ stops the replacement Bridge when shutdown occurs during a target change (8.432585ms)
+2026-10-08T16:21:58.3379881Z ✔ accepts only explicitly pinned candidate identity (0.891433ms)
+2026-10-08T16:21:58.3380954Z ✔ requires completed successful owner build rather than a matching fork or unrelated workflow (0.216476ms)
+2026-10-08T16:21:58.3382193Z ✔ fixed source and fixture bytes are accepted (2.159433ms)
+2026-10-08T16:21:58.3382790Z ✔ corrupted same-length data and truncated data fail closed (0.473142ms)
+2026-10-08T16:21:58.3383488Z ✔ floating source refs, wrong owners and path traversal are rejected (0.418911ms)
+2026-10-08T16:21:58.3383912Z ✔ duplicate fixture paths and invalid file digests are rejected (0.200612ms)
+2026-10-08T16:21:58.3384492Z ✔ candidate records its own source and preserves pinned tooling identities (40.549544ms)
+2026-10-08T16:21:58.3384891Z ✔ candidate rejects corrupted tooling bytes and floating source identities (72.804721ms)
+2026-10-08T16:21:58.3433469Z ✔ keeps candidate file kind and emits release https-file with unambiguous OS/arch (3.993467ms)
+2026-10-08T16:21:58.3434284Z ✔ rejects corrupt bytes, swapped platforms and source mismatch (4.132937ms)
+2026-10-08T16:21:58.3434799Z ✔ permits explicit local drafts for candidate but prevents publishing them (6.81677ms)
+2026-10-08T16:21:58.3436420Z ℹ tests 17
+2026-10-08T16:21:58.3436633Z ℹ suites 0
+2026-10-08T16:21:58.3436836Z ℹ pass 17
+2026-10-08T16:21:58.3437024Z ℹ fail 0
+2026-10-08T16:21:58.3437222Z ℹ cancelled 0
+2026-10-08T16:21:58.3437437Z ℹ skipped 0
+2026-10-08T16:21:58.3437628Z ℹ todo 0
+2026-10-08T16:21:58.3437827Z ℹ duration_ms 209.422865
+2026-10-08T16:21:58.5448393Z ......
+2026-10-08T16:21:58.5448823Z ----------------------------------------------------------------------
+2026-10-08T16:21:58.5449148Z Ran 6 tests in 0.016s
+2026-10-08T16:21:58.5449237Z 
+2026-10-08T16:21:58.5449291Z OK
+2026-10-08T16:21:58.6310821Z 
+2026-10-08T16:21:58.6311439Z > scratch-editor@15.0.1 local:lint
+2026-10-08T16:21:58.6312082Z > eslint --config mc-remote/local/eslint.config.mjs mc-remote/local/*.mjs scripts/acquire-mcremote-local*.mjs scripts/mcremote-local-artifacts*.mjs scripts/test-mcremote-local.mjs
+2026-10-08T16:21:58.6312468Z 
+2026-10-08T16:22:00.0162174Z 
+2026-10-08T16:22:00.0162874Z > scratch-editor@15.0.1 tooling:artifacts
+2026-10-08T16:22:00.0163599Z > node scripts/acquire-mcremote-tooling.mjs --artifacts
+2026-10-08T16:22:00.0163842Z 
+2026-10-08T16:22:04.3549906Z tooling artifacts: WireScope pair and Bridge OCI verified at dc1ab834183e29f2eb03059b07e99d2b463776ee

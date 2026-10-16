@@ -1,0 +1,20 @@
+{
+  "id": 11563852835,
+  "node_id": "MDg6QXJ0aWZhY3QxMTU2Mzg1MjgzNQ==",
+  "name": "scratch-candidate-c717d0c2ed9b045b8c3bb925b0e1fcd8ee33010b",
+  "size_in_bytes": 1361803350,
+  "url": "https://api.github.com/repos/Naohiro2g/scratch-editor/actions/artifacts/11563852835",
+  "archive_download_url": "https://api.github.com/repos/Naohiro2g/scratch-editor/actions/artifacts/11563852835/zip",
+  "expired": false,
+  "digest": "sha256:75b1df3df6d659514ee6eb3a2913a7d9bf6e062a449316c352e9a59078a89aea",
+  "created_at": "2026-10-08T16:28:12Z",
+  "updated_at": "2026-10-08T16:28:12Z",
+  "expires_at": "2027-01-06T16:20:30Z",
+  "workflow_run": {
+    "id": 37808012407,
+    "repository_id": 1265619234,
+    "head_repository_id": 1265619234,
+    "head_branch": "agent/b10-scratch-local",
+    "head_sha": "c717d0c2ed9b045b8c3bb925b0e1fcd8ee33010b"
+  }
+}

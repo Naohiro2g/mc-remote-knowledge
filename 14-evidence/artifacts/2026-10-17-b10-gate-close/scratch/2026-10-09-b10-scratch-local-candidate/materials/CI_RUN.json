@@ -1,0 +1,13 @@
+{
+  "id": 37808012407,
+  "name": "Build McRemote candidate",
+  "head_branch": "agent/b10-scratch-local",
+  "head_sha": "c717d0c2ed9b045b8c3bb925b0e1fcd8ee33010b",
+  "status": "completed",
+  "conclusion": "success",
+  "html_url": "https://github.com/Naohiro2g/scratch-editor/actions/runs/37808012407",
+  "created_at": "2026-10-08T16:20:29Z",
+  "updated_at": "2026-10-08T16:28:21Z",
+  "run_attempt": 1,
+  "event": "workflow_dispatch"
+}

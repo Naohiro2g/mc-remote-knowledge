@@ -1,0 +1,25 @@
+✔ target accepts loopback/LAN hostnames and rejects URLs, lists and invalid ports (4.287285ms)
+✔ serves editor and runtime settings on loopback and preserves pairing storage origin (82.318989ms)
+✔ changing target updates both Bridge and editor and persists only host/port (28.518974ms)
+✔ refuses cross-origin writes, rebinding hosts, unknown fields and private files (39.099818ms)
+✔ restores target after restart and leaves broken user settings visible (9.89404ms)
+✔ stops the replacement Bridge when shutdown occurs during a target change (13.818933ms)
+✔ accepts only explicitly pinned candidate identity (1.002475ms)
+✔ requires completed successful owner build rather than a matching fork or unrelated workflow (0.655282ms)
+✔ fixed source and fixture bytes are accepted (1.073576ms)
+✔ corrupted same-length data and truncated data fail closed (0.670343ms)
+✔ floating source refs, wrong owners and path traversal are rejected (0.785725ms)
+✔ duplicate fixture paths and invalid file digests are rejected (0.490725ms)
+✔ candidate records its own source and preserves pinned tooling identities (85.060901ms)
+✔ candidate rejects corrupted tooling bytes and floating source identities (158.221274ms)
+✔ keeps candidate file kind and emits release https-file with unambiguous OS/arch (4.024697ms)
+✔ rejects corrupt bytes, swapped platforms and source mismatch (7.455698ms)
+✔ permits explicit local drafts for candidate but prevents publishing them (2.797661ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 529.704098

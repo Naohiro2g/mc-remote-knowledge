@@ -1,0 +1,17 @@
+[
+  {
+    "path": "materials/HANDOFF_ja.md",
+    "bytes": 4007,
+    "sha256": "fa72da9d6613c5769df14a6406cf7564d6e9ac82f390c9f91837917c6828fcc4"
+  },
+  {
+    "path": "materials/browser-check.mjs",
+    "bytes": 4262,
+    "sha256": "1bfd0ee3c0191894d90189b8d602702683016aa92ff5909623d988ba8391f481"
+  },
+  {
+    "path": "materials/setup-editor-open.png",
+    "bytes": 118928,
+    "sha256": "344cf0271aa5640e7baa7cebd81eba846c34cd3e037601255c0406725802ae56"
+  }
+]

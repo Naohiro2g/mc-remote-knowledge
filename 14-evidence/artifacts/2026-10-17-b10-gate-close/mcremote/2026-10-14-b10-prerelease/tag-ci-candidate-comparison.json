@@ -1,0 +1,15 @@
+{
+  "tag": "v2320.0.0b10",
+  "source_commit": "17bcf2645c112133935bc9d993d4fdd4669ceb98",
+  "tag_ci_run": 38525157673,
+  "tag_ci_status": "success",
+  "tag_ci_artifact_id": 11875384710,
+  "tag_ci_archive_bytes": 294247,
+  "tag_ci_archive_sha256": "34df232ed723a68ab03dfa449e37e216f9547aaac3144c637071890a8b25d9c5",
+  "provider_archive_digest_matches": true,
+  "same_as_approved_run": 38347345527,
+  "same_as_approved_artifact": 11789398049,
+  "all_four_candidate_files_identical": true,
+  "jar_bytes": 315352,
+  "jar_sha256": "96ddf09f765a77811740d5c62f3787f7a87c8be6cd7247d345f6dfe9e93512a4"
+}

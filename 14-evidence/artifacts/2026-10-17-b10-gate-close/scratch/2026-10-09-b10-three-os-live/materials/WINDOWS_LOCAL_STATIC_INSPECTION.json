@@ -1,0 +1,9 @@
+{
+  "file": "mc-remote-scratch-local-2320.0.0b10-windows-x64.zip",
+  "bytes": 260361934,
+  "sha256": "08340c801c1196c30a1227a7e495feb32131a95e4816ffbb29278557cadab9c1",
+  "source": "c717d0c2ed9b045b8c3bb925b0e1fcd8ee33010b",
+  "wirescope_entries": [],
+  "launcher_has_wirescope_url": false,
+  "runtime_config_handler": "        if (pathname === '/editor/mc-remote-runtime-config.json') {\n            return sendJson(response, 200, {\n                schema_version: 1,\n                connection_enabled: true,\n                bridge_url: `ws://127.0.0.1:${bridgePort}`,\n                default_sandbox: target.host,\n                connection_targets: [\n                    {id: 'local', label: `Minecraft — ${target.host}`, sandbox: target.host}\n                ],\n                storage_persist_enabled: true\n            });\n        }\n"
+}

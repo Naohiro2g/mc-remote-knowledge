@@ -1,0 +1,107 @@
+[
+  {
+    "path": "MANIFEST_ja.md",
+    "bytes": 1120,
+    "sha256": "da8987a19864097087c65a400f6272cf40a960f1236b97a84a3ad3d6b47a3d0a"
+  },
+  {
+    "path": "SHA256SUMS",
+    "bytes": 1974,
+    "sha256": "e697867cd59c52024f402f755a4b77526299147cd4a78c787b15962d5488bdf4"
+  },
+  {
+    "path": "materials/CONFIRMATION_ja.md",
+    "bytes": 6576,
+    "sha256": "52c5b8841d59cf843563ea8ae15dc0d832e4633f1a553a97b92a75326d4c2240"
+  },
+  {
+    "path": "materials/ZIP_IDENTITIES.json",
+    "bytes": 662,
+    "sha256": "9779dc02d8d7ce6a9ac7ffe35a62743b3f9bd369401c3276d3d577fc8097476a"
+  },
+  {
+    "path": "materials/artifact-verification.json",
+    "bytes": 7629,
+    "sha256": "1d54b85d4e26797a5102a0b3f2782b2e592e99b15fe08c22a897bc6f8764e352"
+  },
+  {
+    "path": "materials/artifact-verification.log",
+    "bytes": 1007,
+    "sha256": "9dda064cc295d462138fa7b9e161ae3bcdf4888f791e13eb44e9ec711a6f02c4"
+  },
+  {
+    "path": "materials/candidate-manifest.json",
+    "bytes": 2682,
+    "sha256": "028f6b8cc3ea8c47d2503853c594ad611cde3c07f29fbc6fb446e00a8b1aea44"
+  },
+  {
+    "path": "materials/ci-consumer-tests.log",
+    "bytes": 14699,
+    "sha256": "e9d8fe5ce8c18fc743151c9c18e89b53b8dd5d628468f491e76b460812f7d427"
+  },
+  {
+    "path": "materials/ci-linux-zip-test.log",
+    "bytes": 2353,
+    "sha256": "3d9e41aa619e1ee2555400611ddba0742021f7b8a48e9903dd3582ae93da3ae6"
+  },
+  {
+    "path": "materials/download.log",
+    "bytes": 663,
+    "sha256": "92e74623392e194491f0e120e116bfcd316f6f2e6916252732627c6eba7ae474"
+  },
+  {
+    "path": "materials/linux-license-review.json",
+    "bytes": 70453,
+    "sha256": "863c9b467742a7fe9ab0ab43b9ecd3647479e1104a3eedecdd11bd747b15e7b4"
+  },
+  {
+    "path": "materials/local-lint.log",
+    "bytes": 217,
+    "sha256": "ef5460796cf1a75f4039c750be53f4abdcb8ec90856e0c3db98f8848c675a117"
+  },
+  {
+    "path": "materials/local-test.log",
+    "bytes": 1651,
+    "sha256": "7fbe2e52afe1ed5cc965178910d5e036d72742d3eb70fd6671a598560e5f98ff"
+  },
+  {
+    "path": "materials/macos-license-review.json",
+    "bytes": 70453,
+    "sha256": "863c9b467742a7fe9ab0ab43b9ecd3647479e1104a3eedecdd11bd747b15e7b4"
+  },
+  {
+    "path": "materials/mc-remote-scratch-local-2320.0.0b10-linux-x64.artifact.json",
+    "bytes": 341,
+    "sha256": "7b109abfeceb18667f05423c02018d2d554bf7b802ba2ff37f5df3a596e3c3b9"
+  },
+  {
+    "path": "materials/mc-remote-scratch-local-2320.0.0b10-macos-arm64.artifact.json",
+    "bytes": 345,
+    "sha256": "b31f0ea8f0a07c9c6b81b5295241a956207c5b884506cc3e61865f60244ef3ec"
+  },
+  {
+    "path": "materials/mc-remote-scratch-local-2320.0.0b10-windows-x64.artifact.json",
+    "bytes": 345,
+    "sha256": "50d6b6877d7091968219a35a6ec954979c3a27c959123412cf58adf6c05d7b75"
+  },
+  {
+    "path": "materials/provider-artifact.json",
+    "bytes": 840,
+    "sha256": "a564e37f62215087e39f02217729971077926f4886511af0633a4b0dd20a4496"
+  },
+  {
+    "path": "materials/provider-run.json",
+    "bytes": 12614,
+    "sha256": "ecd110a9a74c659af690f07a8f57a0d06d1810c06fcb5350e5f6ca5c132dd516"
+  },
+  {
+    "path": "materials/verify-ci-artifact.py",
+    "bytes": 5739,
+    "sha256": "c93aa2f0b73c537c577d5c5f70014c1d0a4363c8edefbc258df2e127bee6cd51"
+  },
+  {
+    "path": "materials/windows-license-review.json",
+    "bytes": 70453,
+    "sha256": "863c9b467742a7fe9ab0ab43b9ecd3647479e1104a3eedecdd11bd747b15e7b4"
+  }
+]

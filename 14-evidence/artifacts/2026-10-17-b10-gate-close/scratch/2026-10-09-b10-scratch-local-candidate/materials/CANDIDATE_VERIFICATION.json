@@ -1,0 +1,176 @@
+{
+  "source_commit": "c717d0c2ed9b045b8c3bb925b0e1fcd8ee33010b",
+  "workflow_run_id": 37808012407,
+  "artifact": {
+    "id": 11563852835,
+    "node_id": "MDg6QXJ0aWZhY3QxMTU2Mzg1MjgzNQ==",
+    "name": "scratch-candidate-c717d0c2ed9b045b8c3bb925b0e1fcd8ee33010b",
+    "size_in_bytes": 1361803350,
+    "url": "https://api.github.com/repos/Naohiro2g/scratch-editor/actions/artifacts/11563852835",
+    "archive_download_url": "https://api.github.com/repos/Naohiro2g/scratch-editor/actions/artifacts/11563852835/zip",
+    "expired": false,
+    "digest": "sha256:75b1df3df6d659514ee6eb3a2913a7d9bf6e062a449316c352e9a59078a89aea",
+    "created_at": "2026-10-08T16:28:12Z",
+    "updated_at": "2026-10-08T16:28:12Z",
+    "expires_at": "2027-01-06T16:20:30Z",
+    "workflow_run": {
+      "id": 37808012407,
+      "repository_id": 1265619234,
+      "head_repository_id": 1265619234,
+      "head_branch": "agent/b10-scratch-local",
+      "head_sha": "c717d0c2ed9b045b8c3bb925b0e1fcd8ee33010b"
+    }
+  },
+  "outer_sha256": "75b1df3df6d659514ee6eb3a2913a7d9bf6e062a449316c352e9a59078a89aea",
+  "outer_bytes": 1361803350,
+  "zips": [
+    {
+      "role": "scratch-local",
+      "kind": "file",
+      "os": "windows",
+      "arch": "x64",
+      "file": "mc-remote-scratch-local-2320.0.0b10-windows-x64.zip",
+      "bytes": 260361934,
+      "sha256": "08340c801c1196c30a1227a7e495feb32131a95e4816ffbb29278557cadab9c1",
+      "local_path": "candidate/ci-37808012407/mc-remote-scratch-local-2320.0.0b10-windows-x64.zip",
+      "identity": {
+        "schema": "mc-remote.scratch-local",
+        "schema_version": 1,
+        "version": "2320.0.0b10",
+        "os": "windows",
+        "arch": "x64",
+        "source": {
+          "repository": "https://github.com/Naohiro2g/scratch-editor",
+          "commit": "c717d0c2ed9b045b8c3bb925b0e1fcd8ee33010b",
+          "working_tree_dirty": false,
+          "archive": "source/scratch-source.tar.gz",
+          "archive_sha256": "ba5af6dcb7ad0b7e93255e66b7eb629463eabfdab7f2cd1357544df675e44cfb"
+        },
+        "tooling": {
+          "repository": "Naohiro2g/minecraft-remote-tooling",
+          "commit": "dc1ab834183e29f2eb03059b07e99d2b463776ee",
+          "bridge_digest": "sha256:5828304c9bb1d60df8672f9189f503790050e09358bd375f39e4d59d190eb84f",
+          "bridge_archive_sha256": "b6a6feec07e8d7ae9805a81e8dc370e6220e91af145ef3117ce5ed12e703b100"
+        },
+        "runtime": {
+          "name": "Node.js",
+          "version": "24.19.0",
+          "url": "https://nodejs.org/dist/v24.19.0/node-v24.19.0-win-x64.zip",
+          "archive_sha256": "57f71ab3652e797d84acddc79c81cc9ff1c6ddb2a1974cdb83f00fee9bff4c73"
+        }
+      },
+      "license_review": {
+        "schema": "mc-remote.scratch-local-license-review",
+        "schema_version": 1,
+        "gap_entries": 130,
+        "runtime_gap_entries": 26,
+        "build_only_gap_entries": 104,
+        "open_reviews": [
+          {
+            "name": "microee",
+            "version": "0.0.6"
+          }
+        ]
+      }
+    },
+    {
+      "role": "scratch-local",
+      "kind": "file",
+      "os": "macos",
+      "arch": "arm64",
+      "file": "mc-remote-scratch-local-2320.0.0b10-macos-arm64.zip",
+      "bytes": 264713598,
+      "sha256": "60d69479079eb5f7b7022547d417abc5dc31b237eb12766354885e4db53e6908",
+      "local_path": "candidate/ci-37808012407/mc-remote-scratch-local-2320.0.0b10-macos-arm64.zip",
+      "identity": {
+        "schema": "mc-remote.scratch-local",
+        "schema_version": 1,
+        "version": "2320.0.0b10",
+        "os": "macos",
+        "arch": "arm64",
+        "source": {
+          "repository": "https://github.com/Naohiro2g/scratch-editor",
+          "commit": "c717d0c2ed9b045b8c3bb925b0e1fcd8ee33010b",
+          "working_tree_dirty": false,
+          "archive": "source/scratch-source.tar.gz",
+          "archive_sha256": "ba5af6dcb7ad0b7e93255e66b7eb629463eabfdab7f2cd1357544df675e44cfb"
+        },
+        "tooling": {
+          "repository": "Naohiro2g/minecraft-remote-tooling",
+          "commit": "dc1ab834183e29f2eb03059b07e99d2b463776ee",
+          "bridge_digest": "sha256:5828304c9bb1d60df8672f9189f503790050e09358bd375f39e4d59d190eb84f",
+          "bridge_archive_sha256": "b6a6feec07e8d7ae9805a81e8dc370e6220e91af145ef3117ce5ed12e703b100"
+        },
+        "runtime": {
+          "name": "Node.js",
+          "version": "24.19.0",
+          "url": "https://nodejs.org/dist/v24.19.0/node-v24.19.0-darwin-arm64.tar.gz",
+          "archive_sha256": "8294b7aa9b03997481c06babf1e8b270c859358f27da57a11509afe537ac381d"
+        }
+      },
+      "license_review": {
+        "schema": "mc-remote.scratch-local-license-review",
+        "schema_version": 1,
+        "gap_entries": 130,
+        "runtime_gap_entries": 26,
+        "build_only_gap_entries": 104,
+        "open_reviews": [
+          {
+            "name": "microee",
+            "version": "0.0.6"
+          }
+        ]
+      }
+    },
+    {
+      "role": "scratch-local",
+      "kind": "file",
+      "os": "linux",
+      "arch": "x64",
+      "file": "mc-remote-scratch-local-2320.0.0b10-linux-x64.zip",
+      "bytes": 269950028,
+      "sha256": "245d83aeab8f6a10bc3703547e0f897b3e82a8c9152c1a131378454f0debdf8b",
+      "local_path": "candidate/ci-37808012407/mc-remote-scratch-local-2320.0.0b10-linux-x64.zip",
+      "identity": {
+        "schema": "mc-remote.scratch-local",
+        "schema_version": 1,
+        "version": "2320.0.0b10",
+        "os": "linux",
+        "arch": "x64",
+        "source": {
+          "repository": "https://github.com/Naohiro2g/scratch-editor",
+          "commit": "c717d0c2ed9b045b8c3bb925b0e1fcd8ee33010b",
+          "working_tree_dirty": false,
+          "archive": "source/scratch-source.tar.gz",
+          "archive_sha256": "ba5af6dcb7ad0b7e93255e66b7eb629463eabfdab7f2cd1357544df675e44cfb"
+        },
+        "tooling": {
+          "repository": "Naohiro2g/minecraft-remote-tooling",
+          "commit": "dc1ab834183e29f2eb03059b07e99d2b463776ee",
+          "bridge_digest": "sha256:5828304c9bb1d60df8672f9189f503790050e09358bd375f39e4d59d190eb84f",
+          "bridge_archive_sha256": "b6a6feec07e8d7ae9805a81e8dc370e6220e91af145ef3117ce5ed12e703b100"
+        },
+        "runtime": {
+          "name": "Node.js",
+          "version": "24.19.0",
+          "url": "https://nodejs.org/dist/v24.19.0/node-v24.19.0-linux-x64.tar.gz",
+          "archive_sha256": "f625d97cd707df4ff96254916fbc5ff014f09c09effe5a1e0ca8f6d41a8789d4"
+        }
+      },
+      "license_review": {
+        "schema": "mc-remote.scratch-local-license-review",
+        "schema_version": 1,
+        "gap_entries": 130,
+        "runtime_gap_entries": 26,
+        "build_only_gap_entries": 104,
+        "open_reviews": [
+          {
+            "name": "microee",
+            "version": "0.0.6"
+          }
+        ]
+      }
+    }
+  ],
+  "all_manifest_artifacts_verified": true
+}

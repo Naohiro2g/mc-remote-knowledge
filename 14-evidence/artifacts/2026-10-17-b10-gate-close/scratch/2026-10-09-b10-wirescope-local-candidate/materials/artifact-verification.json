@@ -1,0 +1,184 @@
+{
+  "source_commit": "ec29372dadac9c51b2812c746e72032d48d987b6",
+  "workflow_run_id": 37933218014,
+  "artifact": {
+    "id": 11616819485,
+    "node_id": "MDg6QXJ0aWZhY3QxMTYxNjgxOTQ4NQ==",
+    "name": "scratch-candidate-ec29372dadac9c51b2812c746e72032d48d987b6",
+    "size_in_bytes": 1362315280,
+    "url": "https://api.github.com/repos/Naohiro2g/scratch-editor/actions/artifacts/11616819485",
+    "archive_download_url": "https://api.github.com/repos/Naohiro2g/scratch-editor/actions/artifacts/11616819485/zip",
+    "expired": false,
+    "digest": "sha256:f747f3b537b060aacfa24bbcdbc1e42575169d7cd11b5d3219fdb6a7c0767159",
+    "created_at": "2026-10-09T13:03:37Z",
+    "updated_at": "2026-10-09T13:03:37Z",
+    "expires_at": "2027-01-07T12:55:11Z",
+    "workflow_run": {
+      "id": 37933218014,
+      "repository_id": 1265619234,
+      "head_repository_id": 1265619234,
+      "head_branch": "agent/b10-scratch-local",
+      "head_sha": "ec29372dadac9c51b2812c746e72032d48d987b6"
+    }
+  },
+  "outer_sha256": "f747f3b537b060aacfa24bbcdbc1e42575169d7cd11b5d3219fdb6a7c0767159",
+  "outer_bytes": 1362315280,
+  "zips": [
+    {
+      "role": "scratch-local",
+      "kind": "file",
+      "os": "windows",
+      "arch": "x64",
+      "file": "mc-remote-scratch-local-2320.0.0b10-windows-x64.zip",
+      "bytes": 260532718,
+      "sha256": "f9d09ee84eb8cc54324c6b9d83dc3ab9371d7592ec0535346cf527d3db931a77",
+      "local_path": "candidate/ci-37933218014/mc-remote-scratch-local-2320.0.0b10-windows-x64.zip",
+      "identity": {
+        "schema": "mc-remote.scratch-local",
+        "schema_version": 1,
+        "version": "2320.0.0b10",
+        "os": "windows",
+        "arch": "x64",
+        "source": {
+          "repository": "https://github.com/Naohiro2g/scratch-editor",
+          "commit": "ec29372dadac9c51b2812c746e72032d48d987b6",
+          "working_tree_dirty": false,
+          "archive": "source/scratch-source.tar.gz",
+          "archive_sha256": "2bb3185f54234fc729cec2f18332023dad0e5ee84a7bbad2d1eef21f4f444929"
+        },
+        "tooling": {
+          "repository": "Naohiro2g/minecraft-remote-tooling",
+          "commit": "dc1ab834183e29f2eb03059b07e99d2b463776ee",
+          "bridge_digest": "sha256:5828304c9bb1d60df8672f9189f503790050e09358bd375f39e4d59d190eb84f",
+          "bridge_archive_sha256": "b6a6feec07e8d7ae9805a81e8dc370e6220e91af145ef3117ce5ed12e703b100",
+          "wirescope_archive_sha256": "da3da0b6cf4d05265bc0c11abaa4913208c7cfc3600b0c3e78c93a356fc431ad",
+          "wirescope_manifest_sha256": "c654f7d1f0be2773d6737e889279b2587317088717f162b082c82be9cff910d7"
+        },
+        "runtime": {
+          "name": "Node.js",
+          "version": "24.19.0",
+          "url": "https://nodejs.org/dist/v24.19.0/node-v24.19.0-win-x64.zip",
+          "archive_sha256": "57f71ab3652e797d84acddc79c81cc9ff1c6ddb2a1974cdb83f00fee9bff4c73"
+        }
+      },
+      "license_review": {
+        "schema": "mc-remote.scratch-local-license-review",
+        "schema_version": 1,
+        "gap_entries": 130,
+        "runtime_gap_entries": 26,
+        "build_only_gap_entries": 104,
+        "open_reviews": [
+          {
+            "name": "microee",
+            "version": "0.0.6"
+          }
+        ]
+      }
+    },
+    {
+      "role": "scratch-local",
+      "kind": "file",
+      "os": "macos",
+      "arch": "arm64",
+      "file": "mc-remote-scratch-local-2320.0.0b10-macos-arm64.zip",
+      "bytes": 264884384,
+      "sha256": "16e20e5b2ecbfe1a7070d18f3700739bf2d4d567920347398e7ff82d1a40edc0",
+      "local_path": "candidate/ci-37933218014/mc-remote-scratch-local-2320.0.0b10-macos-arm64.zip",
+      "identity": {
+        "schema": "mc-remote.scratch-local",
+        "schema_version": 1,
+        "version": "2320.0.0b10",
+        "os": "macos",
+        "arch": "arm64",
+        "source": {
+          "repository": "https://github.com/Naohiro2g/scratch-editor",
+          "commit": "ec29372dadac9c51b2812c746e72032d48d987b6",
+          "working_tree_dirty": false,
+          "archive": "source/scratch-source.tar.gz",
+          "archive_sha256": "2bb3185f54234fc729cec2f18332023dad0e5ee84a7bbad2d1eef21f4f444929"
+        },
+        "tooling": {
+          "repository": "Naohiro2g/minecraft-remote-tooling",
+          "commit": "dc1ab834183e29f2eb03059b07e99d2b463776ee",
+          "bridge_digest": "sha256:5828304c9bb1d60df8672f9189f503790050e09358bd375f39e4d59d190eb84f",
+          "bridge_archive_sha256": "b6a6feec07e8d7ae9805a81e8dc370e6220e91af145ef3117ce5ed12e703b100",
+          "wirescope_archive_sha256": "da3da0b6cf4d05265bc0c11abaa4913208c7cfc3600b0c3e78c93a356fc431ad",
+          "wirescope_manifest_sha256": "c654f7d1f0be2773d6737e889279b2587317088717f162b082c82be9cff910d7"
+        },
+        "runtime": {
+          "name": "Node.js",
+          "version": "24.19.0",
+          "url": "https://nodejs.org/dist/v24.19.0/node-v24.19.0-darwin-arm64.tar.gz",
+          "archive_sha256": "8294b7aa9b03997481c06babf1e8b270c859358f27da57a11509afe537ac381d"
+        }
+      },
+      "license_review": {
+        "schema": "mc-remote.scratch-local-license-review",
+        "schema_version": 1,
+        "gap_entries": 130,
+        "runtime_gap_entries": 26,
+        "build_only_gap_entries": 104,
+        "open_reviews": [
+          {
+            "name": "microee",
+            "version": "0.0.6"
+          }
+        ]
+      }
+    },
+    {
+      "role": "scratch-local",
+      "kind": "file",
+      "os": "linux",
+      "arch": "x64",
+      "file": "mc-remote-scratch-local-2320.0.0b10-linux-x64.zip",
+      "bytes": 270120781,
+      "sha256": "3717f4dd55c0996c8e35ce121f293b06ed78e1a1c1bd7e4dad8c1a297fc186fc",
+      "local_path": "candidate/ci-37933218014/mc-remote-scratch-local-2320.0.0b10-linux-x64.zip",
+      "identity": {
+        "schema": "mc-remote.scratch-local",
+        "schema_version": 1,
+        "version": "2320.0.0b10",
+        "os": "linux",
+        "arch": "x64",
+        "source": {
+          "repository": "https://github.com/Naohiro2g/scratch-editor",
+          "commit": "ec29372dadac9c51b2812c746e72032d48d987b6",
+          "working_tree_dirty": false,
+          "archive": "source/scratch-source.tar.gz",
+          "archive_sha256": "2bb3185f54234fc729cec2f18332023dad0e5ee84a7bbad2d1eef21f4f444929"
+        },
+        "tooling": {
+          "repository": "Naohiro2g/minecraft-remote-tooling",
+          "commit": "dc1ab834183e29f2eb03059b07e99d2b463776ee",
+          "bridge_digest": "sha256:5828304c9bb1d60df8672f9189f503790050e09358bd375f39e4d59d190eb84f",
+          "bridge_archive_sha256": "b6a6feec07e8d7ae9805a81e8dc370e6220e91af145ef3117ce5ed12e703b100",
+          "wirescope_archive_sha256": "da3da0b6cf4d05265bc0c11abaa4913208c7cfc3600b0c3e78c93a356fc431ad",
+          "wirescope_manifest_sha256": "c654f7d1f0be2773d6737e889279b2587317088717f162b082c82be9cff910d7"
+        },
+        "runtime": {
+          "name": "Node.js",
+          "version": "24.19.0",
+          "url": "https://nodejs.org/dist/v24.19.0/node-v24.19.0-linux-x64.tar.gz",
+          "archive_sha256": "f625d97cd707df4ff96254916fbc5ff014f09c09effe5a1e0ca8f6d41a8789d4"
+        }
+      },
+      "license_review": {
+        "schema": "mc-remote.scratch-local-license-review",
+        "schema_version": 1,
+        "gap_entries": 130,
+        "runtime_gap_entries": 26,
+        "build_only_gap_entries": 104,
+        "open_reviews": [
+          {
+            "name": "microee",
+            "version": "0.0.6"
+          }
+        ]
+      }
+    }
+  ],
+  "all_manifest_artifacts_verified": true,
+  "pinned_wirescope_pair_and_all_assets_verified": true,
+  "node_and_bridge_bytes_match_previous_os_zip": true
+}

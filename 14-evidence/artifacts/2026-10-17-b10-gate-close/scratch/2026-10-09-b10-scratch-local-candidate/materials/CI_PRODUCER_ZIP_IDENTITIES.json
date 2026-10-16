@@ -1,0 +1,35 @@
+[
+  {
+    "role": "scratch-local",
+    "kind": "file",
+    "file": "mc-remote-scratch-local-2320.0.0b10-windows-x64.zip",
+    "os": "windows",
+    "arch": "x64",
+    "bytes": 260361934,
+    "sha256": "08340c801c1196c30a1227a7e495feb32131a95e4816ffbb29278557cadab9c1",
+    "source_commit": "c717d0c2ed9b045b8c3bb925b0e1fcd8ee33010b",
+    "working_tree_dirty": false
+  },
+  {
+    "role": "scratch-local",
+    "kind": "file",
+    "file": "mc-remote-scratch-local-2320.0.0b10-macos-arm64.zip",
+    "os": "macos",
+    "arch": "arm64",
+    "bytes": 264713598,
+    "sha256": "60d69479079eb5f7b7022547d417abc5dc31b237eb12766354885e4db53e6908",
+    "source_commit": "c717d0c2ed9b045b8c3bb925b0e1fcd8ee33010b",
+    "working_tree_dirty": false
+  },
+  {
+    "role": "scratch-local",
+    "kind": "file",
+    "file": "mc-remote-scratch-local-2320.0.0b10-linux-x64.zip",
+    "os": "linux",
+    "arch": "x64",
+    "bytes": 269950028,
+    "sha256": "245d83aeab8f6a10bc3703547e0f897b3e82a8c9152c1a131378454f0debdf8b",
+    "source_commit": "c717d0c2ed9b045b8c3bb925b0e1fcd8ee33010b",
+    "working_tree_dirty": false
+  }
+]

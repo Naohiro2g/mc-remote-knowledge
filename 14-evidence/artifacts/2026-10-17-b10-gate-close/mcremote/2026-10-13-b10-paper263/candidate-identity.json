@@ -1,0 +1,20 @@
+{
+  "source_commit": "17bcf2645c112133935bc9d993d4fdd4669ceb98",
+  "ci_run": 38347345527,
+  "artifact_id": 11789398049,
+  "jar_file": "mc-remote-2320.0.0b10.jar",
+  "bytes": 315352,
+  "sha256": "96ddf09f765a77811740d5c62f3787f7a87c8be6cd7247d345f6dfe9e93512a4",
+  "minecraft_versions": [
+    "1.21.11",
+    "26.3"
+  ],
+  "class_major": 65,
+  "embedded_sqlite_entries": 0,
+  "jar_changed_entries": [
+    "config.yml",
+    "minecraft-targets.json"
+  ],
+  "new_entries": [],
+  "removed_entries": []
+}
