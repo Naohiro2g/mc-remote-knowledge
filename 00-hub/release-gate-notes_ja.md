@@ -450,6 +450,15 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   `c79ca8e667f46b0df4f6703ce3173c40741e9c37427e4de7908cc396390674f9`、26.3は
   `e07fd1513f731d587302621b95234fb135fa95553ca87111829bcda3618b1754`）
 - 次の操作（2026-10-14）：human ownerが実施票で3つのOSを試す。pre-releaseの解除とshared deployは、その結果の後に別に頼む
+- 進捗（2026-10-14〜17、3 OS）：pre-releaseのassetで、Windows（Smart App Controlオン、「許可する」→ ダブルクリック）、macOS
+  （「このまま開く」）、Ubuntu（「プログラムとして実行」）の取得、初回起動、設定画面、1台構成、ペアリング待ちの画面、
+  保存・再開、LAN構成（Mac → Ubuntuの1.21.11、Windows → macOSの26.3）が通った。Paperは1.21.11 build 132と26.3 build 181、194、
+  200。見つかったことは14件（`14-evidence/records/2026-10-17-b10-prerelease-3os-live-human_ja.md`）。実施票7.3の「翌日、
+  ペアリングし直さずに接続できるか」はsession tokenの約2時間の失効と食い違っていた（coordinatorの誤り。翌日はペアリングし直す
+  のが設計どおり）
+- 決定（2026-10-17、human owner）：b10は合格（`2026-10-13-05`の「通れば」）。翌日に誘導なしで始める回は、今回の改善点を直せば
+  合格の見込みとし、b10とrc1を使う中でフィードバックを得る
+- 次の操作（2026-10-17）：McRemoteとScratchのpre-releaseの印を外してb10を公開し、shared deployを行う（指示票）。その後にrc1
 
 ## 2026-10-04 b9横断release gate（CLOSED）
 
