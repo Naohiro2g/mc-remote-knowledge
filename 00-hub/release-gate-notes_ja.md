@@ -71,11 +71,11 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - non-claim: PyPI.orgへの公開はしない。mature判定はしない。Windowsでは検証していない
 - coordinator判定／human release owner承認: human ownerがpost2のsetへの組み入れを判定（2026-09-26、`2026-09-27-01`）。coordinatorはchange coneが閉じていることを確認し、単独更新gateを通過とする（2026-09-28）。**CLOSED**
 
-## 2026-10-07 b10横断release gate（OPEN）
+## 2026-10-07 b10横断release gate（CLOSED）
 
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
-- current phase: **OPEN**（2026-10-07、human ownerの判断）。2026-10-14にpre-releaseとして公開、2026-10-17にhuman ownerが合格とした。closeの準備中
+- current phase: **CLOSED**（2026-10-17、human ownerの判断）。2026-10-07に開き、2026-10-14にpre-releaseとして公開、2026-10-17にhuman ownerが合格とした
 - 目標日: b10 2026-10-17、rc1 10/24まで、初回stable 11/7（`2026-10-13-06`）。b10がpre-releaseでの試験で止まればb11を挟む
   （`2026-10-13-05`）
 - release mode: 軽量mode（release運用と責務分担 §14、`2026-08-28-02`）。単一JARとケータリング型簡易版のZIPは新しい配布の形
@@ -474,6 +474,12 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   SHA-256で照合して`14-evidence/artifacts/2026-10-17-b10-gate-close/`へ収容した（`14-evidence/records/2026-10-17-b10-gate-close_ja.md`）。
   human ownerの指示で、設計とアイデアの文書は遅延削除（Scratchは該当のdirectoryを②、McRemoteは③のMarkdown 57件を保護）。
   Scratchは2026-10-12のparkへの⑥〜⑪の追記が元の票と両立すると返し、WireScope miniの層別の診断の案が未収容と返した（parkへ追記）
+- gateを閉じるときのpark確認（`2026-09-30-09`、2026-10-17、human owner同意）：tick分割のparkを閉じた（b10で実装と確認）。ホームページの
+  2つのルートは再開の条件が来たので2026-10-18に着手する（rc1までにLANの入口）。Smart App Controlの切り替えのparkへ、b10の試験で
+  SACオンのまま認証できた観察を足した。auto modeがpushを止めたparkは、b10のclose分類の着地のpush（`6e9e14d`、evidence 99 file）が
+  止まらずに通ったので閉じた
+- close（2026-10-17、human ownerの判断）：**b10 gateをCLOSEDとする**。残り：shared deploy（VPSベータのMinecraftの版をhuman ownerが
+  決めてから）、ホームページ（releasesの記述、LANの入口）、rc1 gateを開くこと
 
 ## 2026-10-04 b9横断release gate（CLOSED）
 
