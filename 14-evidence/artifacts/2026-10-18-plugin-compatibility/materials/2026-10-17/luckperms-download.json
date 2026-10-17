@@ -1,0 +1,92 @@
+{
+  "discordUserCount": 20670,
+  "version": "5.5.87",
+  "versionTimestamp": 1791129673030,
+  "downloads": {
+    "bukkit": "https://download.luckperms.net/1674/bukkit/loader/LuckPerms-Bukkit-5.5.87.jar",
+    "bukkit-legacy": "https://download.luckperms.net/1674/bukkit-legacy/loader/LuckPerms-Bukkit-Legacy-5.5.87.jar",
+    "bungee": "https://download.luckperms.net/1674/bungee/loader/LuckPerms-Bungee-5.5.87.jar",
+    "fabric": "https://download.luckperms.net/1674/fabric/LuckPerms-Fabric-5.5.87.jar",
+    "forge": "https://download.luckperms.net/1674/forge/loader/LuckPerms-Forge-5.5.87.jar",
+    "hytale": "https://download.luckperms.net/1674/hytale/loader/LuckPerms-Hytale-5.5.87.jar",
+    "neoforge": "https://download.luckperms.net/1674/neoforge/loader/LuckPerms-NeoForge-5.5.87.jar",
+    "nukkit": "https://download.luckperms.net/1674/nukkit/loader/LuckPerms-Nukkit-5.5.87.jar",
+    "sponge": "https://download.luckperms.net/1674/sponge/loader/LuckPerms-Sponge-5.5.87.jar",
+    "velocity": "https://download.luckperms.net/1674/velocity/LuckPerms-Velocity-5.5.87.jar"
+  },
+  "changeLog": [
+    {
+      "version": "5.5.87",
+      "timestamp": 1791129673030,
+      "title": "Update Group getWeight javadoc comment (#4325)",
+      "commit": "5fc3d583c412854e050b1e4ba8aa5036d8daf982"
+    },
+    {
+      "version": "5.5.86",
+      "timestamp": 1791129041992,
+      "title": "Fix NeoForge NoClassDefFoundError (#4327)",
+      "commit": "aeaab669ab4086b237f24b50b15b46da6472f4d2"
+    },
+    {
+      "version": "5.5.85",
+      "timestamp": 1789802678943,
+      "title": "Update to Minecraft 26.3",
+      "commit": "25f223317a9ec2b6e73369126b630eca07d79506"
+    },
+    {
+      "version": "5.5.84",
+      "timestamp": 1789246528955,
+      "title": "Fix grammar/spelling in API javadocs",
+      "commit": "a81c095f83fc0fb76d2b2f8c2f39b44b8e96bef0"
+    },
+    {
+      "version": "5.5.83",
+      "timestamp": 1789244852007,
+      "title": "Use JSpecify annotations (#4312)",
+      "commit": "e794facb05051f4ef18f4176b73e28fa0b87291d"
+    },
+    {
+      "version": "5.5.82",
+      "timestamp": 1789064368953,
+      "title": "Increase cleanup delay for users mid-login (#4268)",
+      "commit": "24a25458d66e2fc976a86f2633f8c62956c821a5"
+    },
+    {
+      "version": "5.5.81",
+      "timestamp": 1787851418910,
+      "title": "Update to Hytale Update 6 (#4311)",
+      "commit": "32494e9f0ab14857b63650ab68a65222d1924a93"
+    },
+    {
+      "version": "5.5.80",
+      "timestamp": 1787850738030,
+      "title": "Update InheritanceTest (#4306)",
+      "commit": "79770b0dc1189469c651da720f400b6115de08ce"
+    },
+    {
+      "version": "5.5.79",
+      "timestamp": 1787773858981,
+      "title": "Fabric Permission API v1 replace `/` with `.` (#4310)",
+      "commit": "c1c85762a1300d3c940839349c4b9bf66d0996d7"
+    },
+    {
+      "version": "5.5.78",
+      "timestamp": 1787693988071,
+      "title": "Remove then add when applying Difference (#4287)",
+      "commit": "d98a3954fa38dbc0716be2e91984947059df3f9b"
+    }
+  ],
+  "placeholderExpansions": {
+    "bukkit-mvdw": "https://ci.lucko.me/job/LuckPermsPlaceholders/20/artifact/bukkit-mvdw/build/libs/LuckPerms-MVdWPlaceholderAPI-Hook.jar",
+    "bukkit-placeholderapi": "https://ci.lucko.me/job/LuckPermsPlaceholders/20/artifact/bukkit-placeholderapi/build/libs/Expansion-LuckPerms.jar",
+    "fabric-placeholderapi": "https://ci.lucko.me/job/LuckPermsPlaceholders/20/artifact/fabric-placeholderapi/build/libs/LuckPerms-Fabric-Placeholders.jar",
+    "hytale-placeholderapi": "https://ci.lucko.me/job/LuckPermsPlaceholders/20/artifact/hytale-placeholderapi/build/libs/Expansion-LuckPerms-Hytale.jar"
+  },
+  "extensions": {
+    "extension-legacy-api": "https://ci.lucko.me/job/extension-legacy-api/10/artifact/build/libs/extension-legacy-api-1.0.0.jar",
+    "extension-default-assignments": "https://ci.lucko.me/job/extension-default-assignments/5/artifact/build/libs/extension-default-assignments-1.1.0.jar"
+  },
+  "additionalPlugins": {
+    "extracontexts": "https://ci.lucko.me/job/extracontexts/21/artifact/target/ExtraContexts.jar"
+  }
+}

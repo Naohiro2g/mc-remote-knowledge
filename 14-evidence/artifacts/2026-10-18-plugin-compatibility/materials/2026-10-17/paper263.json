@@ -1,0 +1,2621 @@
+[
+  {
+    "id": 200,
+    "time": "2026-10-16T14:26:32Z",
+    "channel": "STABLE",
+    "commits": [
+      {
+        "sha": "09ee222482646f8ed84413aea89d0108653af938",
+        "time": "2026-10-16T14:26:16Z",
+        "message": "Add the ability to throttle inactive goal selector ticking for mobs (#12781)\n\nCo-authored-by: Kevin Raneri <kevin.raneri@gmail.com>"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-200.jar",
+        "checksums": {
+          "sha256": "0e104a19ad818f05266a4571c0a9b0cada241c2016ee64883e5d38435332fa8d"
+        },
+        "size": 55156784,
+        "url": "https://fill-data.papermc.io/v1/objects/0e104a19ad818f05266a4571c0a9b0cada241c2016ee64883e5d38435332fa8d/paper-26.3-200.jar"
+      }
+    }
+  },
+  {
+    "id": 199,
+    "time": "2026-10-16T14:04:24Z",
+    "channel": "STABLE",
+    "commits": [
+      {
+        "sha": "22c663d327b9b29b1eada244112e46651e63e5d6",
+        "time": "2026-10-16T14:04:08Z",
+        "message": "Add PrepareHopperTransferEvent (#14368)"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-199.jar",
+        "checksums": {
+          "sha256": "b0c600dcf01cf80d63ec5990ca85f659043765fddaf81ceebe0ebe836921dfe6"
+        },
+        "size": 55157667,
+        "url": "https://fill-data.papermc.io/v1/objects/b0c600dcf01cf80d63ec5990ca85f659043765fddaf81ceebe0ebe836921dfe6/paper-26.3-199.jar"
+      }
+    }
+  },
+  {
+    "id": 198,
+    "time": "2026-10-16T13:57:47Z",
+    "channel": "STABLE",
+    "commits": [
+      {
+        "sha": "4091869eedbacb42c806fd670974ecfcb18d721f",
+        "time": "2026-10-16T13:57:30Z",
+        "message": "Fix repeated cookie requests for the same key (#14245)"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-198.jar",
+        "checksums": {
+          "sha256": "292b394d1032ee969f32dbfa2924b97945cc318bb0a2a1d2271478097f67bab0"
+        },
+        "size": 55155072,
+        "url": "https://fill-data.papermc.io/v1/objects/292b394d1032ee969f32dbfa2924b97945cc318bb0a2a1d2271478097f67bab0/paper-26.3-198.jar"
+      }
+    }
+  },
+  {
+    "id": 197,
+    "time": "2026-10-16T13:37:09Z",
+    "channel": "STABLE",
+    "commits": [
+      {
+        "sha": "db93f621b3f2160ffc8879c7bea1c7fc5d7710c4",
+        "time": "2026-10-16T13:36:54Z",
+        "message": "Add AttachableDirectional Interface (#12932)\n\nCo-authored-by: Doc <git@mrdoc.dev>"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-197.jar",
+        "checksums": {
+          "sha256": "15464da69b8355b5bc7d790d307a67db93eeaad692b1473f96362be838bc0cce"
+        },
+        "size": 55155223,
+        "url": "https://fill-data.papermc.io/v1/objects/15464da69b8355b5bc7d790d307a67db93eeaad692b1473f96362be838bc0cce/paper-26.3-197.jar"
+      }
+    }
+  },
+  {
+    "id": 196,
+    "time": "2026-10-16T12:45:50Z",
+    "channel": "STABLE",
+    "commits": [
+      {
+        "sha": "7ec11b289ecb93c0728994399e5db84690ef1aa9",
+        "time": "2026-10-16T12:45:33Z",
+        "message": "Fix unix domain socket support (#13731)"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-196.jar",
+        "checksums": {
+          "sha256": "76fc193a4d241cdbffefb2c94a15e39d9c32481b0ae65edce0376e214fa3cbce"
+        },
+        "size": 55153800,
+        "url": "https://fill-data.papermc.io/v1/objects/76fc193a4d241cdbffefb2c94a15e39d9c32481b0ae65edce0376e214fa3cbce/paper-26.3-196.jar"
+      }
+    }
+  },
+  {
+    "id": 195,
+    "time": "2026-10-16T12:06:14Z",
+    "channel": "STABLE",
+    "commits": [
+      {
+        "sha": "683e60c0923ddafd642c43997f9d023655e96f99",
+        "time": "2026-10-16T12:06:00Z",
+        "message": "Fix datapack GUIs relying on synchronous container opening (#14084)\n\nCo-authored-by: Doc <git@mrdoc.dev>"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-195.jar",
+        "checksums": {
+          "sha256": "9f521e422baf72689b95963d008f627a62cf9e64aa3b026f5cd206ed7123982a"
+        },
+        "size": 55152204,
+        "url": "https://fill-data.papermc.io/v1/objects/9f521e422baf72689b95963d008f627a62cf9e64aa3b026f5cd206ed7123982a/paper-26.3-195.jar"
+      }
+    }
+  },
+  {
+    "id": 194,
+    "time": "2026-10-15T21:41:31Z",
+    "channel": "STABLE",
+    "commits": [
+      {
+        "sha": "39887673fbf5a8a9de81050359f5f86771d617d8",
+        "time": "2026-10-15T21:41:12Z",
+        "message": "Move cook speed multiplier application to getTotalCookTime (#14401)"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-194.jar",
+        "checksums": {
+          "sha256": "5fac0b6937b7aecea1b5b40e6a992f7b0802e4271413be35a6913d30df960784"
+        },
+        "size": 55151927,
+        "url": "https://fill-data.papermc.io/v1/objects/5fac0b6937b7aecea1b5b40e6a992f7b0802e4271413be35a6913d30df960784/paper-26.3-194.jar"
+      }
+    }
+  },
+  {
+    "id": 193,
+    "time": "2026-10-15T16:30:26Z",
+    "channel": "STABLE",
+    "commits": [
+      {
+        "sha": "dba08d2f25a07ec1b4a72d130795053ffc50e148",
+        "time": "2026-10-15T16:30:06Z",
+        "message": "Avoid startup failure when UnixSystem UID lookup fails in JDK 27 (#14395)"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-193.jar",
+        "checksums": {
+          "sha256": "cf2dcb88fc1fcf5cbef68ba8151a50fa94087cd72843fafba0a964a1ef54c6bc"
+        },
+        "size": 55152396,
+        "url": "https://fill-data.papermc.io/v1/objects/cf2dcb88fc1fcf5cbef68ba8151a50fa94087cd72843fafba0a964a1ef54c6bc/paper-26.3-193.jar"
+      }
+    }
+  },
+  {
+    "id": 192,
+    "time": "2026-10-15T16:16:49Z",
+    "channel": "STABLE",
+    "commits": [
+      {
+        "sha": "be4b895635c1989275569ef6d376bc9f88ed0217",
+        "time": "2026-10-15T16:16:28Z",
+        "message": "Use vanilla recipe order for recipe matching (#14389)"
+      },
+      {
+        "sha": "b69f87e5ac4596f98ae8d67c75a30bda5a5cbb32",
+        "time": "2026-10-15T16:14:37Z",
+        "message": "[ci skip] Remove nullable 'to' ctor param in PlayerMoveEvent and inheritors (#14398)"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-192.jar",
+        "checksums": {
+          "sha256": "229e6cec981e2520c36a1ef4a29794d202ac56f20a0e012a6fda47efc15ff1b6"
+        },
+        "size": 55151070,
+        "url": "https://fill-data.papermc.io/v1/objects/229e6cec981e2520c36a1ef4a29794d202ac56f20a0e012a6fda47efc15ff1b6/paper-26.3-192.jar"
+      }
+    }
+  },
+  {
+    "id": 191,
+    "time": "2026-10-15T14:04:02Z",
+    "channel": "STABLE",
+    "commits": [
+      {
+        "sha": "f68a55a8964e02b11a0951b971951963da5f0276",
+        "time": "2026-10-15T14:03:39Z",
+        "message": "Fix duplicate palette entry handling in anti xray\n\nFixes #13834\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-191.jar",
+        "checksums": {
+          "sha256": "1ad86e924f01af585b84f8d614e6961ddca1ca62b2911115462d6a703e9a9659"
+        },
+        "size": 55151707,
+        "url": "https://fill-data.papermc.io/v1/objects/1ad86e924f01af585b84f8d614e6961ddca1ca62b2911115462d6a703e9a9659/paper-26.3-191.jar"
+      }
+    }
+  },
+  {
+    "id": 190,
+    "time": "2026-10-14T23:12:30Z",
+    "channel": "STABLE",
+    "commits": [
+      {
+        "sha": "a0ded751dca6867902e4741426d2b03838170064",
+        "time": "2026-10-14T23:12:14Z",
+        "message": "Add event for Entity deciding whether an item belongs in a Container (#13811)\n\nCo-authored-by: Doc <git@mrdoc.dev>"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-190.jar",
+        "checksums": {
+          "sha256": "db0fd32588e732fd0de57cc95a2076624b0e73c1cb2dba87dc5f5f3340bcbb1b"
+        },
+        "size": 55152206,
+        "url": "https://fill-data.papermc.io/v1/objects/db0fd32588e732fd0de57cc95a2076624b0e73c1cb2dba87dc5f5f3340bcbb1b/paper-26.3-190.jar"
+      }
+    }
+  },
+  {
+    "id": 189,
+    "time": "2026-10-14T20:17:18Z",
+    "channel": "STABLE",
+    "commits": [
+      {
+        "sha": "a48059a2d48dea06523f42ffeba543286c7d505e",
+        "time": "2026-10-14T20:17:00Z",
+        "message": "Correctly serialise decorated pod decorations (#14388)"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-189.jar",
+        "checksums": {
+          "sha256": "3a90c2ea79a81cd0ce641c9954c616828be6d32255385aef3b2022f80b91e8b5"
+        },
+        "size": 55150184,
+        "url": "https://fill-data.papermc.io/v1/objects/3a90c2ea79a81cd0ce641c9954c616828be6d32255385aef3b2022f80b91e8b5/paper-26.3-189.jar"
+      }
+    }
+  },
+  {
+    "id": 188,
+    "time": "2026-10-14T20:05:50Z",
+    "channel": "STABLE",
+    "commits": [
+      {
+        "sha": "06b855f0d37a72c853fe8f827ffc08904f907a8e",
+        "time": "2026-10-14T20:05:03Z",
+        "message": "Catch async potion brewer reset mixes\n\nNo longer allowed off thread as this syncs recipe\nregistry data to players.\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-188.jar",
+        "checksums": {
+          "sha256": "f26a4e0e7f358b763c452ad8e2c9c159241b1f71e1b05156e468f75fa9081513"
+        },
+        "size": 55149980,
+        "url": "https://fill-data.papermc.io/v1/objects/f26a4e0e7f358b763c452ad8e2c9c159241b1f71e1b05156e468f75fa9081513/paper-26.3-188.jar"
+      }
+    }
+  },
+  {
+    "id": 187,
+    "time": "2026-10-14T19:47:22Z",
+    "channel": "STABLE",
+    "commits": [
+      {
+        "sha": "56cab99fbfc8dc90513869144a3dfac222de19b4",
+        "time": "2026-10-14T19:47:06Z",
+        "message": "Mitigate jline shutdown race (#14382)\n\nCo-authored-by: Bjarne Koll <git@lynxplay.dev>"
+      },
+      {
+        "sha": "c927bd34ab4b544cc125367ea62c7ea2f1a2196d",
+        "time": "2026-10-14T18:48:16Z",
+        "message": "[ci skip] Remove advice on not using entity scheduler if not targeting Folia (#14384)"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-187.jar",
+        "checksums": {
+          "sha256": "6c6c8ff62a12aa50897fd3666b40673d5729ac135e1285c0e487c40592e01bea"
+        },
+        "size": 55150737,
+        "url": "https://fill-data.papermc.io/v1/objects/6c6c8ff62a12aa50897fd3666b40673d5729ac135e1285c0e487c40592e01bea/paper-26.3-187.jar"
+      }
+    }
+  },
+  {
+    "id": 186,
+    "time": "2026-10-14T18:20:35Z",
+    "channel": "STABLE",
+    "commits": [
+      {
+        "sha": "b5eb5e0bfd1270eba92fa9cb7470921b4517b89c",
+        "time": "2026-10-14T18:18:24Z",
+        "message": "[ci skip] Add manual dispatch trigger\n\nWhen a build is partially published (i.e. to Fill but not to Maven), a retry of the same build may reject indefinitely. A manual trigger allows resolving this without an empty commit.\n\nIn an observed case, Fill successfully published but returned a 504. This specific case could probably be handled with idempotent publish and/or improved error handling policies in fill-gradle. Manual trigger is useful regardless to cover any other cases.\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-186.jar",
+        "checksums": {
+          "sha256": "339329bbccef01391c8091ed12e8669f16f648b24be14e93a3698a40c76fb872"
+        },
+        "size": 55148077,
+        "url": "https://fill-data.papermc.io/v1/objects/339329bbccef01391c8091ed12e8669f16f648b24be14e93a3698a40c76fb872/paper-26.3-186.jar"
+      }
+    }
+  },
+  {
+    "id": 185,
+    "time": "2026-10-14T17:57:48Z",
+    "channel": "STABLE",
+    "commits": [
+      {
+        "sha": "4738ffe3354f0b0714b2f395014a24073171f508",
+        "time": "2026-10-14T17:57:31Z",
+        "message": "Add API to get chunk generation state (#14373)"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-185.jar",
+        "checksums": {
+          "sha256": "02e04d9cebe9d91836842b8adeb37a2b5166d9b48e0696177c027ad4900f4c5c"
+        },
+        "size": 55148500,
+        "url": "https://fill-data.papermc.io/v1/objects/02e04d9cebe9d91836842b8adeb37a2b5166d9b48e0696177c027ad4900f4c5c/paper-26.3-185.jar"
+      }
+    }
+  },
+  {
+    "id": 184,
+    "time": "2026-10-14T16:08:03Z",
+    "channel": "STABLE",
+    "commits": [
+      {
+        "sha": "7ff575c99bb8036461ba1383416044dd302f05b8",
+        "time": "2026-10-14T16:07:43Z",
+        "message": "feat: add PlayerBundleItemSelectEvent (#13898)"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-184.jar",
+        "checksums": {
+          "sha256": "e42ffc9929c6aef74c78cd80b42494e0271c08561e238c17bd890662afe8d28d"
+        },
+        "size": 55144398,
+        "url": "https://fill-data.papermc.io/v1/objects/e42ffc9929c6aef74c78cd80b42494e0271c08561e238c17bd890662afe8d28d/paper-26.3-184.jar"
+      }
+    }
+  },
+  {
+    "id": 183,
+    "time": "2026-10-14T12:47:29Z",
+    "channel": "STABLE",
+    "commits": [
+      {
+        "sha": "ec0cd5c5aed17e8770f645230dfe4317f72f2ee5",
+        "time": "2026-10-14T12:47:12Z",
+        "message": "Server-side translations everywhere (#14120)\n\nCo-authored-by: Warrior <50800980+Warriorrrr@users.noreply.github.com>"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-183.jar",
+        "checksums": {
+          "sha256": "09d38bfa3a7100e4d80554b9a964dfbf124f1d62c9ceabe482769e8a1098b4c3"
+        },
+        "size": 55141165,
+        "url": "https://fill-data.papermc.io/v1/objects/09d38bfa3a7100e4d80554b9a964dfbf124f1d62c9ceabe482769e8a1098b4c3/paper-26.3-183.jar"
+      }
+    }
+  },
+  {
+    "id": 182,
+    "time": "2026-10-14T12:13:35Z",
+    "channel": "STABLE",
+    "commits": [
+      {
+        "sha": "6e1bb67eb12d4a456a242b7a12d1d9737f67b616",
+        "time": "2026-10-14T12:13:15Z",
+        "message": "Rewrite Adventure Book calls to BookMeta (#14081)\n\nCo-authored-by: TheosRee <theosree@users.noreply.github.com>"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-182.jar",
+        "checksums": {
+          "sha256": "ec5127ad7ed3bce3d3e5a1df0514b13702ee98cb518851ea990da22911048160"
+        },
+        "size": 55143238,
+        "url": "https://fill-data.papermc.io/v1/objects/ec5127ad7ed3bce3d3e5a1df0514b13702ee98cb518851ea990da22911048160/paper-26.3-182.jar"
+      }
+    }
+  },
+  {
+    "id": 181,
+    "time": "2026-10-13T16:20:13Z",
+    "channel": "STABLE",
+    "commits": [
+      {
+        "sha": "cc7ee9aebdfc9e4acc3ef8f38c35944872fd1f87",
+        "time": "2026-10-13T16:19:57Z",
+        "message": "Lazy initialization of formattedDisplayName (#14039)\n\nCo-authored-by: Warrior <50800980+Warriorrrr@users.noreply.github.com>\nCo-authored-by: Doc <git@mrdoc.dev>\nCo-authored-by: Bjarne Koll <git@lynxplay.dev>"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-181.jar",
+        "checksums": {
+          "sha256": "cada5af7f14363bc8545c0e973130de9431f6dc678dc612759187695027c27d9"
+        },
+        "size": 55143438,
+        "url": "https://fill-data.papermc.io/v1/objects/cada5af7f14363bc8545c0e973130de9431f6dc678dc612759187695027c27d9/paper-26.3-181.jar"
+      }
+    }
+  },
+  {
+    "id": 180,
+    "time": "2026-10-13T13:02:41Z",
+    "channel": "STABLE",
+    "commits": [
+      {
+        "sha": "a2d844f71e275a91656448d5a0eb1142359230b9",
+        "time": "2026-10-13T13:02:24Z",
+        "message": "Fix player removal from maps (#14328)"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-180.jar",
+        "checksums": {
+          "sha256": "d6a5589a720fbe74b15fd9be6679bff3c55f737801e149fab8337cd0b0a1a989"
+        },
+        "size": 55143262,
+        "url": "https://fill-data.papermc.io/v1/objects/d6a5589a720fbe74b15fd9be6679bff3c55f737801e149fab8337cd0b0a1a989/paper-26.3-180.jar"
+      }
+    }
+  },
+  {
+    "id": 179,
+    "time": "2026-10-13T12:09:07Z",
+    "channel": "STABLE",
+    "commits": [
+      {
+        "sha": "6829d9e6cb4f09ce5f34035f774e2b4b19f164dd",
+        "time": "2026-10-13T12:08:48Z",
+        "message": "Fix fire immune entities being lightning immune (#14357)\n\nCo-authored-by: Owen1212055 <23108066+Owen1212055@users.noreply.github.com>"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-179.jar",
+        "checksums": {
+          "sha256": "5c208cf990315cff647b8e8b3d487b98c8be2f31655985ed004c7bb25b3857ce"
+        },
+        "size": 55143590,
+        "url": "https://fill-data.papermc.io/v1/objects/5c208cf990315cff647b8e8b3d487b98c8be2f31655985ed004c7bb25b3857ce/paper-26.3-179.jar"
+      }
+    }
+  },
+  {
+    "id": 178,
+    "time": "2026-10-12T20:42:19Z",
+    "channel": "STABLE",
+    "commits": [
+      {
+        "sha": "03226a58389b1327f749567b809ef13f31adac09",
+        "time": "2026-10-12T20:42:01Z",
+        "message": "Add `Entity#isInvulnerableTo` method (#12826)\n\nCo-authored-by: Warrior <50800980+Warriorrrr@users.noreply.github.com>\nCo-authored-by: Doc <git@mrdoc.dev>"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-178.jar",
+        "checksums": {
+          "sha256": "5dd0c8fb20a96eb7c98f3c4b1c890e99ef6db56fd689a2cf06975a3471fda757"
+        },
+        "size": 55143992,
+        "url": "https://fill-data.papermc.io/v1/objects/5dd0c8fb20a96eb7c98f3c4b1c890e99ef6db56fd689a2cf06975a3471fda757/paper-26.3-178.jar"
+      }
+    }
+  },
+  {
+    "id": 177,
+    "time": "2026-10-12T15:04:04Z",
+    "channel": "STABLE",
+    "commits": [
+      {
+        "sha": "fbec96a8fadeb9fbff36b903ec44907576115d17",
+        "time": "2026-10-12T15:03:46Z",
+        "message": "Improve EntityAirChangeEvent calls (#14155)"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-177.jar",
+        "checksums": {
+          "sha256": "580c266b6526bb34752e9c2c274be025f763af1ce5b3fa662fa2b3006f966c13"
+        },
+        "size": 55143237,
+        "url": "https://fill-data.papermc.io/v1/objects/580c266b6526bb34752e9c2c274be025f763af1ce5b3fa662fa2b3006f966c13/paper-26.3-177.jar"
+      }
+    }
+  },
+  {
+    "id": 176,
+    "time": "2026-10-12T14:18:07Z",
+    "channel": "STABLE",
+    "commits": [
+      {
+        "sha": "abe55c52423d3bacc32fdbbe10184ffdf8d6af9e",
+        "time": "2026-10-12T14:17:50Z",
+        "message": "Reset client world load status on respawn/cross-dimension teleport (#14191)"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-176.jar",
+        "checksums": {
+          "sha256": "c17450c3335aabd95e3e65524a4f945e979d7d79ee65a80b002d1a559c6d7bb3"
+        },
+        "size": 55142905,
+        "url": "https://fill-data.papermc.io/v1/objects/c17450c3335aabd95e3e65524a4f945e979d7d79ee65a80b002d1a559c6d7bb3/paper-26.3-176.jar"
+      }
+    }
+  },
+  {
+    "id": 175,
+    "time": "2026-10-11T15:32:14Z",
+    "channel": "STABLE",
+    "commits": [
+      {
+        "sha": "bd9daa8fba19cb288d690c1621ad1749de3e0a78",
+        "time": "2026-10-11T15:31:55Z",
+        "message": "Promote build channel to stable\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-175.jar",
+        "checksums": {
+          "sha256": "ece5afb6d0cdf0c930489618bf92341e33d2ebcd4f21e6d365daff6ed26dafb0"
+        },
+        "size": 55142601,
+        "url": "https://fill-data.papermc.io/v1/objects/ece5afb6d0cdf0c930489618bf92341e33d2ebcd4f21e6d365daff6ed26dafb0/paper-26.3-175.jar"
+      }
+    }
+  },
+  {
+    "id": 174,
+    "time": "2026-10-11T08:11:34Z",
+    "channel": "BETA",
+    "commits": [
+      {
+        "sha": "99867f8f9207d3164696e469435a067330473743",
+        "time": "2026-10-11T08:08:37Z",
+        "message": "Fix block state upgrading in old structure data\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-174.jar",
+        "checksums": {
+          "sha256": "ab925801c3b7f8fbb98d6fa88a2e9c34687ffe2697199a1c2fa19a98922ed1f9"
+        },
+        "size": 55143345,
+        "url": "https://fill-data.papermc.io/v1/objects/ab925801c3b7f8fbb98d6fa88a2e9c34687ffe2697199a1c2fa19a98922ed1f9/paper-26.3-174.jar"
+      }
+    }
+  },
+  {
+    "id": 173,
+    "time": "2026-10-11T08:07:20Z",
+    "channel": "BETA",
+    "commits": [
+      {
+        "sha": "c3ec3ae0c281658e4b8f994c05de92164e1b59ed",
+        "time": "2026-10-11T08:07:05Z",
+        "message": "Fix minimum block light in spawner spawn rules (#14371)"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-173.jar",
+        "checksums": {
+          "sha256": "645621f6551ef079f1e110dda4fb74549b92d741f7917ef66907ea0625646752"
+        },
+        "size": 55140532,
+        "url": "https://fill-data.papermc.io/v1/objects/645621f6551ef079f1e110dda4fb74549b92d741f7917ef66907ea0625646752/paper-26.3-173.jar"
+      }
+    }
+  },
+  {
+    "id": 172,
+    "time": "2026-10-11T08:01:07Z",
+    "channel": "BETA",
+    "commits": [
+      {
+        "sha": "1a6b058db4f82abd38f2759efa529af4d66513d8",
+        "time": "2026-10-11T08:00:52Z",
+        "message": "Only set emptyCrystalRespawnAllowed if the fight actually started (fix #14254 regression) (#14333)"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-172.jar",
+        "checksums": {
+          "sha256": "f659b6d45abaff0ee5a0fb1715d01535a50225319fa7f5b844fb64b0ffb4b451"
+        },
+        "size": 55140713,
+        "url": "https://fill-data.papermc.io/v1/objects/f659b6d45abaff0ee5a0fb1715d01535a50225319fa7f5b844fb64b0ffb4b451/paper-26.3-172.jar"
+      }
+    }
+  },
+  {
+    "id": 171,
+    "time": "2026-10-11T07:04:39Z",
+    "channel": "BETA",
+    "commits": [
+      {
+        "sha": "821b95fb153b92a78c2a6e599d608383b8745e1f",
+        "time": "2026-10-11T07:04:03Z",
+        "message": "Fix hidden_components upgrade of replaced data components\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-171.jar",
+        "checksums": {
+          "sha256": "12456c58744353a95d59fe50fde2decf19d4561ae58191bcb194909f447d9b00"
+        },
+        "size": 55140415,
+        "url": "https://fill-data.papermc.io/v1/objects/12456c58744353a95d59fe50fde2decf19d4561ae58191bcb194909f447d9b00/paper-26.3-171.jar"
+      }
+    }
+  },
+  {
+    "id": 170,
+    "time": "2026-10-10T23:34:39Z",
+    "channel": "BETA",
+    "commits": [
+      {
+        "sha": "b2d29a4fa871443c98226275b56992fa2d5a42ed",
+        "time": "2026-10-10T23:34:24Z",
+        "message": "Sync latest Moonrise changes (#14370)"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-170.jar",
+        "checksums": {
+          "sha256": "178a7bd115d8ab069af267bca2cba567d3d23036392762189846f35e97e35a17"
+        },
+        "size": 55139075,
+        "url": "https://fill-data.papermc.io/v1/objects/178a7bd115d8ab069af267bca2cba567d3d23036392762189846f35e97e35a17/paper-26.3-170.jar"
+      }
+    }
+  },
+  {
+    "id": 169,
+    "time": "2026-10-09T18:50:09Z",
+    "channel": "BETA",
+    "commits": [
+      {
+        "sha": "46d4834e8e2ec4af9dcfa028076fb16dfb8a3911",
+        "time": "2026-10-09T18:49:51Z",
+        "message": "Fix deprecation warnings at startup caused by sun.misc.Unsafe usage (#14350)"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-169.jar",
+        "checksums": {
+          "sha256": "185d9f4267afca48959d6a56150cf8803b6645aee10de3ed147df7ab1ff781fb"
+        },
+        "size": 55138949,
+        "url": "https://fill-data.papermc.io/v1/objects/185d9f4267afca48959d6a56150cf8803b6645aee10de3ed147df7ab1ff781fb/paper-26.3-169.jar"
+      }
+    }
+  },
+  {
+    "id": 168,
+    "time": "2026-10-09T17:15:03Z",
+    "channel": "BETA",
+    "commits": [
+      {
+        "sha": "e3e060d74d4447752bc4cb038eb3f9aa2d51c4f7",
+        "time": "2026-10-09T17:12:51Z",
+        "message": "Correctly revert SulfurCube on cancelled explode event\n\nA plugin cancelling a sulfur cube explosion should fully revert the cube\nto its pre-primed state. Previously the sulfur cube would remain\ninvulnerable after the event was cancelled.\n"
+      },
+      {
+        "sha": "d57def08de7ad021e4593a286f2737474af241e0",
+        "time": "2026-10-09T15:44:21Z",
+        "message": "[ci skip] Rebuild patches\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-168.jar",
+        "checksums": {
+          "sha256": "e3c00a8083678b1609c35434ce57cd38055a35e925cded466402ec981ff6df02"
+        },
+        "size": 54213335,
+        "url": "https://fill-data.papermc.io/v1/objects/e3c00a8083678b1609c35434ce57cd38055a35e925cded466402ec981ff6df02/paper-26.3-168.jar"
+      }
+    }
+  },
+  {
+    "id": 167,
+    "time": "2026-10-09T14:52:59Z",
+    "channel": "BETA",
+    "commits": [
+      {
+        "sha": "21a495c94c6a623212202ab7badabcd2ad1523ff",
+        "time": "2026-10-09T14:52:43Z",
+        "message": "Expose gravity and air drag (#14196)"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-167.jar",
+        "checksums": {
+          "sha256": "35a6c650e2f7f540e8f62e947ff00614242c25ec68befbc54a5f668b2fbecbdb"
+        },
+        "size": 54212412,
+        "url": "https://fill-data.papermc.io/v1/objects/35a6c650e2f7f540e8f62e947ff00614242c25ec68befbc54a5f668b2fbecbdb/paper-26.3-167.jar"
+      }
+    }
+  },
+  {
+    "id": 166,
+    "time": "2026-10-09T00:54:07Z",
+    "channel": "BETA",
+    "commits": [
+      {
+        "sha": "cc7b98af634be07c9b3581306c7b6af33caa3ff2",
+        "time": "2026-10-09T00:53:51Z",
+        "message": "Support Batch Recipe (Un)Registration Methods and Improvements (#13945)\n\nCo-authored-by: Doc <git@mrdoc.dev>"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-166.jar",
+        "checksums": {
+          "sha256": "dbaae37e10e30e44ad1ff65cf00992240c3e79d33e150f9c4e833ed0338e8ccd"
+        },
+        "size": 54212025,
+        "url": "https://fill-data.papermc.io/v1/objects/dbaae37e10e30e44ad1ff65cf00992240c3e79d33e150f9c4e833ed0338e8ccd/paper-26.3-166.jar"
+      }
+    }
+  },
+  {
+    "id": 165,
+    "time": "2026-10-09T00:17:26Z",
+    "channel": "BETA",
+    "commits": [
+      {
+        "sha": "e63aca43379de12f7419ccc3ca2497de87d861a9",
+        "time": "2026-10-09T00:17:11Z",
+        "message": "Add Entity#getWeapon (#13949)\n\nCo-authored-by: Doc <git@mrdoc.dev>"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-165.jar",
+        "checksums": {
+          "sha256": "452e234a008a6d70cca1339f3d29bd456ee6fdac8a94d3712bcf59124df71abe"
+        },
+        "size": 54212174,
+        "url": "https://fill-data.papermc.io/v1/objects/452e234a008a6d70cca1339f3d29bd456ee6fdac8a94d3712bcf59124df71abe/paper-26.3-165.jar"
+      }
+    }
+  },
+  {
+    "id": 164,
+    "time": "2026-10-08T20:55:51Z",
+    "channel": "BETA",
+    "commits": [
+      {
+        "sha": "16db242251ae413fc21e978abbc881ca55610bed",
+        "time": "2026-10-08T20:55:30Z",
+        "message": "Add PersistentDataKey API (#14337)"
+      },
+      {
+        "sha": "615e915d6baa245f5a0ce0951ccf8ae444b6e336",
+        "time": "2026-10-08T20:50:55Z",
+        "message": "Document undefined tracker behavior in track/untrack events. (#14189)"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-164.jar",
+        "checksums": {
+          "sha256": "3c0278c79e51a8c30be6d011a56c9896329f7fa036c4b2afc25c419102347c30"
+        },
+        "size": 54212502,
+        "url": "https://fill-data.papermc.io/v1/objects/3c0278c79e51a8c30be6d011a56c9896329f7fa036c4b2afc25c419102347c30/paper-26.3-164.jar"
+      }
+    }
+  },
+  {
+    "id": 162,
+    "time": "2026-10-08T20:49:42Z",
+    "channel": "BETA",
+    "commits": [
+      {
+        "sha": "8097898e6dd8be147477e234bd3fa2e59e217547",
+        "time": "2026-10-08T20:49:25Z",
+        "message": "Refresh learnable recipes on recipe changes (#14302)"
+      },
+      {
+        "sha": "e8750e1c009d1a4a932de104c97589032d139fb6",
+        "time": "2026-10-08T20:48:42Z",
+        "message": "[ci skip] Resolve Schrödinger's accessor in HumanEntity starvation API (#14364)"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-162.jar",
+        "checksums": {
+          "sha256": "63785ced41ecad78ca8b7d7e72d3f2bcb5820e7741427169193181c6fdf17e67"
+        },
+        "size": 54210226,
+        "url": "https://fill-data.papermc.io/v1/objects/63785ced41ecad78ca8b7d7e72d3f2bcb5820e7741427169193181c6fdf17e67/paper-26.3-162.jar"
+      }
+    }
+  },
+  {
+    "id": 161,
+    "time": "2026-10-08T19:54:36Z",
+    "channel": "BETA",
+    "commits": [
+      {
+        "sha": "65ba985571b2771d27eeac2d273ce43bb3b5d61a",
+        "time": "2026-10-08T19:54:18Z",
+        "message": "Allow unrestricting commands (#14358)"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-161.jar",
+        "checksums": {
+          "sha256": "be4f941e412eda30d92a20aa2a3b26c34abf984ea8ba23c70a2023cececf9d96"
+        },
+        "size": 54208978,
+        "url": "https://fill-data.papermc.io/v1/objects/be4f941e412eda30d92a20aa2a3b26c34abf984ea8ba23c70a2023cececf9d96/paper-26.3-161.jar"
+      }
+    }
+  },
+  {
+    "id": 160,
+    "time": "2026-10-08T19:10:06Z",
+    "channel": "BETA",
+    "commits": [
+      {
+        "sha": "b3c6bcb83c9fd6b6475e04be39cd5eb143eda797",
+        "time": "2026-10-08T19:09:48Z",
+        "message": "Sync latest Moonrise changes (#14367)"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-160.jar",
+        "checksums": {
+          "sha256": "5f6781c6bdbffb43ea8c4b4af7ad7864e4db6764a13d66b98d1f54fcee9c6405"
+        },
+        "size": 54209016,
+        "url": "https://fill-data.papermc.io/v1/objects/5f6781c6bdbffb43ea8c4b4af7ad7864e4db6764a13d66b98d1f54fcee9c6405/paper-26.3-160.jar"
+      }
+    }
+  },
+  {
+    "id": 159,
+    "time": "2026-10-06T18:24:33Z",
+    "channel": "BETA",
+    "commits": [
+      {
+        "sha": "a4b87cf896e18419005ab172e8b1694ccc1abe7c",
+        "time": "2026-10-06T18:23:52Z",
+        "message": "Add PlayerPostEffects#update (#14355)"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-159.jar",
+        "checksums": {
+          "sha256": "2224a0b2b6b096ff4c429ad926e97977213e4f633e90cb3a49b5eeb82f94bab0"
+        },
+        "size": 54178292,
+        "url": "https://fill-data.papermc.io/v1/objects/2224a0b2b6b096ff4c429ad926e97977213e4f633e90cb3a49b5eeb82f94bab0/paper-26.3-159.jar"
+      }
+    }
+  },
+  {
+    "id": 158,
+    "time": "2026-10-06T18:14:26Z",
+    "channel": "BETA",
+    "commits": [
+      {
+        "sha": "bfb089d29d2b59f963bb0f244082c42f792688f5",
+        "time": "2026-10-06T18:14:10Z",
+        "message": "Prevent shearing villager display items (#14356)\n\nCo-authored-by: Jason Penilla <11360596+jpenilla@users.noreply.github.com>"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-158.jar",
+        "checksums": {
+          "sha256": "62ca7e5eba8d9e31ee59ef44b67ec0d62d53a7526afba4fc57f79c86b72b3e32"
+        },
+        "size": 54178254,
+        "url": "https://fill-data.papermc.io/v1/objects/62ca7e5eba8d9e31ee59ef44b67ec0d62d53a7526afba4fc57f79c86b72b3e32/paper-26.3-158.jar"
+      }
+    }
+  },
+  {
+    "id": 157,
+    "time": "2026-10-05T17:25:28Z",
+    "channel": "BETA",
+    "commits": [
+      {
+        "sha": "4728a906edb501c3749dfcc437a419094a95a2c7",
+        "time": "2026-10-05T17:25:09Z",
+        "message": "Fix bundle contents corruption with item obfuscation and shelves (#14352)\n\nCo-authored-by: Bjarne Koll <git@lynxplay.dev>"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-157.jar",
+        "checksums": {
+          "sha256": "77cdcd758777734b0b64db74974f68e56cb08637f3c36b26734842cb8521cc2e"
+        },
+        "size": 54177127,
+        "url": "https://fill-data.papermc.io/v1/objects/77cdcd758777734b0b64db74974f68e56cb08637f3c36b26734842cb8521cc2e/paper-26.3-157.jar"
+      }
+    }
+  },
+  {
+    "id": 156,
+    "time": "2026-10-05T15:17:11Z",
+    "channel": "BETA",
+    "commits": [
+      {
+        "sha": "65c408ad2def3e7bc75fa02518223e8a0ccfbdac",
+        "time": "2026-10-05T15:15:51Z",
+        "message": "Don't remove player twice when disconnected during config switch (#14346)"
+      },
+      {
+        "sha": "2de3a930cca7807143a95254989dc5962ef544a5",
+        "time": "2026-10-05T15:15:13Z",
+        "message": "Fix silent ignore of Block#getState(boolean) parameter (#14341)"
+      },
+      {
+        "sha": "780818ff420cf4eb126b7b7d1406f89b263a200e",
+        "time": "2026-10-05T15:14:49Z",
+        "message": " Clear bucket empty event result when fluid placement fails (#14345)"
+      },
+      {
+        "sha": "1dbde6108fe7469c068f0e27659dacda053f2f57",
+        "time": "2026-10-05T15:12:45Z",
+        "message": "Make test block codec conditional\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-156.jar",
+        "checksums": {
+          "sha256": "f34cf5ddc90fabda14a944446808a29eb24d39b187a1f40df9051df41f8eebad"
+        },
+        "size": 54177078,
+        "url": "https://fill-data.papermc.io/v1/objects/f34cf5ddc90fabda14a944446808a29eb24d39b187a1f40df9051df41f8eebad/paper-26.3-156.jar"
+      }
+    }
+  },
+  {
+    "id": 153,
+    "time": "2026-10-05T15:13:10Z",
+    "channel": "BETA",
+    "commits": [
+      {
+        "sha": "1dbde6108fe7469c068f0e27659dacda053f2f57",
+        "time": "2026-10-05T15:12:45Z",
+        "message": "Make test block codec conditional\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-153.jar",
+        "checksums": {
+          "sha256": "a0e25f7ca6e6c358a81b554942b28c55fac1ac98dd38c26640630a0143b8c659"
+        },
+        "size": 54174358,
+        "url": "https://fill-data.papermc.io/v1/objects/a0e25f7ca6e6c358a81b554942b28c55fac1ac98dd38c26640630a0143b8c659/paper-26.3-153.jar"
+      }
+    }
+  },
+  {
+    "id": 152,
+    "time": "2026-10-05T02:24:56Z",
+    "channel": "BETA",
+    "commits": [
+      {
+        "sha": "1a7b626576d41a6ddb0e3610ec0a1e3e59352093",
+        "time": "2026-10-05T02:24:40Z",
+        "message": "Bump JLine to 4.4.6, drop JNI backend as Paper compiles to Java 25 (#14323)"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-152.jar",
+        "checksums": {
+          "sha256": "034b99f3278d985f5d723ad9b02c65c459600223fa489534ebb4e9bbbb3f68e9"
+        },
+        "size": 54172695,
+        "url": "https://fill-data.papermc.io/v1/objects/034b99f3278d985f5d723ad9b02c65c459600223fa489534ebb4e9bbbb3f68e9/paper-26.3-152.jar"
+      }
+    }
+  },
+  {
+    "id": 151,
+    "time": "2026-10-04T13:36:03Z",
+    "channel": "BETA",
+    "commits": [
+      {
+        "sha": "6e88e469febfec696f118d2df1451fcad4a04a87",
+        "time": "2026-10-04T13:35:49Z",
+        "message": "Fix possible CME race conditions for post effects (#14335)"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-151.jar",
+        "checksums": {
+          "sha256": "daf00db322543de77eb2012f37a1919537fafe13e04888ef256e56a5ca51af69"
+        },
+        "size": 54017528,
+        "url": "https://fill-data.papermc.io/v1/objects/daf00db322543de77eb2012f37a1919537fafe13e04888ef256e56a5ca51af69/paper-26.3-151.jar"
+      }
+    }
+  },
+  {
+    "id": 150,
+    "time": "2026-10-04T13:23:47Z",
+    "channel": "BETA",
+    "commits": [
+      {
+        "sha": "371c96aa6898feab5cf155b5d4fba3c6e2b2d8a7",
+        "time": "2026-10-04T13:23:31Z",
+        "message": "Fix username duplication in chat when defaultRenderer is explicitly set (#13868)\n\nCo-authored-by: Warrior <50800980+Warriorrrr@users.noreply.github.com>"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-150.jar",
+        "checksums": {
+          "sha256": "a43fec78df00cad834323e4d077f6eca840de4cdef9c998675af24431d0954ae"
+        },
+        "size": 54018101,
+        "url": "https://fill-data.papermc.io/v1/objects/a43fec78df00cad834323e4d077f6eca840de4cdef9c998675af24431d0954ae/paper-26.3-150.jar"
+      }
+    }
+  },
+  {
+    "id": 149,
+    "time": "2026-10-04T08:56:17Z",
+    "channel": "BETA",
+    "commits": [
+      {
+        "sha": "1d254ec4938896c3332cf45600bb3eacef37fd30",
+        "time": "2026-10-04T08:56:03Z",
+        "message": "Fix adding entities with api with already valid passengers (#14336)"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-149.jar",
+        "checksums": {
+          "sha256": "103c3067934fa2b48595a7989b1b09ba698f020495f50f95b7ab5761e68c4e6c"
+        },
+        "size": 54018549,
+        "url": "https://fill-data.papermc.io/v1/objects/103c3067934fa2b48595a7989b1b09ba698f020495f50f95b7ab5761e68c4e6c/paper-26.3-149.jar"
+      }
+    }
+  },
+  {
+    "id": 148,
+    "time": "2026-10-04T06:52:44Z",
+    "channel": "BETA",
+    "commits": [
+      {
+        "sha": "60c8e563c21eb5642bea28056718a614a94abeeb",
+        "time": "2026-10-04T06:39:50Z",
+        "message": "Force absolute positions for item frames\n\nWorks around the client issue MC-311788\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-148.jar",
+        "checksums": {
+          "sha256": "baf4b8aa66deef8ef52ea0a9d83df555c84b332d9684385e728a8da77e4d848e"
+        },
+        "size": 54018567,
+        "url": "https://fill-data.papermc.io/v1/objects/baf4b8aa66deef8ef52ea0a9d83df555c84b332d9684385e728a8da77e4d848e/paper-26.3-148.jar"
+      }
+    }
+  },
+  {
+    "id": 147,
+    "time": "2026-10-03T19:24:54Z",
+    "channel": "BETA",
+    "commits": [
+      {
+        "sha": "ddb45eb4956defa0de2b16d11cfc72094b7f09ff",
+        "time": "2026-10-03T19:24:40Z",
+        "message": "Fix incorrect container setChanged() called in optimized hopper patch (#14269)"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-147.jar",
+        "checksums": {
+          "sha256": "e88207b474f1954f4de175a0b63a3d574e995f609d7fd9c4960d4f76e1784ae3"
+        },
+        "size": 54018051,
+        "url": "https://fill-data.papermc.io/v1/objects/e88207b474f1954f4de175a0b63a3d574e995f609d7fd9c4960d4f76e1784ae3/paper-26.3-147.jar"
+      }
+    }
+  },
+  {
+    "id": 146,
+    "time": "2026-10-03T18:24:59Z",
+    "channel": "BETA",
+    "commits": [
+      {
+        "sha": "a9d038271a459bb16e232c2480ad548eebdc922c",
+        "time": "2026-10-03T18:24:45Z",
+        "message": "Fix startup crash using autoEnableOnServerStart in plugin-provided datapacks (#14238)\n\nCo-authored-by: wilderion <wilderion@ya.ru>"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-146.jar",
+        "checksums": {
+          "sha256": "406c91eac63e900142207a7cc5feb77413fb3d66813c2b595f096612eb6ad212"
+        },
+        "size": 54017646,
+        "url": "https://fill-data.papermc.io/v1/objects/406c91eac63e900142207a7cc5feb77413fb3d66813c2b595f096612eb6ad212/paper-26.3-146.jar"
+      }
+    }
+  },
+  {
+    "id": 145,
+    "time": "2026-10-03T13:41:10Z",
+    "channel": "BETA",
+    "commits": [
+      {
+        "sha": "6bc56abc92078e5064a945859401d4737262f02e",
+        "time": "2026-10-03T13:40:55Z",
+        "message": "Add `throws CommandSyntaxException` to BasicCommand (#14339)"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-145.jar",
+        "checksums": {
+          "sha256": "64bc3219f7ee2a23ad79690c911bfc35767b2ce7383c78aa191980f7e383426a"
+        },
+        "size": 54017801,
+        "url": "https://fill-data.papermc.io/v1/objects/64bc3219f7ee2a23ad79690c911bfc35767b2ce7383c78aa191980f7e383426a/paper-26.3-145.jar"
+      }
+    }
+  },
+  {
+    "id": 144,
+    "time": "2026-10-03T13:25:47Z",
+    "channel": "BETA",
+    "commits": [
+      {
+        "sha": "288d43e1081627a89d7b01f6ad49d1461e04bd38",
+        "time": "2026-10-03T13:25:32Z",
+        "message": "Add getInstrument method to BlockType (#14251)\n\nCo-authored-by: Lulu13022002 <41980282+Lulu13022002@users.noreply.github.com>"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-144.jar",
+        "checksums": {
+          "sha256": "f7da4b33f13ec2abc9a7132faca5fb670c644a234220bcaa9f173c6794c69adf"
+        },
+        "size": 54017772,
+        "url": "https://fill-data.papermc.io/v1/objects/f7da4b33f13ec2abc9a7132faca5fb670c644a234220bcaa9f173c6794c69adf/paper-26.3-144.jar"
+      }
+    }
+  },
+  {
+    "id": 143,
+    "time": "2026-10-02T14:13:32Z",
+    "channel": "BETA",
+    "commits": [
+      {
+        "sha": "ff3655a7842b8830c0bedd5ef4e35522aa9a1914",
+        "time": "2026-10-02T14:13:14Z",
+        "message": "Add natural passengers to the world using api (#13560)"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-143.jar",
+        "checksums": {
+          "sha256": "32cf4a93545e218525bc4536b017c6b5d5085d27d449d64266a6b23ba4d0cbb9"
+        },
+        "size": 54017253,
+        "url": "https://fill-data.papermc.io/v1/objects/32cf4a93545e218525bc4536b017c6b5d5085d27d449d64266a6b23ba4d0cbb9/paper-26.3-143.jar"
+      }
+    }
+  },
+  {
+    "id": 142,
+    "time": "2026-10-01T20:45:34Z",
+    "channel": "BETA",
+    "commits": [
+      {
+        "sha": "1c92a6c3a42deda2fbefdec1a0d90d696313ff3b",
+        "time": "2026-10-01T20:45:18Z",
+        "message": "Fix DragonBattle#initiateRespawn not respecting empty crystal lists (#14254)\n\nCo-authored-by: Warrior <50800980+Warriorrrr@users.noreply.github.com>"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-142.jar",
+        "checksums": {
+          "sha256": "429f5748552d6ad7c1405015e9513b47679e9ff598fb17fe664875e705664758"
+        },
+        "size": 54017845,
+        "url": "https://fill-data.papermc.io/v1/objects/429f5748552d6ad7c1405015e9513b47679e9ff598fb17fe664875e705664758/paper-26.3-142.jar"
+      }
+    }
+  },
+  {
+    "id": 141,
+    "time": "2026-10-01T15:55:33Z",
+    "channel": "BETA",
+    "commits": [
+      {
+        "sha": "54024d30670995c589d8e8213bd54905340b90fc",
+        "time": "2026-10-01T15:55:15Z",
+        "message": "Backport MC-311924 fix for BlockAttachedEntity death (#14326)"
+      },
+      {
+        "sha": "3d7125903da1861b4b2026f0432aa169750bf200",
+        "time": "2026-09-29T17:54:00Z",
+        "message": "[ci skip] update codeowners\n"
+      },
+      {
+        "sha": "021713af28ed676579709faa8b6a0069887ec15e",
+        "time": "2026-09-29T17:07:33Z",
+        "message": "[ci skip] chore: run on namespace-profile-linux-small\n"
+      },
+      {
+        "sha": "769bc8c2a417d2cfa709eb909c8ebbd830c4ac23",
+        "time": "2026-09-29T17:05:18Z",
+        "message": "[ci skip] add workflow to automatically label issues with the version\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-141.jar",
+        "checksums": {
+          "sha256": "82e32117ceacf9e73ada0a36c6d280f3482c949b8b1ebbe2a451aa5e820a5748"
+        },
+        "size": 54017376,
+        "url": "https://fill-data.papermc.io/v1/objects/82e32117ceacf9e73ada0a36c6d280f3482c949b8b1ebbe2a451aa5e820a5748/paper-26.3-141.jar"
+      }
+    }
+  },
+  {
+    "id": 140,
+    "time": "2026-09-29T16:11:19Z",
+    "channel": "BETA",
+    "commits": [
+      {
+        "sha": "977da0dbb537181520022d4a9b2093e4aed09216",
+        "time": "2026-09-29T16:11:02Z",
+        "message": "Do not kick players for spam when threshold is disabled (#14308)"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-140.jar",
+        "checksums": {
+          "sha256": "98aabc113a80b9b5e183475e839a17cf99c39c915a1f46b8f35a5e89fd5de0f1"
+        },
+        "size": 54017532,
+        "url": "https://fill-data.papermc.io/v1/objects/98aabc113a80b9b5e183475e839a17cf99c39c915a1f46b8f35a5e89fd5de0f1/paper-26.3-140.jar"
+      }
+    }
+  },
+  {
+    "id": 139,
+    "time": "2026-09-29T14:28:26Z",
+    "channel": "BETA",
+    "commits": [
+      {
+        "sha": "af5c198defd782684bbef535daadcf3dfc6d3aae",
+        "time": "2026-09-29T14:28:08Z",
+        "message": "Fix BlockBreakEvent misfire in Adventure mode (#14044)"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-139.jar",
+        "checksums": {
+          "sha256": "2478b45f35e00fe3e43f2e0ce9c94f9c554e732232d51fc38d631696b4ff8fd5"
+        },
+        "size": 54016552,
+        "url": "https://fill-data.papermc.io/v1/objects/2478b45f35e00fe3e43f2e0ce9c94f9c554e732232d51fc38d631696b4ff8fd5/paper-26.3-139.jar"
+      }
+    }
+  },
+  {
+    "id": 138,
+    "time": "2026-09-29T13:51:14Z",
+    "channel": "BETA",
+    "commits": [
+      {
+        "sha": "c7dd4303da1171e69ce4dcb2b182fc8886e3f861",
+        "time": "2026-09-29T13:50:56Z",
+        "message": "fix ConcurrentModificationException in async command sending (#13626)"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-138.jar",
+        "checksums": {
+          "sha256": "385711772cc899516e3cb5575dcdebd704214f459093c5151af2da299345a994"
+        },
+        "size": 54017342,
+        "url": "https://fill-data.papermc.io/v1/objects/385711772cc899516e3cb5575dcdebd704214f459093c5151af2da299345a994/paper-26.3-138.jar"
+      }
+    }
+  },
+  {
+    "id": 137,
+    "time": "2026-09-29T13:25:40Z",
+    "channel": "BETA",
+    "commits": [
+      {
+        "sha": "be053f7afd287d72093141ce9153623910a26a3c",
+        "time": "2026-09-29T13:25:23Z",
+        "message": "Use a concurrent cache in CraftRegistry (#13973)"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-137.jar",
+        "checksums": {
+          "sha256": "3f66aab8c7e13e42297c32d037b307a362eb5d6f2681a20d9f01d5cbc4e74e60"
+        },
+        "size": 54016945,
+        "url": "https://fill-data.papermc.io/v1/objects/3f66aab8c7e13e42297c32d037b307a362eb5d6f2681a20d9f01d5cbc4e74e60/paper-26.3-137.jar"
+      }
+    }
+  },
+  {
+    "id": 136,
+    "time": "2026-09-29T12:15:00Z",
+    "channel": "BETA",
+    "commits": [
+      {
+        "sha": "8832a8dd7bfb8049ed7fcdfe19ca20862920a564",
+        "time": "2026-09-29T12:14:42Z",
+        "message": "Hook moonrise chunk unload config values (#13927)"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-136.jar",
+        "checksums": {
+          "sha256": "85f61d1a9c0b7722878136324dcaec55ed1605ea40319fc9508c4ecd197e0252"
+        },
+        "size": 54016897,
+        "url": "https://fill-data.papermc.io/v1/objects/85f61d1a9c0b7722878136324dcaec55ed1605ea40319fc9508c4ecd197e0252/paper-26.3-136.jar"
+      }
+    }
+  },
+  {
+    "id": 135,
+    "time": "2026-09-28T21:32:22Z",
+    "channel": "BETA",
+    "commits": [
+      {
+        "sha": "abfdaed87a695450cdaa5711ec52833b3ce8997d",
+        "time": "2026-09-28T21:31:27Z",
+        "message": "chore: properly pass build time\n"
+      },
+      {
+        "sha": "c27ca36bf1d9d705e260f1cfb866c97de1ac537d",
+        "time": "2026-09-28T15:15:01Z",
+        "message": "[ci skip] Update build status badge in README.md"
+      },
+      {
+        "sha": "13eb8f29cadf07143bf05a7bb009197128864108",
+        "time": "2026-09-28T15:08:28Z",
+        "message": "[ci skip] Add Namespace to sponsors\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-135.jar",
+        "checksums": {
+          "sha256": "61a8723aa91c523ed279f925344847daf59a83d6fddce481e02304f3a3e66f43"
+        },
+        "size": 54018428,
+        "url": "https://fill-data.papermc.io/v1/objects/61a8723aa91c523ed279f925344847daf59a83d6fddce481e02304f3a3e66f43/paper-26.3-135.jar"
+      }
+    }
+  },
+  {
+    "id": 134,
+    "time": "2026-09-28T14:54:13.519Z",
+    "channel": "BETA",
+    "commits": [
+      {
+        "sha": "643a11a413c3f6afb19f0ada2db43c78ae3f2607",
+        "time": "2026-09-28T14:51:17Z",
+        "message": "Promote version channel to BETA\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-134.jar",
+        "checksums": {
+          "sha256": "16c5494aed1015de4e7c6e5aefece74e0b398f733bd3fcd8975c820598c19bca"
+        },
+        "size": 54017883,
+        "url": "https://fill-data.papermc.io/v1/objects/16c5494aed1015de4e7c6e5aefece74e0b398f733bd3fcd8975c820598c19bca/paper-26.3-134.jar"
+      }
+    }
+  },
+  {
+    "id": 133,
+    "time": "2026-09-27T23:41:23.275Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "e5aa18b3189fef92c2fbcff8ab5fe9beafd02152",
+        "time": "2026-09-27T23:39:02Z",
+        "message": "Update fill-gradle to 1.0.14"
+      },
+      {
+        "sha": "f83a0bae4f1a18a6d714ba7c4b7d06051b368502",
+        "time": "2026-09-27T19:11:46Z",
+        "message": "Update fill-gradle to 1.0.13\n"
+      },
+      {
+        "sha": "bfbe49cfa992622b7e043e252537d07ce71f0174",
+        "time": "2026-09-27T18:51:15Z",
+        "message": "Mark publish fill as incompatible with config cache\n"
+      },
+      {
+        "sha": "c0f1d039bb66856b3e8cf1cb011a7163a991e0ad",
+        "time": "2026-09-27T18:44:08Z",
+        "message": "chore: build on github actions (#14121)\n\nCo-authored-by: Nassim Jahnke <nassim@njahnke.dev>"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-133.jar",
+        "checksums": {
+          "sha256": "c613f734e0d5713498b4368f720620256f53a2db623fd3bffb5a708a4db721dc"
+        },
+        "size": 54017821,
+        "url": "https://fill-data.papermc.io/v1/objects/c613f734e0d5713498b4368f720620256f53a2db623fd3bffb5a708a4db721dc/paper-26.3-133.jar"
+      }
+    }
+  },
+  {
+    "id": 49,
+    "time": "2026-09-26T20:39:03Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "0fdc08858f78b03c1df8033fedf90117e8c7d5a9",
+        "time": "2026-09-26T20:36:11Z",
+        "message": "Rebase fixups\n"
+      },
+      {
+        "sha": "8c95c89a45fdef92019b9d9d5e8e5fc5f726934a",
+        "time": "2026-09-26T20:30:34Z",
+        "message": "Avoid default HIGHER priority for getChunkFutureMainThread\n\nSee https://github.com/Tuinity/Moonrise/commit/3a76940710d706fc3528a38b7f08f2cc1a083880\n"
+      },
+      {
+        "sha": "f4eb9c2e6337e33dd9f286eeb058bc52e7ed7aa1",
+        "time": "2026-09-26T20:21:12Z",
+        "message": "Add chunkScanner implementation to ChunkMap\n\nSee https://github.com/Tuinity/Moonrise/commit/fa95b6a377f8fd3ff34bb0a38b378c61eb2ab196\n"
+      },
+      {
+        "sha": "d3ee2cfc67eeaec1f4ae625db22332c2d2f85b57",
+        "time": "2026-09-26T20:17:13Z",
+        "message": "Avoid entity nbt load logic when loading in full entity chunk\n\nSee https://github.com/Tuinity/Moonrise/commit/a5aff0b4414f255c511c1dd9de708e345e503645\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-49.jar",
+        "checksums": {
+          "sha256": "dd64988a011729e6812f2fff1be32ba5c572ecdc8890e6abc7a56aa91b53f77d"
+        },
+        "size": 54017881,
+        "url": "https://fill-data.papermc.io/v1/objects/dd64988a011729e6812f2fff1be32ba5c572ecdc8890e6abc7a56aa91b53f77d/paper-26.3-49.jar"
+      }
+    }
+  },
+  {
+    "id": 48,
+    "time": "2026-09-26T20:08:38Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "5cbb5d6fa0e7b05395194695d0171b2fc2b86459",
+        "time": "2026-09-26T20:07:10Z",
+        "message": "Update leafpile to 1.2.4 (#14310)"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-48.jar",
+        "checksums": {
+          "sha256": "6f99c6ed0fc4aa14c792a48543df2cd0939c20ce6c9d5af5206cb44e424b2830"
+        },
+        "size": 54018044,
+        "url": "https://fill-data.papermc.io/v1/objects/6f99c6ed0fc4aa14c792a48543df2cd0939c20ce6c9d5af5206cb44e424b2830/paper-26.3-48.jar"
+      }
+    }
+  },
+  {
+    "id": 47,
+    "time": "2026-09-26T16:08:14Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "640efeeabe35fbdff2b33864ee8585dc8efccc7e",
+        "time": "2026-09-26T15:58:36Z",
+        "message": "Make CraftWorld#isChunkGenerated use BLOCKING priority\n\nWe should be using BLOCKING since we are blocking on\nthe load...\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-47.jar",
+        "checksums": {
+          "sha256": "c0b802303a65ed231772bb1628b845485f603ab46e7827fc64c60cefe79e0a01"
+        },
+        "size": 65178542,
+        "url": "https://fill-data.papermc.io/v1/objects/c0b802303a65ed231772bb1628b845485f603ab46e7827fc64c60cefe79e0a01/paper-26.3-47.jar"
+      }
+    }
+  },
+  {
+    "id": 46,
+    "time": "2026-09-26T15:07:03Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "b23b725834b24526800f12bb22e47df85dfe811c",
+        "time": "2026-09-26T15:05:12Z",
+        "message": "Pass on to Vanilla fixers if needed\n\nThis allows the patch to be applied at all times instead of being fully dropped while new converters are implemented.\n\nCloses #14307\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-46.jar",
+        "checksums": {
+          "sha256": "afb04e96729c92110799635f48005eb24ff64664422f8df42c6529062851f1e3"
+        },
+        "size": 65179205,
+        "url": "https://fill-data.papermc.io/v1/objects/afb04e96729c92110799635f48005eb24ff64664422f8df42c6529062851f1e3/paper-26.3-46.jar"
+      }
+    }
+  },
+  {
+    "id": 45,
+    "time": "2026-09-26T13:17:44Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "f6862603ddc15b1d2a58eabe28695e23fea5446b",
+        "time": "2026-09-26T13:15:19Z",
+        "message": "Skip styledLines in ItemLore hashcode and equals\n\nOn servers with large lore components, this can save a considerable amount of nested comparison of styled lines that are only used for tooltips and are simply a transformed list of the actual lines anyway\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-45.jar",
+        "checksums": {
+          "sha256": "331d42809f8e1e37f0b36240ea056eb751494b0c524ef5a83b40de8cc08c5c54"
+        },
+        "size": 65177800,
+        "url": "https://fill-data.papermc.io/v1/objects/331d42809f8e1e37f0b36240ea056eb751494b0c524ef5a83b40de8cc08c5c54/paper-26.3-45.jar"
+      }
+    }
+  },
+  {
+    "id": 44,
+    "time": "2026-09-26T13:11:22Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "a0919613466972b253eec2b4935cf82ce3c876bb",
+        "time": "2026-09-26T13:09:35Z",
+        "message": "Add back mob peaceful despawn override\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-44.jar",
+        "checksums": {
+          "sha256": "f33ad487f0a9d4e022827f0ea6b16ff3763a4ef831ccfe10f88755db7cafb696"
+        },
+        "size": 65177649,
+        "url": "https://fill-data.papermc.io/v1/objects/f33ad487f0a9d4e022827f0ea6b16ff3763a4ef831ccfe10f88755db7cafb696/paper-26.3-44.jar"
+      }
+    }
+  },
+  {
+    "id": 43,
+    "time": "2026-09-26T12:30:53Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "d289ae1dfc37dac795e5f14ffdcc01556d7e8747",
+        "time": "2026-09-26T12:29:25Z",
+        "message": "Mark Bukkit commands as obsolete (#14281)"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-43.jar",
+        "checksums": {
+          "sha256": "24b6a02e9f8b5e1454c9647deff2a546c647c9e2111b4fdfa6e6ead8ef0f6da3"
+        },
+        "size": 65177187,
+        "url": "https://fill-data.papermc.io/v1/objects/24b6a02e9f8b5e1454c9647deff2a546c647c9e2111b4fdfa6e6ead8ef0f6da3/paper-26.3-43.jar"
+      }
+    }
+  },
+  {
+    "id": 42,
+    "time": "2026-09-26T06:53:30Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "08ca088b5d33826a2ed6f1032a59cdf93bd9ea13",
+        "time": "2026-09-26T06:52:02Z",
+        "message": "Count skipped inbound packets for rate limiting (#14305)"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-42.jar",
+        "checksums": {
+          "sha256": "8b3c96fcb5c7af04ea26278d148d5fea06ee76ca0dfa96fb839df505583cc9e2"
+        },
+        "size": 65176693,
+        "url": "https://fill-data.papermc.io/v1/objects/8b3c96fcb5c7af04ea26278d148d5fea06ee76ca0dfa96fb839df505583cc9e2/paper-26.3-42.jar"
+      }
+    }
+  },
+  {
+    "id": 41,
+    "time": "2026-09-25T03:26:20Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "a15fed9c16a5cc93e4ff38d6e2135623e2dc9daa",
+        "time": "2026-09-25T03:24:50Z",
+        "message": "Update Gradle to 9.8 and paperweight to beta.24\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-41.jar",
+        "checksums": {
+          "sha256": "2b77166ee61886a9bc9ab33dc9e4847fa3538b36d9ba6e5f2fa7ed90973aa748"
+        },
+        "size": 65176386,
+        "url": "https://fill-data.papermc.io/v1/objects/2b77166ee61886a9bc9ab33dc9e4847fa3538b36d9ba6e5f2fa7ed90973aa748/paper-26.3-41.jar"
+      }
+    }
+  },
+  {
+    "id": 40,
+    "time": "2026-09-24T06:18:44Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "beac08f83f965f86453bb0ef2803329d1ae8f443",
+        "time": "2026-09-24T06:17:28Z",
+        "message": "Don't pre-cancel AsyncPlayerSendSuggestionsEvent on empty suggestions (#14294)"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-40.jar",
+        "checksums": {
+          "sha256": "49399919246cbf443efc8507447dc948eb7477c41be560b0e87e2a455aff824a"
+        },
+        "size": 65176863,
+        "url": "https://fill-data.papermc.io/v1/objects/49399919246cbf443efc8507447dc948eb7477c41be560b0e87e2a455aff824a/paper-26.3-40.jar"
+      }
+    }
+  },
+  {
+    "id": 39,
+    "time": "2026-09-24T06:17:21Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "f8a210f1d783dbdc02b7d82e2bc3042efa8c2197",
+        "time": "2026-09-24T06:15:51Z",
+        "message": "Fix exception when Cushion is in fluids (#14296)"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-39.jar",
+        "checksums": {
+          "sha256": "a0108ff1583f02dc2208fbcf2b622e4c72692ebd7395afb251b9d4c2da65cb99"
+        },
+        "size": 65175506,
+        "url": "https://fill-data.papermc.io/v1/objects/a0108ff1583f02dc2208fbcf2b622e4c72692ebd7395afb251b9d4c2da65cb99/paper-26.3-39.jar"
+      }
+    }
+  },
+  {
+    "id": 38,
+    "time": "2026-09-23T18:16:03Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "d5cc7d4af82999472037d1eda52ca3617b801b8f",
+        "time": "2026-09-23T18:15:01Z",
+        "message": "Fix yaw wraparound in movement event checks (#14262)"
+      },
+      {
+        "sha": "217fb92a10465228eedfc1285626b14b757c8200",
+        "time": "2026-09-23T18:11:17Z",
+        "message": "Check target container in transport behavior\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-38.jar",
+        "checksums": {
+          "sha256": "f644694a4e149ac02dcacbe0bbaf9adb034fb3e93aab6f9441824bc3507d2278"
+        },
+        "size": 65177016,
+        "url": "https://fill-data.papermc.io/v1/objects/f644694a4e149ac02dcacbe0bbaf9adb034fb3e93aab6f9441824bc3507d2278/paper-26.3-38.jar"
+      }
+    }
+  },
+  {
+    "id": 37,
+    "time": "2026-09-23T16:24:43Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "327052edf467c0b355c8d7f3820f3f46a811836e",
+        "time": "2026-09-23T16:23:31Z",
+        "message": "Fix pathfinder comparator being inverted (#14292)"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-37.jar",
+        "checksums": {
+          "sha256": "c961b46fc040f34a04edc6943e590dbcf7478283788099cbaa6b71d78ab90d69"
+        },
+        "size": 65176569,
+        "url": "https://fill-data.papermc.io/v1/objects/c961b46fc040f34a04edc6943e590dbcf7478283788099cbaa6b71d78ab90d69/paper-26.3-37.jar"
+      }
+    }
+  },
+  {
+    "id": 36,
+    "time": "2026-09-23T15:16:32Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "e1f150a5eb96c3b1bd6777b230e0d4828451e3dd",
+        "time": "2026-09-23T15:14:46Z",
+        "message": "Add back missing suggestions event call\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-36.jar",
+        "checksums": {
+          "sha256": "5432a8cb0a06ed3979a9fb5f0ccee819f52f920a1ddc09453927208cfc102d78"
+        },
+        "size": 65176030,
+        "url": "https://fill-data.papermc.io/v1/objects/5432a8cb0a06ed3979a9fb5f0ccee819f52f920a1ddc09453927208cfc102d78/paper-26.3-36.jar"
+      }
+    }
+  },
+  {
+    "id": 35,
+    "time": "2026-09-22T19:19:23Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "dd9d1031f07dd052e2f495df5ef630c8e44b9f3f",
+        "time": "2026-09-22T19:18:05Z",
+        "message": "Add Post Effect API (#14267)\n\nCo-authored-by: mastermc05 <63639746+mastermc05@users.noreply.github.com>"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-35.jar",
+        "checksums": {
+          "sha256": "ab77f2e98efc325de00040f7f44683b33728d571dc3808b2bc99c1468f453565"
+        },
+        "size": 65175365,
+        "url": "https://fill-data.papermc.io/v1/objects/ab77f2e98efc325de00040f7f44683b33728d571dc3808b2bc99c1468f453565/paper-26.3-35.jar"
+      }
+    }
+  },
+  {
+    "id": 34,
+    "time": "2026-09-22T16:22:08Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "dfbf6f4183106966ac63889e49c1ecd4c51b46db",
+        "time": "2026-09-22T16:19:43Z",
+        "message": "Rebase fixups\n"
+      },
+      {
+        "sha": "e863872fabde080d871453ca5e8acfa67f2b8915",
+        "time": "2026-09-22T15:56:05Z",
+        "message": "Avoid copying LevelChunkSection data when unloading chunks\n\nSee https://github.com/Tuinity/Moonrise/commit/9516c499fd5e78eb5682180e7ba6b073c5a0c989\n"
+      },
+      {
+        "sha": "298732599a851c6de4cf0f58ea474f723c1dc567",
+        "time": "2026-09-22T15:48:55Z",
+        "message": "Remove unloaded chunk holders from broadcast set\n\nSee https://github.com/Tuinity/Moonrise/commit/d57318284619023ed5d1568cd286dd91ffe3eeae\n"
+      },
+      {
+        "sha": "be3fe45d6e75e5dc6b571e220ae058d2ee778a53",
+        "time": "2026-09-22T15:45:38Z",
+        "message": "Do not copy NBT data in RegionFile I/O when not needed\n\nSee https://github.com/Tuinity/Moonrise/commit/e8def77d12fa2ef7b549acc5e1c37021c2781533\n"
+      },
+      {
+        "sha": "f759838b851fe4c65462fe9c6eb88f7258c25d80",
+        "time": "2026-09-22T15:42:06Z",
+        "message": "Reduce allocations from PalettedContainer#pack\n\nSee https://github.com/Tuinity/Moonrise/commit/f22e132c84aae06cdf1bd5fea0aad65eb4c306cf\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-34.jar",
+        "checksums": {
+          "sha256": "6806a684171477d63bd3fbcbfcd5f862114cc350b00076dea796cb584b984323"
+        },
+        "size": 65173389,
+        "url": "https://fill-data.papermc.io/v1/objects/6806a684171477d63bd3fbcbfcd5f862114cc350b00076dea796cb584b984323/paper-26.3-34.jar"
+      }
+    }
+  },
+  {
+    "id": 33,
+    "time": "2026-09-22T13:23:57Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "18f05bb815458ca3dc785b8b26d87732341a9b74",
+        "time": "2026-09-22T13:22:43Z",
+        "message": "Fix weather clear desync on player respawn (#14291)\n\nCo-authored-by: Pantera <89838384+pantera07@users.noreply.github.com>"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-33.jar",
+        "checksums": {
+          "sha256": "1e5ad29464063295722cb832d92ea613dbb8f4fe2758cfae9280c0f790a46c0f"
+        },
+        "size": 65163548,
+        "url": "https://fill-data.papermc.io/v1/objects/1e5ad29464063295722cb832d92ea613dbb8f4fe2758cfae9280c0f790a46c0f/paper-26.3-33.jar"
+      }
+    }
+  },
+  {
+    "id": 32,
+    "time": "2026-09-21T17:06:10Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "0c803ba1fad919e4982010b6d969e6c7df36cc15",
+        "time": "2026-09-21T17:04:29Z",
+        "message": "Fix missing is_tempted memory removal\n"
+      },
+      {
+        "sha": "6db70e070a815b81b03c89d92e5bb09dfa0ecbdd",
+        "time": "2026-09-21T10:53:13Z",
+        "message": "Length checks\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-32.jar",
+        "checksums": {
+          "sha256": "fc7fde19fa83debd24e4e85c4821e766674d4a7eb23e84404c8d7acabec1bb46"
+        },
+        "size": 65163087,
+        "url": "https://fill-data.papermc.io/v1/objects/fc7fde19fa83debd24e4e85c4821e766674d4a7eb23e84404c8d7acabec1bb46/paper-26.3-32.jar"
+      }
+    }
+  },
+  {
+    "id": 31,
+    "time": "2026-09-21T13:53:52Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "a22040d53cf84997ca8f4053d8d878bb375e72ab",
+        "time": "2026-09-21T13:51:53Z",
+        "message": "Fix Player#applyMending for custom items using max_damage (#14276)\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-31.jar",
+        "checksums": {
+          "sha256": "ddfea9cddc8f40e33080d4d9a3e9818fd1f9ea33f6100b42ac228ef80eb7ceed"
+        },
+        "size": 65161669,
+        "url": "https://fill-data.papermc.io/v1/objects/ddfea9cddc8f40e33080d4d9a3e9818fd1f9ea33f6100b42ac228ef80eb7ceed/paper-26.3-31.jar"
+      }
+    }
+  },
+  {
+    "id": 30,
+    "time": "2026-09-21T07:44:46Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "c13e3c9f0a79d0a117af4273d872c767f05b0751",
+        "time": "2026-09-21T07:43:15Z",
+        "message": "oops\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-30.jar",
+        "checksums": {
+          "sha256": "4f3a74b3fe3da1a7aa039a35600dfc2a867bd055b6fdc025c914736d9343a76e"
+        },
+        "size": 65162502,
+        "url": "https://fill-data.papermc.io/v1/objects/4f3a74b3fe3da1a7aa039a35600dfc2a867bd055b6fdc025c914736d9343a76e/paper-26.3-30.jar"
+      }
+    }
+  },
+  {
+    "id": 29,
+    "time": "2026-09-21T07:43:22Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "baa0d82f7cb3001443d24c2847a81effd10800b4",
+        "time": "2026-09-21T07:42:02Z",
+        "message": "Call EntityPlaceEvent for cushions\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-29.jar",
+        "checksums": {
+          "sha256": "89ab6e6aa6d3bf05949a2a0099b9c9eb00833584418b2e211428cc82b4e42c20"
+        },
+        "size": 65162295,
+        "url": "https://fill-data.papermc.io/v1/objects/89ab6e6aa6d3bf05949a2a0099b9c9eb00833584418b2e211428cc82b4e42c20/paper-26.3-29.jar"
+      }
+    }
+  },
+  {
+    "id": 28,
+    "time": "2026-09-20T19:02:38Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "93c9b2ab1f4efdd23654064f562a7db41e6397c7",
+        "time": "2026-09-20T19:02:11Z",
+        "message": "Fix inlined block state conversion\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-28.jar",
+        "checksums": {
+          "sha256": "3d500dec9ddf6f94de92ff10b1e2ed215c9c46ada904f9314e6e9c756e3b81c4"
+        },
+        "size": 65162355,
+        "url": "https://fill-data.papermc.io/v1/objects/3d500dec9ddf6f94de92ff10b1e2ed215c9c46ada904f9314e6e9c756e3b81c4/paper-26.3-28.jar"
+      }
+    }
+  },
+  {
+    "id": 27,
+    "time": "2026-09-20T18:50:57Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "e6e9780e32ac0663e324344a54d19d10fb6a85c9",
+        "time": "2026-09-20T18:49:46Z",
+        "message": "Initialize lagCompensationTick correctly (#14285)\n\nCo-authored-by: Nassim Jahnke <nassim@njahnke.dev>"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-27.jar",
+        "checksums": {
+          "sha256": "9471f0cacaba53a434ab86e7e864808a43ee6eaac188801e8d31be5941b0213c"
+        },
+        "size": 65161869,
+        "url": "https://fill-data.papermc.io/v1/objects/9471f0cacaba53a434ab86e7e864808a43ee6eaac188801e8d31be5941b0213c/paper-26.3-27.jar"
+      }
+    }
+  },
+  {
+    "id": 26,
+    "time": "2026-09-20T02:46:17Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "a2551859805030dd1986d412cdc4f587fdddbc0b",
+        "time": "2026-09-20T02:42:40Z",
+        "message": "Call EntityCollideWithEntityEvent for Sulfur Cube pushed by Player (#14157)\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-26.jar",
+        "checksums": {
+          "sha256": "78e29c6c80fc43c6d46db6ec86f6ce3089a647d881e6bfe262aad9276af9dfcf"
+        },
+        "size": 65161933,
+        "url": "https://fill-data.papermc.io/v1/objects/78e29c6c80fc43c6d46db6ec86f6ce3089a647d881e6bfe262aad9276af9dfcf/paper-26.3-26.jar"
+      }
+    }
+  },
+  {
+    "id": 25,
+    "time": "2026-09-19T19:49:19Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "98e06785128f3e7f0a2f1c407a82ceb0c064121d",
+        "time": "2026-09-19T19:39:39Z",
+        "message": "tweaks deprecated warnings behavior on event\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-25.jar",
+        "checksums": {
+          "sha256": "b034fa540ba9e72ba9d81e48d849c1d34f5237005ec16316b47849e15c22a222"
+        },
+        "size": 65161878,
+        "url": "https://fill-data.papermc.io/v1/objects/b034fa540ba9e72ba9d81e48d849c1d34f5237005ec16316b47849e15c22a222/paper-26.3-25.jar"
+      }
+    }
+  },
+  {
+    "id": 24,
+    "time": "2026-09-19T18:12:20Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "9838b40808139861ee05ad164c719c3dba68b112",
+        "time": "2026-09-19T18:04:21Z",
+        "message": "Add SulfurCube#swallow (#14062)\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-24.jar",
+        "checksums": {
+          "sha256": "50afea9c5b561d3cec8ad018463d59feb346035f0593800e333d9ad68ca91069"
+        },
+        "size": 65160894,
+        "url": "https://fill-data.papermc.io/v1/objects/50afea9c5b561d3cec8ad018463d59feb346035f0593800e333d9ad68ca91069/paper-26.3-24.jar"
+      }
+    }
+  },
+  {
+    "id": 23,
+    "time": "2026-09-19T16:08:18Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "8d936046418cd1d8a8d2605b763bb20f86d4bb83",
+        "time": "2026-09-19T16:07:48Z",
+        "message": "Update remaining feature patches\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-23.jar",
+        "checksums": {
+          "sha256": "4b652bb9fa5092bddf2d63743cff33540a596cd018e485a196899bbe3dc55131"
+        },
+        "size": 65160575,
+        "url": "https://fill-data.papermc.io/v1/objects/4b652bb9fa5092bddf2d63743cff33540a596cd018e485a196899bbe3dc55131/paper-26.3-23.jar"
+      }
+    }
+  },
+  {
+    "id": 22,
+    "time": "2026-09-19T15:50:15Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "1d60280c727b55a099e07a56d6039b2045da4bab",
+        "time": "2026-09-19T15:48:55Z",
+        "message": "Per player mob spawning and more optimization patches\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-22.jar",
+        "checksums": {
+          "sha256": "4a7e47fc1750630644db48669aadf334798a514cf34bba9e4032641f20537e0d"
+        },
+        "size": 65150221,
+        "url": "https://fill-data.papermc.io/v1/objects/4a7e47fc1750630644db48669aadf334798a514cf34bba9e4032641f20537e0d/paper-26.3-22.jar"
+      }
+    }
+  },
+  {
+    "id": 21,
+    "time": "2026-09-19T14:49:03Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "48e89d7f1b415e343e0540bb5926448b6e4aee34",
+        "time": "2026-09-19T14:48:36Z",
+        "message": "Anti xray\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-21.jar",
+        "checksums": {
+          "sha256": "8680ad7b44ed9ab2925a70abbb1679477cc7ab88ca869d6654db22a70553cb4e"
+        },
+        "size": 65138943,
+        "url": "https://fill-data.papermc.io/v1/objects/8680ad7b44ed9ab2925a70abbb1679477cc7ab88ca869d6654db22a70553cb4e/paper-26.3-21.jar"
+      }
+    }
+  },
+  {
+    "id": 20,
+    "time": "2026-09-19T14:20:38Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "4e0ccd0f6256b40d1fc4798a6d3490262f273ef0",
+        "time": "2026-09-19T14:17:56Z",
+        "message": "Updatea DataConverter\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-20.jar",
+        "checksums": {
+          "sha256": "b97c96311ff8909125df9b86c64c74969e49e2806ac39076004491ec49ec47ef"
+        },
+        "size": 65131823,
+        "url": "https://fill-data.papermc.io/v1/objects/b97c96311ff8909125df9b86c64c74969e49e2806ac39076004491ec49ec47ef/paper-26.3-20.jar"
+      }
+    }
+  },
+  {
+    "id": 19,
+    "time": "2026-09-18T20:29:40Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "b4c7d1686d351a32fff930ecb5bffdfeb30eade1",
+        "time": "2026-09-18T20:12:54Z",
+        "message": "deprecate PotionEffectTypeCategory and PlayerAnimationEvent\n\nalso note PlayerArmSwingEvent is only called for the main hand now\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-19.jar",
+        "checksums": {
+          "sha256": "f623c073913db7f21c6338eef22a00b19a8d87c1ef3115c2060d2382b90f4650"
+        },
+        "size": 64225760,
+        "url": "https://fill-data.papermc.io/v1/objects/f623c073913db7f21c6338eef22a00b19a8d87c1ef3115c2060d2382b90f4650/paper-26.3-19.jar"
+      }
+    }
+  },
+  {
+    "id": 18,
+    "time": "2026-09-18T16:14:52Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "0fd1cf72ffb8eefe8bd4899620695a77659db42b",
+        "time": "2026-09-18T16:02:02Z",
+        "message": "update material tags, fix some methods on item type\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-18.jar",
+        "checksums": {
+          "sha256": "44dca783794c6ef1bbab6fc6a4d68d4faf8cfb56564a9f87a9d2ecbcf7f246f2"
+        },
+        "size": 64224285,
+        "url": "https://fill-data.papermc.io/v1/objects/44dca783794c6ef1bbab6fc6a4d68d4faf8cfb56564a9f87a9d2ecbcf7f246f2/paper-26.3-18.jar"
+      }
+    }
+  },
+  {
+    "id": 17,
+    "time": "2026-09-18T14:25:11Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "3caa2d22baf6a0beddb6a79d191315ed6f6a62ad",
+        "time": "2026-09-18T14:23:54Z",
+        "message": "Remove obsolete MC-4 workaround (#14273)"
+      },
+      {
+        "sha": "1e37b938d91803387f91e791d673e1c20c455785",
+        "time": "2026-09-18T01:18:22Z",
+        "message": "[ci skip] Deprecate PotionBrewer method in Bukkit/Server class\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-17.jar",
+        "checksums": {
+          "sha256": "c809547e1ec99b6cd794e6cc18c966ce5f440cb78c4ace2a6cfad1f0e4e7839a"
+        },
+        "size": 64223593,
+        "url": "https://fill-data.papermc.io/v1/objects/c809547e1ec99b6cd794e6cc18c966ce5f440cb78c4ace2a6cfad1f0e4e7839a/paper-26.3-17.jar"
+      }
+    }
+  },
+  {
+    "id": 16,
+    "time": "2026-09-17T20:23:27Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "71696fd5c38329c265616edc70fe0a9df4498f92",
+        "time": "2026-09-17T20:21:59Z",
+        "message": "Move saveAllChunks override fix into Moonrise patch\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-16.jar",
+        "checksums": {
+          "sha256": "131a04201abb4627d97e296f42e41a2e8238e836ece27c9a5457cf0fe58512ff"
+        },
+        "size": 64222886,
+        "url": "https://fill-data.papermc.io/v1/objects/131a04201abb4627d97e296f42e41a2e8238e836ece27c9a5457cf0fe58512ff/paper-26.3-16.jar"
+      }
+    }
+  },
+  {
+    "id": 15,
+    "time": "2026-09-17T18:36:46Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "cc95f009b7e4b5687feb0a068d9fc44b326dc8c3",
+        "time": "2026-09-17T18:36:18Z",
+        "message": "Port recent Moonrise fixes\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-15.jar",
+        "checksums": {
+          "sha256": "f786cd54622c76e99d87991328c47eb065b51caa5a2dc980c825abb140855141"
+        },
+        "size": 64223795,
+        "url": "https://fill-data.papermc.io/v1/objects/f786cd54622c76e99d87991328c47eb065b51caa5a2dc980c825abb140855141/paper-26.3-15.jar"
+      }
+    }
+  },
+  {
+    "id": 14,
+    "time": "2026-09-17T18:12:21Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "ec0138a55db4e010c6aa14805dfaa2151bf768f5",
+        "time": "2026-09-17T18:11:57Z",
+        "message": "Remove debug-like logging\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-14.jar",
+        "checksums": {
+          "sha256": "5f090debbe4dca55b15c7a637cecf37fd512bfdb4ba060161955da1033e37cf9"
+        },
+        "size": 64224118,
+        "url": "https://fill-data.papermc.io/v1/objects/5f090debbe4dca55b15c7a637cecf37fd512bfdb4ba060161955da1033e37cf9/paper-26.3-14.jar"
+      }
+    }
+  },
+  {
+    "id": 13,
+    "time": "2026-09-17T17:57:19Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "61151ca0bf228e21a77f49db0efdb02c38646bce",
+        "time": "2026-09-17T17:56:55Z",
+        "message": "Move upstreamed Moonrise fix\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-13.jar",
+        "checksums": {
+          "sha256": "00b1ec6be8a3c2d2c28c1a2d9753b73a1d7b2e7845320c1b3450fd01544be550"
+        },
+        "size": 64224397,
+        "url": "https://fill-data.papermc.io/v1/objects/00b1ec6be8a3c2d2c28c1a2d9753b73a1d7b2e7845320c1b3450fd01544be550/paper-26.3-13.jar"
+      }
+    }
+  },
+  {
+    "id": 12,
+    "time": "2026-09-17T17:35:55Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "f904ab5eaa36877fdb2cd94c6c1f27b11080e1c7",
+        "time": "2026-09-17T17:30:55Z",
+        "message": "Update 0016-Delay-open-close-callbacks-for-chests.patch\n       0017-Allow-Saving-of-Oversized-Chunks.patch\n       0018-Optimize-GoalSelector-Goal.Flag-Set-operations.patch\n       0019-Only-write-chunk-data-to-disk-if-it-serializes-witho.patch\n       0020-Entity-load-save-limit-per-chunk.patch\n       0021-Flush-regionfiles-on-save-configuration-option.patch\n"
+      },
+      {
+        "sha": "8f14eca95f5c7a9a5fd394173ba225b24c20837b",
+        "time": "2026-09-17T17:13:26Z",
+        "message": "Update 0014-Improve-keepalive-ping-system.patch\n       0015-Optimise-EntityScheduler-ticking.patch\n"
+      },
+      {
+        "sha": "3ae366b5d15d2a0b73026a61d16af69131a004a0",
+        "time": "2026-09-17T17:10:57Z",
+        "message": "Update 0001-Add-explicit-flush-support-to-Log4j-AsyncAppender.patch\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-12.jar",
+        "checksums": {
+          "sha256": "ca0224348b5d17c82374a73106fe953e833cd70fa8684f00e592461a6fd90469"
+        },
+        "size": 64225864,
+        "url": "https://fill-data.papermc.io/v1/objects/ca0224348b5d17c82374a73106fe953e833cd70fa8684f00e592461a6fd90469/paper-26.3-12.jar"
+      }
+    }
+  },
+  {
+    "id": 11,
+    "time": "2026-09-17T17:09:50Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "1a3ca55caf59e39b38449d2fa485394427e07cb1",
+        "time": "2026-09-17T17:09:20Z",
+        "message": "Update 0012-Incremental-chunk-and-player-saving.patch\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-11.jar",
+        "checksums": {
+          "sha256": "eab1d978226db5a9c27d69340dc54a37db022d8b845652eff231b008acef53fc"
+        },
+        "size": 64201178,
+        "url": "https://fill-data.papermc.io/v1/objects/eab1d978226db5a9c27d69340dc54a37db022d8b845652eff231b008acef53fc/paper-26.3-11.jar"
+      }
+    }
+  },
+  {
+    "id": 10,
+    "time": "2026-09-17T16:44:28Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "c65d58b1005105c2cdf9985b55d7023bad7ccb13",
+        "time": "2026-09-17T16:41:38Z",
+        "message": "Update 0011-Add-Alternate-Current-redstone-implementation.patch\n"
+      },
+      {
+        "sha": "89e25308826391e82e3117a2169ecd38bc0761d9",
+        "time": "2026-09-17T16:38:35Z",
+        "message": "Update 0010-Eigencraft-redstone-implementation.patch\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-10.jar",
+        "checksums": {
+          "sha256": "0676ebd6c2a0f347418843148e0f1624f848e3ec7f6d9cce674e7b493a613351"
+        },
+        "size": 64199445,
+        "url": "https://fill-data.papermc.io/v1/objects/0676ebd6c2a0f347418843148e0f1624f848e3ec7f6d9cce674e7b493a613351/paper-26.3-10.jar"
+      }
+    }
+  },
+  {
+    "id": 9,
+    "time": "2026-09-17T16:37:45Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "593b1c41867dac6dd56498826739449c182d305d",
+        "time": "2026-09-17T16:32:55Z",
+        "message": "Update 0004-Optimize-Voxel-Shape-Merging.patch\n       0005-optimize-dirt-and-snow-spreading.patch\n       0006-Use-Velocity-compression-and-cipher-natives.patch\n       0007-Handle-Oversized-block-entities-in-chunks.patch\n       0008-Optimize-Bit-Operations-by-inlining.patch\n       0009-Remove-streams-from-hot-code.patch\n"
+      },
+      {
+        "sha": "f50b73712928b7b7ce78d62df1ea1448e9b816d9",
+        "time": "2026-09-17T16:29:58Z",
+        "message": "Update 0003-Optimize-Connection-and-add-advanced-packet-support.patch\n"
+      },
+      {
+        "sha": "0527579bbc9c92766686466e0b0e33fcad03e5a2",
+        "time": "2026-09-17T16:22:04Z",
+        "message": "Update 0002-Entity-Activation-Range-2.0.patch\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-9.jar",
+        "checksums": {
+          "sha256": "e0c65225bf8d8c978eeca06e41feb81ebadbdaeb1d3c2b6fd6b97b51e5947e93"
+        },
+        "size": 64164334,
+        "url": "https://fill-data.papermc.io/v1/objects/e0c65225bf8d8c978eeca06e41feb81ebadbdaeb1d3c2b6fd6b97b51e5947e93/paper-26.3-9.jar"
+      }
+    }
+  },
+  {
+    "id": 8,
+    "time": "2026-09-16T19:27:27Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "c5c8f6cbbf70ae37448995092660c3046a1192b1",
+        "time": "2026-09-16T19:25:46Z",
+        "message": "Port Moonrise mc/26.3 branch\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-8.jar",
+        "checksums": {
+          "sha256": "3d376c42f3b786e3a684123ea6e09c5b332148dde7d03bab8d3d6270a041ebbf"
+        },
+        "size": 64147062,
+        "url": "https://fill-data.papermc.io/v1/objects/3d376c42f3b786e3a684123ea6e09c5b332148dde7d03bab8d3d6270a041ebbf/paper-26.3-8.jar"
+      }
+    }
+  },
+  {
+    "id": 7,
+    "time": "2026-09-16T17:37:26Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "4dee7c425bdafaca594b7711e78493443e5e0901",
+        "time": "2026-09-16T17:36:06Z",
+        "message": "Fix spectator portal interactions (#14264)"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-7.jar",
+        "checksums": {
+          "sha256": "c682f2f7eb370054e00ec455bc25b0baef7f35cdc2077ddab4a14d5c55713313"
+        },
+        "size": 63713935,
+        "url": "https://fill-data.papermc.io/v1/objects/c682f2f7eb370054e00ec455bc25b0baef7f35cdc2077ddab4a14d5c55713313/paper-26.3-7.jar"
+      }
+    }
+  },
+  {
+    "id": 6,
+    "time": "2026-09-16T13:09:57Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "27553f52f7776f59fea6499756fba66422c35232",
+        "time": "2026-09-16T13:05:09Z",
+        "message": "Fix panda/bee nearby target reason (#14253)\n\nCo-authored-by: Lulu13022002 <41980282+Lulu13022002@users.noreply.github.com>\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-6.jar",
+        "checksums": {
+          "sha256": "5b8bd066914becf73ffbacee4352f3804a7c6cecab8e0855ff43815e3700c86f"
+        },
+        "size": 63712878,
+        "url": "https://fill-data.papermc.io/v1/objects/5b8bd066914becf73ffbacee4352f3804a7c6cecab8e0855ff43815e3700c86f/paper-26.3-6.jar"
+      }
+    }
+  },
+  {
+    "id": 5,
+    "time": "2026-09-15T18:45:30Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "ace932ed4e72bc7843cc4af1fa877da4ca8b2f1e",
+        "time": "2026-09-15T18:42:35Z",
+        "message": "add missing poplar tree type\n\nCloses https://github.com/PaperMC/Paper/issues/14258\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-5.jar",
+        "checksums": {
+          "sha256": "7f98951a70ed7b3f28906b1c534e599f70d0dbbab1ef58bb2272f7d348bc0e51"
+        },
+        "size": 63712809,
+        "url": "https://fill-data.papermc.io/v1/objects/7f98951a70ed7b3f28906b1c534e599f70d0dbbab1ef58bb2272f7d348bc0e51/paper-26.3-5.jar"
+      }
+    }
+  },
+  {
+    "id": 4,
+    "time": "2026-09-15T16:51:09Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "0f0cb00e6d76337b3a095fb9dabde8263f97282d",
+        "time": "2026-09-15T16:44:29Z",
+        "message": "improve sign text component\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-4.jar",
+        "checksums": {
+          "sha256": "a81263b866a4595be3f6c419eb3c0cb13d0c2fc9d6b5fff336dfd7c84612621c"
+        },
+        "size": 63713432,
+        "url": "https://fill-data.papermc.io/v1/objects/a81263b866a4595be3f6c419eb3c0cb13d0c2fc9d6b5fff336dfd7c84612621c/paper-26.3-4.jar"
+      }
+    }
+  },
+  {
+    "id": 3,
+    "time": "2026-09-15T15:17:12Z",
+    "channel": "ALPHA",
+    "commits": [
+      {
+        "sha": "db9f34967939f286a161c4ec406c5cae9c41229b",
+        "time": "2026-09-15T12:58:52Z",
+        "message": "26.3\n"
+      }
+    ],
+    "downloads": {
+      "server:default": {
+        "name": "paper-26.3-3.jar",
+        "checksums": {
+          "sha256": "23d44ecd3c076255adb525673041b60c48d51dc97fff5861fa803ee6aefc967d"
+        },
+        "size": 63715494,
+        "url": "https://fill-data.papermc.io/v1/objects/23d44ecd3c076255adb525673041b60c48d51dc97fff5861fa803ee6aefc967d/paper-26.3-3.jar"
+      }
+    }
+  }
+]

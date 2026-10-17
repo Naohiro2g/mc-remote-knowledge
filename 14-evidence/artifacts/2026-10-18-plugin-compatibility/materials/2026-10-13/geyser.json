@@ -1,0 +1,46 @@
+{
+  "project_id": "geyser",
+  "project_name": "Geyser",
+  "version": "2.11.3",
+  "build": 1251,
+  "time": "2026-10-10T02:01:50.239Z",
+  "channel": "default",
+  "promoted": false,
+  "changes": [
+    {
+      "commit": "50a464d7db132ca5943b608a2110c158bf09702a",
+      "summary": "Fix: Geyser-Fabric dependency shading",
+      "message": "Fix: Geyser-Fabric dependency shading\n\nThe addition of the common module was not accounted for... eventually we'll have automated Bedrock client testing in CI for all Geyser flavours!"
+    }
+  ],
+  "downloads": {
+    "bungeecord": {
+      "name": "Geyser-BungeeCord.jar",
+      "sha256": "7d528c1c433dbd226104f4aba21e3bdb6a8fc9399fbe8cb5f9e0b92507c186ac"
+    },
+    "fabric": {
+      "name": "Geyser-Fabric.jar",
+      "sha256": "3becb179697430d15930945781684e1d0a58b27d604673be346bef46890af73c"
+    },
+    "neoforge": {
+      "name": "Geyser-NeoForge.jar",
+      "sha256": "51b65611dd315544c99864fb6c6af99f25c3dc94836da52ce5e80ffb388613b5"
+    },
+    "spigot": {
+      "name": "Geyser-Spigot.jar",
+      "sha256": "0bd00484f688c49e45f84f7c8bf9326f52d48a4c697d72a28526f2fe3f55dc36"
+    },
+    "standalone": {
+      "name": "Geyser-Standalone.jar",
+      "sha256": "5c9349f2dfc4c51e20f7711e6c05f6b57ecdefa742bc06765653e3f3ce4fb0b6"
+    },
+    "velocity": {
+      "name": "Geyser-Velocity.jar",
+      "sha256": "dd963f2123704b89c47d3775b908b189b8174b1650008c51d37b1026d6dd928e"
+    },
+    "viaproxy": {
+      "name": "Geyser-ViaProxy.jar",
+      "sha256": "a80857bd5143e2b0c69e66f409f8df144001c0ac2081d16f84c3c48b2dd8ae83"
+    }
+  }
+}

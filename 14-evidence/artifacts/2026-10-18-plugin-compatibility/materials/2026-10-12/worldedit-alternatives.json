@@ -1,0 +1,20 @@
+[
+  {
+    "version": "7.4.3",
+    "filename": "worldedit-bukkit-7.4.3.jar",
+    "url": "https://cdn.modrinth.com/data/1u6JkXh5/versions/yDUBafTJ/worldedit-bukkit-7.4.3.jar",
+    "bytes": 7668652,
+    "sha256": "2499a78d1a7ac340c37c24bd0d851118dae767c48bdbed699799f307b5f24b7b",
+    "main_class_major": 69,
+    "java21_compatible_class_format": false
+  },
+  {
+    "version": "7.4.4",
+    "filename": "worldedit-bukkit-7.4.4.jar",
+    "url": "https://cdn.modrinth.com/data/1u6JkXh5/versions/qNuPcliz/worldedit-bukkit-7.4.4.jar",
+    "bytes": 7707538,
+    "sha256": "44c97ee6c1df9afa127df3c5a2c6a7108f826fb44ab7b255a7ec4250feb89b9d",
+    "main_class_major": 69,
+    "java21_compatible_class_format": false
+  }
+]

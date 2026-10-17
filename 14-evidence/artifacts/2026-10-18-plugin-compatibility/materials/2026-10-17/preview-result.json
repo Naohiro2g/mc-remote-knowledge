@@ -1,0 +1,74 @@
+{
+  "test_class": "live-auto",
+  "observed_at": "2026-10-16T19:42:24.577277+00:00",
+  "status": "PASS",
+  "world": "official-public-beta-world",
+  "paper": "26.3-200",
+  "java": "Temurin 25.0.3+9",
+  "public_ports": false,
+  "production_world_modified": false,
+  "credential_authority_shared": false,
+  "enabled": [
+    [
+      "OtterLib",
+      "OtterLib v0.4.0.1+26.2-paper"
+    ],
+    [
+      "LuckPerms",
+      "LuckPerms v5.5.71"
+    ],
+    [
+      "WorldEdit",
+      "WorldEdit v7.4.6+7648-00664b0"
+    ],
+    [
+      "ViaVersion",
+      "ViaVersion v5.12.1"
+    ],
+    [
+      "floodgate",
+      "floodgate v2.2.5-SNAPSHOT (b141-81b65cc)"
+    ],
+    [
+      "ServerBackup",
+      "ServerBackup v2.10.0"
+    ],
+    [
+      "Geyser-Spigot",
+      "Geyser-Spigot v2.12.0-SNAPSHOT"
+    ],
+    [
+      "ViaBackwards",
+      "ViaBackwards v5.12.1"
+    ],
+    [
+      "McRemote",
+      "McRemote v2320.0.0b10"
+    ],
+    [
+      "DirectionHUD",
+      "DirectionHUD v1.8.4.0+26.2"
+    ]
+  ],
+  "errors": [],
+  "credential_health": "HEALTHY",
+  "server_done": true,
+  "backup": {
+    "file": "backup-2026-10-16~19-36-59-..zip",
+    "bytes": 762337236,
+    "sha256": "522f48a631713550d0de91a3b502fa46ff4167060049b73f0cd373e98af3474b",
+    "entries": 1345,
+    "crc": "PASS",
+    "dimensions": {
+      "dimensions/minecraft/the_nether/": true,
+      "dimensions/minecraft/the_end/": true
+    }
+  },
+  "hud_display_verified": false,
+  "real_player_login_verified": false,
+  "restore_verified": false,
+  "excluded": [
+    "DiscordSRV (no duplicate bot)",
+    "AdvancedPortals (unused)"
+  ]
+}

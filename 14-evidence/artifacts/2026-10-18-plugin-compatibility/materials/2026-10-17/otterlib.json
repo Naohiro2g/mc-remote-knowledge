@@ -1,0 +1,2367 @@
+[
+  {
+    "game_versions": [
+      "26.3"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "EZmdLF7S",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.4.0.2+26.3 [Fabric]",
+    "version_number": "0.4.0.2+26.3",
+    "changelog": "# b0.4.0.2\n* fixed button hovering for OtterLib config button lists\n### Previous Changes\n#### b0.4.0.1\n* fixed file names for spigot and paper versions being confusing\n#### b0.4.0.0\n* improved custom loader text and language translation support\n* updated Paper and Spigot API/build configuration",
+    "changelog_url": null,
+    "date_published": "2026-09-30T04:07:37.653977Z",
+    "downloads": 2863,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "xGIj3bkx",
+        "hashes": {
+          "sha1": "1079f41d140630ff8136a73164d1dfac4e0f711a",
+          "sha512": "854daeddea696399fdf7630a1f9ff860d9dca260948dd7fb6f28b39b99b60e40965b731837fd8e3e87ff4e200ec9b209c6db396da83df4bf63cb73f945d4250c"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/EZmdLF7S/otterlib-0.4.0.2%2B26.3-fabric.jar",
+        "filename": "otterlib-0.4.0.2+26.3-fabric.jar",
+        "primary": true,
+        "size": 1357981,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "26.1",
+      "26.2"
+    ],
+    "loaders": [
+      "spigot"
+    ],
+    "environment": "unknown",
+    "id": "syzBi0rF",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.4.0.1+26.2 [Spigot]",
+    "version_number": "0.4.0.1+26.2",
+    "changelog": "# b0.4.0.1\n* fixed file names for spigot and paper versions being confusing\n### Previous Changes\n#### b0.4.0.0\n* improved custom loader text and language translation support\n* updated Paper and Spigot API/build configuration",
+    "changelog_url": null,
+    "date_published": "2026-08-24T01:53:55.474776Z",
+    "downloads": 435,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "ThI52MXz",
+        "hashes": {
+          "sha512": "569315ce623844c8c7b4712d44d9f320d82e7c97668928df1572de09c75e0b5461a09acb852626219cf9cfb30bdd65f9fd4cdb589dec3fb77fbd2d83e7f3841f",
+          "sha1": "40e76a3143056abe9f6e80bcfa829420b8c01af6"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/syzBi0rF/otterlib-0.4.0.1%2B26.2-spigot.jar",
+        "filename": "otterlib-0.4.0.1+26.2-spigot.jar",
+        "primary": true,
+        "size": 60539,
+        "file_type": null
+      }
+    ],
+    "dependencies": []
+  },
+  {
+    "game_versions": [
+      "26.2"
+    ],
+    "loaders": [
+      "folia",
+      "paper",
+      "purpur"
+    ],
+    "environment": "unknown",
+    "id": "oxZLx3yz",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.4.0.1+26.2 [Paper]",
+    "version_number": "0.4.0.1+26.2",
+    "changelog": "# b0.4.0.1\n* fixed file names for spigot and paper versions being confusing\n### Previous Changes\n#### b0.4.0.0\n* improved custom loader text and language translation support\n* updated Paper and Spigot API/build configuration",
+    "changelog_url": null,
+    "date_published": "2026-08-24T01:53:00.870321Z",
+    "downloads": 383,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "fnroGr1B",
+        "hashes": {
+          "sha1": "358a62f7ff02341e267f41b8f3947f1105bba572",
+          "sha512": "dbcb48ee43323ad1d65b4ada22ebbda6cc5aeed6fb41db4c19240e83d3599345eecb2d3a4bac0d49eafa004c97ca91bf3f19f33298cbd151177133f6351a25cb"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/oxZLx3yz/otterlib-0.4.0.1%2B26.2-paper.jar",
+        "filename": "otterlib-0.4.0.1+26.2-paper.jar",
+        "primary": true,
+        "size": 61248,
+        "file_type": null
+      }
+    ],
+    "dependencies": []
+  },
+  {
+    "game_versions": [
+      "26.2"
+    ],
+    "loaders": [
+      "folia",
+      "paper",
+      "purpur"
+    ],
+    "environment": "unknown",
+    "id": "3UwHuXqT",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.4.0.0+26.2 [Paper]",
+    "version_number": "0.4.0.0+26.2",
+    "changelog": "# b0.4.0.0\n* improved custom loader text and language translation support\n* updated Paper and Spigot API/build configuration",
+    "changelog_url": null,
+    "date_published": "2026-06-28T22:48:01.383004Z",
+    "downloads": 917,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "W8pJF04W",
+        "hashes": {
+          "sha512": "e8e1da51b5984de5657dfe173c93586c94772383d842bf315fc3119b0005c11b52b84c2a34a519cc709dde567f92add750c3b497b482b47c80a95d047a4ac9c3",
+          "sha1": "3a5c2150cfc4cfa299bda485a5b5336ae7533a3a"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/3UwHuXqT/paper-0.4.0.0%2B26.2-paper-all.jar",
+        "filename": "paper-0.4.0.0+26.2-paper-all.jar",
+        "primary": true,
+        "size": 61247,
+        "file_type": null
+      }
+    ],
+    "dependencies": []
+  },
+  {
+    "game_versions": [
+      "26.1",
+      "26.2"
+    ],
+    "loaders": [
+      "spigot"
+    ],
+    "environment": "unknown",
+    "id": "4mikhSKr",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.4.0.0+26.2 [Spigot]",
+    "version_number": "0.4.0.0+26.2",
+    "changelog": "# b0.4.0.0\n* improved custom loader text and language translation support\n* updated Paper and Spigot API/build configuration",
+    "changelog_url": null,
+    "date_published": "2026-06-28T22:47:48.502446Z",
+    "downloads": 170,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "ItmhzzEh",
+        "hashes": {
+          "sha1": "7da57971b39b76de43f83e153928242bd1c56113",
+          "sha512": "d60589736b5d538203fe023ff8e5a62fb75e816c06129804b555d97e54445ee139ceaac32da85ecf066a86d859a4fae916280e20ba425fa23a12205c0a92057c"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/4mikhSKr/spigot-0.4.0.0%2B26.2-spigot-all.jar",
+        "filename": "spigot-0.4.0.0+26.2-spigot-all.jar",
+        "primary": true,
+        "size": 60539,
+        "file_type": null
+      }
+    ],
+    "dependencies": []
+  },
+  {
+    "game_versions": [
+      "26.2"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "TSzkTFkO",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.4.0.0+26.2 [Fabric]",
+    "version_number": "0.4.0.0+26.2",
+    "changelog": "# b0.4.0.0\n* improved custom loader text and language translation support\n* updated Paper and Spigot API/build configuration",
+    "changelog_url": null,
+    "date_published": "2026-06-28T22:47:35.689256Z",
+    "downloads": 13598,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "i1aYwQiA",
+        "hashes": {
+          "sha512": "a911eb45158995b250382137e7e7a0867dd00ab954713db1dc6f58711de16b7fe9bfaab7499510c5d1fa5774bbd1c2c1b38c560c6c9b7d9f1fcc40ac4f6f9a78",
+          "sha1": "aa5b3c405a5236edec6c273a4cac05303b2381e1"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/TSzkTFkO/otterlib-0.4.0.0%2B26.2-fabric.jar",
+        "filename": "otterlib-0.4.0.0+26.2-fabric.jar",
+        "primary": true,
+        "size": 1358144,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "26.2"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "7thwoNTE",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.3.0.1+26.2 [Fabric]",
+    "version_number": "0.3.0.1+26.2",
+    "changelog": "# b0.3.0.1\n* fixed mod versioning for the new minecraft version system",
+    "changelog_url": null,
+    "date_published": "2026-06-21T03:32:05.932693Z",
+    "downloads": 1240,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "3dbB3dFQ",
+        "hashes": {
+          "sha512": "dac22621d6e25bebd5b54f25e06bf334575bf00e63b3b3b99216d3be1d3210047c9158b3b12bf3418fce266ccd6e188d89b4995f2a50428c0d1afb76db103cae",
+          "sha1": "a51d1e3b38697dd9ae5ff247402d0b36d0f77f46"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/7thwoNTE/otterlib-0.3.0.1%2B26.2-fabric.jar",
+        "filename": "otterlib-0.3.0.1+26.2-fabric.jar",
+        "primary": true,
+        "size": 1352121,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "26.1",
+      "26.1.1",
+      "26.1.2"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "VrPGp6VK",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.3.0.1+26.1 [Fabric]",
+    "version_number": "0.3.0.1+26.1",
+    "changelog": "# b0.3.0.1\n* fixed mod versioning for the new minecraft version system",
+    "changelog_url": null,
+    "date_published": "2026-05-16T23:56:40.719014Z",
+    "downloads": 27114,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "v2FzMEkg",
+        "hashes": {
+          "sha512": "608d5774cee8b57b8fe21e2beaddf8d09e175f6526d06418aace3903a8c7428b3305c03caec2b123579fb343d2652619e000727c5e686299c54022aeaa96ea0c",
+          "sha1": "b20fbed5efe39c8a7c685c3f8bff023bf4a3ff38"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/VrPGp6VK/otterlib-0.3.0.1%2B26.1-fabric.jar",
+        "filename": "otterlib-0.3.0.1+26.1-fabric.jar",
+        "primary": true,
+        "size": 1351145,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "26.1",
+      "26.1.1"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "DlBRgsTH",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.3.0.0+26.1.1 [Fabric]",
+    "version_number": "0.3.0.0+26.1.1",
+    "changelog": "# b0.3.0.0\n* added the nothing click action\n* added the HoverActions class\n* added another superclass to CTxT for better adaptability\n* make color default to null, and null default to white\n* make rainbow default to null\n* switch from button to chat wrapper system\n* other ChatText changes and improvements",
+    "changelog_url": null,
+    "date_published": "2026-04-01T13:46:14.410618Z",
+    "downloads": 3393,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "PLP6Sqmg",
+        "hashes": {
+          "sha512": "16c5aeb8cdf13d7e10e43e5799fef06452ad33cad4e7766b48b7d4165c809b8bd17796c13bc91a2afd71eb0f11595345b392f6ac86500672e99b6fc45533dbad",
+          "sha1": "211fde0cf8e7e85a49aedc58673af8b155ec4e28"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/DlBRgsTH/otterlib-0.3.0.0%2B26.1.1-fabric.jar",
+        "filename": "otterlib-0.3.0.0+26.1.1-fabric.jar",
+        "primary": true,
+        "size": 1351157,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "26.1"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "aLCe8TQU",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.3.0.0+26.1 [Fabric]",
+    "version_number": "0.3.0.0+26.1",
+    "changelog": "# b0.3.0.0\n* added the nothing click action\n* added the HoverActions class\n* added another superclass to CTxT for better adaptability\n* make color default to null, and null default to white\n* make rainbow default to null\n* switch from button to chat wrapper system\n* other ChatText changes and improvements",
+    "changelog_url": null,
+    "date_published": "2026-03-25T02:30:08.270613Z",
+    "downloads": 1332,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "r0hN3oZR",
+        "hashes": {
+          "sha1": "62f4eda2e778c867e7ac11c9b5ac885539da970e",
+          "sha512": "e1ec28c7178487f04c5d0d9e8a1b730bf146b833cc2ffc021bbad44a4e975bf79a8568da3896bdfac054ad15176808de8a278562ac37884e57a752821cc719dc"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/aLCe8TQU/otterlib-0.3.0.0%2B26.1-fabric.jar",
+        "filename": "otterlib-0.3.0.0+26.1-fabric.jar",
+        "primary": true,
+        "size": 1351145,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "1.21.11"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "97STrMee",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.2.2.1+1.21.11 [Fabric]",
+    "version_number": "0.2.2.1+1.21.11",
+    "changelog": "# b0.2.2.1\n* increased supported version range (eg. 1.21.8 now runs on 1.21.6 and 1.21.7 as well) [Fabric]\n\n# b0.2.2.0\nA new file registration system is here! (for both config and language files)\n\\\nOtterLib will now handle storing, loading and saving config files! Auto loading and saving can be configured, and the file will be registered via queried via ModID and FileID. \n* added a config file registration system (CustomFileReg)\n* added a language file registration system (LanguageReg)",
+    "changelog_url": null,
+    "date_published": "2025-12-10T05:33:28.814309Z",
+    "downloads": 72698,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "C1GMunbV",
+        "hashes": {
+          "sha1": "85f681152d94064d941a0cc095e92c6114454939",
+          "sha512": "3f62f95d620f5e5a476120b97232847607edb2e2559e0ef282650ce033e4d778a586539614fc3222975999b380f1c1d782813bb190a2677c7ab1f828ce575aac"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/97STrMee/otterlib-0.2.2.1%2B1.21.11-fabric.jar",
+        "filename": "otterlib-0.2.2.1+1.21.11-fabric.jar",
+        "primary": true,
+        "size": 675680,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "1.21.9",
+      "1.21.10"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "zlJvj7Xn",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.2.2.1+1.21.10 [Fabric]",
+    "version_number": "0.2.2.1+1.21.10",
+    "changelog": "# b0.2.2.1\n* increased supported version range (eg. 1.21.8 now runs on 1.21.6 and 1.21.7 as well) [Fabric]\n\n# b0.2.2.0\nA new file registration system is here! (for both config and language files)\n\\\nOtterLib will now handle storing, loading and saving config files! Auto loading and saving can be configured, and the file will be registered via queried via ModID and FileID. \n* added a config file registration system (CustomFileReg)\n* added a language file registration system (LanguageReg)",
+    "changelog_url": null,
+    "date_published": "2025-10-07T16:13:05.021103Z",
+    "downloads": 20652,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "ana9MYWR",
+        "hashes": {
+          "sha512": "d421fbd9c3fa10dc4afcd54687dfb1099e735a695015716356ed7a554c98a519cb94a6a22a28195c5ce4ffded3d415423659abd82368dacf0cbbf8df817c87ed",
+          "sha1": "33822deeebacbdf44eb5105baf5b995f55fa0ad1"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/zlJvj7Xn/otterlib-0.2.2.1%2B1.21.10-fabric.jar",
+        "filename": "otterlib-0.2.2.1+1.21.10-fabric.jar",
+        "primary": true,
+        "size": 675838,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "1.21.9"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "yRuTDvmZ",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.2.2.1+1.21.9 [Fabric]",
+    "version_number": "0.2.2.1+1.21.9",
+    "changelog": "# b0.2.2.1\n* increased supported version range (eg. 1.21.8 now runs on 1.21.6 and 1.21.7 as well) [Fabric]\n\n# b0.2.2.0\nA new file registration system is here! (for both config and language files)\n\\\nOtterLib will now handle storing, loading and saving config files! Auto loading and saving can be configured, and the file will be registered via queried via ModID and FileID. \n* added a config file registration system (CustomFileReg)\n* added a language file registration system (LanguageReg)",
+    "changelog_url": null,
+    "date_published": "2025-10-02T16:03:00.337550Z",
+    "downloads": 644,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "2wsvoPup",
+        "hashes": {
+          "sha512": "e5f8412b52c883f1ea7942f6e222245f9378bbeba75b3e346587ef1a661459fee5d9fcb5193096da4cde5fe5082e3d17165d683bc223d41153f2a54adc889c31",
+          "sha1": "36f8b293b19a1d8c5c5110d19cd47cfec28b7581"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/yRuTDvmZ/otterlib-0.2.2.1%2B1.21.9-fabric.jar",
+        "filename": "otterlib-0.2.2.1+1.21.9-fabric.jar",
+        "primary": true,
+        "size": 675836,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "1.21.6",
+      "1.21.7",
+      "1.21.8"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "c1wkXVhH",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.2.2.1+1.21.8 [Fabric]",
+    "version_number": "0.2.2.1+1.21.8",
+    "changelog": "# b0.2.2.1\n* increased supported version range (eg. 1.21.8 now runs on 1.21.6 and 1.21.7 as well) [Fabric]\n\n# b0.2.2.0\nA new file registration system is here! (for both config and language files)\n\\\nOtterLib will now handle storing, loading and saving config files! Auto loading and saving can be configured, and the file will be registered via queried via ModID and FileID. \n* added a config file registration system (CustomFileReg)\n* added a language file registration system (LanguageReg)",
+    "changelog_url": null,
+    "date_published": "2025-08-20T20:30:33.886588Z",
+    "downloads": 8695,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "Lam6zSBu",
+        "hashes": {
+          "sha512": "f050fbd0284f28485fcdbc9771ca62842722bf6272e76ccffa935759e18d20904c84943ec5d6485cbb26f848f42ab8dde3b5da5cf804d79ca92f7b863b97d693",
+          "sha1": "65a9ba180612baaf384947f81c5888dc2e293e6f"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/c1wkXVhH/otterlib-0.2.2.1%2B1.21.8-fabric.jar",
+        "filename": "otterlib-0.2.2.1+1.21.8-fabric.jar",
+        "primary": true,
+        "size": 675892,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "1.21",
+      "1.21.1"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "lMOoBAw6",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.2.2.0+1.21.1 [Fabric]",
+    "version_number": "0.2.2.0+1.21.1",
+    "changelog": "# b0.2.2.0\nA new file registration system is here! (for both config and language files)\n\\\nOtterLib will now handle storing, loading and saving config files! Auto loading and saving can be configured, and the file will be registered via queried via ModID and FileID. \n* added a config file registration system (CustomFileReg)\n* added a language file registration system (LanguageReg)",
+    "changelog_url": null,
+    "date_published": "2025-07-27T00:11:47.286536Z",
+    "downloads": 15306,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "UAiJCi2Z",
+        "hashes": {
+          "sha1": "2f8d1ba003d1b475d8eb88c85708077771f85107",
+          "sha512": "b81225dfcd7f7e7f79f58d1b9acfe0c95a967534174ada52db9742c0609e6caf9fadab025f4f8e0f9b1bfe8d7bf29f5add1b09c5e81ca6ddde1a86d1fd2d7e7c"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/lMOoBAw6/otterlib-0.2.2.0%2B1.21.1-fabric.jar",
+        "filename": "otterlib-0.2.2.0+1.21.1-fabric.jar",
+        "primary": true,
+        "size": 675765,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "1.20.1"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "b0StSPCY",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.2.2.0+1.20.1 [Fabric]",
+    "version_number": "0.2.2.0+1.20.1",
+    "changelog": "# b0.2.2.0\nA new file registration system is here! (for both config and language files)\n\\\nOtterLib will now handle storing, loading and saving config files! Auto loading and saving can be configured, and the file will be registered via queried via ModID and FileID. \n* added a config file registration system (CustomFileReg)\n* added a language file registration system (LanguageReg)",
+    "changelog_url": null,
+    "date_published": "2025-07-26T18:39:21.038237Z",
+    "downloads": 16870,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "9hekKvkS",
+        "hashes": {
+          "sha512": "2b8241c38a34c1856d9c820bb09fc7d359e5cf22da4265ace4b3a3236bcd56d94a07044b8e74195d95e7806614b5136de9f1827982ecfbdc7cb83af285bf80ab",
+          "sha1": "3d94b5d5a4a2a84b204841eddeaca4a18dce598c"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/b0StSPCY/otterlib-0.2.2.0%2B1.20.1-fabric.jar",
+        "filename": "otterlib-0.2.2.0+1.20.1-fabric.jar",
+        "primary": true,
+        "size": 678140,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "1.20.4"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "VAA1Mkjd",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.2.2.0+1.20.4 [Fabric]",
+    "version_number": "0.2.2.0+1.20.4",
+    "changelog": "# b0.2.2.0\nA new file registration system is here! (for both config and language files)\n\\\nOtterLib will now handle storing, loading and saving config files! Auto loading and saving can be configured, and the file will be registered via queried via ModID and FileID. \n* added a config file registration system (CustomFileReg)\n* added a language file registration system (LanguageReg)",
+    "changelog_url": null,
+    "date_published": "2025-07-26T18:38:20.312763Z",
+    "downloads": 591,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "F9OUrD1P",
+        "hashes": {
+          "sha1": "764f4e22cab39e6b88bd71633685c1601d40c458",
+          "sha512": "b982a68e1cbf9648abcd04fa4533076bf7547caaaa11a807cfefec15a5e29d5d56c83db65df789b8bbc961e7941b8fe22751af795cde8b876e3531b649e0ec6a"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/VAA1Mkjd/otterlib-0.2.2.0%2B1.20.4-fabric.jar",
+        "filename": "otterlib-0.2.2.0+1.20.4-fabric.jar",
+        "primary": true,
+        "size": 675966,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "1.20.6"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "cYzRbR64",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.2.2.0+1.20.6 [Fabric]",
+    "version_number": "0.2.2.0+1.20.6",
+    "changelog": "# b0.2.2.0\nA new file registration system is here! (for both config and language files)\n\\\nOtterLib will now handle storing, loading and saving config files! Auto loading and saving can be configured, and the file will be registered via queried via ModID and FileID. \n* added a config file registration system (CustomFileReg)\n* added a language file registration system (LanguageReg)",
+    "changelog_url": null,
+    "date_published": "2025-07-26T18:35:14.263892Z",
+    "downloads": 193,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "M431van4",
+        "hashes": {
+          "sha512": "513313667d9c969d6f8a98342186dd40d6d249b78e43ed1153790029eef8d273e82eefc369dff0cc76452ff6a7e391e1e43a12e579b203bfcc5518cdf2cc08e7",
+          "sha1": "039cfeefb79d509143ab6f1b570c7c5a21d76107"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/cYzRbR64/otterlib-0.2.2.0%2B1.20.6-fabric.jar",
+        "filename": "otterlib-0.2.2.0+1.20.6-fabric.jar",
+        "primary": true,
+        "size": 675780,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "1.20.1"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "KGMbD3YU",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.2.1.1+1.20.1 [Fabric]",
+    "version_number": "0.2.1.1+1.20.1",
+    "changelog": "# b0.2.1.1\n* fixed OtterLib not working properly on 1.20.4 and below\n# b0.2.1.0\nFixed support for reading language files inside of jars.\n* added ResourceReader, allowing for the reading of resources in the jar\n* updated LanguageReader to use ResourceReaders instead of normal paths",
+    "changelog_url": null,
+    "date_published": "2025-07-18T02:59:27.549682Z",
+    "downloads": 388,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "t5JbaOsk",
+        "hashes": {
+          "sha1": "1bb1d4014005b09b27901db0be1c33584a21baf3",
+          "sha512": "cd3024097e2a26cec28c77c3f803c1b363820a571e523a8c0f86da87e7f7ddcdc05875ca180ff6f1bab682ad665cc71d23954a5eb880fb4b9a71425692cdb196"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/KGMbD3YU/otterlib-0.2.1.1%2B1.20.1-fabric.jar",
+        "filename": "otterlib-0.2.1.1+1.20.1-fabric.jar",
+        "primary": true,
+        "size": 670955,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "1.20.4"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "zxtNclPn",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.2.1.1+1.20.4 [Fabric]",
+    "version_number": "0.2.1.1+1.20.4",
+    "changelog": "# b0.2.1.1\n* fixed OtterLib not working properly on 1.20.4 and below\n# b0.2.1.0\nFixed support for reading language files inside of jars.\n* added ResourceReader, allowing for the reading of resources in the jar\n* updated LanguageReader to use ResourceReaders instead of normal paths",
+    "changelog_url": null,
+    "date_published": "2025-07-18T02:55:14.899592Z",
+    "downloads": 76,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "D4jn4Nhd",
+        "hashes": {
+          "sha512": "6d053e463dce5bc2421ed814e317dd6b0f62bc568f081512447de509187796b38dd128dc604ecb0e40c4ae7e45c73d282ae3b375357d3235c3366c1be00541fe",
+          "sha1": "1aa9c2142d868c92789bff9cab2df8bcd64e1d32"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/zxtNclPn/otterlib-0.2.1.1%2B1.20.4-fabric.jar",
+        "filename": "otterlib-0.2.1.1+1.20.4-fabric.jar",
+        "primary": true,
+        "size": 668780,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "1.21.8"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "y94cz6oZ",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.2.2.0+1.21.8 [Fabric]",
+    "version_number": "0.2.2.0+1.21.8",
+    "changelog": "# b0.2.2.0\nA new file registration system is here! (for both config and language files)\n\\\nOtterLib will now handle storing, loading and saving config files! Auto loading and saving can be configured, and the file will be registered via queried via ModID and FileID. \n* added a config file registration system (CustomFileReg)\n* added a language file registration system (LanguageReg)",
+    "changelog_url": null,
+    "date_published": "2025-07-17T15:19:30.703735Z",
+    "downloads": 2777,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "e3TbgoFL",
+        "hashes": {
+          "sha1": "47c4c3f6aa093dfb24f6f6520a6958560b14e3f8",
+          "sha512": "2676680af8a490280e3fdf312f6cbfbfcced17bd1a8adb2bba4c31545d0da89e0101363946d48a9630076d2878ce40380047b687577d0b02273afd9835afe553"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/y94cz6oZ/otterlib-0.2.2.0%2B1.21.8-fabric.jar",
+        "filename": "otterlib-0.2.2.0+1.21.8-fabric.jar",
+        "primary": true,
+        "size": 675889,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "1.21.4"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "jypR5qeR",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.2.2.0+1.21.4 [Fabric]",
+    "version_number": "0.2.2.0+1.21.4",
+    "changelog": "# b0.2.2.0\nA new file registration system is here! (for both config and language files)\n\\\nOtterLib will now handle storing, loading and saving config files! Auto loading and saving can be configured, and the file will be registered via queried via ModID and FileID. \n* added a config file registration system (CustomFileReg)\n* added a language file registration system (LanguageReg)",
+    "changelog_url": null,
+    "date_published": "2025-07-15T16:58:10.340564Z",
+    "downloads": 2843,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "bIHSOMhG",
+        "hashes": {
+          "sha1": "74546b99a95648892d429e7641ff0014784b00fe",
+          "sha512": "bbd02b88a975c0e861d47580a01666834e838941ad9cd58dcb1afa4dee73e607c129568414dd4ec38f58287068a5ee75d32364c2d13d4e45a999be1222ff5ae8"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/jypR5qeR/otterlib-0.2.2.0%2B1.21.4-fabric.jar",
+        "filename": "otterlib-0.2.2.0+1.21.4-fabric.jar",
+        "primary": true,
+        "size": 675948,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "1.21.5"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "ay2JBPGs",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.2.2.0+1.21.5 [Fabric]",
+    "version_number": "0.2.2.0+1.21.5",
+    "changelog": "# b0.2.2.0\nA new file registration system is here! (for both config and language files)\n\\\nOtterLib will now handle storing, loading and saving config files! Auto loading and saving can be configured, and the file will be registered via queried via ModID and FileID. \n* added a config file registration system (CustomFileReg)\n* added a language file registration system (LanguageReg)",
+    "changelog_url": null,
+    "date_published": "2025-07-15T16:56:06.250838Z",
+    "downloads": 5822,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "aaYhWcUA",
+        "hashes": {
+          "sha512": "dd66aebe50dc19358b5d48f8cc0c85cd4af3ca0ad98b0764ffeb6b665d94b2679af4236492a223081ca3b0f502dd59ce018abc4c1bf379c83fe76c6335b701b3",
+          "sha1": "4c94fb37a267858436b61eec990cfdf65edaa3c9"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/ay2JBPGs/otterlib-0.2.2.0%2B1.21.5-fabric.jar",
+        "filename": "otterlib-0.2.2.0+1.21.5-fabric.jar",
+        "primary": true,
+        "size": 676077,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "1.20",
+      "1.20.1",
+      "1.20.2",
+      "1.20.3",
+      "1.20.4",
+      "1.20.5",
+      "1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.2",
+      "1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.7"
+    ],
+    "loaders": [
+      "spigot"
+    ],
+    "environment": "unknown",
+    "id": "FXcbzdv8",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.2.2.0+1.20-1.21.7 [Spigot]",
+    "version_number": "0.2.2.0+1.20-1.21.7",
+    "changelog": "# b0.2.2.0\nA new file registration system is here! (for both config and language files)\n\\\nOtterLib will now handle storing, loading and saving config files! Auto loading and saving can be configured, and the file will be registered via queried via ModID and FileID. \n* added a config file registration system (CustomFileReg)\n* added a language file registration system (LanguageReg)",
+    "changelog_url": null,
+    "date_published": "2025-07-12T00:00:23.781488Z",
+    "downloads": 476,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "UXRMlkzT",
+        "hashes": {
+          "sha512": "5da58876e89cc150e2c46fd694e74b50208a10254493a7c2180d749d9dc6e7a6aa570597a2da44ec15633a4727dc2a8a8180a4cf573e9150cfa142460ae5bcc4",
+          "sha1": "8e059a40bb4f54178bec45da955be9ce89c4f401"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/FXcbzdv8/spigot-0.2.2.0%2B1.20-1.21.7-spigot-all.jar",
+        "filename": "spigot-0.2.2.0+1.20-1.21.7-spigot-all.jar",
+        "primary": true,
+        "size": 51499,
+        "file_type": null
+      }
+    ],
+    "dependencies": []
+  },
+  {
+    "game_versions": [
+      "1.21.7"
+    ],
+    "loaders": [
+      "folia",
+      "paper",
+      "purpur"
+    ],
+    "environment": "unknown",
+    "id": "HvUT4DIF",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.2.2.0+1.21.7 [Paper]",
+    "version_number": "0.2.2.0+1.21.7",
+    "changelog": "# b0.2.2.0\nA new file registration system is here! (for both config and language files)\n\\\nOtterLib will now handle storing, loading and saving config files! Auto loading and saving can be configured, and the file will be registered via queried via ModID and FileID. \n* added a config file registration system (CustomFileReg)\n* added a language file registration system (LanguageReg)",
+    "changelog_url": null,
+    "date_published": "2025-07-11T23:59:17.774007Z",
+    "downloads": 118,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "zzEubBU5",
+        "hashes": {
+          "sha512": "4b9661ce279f80bf28e127092150e6a6cc9c5cf9e704cbdcfa78e2ab500e56726168d0c741ddf313b4a2f26528f62b8be686d87bd3a6b08e166acbf3ab48cd94",
+          "sha1": "cf946b58b4281a6385066462155a8ee4938e5249"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/HvUT4DIF/paper-0.2.2.0%2B1.21.7-paper-all.jar",
+        "filename": "paper-0.2.2.0+1.21.7-paper-all.jar",
+        "primary": true,
+        "size": 51659,
+        "file_type": null
+      }
+    ],
+    "dependencies": []
+  },
+  {
+    "game_versions": [
+      "1.21.7"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "7xVdijXS",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.2.2.0+1.21.7 [Fabric]",
+    "version_number": "0.2.2.0+1.21.7",
+    "changelog": "# b0.2.2.0\nA new file registration system is here! (for both config and language files)\n\\\nOtterLib will now handle storing, loading and saving config files! Auto loading and saving can be configured, and the file will be registered via queried via ModID and FileID. \n* added a config file registration system (CustomFileReg)\n* added a language file registration system (LanguageReg)",
+    "changelog_url": null,
+    "date_published": "2025-07-11T19:05:41.224332Z",
+    "downloads": 1687,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "aHi4dyDM",
+        "hashes": {
+          "sha512": "42dead90259643e403afce3163a04d47980be9182c801117e2ade5cf7b5dcad8902f64c9b6912fd901f4708b0881a8036e33d909aa43f7c0d1e66c9ed25ec393",
+          "sha1": "00b73c36d6ccf935fe6903d63798881c6c87568e"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/7xVdijXS/otterlib-0.2.2.0%2B1.21.7-fabric.jar",
+        "filename": "otterlib-0.2.2.0+1.21.7-fabric.jar",
+        "primary": true,
+        "size": 675890,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "1.20.1"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "ilUQLsde",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.2.1.0+1.20.1 [Fabric]",
+    "version_number": "0.2.1.0+1.20.1",
+    "changelog": "# b0.2.1.0\nFixed support for reading language files inside of jars.\n* added ResourceReader, allowing for the reading of resources in the jar\n* updated LanguageReader to use ResourceReaders instead of normal paths",
+    "changelog_url": null,
+    "date_published": "2025-07-08T17:59:05.571988Z",
+    "downloads": 238,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "adl7Pv3l",
+        "hashes": {
+          "sha1": "ca7fa2bfecffafb40bfb1dc8c569d11b60852622",
+          "sha512": "76188b5d9d4b2cc4f07e58fab9591e1833f57979ede63169d38ff89170941da48c566bd02d35b1747632fec8ccab5ad3d2b1c8e83e3557ccfa24f005aca33609"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/ilUQLsde/otterlib-0.2.1.0%2B1.20.1-fabric.jar",
+        "filename": "otterlib-0.2.1.0+1.20.1-fabric.jar",
+        "primary": true,
+        "size": 670927,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "1.20.4"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "T7Lg0VPa",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.2.1.0+1.20.4 [Fabric]",
+    "version_number": "0.2.1.0+1.20.4",
+    "changelog": "# b0.2.1.0\nFixed support for reading language files inside of jars.\n* added ResourceReader, allowing for the reading of resources in the jar\n* updated LanguageReader to use ResourceReaders instead of normal paths",
+    "changelog_url": null,
+    "date_published": "2025-07-08T17:55:44.601373Z",
+    "downloads": 69,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "kPrNUwKu",
+        "hashes": {
+          "sha1": "fa50930d5d9656f5ff2993b9a615117181666246",
+          "sha512": "208ccbcbe8c1415d441440009d9ea1f039cb46bb64b1492ac1477543474e9d4b7212985e85d37e76ab5af0e996327a3684b958fa47ef2ebb3fefc2cc74e24ef2"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/T7Lg0VPa/otterlib-0.2.1.0%2B1.20.4-fabric.jar",
+        "filename": "otterlib-0.2.1.0+1.20.4-fabric.jar",
+        "primary": true,
+        "size": 668747,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "1.20.6"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "GfBpnLTq",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.2.1.0+1.20.6 [Fabric]",
+    "version_number": "0.2.1.0+1.20.6",
+    "changelog": "# b0.2.1.0\nFixed support for reading language files inside of jars.\n* added ResourceReader, allowing for the reading of resources in the jar\n* updated LanguageReader to use ResourceReaders instead of normal paths",
+    "changelog_url": null,
+    "date_published": "2025-07-08T17:53:59.300642Z",
+    "downloads": 53,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "XTbwqkiP",
+        "hashes": {
+          "sha512": "876214c7cadb3282b280c49dfda2886d738e440b8ff8af51ecbebf41acc12797fa31f07152f6ce3a2b0174a8fea58c06a23360b25468f1665b5f6be3ef3d8734",
+          "sha1": "eccf9dd2fc771e2b66ae73b6e203ed124359b8ff"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/GfBpnLTq/otterlib-0.2.1.0%2B1.20.6-fabric.jar",
+        "filename": "otterlib-0.2.1.0+1.20.6-fabric.jar",
+        "primary": true,
+        "size": 668595,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "1.21.7"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "LTg9ifOT",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.2.1.0+1.21.7 [Fabric]",
+    "version_number": "0.2.1.0+1.21.7",
+    "changelog": "# b0.2.1.0\nFixed support for reading language files inside of jars.\n* added ResourceReader, allowing for the reading of resources in the jar\n* updated LanguageReader to use ResourceReaders instead of normal paths",
+    "changelog_url": null,
+    "date_published": "2025-06-30T14:47:42.559068Z",
+    "downloads": 1018,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "wa6il9Nn",
+        "hashes": {
+          "sha512": "582f91d020996c9a4b503b228a7287090c34aad7356482a0ab964be4ef5e87fd1a558e70c714b19e57cf9aa803bc0eb29e5a6b5afc3de5d520d70d57379d7ec1",
+          "sha1": "7c3ec832948bc608669099ecaa297fe8bb0a0b53"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/LTg9ifOT/otterlib-0.2.1.0%2B1.21.7-fabric.jar",
+        "filename": "otterlib-0.2.1.0+1.21.7-fabric.jar",
+        "primary": true,
+        "size": 668705,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "1.21",
+      "1.21.1"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "QoKZdme7",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.2.1.0+1.21.1 [Fabric]",
+    "version_number": "0.2.1.0+1.21.1",
+    "changelog": "# b0.2.1.0\nFixed support for reading language files inside of jars.\n* added ResourceReader, allowing for the reading of resources in the jar\n* updated LanguageReader to use ResourceReaders instead of normal paths",
+    "changelog_url": null,
+    "date_published": "2025-06-27T22:27:02.577426Z",
+    "downloads": 478,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "wvzFKVNa",
+        "hashes": {
+          "sha1": "d76233a98ea51934b462ee2f2409a5dfe76db8b4",
+          "sha512": "0393f36705fa25da8efc01db54ea450e18bb4a111bb25b9fee2e484b464d3c999f467f1bf576a474c79ac6261767efdfe0db6928227f61ea62b6b70a9e43b426"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/QoKZdme7/otterlib-0.2.1.0%2B1.21.1-fabric.jar",
+        "filename": "otterlib-0.2.1.0+1.21.1-fabric.jar",
+        "primary": true,
+        "size": 668580,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "1.21.4"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "HbIoTb00",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.2.1.0+1.21.4 [Fabric]",
+    "version_number": "0.2.1.0+1.21.4",
+    "changelog": "# b0.2.1.0\nFixed support for reading language files inside of jars.\n* added ResourceReader, allowing for the reading of resources in the jar\n* updated LanguageReader to use ResourceReaders instead of normal paths",
+    "changelog_url": null,
+    "date_published": "2025-06-27T22:23:43.172737Z",
+    "downloads": 348,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "ClVca23K",
+        "hashes": {
+          "sha512": "5faffbc97121d8ba079c97ea22f6cb61cdddf77891e2b60729b7adefdcf8aa45ef39e952679dfd420cc89b3f39b485976e37eb2f5d83192b0caf99d54b555862",
+          "sha1": "63eb6258c047c15e170faf0ab7398490936b55c0"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/HbIoTb00/otterlib-0.2.1.0%2B1.21.4-fabric.jar",
+        "filename": "otterlib-0.2.1.0+1.21.4-fabric.jar",
+        "primary": true,
+        "size": 668763,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "1.21.5"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "hzK5ru2b",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.2.1.0+1.21.5 [Fabric]",
+    "version_number": "0.2.1.0+1.21.5",
+    "changelog": "# b0.2.1.0\nFixed support for reading language files inside of jars.\n* added ResourceReader, allowing for the reading of resources in the jar\n* updated LanguageReader to use ResourceReaders instead of normal paths",
+    "changelog_url": null,
+    "date_published": "2025-06-27T22:23:05.207255Z",
+    "downloads": 713,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "UtyizVVT",
+        "hashes": {
+          "sha512": "b4661de2ea9a4c4092858e76a64894356814ee9b0ea6fa33313f8ba4267093fbb16759c1bb05099b324294d1965ce6e597b6b551609b5d4300804d3ed76ccdfc",
+          "sha1": "678add79271e1e2b8fef5c974548c05fe64ff89e"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/hzK5ru2b/otterlib-0.2.1.0%2B1.21.5-fabric.jar",
+        "filename": "otterlib-0.2.1.0+1.21.5-fabric.jar",
+        "primary": true,
+        "size": 668893,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "1.21.6"
+    ],
+    "loaders": [
+      "folia",
+      "paper",
+      "purpur"
+    ],
+    "environment": "unknown",
+    "id": "aeDApaPv",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.2.1.0+1.21.6 [Paper]",
+    "version_number": "0.2.1.0+1.21.6",
+    "changelog": "# b0.2.1.0\nFixed support for reading language files inside of jars.\n* added ResourceReader, allowing for the reading of resources in the jar\n* updated LanguageReader to use ResourceReaders instead of normal paths",
+    "changelog_url": null,
+    "date_published": "2025-06-24T18:46:42.158707Z",
+    "downloads": 75,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "kYu2ZWVj",
+        "hashes": {
+          "sha512": "cce3e4d6ed852965ed150498f505d31c3ddc96f2e44ebe8bc550a1fdb613e1c99a3c0df6e730391be9d8d8846af2db97b039a30b9ae4a0d0a0d72eaeb10b0f5d",
+          "sha1": "0b19dd1e9616091aea0572bb47993220d3aeb6a7"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/aeDApaPv/paper-0.2.1.0%2B1.21.6-paper-all.jar",
+        "filename": "paper-0.2.1.0+1.21.6-paper-all.jar",
+        "primary": true,
+        "size": 46428,
+        "file_type": null
+      }
+    ],
+    "dependencies": []
+  },
+  {
+    "game_versions": [
+      "1.20.1",
+      "1.20.2",
+      "1.20.3",
+      "1.20.4",
+      "1.20.5",
+      "1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.2",
+      "1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6"
+    ],
+    "loaders": [
+      "spigot"
+    ],
+    "environment": "unknown",
+    "id": "t936uFjs",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.2.1.0+1.20-1.21.6 [Spigot]",
+    "version_number": "0.2.1.0+1.20-1.21.6",
+    "changelog": "# b0.2.1.0\nFixed support for reading language files inside of jars.\n* added ResourceReader, allowing for the reading of resources in the jar\n* updated LanguageReader to use ResourceReaders instead of normal paths",
+    "changelog_url": null,
+    "date_published": "2025-06-24T18:46:22.002552Z",
+    "downloads": 42,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "mNmVmECh",
+        "hashes": {
+          "sha512": "9ef7ac5f8229ee3b3b59125a6410f9371f38a5be544f3accd11a524a9b2876cd3fb440ead59bf71a77a373788181d49cea2ff38a49fce0587341d0197ec6a604",
+          "sha1": "ec7164970eddf1c54c4720f623c78e9dcf46fb29"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/t936uFjs/spigot-0.2.1.0%2B1.20-1.21.6-spigot-all.jar",
+        "filename": "spigot-0.2.1.0+1.20-1.21.6-spigot-all.jar",
+        "primary": true,
+        "size": 46268,
+        "file_type": null
+      }
+    ],
+    "dependencies": []
+  },
+  {
+    "game_versions": [
+      "1.21.6"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "SDsNZDh9",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.2.1.0+1.21.6 [Fabric]",
+    "version_number": "0.2.1.0+1.21.6",
+    "changelog": "# b0.2.1.0\nFixed support for reading language files inside of jars.\n* added ResourceReader, allowing for the reading of resources in the jar\n* updated LanguageReader to use ResourceReaders instead of normal paths",
+    "changelog_url": null,
+    "date_published": "2025-06-24T18:45:24.295256Z",
+    "downloads": 1464,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "cHyyFB9i",
+        "hashes": {
+          "sha512": "c81b3c0a822c37164677880d9d37ef4668fa93b90600f723a5bc370556c26f80cb0141b8d567b34289fa6c04dc917a73a38daf3bddc18fe69d4aee1f1950ed33",
+          "sha1": "b05d1d11b5575d7894dd622ad8d9ac363ee76707"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/SDsNZDh9/otterlib-0.2.1.0%2B1.21.6-fabric.jar",
+        "filename": "otterlib-0.2.1.0+1.21.6-fabric.jar",
+        "primary": true,
+        "size": 668705,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "1.21.6"
+    ],
+    "loaders": [
+      "folia",
+      "paper",
+      "purpur"
+    ],
+    "environment": "unknown",
+    "id": "cYlltAQr",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.2.0.0+1.21.6 [Paper]",
+    "version_number": "0.2.0.0+1.21.6",
+    "changelog": "# b0.2.0.0\nServer side Language Reader & Spigot and Paper Ports!\n\n* added a custom language reader\n* added spigot port\n* added native paper port\n* switch logger custom OtterLogger for compatibility between different loaders\n* add more overloads to ChatText text() method\n* updated CustomFile loading and updating logic\n  * added updateFromJSON() for updating the JSON pre-load\n  * renamed update() -> updateInstance() for JSON post-load  \n* fix fabric main file capitalization",
+    "changelog_url": null,
+    "date_published": "2025-06-23T22:41:00.692912Z",
+    "downloads": 41,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "wjKeTdL4",
+        "hashes": {
+          "sha512": "286cd47d2bff5ac83e8e0440a5438d7361c7d1eb283ceb5d11b1cb1ac63f9e8d0c7dccd8827bb4837045d3f46e99bb333c13bdcdc18b936488da9b887ab36c74",
+          "sha1": "3d72b372e1ca6e2802f32faf53095d5ee5bde385"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/cYlltAQr/paper-0.2.0.0%2B1.21.6-paper-all.jar",
+        "filename": "paper-0.2.0.0+1.21.6-paper-all.jar",
+        "primary": true,
+        "size": 45411,
+        "file_type": null
+      }
+    ],
+    "dependencies": []
+  },
+  {
+    "game_versions": [
+      "1.20",
+      "1.20.1",
+      "1.20.2",
+      "1.20.3",
+      "1.20.4",
+      "1.20.5",
+      "1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.2",
+      "1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6"
+    ],
+    "loaders": [
+      "spigot"
+    ],
+    "environment": "unknown",
+    "id": "YkJV1ugf",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.2.0.0+1.20-1.21.6 [Spigot]",
+    "version_number": "0.2.0.0+1.20-1.21.6",
+    "changelog": "# b0.2.0.0\nServer side Language Reader & Spigot and Paper Ports!\n\n* added a custom language reader\n* added spigot port\n* added native paper port\n* switch logger custom OtterLogger for compatibility between different loaders\n* add more overloads to ChatText text() method\n* updated CustomFile loading and updating logic\n  * added updateFromJSON() for updating the JSON pre-load\n  * renamed update() -> updateInstance() for JSON post-load  \n* fix fabric main file capitalization",
+    "changelog_url": null,
+    "date_published": "2025-06-23T22:40:51.748333Z",
+    "downloads": 31,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "1EsyR7Jj",
+        "hashes": {
+          "sha1": "3077e911d9c3b6dd6e094d1df7448ae09657aee2",
+          "sha512": "a66acc97dd3e2953f43980f03ab4573f7ed4d9dc4a5921fdfc1095fcb8f79a6f7c32a9acb65314460db781defd042542bf3bb7ebeb69a0f87123c88742147518"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/YkJV1ugf/spigot-0.2.0.0%2B1.20-1.21.6-spigot-all.jar",
+        "filename": "spigot-0.2.0.0+1.20-1.21.6-spigot-all.jar",
+        "primary": true,
+        "size": 45253,
+        "file_type": null
+      }
+    ],
+    "dependencies": []
+  },
+  {
+    "game_versions": [
+      "1.21.6"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "7wlBYu2m",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.2.0.0+1.21.6 [Fabric]",
+    "version_number": "0.2.0.0+1.21.6",
+    "changelog": "# b0.2.0.0\nServer side Language Reader & Spigot and Paper Ports!\n\n* added a custom language reader\n* added spigot port\n* added native paper port\n* switch logger custom OtterLogger for compatibility between different loaders\n* add more overloads to ChatText text() method\n* updated CustomFile loading and updating logic\n  * added updateFromJSON() for updating the JSON pre-load\n  * renamed update() -> updateInstance() for JSON post-load  \n* fix fabric main file capitalization",
+    "changelog_url": null,
+    "date_published": "2025-06-23T22:38:45.960206Z",
+    "downloads": 185,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "qxGkLrfq",
+        "hashes": {
+          "sha512": "5361cb9a0d02e9d2cd3716f2346fde83ac6c0f3e3538a65ac5eaf61cd3d25c8530361ce77b3f55d194106b263fad2764faa05fc2e7a505508aa99114f7635774",
+          "sha1": "22202979271f61ce7ee16290990e54fbf85ca7a9"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/7wlBYu2m/otterlib-0.2.0.0%2B1.21.6-fabric.jar",
+        "filename": "otterlib-0.2.0.0+1.21.6-fabric.jar",
+        "primary": true,
+        "size": 667654,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "1.21.6"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "dkseNv61",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.1.2.1+1.21.6 [Fabric]",
+    "version_number": "0.1.2.1+1.21.6",
+    "changelog": "# b0.1.2.2\r\n* fixed background rendering on mod config screens (1.20.4)\r\n# b0.1.2.1\r\n* fixed hoverText null issue\r\n# b0.1.2.0\r\n* fixed modmenu warning in logs\r\n### Screens & UI\r\n* undeprecated the CustomImage constructor\r\n* made ClickableImageWidget use CTxT\r\n* added a title image lang entry\r\n### Custom File\r\n* better error logging\r\n* fixed directory creation logic\r\n* tweaked saving and loading logic\r\n* deprecated fileNotExist() in favor of createDirectory()",
+    "changelog_url": null,
+    "date_published": "2025-06-17T15:27:25.535216Z",
+    "downloads": 743,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "qi5UBIIc",
+        "hashes": {
+          "sha512": "eff847a66fe947123ecfb142c880b884e1a7d8384d431589c7a4cdf118ff76cf6c9daae1f0509c8ec4ee6cd1ed5f902bf9fa2bfb9111544a078a01c4da1805ce",
+          "sha1": "90db53961ce4c9a1e8dd4177d37d64cbdc6e4d2b"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/dkseNv61/otterlib-0.1.2.1%2B1.21.6-fabric.jar",
+        "filename": "otterlib-0.1.2.1+1.21.6-fabric.jar",
+        "primary": true,
+        "size": 659276,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "1.21.6-pre1"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "HFbOUrf5",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.1.2.1+1.21.6-pre1 [Fabric]",
+    "version_number": "0.1.2.1+1.21.6-pre1",
+    "changelog": "# b0.1.2.2\r\n* fixed background rendering on mod config screens (1.20.4)\r\n# b0.1.2.1\r\n* fixed hoverText null issue\r\n# b0.1.2.0\r\n* fixed modmenu warning in logs\r\n### Screens & UI\r\n* undeprecated the CustomImage constructor\r\n* made ClickableImageWidget use CTxT\r\n* added a title image lang entry\r\n### Custom File\r\n* better error logging\r\n* fixed directory creation logic\r\n* tweaked saving and loading logic\r\n* deprecated fileNotExist() in favor of createDirectory()",
+    "changelog_url": null,
+    "date_published": "2025-05-28T14:57:31.323348Z",
+    "downloads": 46,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "VZnHXOLr",
+        "hashes": {
+          "sha512": "16b87e5c558c1fd46e59c1186135c55fc038be21c056bdfd5ed0428fedd61774f6def5f4656987f6e38a2a969f95458c640140207bd55b68cc256f74df7b7dae",
+          "sha1": "cffd7ae5269b4311c6d374bdc53fcb8c21023806"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/HFbOUrf5/otterlib-0.1.2.1%2B1.21.6-pre1-fabric.jar",
+        "filename": "otterlib-0.1.2.1+1.21.6-pre1-fabric.jar",
+        "primary": true,
+        "size": 659291,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "1.21.6-pre1"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "b70uTqbl",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.1.2.1+1.21.6-pre1 [Fabric]",
+    "version_number": "0.1.2.1+1.21.6-pre1",
+    "changelog": "# b0.1.2.2\r\n* fixed background rendering on mod config screens (1.20.4)\r\n# b0.1.2.1\r\n* fixed hoverText null issue\r\n# b0.1.2.0\r\n* fixed modmenu warning in logs\r\n### Screens & UI\r\n* undeprecated the CustomImage constructor\r\n* made ClickableImageWidget use CTxT\r\n* added a title image lang entry\r\n### Custom File\r\n* better error logging\r\n* fixed directory creation logic\r\n* tweaked saving and loading logic\r\n* deprecated fileNotExist() in favor of createDirectory()",
+    "changelog_url": null,
+    "date_published": "2025-05-28T14:57:08.392861Z",
+    "downloads": 26,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "aitRVD35",
+        "hashes": {
+          "sha512": "16b87e5c558c1fd46e59c1186135c55fc038be21c056bdfd5ed0428fedd61774f6def5f4656987f6e38a2a969f95458c640140207bd55b68cc256f74df7b7dae",
+          "sha1": "cffd7ae5269b4311c6d374bdc53fcb8c21023806"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/b70uTqbl/otterlib-0.1.2.1%2B1.21.6-pre1-fabric.jar",
+        "filename": "otterlib-0.1.2.1+1.21.6-pre1-fabric.jar",
+        "primary": true,
+        "size": 659291,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "1.20.4"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "CYQTVRtr",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.1.2.2+1.20.4 [Fabric]",
+    "version_number": "0.1.2.2+1.20.4",
+    "changelog": "# b0.1.2.2\r\n* fixed background rendering on mod config screens (1.20.4)\r\n# b0.1.2.1\r\n* fixed hoverText null issue\r\n# b0.1.2.0\r\n* fixed modmenu warning in logs\r\n### Screens & UI\r\n* undeprecated the CustomImage constructor\r\n* made ClickableImageWidget use CTxT\r\n* added a title image lang entry\r\n### Custom File\r\n* better error logging\r\n* fixed directory creation logic\r\n* tweaked saving and loading logic\r\n* deprecated fileNotExist() in favor of createDirectory()",
+    "changelog_url": null,
+    "date_published": "2025-05-26T02:01:30.474167Z",
+    "downloads": 88,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "V2btkwpQ",
+        "hashes": {
+          "sha1": "347f518960a92f1467bca5ed845f8d1de23b9a60",
+          "sha512": "847f28e98b15205bce4327c84d59621eb5362a876c40f6664dc4966ef864d92fd96d2954020e8426dc1c0f4a059255f0bf02d63f98b001ef1a15ab1014c1f038"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/CYQTVRtr/otterlib-0.1.2.2%2B1.20.4-fabric.jar",
+        "filename": "otterlib-0.1.2.2+1.20.4-fabric.jar",
+        "primary": true,
+        "size": 659321,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "1.20.1"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "9weKWqON",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.1.2.1+1.20.1 [Fabric]",
+    "version_number": "0.1.2.1+1.20.1",
+    "changelog": "# b0.1.2.1\r\n* fixed hoverText null issue\r\n# b0.1.2.0\r\n* fixed modmenu warning in logs\r\n### Screens & UI\r\n* undeprecated the CustomImage constructor\r\n* made ClickableImageWidget use CTxT\r\n* added a title image lang entry\r\n### Custom File\r\n* better error logging\r\n* fixed directory creation logic\r\n* tweaked saving and loading logic\r\n* deprecated fileNotExist() in favor of createDirectory()",
+    "changelog_url": null,
+    "date_published": "2025-05-18T23:07:58.057794Z",
+    "downloads": 790,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "tHFfUlNj",
+        "hashes": {
+          "sha1": "4cff2afef3dbf72df15a3d94dc007e8580df24a0",
+          "sha512": "ef2f25228e1fe4b0cdb91444e024128db2d2209481ec3f9c1d17bf44248ada05386d9c804d9d8a2a8356dfc9812c8307eebe1cafb38fed7000a4f9cb6a6713c6"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/9weKWqON/otterlib-0.1.2.1%2B1.20.1-fabric.jar",
+        "filename": "otterlib-0.1.2.1+1.20.1-fabric.jar",
+        "primary": true,
+        "size": 661486,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "1.20.4"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "Y2lKCwQD",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.1.2.1+1.20.4 [Fabric]",
+    "version_number": "0.1.2.1+1.20.4",
+    "changelog": "# b0.1.2.1\r\n* fixed hoverText null issue\r\n# b0.1.2.0\r\n* fixed modmenu warning in logs\r\n### Screens & UI\r\n* undeprecated the CustomImage constructor\r\n* made ClickableImageWidget use CTxT\r\n* added a title image lang entry\r\n### Custom File\r\n* better error logging\r\n* fixed directory creation logic\r\n* tweaked saving and loading logic\r\n* deprecated fileNotExist() in favor of createDirectory()",
+    "changelog_url": null,
+    "date_published": "2025-05-18T19:20:40.724228Z",
+    "downloads": 57,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "sd28H6X6",
+        "hashes": {
+          "sha512": "efba789ca77e90a4fab3f5f863cd2c391e9c8a990633423b9cf8155fe3846bd48b7eaf103eb82029956aa5977aab0adbae8be66a371a9767e17b1c78d30307cd",
+          "sha1": "3837c91a9314f469e3fd86168591f676e90a7ab0"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/Y2lKCwQD/otterlib-0.1.2.1%2B1.20.4-fabric.jar",
+        "filename": "otterlib-0.1.2.1+1.20.4-fabric.jar",
+        "primary": true,
+        "size": 659260,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "1.20.6"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "xgzBqMRc",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.1.2.1+1.20.6 [Fabric]",
+    "version_number": "0.1.2.1+1.20.6",
+    "changelog": "# b0.1.2.1\r\n* fixed hoverText null issue\r\n# b0.1.2.0\r\n* fixed modmenu warning in logs\r\n### Screens & UI\r\n* undeprecated the CustomImage constructor\r\n* made ClickableImageWidget use CTxT\r\n* added a title image lang entry\r\n### Custom File\r\n* better error logging\r\n* fixed directory creation logic\r\n* tweaked saving and loading logic\r\n* deprecated fileNotExist() in favor of createDirectory()",
+    "changelog_url": null,
+    "date_published": "2025-05-17T18:05:44.618319Z",
+    "downloads": 46,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "MzlWVa99",
+        "hashes": {
+          "sha512": "12b15228ee892458de5d97291ede5904eea9750811a2dcc2a8f49c18be6c0ffa06a3c6e46f363dfb4f5209698b12180f053a2c0b83f463083abfa5ff1517a7a6",
+          "sha1": "2a774fc66ed0a7aa0785bc6ff5ce1c30b1e90eef"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/xgzBqMRc/otterlib-0.1.2.1%2B1.20.6-fabric.jar",
+        "filename": "otterlib-0.1.2.1+1.20.6-fabric.jar",
+        "primary": true,
+        "size": 659183,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "1.21",
+      "1.21.1"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "SZW7nRho",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.1.2.1+1.21.1 [Fabric]",
+    "version_number": "0.1.2.1+1.21.1",
+    "changelog": "# b0.1.2.1\r\n* fixed hoverText null issue\r\n# b0.1.2.0\r\n* fixed modmenu warning in logs\r\n### Screens & UI\r\n* undeprecated the CustomImage constructor\r\n* made ClickableImageWidget use CTxT\r\n* added a title image lang entry\r\n### Custom File\r\n* better error logging\r\n* fixed directory creation logic\r\n* tweaked saving and loading logic\r\n* deprecated fileNotExist() in favor of createDirectory()",
+    "changelog_url": null,
+    "date_published": "2025-05-17T17:53:39.114279Z",
+    "downloads": 381,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "s8bUS9SC",
+        "hashes": {
+          "sha1": "a84d16526dbc3a7cb8b44632c3515af900a74b2d",
+          "sha512": "79db72c71faece7f73b6962bb1e76209d75274c8bb6b6086aec054b22229fac69e1a93f69d3e8bbf2afd6f68b0539977b66c18d370d4b76022e2fed8a1b69303"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/SZW7nRho/otterlib-0.1.2.1%2B1.21.1-fabric.jar",
+        "filename": "otterlib-0.1.2.1+1.21.1-fabric.jar",
+        "primary": true,
+        "size": 659170,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "1.21.4"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "yrAdRY9L",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.1.2.1+1.21.4 [Fabric]",
+    "version_number": "0.1.2.1+1.21.4",
+    "changelog": "# b0.1.2.1\r\n* fixed hoverText null issue\r\n# b0.1.2.0\r\n* fixed modmenu warning in logs\r\n### Screens & UI\r\n* undeprecated the CustomImage constructor\r\n* made ClickableImageWidget use CTxT\r\n* added a title image lang entry\r\n### Custom File\r\n* better error logging\r\n* fixed directory creation logic\r\n* tweaked saving and loading logic\r\n* deprecated fileNotExist() in favor of createDirectory()",
+    "changelog_url": null,
+    "date_published": "2025-05-13T19:10:46.982276Z",
+    "downloads": 1089,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "m4LS330k",
+        "hashes": {
+          "sha512": "2d0425e6017c4a2a2ec080b28b0bcd5ab70e46c0bad0d83a83e3f038b693bc6fa6fcbea3d153651692169fa03dbeee597363ebd367084c5befa07532c79f9c8f",
+          "sha1": "d4c80b1760c9fa4cabedaeec1ef690f34a4e22af"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/yrAdRY9L/otterlib-0.1.2.1%2B1.21.4-fabric.jar",
+        "filename": "otterlib-0.1.2.1+1.21.4-fabric.jar",
+        "primary": true,
+        "size": 659353,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "1.21.5"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "nGq8Pr6L",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.1.2.1+1.21.5 [Fabric]",
+    "version_number": "0.1.2.1+1.21.5",
+    "changelog": "# b0.1.2.1\r\n* fixed hoverText null issue\r\n# b0.1.2.0\r\n* fixed modmenu warning in logs\r\n### Screens & UI\r\n* undeprecated the CustomImage constructor\r\n* made ClickableImageWidget use CTxT\r\n* added a title image lang entry\r\n### Custom File\r\n* better error logging\r\n* fixed directory creation logic\r\n* tweaked saving and loading logic\r\n* deprecated fileNotExist() in favor of createDirectory()",
+    "changelog_url": null,
+    "date_published": "2025-05-13T18:16:57.129228Z",
+    "downloads": 6676,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "J0oU2Rji",
+        "hashes": {
+          "sha512": "eb8f13f7bd92b3c26233753f4b6dbf29591af0984c539219513344b1ab196e39b6ce91576eb8e44f3efa7d6bf2a1961fdbbea5ad3dbc3ec200f61d47d49d171b",
+          "sha1": "115f3ab6426cfddf925878cd71fac9b77ebb7565"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/nGq8Pr6L/otterlib-0.1.2.1%2B1.21.5-fabric.jar",
+        "filename": "otterlib-0.1.2.1+1.21.5-fabric.jar",
+        "primary": true,
+        "size": 659462,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "1.21.5"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "gULVCp2Q",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.1.2.0+1.21.5 [Fabric]",
+    "version_number": "0.1.2.0+1.21.5",
+    "changelog": "# b0.1.2.0\r\n* fixed modmenu warning in logs\r\n### Screens & UI\r\n* undeprecated the CustomImage constructor\r\n* made ClickableImageWidget use CTxT\r\n* added a title image lang entry\r\n### Custom File\r\n* better error logging\r\n* fixed directory creation logic\r\n* tweaked saving and loading logic\r\n* deprecated fileNotExist() in favor of createDirectory()",
+    "changelog_url": null,
+    "date_published": "2025-05-13T04:05:46.083873Z",
+    "downloads": 87,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "JtmdmcXM",
+        "hashes": {
+          "sha512": "21018dbf6522df930db33e2546b8af07e2bb0b718da1cd1f6f4e6cddf0d31a7879596aa34b9d406cff55a6c7e7b81c9a00b023e36e98a1ba681eb8daf321325b",
+          "sha1": "17f46b9f8d60e2954dd038bbcfeee3df8f493e24"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/gULVCp2Q/otterlib-0.1.2.0%2B1.21.5-fabric.jar",
+        "filename": "otterlib-0.1.2.0+1.21.5-fabric.jar",
+        "primary": true,
+        "size": 659310,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "1.21.5"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "QnFtg28F",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.1.1.0+1.21.5 [Fabric]",
+    "version_number": "0.1.1.0+1.21.5",
+    "changelog": "# b0.1.1.0\r\n* added a language file\r\n* made ConfigScreen able to take a ClickableImageWidget as a banner, deprecating the old method",
+    "changelog_url": null,
+    "date_published": "2025-05-08T17:39:23.864710Z",
+    "downloads": 406,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "lviW7BNa",
+        "hashes": {
+          "sha1": "805585554036911d38c9b4c973744de02644fdc9",
+          "sha512": "a9309826ef765b5b4e3d06e7d07a54b9dfd57229373c28242773c39b163da97576a3477c93de04a0c3bc6c840042d6329a584e03478c9bb6b67360f47d278e06"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/QnFtg28F/otterlib-0.1.1.0%2B1.21.5-fabric.jar",
+        "filename": "otterlib-0.1.1.0+1.21.5-fabric.jar",
+        "primary": true,
+        "size": 659120,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "1.21.5"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "XyqkvzmI",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.1.0.1+1.21.5 [Fabric]",
+    "version_number": "0.1.0.1+1.21.5",
+    "changelog": "# b0.1.0.1\r\n* fixed the hovering animation on ClickableImageWidgets\r\n* added modmenu metadata for quilt and fabric\r\n* made ConfigScreen use CTxT instead of minecraft Text\r\n\r\n# b0.1.0.0\r\nInitial release of OtterLib!",
+    "changelog_url": null,
+    "date_published": "2025-05-04T20:50:39.086092Z",
+    "downloads": 47,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "2OmyBtTJ",
+        "hashes": {
+          "sha512": "47107b1f470b06e4101e742ac0cac1e0a28dc9f038b6aafd1dea13cf9b729efbb797d9edc33790207bd4db53ea0291d78e30a12daa7f5aa3a602ace392f3208d",
+          "sha1": "4bf8b3e983891d745f2edd8ab08438ceba924029"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/XyqkvzmI/otterlib-0.1.0.1%2B1.21.5-fabric.jar",
+        "filename": "otterlib-0.1.0.1+1.21.5-fabric.jar",
+        "primary": true,
+        "size": 658322,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  },
+  {
+    "game_versions": [
+      "1.21.5"
+    ],
+    "loaders": [
+      "fabric",
+      "quilt"
+    ],
+    "environment": "client_and_server",
+    "id": "sFNnKAZw",
+    "project_id": "zVVpzurY",
+    "author_id": "QEsyZA0g",
+    "featured": false,
+    "name": "0.1.0.0+1.21.5 [Fabric]",
+    "version_number": "0.1.0.0+1.21.5",
+    "changelog": "# b0.1.0.0\r\nInitial release of OtterLib!",
+    "changelog_url": null,
+    "date_published": "2025-05-02T20:14:31.072357Z",
+    "downloads": 99,
+    "version_type": "beta",
+    "status": "listed",
+    "requested_status": null,
+    "files": [
+      {
+        "id": "R5goRhML",
+        "hashes": {
+          "sha1": "05bb5eee51b1e7d26e647c66301cf923b15e2363",
+          "sha512": "8e7768ffef0718696d6beb601287ad989d16092ecaea6c3c9583443e8c405bd5245db64494b32503c74cc97c7a6ce34e9058e349d9f0ec6b2d9692ccc601ab4c"
+        },
+        "url": "https://cdn.modrinth.com/data/zVVpzurY/versions/sFNnKAZw/otterlib-fabric-0.1.0.0%2B1.21.5.jar",
+        "filename": "otterlib-fabric-0.1.0.0+1.21.5.jar",
+        "primary": true,
+        "size": 658209,
+        "file_type": null
+      }
+    ],
+    "dependencies": [
+      {
+        "version_id": null,
+        "project_id": "P7dR8mSH",
+        "file_name": null,
+        "dependency_type": "required"
+      }
+    ]
+  }
+]

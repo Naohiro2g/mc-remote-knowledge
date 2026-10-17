@@ -1,0 +1,67 @@
+[
+  {
+    "version": "1.8.4.0+26.2",
+    "platforms": [
+      "folia",
+      "paper",
+      "purpur"
+    ],
+    "game_versions": [
+      "26.2"
+    ],
+    "file": "directionhud-paper-1.8.4.0+26.2.jar",
+    "source_url": "https://cdn.modrinth.com/data/H8WCXRtb/versions/u876aZ5C/directionhud-paper-1.8.4.0%2B26.2.jar",
+    "bytes": 438707,
+    "sha256": "152d42fd0cd56429ccf5d718493751e5366f643cf13867cc1212aa69648d8566",
+    "descriptor": {
+      "plugin.yml": "name: DirectionHUD\ndescription: On screen HUD plugin that has many customizable features. Save coordinates, see death locations, track players, all at a glance!\nwebsite: https://github.com/Oth3r/DirectionHUD\nversion: '1.8.4.0+26.2'\nauthor: \"Oth3r\"\nmain: one.oth3r.directionhud.DirectionHUD\napi-version: 26.2\nfolia-supported: true\ndepend: [OtterLib]\nlibraries:\n  - org.apache.commons:commons-configuration2:2.15.1\ncommands:\n  destination:\n    description: \"Handles everything to do with destinations, tracking, and sharing.\"\n    aliases: \"dest\"\n  hud:\n    description: \"Handles all one.oth3r.directionhud.common.HUD actions\"\n  directionhud:\n    description: \"Base command\"\n    aliases: \"dhud\"\npermissions:\n  directionhud.hud:\n    description: \"Permissions for the '/hud' command\"\n    default: true\n  directionhud.destination:\n    description: \"Permissions for the '/destination' command\"\n    default: true\n  directionhud.destination.global-saving:\n    description: \"Permissions for saving global destinations\"\n    default: op\n  directionhud.destination.saving:\n    description: \"Permissions for saving destinations\"\n    default: true\n  directionhud.reload:\n    description: \"Permissions for the reload command. (Requires directionhud permissions)\""
+    },
+    "own_class_major_versions": [
+      69
+    ],
+    "main_class_major": 69
+  },
+  {
+    "version": "1.8.2.3+1.21.11",
+    "platforms": [
+      "folia",
+      "paper",
+      "purpur"
+    ],
+    "game_versions": [
+      "1.21.11"
+    ],
+    "file": "directionhud-paper-1.8.2.3+1.21.11.jar",
+    "source_url": "https://cdn.modrinth.com/data/H8WCXRtb/versions/cIZocyKE/directionhud-paper-1.8.2.3%2B1.21.11.jar",
+    "bytes": 432999,
+    "sha256": "806b389dee47415fd3369a526e3a7c7f0e2decf52dfffc56ae57bb65bb729068",
+    "descriptor": {
+      "plugin.yml": "name: DirectionHUD\ndescription: On screen HUD plugin that has many customizable features. Save coordinates, see death locations, track players, all at a glance!\nwebsite: https://github.com/Oth3r/DirectionHUD\nversion: '1.8.2.3+1.21.11'\nauthor: \"Oth3r\"\nmain: one.oth3r.directionhud.DirectionHUD\napi-version: 1.21\nfolia-supported: true\nlibraries:\n  - org.apache.commons:commons-configuration2:2.11.0\ncommands:\n  destination:\n    description: \"Handles everything to do with destinations, tracking, and sharing.\"\n    aliases: \"dest\"\n  hud:\n    description: \"Handles all one.oth3r.directionhud.common.HUD actions\"\n  directionhud:\n    description: \"Base command\"\n    aliases: \"dhud\"\npermissions:\n  directionhud.hud:\n    description: \"Permissions for the '/hud' command\"\n    default: true\n  directionhud.destination:\n    description: \"Permissions for the '/destination' command\"\n    default: true\n  directionhud.destination.global-saving:\n    description: \"Permissions for saving global destinations\"\n    default: op\n  directionhud.destination.saving:\n    description: \"Permissions for saving destinations\"\n    default: true\n  directionhud.reload:\n    description: \"Permissions for the reload command. (Requires directionhud permissions)\""
+    },
+    "own_class_major_versions": [
+      65
+    ],
+    "main_class_major": 65
+  },
+  {
+    "version": "1.8.4.0+26.1-26.2",
+    "platforms": [
+      "spigot"
+    ],
+    "game_versions": [
+      "26.1",
+      "26.2"
+    ],
+    "file": "directionhud-spigot-1.8.4.0+26.1-26.2.jar",
+    "source_url": "https://cdn.modrinth.com/data/H8WCXRtb/versions/c3hG7Ulx/directionhud-spigot-1.8.4.0%2B26.1-26.2.jar",
+    "bytes": 436897,
+    "sha256": "5e031bac8926586588a63f8950677d093cc51e1eb90f015a5417428b9b7735df",
+    "descriptor": {
+      "plugin.yml": "name: DirectionHUD\ndescription: On screen HUD plugin that has many customizable features. Save coordinates, see death locations, track players, all at a glance!\nwebsite: https://github.com/Oth3r/DirectionHUD\nversion: '1.8.4.0+26.1-26.2'\nauthor: \"Oth3r\"\nmain: one.oth3r.directionhud.DirectionHUD\ndepend: [OtterLib]\napi-version: 26.1\nlibraries:\n  - org.apache.commons:commons-configuration2:2.15.1\ncommands:\n  destination:\n    description: \"Handles everything to do with destinations, tracking, and sharing.\"\n    aliases: \"dest\"\n  hud:\n    description: \"Handles all one.oth3r.directionhud.common.HUD actions\"\n  directionhud:\n    description: \"Base command\"\n    aliases: \"dhud\"\npermissions:\n  directionhud.hud:\n    description: \"Permissions for the '/hud' command\"\n    default: true\n  directionhud.destination:\n    description: \"Permissions for the '/destination' command\"\n    default: true\n  directionhud.destination.global-saving:\n    description: \"Permissions for saving global destinations\"\n    default: op\n  directionhud.destination.saving:\n    description: \"Permissions for saving destinations\"\n    default: true\n  directionhud.reload:\n    description: \"Permissions for the reload command. (Requires directionhud permissions)\""
+    },
+    "own_class_major_versions": [
+      65
+    ],
+    "main_class_major": 65
+  }
+]
