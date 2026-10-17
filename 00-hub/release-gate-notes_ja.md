@@ -114,7 +114,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - 次の操作（2026-10-17）：各担当へ確認票を頼む（`00-hub/rc1-gate-confirmation-instructions_ja.md`）。2321への切り替えの変更範囲と、
   上の範囲・park確認の各項目の事実を返してもらい、着手依頼を出す。knowledge側：versioningとwireの版の記述、API一覧の`23.2.1`、
   ホームページのrc1の記述、教材の収録、feedbackの導線の案
-- 進捗（2026-10-17〜18、確認票）：Stack、McRemote、Pythonが返した。Scratch（tooling）は未返却
+- 進捗（2026-10-17〜18、確認票）：Stack、McRemote、Python、Scratch（tooling、10/18）が返した
   - Stack（`main@1a4f8e5`、knowledge `60ea3c6`を読んだ）：コードにprotocolの定数は無く、版はpresetのデータで持つ。rc1の変更は
     新しいpresetだけ。b10の公開VPSへの更新（10/17、b9→b10、同じvolume）は完了。**manifest v2のconsumer（`agent/b10-manifest-v2-consumer@2eaf41b`）が
     mainに入っていない**（b10の記録では「mainへはb10のcloseで入れる」）。mainのCLIではb10公開版のmanifestの`verify`がFAILし、
@@ -136,6 +136,17 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     **starterのtemplateの箱庭が`sb.mc-remote.com`（旧protocol）で、README／ホームページの`sb-beta.mc-remote.com`と食い違う**。
     PyPI：release workflowは`PYPI_PUBLISH_ENABLED=true`で、uploadは`pypi` environmentのhuman owner承認待ちになる構成。
     pytest 267件PASS（今のmain）
+  - Scratch（tooling。Scratch `develop@0809eb5`＝公開b10、tooling `main@5f567f1`、knowledge `60ea3c6`を読んだ）：Scratchの`develop`にb10後の
+    commitは無い。toolingの`main`はb9のtagより2 commit先（release manifest v2のschemaとfixture、宣言objectの検証の修正）。変える箇所：
+    toolingの`PROTOCOL_VERSION`とcontract test、fixtureの版の記述（v22、v23.1などの履歴は改名しない）、WireScopeのZIPとmanifest、
+    Bridge OCI、ScratchのVMの`PROTOCOL_VERSION`と`client-version.js`とtest（23.2.1のclientが23.2.0のserverを受け入れる回帰testを足す）、
+    `mc-remote/tooling-lock.json`、LANのZIP名と版のフォルダー（`client-version.js`から作る）、b10を固定で書いたworkflowとscript、README、
+    ブロック一覧。見積もりは各半日〜1日（review、CI、3 OS、外部testerを含まない）。`はじめに.html`の原稿は`mc-remote/local/USER_GUIDE_ja.md`で、
+    macOSの手順は観測と違い（「このまま開く → 開く」）、rc1で直せる。製品noticeはsourceでは1 entry（公開deploymentの追加noticeは未確認）。
+    OCIはcandidateが`2320.0.0b10`、公開が`v2320.0.0b10`をversion labelに渡しており、今のままでは同じdigestにならない。pickerのalias辞書と
+    読み上げは未実装で、候補の置き場所の案は`packages/scratch-gui/src/lib/mcremote-block-names/aliases.<mc-version>.json`。26.3の名前の
+    データはまだ無い。READMEは`README_mc-remote.md`と`mc-remote/local/README.md`の冒頭に`/lan/scratch/`を置く案。`mc-remote/local/README.md`の
+    「公開済み配布物ではありません」は古い。10/24はtoolingの固定、candidate、3 OS、外部testerの入力次第で断定できない
 - 決定（2026-10-18、human owner）：
   - Stackとbackstageをgate coordinatorの管轄に戻す（`2026-10-18-01`）。Stackのmanifest v2のconsumerを、rc1の作業の最初にmainへ入れる
   - 公開VPSは別セットへ切り替え、rc1で箱庭を戻すことは考えない。26.3のセットを手元かGAMEsサーバーで試し、できれば26.3へ移す。
@@ -147,6 +158,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   - Windowsのmiseは今のREADMEの手順のまま出す。困っている生徒のPCで検証が進む見込み
   - pluginの情報は、Stackが別の搬送票で出す
   - McRemoteのREADMEは複数のページに分けたいが、まだできていない。おすすめプラグインのページ（`docs/recommended-plugins_ja.md`）がその足がかり（human owner）
+- 次の操作（2026-10-18）：着手依頼（`00-hub/rc1-gate-work-instructions_ja.md`）をhuman ownerが確かめてから各担当へ回す。toolingの23.2.1から始める
 
 ## 2026-10-07 b10横断release gate（CLOSED）
 
