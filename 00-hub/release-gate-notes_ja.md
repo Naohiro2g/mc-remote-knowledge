@@ -169,6 +169,14 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   （`sha256:5b644de44ae2f9a2fb9de09d221c2930218f6c317baffee3b5c7f817309555fa`）。coordinatorがGitHub APIで照合し、新旧のfixtureは
   版の識別子（`23.2.0`／`23.2.1`、schema名の`v23.2`／`v23.2.1`）を除いて同じ中身と確かめた。WireScopeとBridgeのidentityは
   Scratchのcandidateと一緒に返る。McRemoteとPythonはこのfixtureで着手できる
+- 進捗（2026-10-18、tooling WireScope／Bridge）：同じartifact `12109060950`に、WireScopeとBridgeのcandidateも入っていた
+  （`candidate-manifest.json`、source commitは`6447f6e8cbfbeeb9d229990b5c4f6e82a5875666`）。`wirescope-app.zip` 83,854 bytes、
+  `da3da0b6cf4d05265bc0c11abaa4913208c7cfc3600b0c3e78c93a356fc431ad`、`wirescope-app.manifest.json` 2,339 bytes、
+  `3dd668a236463809a4cdc6d19375f3e6d75eea0c8089a616d2b761d3a4a05235`、`bridge.oci.tar` 114,626,048 bytes、
+  `3982876466fb860dca250438d73e18e441a2a85d67d9f149f537a7a8d1a1c44c`（OCI digest
+  `sha256:305d6e38b36e195a0e158522f32f3a8c45d39da2aeec7b7e46f785c920406acf`）。coordinatorがartifactをdownloadして、bytesと
+  SHA-256、OCIの`index.json`のdigestが一致すると確かめた。PythonはこのWireScopeで同梱を作り直せる。Pythonのwheel／sdistに
+  入った後のidentityは、Python担当が照合して返す
 
 ## 2026-10-07 b10横断release gate（CLOSED）
 
