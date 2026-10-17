@@ -32,6 +32,6 @@ breaking change、既知制約、non-claimを人間が確認してから公開�
 
 ### 技術記事
 
-release告知と技術解説を分けます。記事候補は、protocol majorを正直に上げた理由、機能実現の三層モデル、
-Scratch browser保存、WireScopeによる観察、ケータリングPCのupdate／rollback経験です。記事公開は
+release告知と技術解説を分けます。記事のネタ、下書き、投稿の記録は[テックブログのポケット](tech-blog/tech-blog-notes_ja.md)で
+追います。投稿先はZenn、Qiita、noteで、当面は手で投稿し、投稿の後は投稿先で直します。記事公開は
 build-in-publicと学習支援の入口ですが、本数をproduct completionへ換算しません。

@@ -71,6 +71,50 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - non-claim: PyPI.orgへの公開はしない。mature判定はしない。Windowsでは検証していない
 - coordinator判定／human release owner承認: human ownerがpost2のsetへの組み入れを判定（2026-09-26、`2026-09-27-01`）。coordinatorはchange coneが閉じていることを確認し、単独更新gateを通過とする（2026-09-28）。**CLOSED**
 
+## 2026-10-17 rc1横断release gate（OPEN）
+
+- gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
+- human release owner: プロジェクトオーナー
+- current phase: **OPEN**（2026-10-17、human ownerの判断「rc1ゲートを開く」）。範囲は下の叩き台をhuman ownerが確かめてから決める
+- 目標日: rc1 2026-10-24まで、初回stable 11/7（`2026-10-13-06`）。厳しければ、2321への切り替えを落とさず日程をずらす（`2026-10-17-03`）
+- 位置づけ: b→rcはAPIの凍結（versioning §10）で、APIはb9で凍結済み。rc1はprotocolをパッチで`23.2.1`へ上げ、artifact
+  `2321.0.0rc1`、GitHubのpre-release（`2026-10-17-03`）。APIとwireの中身は変えない。
+  rc1から、外部testerが会話履歴なしで開始・更新・復旧・feedbackできる入口を用意する（grand-design roadmap §3、§4）
+- 基準set: b10（McRemote `v2320.0.0b10`、Scratch `v2320.0.0b10`、Python `v2320.0.0b9`、minecraft-remote-tooling `v2320.0.0b9`）
+- release mode（案）: rcは短期betaでないので、§14の軽量modeを既定にしない。どこまで強めるかはchange coneで決める。コードの変更が
+  小さければ、b10のPASSを`2026-08-23-01`の条件で再利用し、外部testerと同じ入口からの通しを人間試験の中心にする
+- 範囲の叩き台（human owner確認待ち）:
+  1. 版：McRemote、Scratch、Python、minecraft-remote-toolingを`2321.0.0rc1`にする（`2026-10-17-03`。toolingはprotocolの定義を
+     持つので出し直す）。Pythonはmatureで、PyPIへ出すのは戻せない公開なので、GitHubのpre-releaseで試した後に行う（`2026-10-13-05`）
+  2. 箱庭サーバー（VPSベータ）のMinecraftの版：rc1で26.3へ移す見込み（human owner 2026-10-17「rc1では、26.3へ移行することになると
+     思う」）。使っているプラグインの26.3対応はhuman ownerが調査中
+  3. 外部testerの入口：ホームページ（箱庭、Python、`/lan/scratch/`）、検証票、feedbackの導線（Discord、GitHub Issuesなど。未決）
+  4. READMEからの導線：各repoのREADMEからホームページ（`/lan/scratch/`、`#lan`）へのリンクと、初めて読む人が通せるかの確認
+     （下のpark確認のREADME／sample）
+  5. LANパッケージの`はじめに.html`の文言（b10の3 OS試験の見つかったこと1）
+- rc1の後の検討（範囲外）: McRemoteの対応版を1.21.11、26.1.2、26.2、26.3へ広げる。各系列の最終版の最終buildをsupportする方針。
+  McRemote担当が搬送票を出す（human owner 2026-10-17、hub NOTES）
+- gateを開くときのpark確認（`2026-09-30-09`、coordinatorの案。human ownerの判断待ち）:
+
+  | park | 案 |
+  | --- | --- |
+  | Windowsの生徒のPC（mise、Git Bash） | rc1に入れる。McRemoteの確認票で、READMEのmiseの手順をGit Bashでのshimsの形と突き合わせてもらう。生徒のPCでの結果は届いたときに |
+  | LANパッケージのランチャー、`はじめに.html`、Scratchの画面 | ①`はじめに.html`の文言をrc1に入れる（Scratchの確認票）。②③⑤は初回stableの後のまま、④は追わない |
+  | LANパッケージの教材の部分の収録 | rc1の間にknowledgeが`20-教材`へ収録する |
+  | 未生成chunkへの操作の制限 | 持ち越す。新しい拒否のreasonはwireの追加になり、APIの凍結の後に入れない。McRemoteの確認票で採否だけ聞く |
+  | 認証前の内部テーブルの較正 | rc1の外部testerの試験は授業規模でないので持ち越す。授業相当のloadを行うときに再開 |
+  | Scratchの製品noticeを一つに絞る | Scratchの確認票で聞く |
+  | Scratch OCIのversionラベル | rc1でScratch担当へ着手を頼む |
+  | API一覧（クライアントAPI一覧へのつなぎ方） | 持ち越す（初回stableの後） |
+  | rc1のrollbackの範囲 | rc1で決める。「同じMC版の中で1つ前の公開setへ戻す」案を、Stackの今の経路でできるかStackへ聞く |
+  | public README／sample codeの人間向け再編 | rc1に入れる（範囲の4）。Pass Cの確認を外部testerの入口の通しに重ねる |
+  | protocol 22 Scratch block値の投影（aliasと読み上げ） | Scratchの確認票で聞く。aliasに登録する語はhuman ownerが選ぶ |
+
+  サーバーの再起動の後の接続（2026-10-12のpark）は、再開が初回stableの後で、rc1には入れない
+- 次の操作（2026-10-17）：各担当へ確認票を頼む（`00-hub/rc1-gate-confirmation-instructions_ja.md`）。2321への切り替えの変更範囲と、
+  上の範囲・park確認の各項目の事実を返してもらい、着手依頼を出す。knowledge側：versioningとwireの版の記述、API一覧の`23.2.1`、
+  ホームページのrc1の記述、教材の収録、feedbackの導線の案
+
 ## 2026-10-07 b10横断release gate（CLOSED）
 
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
