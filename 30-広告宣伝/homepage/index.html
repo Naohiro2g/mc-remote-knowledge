@@ -385,7 +385,7 @@ mc.setBlock(5, 67, 5, "sea_lantern")</code></pre>
 
 			<div class="roadmap-box">
 				<div class="current-status">
-					<span>●</span> 現在地: <strong>R3（学べる・教えられる）進行中 / b9 公開中</strong>
+					<span>●</span> 現在地: <strong>R3（学べる・教えられる）進行中 / b10 公開中</strong>
 				</div>
 
 				<ul class="timeline-list">
@@ -409,8 +409,12 @@ mc.setBlock(5, 67, 5, "sea_lantern")</code></pre>
 						<div class="timeline-desc"><strong>b9 / Protocol 23.2.0</strong>: APIフリーズ（初回Stableまで、APIは追加・変更しない）。PythonモジュールをPyPIへ登録（ベータ版は版を指定して取得）。プロトコル定義、WireScope、Bridgeを共通の開発基盤リポジトリ（minecraft-remote-tooling）へ移管。</div>
 					</li>
 					<li class="timeline-item">
+						<div class="timeline-date">2026年10月14日【公開】</div>
+						<div class="timeline-desc"><strong>b10 / Protocol 23.2.0</strong>: 一つのプラグインでPaper 1.21.11と26.3の両方に対応。大きな範囲のブロック設置を、サーバーを止めないよう少しずつ施工。Scratch LANパッケージ（Windows／macOS／Linux用）で、自分のPCや家庭・教室のネットワークでもScratchから操作できるように。</div>
+					</li>
+					<li class="timeline-item">
 						<div class="timeline-date">2026年10月下旬【次】</div>
-						<div class="timeline-desc"><strong>RC (Release Candidate)</strong>: 外部テスターによる実機検証。Paper 26.3に対応。</div>
+						<div class="timeline-desc"><strong>RC (Release Candidate)</strong>: 外部テスターによる実機検証。</div>
 					</li>
 					<li class="timeline-item">
 						<div class="timeline-date">2026年11月</div>
@@ -444,9 +448,9 @@ mc.setBlock(5, 67, 5, "sea_lantern")</code></pre>
 				<tbody>
 					<tr>
 						<td><strong>McRemote（Plugin、ベータ）</strong></td>
-						<td><code>2320.0.0b9</code></td>
+						<td><code>2320.0.0b10</code></td>
 						<td>23.2.0</td>
-						<td>Paper 1.21.11</td>
+						<td>Paper 1.21.11 / 26.3（同じJARで両方に対応）</td>
 					</tr>
 					<tr>
 						<td><strong>McRemote（Plugin）</strong></td>
@@ -462,9 +466,9 @@ mc.setBlock(5, 67, 5, "sea_lantern")</code></pre>
 					</tr>
 					<tr>
 						<td><strong>scratch-editor (Scratch)</strong></td>
-						<td><code>2320.0.0b9</code></td>
+						<td><code>2320.0.0b10</code></td>
 						<td>23.2.0</td>
-						<td>ブラウザ完結（Chrome, Safari, Edge等）</td>
+						<td>ブラウザ完結（Chrome, Safari, Edge等）。自分のPC・LAN向けのScratch LANパッケージ（Windows／macOS／Linux用ZIP）は<a href="https://github.com/Naohiro2g/scratch-editor/releases/tag/v2320.0.0b10" target="_blank" rel="noopener">リリースページ</a>から</td>
 					</tr>
 					<tr>
 						<td><strong>WireScope</strong></td>
@@ -491,6 +495,12 @@ mc.setBlock(5, 67, 5, "sea_lantern")</code></pre>
 			<details>
 				<summary>📜 過去のリリース履歴を展開して確認する</summary>
 				<ul class="history-timeline" style="margin-top: 14px;">
+						<li>
+							<div class="history-meta"><span class="history-date">2026年10月14日</span><span
+									class="history-version">Protocol 23.2.0 (b10)</span></div>
+							<div class="history-description">McRemoteを一つのJAR（<code>mc-remote-2320.0.0b10.jar</code>）でPaper 1.21.11と26.3に対応し、tagとJARの名前からMinecraftの版を外した。<code>setBlocks</code>の大きな要求（既定で1要求32768ブロックまで）を複数tickに分けて施工。Scratch LANパッケージ（Scratch、ランチャーと設定画面、WireScopeを同梱したOS別ZIP）を追加。APIの変更はなし。
+							</div>
+						</li>
 						<li>
 							<div class="history-meta"><span class="history-date">2026年10月5日</span><span
 									class="history-version">Protocol 23.2.0 (b9)</span></div>
