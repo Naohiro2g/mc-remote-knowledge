@@ -142,6 +142,10 @@ Claude Code は `AGENTS.md` を自動では読まないため、各開発リポ�
   component担当はSSOTを探し続けず、backstageへも直接アクセスせず、gate coordinatorが指示票／確認票へ含めて
   渡す接続先を使う（`2026-09-03-03`）。coordinatorから接続先が渡されていない場合はcoordinatorへ確認する。
 
+- Stack担当は、backstageのprivate情報（接続先、operatorの入力など）を読み、物理hostでの作業（deploy、doctor、sync）を行う。
+  Stackとbackstageは協調して働く（`2026-09-03-05`、`2026-09-29-01`）。上の「backstageへ直接アクセスしない」は、Stack以外の
+  component担当についての規律である。横断release gateの間は、Stackも下のcoordinatorの進行に従う（`2026-10-18-01`）。
+
 - 横断release gateでは、`release-gate-notes_ja.md`に記録された一人のgate coordinatorだけが、repo間の依存順、
   exact compatibility set、shared環境へのcandidate deploy、人間参加試験、横断`GREEN`／`HOLD`／`RED`を進行する。
   repo側agentは自repoの実装・決定論的test・push済みartifact・差分報告を進められるが、他repoへ着手を命じず、
