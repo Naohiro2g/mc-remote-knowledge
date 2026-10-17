@@ -159,6 +159,9 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   - pluginの情報は、Stackが別の搬送票で出す
   - McRemoteのREADMEは複数のページに分けたいが、まだできていない。おすすめプラグインのページ（`docs/recommended-plugins_ja.md`）がその足がかり（human owner）
 - 次の操作（2026-10-18）：着手依頼（`00-hub/rc1-gate-work-instructions_ja.md`）をhuman ownerが確かめてから各担当へ回す。toolingの23.2.1から始める
+- 進捗（2026-10-18）：human ownerがScratchとStackへ着手依頼を回した。knowledge側で、versioning（§9.3、§10.11.4）とwire（§1）に
+  `23.2.1`を書いた。wireの§4と§7.3の表はAPI一覧の生成元なので、`23.2.0`のページを変えないよう触らない。rc1の公開のときに
+  metadataを`23.2.1`へ切り替え、b8の但し書き（`protocol.note`）を外して`api/23.2.1/`を作る
 
 ## 2026-10-07 b10横断release gate（CLOSED）
 

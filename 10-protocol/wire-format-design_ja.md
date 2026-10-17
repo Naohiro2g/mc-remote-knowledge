@@ -12,7 +12,7 @@
 本文書は**プラグイン ↔ 各クライアントの実際のワイヤ符号化**（フレーミング・エンベロープ・コマンド表・エラー形）を定める。これは [versioning-design] が扱う **protocol semver（20.0.0 / 21.0.0…）とは別レイヤ**。
 
 - **エンベロープ形式版** ＝ `jsonrpc: "2.0"`（JSON-RPC 2.0 を採用、§3）。各メッセージに自己記述で載る。
-- **protocol 版** ＝ semver（例 **`21.0.0`／`22.0.0`／`23.0.0`**）。互換判定は versioning-design §8（メジャー一致必須・`plugin.minor >= client.minor`・パッチ不問）。hello で交渉する。**package 版 `2100.0.0b1`／`2200.0.0b5`／`2300.0.0b6` とは別レイヤ**＝`bN` は配布チャンネル表記で **wire 非搭載**、hello の`protocol`にはcleanなprotocol semverを載せる（DECISIONS `2026-06-27-01`／`2026-08-19-02`／`2026-08-26-06`）。packageはprotocolからfold規則（versioning-design `2026-06-19-04`）で派生＝独立ではない。
+- **protocol 版** ＝ semver（例 **`21.0.0`／`22.0.0`／`23.0.0`**。rc1から`23.2.1`で、b9で`chat.post`の成功resultを`null`に決めた修正を版に刻む、`2026-10-17-03`）。互換判定は versioning-design §8（メジャー一致必須・`plugin.minor >= client.minor`・パッチ不問）。hello で交渉する。**package 版 `2100.0.0b1`／`2200.0.0b5`／`2300.0.0b6` とは別レイヤ**＝`bN` は配布チャンネル表記で **wire 非搭載**、hello の`protocol`にはcleanなprotocol semverを載せる（DECISIONS `2026-06-27-01`／`2026-08-19-02`／`2026-08-26-06`）。packageはprotocolからfold規則（versioning-design `2026-06-19-04`）で派生＝独立ではない。
 
 > **「protocol v1」という旧称について**：scratch-plan §4/§5 が「プロトコル v1 仕様書」と呼んでいたのは本文書のワイヤ仕様のこと。protocol semver の `1.x` とは無関係で混同しやすいので、本リポでは「**ワイヤ形式**」と呼び、semver は versioning-design の番号で呼ぶ。このワイヤ符号化が初めて載ったprotocol semverは **21.0.0**、構造化block valueへの破壊的変更は **22.0.0**、`block_right_click`から`pickaxe_poke`への破壊的置換は **23.0.0** に載る。配布物側の`bN`はprotocol自体のbetaではない（versioning-design §10.11）。
 
