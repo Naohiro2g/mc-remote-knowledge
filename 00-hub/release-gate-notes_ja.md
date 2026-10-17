@@ -114,6 +114,39 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - 次の操作（2026-10-17）：各担当へ確認票を頼む（`00-hub/rc1-gate-confirmation-instructions_ja.md`）。2321への切り替えの変更範囲と、
   上の範囲・park確認の各項目の事実を返してもらい、着手依頼を出す。knowledge側：versioningとwireの版の記述、API一覧の`23.2.1`、
   ホームページのrc1の記述、教材の収録、feedbackの導線の案
+- 進捗（2026-10-17〜18、確認票）：Stack、McRemote、Pythonが返した。Scratch（tooling）は未返却
+  - Stack（`main@1a4f8e5`、knowledge `60ea3c6`を読んだ）：コードにprotocolの定数は無く、版はpresetのデータで持つ。rc1の変更は
+    新しいpresetだけ。b10の公開VPSへの更新（10/17、b9→b10、同じvolume）は完了。**manifest v2のconsumer（`agent/b10-manifest-v2-consumer@2eaf41b`）が
+    mainに入っていない**（b10の記録では「mainへはb10のcloseで入れる」）。mainのCLIではb10公開版のmanifestの`verify`がFAILし、
+    mainと`2eaf41b`のmergeではpytest 543件と同じ`verify`がPASS（手元の一時worktree）。rollback：前へ進む更新は同じvolumeで動き、
+    更新の前に旧order、旧lock、operator入力、backupを残しているが、`mcrctl deployment update`は後退の更新を拒否する（`update_not_forward`）。
+    26.3：backupから複製した別コンテナ（公開portなし）で、Paper 26.3 #200／Temurin 25でplugin 10個が有効、startupにERRORなし、
+    McRemoteのcredentialはHEALTHY、ServerBackupでZIPを作れた（live-auto、10/17）。DirectionHUD／OtterLibとAdvancedPortalsは26.2までの宣言。
+    Stackの経路は別セットへの切り替え（`2026-08-25-02`、in-placeでworldを変換しない）。README：b7.post2の古い記述など
+  - McRemote（`main@e2ed84d`、knowledge `2fd5cde`を読み、`60ea3c6`の依頼本文と同一と照合）：`ProtocolInfo.PROTOCOL`を変えれば
+    helloと互換判定が追従し、判定のalgorithmは変えない。互換の関数はメジャー一致、server minor以上、パッチを問わない。
+    `release_identity.py v2321.0.0rc1`は`McRemote 2321.0.0rc1 (Minecraft 1.21.11, 26.3)`、`mc-remote-2321.0.0rc1.jar`、`prerelease=true`を
+    導出（release scriptのtest 38件PASS）。b10後のmainはREADMEの再編と`docs/recommended-plugins_ja.md`だけ。rc1の対応版は1.21.11と26.3のまま。
+    見積もりは版・test・文書で半日〜1日、fixtureの受領後の照合と2版のpulseで半日〜1日。rollback：rc1で版とfixtureと文書だけを変え、
+    config、SQLite schema、credentialに触れなければ、同じMC版でb10のJARへ戻せると静的に見込む（未実施。隔離サーバーでb10→rc1→b10の
+    往復とrevokeの非復活を確かめる案）。未生成chunkの制限はrc1から外す案に賛成。READMEは`#lan`から最短手順へ直接来られるanchorと、
+    `/lan/scratch/`への戻る1行の案。Windowsのmiseはshimsの案内が足りず、human ownerの再現できる手順が要る
+  - Python（`main@49c80a0`、knowledge `60ea3c6`）：b10後の変更なし。変えるのは`PROTOCOL = "23.2.0"`、pyproject、uv.lock、共有fixtureの
+    扱い、同梱WireScope（toolingの新しいreleaseから作り直す）、利用者向けの記述。toolingの固定releaseの後、1〜2開発日。
+    **starterのtemplateの箱庭が`sb.mc-remote.com`（旧protocol）で、README／ホームページの`sb-beta.mc-remote.com`と食い違う**。
+    PyPI：release workflowは`PYPI_PUBLISH_ENABLED=true`で、uploadは`pypi` environmentのhuman owner承認待ちになる構成。
+    pytest 267件PASS（今のmain）
+- 決定（2026-10-18、human owner）：
+  - Stackとbackstageをgate coordinatorの管轄に戻す（`2026-10-18-01`）。Stackのmanifest v2のconsumerを、rc1の作業の最初にmainへ入れる
+  - 公開VPSは別セットへ切り替え、rc1で箱庭を戻すことは考えない。26.3のセットを手元かGAMEsサーバーで試し、できれば26.3へ移す。
+    DirectionHUDは早めにやめる（`2026-10-18-02`）。rollbackの範囲のparkは閉じた
+  - 共有fixtureの23.2.1版は新しいfile、23.2の版は履歴（`2026-10-18-03`）
+  - PyPIは承認待ちのまま進め、GitHubのpre-releaseで試し終えるまで承認しない（`2026-10-18-04`）
+  - 箱庭の名前：beta／rcは`sb-beta`、latestは`sb`。latestのreleaseで旧protocolのサーバーを消す（`2026-10-18-05`）。Pythonのstarterは`sb-beta`へ
+  - Pass Cは生徒が行い、10/24までに済ませる（経験者になる）
+  - Windowsのmiseは今のREADMEの手順のまま出す。困っている生徒のPCで検証が進む見込み
+  - pluginの情報は、Stackが別の搬送票で出す
+  - McRemoteのREADMEは複数のページに分けたいが、まだできていない。おすすめプラグインのページ（`docs/recommended-plugins_ja.md`）がその足がかり（human owner）
 
 ## 2026-10-07 b10横断release gate（CLOSED）
 
