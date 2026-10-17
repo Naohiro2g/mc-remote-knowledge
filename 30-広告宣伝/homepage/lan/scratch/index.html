@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Cache-Control" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<meta name="robots" content="index, follow" />
+	<meta name="description" content="箱庭サーバーで体験したScratchを、自分のPCや家庭・教室のネットワークのマイクラサーバーで使うためのScratch LANパッケージの案内。" />
+	<title>Scratch LANパッケージ — マイクラリモコン (mc-remote)</title>
+	<link rel="stylesheet" href="../../styles.css" />
+	<link rel="stylesheet" href="../lan.css" />
+</head>
+
+<body>
+
+	<!-- Header -->
+	<header>
+		<div class="container nav-container">
+			<a href="../../" class="brand-group">
+				<img src="../../images/mc-remote_com_logo.png" alt="Minecraft Remote" class="brand-logo" />
+			</a>
+			<nav>
+				<ul>
+					<li><a href="../../#quickstart">はじめる</a></li>
+					<li><a href="../../#ecosystem">エコシステム</a></li>
+					<li><a href="../../#roadmap">ロードマップ</a></li>
+					<li><a href="../../#releases">リリース</a></li>
+					<li><a href="https://discord.gg/xUqhhqWsuS" target="_blank" rel="noopener">Discord</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+
+	<main class="lan-page">
+		<div class="container">
+			<article class="lan-card">
+				<p class="lan-trail"><a href="../../">マイクラリモコン</a>　／　自分のワールドで使う　／　Scratch LANパッケージ</p>
+				<h1>🐱 Scratch LANパッケージ</h1>
+				<p class="lan-lead">箱庭サーバーで体験したScratchを、自分のPCや、家庭・教室のネットワーク（LAN）で動くマイクラサーバーで使うためのパッケージです。改造版Scratchと、マイクラとの橋渡し、通信を見るWireScopeが一つのZIPに入っていて、ダウンロードして展開すれば動きます。1台のPCですべて動かすこともできます。</p>
+				<p class="lan-version">版：<strong>2320.0.0b10</strong>（ベータ版、2026年10月14日公開）。手順を覚えておく必要はありません。次に使うときも、このページを見ながら進めてください。</p>
+
+				<nav class="lan-entrances" aria-label="このページの入口">
+					<a href="#first">🚀 はじめて使う</a>
+					<a href="#again">🔁 前に使った続きを開く</a>
+					<a href="#how">🔍 仕組みを知る</a>
+				</nav>
+
+				<section id="first">
+					<h2>🚀 はじめて使う</h2>
+
+					<h3>0. 用意するもの</h3>
+					<ul>
+						<li><strong>McRemoteを入れたマイクラサーバー</strong>が動いていて、マイクラアプリでそのワールドに参加していること。サーバーの準備は<a href="https://github.com/Naohiro2g/McRemote#readme" target="_blank" rel="noopener">McRemoteのREADME</a>で案内しています。</li>
+						<li>Scratchを使うPC（Windows 11、Apple SiliconのMac、Linuxのどれか）と、Chromeなどのブラウザ。</li>
+					</ul>
+
+					<h3>1. 自分のOSのZIPを一つダウンロードする</h3>
+					<div class="lan-downloads">
+						<div class="lan-download">
+							<a class="btn btn-scratch" href="https://github.com/Naohiro2g/scratch-editor/releases/download/v2320.0.0b10/mc-remote-scratch-LAN-2320.0.0b10-windows-x64.zip">Windows用 — Intel／AMD 64ビット</a>
+							<div class="lan-windows-note">
+								<img src="../../images/lan-windows-unblock.png" alt="ZIPのプロパティの全般タブで「許可する」にチェックした画面" />
+								<p><strong>【重要】Windowsでは、ZIPを展開する前に</strong>、エクスプローラーでZIPを右クリックし、「プロパティ」→「全般」の「許可する」にチェックして「適用」を押します。その後で展開すると、起動ファイルをダブルクリックで起動できます（Smart App ControlをオンにしたWindows 11で確認済み）。</p>
+							</div>
+						</div>
+						<div class="lan-download">
+							<a class="btn btn-scratch" href="https://github.com/Naohiro2g/scratch-editor/releases/download/v2320.0.0b10/mc-remote-scratch-LAN-2320.0.0b10-macos-arm64.zip">Mac用 — Apple Silicon（Mシリーズ）</a>
+						</div>
+						<div class="lan-download">
+							<a class="btn btn-scratch" href="https://github.com/Naohiro2g/scratch-editor/releases/download/v2320.0.0b10/mc-remote-scratch-LAN-2320.0.0b10-linux-x64.zip">Linux用 — Intel／AMD 64ビット</a>
+						</div>
+					</div>
+					<p class="lan-small">ZIPは約250MBです。ファイルの一覧と、自分で照合したい人向けのSHA-256は<a href="https://github.com/Naohiro2g/scratch-editor/releases/tag/v2320.0.0b10" target="_blank" rel="noopener">リリースページ</a>にあります。</p>
+
+					<h3>2. 展開して、使い続ける場所へ置く</h3>
+					<p>展開してできたフォルダーの内側にある<code>mc-remote-scratch-LAN</code>フォルダーを、自分のホームフォルダーの<code>mc-remote</code>フォルダーへコピーします（無ければ作ります）。ダウンロードフォルダーに置いたままでも動きますが、マイクラリモコンの標準の置き場所に収めておきましょう。解説に沿って作業するときに迷いや間違いが少なくなり、各言語の作品の置き場所の基準にもなります。</p>
+					<pre><code>ホームフォルダー/mc-remote/
+└─ mc-remote-scratch-LAN/
+   └─ 2320.0.0b10/
+      ├─ start-mc-remote.cmd（Macは .command、Linuxは .sh）
+      ├─ はじめに.html
+      ├─ README_ja.md
+      └─ data/</code></pre>
+					<ul>
+						<li>ホームフォルダーは、Windowsなら<code>C:\Users\（名前）</code>、Macなら<code>/Users/（名前）</code>、Linuxなら<code>/home/（名前）</code>です。</li>
+						<li>展開のしかたによっては、外側に同じ名前のフォルダーが一段増えます。目印は「起動ファイルと<code>data</code>フォルダーが並んでいる場所」です。</li>
+						<li>次に使うときのために、このフォルダーをお気に入りに入れるか、起動ファイルのショートカット（エイリアス）を作っておくと便利です。</li>
+						<li><code>はじめに.html</code>はブラウザで読める案内で、このページが開けないときも使えます。</li>
+					</ul>
+
+					<h3>3. 起動する</h3>
+					<div class="table-wrap">
+						<table class="lan-table">
+							<thead><tr><th>OS</th><th>起動のしかた</th><th>初回だけ</th></tr></thead>
+							<tbody>
+								<tr><td>Windows</td><td><code>start-mc-remote.cmd</code>をダブルクリック</td><td>展開の前に「許可する」にしておく（1.を参照）</td></tr>
+								<tr><td>Mac</td><td><code>start-mc-remote.command</code>をダブルクリック</td><td>警告の窓が出たら閉じ、「システム設定」→「プライバシーとセキュリティ」の「このまま開く」を押す。確認の窓でもう一度「このまま開く」を押し、管理者のパスワードを入れる。2回目からは出ません</td></tr>
+								<tr><td>Linux</td><td><code>start-mc-remote.sh</code>を右クリックして「プログラムとして実行」</td><td>ダブルクリックではテキストエディターが開くことがあります</td></tr>
+							</tbody>
+						</table>
+					</div>
+					<p>ターミナルに慣れている人は、フォルダーでターミナルを開いて<code>./start-mc-remote.cmd</code>（Windows。Git BashかPowerShell）、<code>./start-mc-remote.command</code>（Mac）、<code>./start-mc-remote.sh</code>（Linux）でも起動できます。</p>
+					<p class="lan-note">起動すると、ターミナル（黒い画面）が開きます。<strong>Scratchを使っている間は閉じないでください。</strong>閉じるとScratchがマイクラにつながらなくなります。終わるときに閉じます。</p>
+
+					<h3>4. 設定画面で接続先を決める</h3>
+					<p>起動すると、ブラウザに設定画面が開きます。「マイクラサーバーは、どのPCで動いていますか？」から選んで保存し、「改造版のScratchを開く」を押します。</p>
+					<div class="table-wrap">
+						<table class="lan-table">
+							<thead><tr><th></th><th>このPC</th><th>LAN内の別のPC</th></tr></thead>
+							<tbody>
+								<tr><td>どんなとき</td><td>マイクラサーバーもScratchも、同じPCで動かす</td><td>マイクラサーバー役のPCが別にある。Scratchを使う各PCで、このパッケージを動かす</td></tr>
+								<tr><td>接続先</td><td><code>127.0.0.1</code></td><td>マイクラサーバー役のPCのIPアドレスかホスト名</td></tr>
+								<tr><td>マイクラリモコンのポート</td><td colspan="2">通常<code>25575</code>。マイクラアプリで参加するときのポート（<code>25565</code>）とは別です</td></tr>
+							</tbody>
+						</table>
+					</div>
+					<p>保存した後は、設定画面を閉じてもScratchを使い続けられます。次回からは、保存した接続先でScratchが開きます。</p>
+
+					<h3>5. 接続して、ペアリングする</h3>
+					<p>ここからは箱庭サーバーと同じです。Scratchで「接続する」ブロックを実行すると、WireScope miniに<code>/mcremote pair NNN-NNN</code>というペアリングコマンドが出ます。マイクラのチャットに貼り付けてEnterを押すと、ペアリングが完了します。コマンドの先頭にスペースがあると無効なので注意してください。</p>
+					<p>ペアリングは約2時間有効です。切れたら、もう一度「接続する」からペアリングします。</p>
+				</section>
+
+				<section id="again">
+					<h2>🔁 前に使った続きを開く</h2>
+					<ol>
+						<li>マイクラサーバーが動いているのを確かめて、マイクラアプリで参加する。</li>
+						<li>いつもの起動ファイル（またはショートカット）を開く。ブラウザのブックマークだけでは、Scratchはマイクラにつながりません。</li>
+						<li>保存した接続先でScratchが開くので、作品を開いて「接続する」。時間が空いたときは、ペアリングし直します。</li>
+					</ol>
+
+					<h3>作品の保存</h3>
+					<ul>
+						<li>作品は、まずブラウザに保存されます。同じPCの同じブラウザなら、次に開いたときに続きから始められます。</li>
+						<li>別のブラウザや別のPCには、自動では現れません。大切な作品は、Scratchの「ファイル」→「コンピューターに保存する」でファイル（<code>.sb3</code>）にも保存しておきましょう。</li>
+						<li><code>.sb3</code>は、ダブルクリックでは開きません。Scratchの「ファイル」→「コンピューターから読み込む」で開くか、開いているScratchの画面へドラッグ＆ドロップします。読み込む前に、今の作品はブラウザへ保存されます。</li>
+					</ul>
+
+					<h3>新しい版にする</h3>
+					<ol>
+						<li>新しい版のZIPを取って展開し、<code>mc-remote-scratch-LAN</code>の中に、今の版と並べて置く（上書きしない）。</li>
+						<li>今の版のターミナルを閉じてから、新しい版を起動して確かめる。今の版が動いたままだと、新しい版は起動できません。</li>
+						<li>接続先は版のフォルダーの<code>settings.json</code>に保存されるので、新しい版では接続先をもう一度保存する。</li>
+						<li>ショートカットなど、いつもの入口を新しい版に変える。前の版は、しばらく残しておく。</li>
+					</ol>
+					<p>Scratchのアドレス（<code>127.0.0.1:8601</code>）は版が変わっても同じなので、ブラウザに保存した作品はそのまま開けます。</p>
+				</section>
+
+				<section id="how">
+					<h2>🔍 仕組みを知る</h2>
+					<p>マイクラリモコンは、二つのことでできています。マイクラアプリでワールドに参加すること、そしてブラウザのScratchからそのワールドを操作することです。このパッケージは、Scratchの側をあなたのPCで動かします。</p>
+					<figure class="lan-diagram" aria-label="Scratchを使うPCのブラウザのScratchからBridgeを通り、ポート25575でサーバー役のPCのマイクラサーバーの中のMcRemoteへつながる。マイクラアプリはポート25565でマイクラサーバーに参加する。">
+						<svg class="lan-diagram-h" viewBox="0 0 760 270" role="img" aria-hidden="true">
+							<defs><marker id="lan-ah-h" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="d-head" /></marker></defs>
+							<rect class="d-pc" x="10" y="45" width="300" height="100" rx="10" />
+							<text class="d-title" x="24" y="68">Scratchを使うPC</text>
+							<rect class="d-node" x="24" y="80" width="156" height="44" rx="8" />
+							<text class="d-label" x="102" y="102">ブラウザのScratch</text>
+							<rect class="d-node" x="212" y="80" width="84" height="44" rx="8" />
+							<text class="d-label" x="254" y="102">Bridge</text>
+							<line class="d-arrow" x1="180" y1="102" x2="210" y2="102" marker-end="url(#lan-ah-h)" />
+							<rect class="d-pc" x="420" y="10" width="330" height="180" rx="10" />
+							<text class="d-title" x="434" y="33">サーバー役のPC</text>
+							<rect class="d-server" x="434" y="45" width="302" height="130" rx="8" />
+							<text class="d-title" x="448" y="68">マイクラサーバー（Paper）</text>
+							<rect class="d-node d-plugin" x="460" y="80" width="130" height="44" rx="8" />
+							<text class="d-label" x="525" y="102">McRemote</text>
+							<line class="d-arrow" x1="296" y1="102" x2="458" y2="102" marker-end="url(#lan-ah-h)" />
+							<text class="d-port" x="377" y="92" text-anchor="middle">ポート25575</text>
+							<rect class="d-node" x="625" y="220" width="120" height="40" rx="8" />
+							<text class="d-label" x="685" y="240">マイクラアプリ</text>
+							<line class="d-arrow" x1="685" y1="220" x2="685" y2="120" marker-end="url(#lan-ah-h)" />
+							<text class="d-port" x="677" y="205" text-anchor="end">ポート25565</text>
+						</svg>
+						<svg class="lan-diagram-v" viewBox="0 0 340 480" role="img" aria-hidden="true">
+							<defs><marker id="lan-ah-v" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="d-head" /></marker></defs>
+							<rect class="d-pc" x="10" y="10" width="320" height="105" rx="10" />
+							<text class="d-title" x="24" y="33">Scratchを使うPC</text>
+							<rect class="d-node" x="24" y="48" width="170" height="44" rx="8" />
+							<text class="d-label" x="109" y="70">ブラウザのScratch</text>
+							<rect class="d-node" x="225" y="48" width="90" height="44" rx="8" />
+							<text class="d-label" x="270" y="70">Bridge</text>
+							<line class="d-arrow" x1="194" y1="70" x2="223" y2="70" marker-end="url(#lan-ah-v)" />
+							<rect class="d-pc" x="10" y="190" width="320" height="195" rx="10" />
+							<text class="d-title" x="24" y="213">サーバー役のPC</text>
+							<rect class="d-server" x="24" y="225" width="292" height="145" rx="8" />
+							<text class="d-title" x="38" y="248">マイクラサーバー（Paper）</text>
+							<rect class="d-node d-plugin" x="205" y="270" width="100" height="44" rx="8" />
+							<text class="d-label" x="255" y="292">McRemote</text>
+							<line class="d-arrow" x1="270" y1="92" x2="270" y2="268" marker-end="url(#lan-ah-v)" />
+							<text class="d-port" x="260" y="160" text-anchor="end">ポート25575</text>
+							<rect class="d-node" x="40" y="430" width="130" height="40" rx="8" />
+							<text class="d-label" x="105" y="450">マイクラアプリ</text>
+							<line class="d-arrow" x1="105" y1="430" x2="105" y2="300" marker-end="url(#lan-ah-v)" />
+							<text class="d-port" x="115" y="410">ポート25565</text>
+						</svg>
+					</figure>
+					<p class="lan-small">「このPC」の構成では、二つのPCが同じ1台になります。</p>
+					<ul>
+						<li><strong>ZIPの中身</strong>：改造版Scratch、ScratchとMcRemoteの間をつなぐBridge、通信を見るWireScope、それらを動かすNode.js、起動と設定のためのランチャー。</li>
+						<li><strong>外へは公開しません</strong>：Scratch（<code>8601</code>）、Bridge（<code>8602</code>）、WireScope（<code>8603</code>）は、どれもこのPCの中（<code>127.0.0.1</code>）だけで待ち受けます。外へつなぐのは、マイクラサーバーのMcRemoteへの接続だけです。</li>
+						<li><strong>初回の確認</strong>：このパッケージはコード署名と公証をしていないので、OSが初回に確認を求めます。上の手順のとおりに進めてください。</li>
+						<li><strong>ソースコード</strong>：<a href="https://github.com/Naohiro2g/scratch-editor" target="_blank" rel="noopener">scratch-editor</a>のリポジトリで公開しています。</li>
+					</ul>
+				</section>
+
+				<section id="trouble">
+					<h2>🧰 うまくいかないとき</h2>
+					<ul>
+						<li><strong>起動してもすぐ終わる</strong>：前に起動したターミナル（前の版のものも）が残っていないか確かめて、閉じてからもう一度起動します。</li>
+						<li><strong>「接続する」でエラーになる</strong>：マイクラサーバーが動いているか、設定画面の接続先とポート（<code>25575</code>。<code>25565</code>ではない）が合っているかを確かめます。</li>
+						<li><strong>LAN内の別のPCのサーバーにつながらない</strong>：サーバー役のPCのファイアウォールで、<code>25565</code>と<code>25575</code>への接続を許可します。</li>
+						<li><strong>ペアリングが通らない</strong>：コマンドの先頭にスペースが無いか確かめます。時間が経ってコードが切れたときは、もう一度「接続する」から始めます。</li>
+					</ul>
+					<p>それでも困ったら、<a href="https://discord.gg/xUqhhqWsuS" target="_blank" rel="noopener">Discord</a>で聞いてください。この版はベータ版なので、不具合があるかもしれません。</p>
+				</section>
+
+				<p class="lan-back"><a href="../../#lan">← トップページへ戻る</a>　／　<a href="../../#quickstart">箱庭サーバーで試す</a></p>
+			</article>
+		</div>
+	</main>
+
+</body>
+
+</html>

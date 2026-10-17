@@ -1,0 +1,263 @@
+.lan-page {
+  padding: 40px 0 56px;
+  background: linear-gradient(180deg, #ffffff 0%, var(--bg-light) 100%);
+}
+
+.lan-card {
+  max-width: 860px;
+  margin: 0 auto;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 28px 28px 20px;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+  line-height: 1.8;
+}
+
+.lan-trail {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.lan-card h1 {
+  font-size: 2rem;
+  line-height: 1.3;
+  margin-bottom: 16px;
+}
+
+.lan-card h2 {
+  font-size: 1.5rem;
+  margin: 40px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.lan-card h3 {
+  font-size: 1.1rem;
+  margin: 24px 0 8px;
+}
+
+.lan-card p {
+  margin: 0 0 12px;
+}
+
+.lan-card ul,
+.lan-card ol {
+  margin: 0 0 14px 24px;
+}
+
+.lan-card li {
+  margin-bottom: 6px;
+}
+
+.lan-lead {
+  font-size: 1.05rem;
+}
+
+.lan-version,
+.lan-small {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.lan-entrances {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0 8px;
+}
+
+.lan-entrances a {
+  flex: 1 1 200px;
+  padding: 12px 16px;
+  border: 1px solid #afecb1;
+  background: #d9f9d0;
+  border-radius: 10px;
+  font-weight: 700;
+  color: var(--text-main);
+  text-align: center;
+  text-decoration: none;
+}
+
+.lan-entrances a:hover {
+  background: #c4f2b8;
+}
+
+.lan-downloads {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 8px 0 12px;
+}
+
+.lan-download .btn {
+  width: 100%;
+  max-width: 420px;
+}
+
+.lan-windows-note {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  margin-top: 10px;
+  padding: 12px;
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 8px;
+  color: #92400e;
+  font-size: 0.92rem;
+}
+
+.lan-windows-note img {
+  width: 220px;
+  height: auto;
+  flex-shrink: 0;
+  border: 1px solid #e5e7eb;
+}
+
+.lan-windows-note p {
+  margin: 0;
+}
+
+.lan-note {
+  padding: 10px 12px;
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 8px;
+  color: #92400e;
+  font-size: 0.95rem;
+}
+
+.lan-card .table-wrap {
+  overflow-x: auto;
+  margin-bottom: 12px;
+}
+
+.lan-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.92rem;
+}
+
+.lan-table th,
+.lan-table td {
+  border: 1px solid #cbd5e1;
+  padding: 6px 10px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.lan-table th {
+  background: #f1f5f9;
+  white-space: nowrap;
+}
+
+.lan-card pre {
+  margin: 8px 0 14px;
+  overflow-x: auto;
+}
+
+.lan-diagram {
+  margin: 12px 0 6px;
+}
+
+.lan-diagram svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.lan-diagram-h {
+  max-width: 760px;
+}
+
+.lan-diagram-v {
+  display: none !important;
+  max-width: 340px;
+  margin: 0 auto;
+}
+
+.lan-diagram .d-pc {
+  fill: #f8fafc;
+  stroke: #cbd5e1;
+  stroke-width: 2;
+}
+
+.lan-diagram .d-server {
+  fill: #d9f9d0;
+  stroke: #afecb1;
+}
+
+.lan-diagram .d-node {
+  fill: #ffffff;
+  stroke: #94a3b8;
+}
+
+.lan-diagram .d-plugin {
+  stroke: var(--accent-orange);
+  stroke-width: 2;
+}
+
+.lan-diagram .d-title {
+  font-size: 13px;
+  font-weight: 700;
+  fill: var(--text-muted);
+}
+
+.lan-diagram .d-label {
+  font-size: 15px;
+  font-weight: 700;
+  fill: var(--text-main);
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+.lan-diagram .d-port {
+  font-size: 12px;
+  fill: var(--text-muted);
+}
+
+.lan-diagram .d-arrow {
+  stroke: #475569;
+  stroke-width: 2.5;
+}
+
+.lan-diagram .d-head {
+  fill: #475569;
+}
+
+.lan-back {
+  margin-top: 32px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-color);
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 640px) {
+  .lan-card {
+    padding: 20px 16px 12px;
+  }
+
+  .lan-card h1 {
+    font-size: 1.5rem;
+  }
+
+  .lan-windows-note {
+    flex-direction: column;
+  }
+
+  .lan-windows-note img {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .lan-diagram-h {
+    display: none !important;
+  }
+
+  .lan-diagram-v {
+    display: block !important;
+  }
+}

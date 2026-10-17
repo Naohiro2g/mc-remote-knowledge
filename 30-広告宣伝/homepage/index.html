@@ -232,6 +232,24 @@ mc.setBlock(5, 67, 5, "sea_lantern")</code></pre>
 				</div>
 			</div>
 		</div>
+
+		<details class="connect-guide" id="lan" style="margin-top: 16px; text-align: left;">
+			<summary>
+				<h2>🏠 箱庭サーバーで試したら、次は、自分のワールドで使いたい！</h2>
+			</summary>
+			<div class="connect-guide-body">
+				<div>
+					自分のPCや、家庭・教室のネットワーク（LAN）で動かすマイクラサーバーでも、箱庭と同じようにScratchやPythonから操作できます。マイクラサーバーとScratchを、1台のPCですべて動かすこともできます。
+				</div>
+				<ol>
+					<li><strong>マイクラサーバーを用意する</strong>：Paperサーバーにプラグイン<strong>McRemote</strong>を入れて起動し、マイクラアプリで参加します。手順は<a href="https://github.com/Naohiro2g/McRemote#readme" target="_blank" rel="noopener">McRemoteのREADME</a>へ。</li>
+					<li><strong>Scratchで使う</strong>：自分のOS用の<strong>Scratch LANパッケージ</strong>をダウンロードして起動します。<br />
+						👉 <a href="lan/scratch/"><strong>Scratch LANパッケージのページへ</strong></a>（Windows／Mac／Linux）</li>
+					<li><strong>Pythonで使う</strong>：<code>Minecraft.create(address=...)</code>の接続先を、マイクラサーバーのPCに変えるだけです（同じPCなら<code>127.0.0.1</code>、ポートは<code>25575</code>のまま）。</li>
+					<li><strong>接続とペアリング</strong>：箱庭と同じです。表示された<code>/mcremote pair NNN-NNN</code>を、マイクラのチャットに貼り付けます。</li>
+				</ol>
+			</div>
+		</details>
 	</div>
 
 	<!-- About & Mission Section -->
