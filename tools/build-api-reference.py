@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
-"""ホームページのAPI一覧（`30-広告宣伝/homepage/api/`）を生成する（`2026-09-30-05`）。
+"""ホームページのAPI一覧（`30-広告宣伝/homepage/api/`）を生成する（`2026-09-30-05`、`2026-10-17-01`）。
+
+一覧はprotocolの版ごとに`api/<protocol>/`へ置き、`api/index.html`は今のprotocolのページへ送る入口にする。
 
 契約の中身（params、応答、備考、error reason）は`10-protocol/wire-format-design_ja.md`の§4コマンド表と§7.3 error表から
-読む。`10-protocol/api-reference-metadata.json`は、載せる版、分類、一行の用途だけを持つ。wireの表とmetadataのmethodが
+読む。`10-protocol/api-reference-metadata.json`は、載せるprotocolの版、分類、一行の用途だけを持つ。wireの表とmetadataのmethodが
 一致しなければ、生成せずに失敗する。`--check`は、生成済みのfileが今の入力から作り直したものと同じかを確かめる。
 """
 
@@ -20,6 +22,7 @@ ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_WIRE = ROOT / "10-protocol" / "wire-format-design_ja.md"
 DEFAULT_METADATA = ROOT / "10-protocol" / "api-reference-metadata.json"
 DEFAULT_OUT = ROOT / "30-広告宣伝" / "homepage" / "api"
+MCREMOTE_RELEASES_URL = "https://github.com/Naohiro2g/McRemote/releases"
 WIRE_URL = "https://github.com/Naohiro2g/mc-remote-knowledge/blob/main/10-protocol/wire-format-design_ja.md"
 
 
@@ -75,11 +78,19 @@ def parse_wire(text: str) -> tuple[dict[str, dict[str, str]], list[dict[str, str
     return commands, errors
 
 
+def fold(version: str) -> str:
+    """protocolの版をartifactの版の先頭へたたむ（versioning §9.3。23.2.0 → 2320）。"""
+    return "".join(version.split("."))
+
+
 def build_data(commands: dict[str, dict[str, str]], errors: list[dict[str, str]], meta: dict) -> dict:
     categories = {c["id"] for c in meta["categories"]}
     listed = [m["method"] for m in meta["methods"]]
     excluded = {e["method"] for e in meta.get("excluded", [])}
     problems: list[str] = []
+    protocol = meta["protocol"]
+    if protocol["artifact_prefix"] != fold(protocol["version"]):
+        problems.append(f"artifact_prefix {protocol['artifact_prefix']}がprotocol {protocol['version']}をたたんだ{fold(protocol['version'])}と違う")
     for method in commands:
         if method not in listed and method not in excluded:
             problems.append(f"wireの表にあるがmetadataに無いmethod: {method}")
@@ -102,8 +113,8 @@ def build_data(commands: dict[str, dict[str, str]], errors: list[dict[str, str]]
     ]
     return {
         "schema": "mc-remote.api-reference",
-        "schema_version": 1,
-        "release": meta["release"],
+        "schema_version": 2,
+        "protocol": protocol,
         "source": {"wire": "10-protocol/wire-format-design_ja.md §4, §7.3", "metadata": "10-protocol/api-reference-metadata.json"},
         "categories": meta["categories"],
         "methods": methods,
@@ -119,7 +130,7 @@ def inline(text: str) -> str:
 
 
 def render_html(data: dict) -> str:
-    release = data["release"]
+    protocol = data["protocol"]
     parts: list[str] = []
     for category in data["categories"]:
         rows = [m for m in data["methods"] if m["category"] == category["id"]]
@@ -156,7 +167,8 @@ def render_html(data: dict) -> str:
         f"<a href=\"#{c['id']}\">{html.escape(c['title'])}</a>"
         for c in data["categories"] if any(m["category"] == c["id"] for m in data["methods"])
     )
-    title = f"API一覧（{release['label']} / protocol {release['protocol']}）"
+    title = f"API一覧（protocol {protocol['version']}）"
+    note = f"\n\t\t\t<p class=\"api-note\">{inline(protocol['note'])}</p>" if protocol.get("note") else ""
     return f"""<!DOCTYPE html>
 <html lang="ja">
 
@@ -164,9 +176,9 @@ def render_html(data: dict) -> str:
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta name="robots" content="index, follow" />
-	<meta name="description" content="マイクラリモコン（mc-remote）の公開済みProtocol APIの一覧。{html.escape(release['label'])}（protocol {html.escape(release['protocol'])}）。" />
+	<meta name="description" content="マイクラリモコン（mc-remote）の公開済みProtocol APIの一覧。protocol {html.escape(protocol['version'])}。" />
 	<title>{html.escape(title)} — マイクラリモコン (mc-remote)</title>
-	<link rel="stylesheet" href="../styles.css" />
+	<link rel="stylesheet" href="../../styles.css" />
 	<style>
 		.api-page {{ padding: 32px 0 64px; }}
 		.api-page h2 {{ margin-top: 40px; }}
@@ -186,15 +198,15 @@ def render_html(data: dict) -> str:
 
 	<header>
 		<div class="container nav-container">
-			<a href="../" class="brand-group">
-				<img src="../images/mc-remote_com_logo.png" alt="Minecraft Remote" class="brand-logo" />
+			<a href="../../" class="brand-group">
+				<img src="../../images/mc-remote_com_logo.png" alt="Minecraft Remote" class="brand-logo" />
 			</a>
 			<nav>
 				<ul>
-					<li><a href="../#quickstart">はじめる</a></li>
-					<li><a href="../#ecosystem">エコシステム</a></li>
-					<li><a href="../#roadmap">ロードマップ</a></li>
-					<li><a href="../#releases">リリース</a></li>
+					<li><a href="../../#quickstart">はじめる</a></li>
+					<li><a href="../../#ecosystem">エコシステム</a></li>
+					<li><a href="../../#roadmap">ロードマップ</a></li>
+					<li><a href="../../#releases">リリース</a></li>
 				</ul>
 			</nav>
 		</div>
@@ -203,9 +215,9 @@ def render_html(data: dict) -> str:
 	<main class="api-page">
 		<div class="container">
 			<h1>{html.escape(title)}</h1>
-			<p>公開済みのrelease {html.escape(release['label'])}（protocol {html.escape(release['protocol'])}、artifact {html.escape(release['artifact'])}、
-				Minecraft {html.escape(release['minecraft'])}、{html.escape(release['published'])}公開）で使えるProtocol APIの一覧です。
-				各言語のClient Libraryでの書き方は、それぞれのリポジトリを見てください。</p>
+			<p>protocol {html.escape(protocol['version'])}のProtocol APIの一覧です。版が<code>{html.escape(protocol['artifact_prefix'])}</code>で始まる公開release（{html.escape(protocol['since'])}から）は、
+				このAPIを使います。対応するMinecraftの版は<a href="{MCREMOTE_RELEASES_URL}" target="_blank" rel="noopener">McRemoteのリリース</a>を、
+				各言語のClient Libraryでの書き方は、それぞれのリポジトリを見てください。</p>{note}
 			<p class="api-note">このページは、仕様の正本<a href="{WIRE_URL}" target="_blank" rel="noopener">wire-format-design</a>の§4コマンド表と§7.3 error表から
 				自動生成しています。正確な条件、検証の順序、上限は正本を見てください。<a href="api.json">機械可読版（api.json）</a></p>
 			<p class="api-toc">{toc} ／ <a href="#auth">認証</a> ／ <a href="#errors">エラー応答</a></p>
@@ -235,6 +247,25 @@ def render_html(data: dict) -> str:
 """
 
 
+def render_entrance(data: dict) -> str:
+    version = html.escape(data["protocol"]["version"])
+    return f"""<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="refresh" content="0; url={version}/" />
+	<title>API一覧 — マイクラリモコン (mc-remote)</title>
+</head>
+
+<body>
+	<p><a href="{version}/">API一覧（protocol {version}）</a></p>
+</body>
+
+</html>
+"""
+
+
 def render_json(data: dict) -> str:
     return json.dumps(data, ensure_ascii=False, indent=2) + "\n"
 
@@ -257,7 +288,12 @@ def main() -> int:
     except (BuildError, OSError, KeyError, json.JSONDecodeError) as error:
         print(f"FAIL: {error}", file=sys.stderr)
         return 1
-    outputs = {"index.html": render_html(data), "api.json": render_json(data)}
+    version = data["protocol"]["version"]
+    outputs = {
+        "index.html": render_entrance(data),
+        f"{version}/index.html": render_html(data),
+        f"{version}/api.json": render_json(data),
+    }
     if args.check:
         stale = [name for name, content in outputs.items()
                  if not (args.out / name).exists() or (args.out / name).read_text(encoding="utf-8") != content]
@@ -266,8 +302,8 @@ def main() -> int:
             return 1
         print(f"OK api reference methods={len(data['methods'])} errors={len(data['errors'])}")
         return 0
-    args.out.mkdir(parents=True, exist_ok=True)
     for name, content in outputs.items():
+        (args.out / name).parent.mkdir(parents=True, exist_ok=True)
         (args.out / name).write_text(content, encoding="utf-8")
     print(f"OK wrote {args.out} methods={len(data['methods'])} errors={len(data['errors'])}")
     return 0

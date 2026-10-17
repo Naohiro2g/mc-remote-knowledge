@@ -39,8 +39,8 @@ WIRE = """# wire
 
 META = {
     "schema": "mc-remote.api-reference-metadata",
-    "schema_version": 1,
-    "release": {"label": "b8", "protocol": "23.2.0", "artifact": "2320.0.0b8", "minecraft": "1.21.11", "published": "2026-10-03"},
+    "schema_version": 2,
+    "protocol": {"version": "23.2.0", "artifact_prefix": "2320", "since": "b9", "note": "b8では応答の形が違った"},
     "categories": [{"id": "connection", "title": "接続"}, {"id": "block", "title": "ブロック"}, {"id": "effect", "title": "演出"}],
     "methods": [
         {"method": "hello", "category": "connection", "purpose": "最初に送る"},
@@ -68,7 +68,9 @@ class BuildApiReferenceTest(unittest.TestCase):
     def test_generates_html_and_json(self) -> None:
         result, out = run(META)
         self.assertEqual(result.returncode, 0, result.stderr)
-        data = json.loads((out / "api.json").read_text(encoding="utf-8"))
+        data = json.loads((out / "23.2.0" / "api.json").read_text(encoding="utf-8"))
+        self.assertEqual(data["protocol"]["version"], "23.2.0")
+        self.assertNotIn("release", data)
         names = [m["method"] for m in data["methods"]]
         self.assertEqual(names, ["hello", "world.setBlock", "world.playSound"])
         sound = data["methods"][2]
@@ -78,11 +80,24 @@ class BuildApiReferenceTest(unittest.TestCase):
         self.assertEqual(sound["category"], "effect")
         self.assertEqual([e["reason"] for e in data["errors"]], ["invalid_params", "zero_direction", "unknown_sound"])
         self.assertEqual(data["errors"][1]["family"], "params 検証")
-        html = (out / "index.html").read_text(encoding="utf-8")
+        html = (out / "23.2.0" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("API一覧（protocol 23.2.0）", html)
+        self.assertIn("<code>2320</code>", html)
+        self.assertIn("b8では応答の形が違った", html)
+        self.assertIn('href="../../styles.css"', html)
         self.assertIn("<code>world.playSound</code>", html)
         self.assertIn("音を鳴らす", html)
         self.assertIn("auth.pairBegin", html)
         self.assertNotIn("events.clear", html)
+        entrance = (out / "index.html").read_text(encoding="utf-8")
+        self.assertIn('url=23.2.0/', entrance)
+
+    def test_fails_when_artifact_prefix_does_not_fold_the_protocol(self) -> None:
+        meta = json.loads(json.dumps(META))
+        meta["protocol"]["artifact_prefix"] = "2310"
+        result, _ = run(meta)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("2310", result.stderr)
 
     def test_fails_when_table_has_unlisted_method(self) -> None:
         meta = json.loads(json.dumps(META))
@@ -110,7 +125,7 @@ class BuildApiReferenceTest(unittest.TestCase):
         meta["excluded_reasons"] = [{"reason": "zero_direction", "why": "x"}]
         result, out = run(meta)
         self.assertEqual(result.returncode, 0, result.stderr)
-        data = json.loads((out / "api.json").read_text(encoding="utf-8"))
+        data = json.loads((out / "23.2.0" / "api.json").read_text(encoding="utf-8"))
         self.assertNotIn("zero_direction", [e["reason"] for e in data["errors"]])
         meta["excluded_reasons"] = [{"reason": "no_such_reason", "why": "x"}]
         result, _ = run(meta)
@@ -120,7 +135,7 @@ class BuildApiReferenceTest(unittest.TestCase):
     def test_check_mode_detects_stale_output(self) -> None:
         result, out = run(META)
         self.assertEqual(result.returncode, 0, result.stderr)
-        (out / "api.json").write_text("{}", encoding="utf-8")
+        (out / "23.2.0" / "api.json").write_text("{}", encoding="utf-8")
         directory = out.parent
         check = subprocess.run(
             [sys.executable, str(BUILDER), "--wire", str(directory / "wire.md"), "--metadata", str(directory / "meta.json"), "--out", str(out), "--check"],

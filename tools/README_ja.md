@@ -47,10 +47,12 @@ python3 tools/build-api-reference.py --check
 python3 -m unittest tools/test_build_api_reference.py
 ```
 
-ホームページのAPI一覧（`30-広告宣伝/homepage/api/index.html`と`api.json`）を生成します（`2026-09-30-05`）。契約の中身
+ホームページのAPI一覧（`30-広告宣伝/homepage/api/<protocol>/`の`index.html`と`api.json`、入口の`api/index.html`）を
+生成します（`2026-09-30-05`、`2026-10-17-01`）。契約の中身
 （params、応答、備考、error reason）は`10-protocol/wire-format-design_ja.md`の§4コマンド表と§7.3 error表から読み、
-`10-protocol/api-reference-metadata.json`からは、載せる版、分類、一行の用途、載せないmethodとreasonだけを読みます。
-wireの表とmetadataのmethodが一致しなければ失敗します。wireの表を変えたら、このscriptを実行して生成物もcommitします。
+`10-protocol/api-reference-metadata.json`からは、載せるprotocolの版、分類、一行の用途、載せないmethodとreasonだけを読みます。
+wireの表とmetadataのmethodが一致しないとき、metadataの`artifact_prefix`がprotocolの版をたたんだ値（versioning §9.3）と
+違うときは失敗します。protocolが上がったら、metadataの版を変えて新しいdirectoryを作り、前のdirectoryは変えずに残します。wireの表を変えたら、このscriptを実行して生成物もcommitします。
 `--check`はGitHub Actionsでも走り、生成物が古ければ失敗します。
 
 ## dev agent runtime block checker

@@ -1,13 +1,12 @@
 {
   "schema": "mc-remote.api-reference-metadata",
-  "schema_version": 1,
-  "note": "API一覧（2026-09-30-05）の生成用metadata。契約の中身（params、result、reason）は書かず、wire-format-design_ja.mdの表から読む。ここに置くのは、載せる版、分類、一行の用途だけ。",
-  "release": {
-    "label": "b9",
-    "protocol": "23.2.0",
-    "artifact": "2320.0.0b9",
-    "minecraft": "1.21.11",
-    "published": "2026-10-05"
+  "schema_version": 2,
+  "note": "API一覧（2026-09-30-05）の生成用metadata。契約の中身（params、result、reason）は書かず、wire-format-design_ja.mdの表から読む。ここに置くのは、載せるprotocolの版、分類、一行の用途だけ。",
+  "protocol": {
+    "version": "23.2.0",
+    "artifact_prefix": "2320",
+    "since": "b9",
+    "note": "b8も同じprotocol 23.2.0ですが、id付きの`chat.post`が成功したときの応答の形だけは、b9で`null`に決まりました。"
   },
   "categories": [
     {
