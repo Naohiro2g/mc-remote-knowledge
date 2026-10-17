@@ -162,6 +162,13 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - 進捗（2026-10-18）：human ownerがScratchとStackへ着手依頼を回した。knowledge側で、versioning（§9.3、§10.11.4）とwire（§1）に
   `23.2.1`を書いた。wireの§4と§7.3の表はAPI一覧の生成元なので、`23.2.0`のページを変えないよう触らない。rc1の公開のときに
   metadataを`23.2.1`へ切り替え、b8の但し書き（`protocol.note`）を外して`api/23.2.1/`を作る
+- 進捗（2026-10-18、tooling）：fixtureの23.2.1版を`minecraft-remote-tooling` `agent/rc1-protocol-2321@6447f6e8cbfbeeb9d229990b5c4f6e82a5875666`
+  （mainより1 commit先）に追加し、旧fileを残した（`2026-10-18-03`）。`chat-event-compat-v23.2.1.json` 32,384 bytes、
+  `eead244a7340c315cb63e1e77ede0fe9cf48162c06fedbeef36d941950d5000d`、`entity-particle-v23.2.1.json` 36,483 bytes、
+  `0319ff8373a96798cf5e9e421a804729fd33a0fa53e96adc12c93ed7994777ae`。CI run `39053886890` success、artifact `12109060950`
+  （`sha256:5b644de44ae2f9a2fb9de09d221c2930218f6c317baffee3b5c7f817309555fa`）。coordinatorがGitHub APIで照合し、新旧のfixtureは
+  版の識別子（`23.2.0`／`23.2.1`、schema名の`v23.2`／`v23.2.1`）を除いて同じ中身と確かめた。WireScopeとBridgeのidentityは
+  Scratchのcandidateと一緒に返る。McRemoteとPythonはこのfixtureで着手できる
 
 ## 2026-10-07 b10横断release gate（CLOSED）
 
