@@ -190,6 +190,17 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   隔離した環境で、通常のpulse、再起動のpulse、23.2.0の認証付きhelloの受け入れがPASS。coordinatorはartifactをdownloadして、
   中のJARが票のSHA-256と同じで、`plugin.yml`の版が`2321.0.0rc1`であることを確かめた。素材は
   `McRemote/handoff-materials/2026-10-18-rc1-candidate/`。evidenceのrecordにするかは凍結の後で決める
+- 判断（2026-10-18、human owner）：Stackの確認から、park「Scratchの製品noticeを一つに絞る」を閉じた。運用者noticeの「b10版を…」は、
+  rc1へ切り替えるときのnoticeの確認の工程で直す。Paper 26.3は#203が出ていて間に合いそうだったので、McRemoteの試験を#203へ
+  切り替えた（Stackの10/17の複製worldの試験は#200）
+- 進捗（2026-10-18、Python）：candidateは`codex/rc1-python-pre-fixture@c30105349ef26413e925699143396ea05bd3e380`（mainより3 commit先、
+  knowledgeは`40a91a7`を実読）。CI run `39067369316` success（Python 3.10〜3.13で各784件）、artifact `12113309553`（383,227 bytes、
+  `sha256:df3baf887314934fae1285bb722c90c21e5543191522da9703a3a2a3b948b4c3`）。wheel
+  `minecraft_remote_api-2321.0.0rc1-py3-none-any.whl` 196,098 bytes、`5f12dfcf4953bfaf5dcbe649d4a1ca2d3f5f4b5307b9896e79284478216944ca`、
+  sdist `minecraft_remote_api-2321.0.0rc1.tar.gz` 190,285 bytes、`dc8d9f30f538c14cfa04260c92f32e8f451748b99a8e596aeb3e59b1968e5611`。
+  同梱WireScopeのsourceはtooling `6447f6e`。coordinatorはartifactをdownloadして、wheelとsdistのSHA-256、wheelの中のWireScopeの
+  ZIPとmanifestがtoolingのcandidateと同じこと、`Version: 2321.0.0rc1`と`PROTOCOL = "23.2.1"`を確かめた。実サーバーへの接続は
+  まだ。素材は`minecraft-remote-api/handoff-materials/2026-10-18-rc1-python-candidate/`
 
 ## 2026-10-07 b10横断release gate（CLOSED）
 
