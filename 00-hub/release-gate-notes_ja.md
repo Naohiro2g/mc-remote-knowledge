@@ -177,6 +177,19 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   `sha256:305d6e38b36e195a0e158522f32f3a8c45d39da2aeec7b7e46f785c920406acf`）。coordinatorがartifactをdownloadして、bytesと
   SHA-256、OCIの`index.json`のdigestが一致すると確かめた。PythonはこのWireScopeで同梱を作り直せる。Pythonのwheel／sdistに
   入った後のidentityは、Python担当が照合して返す
+- 進捗（2026-10-18、Stack）：v2のconsumer（`agent/b10-manifest-v2-consumer@2eaf41b`）をPR #71で`main@e5f33188820f875e8aa7dc504952316458d87d73`
+  へmergeした。mainのCLIで、b10公開版のmanifest（McRemote b10、Scratch b10、Python b9）の`verify`が3件ともexit 0。pytest 543件と
+  ruffがPASS。READMEの手直しはPR #72（`agent/rc1-readme@0c5a30d1e23b9762e23160beb13540f746810338`、review待ち）。公開中の
+  `scratch-beta.mc-remote.com`の設定JSONで、製品noticeは1件（版とreleaseページへのリンク）、運用者noticeは2件、接続先は
+  `sb-beta.mc-remote.com`（配信のJSONだけを見た。ブラウザでの表示は見ていない）。rc1のpresetと別セットへの切り替えは、各componentの
+  tagと凍結の後。coordinatorはPR #71のmergeとmainのSHAをGitHubで確かめた
+- 進捗（2026-10-18、McRemote）：candidateは`agent/rc1-pre-fixture@192a777ae1d484bcc9b58fcc7c58d6aed1a374af`（mainより2 commit先、
+  knowledgeは`277fa69`を実読）。CI run `39065266196` success、artifact `12112853171`（294,255 bytes、
+  `sha256:ef4bf641ac4c229a6c1ca413c0698dd4350559bdcb5f643e72cdf807b53686be`）。`mc-remote-2321.0.0rc1.jar` 315,352 bytes、
+  `917c358c201aa219277b96a447fb85116e8bdb0260870a4d76a8c51219d31c37`。対応版の宣言は1.21.11と26.3。Paper 1.21.11 #132と26.3 #203の
+  隔離した環境で、通常のpulse、再起動のpulse、23.2.0の認証付きhelloの受け入れがPASS。coordinatorはartifactをdownloadして、
+  中のJARが票のSHA-256と同じで、`plugin.yml`の版が`2321.0.0rc1`であることを確かめた。素材は
+  `McRemote/handoff-materials/2026-10-18-rc1-candidate/`。evidenceのrecordにするかは凍結の後で決める
 
 ## 2026-10-07 b10横断release gate（CLOSED）
 
