@@ -18,7 +18,7 @@ Java 21で使えるとは言えない。
 | プラグイン | 作者の26.3の申告（10/17） | Java | 26.3の複製worldで（10/17、live-auto） |
 | --- | --- | --- | --- |
 | ViaVersion／ViaBackwards | 5.12.1で対応 | — | 有効になった |
-| Geyser-Spigot | 2.12.0 build 1259で対応（26.3対応のPRは10/14にmerge） | Java 21以上（Geyserの[supported versions](https://geysermc.org/wiki/geyser/supported-versions)、2026-10-18に確認）。2.12.0の公式JARもclass 65（10/17の検査）。搬送票の「Java 21では動かない」は、Java 21未満を切ったことの読み違いと見る（human owner 2026-10-18）。2.12.0をPaper 1.21.11で使えるかは確かめていない | 有効、UDPで待ち受けた |
+| Geyser-Spigot | 2.12.0 build 1259で対応（26.3対応のPRは10/14にmerge） | Java 21以上で、Geyser-Spigotは1.20.5以上のSpigot／Paperで使える（Geyserの[supported versions](https://geysermc.org/wiki/geyser/supported-versions)、2026-10-18に確認）。2.12.0の公式JARもclass 65（10/17の検査）。搬送票の「Java 21では動かない」は、Java 21未満を切ったことの読み違いと見る（human owner 2026-10-18）。2.12.0をPaper 1.21.11で動かす試験はしていない | 有効、UDPで待ち受けた |
 | Floodgate | build 141で対応 | — | 有効になった |
 | WorldEdit（Bukkit） | 7.4.6の正式版（10/15）で対応 | 7.4.3〜7.4.6はJava 25（class 69、10/12のJAR検査） | 7.4.6が有効になった |
 | LuckPerms（Bukkit） | 5.5.71に26.3対応の掲載（公式の最新は5.5.87） | — | 5.5.71が有効、McRemoteとの連携を確認 |
