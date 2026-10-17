@@ -90,7 +90,8 @@ class BuildApiReferenceTest(unittest.TestCase):
         self.assertIn("auth.pairBegin", html)
         self.assertNotIn("events.clear", html)
         entrance = (out / "index.html").read_text(encoding="utf-8")
-        self.assertIn('url=23.2.0/', entrance)
+        self.assertIn('location.replace("23.2.0/" + location.hash)', entrance)
+        self.assertIn('<noscript><meta http-equiv="refresh" content="0; url=23.2.0/" /></noscript>', entrance)
 
     def test_fails_when_artifact_prefix_does_not_fold_the_protocol(self) -> None:
         meta = json.loads(json.dumps(META))

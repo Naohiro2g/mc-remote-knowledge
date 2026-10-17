@@ -248,14 +248,16 @@ def render_html(data: dict) -> str:
 
 
 def render_entrance(data: dict) -> str:
+    # 旧`/api/#<category>`のリンクを壊さないよう、#以降を保ったまま今のprotocolのページへ送る
     version = html.escape(data["protocol"]["version"])
     return f"""<!DOCTYPE html>
 <html lang="ja">
 
 <head>
 	<meta charset="UTF-8" />
-	<meta http-equiv="refresh" content="0; url={version}/" />
 	<title>API一覧 — マイクラリモコン (mc-remote)</title>
+	<script>location.replace("{version}/" + location.hash);</script>
+	<noscript><meta http-equiv="refresh" content="0; url={version}/" /></noscript>
 </head>
 
 <body>
