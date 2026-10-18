@@ -273,8 +273,28 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
       凍結値と同じ。ヘッダーはContent-Typeが`application/zip`（`.whl`も）と`application/java-archive`、`x-robots-tag: noindex,
       nofollow`、`Content-Encoding`無し（gzip等を受け入れると伝えても）、`accept-ranges: bytes`でRangeに206。`/candidates/`、
       `/candidates/2321.0.0rc1/`、`set-1/`は404で一覧を出さない。実施票へURLを書いた
-    - 1回目のapplyの`rollback-failed`：何が漏れて#74で何を直したか、その間にworldとcredentialへの影響が無かったか、rc1の後の
-      別セットへの切り替え（`2026-10-18-02`）で同じことが起きないと言える根拠を、Stackから短い記録で受け取る
+    - 1回目のapplyの`rollback-failed`（2026-10-18、Stackの記録。貼り付けで行末が切れた箇所があり、細部はStackの記録が正本）:
+      - 漏れ：#73でrenderer `compose@15`を足したとき、版の番号で処理を分けている2か所に`15`を足し忘れた。`render.py`の生成物の
+        manifestの検査が`adapter_revision`を`13`と`14`しか受け付けず、更新先のdoctorも巻き戻しのrenderも
+        `render_output_tampered`で失敗した。`doctor.py`は公開の確認（homepage、Scratch runtime、WireScope）を`13`のときしか
+        走らせず、`compose@15`では確認を飛ばすところだった。#73のtestは空の出力へのrenderだけで、更新のtestはrenderとpublishを
+        stubにしていたので見逃した
+      - #74（`204b3c6`）：2か所で`compose@15`を公開VPSのrendererとして扱う（doctorは`PUBLIC_RENDERER_REVISIONS = {"13", "15"}`）。
+        test 2件（もう一度のrender、doctorの通し）を足し、直す前に落ちることを確かめた。版の番号で分けている箇所を`src/`全体で
+        調べ直し、残りはrenderとdoctorだけだった
+      - worldとcredential：影響は無い。volumeは同じものを使い続け、Minecraftは「All dimensions are saved」を出してから止まった。
+        起動の後、McRemoteはcredential domain `HEALTHY`、auth enforcement `true`。storeとauthorityのfileは更新の前から
+        書き換わっていない（Stackの記録）。`rollback-failed`の約15分、動いていたのはplanで決めた更新先の設定で、ずれていたのは
+        ディスクの上のproject（order、lock、operator）だけ。containerは作り直されなかった。McRemoteの`config.yml`は生成物から
+        入れ直され、先頭行の版番号のほかは同じ値（McRemoteが既定のkeyを書き足すのは、どの更新でも起きる）
+      - 切り替え（`2026-10-18-02`）で同じことが起きないと言える根拠：経路が違う。切り替えは別のproject、別の`generated/`、別の
+        volumeで作り、`mcrctl apply`で起動する。今回落ちたのは同じ出力の上で版をまたいでrenderし直す経路で、切り替えはそこを
+        通らない。旧セットは手つかずで残る。PR #75（pytest 552件 PASS）で、同じ出力への`@12 → @13 → @12 → @13`のrender（直す前の
+        `06bf98f`ではVPSと同じ`render_output_tampered`で落ちることを確認）、切り替えで使うbootstrapのapplyと2回目のapply、
+        `@13`でのdoctorの通しを確かめた。次のセットにcandidatesのディレクトリが無ければ、準備のrenderが`runtime_content_missing`で
+        止まり、旧セットを止める前に気づける
+      - Stackに残る弱点（切り替えの経路には関係しない）：same-volumeの更新は、巻き戻しも同じrenderのコードを通るので、そこに
+        漏れがあれば両方とも失敗する。Stackには`rollback-failed`から戻す手順が無い（今回は`state.json`を手で書き換えた）
     - 置くもの：LANパッケージのZIP 3つ、McRemoteのJAR、Pythonのwheel。`https://mc-remote.com/candidates/2321.0.0rc1/set-1/`
       （setの番号は凍結の`rc1-integrated-artifact-set-1`。作り直して試し直すときは`set-2/`）。リリースの後に中身を消す
     - 送り方：GitHubのartifactから取り出し、手元でSHA-256を凍結値と照合してから、`rsync --partial`で送る（切れても続きから
