@@ -25,6 +25,7 @@ public 正本世代の入口です。ここに載る path は、このリポ内�
 | `00-hub/b10-gate-close-instructions_ja.md` | b10横断release gateを閉じる前の、McRemoteとScratchの`handoff-materials`の分類の依頼 |
 | `00-hub/rc1-gate-confirmation-instructions_ja.md` | rc1横断release gateを開いたときの確認票の依頼（2321への切り替えの変更範囲、README導線、rollback、park確認の各項目） |
 | `00-hub/rc1-gate-work-instructions_ja.md` | rc1横断release gateの着手依頼（toolingから始める依存順、各担当の作業、日程） |
+| `00-hub/rc1-gate-live-test-instructions_ja.md` | rc1横断release gateで、mc-remote.comに置いた候補を試すhuman owner向けの実施票（b10からの版の更新、新しい`はじめに.html`、23.2.0と23.2.1の組み合わせ、26.3の名前） |
 | `00-hub/b9-gate-confirmation-instructions_ja.md` | b9横断release gateを開いたときにMcRemote／Python／Scratchへ出す確認票依頼（契約2件、PyPIの準備、移管の材料）と、gateの条件にしないJavaへの問い |
 | `00-hub/b9-gate-work-instructions_ja.md` | b9横断release gateの確認票の返却を受けて出す着手依頼（依存順、10/6の確認点、移管の実施、契約2件、PyPI.orgのjob） |
 | `00-hub/b9-gate-live-test-sheet_ja.md` | b9横断release gateの凍結後、devの通常環境で行う統一実施票（JARの差し替え、live-auto、Python、移管したBridgeとWireScope） |

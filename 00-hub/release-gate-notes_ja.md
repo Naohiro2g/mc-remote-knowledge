@@ -201,6 +201,81 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   同梱WireScopeのsourceはtooling `6447f6e`。coordinatorはartifactをdownloadして、wheelとsdistのSHA-256、wheelの中のWireScopeの
   ZIPとmanifestがtoolingのcandidateと同じこと、`Version: 2321.0.0rc1`と`PROTOCOL = "23.2.1"`を確かめた。実サーバーへの接続は
   まだ。素材は`minecraft-remote-api/handoff-materials/2026-10-18-rc1-python-candidate/`
+- 進捗（2026-10-18、Scratch）：candidateは`agent/rc1-scratch-2321@ec79b3b0e364e722d6926a0932eb4bf088ddd3a1`（draft PR #26、
+  developより7 commit先）。toolingはdraft PR #1（`agent/rc1-protocol-2321@6447f6e`、mainより1 commit先）。最終のCI run
+  `39072595749` success（初回の`39060684619`は、ZIPのsmokeが旧`23.2.0`を送っていて失敗し、直した）、artifact `12116296168`
+  （1,370,212,918 bytes、`sha256:259ca91e68616035a81deb49bb1060300138c85942597a2b11c7b7f5133d66e8`）。coordinatorはPRのhead、
+  runの`head_sha`、artifactのdigestをGitHubで確かめた。ZIPなどの値は下の凍結（案）の表。26.3の名前は公式の言語データから
+  1,275件、GUIの表示と検索はtestで確かめた。26.3のサーバーでの日本語名、設定画面の画像はまだ。GUI integrationの
+  `menu-bar.test.js`は、基準のdevelop（run `38525476758`）でも同じく落ちる既存の失敗。ブロック一覧の`site/2321.0.0rc1/`は
+  用意済み。素材は`scratch-editor/handoff-materials/2026-10-18-rc1-work-scratch/`
+- **exact set凍結（`rc1-integrated-artifact-set-1`、human owner承認 2026-10-18）**: protocol `23.2.1`／artifact `2321.0.0rc1`
+  - minecraft-remote-tooling: source `6447f6e8cbfbeeb9d229990b5c4f6e82a5875666`（run `39053886890`、artifact `12109060950`）
+    - `wirescope-app.zip` 83,854 bytes／`da3da0b6cf4d05265bc0c11abaa4913208c7cfc3600b0c3e78c93a356fc431ad`
+    - `wirescope-app.manifest.json` 2,339 bytes／`3dd668a236463809a4cdc6d19375f3e6d75eea0c8089a616d2b761d3a4a05235`
+    - Bridge OCI `bridge.oci.tar` 114,626,048 bytes／`3982876466fb860dca250438d73e18e441a2a85d67d9f149f537a7a8d1a1c44c`、
+      index `sha256:305d6e38b36e195a0e158522f32f3a8c45d39da2aeec7b7e46f785c920406acf`
+    - shared fixture：`chat-event-compat-v23.2.1.json` 32,384 bytes／`eead244a7340c315cb63e1e77ede0fe9cf48162c06fedbeef36d941950d5000d`、
+      `entity-particle-v23.2.1.json` 36,483 bytes／`0319ff8373a96798cf5e9e421a804729fd33a0fa53e96adc12c93ed7994777ae`。旧版は履歴として残る
+  - Scratch: source `ec79b3b0e364e722d6926a0932eb4bf088ddd3a1`（run `39072595749`、artifact `12116296168`）
+    - `mc-remote-scratch-LAN-2321.0.0rc1-windows-x64.zip` 261,848,009 bytes／`86bbaf9a278683315ffe2ebd4f19d56ba53f5501289e4cddfc22f284d8d4e209`
+    - `mc-remote-scratch-LAN-2321.0.0rc1-macos-arm64.zip` 266,199,673 bytes／`bdfff47b8c1210a359ed65a8be6fca26624546e3c04add125063968acc091412`
+    - `mc-remote-scratch-LAN-2321.0.0rc1-linux-x64.zip` 271,455,727 bytes／`b76b574803c58403e38438d2569917bd72ca95f039026f12ed3a294edfcfba54`
+    - Scratch OCI 325,822,464 bytes／`88d81fba1aca0194c85f638cf19c66a1a2087748f32ff501bdb1dd283ea1d0c5`、index
+      `sha256:75e76edb6b8a1de4fb896184b5c26bed7cb1791296f82903e6b1ec4a1a5ab840`。公開でdigestが変わっても止めない（b9と同じく差を記録）
+    - `scratch-gui.tar.gz` 138,835,708 bytes／`2dafb257c511989946da021591191cc1501e0d1a9211cc559373ed7de30f19c2`、`contracts.tar.gz`
+      1,908 bytes／`48948ba47d55409f02a8ff8e0d44021b07859e11ffa5ca0f8598e6ef06082390`
+    - coordinatorがartifact（外側のdigestが一致）をdownloadして、上の全fileのbytesとSHA-256、`candidate-manifest.json`
+      2,676 bytes／`a29b56239a060f95fe9c67f708023a14c64ac422bd108097586d544d201afbd2`、Scratch OCIの`index.json`のdigestを独立に
+      計算し、票の値と一致した。3 OSのsidecarはsource commit `ec79b3b`、`working_tree_dirty:false`。同じartifactの中のWireScopeと
+      Bridge OCIはtoolingの凍結値と同じ
+  - McRemote: source `192a777ae1d484bcc9b58fcc7c58d6aed1a374af`（run `39065266196`、artifact `12112853171`）
+    - `mc-remote-2321.0.0rc1.jar` 315,352 bytes／`917c358c201aa219277b96a447fb85116e8bdb0260870a4d76a8c51219d31c37`。対応版の宣言は
+      1.21.11と26.3（`minecraft-targets.json` `8e830732decd6bcde13f91eb6c071d062ba6993342a7edb52e6ea543b9e0c361`）
+  - Python: source `c30105349ef26413e925699143396ea05bd3e380`（run `39067369316`、artifact `12113309553`）
+    - wheel `minecraft_remote_api-2321.0.0rc1-py3-none-any.whl` 196,098 bytes／`5f12dfcf4953bfaf5dcbe649d4a1ca2d3f5f4b5307b9896e79284478216944ca`
+    - sdist `minecraft_remote_api-2321.0.0rc1.tar.gz` 190,285 bytes／`dc8d9f30f538c14cfa04260c92f32e8f451748b99a8e596aeb3e59b1968e5611`
+  - Stack: `main@e5f33188820f875e8aa7dc504952316458d87d73`（v2 consumer）。README（PR #72）はrelease物ではないので凍結の外
+  - 凍結の前の返却（2026-10-18）:
+    - Python：着手依頼の1、3、4はcandidate `c301053`に入っていた。互換のtestは
+      `tests/test_b1.py::test_rc1_client_accepts_compatible_hello_response[23.2.0]`（23.2.1を送り、23.2.0のhelloの応答を受け入れる
+      unit test。模擬の接続で、実サーバーではない）。starterのtemplateの`ADRS_MCR`は`sb-beta.mc-remote.com`。READMEはStep 2から
+      `https://mc-remote.com/#lan`へのリンク、Step 1は`uv add "minecraft-remote-api==2321.0.0rc1"`
+    - Scratch：着手依頼の6は、`mc-remote/local/README.md`の分がcandidate `ec79b3b`に入っていて、`README_mc-remote.md`の分
+      （`/lan/scratch/`の案内、APIのリンクを`https://mc-remote.com/api/`へ）は次のcommit
+      `agent/rc1-scratch-2321@f20e55eb53f192eab6cdc4f0d5aae4f52b2dc8db`（PR #26のhead）。coordinatorがGitHubで、`f20e55e`は`ec79b3b`の
+      1 commit先で、変えたのは`README_mc-remote.md`の1 fileだけと確かめた。candidateは作り直さない（coordinatorの判断）。作り直すと
+      OCIのlabelとsidecarのsource commitが変わり、凍結値と同じにならない。tagは凍結したsource `ec79b3b`に打ち、`develop`は
+      `f20e55e`までfast-forwardしてよい（tagと既定のbranchの先頭は一致しなくなる）
+  - 試験と公開の順（2026-10-18、human owner）：凍結 → 候補をmc-remote.comに置く → そこから取って試験 → 判定 → リリース
+    → 公開の後に照合。リリースを今までどおり最後にする。b10は先にpre-releaseを作ってそのassetで試したが、GitHub.comから
+    取ることでしか確かめられないものは無いと見た。同じbytesであることは公開の後にSHA-256で照合でき、OSの確認（Windowsの
+    「許可する」、macOSの「このまま開く」）はダウンロードの印とファイルの中身で決まり、取得元のサイトによらない。ブラウザの
+    ダウンロードの警告はサイトの評判が効くので、GitHub.comより評判の低いmc-remote.comで通れば厳しいほうで確かめたことになる
+    （human owner「GitHub.comより『怪しい』サイトなので、良いのかもしれない」）。試験で直すことが出れば、candidateを作り直す
+  - 候補の置き場所（Stackに頼む）:
+    - 置くもの：LANパッケージのZIP 3つ、McRemoteのJAR、Pythonのwheel。どこからもリンクしないパス（例
+      `https://mc-remote.com/candidates/2321.0.0rc1/`、名前はStackの案で決める）。リリースの後に消す
+    - 送り方：GitHubのartifactから取り出し、手元でSHA-256を凍結値と照合してから、`rsync --partial`で送る（切れても続きから
+      送れる）。VPSの上で`sha256sum -c`
+    - 配り方：Content-Typeは`application/zip`等、再圧縮しない、Rangeに応える、ディレクトリの一覧を出さない、
+      `X-Robots-Tag: noindex`
+    - coordinatorが外からHTTPSで取り、bytesとSHA-256を凍結値と照合してから、実施票で案内する
+  - 公開（試験の判定の後）:
+    - 順番：toolingを先に出す（Scratchの公開物がtoolingの生成物を集めるため）
+    - 各repo：作業branchを既定のbranchへfast-forwardで入れ（tooling `main`、Scratch `develop`、McRemote `main`、Python `main`）、
+      tag `v2321.0.0rc1`を凍結したsourceへ打つ（Scratchは上のとおり`ec79b3b`）。fast-forwardにならない（既定のbranchが動いた）
+      ときは、止めてcoordinatorへ返す
+    - 4 repoとも`prerelease=true`、`draft=false`、latestにしない。tagのCIや公開workflowが作るものが凍結値と違ったら、
+      公開せずに止める（OCIのdigestは上の扱い）
+    - Python：PyPI.orgのjobは承認待ちで止め、試験の後にhuman ownerが承認する（`2026-10-18-04`）
+    - 公開後、coordinatorがtag target、prerelease／draft、assetと`manifest.json`のidentityをGitHub APIで照合する。assetが
+      試験したもの（凍結値）と同じbytesであることを、ここで確かめる
+  - 試験：実施票`00-hub/rc1-gate-live-test-instructions_ja.md`（mc-remote.comに置いた候補で行う）
+  - 公開の後（knowledge）：API一覧の`api/23.2.1/`、ホームページの版の表示と`/lan/scratch/`のZIP、ブロック一覧の`2321.0.0rc1`。
+    Stack：rc1のpreset、公開VPSの別セットへの切り替え（`2026-10-18-02`）は、リリースの作業を終えてから
+  - feedbackの入口（2026-10-18、human owner）：knowledgeのGitHub Issuesに一つ置く（`2026-10-18-06`）。公開の前に、knowledgeへ
+    Issueのテンプレートを置き、各componentのRelease本文とホームページからそこへつなぐ
 
 ## 2026-10-07 b10横断release gate（CLOSED）
 
