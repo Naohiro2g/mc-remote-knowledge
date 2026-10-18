@@ -257,6 +257,13 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     - 経路（2026-10-18、Stackの案Aをhuman ownerが採った）：Stackの公開VPSのCaddyfileに`/candidates/*`を固定の経路として足す。
       中身はホームページとは別のhostのディレクトリを読み取り専用でmountする。稼働中のVPSへdeployment updateが1回要る（作り直すのは
       Caddyだけの見込み）。時期はhuman ownerが決める。CDNは通らない。経路は残し、中身は消せる
+    - 進捗（2026-10-18、Stack）：PR #73（`agent/rc1-candidates@c3cf1685e18c6a780c877d58a403ca32ef6162b7`）で`/candidates/*`を
+      実装した。profile `vps-server@13`、renderer `compose@15`、presetは`public-web-paper@14`のまま。pytest 547件、ruff、catalogの
+      確認がPASS（手元。PRにCIの結果は付いていない）。公式のCaddy 2.11.4で、Content-Type、noindex、圧縮しない、Range、一覧を
+      出さないことを手元で確かめた。稼働中のVPSの更新では、Minecraftを含む4つのサービスがすべて止まる（見込みのCaddyだけより
+      広い）。Stackが読んだknowledgeの`54285e1`はcoordinatorがpushの前に作り直したcommitで、GitHubに無い（正しくは`ca70a75`、
+      `set-<N>/`を足したもの）。経路は`/candidates/*`の汎用の形なので、実装への影響は無いと見る。更新の前にPR #73を`main`へ
+      mergeし、`main`から更新する。時期はhuman ownerが決める
     - 置くもの：LANパッケージのZIP 3つ、McRemoteのJAR、Pythonのwheel。`https://mc-remote.com/candidates/2321.0.0rc1/set-1/`
       （setの番号は凍結の`rc1-integrated-artifact-set-1`。作り直して試し直すときは`set-2/`）。リリースの後に中身を消す
     - 送り方：GitHubのartifactから取り出し、手元でSHA-256を凍結値と照合してから、`rsync --partial`で送る（切れても続きから
