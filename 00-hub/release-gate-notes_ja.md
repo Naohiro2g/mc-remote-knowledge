@@ -264,6 +264,17 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
       広い）。Stackが読んだknowledgeの`54285e1`はcoordinatorがpushの前に作り直したcommitで、GitHubに無い（正しくは`ca70a75`、
       `set-<N>/`を足したもの）。経路は`/candidates/*`の汎用の形なので、実装への影響は無いと見る。更新の前にPR #73を`main`へ
       mergeし、`main`から更新する。時期はhuman ownerが決める
+    - 進捗（2026-10-18、配置）：Stackが`main@204b3c6dcf7bf9c7a44938665eec0c8a2d77dc49`（PR #73、#74をmerge）のprofile
+      `vps-server@13`で公開VPSをsame-volumeで更新し、doctorは全項目OK（homepage、Scratch runtime、WireScope current）。止まったのは
+      Minecraftが約35秒、HTTPSが数秒。1回目のapplyはStackの実装の漏れで`rollback-failed`になり、#74で直して、human ownerの判断で
+      更新先のまま仕上げた。Stackはartifactの外側のdigestを確かめ、取り出した5 fileが凍結値と一致し、VPSの上の`sha256sum -c`も
+      5件OK。置き場所に`SHA256SUMS`もある
+    - 照合（2026-10-18、coordinator）：外からHTTPSで5 fileを取り、bytesとSHA-256が凍結値と全桁で一致した。`SHA256SUMS`の値も
+      凍結値と同じ。ヘッダーはContent-Typeが`application/zip`（`.whl`も）と`application/java-archive`、`x-robots-tag: noindex,
+      nofollow`、`Content-Encoding`無し（gzip等を受け入れると伝えても）、`accept-ranges: bytes`でRangeに206。`/candidates/`、
+      `/candidates/2321.0.0rc1/`、`set-1/`は404で一覧を出さない。実施票へURLを書いた
+    - 1回目のapplyの`rollback-failed`：何が漏れて#74で何を直したか、その間にworldとcredentialへの影響が無かったか、rc1の後の
+      別セットへの切り替え（`2026-10-18-02`）で同じことが起きないと言える根拠を、Stackから短い記録で受け取る
     - 置くもの：LANパッケージのZIP 3つ、McRemoteのJAR、Pythonのwheel。`https://mc-remote.com/candidates/2321.0.0rc1/set-1/`
       （setの番号は凍結の`rc1-integrated-artifact-set-1`。作り直して試し直すときは`set-2/`）。リリースの後に中身を消す
     - 送り方：GitHubのartifactから取り出し、手元でSHA-256を凍結値と照合してから、`rsync --partial`で送る（切れても続きから

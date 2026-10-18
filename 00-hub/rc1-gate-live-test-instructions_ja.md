@@ -9,16 +9,17 @@
 
 ## 使うもの
 
-mc-remote.comに置いた候補（URLは置いた後にここへ書く。リリースはこの試験の後）。coordinatorが外からダウンロードして
-SHA-256を凍結値と照合してから案内する。試験ではファイル名とサイズだけ記録する。
+mc-remote.comに置いた候補（`rc1-integrated-artifact-set-1`、リリースはこの試験の後）。置き場所は`https://mc-remote.com/candidates/2321.0.0rc1/set-1/`で、一覧は
+出ないので、下のURLを直接開く。coordinatorが外からダウンロードして、5つのbytesとSHA-256が凍結値と一致することを確かめた
+（2026-10-18）。試験ではファイル名とサイズだけ記録する。
 
 - Scratch LANパッケージ（Scratch `ec79b3b`）
-  - `mc-remote-scratch-LAN-2321.0.0rc1-windows-x64.zip` 261,848,009 bytes
-  - `mc-remote-scratch-LAN-2321.0.0rc1-macos-arm64.zip` 266,199,673 bytes
-  - `mc-remote-scratch-LAN-2321.0.0rc1-linux-x64.zip` 271,455,727 bytes
-- McRemote（`192a777`）：`mc-remote-2321.0.0rc1.jar` 315,352 bytes
-- Python（`c301053`）：wheel `minecraft_remote_api-2321.0.0rc1-py3-none-any.whl` 196,098 bytes。PyPI.orgへはまだ出ていない
-  （承認は試験の後、`2026-10-18-04`）ので、候補のwheelを入れる
+  - Windows 11 x64：<https://mc-remote.com/candidates/2321.0.0rc1/set-1/mc-remote-scratch-LAN-2321.0.0rc1-windows-x64.zip>（261,848,009 bytes）
+  - macOS（Apple Silicon）：<https://mc-remote.com/candidates/2321.0.0rc1/set-1/mc-remote-scratch-LAN-2321.0.0rc1-macos-arm64.zip>（266,199,673 bytes）
+  - Linux x64：<https://mc-remote.com/candidates/2321.0.0rc1/set-1/mc-remote-scratch-LAN-2321.0.0rc1-linux-x64.zip>（271,455,727 bytes）
+- McRemote（`192a777`）：<https://mc-remote.com/candidates/2321.0.0rc1/set-1/mc-remote-2321.0.0rc1.jar>（315,352 bytes）
+- Python（`c301053`）：<https://mc-remote.com/candidates/2321.0.0rc1/set-1/minecraft_remote_api-2321.0.0rc1-py3-none-any.whl>（196,098 bytes）。PyPI.orgへはまだ出ていない
+  （承認は試験の後、`2026-10-18-04`）ので、候補のwheelを入れる（例 `uv add "minecraft-remote-api @ <このURL>"`）
 - 比べる相手（b10の公開物）：McRemote `mc-remote-2320.0.0b10.jar`、Scratch LANパッケージ`2320.0.0b10`、Python
   `minecraft-remote-api==2320.0.0b9`（PyPI.org）
 - Paper：1.21.11 build 132（Java 21）と26.3 build 203（Java 25）。McRemoteのcandidateのpulseと同じbuild。試験全体で両方を
