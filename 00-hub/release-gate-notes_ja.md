@@ -253,9 +253,12 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     「許可する」、macOSの「このまま開く」）はダウンロードの印とファイルの中身で決まり、取得元のサイトによらない。ブラウザの
     ダウンロードの警告はサイトの評判が効くので、GitHub.comより評判の低いmc-remote.comで通れば厳しいほうで確かめたことになる
     （human owner「GitHub.comより『怪しい』サイトなので、良いのかもしれない」）。試験で直すことが出れば、candidateを作り直す
-  - 候補の置き場所（Stackに頼む）:
-    - 置くもの：LANパッケージのZIP 3つ、McRemoteのJAR、Pythonのwheel。どこからもリンクしないパス（例
-      `https://mc-remote.com/candidates/2321.0.0rc1/`、名前はStackの案で決める）。リリースの後に消す
+  - 候補の置き場所（Stackに頼む、`2026-10-18-07`）:
+    - 経路（2026-10-18、Stackの案Aをhuman ownerが採った）：Stackの公開VPSのCaddyfileに`/candidates/*`を固定の経路として足す。
+      中身はホームページとは別のhostのディレクトリを読み取り専用でmountする。稼働中のVPSへdeployment updateが1回要る（作り直すのは
+      Caddyだけの見込み）。時期はhuman ownerが決める。CDNは通らない。経路は残し、中身は消せる
+    - 置くもの：LANパッケージのZIP 3つ、McRemoteのJAR、Pythonのwheel。`https://mc-remote.com/candidates/2321.0.0rc1/set-1/`
+      （setの番号は凍結の`rc1-integrated-artifact-set-1`。作り直して試し直すときは`set-2/`）。リリースの後に中身を消す
     - 送り方：GitHubのartifactから取り出し、手元でSHA-256を凍結値と照合してから、`rsync --partial`で送る（切れても続きから
       送れる）。VPSの上で`sha256sum -c`
     - 配り方：Content-Typeは`application/zip`等、再圧縮しない、Rangeに応える、ディレクトリの一覧を出さない、
