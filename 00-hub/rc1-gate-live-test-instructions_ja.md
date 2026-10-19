@@ -8,7 +8,7 @@
 - 結果に分類を設けず、判断は結果から行う（b10と同じ）
 - 進め方：OSごとに、Windows → Ubuntu → Macの順に、番号の順で進める（2026-10-19にOS別へ書き直した）。Macは
   Ubuntuのサーバーへつなぐので、Ubuntuの後にする
-- 進み具合：Windowsは済み、Ubuntuは手順7まで、Macは手順5まで（2026-10-19）。結果は`00-hub/release-gate-notes_ja.md` rc1の「試験」
+- 進み具合：3 OSとも済み（2026-10-19）。結果は`00-hub/release-gate-notes_ja.md` rc1の「試験」
 
 ## 使うもの
 
