@@ -349,7 +349,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
         （後半はb10の見つかったことの8、9と同じ向き。rcからstableにかけて、または初回stableの後の改善として扱う）
       - 手順8：human owner：普通の感覚で、古い版を削除する人は少ないと見る。旧版を残して新版を隣に入れることは図解されているので、
         理解されそう
-    - Ubuntu（2026-10-19、手順4まで）：Ubuntu 24.04（kernel 7.0.0-38）、Chrome 155.0.8059.84、Java 21.0.2+13-58（Oracle OpenJDK）、
+    - Ubuntu（2026-10-19、手順5まで）：Ubuntu 24.04（kernel 7.0.0-38）、Chrome 155.0.8059.84、Java 21.0.2+13-58（Oracle OpenJDK）、
       Paper 1.21.11 build 132
       - Pythonの試験用フォルダーを2つ作り、rc1は候補のwheelをURLで入れた（`[tool.uv.sources]`に候補のURL）。実施票の`uv init`
         は、uv 0.12.19では`src/<名前>/`のpackageの形を作り、階層が深くなった（human owner「階層が深いな」）。実施票を
@@ -370,9 +370,16 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
       - 手順4（Python b9 ↔ McRemote rc1）：チャットに「Hello from Python b9」、シーランタンが置かれた。ペアリングは
         要らなかった。手順2（Python rc1、McRemote b10）のペアリングが、McRemoteをrc1に替えた後も、b9のclientからも使えたと
         読める（tokenをどこに保存しているかは確かめていない）
-      - 手順5（Python rc1、`wirescope=True`）：端末に「WireScope attach code: 」とコードが出たが、開くURLもリンクも出ず、
-        ブラウザも開かなかった（human owner「Pythonでコードは発行されるが、リンクがない」）。`hello.py`は建てるとすぐ終わるので、
-        WireScopeを開く間もなくprocessが終わる。`CatalogProjectionWarning`は手順2と同じ。attach codeは記録しない
+      - 手順5（Python rc1、`wirescope=True`）：端末に「WireScope attach code: 」とコードが出て、URLもリンクも出なかった
+        （human owner「Pythonでコードは発行されるが、リンクがない」）。ブラウザは裏で`http://127.0.0.1:<空いているport>/`を開いて
+        いたが、真っ白だった。`hello.py`は建てるとすぐ終わり、WireScopeも一緒に止まるため。最後に`input()`を足して終わらない
+        ようにすると、ページは「stationの準備ができました。Python端末に表示された接続codeを入力してください。」、codeを入れて
+        接続できた。ハンドシェイクは「1.21.11 · 23.2.1」、`supported_mc_versions ["1.21.11","26.3"]`、catalog hashはサーバーと
+        同じ。通信フレームはhelloの送受信の2件だけで、送信のhelloは`{"protocol":"23.2.1"}`だけ（Scratchはclientの名前と版も
+        送る）。チャットとsetBlockは接続の前に終わっていて、出なかった。`CatalogProjectionWarning`は手順2と同じ。attach code、
+        WireScopeの表示IDは記録しない
+      - 読み取り（coordinator）：短いscriptでは、WireScopeが開く前にprocessが終わり、白いページが残るだけになる。ブラウザが
+        裏で開くので、気づきにくい。端末にURLが出ない
   - 公開の後（knowledge）：API一覧の`api/23.2.1/`、ホームページの版の表示と`/lan/scratch/`のZIP、ブロック一覧の`2321.0.0rc1`。
     Stack：rc1のpreset、公開VPSの別セットへの切り替え（`2026-10-18-02`）は、リリースの作業を終えてから
   - feedbackの入口（2026-10-18、human owner）：knowledgeのGitHub Issuesに一つ置く（`2026-10-18-06`）。公開の前に、knowledgeへ
