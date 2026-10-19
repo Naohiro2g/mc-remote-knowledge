@@ -316,7 +316,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     - 2026-10-19：human owner「進め方が自由すぎてやりにくい」。実施票をOS別（Windows → Ubuntu → Mac）に、番号の順で
       進める形へ書き直した。Linux ZIPもUbuntuで一度起動する。MacのBは1台構成の代わりにMac → Ubuntuにし、1.21.11での
       26.3の名前はUbuntuで見る
-    - Windows（2026-10-18〜19、手順6まで）：Windows 11 Pro 26H2（26300.9711）、Core i3-8145U、メモリ16 GB、
+    - Windows（2026-10-18〜19、手順1〜8済み）：Windows 11 Pro 26H2（26300.9711）、Core i3-8145U、メモリ16 GB、
       Chrome 155.0.8059.85、Java 25.0.2+10-69（Oracle OpenJDK）、Paper 26.3 build 203
       - ZIP `mc-remote-scratch-LAN-2321.0.0rc1-windows-x64.zip`をmc-remote.comからChromeで取得、261,848,009 bytes（凍結値と一致）。
         プロパティで「許可する」にチェック。Chromeのダウンロードの警告は出なかった
@@ -347,7 +347,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
         続けて`world.setBlocks`で`gold_block`を3段ずつ（x、zは-50〜50）積み、どれも`result:null`で、マイクラに金の塔が建った
       - human owner：「ぼんやりと操作して間違えても、脱出は容易な感じ。良い。接続の接続先／状態表示が詳細になればもっと良い。」
         （後半はb10の見つかったことの8、9と同じ向き。rcからstableにかけて、または初回stableの後の改善として扱う）
-      - 残り：手順8
+      - 手順8：human owner：普通の感覚で、古い版を削除する人は少ないと見る。旧版を残して新版を隣に入れることは図解されているので、
+        理解されそう
   - 公開の後（knowledge）：API一覧の`api/23.2.1/`、ホームページの版の表示と`/lan/scratch/`のZIP、ブロック一覧の`2321.0.0rc1`。
     Stack：rc1のpreset、公開VPSの別セットへの切り替え（`2026-10-18-02`）は、リリースの作業を終えてから
   - feedbackの入口（2026-10-18、human owner）：knowledgeのGitHub Issuesに一つ置く（`2026-10-18-06`）。公開の前に、knowledgeへ
