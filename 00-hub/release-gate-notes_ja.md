@@ -509,6 +509,22 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
       全件一致すると確かめ、①の元と③を整理した（McRemote `handoff-materials/2026-10-19-rc1-close/materials/landing-cleanup-confirmation_ja.md`、
       Pythonはrc1の未収容のhandoffなし、Scratch `handoff-materials/2026-10-19-rc1-close-inventory/materials/CLEANUP_RESULT.json`）。②は
       各担当の用途と捨ててよくなる条件のとおりに持つ
+    - Stackのb9／b10のclose返却（2026-10-19、knowledge `d26e1bc`、backstage `e3838bc`／`ad8dfbf`を読んだ）：Stack
+      `handoff-materials/2026-10-19-stack-b9-b10-close-return/materials/RETURN_ja.md`（9,380 bytes、
+      `eadde43a78a0554f5bb97de695f19753e3d5a1f3c1f9bf0db146b53f5742804d`、coordinatorが手元で同じ値を確かめた）。全34件（2026-07-24〜10-08）を
+      分類した。①は無い（b8のcloseの①7 fileは`14-evidence/artifacts/2026-10-05-b8-public-vps-runthrough/`と一致）。②はホームアルファの
+      9件（PR #62／#63をcloseし、再整備のときに拾う。`home-offline-permission`に、knowledgeへ着地していない確定搬送票「ケータリング
+      方式ではLuckPermsを必ず入れる」がある）と、`2026-10-03-dev-bedrock`の`materials/knowledge-handoff_ja.md`（標準pluginの用途を説明する
+      ページの素材の確定搬送票。knowledgeに未着地）。③は24件で、coordinatorの受領の後に消す。確認4件：①JSTのlogのtimestampは未実装で、
+      VPSのhostは`Asia/Tokyo`、4 containerはUTC。rc1の別セットで`TZ`を入れる案（ServerBackupの予定時刻がUTCで書かれていれば9時間
+      ずれるので、先に確かめる）②予約port（25566、25576）はrc1では使わない案（切り替えは旧セットを止めて同じportで起動する）
+      ③公式backstageをStackの立ち上げの仕組みへ移すのは、rc1の後（初回stableの前後）にする案④`.mcrctl`の更新snapshotは消す仕組みが
+      無く溜まるが、今のprojectは484 KBで、8回のplanで合計5.8 MB（2026-10-19、VPSで計測）。旧セットの約3.1 GB／回はprojectの中の
+      大きなfileのためと見られる。新しいセットの`.mcrctl`は空から始まり、切り替えの前の手当ては要らない（大きなfileをprojectに置かない）
+    - Pythonの`local-archive`の分類（2026-10-19、knowledge `d26e1bc`を読んだ）：Python
+      `handoff-materials/2026-10-19-pre-b7-archive-classification/materials/classification_ja.md`。8 file、77,366 bytes。①なし。②は`examples/`の
+      2 file（Git履歴に無い利用者のコードと設定の原本。Python担当が持つ。値の本文は公開しない）。③は6 file（b1の作業途中のメモ2件と
+      Obsidianの設定4件）。archiveは変えていない
 - **rc1横断release gateを閉じた（2026-10-19、human owner）**。凍結した`rc1-integrated-artifact-set-1`を4 repoのprereleaseとPyPI.orgへ
   出し、どのassetも試験したものと同じbytes。close分類を収容した（`14-evidence/records/2026-10-19-rc1-gate-close_ja.md`）。次は
   LANパッケージの教材の収録、公開VPS（箱庭）のrc1への切り替え（`2026-10-18-02`）、初回stable
