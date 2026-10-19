@@ -440,6 +440,25 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
       （開始の直後と最後に`input()`で待つ例）とfeedbackのフォームへのリンク。main CI `39216669184`、Release workflow `39216950884`は
       PyPI.orgのjobがhuman ownerの承認待ち（TestPyPIは成功、担当報告）。素材は
       `minecraft-remote-api/handoff-materials/2026-10-19-rc1-python-release/`
+    - PyPI.org（2026-10-19）：human ownerが承認し、Release workflow `39216950884`は成功。coordinatorがPyPIのJSON APIで
+      [2321.0.0rc1](https://pypi.org/project/minecraft-remote-api/2321.0.0rc1/)のwheel 196,098 bytes／`5f12dfcf…44ca`とsdist 190,285 bytes／
+      `dc8d9f30…5611`がReleaseと同じで、yankなしと確かめた。版を指定しないで入るのは`1214.10.13`のまま
+    - toolingの公開（2026-10-19、coordinatorがGitHub APIとGHCRで照合）：[v2321.0.0rc1](https://github.com/Naohiro2g/minecraft-remote-tooling/releases/tag/v2321.0.0rc1)、
+      title「mc-remote tooling 2321.0.0rc1」、prerelease=true、draft=false、Latestなし。annotated tagのtarget
+      `6447f6e8cbfbeeb9d229990b5c4f6e82a5875666`で、`main`の先頭と同じ。asset：`wirescope-app.zip` 83,854 bytes／`da3da0b6…31ad`、
+      `wirescope-app.manifest.json` 2,339 bytes／`3dd668a2…5235`、`bridge.oci.tar` 114,626,048 bytes／`39828764…c44c`（GitHubが計算した
+      assetのdigestが凍結値と全桁で同じ）。GHCRの`mc-remote-bridge:v2321.0.0rc1`は`sha256:305d6e38…406acf`（凍結値と同じ）
+    - Scratchの公開（2026-10-19、coordinatorがGitHub APIとGHCRで照合）：[v2321.0.0rc1](https://github.com/Naohiro2g/scratch-editor/releases/tag/v2321.0.0rc1)、
+      title「mc-remote Scratch 2321.0.0rc1」、prerelease=true、draft=false、Latestなし。annotated tagのtarget
+      `ec79b3b0e364e722d6926a0932eb4bf088ddd3a1`、`develop`の先頭は`f20e55eb53f192eab6cdc4f0d5aae4f52b2dc8db`（依頼どおり）。3 OSのZIP、
+      `scratch-gui.tar.gz`、`contracts.tar.gz`、WireScopeのZIPとmanifestは、GitHubが計算したassetのdigestとbytesが凍結値と全桁で同じ。
+      `manifest.json`（schema v2）2,320 bytes／`776e0d51a8d8db14cb5ace23f2a41f9d6a56e7eacb0a51e88463bd6bf076c68c`は`source_commit`
+      `ec79b3b`、全fileのbytesとdigest、Scratch OCI `sha256:75e76edb…b840`、Bridge OCI `sha256:305d6e38…406acf`を持つ。GHCRの
+      `mc-remote-scratch:v2321.0.0rc1`は`sha256:75e76edb6b8a1de4fb896184b5c26bed7cb1791296f82903e6b1ec4a1a5ab840`で、**凍結したOCIと
+      同じdigest**（b9、b10では違った）。担当報告：作り直さず、凍結したartifactをCLIで昇格した（新しいActionsの公開runは無い）。
+      OCIのversionラベルは`v2321.0.0rc1`に揃えた。mtimeの正規化は未実装で、凍結したOCIをそのまま転送したので公開物のmtimeも同じ。
+      素材は`scratch-editor/handoff-materials/2026-10-19-rc1-release-scratch-tooling/`
+    - 4 repoとPyPI.orgの公開がそろい、どのassetも試験したもの（凍結値）と同じbytes（2026-10-19）
   - 公開の後（knowledge）：API一覧の`api/23.2.1/`、ホームページの版の表示と`/lan/scratch/`のZIP、ブロック一覧の`2321.0.0rc1`。
     Stack：rc1のpreset、公開VPSの別セットへの切り替え（`2026-10-18-02`）は、リリースの作業を終えてから
   - feedbackの入口（2026-10-18、human owner）：knowledgeのGitHub Issuesに一つ置く（`2026-10-18-06`）。公開の前に、knowledgeへ
