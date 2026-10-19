@@ -48,7 +48,9 @@
   - Scratch OCI：凍結は325,822,464 bytes／`88d81fba1aca0194c85f638cf19c66a1a2087748f32ff501bdb1dd283ea1d0c5`、index
     `sha256:75e76edb6b8a1de4fb896184b5c26bed7cb1791296f82903e6b1ec4a1a5ab840`。公開するOCIのdigestが違ったら、公開する前に凍結したOCIと
     比べ、amd64とarm64の中身と属性が同じで、違いが許した生成metadata（versionラベル、作成時刻とそれに伴う履歴、mtime）だけであることを
-    確かめて記録する。それ以外が違えば止めて返す（b9と同じ）
+    確かめて記録する。それ以外が違えば止めて返す（b9と同じ）。digestが違う原因は自分たちのworkflowの差（candidateと公開で
+    versionラベルの文字列、作成時刻、GUIのCOPY layerのmtime）で、rc1の着手依頼の5で揃えることを目標にした（揃わなくても止めない、
+    human owner 2026-10-18）。揃えたかどうかと、公開したOCIのdigestが凍結値と一致したかを返す
 - Release本文：上の共通の項目に加え、`はじめに.html`の案内（ZIPを`HOME/mc-remote/`へ置き、前の版の隣に置けること）
 
 ## McRemote
