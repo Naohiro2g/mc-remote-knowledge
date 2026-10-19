@@ -340,7 +340,12 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
         Scratchのタブを閉じてください。」と出る。版の違いのエラーではない
       - 読み取り（coordinator）：`settings.json`は版のフォルダーごとなので、b10をLAN構成で使っていた人は、rc1の初回で接続先を
         入れ直すことになる。1台構成なら既定の「このPC」のままでよい
-      - 残り：手順7（接続先を「このPC」にしてから、Scratch b10 ↔ McRemote rc1）、手順8
+      - 手順7の続き：Scratchのタブを閉じ、b10の接続先を「このPC」にして接続した。WireScopeのhelloは送信`protocol 23.2.0`、
+        client `scratch-mcremote 2320.0.0b10`で、まず`token_expired`（前のペアリングから時間がたっていた）。ペアリングの後の
+        helloは受信`protocol 23.2.1`、`mc_version 26.3`、`supported_mc_versions ["1.21.11","26.3"]`、catalog hashは上と同じ。
+        ハンドシェイクの表示は「26.3 · 23.2.1」。`chat.post`「hello from b10 to rc1」は`result:null`で、マイクラのチャットに出た。
+        setBlockは画面からは確かめられない（確認待ち）
+      - 残り：手順8
   - 公開の後（knowledge）：API一覧の`api/23.2.1/`、ホームページの版の表示と`/lan/scratch/`のZIP、ブロック一覧の`2321.0.0rc1`。
     Stack：rc1のpreset、公開VPSの別セットへの切り替え（`2026-10-18-02`）は、リリースの作業を終えてから
   - feedbackの入口（2026-10-18、human owner）：knowledgeのGitHub Issuesに一つ置く（`2026-10-18-06`）。公開の前に、knowledgeへ
