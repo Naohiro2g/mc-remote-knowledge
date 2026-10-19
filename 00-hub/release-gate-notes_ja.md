@@ -349,7 +349,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
         （後半はb10の見つかったことの8、9と同じ向き。rcからstableにかけて、または初回stableの後の改善として扱う）
       - 手順8：human owner：普通の感覚で、古い版を削除する人は少ないと見る。旧版を残して新版を隣に入れることは図解されているので、
         理解されそう
-    - Ubuntu（2026-10-19、手順5まで）：Ubuntu 24.04（kernel 7.0.0-38）、Chrome 155.0.8059.84、Java 21.0.2+13-58（Oracle OpenJDK）、
+    - Ubuntu（2026-10-19、手順1〜7済み）：Ubuntu 24.04（kernel 7.0.0-38）、Chrome 155.0.8059.84、Java 21.0.2+13-58（Oracle OpenJDK）、
       Paper 1.21.11 build 132
       - Pythonの試験用フォルダーを2つ作り、rc1は候補のwheelをURLで入れた（`[tool.uv.sources]`に候補のURL）。実施票の`uv init`
         は、uv 0.12.19では`src/<名前>/`のpackageの形を作り、階層が深くなった（human owner「階層が深いな」）。実施票を
@@ -380,6 +380,18 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
         WireScopeの表示IDは記録しない
       - 読み取り（coordinator）：短いscriptでは、WireScopeが開く前にprocessが終わり、白いページが残るだけになる。ブラウザが
         裏で開くので、気づきにくい。端末にURLが出ない
+        human owner：「うまく行ったり、真っ白だったりすると思うので、嫌な動作だね。」
+      - 手順6（Linux ZIP、Scratch rc1 ↔ McRemote rc1）：`2321.0.0rc1/`を`2320.0.0b10/`の隣に置き、`start-mc-remote.sh`を
+        右クリック →「プログラムとして実行」で起動。同梱のfileの更新日は1980/01/01のまま（b10の見つかったことの4と同じ。
+        human owner「更新日日付はそのままだな」）。設定画面は既定の「このPC」（`127.0.0.1`、25575）で、「改造版のScratchを
+        開く」は保存するまで押せず、「接続先を保存してから、改造版のScratchを開いてください。」と出る。ペアリングして接続し、
+        チャット、`world.setBlocks`（整地、軸）、`world.setBlock`、`player.getPos`／`setPos`／`setDirection`がどれも返った。
+        独立のWireScopeは`http://127.0.0.1:8603`で通信が見えた
+      - human owner：mc-remoteのブロックへパレットの中で頭出しすると、位置が微妙に下にずれる。ブラウザの表示を拡大縮小すると
+        正常に戻る（Linux、Chrome 155）
+      - 手順7（1.21.11での26.3の名前）：カタログピッカーは「取得済み — 1.21.11 · CACHE · 6d0f8524」。「ポプラ」は0件で
+        「検索に一致するブロックがありません。」。「原木」は18件でポプラは無い。「金」16件、「door iron」2件（語を並べた検索も効く）。
+        26.3にしか無いブロックは、1.21.11のサーバーではピッカーに出ない
   - 公開の後（knowledge）：API一覧の`api/23.2.1/`、ホームページの版の表示と`/lan/scratch/`のZIP、ブロック一覧の`2321.0.0rc1`。
     Stack：rc1のpreset、公開VPSの別セットへの切り替え（`2026-10-18-02`）は、リリースの作業を終えてから
   - feedbackの入口（2026-10-18、human owner）：knowledgeのGitHub Issuesに一つ置く（`2026-10-18-06`）。公開の前に、knowledgeへ
