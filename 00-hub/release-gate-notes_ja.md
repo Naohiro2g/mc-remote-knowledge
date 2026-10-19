@@ -71,7 +71,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - non-claim: PyPI.orgへの公開はしない。mature判定はしない。Windowsでは検証していない
 - coordinator判定／human release owner承認: human ownerがpost2のsetへの組み入れを判定（2026-09-26、`2026-09-27-01`）。coordinatorはchange coneが閉じていることを確認し、単独更新gateを通過とする（2026-09-28）。**CLOSED**
 
-## 2026-10-17 rc1横断release gate（OPEN）
+## 2026-10-17 rc1横断release gate（CLOSED）
 
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
@@ -484,7 +484,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
       読み取り専用のmountは残り、18:22 JSTにnoticeの更新でcontainerを作り直した後も同じ。coordinatorが外から、5 fileと`SHA256SUMS`の
       URLが404になることを確かめた。`handoff-materials`にrc1の期間のdirectoryは無い（最新は2026-10-08）。rc1の成果はStackの公開物
       （`/candidates/*`の経路、PR #73〜#75）、knowledgeへ返した`rollback-failed`の記録、backstage #25、#28にある
-    - gateを閉じるときのparkの確認（`2026-09-30-09`、2026-10-19、coordinatorの案。human ownerの判断待ち）：
+    - gateを閉じるときのparkの確認（`2026-09-30-09`、2026-10-19、human owner同意。NOTESの各parkへ反映した）：
       | park | 案 |
       | --- | --- |
       | テックブログの1本目、下書きのfile名、feedbackの場所（2026-10-17） | ③はIssueのテンプレートを公開して済んだ（`2026-10-18-06`）。①②はhuman ownerの持ち越しのまま |
@@ -497,6 +497,17 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
       | API一覧（2026-09-30） | `api/23.2.1/`を出した。クライアントAPI一覧へのつなぎ方は初回stableの後のまま |
       | public README／sample codeの人間向け再編（2026-08-28） | rc1ではPass Cを行わない（`2026-10-19-01`）。閉じる条件（初回stableでPass C）は、初回stableの前に見直す |
       | WindowsでのPython導入の2ルート（2026-09-28） | rc中に確認、のまま。human ownerの結果待ち |
+    - Backstageの返却への対応（2026-10-19、human owner）：管理端末の`~/.local/share/mc-remote/gates/`の9件（b6／b7のcandidate setと
+      artifactの入力。knowledgeのb6／b7の指示票で置かせたもので、持ち主はgate coordinator）は、照合して捨てる。coordinatorが
+      `python-venv/`と`runtime/`（入れた環境と展開した中身。元のfileから作り直せる）を除く49 fileのSHA-256を取り、48件の値が
+      knowledgeに全桁であった。残る1件（`b7-python-owner-artifact-set-1/artifact-manifest.json` 1,261 bytes／`4396a73ce3a1…`）も、
+      中のwheel、sdist、同梱WireScopeのdigestはすべてknowledgeにある。2.5 GBを消した。`local-archive/minecraft-remote-api-pre-b7-close-20260903/`
+      はPython担当へ分類を頼む。返却票のpark確認の候補6件のうち、公開VPSのrollbackの実試験（`2026-10-18-02`でrc1に求めない）と
+      手元の配信の終了（止まっていて、human ownerが不要とした）の2件は閉じる案、残り4件はStackへの確認
+      （`00-hub/stack-b9-b10-close-instructions_ja.md`）
+- **rc1横断release gateを閉じた（2026-10-19、human owner）**。凍結した`rc1-integrated-artifact-set-1`を4 repoのprereleaseとPyPI.orgへ
+  出し、どのassetも試験したものと同じbytes。close分類を収容した（`14-evidence/records/2026-10-19-rc1-gate-close_ja.md`）。次は
+  LANパッケージの教材の収録、公開VPS（箱庭）のrc1への切り替え（`2026-10-18-02`）、初回stable
   - 公開の後（knowledge）：API一覧の`api/23.2.1/`、ホームページの版の表示と`/lan/scratch/`のZIP、ブロック一覧の`2321.0.0rc1`。
     Stack：rc1のpreset、公開VPSの別セットへの切り替え（`2026-10-18-02`）は、リリースの作業を終えてから
   - feedbackの入口（2026-10-18、human owner）：knowledgeのGitHub Issuesに一つ置く（`2026-10-18-06`）。公開の前に、knowledgeへ
