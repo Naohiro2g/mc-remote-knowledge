@@ -272,6 +272,41 @@ nav a:hover {
   text-decoration: none;
 }
 
+.notebook-panel {
+  background: #fce7f3;
+  border: 1px solid #f9a8d4;
+  border-radius: 12px;
+  padding: 20px 24px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.notebook-panel h2 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  color: var(--text-main);
+}
+
+.notebook-panel p {
+  margin-bottom: 14px;
+}
+
+.notebook-panel .notebook-note {
+  margin: 14px 0 0;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.btn-notebook {
+  background-color: #be185d;
+  color: #ffffff;
+}
+
+.btn-notebook:hover {
+  background-color: #9d174d;
+  color: #ffffff;
+  text-decoration: none;
+}
+
 .server-guide-box {
   background: #f1f5f9;
   border: 1px solid #cbd5e1;
