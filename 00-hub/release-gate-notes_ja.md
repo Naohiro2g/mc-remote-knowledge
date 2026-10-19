@@ -471,6 +471,13 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
       tag `ec79b3b`（site tree `5405380937b577491c85c710cb828a17303ec606`）の`site/2321.0.0rc1/`を`api/scratch/2321.0.0rc1/`へ取り込み、
       入口の`api/scratch/`をそのページと同じbytesにした（Scratchのsiteは、入口を今の版のページと同じbytesで作る。tagのsiteの入口は
       b10のままだった）
+    - ホームページの公開（2026-10-19）：human ownerが同期し、coordinatorがトップ、`/lan/scratch/`、`/api/`、`/api/23.2.1/`、
+      `/api/23.2.0/`、`/api/scratch/`、`/api/scratch/2321.0.0rc1/`など13 fileを外から取って、repo（`61afff7`）と同じbytesと確かめた
+    - close分類（2026-10-19）：McRemote、Python、Scratchがknowledge `04c56b8`を読んで返した（McRemote
+      `handoff-materials/2026-10-19-rc1-close/`、Python `handoff-materials/2026-10-19-rc1-python-release/`のclose分類の節、Scratch
+      `handoff-materials/2026-10-19-rc1-close-inventory/`）。①はMcRemote 9 file、Python 10 file、Scratch 15 fileで、coordinatorが
+      bytesとSHA-256で照合して`14-evidence/artifacts/2026-10-19-rc1-gate-close/`へ収容した（`14-evidence/records/2026-10-19-rc1-gate-close_ja.md`）。
+      Stackの返却（候補の中身の削除と分類）は待ち
   - 公開の後（knowledge）：API一覧の`api/23.2.1/`、ホームページの版の表示と`/lan/scratch/`のZIP、ブロック一覧の`2321.0.0rc1`。
     Stack：rc1のpreset、公開VPSの別セットへの切り替え（`2026-10-18-02`）は、リリースの作業を終えてから
   - feedbackの入口（2026-10-18、human owner）：knowledgeのGitHub Issuesに一つ置く（`2026-10-18-06`）。公開の前に、knowledgeへ

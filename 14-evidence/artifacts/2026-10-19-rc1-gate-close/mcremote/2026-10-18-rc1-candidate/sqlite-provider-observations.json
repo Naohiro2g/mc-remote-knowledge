@@ -1,0 +1,18 @@
+{
+  "1.21.11": {
+    "full": [
+      "SQLite provider: class=org.sqlite.JDBC source=sqlite-jdbc-3.49.1.0.jar jdbc=3.49.1.0 engine=3.49.1"
+    ],
+    "restart": [
+      "SQLite provider: class=org.sqlite.JDBC source=sqlite-jdbc-3.49.1.0.jar jdbc=3.49.1.0 engine=3.49.1"
+    ]
+  },
+  "26.3": {
+    "full": [
+      "SQLite provider: class=org.sqlite.JDBC source=sqlite-jdbc-3.49.1.0.jar jdbc=3.49.1.0 engine=3.49.1"
+    ],
+    "restart": [
+      "SQLite provider: class=org.sqlite.JDBC source=sqlite-jdbc-3.49.1.0.jar jdbc=3.49.1.0 engine=3.49.1"
+    ]
+  }
+}

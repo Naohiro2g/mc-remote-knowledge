@@ -1,0 +1,48 @@
+{
+  "current_time": "2026-10-19 07:38:32 UTC",
+  "run": {
+    "conclusion": null,
+    "head_sha": "c30105349ef26413e925699143396ea05bd3e380",
+    "html_url": "https://github.com/Naohiro2g/minecraft-remote-api/actions/runs/39216950884",
+    "id": 39216950884,
+    "status": "waiting"
+  },
+  "jobs": [
+    {
+      "conclusion": "success",
+      "id": 117942920731,
+      "name": "promote",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "id": 117942989904,
+      "name": "prepare-publication",
+      "status": "completed"
+    },
+    {
+      "conclusion": null,
+      "id": 117943036806,
+      "name": "publish-pypi",
+      "status": "waiting"
+    },
+    {
+      "conclusion": "success",
+      "id": 117943036951,
+      "name": "publish-testpypi",
+      "status": "completed"
+    }
+  ],
+  "pending": [
+    {
+      "environment": "pypi",
+      "reviewers": [
+        "Naohiro2g"
+      ]
+    }
+  ],
+  "latest": {
+    "id": 213257356,
+    "tag_name": "v1214.10.11"
+  }
+}

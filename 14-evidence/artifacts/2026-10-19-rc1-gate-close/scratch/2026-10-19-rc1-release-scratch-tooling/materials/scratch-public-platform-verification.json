@@ -1,0 +1,18 @@
+[
+  {
+    "architecture": "amd64",
+    "manifest_digest": "sha256:1d693113e4563184154f6a992e8bfc623f4807280bb6fe52d3370fd83bffd47c",
+    "config_digest": "sha256:eb69857b01fd61cc0d57178889450cc63cac22c7a0a811ed1bbe66f2e21b0259",
+    "config_byte_equal": true,
+    "layers_equal": true,
+    "version": "v2321.0.0rc1"
+  },
+  {
+    "architecture": "arm64",
+    "manifest_digest": "sha256:c24e61d35509d14ed7ec348183c9d5ee0c7bada0e8018b684ba0c8131442b0e0",
+    "config_digest": "sha256:f1f3ff26536afbf5cf51443029308a170256ecd4d656065b08b2bb78f6a29d32",
+    "config_byte_equal": true,
+    "layers_equal": true,
+    "version": "v2321.0.0rc1"
+  }
+]

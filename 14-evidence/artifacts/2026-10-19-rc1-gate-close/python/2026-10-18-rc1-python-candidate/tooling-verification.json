@@ -1,0 +1,24 @@
+{
+  "source_repository": "Naohiro2g/minecraft-remote-tooling",
+  "source_commit": "6447f6e8cbfbeeb9d229990b5c4f6e82a5875666",
+  "actions_run": 39053886890,
+  "actions_artifact_id": 12109060950,
+  "actions_artifact_bytes": 114136814,
+  "actions_artifact_sha256": "5b644de44ae2f9a2fb9de09d221c2930218f6c317baffee3b5c7f817309555fa",
+  "run_conclusion": "success",
+  "files": [
+    {
+      "file": "wirescope-app.zip",
+      "bytes": 83854,
+      "sha256": "da3da0b6cf4d05265bc0c11abaa4913208c7cfc3600b0c3e78c93a356fc431ad"
+    },
+    {
+      "file": "wirescope-app.manifest.json",
+      "bytes": 2339,
+      "sha256": "3dd668a236463809a4cdc6d19375f3e6d75eea0c8089a616d2b761d3a4a05235"
+    }
+  ],
+  "archive_matches_previous_bundled_bytes": true,
+  "license_notice_match_python_license_files": true,
+  "owner_candidate_manifest_matches_files": true
+}

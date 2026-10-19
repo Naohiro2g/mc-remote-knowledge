@@ -1,0 +1,39 @@
+{
+  "knowledge_contract_path": "00-hub/rc1-gate-release-instructions_ja.md",
+  "knowledge_contract_commit": "32fd7d4892a410ef9d38f90320a511f383aaa9f9",
+  "source_commit": "c30105349ef26413e925699143396ea05bd3e380",
+  "main_commit": "c30105349ef26413e925699143396ea05bd3e380",
+  "tag_target": "c30105349ef26413e925699143396ea05bd3e380",
+  "release_url": "https://github.com/Naohiro2g/minecraft-remote-api/releases/tag/v2321.0.0rc1",
+  "release_id": 417019546,
+  "main_ci_run": 39216669184,
+  "release_run": 39216950884,
+  "prerelease": true,
+  "draft": false,
+  "latest": false,
+  "assets": [
+    {
+      "file": "minecraft_remote_api-2321.0.0rc1-py3-none-any.whl",
+      "bytes": 196098,
+      "sha256": "5f12dfcf4953bfaf5dcbe649d4a1ca2d3f5f4b5307b9896e79284478216944ca",
+      "asset_id": 655573525
+    },
+    {
+      "file": "minecraft_remote_api-2321.0.0rc1.tar.gz",
+      "bytes": 190285,
+      "sha256": "dc8d9f30f538c14cfa04260c92f32e8f451748b99a8e596aeb3e59b1968e5611",
+      "asset_id": 655573521
+    },
+    {
+      "file": "manifest.json",
+      "bytes": 684,
+      "sha256": "c0f5ed68be519e0b40cfa6c890ff6a0aeed791422ca3db75f837ead36a6b8af5",
+      "asset_id": 655573533
+    }
+  ],
+  "wheel_sdist_match_frozen_values": true,
+  "manifest_changes_from_candidate": [
+    "release_tag"
+  ],
+  "bundled_wirescope_source_commit": "6447f6e8cbfbeeb9d229990b5c4f6e82a5875666"
+}

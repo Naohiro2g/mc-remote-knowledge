@@ -1,0 +1,51 @@
+{
+  "source_commit": "c30105349ef26413e925699143396ea05bd3e380",
+  "actions_run": 39067369316,
+  "actions_artifact_id": 12113309553,
+  "actions_artifact_bytes": 383227,
+  "actions_artifact_sha256": "df3baf887314934fae1285bb722c90c21e5543191522da9703a3a2a3b948b4c3",
+  "artifacts": [
+    {
+      "role": "wheel",
+      "file": "minecraft_remote_api-2321.0.0rc1-py3-none-any.whl",
+      "bytes": 196098,
+      "sha256": "5f12dfcf4953bfaf5dcbe649d4a1ca2d3f5f4b5307b9896e79284478216944ca",
+      "bundled_wirescope_source_commit": "6447f6e8cbfbeeb9d229990b5c4f6e82a5875666",
+      "embedded_pair_verified": true
+    },
+    {
+      "role": "sdist",
+      "file": "minecraft_remote_api-2321.0.0rc1.tar.gz",
+      "bytes": 190285,
+      "sha256": "dc8d9f30f538c14cfa04260c92f32e8f451748b99a8e596aeb3e59b1968e5611",
+      "bundled_wirescope_source_commit": "6447f6e8cbfbeeb9d229990b5c4f6e82a5875666",
+      "embedded_pair_verified": true
+    }
+  ],
+  "tests": {
+    "test (3.12)": {
+      "passed": 784,
+      "conclusion": "success"
+    },
+    "test (3.10)": {
+      "passed": 784,
+      "conclusion": "success"
+    },
+    "test (3.13)": {
+      "passed": 784,
+      "conclusion": "success"
+    },
+    "test (3.11)": {
+      "passed": 784,
+      "conclusion": "success"
+    }
+  },
+  "installed_wheel_smoke": {
+    "python": "3.11",
+    "version": "2321.0.0rc1",
+    "protocol": "23.2.1",
+    "import_minecraft": "PASS",
+    "record_backed_wirescope_app": "PASS",
+    "server_connection": "not performed"
+  }
+}

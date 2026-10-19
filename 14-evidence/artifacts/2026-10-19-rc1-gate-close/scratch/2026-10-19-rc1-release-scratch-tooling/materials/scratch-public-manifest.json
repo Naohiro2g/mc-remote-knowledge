@@ -1,0 +1,75 @@
+{
+  "schema": "mc-remote.release-manifest",
+  "schema_version": 2,
+  "release_tag": "v2321.0.0rc1",
+  "source_commit": "ec79b3b0e364e722d6926a0932eb4bf088ddd3a1",
+  "artifacts": [
+    {
+      "role": "scratch",
+      "kind": "oci",
+      "locator": "ghcr.io/naohiro2g/mc-remote-scratch",
+      "digest": "sha256:75e76edb6b8a1de4fb896184b5c26bed7cb1791296f82903e6b1ec4a1a5ab840"
+    },
+    {
+      "role": "bridge",
+      "kind": "oci",
+      "locator": "ghcr.io/naohiro2g/mc-remote-bridge",
+      "digest": "sha256:305d6e38b36e195a0e158522f32f3a8c45d39da2aeec7b7e46f785c920406acf"
+    },
+    {
+      "role": "wirescope",
+      "kind": "https-file",
+      "file": "wirescope-app.zip",
+      "bytes": 83854,
+      "sha256": "da3da0b6cf4d05265bc0c11abaa4913208c7cfc3600b0c3e78c93a356fc431ad"
+    },
+    {
+      "role": "wirescope-manifest",
+      "kind": "https-file",
+      "file": "wirescope-app.manifest.json",
+      "bytes": 2339,
+      "sha256": "3dd668a236463809a4cdc6d19375f3e6d75eea0c8089a616d2b761d3a4a05235"
+    },
+    {
+      "role": "contracts",
+      "kind": "https-file",
+      "file": "contracts.tar.gz",
+      "bytes": 1908,
+      "sha256": "48948ba47d55409f02a8ff8e0d44021b07859e11ffa5ca0f8598e6ef06082390"
+    },
+    {
+      "role": "scratch-local",
+      "kind": "https-file",
+      "os": "windows",
+      "arch": "x64",
+      "file": "mc-remote-scratch-LAN-2321.0.0rc1-windows-x64.zip",
+      "bytes": 261848009,
+      "sha256": "86bbaf9a278683315ffe2ebd4f19d56ba53f5501289e4cddfc22f284d8d4e209"
+    },
+    {
+      "role": "scratch-local",
+      "kind": "https-file",
+      "os": "macos",
+      "arch": "arm64",
+      "file": "mc-remote-scratch-LAN-2321.0.0rc1-macos-arm64.zip",
+      "bytes": 266199673,
+      "sha256": "bdfff47b8c1210a359ed65a8be6fca26624546e3c04add125063968acc091412"
+    },
+    {
+      "role": "scratch-local",
+      "kind": "https-file",
+      "os": "linux",
+      "arch": "x64",
+      "file": "mc-remote-scratch-LAN-2321.0.0rc1-linux-x64.zip",
+      "bytes": 271455727,
+      "sha256": "b76b574803c58403e38438d2569917bd72ca95f039026f12ed3a294edfcfba54"
+    },
+    {
+      "role": "scratch-gui",
+      "kind": "https-file",
+      "file": "scratch-gui.tar.gz",
+      "bytes": 138835708,
+      "sha256": "2dafb257c511989946da021591191cc1501e0d1a9211cc559373ed7de30f19c2"
+    }
+  ]
+}

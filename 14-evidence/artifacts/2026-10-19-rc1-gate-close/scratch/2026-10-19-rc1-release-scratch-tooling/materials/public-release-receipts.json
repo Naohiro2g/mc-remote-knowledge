@@ -1,0 +1,135 @@
+[
+  {
+    "repository": "Naohiro2g/minecraft-remote-tooling",
+    "default_branch": "main",
+    "default_branch_head": "6447f6e8cbfbeeb9d229990b5c4f6e82a5875666",
+    "tag": "v2321.0.0rc1",
+    "tag_commit": "6447f6e8cbfbeeb9d229990b5c4f6e82a5875666",
+    "tag_ref": {
+      "ref": "refs/tags/v2321.0.0rc1",
+      "node_id": "REF_kwDOUKbtjbZyZWZzL3RhZ3MvdjIzMjEuMC4wcmMx",
+      "url": "https://api.github.com/repos/Naohiro2g/minecraft-remote-tooling/git/refs/tags/v2321.0.0rc1",
+      "object": {
+        "sha": "9d2f542a9cf858bcc6c1731807afac996351d8e5",
+        "type": "tag",
+        "url": "https://api.github.com/repos/Naohiro2g/minecraft-remote-tooling/git/tags/9d2f542a9cf858bcc6c1731807afac996351d8e5"
+      }
+    },
+    "release_id": 417032717,
+    "release_url": "https://github.com/Naohiro2g/minecraft-remote-tooling/releases/tag/v2321.0.0rc1",
+    "published_at": "2026-10-19T07:53:33Z",
+    "prerelease": true,
+    "draft": false,
+    "latest_release_tag": null,
+    "candidate_run_id": 39053886890,
+    "public_run_id": null,
+    "publication_method": "CLI promotion of frozen artifacts",
+    "assets": [
+      {
+        "id": 655607953,
+        "name": "bridge.oci.tar",
+        "size": 114626048,
+        "digest": "sha256:3982876466fb860dca250438d73e18e441a2a85d67d9f149f537a7a8d1a1c44c",
+        "browser_download_url": "https://github.com/Naohiro2g/minecraft-remote-tooling/releases/download/v2321.0.0rc1/bridge.oci.tar"
+      },
+      {
+        "id": 655607954,
+        "name": "wirescope-app.manifest.json",
+        "size": 2339,
+        "digest": "sha256:3dd668a236463809a4cdc6d19375f3e6d75eea0c8089a616d2b761d3a4a05235",
+        "browser_download_url": "https://github.com/Naohiro2g/minecraft-remote-tooling/releases/download/v2321.0.0rc1/wirescope-app.manifest.json"
+      },
+      {
+        "id": 655607952,
+        "name": "wirescope-app.zip",
+        "size": 83854,
+        "digest": "sha256:da3da0b6cf4d05265bc0c11abaa4913208c7cfc3600b0c3e78c93a356fc431ad",
+        "browser_download_url": "https://github.com/Naohiro2g/minecraft-remote-tooling/releases/download/v2321.0.0rc1/wirescope-app.zip"
+      }
+    ]
+  },
+  {
+    "repository": "Naohiro2g/scratch-editor",
+    "default_branch": "develop",
+    "default_branch_head": "f20e55eb53f192eab6cdc4f0d5aae4f52b2dc8db",
+    "tag": "v2321.0.0rc1",
+    "tag_commit": "ec79b3b0e364e722d6926a0932eb4bf088ddd3a1",
+    "tag_ref": {
+      "ref": "refs/tags/v2321.0.0rc1",
+      "node_id": "REF_kwDOS2_RIrZyZWZzL3RhZ3MvdjIzMjEuMC4wcmMx",
+      "url": "https://api.github.com/repos/Naohiro2g/scratch-editor/git/refs/tags/v2321.0.0rc1",
+      "object": {
+        "sha": "47a0ea7d82aa6c7de8f517ba00f94ae32104f77c",
+        "type": "tag",
+        "url": "https://api.github.com/repos/Naohiro2g/scratch-editor/git/tags/47a0ea7d82aa6c7de8f517ba00f94ae32104f77c"
+      }
+    },
+    "release_id": 417042836,
+    "release_url": "https://github.com/Naohiro2g/scratch-editor/releases/tag/v2321.0.0rc1",
+    "published_at": "2026-10-19T08:21:05Z",
+    "prerelease": true,
+    "draft": false,
+    "latest_release_tag": null,
+    "candidate_run_id": 39072595749,
+    "public_run_id": null,
+    "publication_method": "CLI promotion of frozen artifacts",
+    "assets": [
+      {
+        "id": 655637916,
+        "name": "contracts.tar.gz",
+        "size": 1908,
+        "digest": "sha256:48948ba47d55409f02a8ff8e0d44021b07859e11ffa5ca0f8598e6ef06082390",
+        "browser_download_url": "https://github.com/Naohiro2g/scratch-editor/releases/download/v2321.0.0rc1/contracts.tar.gz"
+      },
+      {
+        "id": 655638042,
+        "name": "manifest.json",
+        "size": 2320,
+        "digest": "sha256:776e0d51a8d8db14cb5ace23f2a41f9d6a56e7eacb0a51e88463bd6bf076c68c",
+        "browser_download_url": "https://github.com/Naohiro2g/scratch-editor/releases/download/v2321.0.0rc1/manifest.json"
+      },
+      {
+        "id": 655637914,
+        "name": "mc-remote-scratch-LAN-2321.0.0rc1-linux-x64.zip",
+        "size": 271455727,
+        "digest": "sha256:b76b574803c58403e38438d2569917bd72ca95f039026f12ed3a294edfcfba54",
+        "browser_download_url": "https://github.com/Naohiro2g/scratch-editor/releases/download/v2321.0.0rc1/mc-remote-scratch-LAN-2321.0.0rc1-linux-x64.zip"
+      },
+      {
+        "id": 655637918,
+        "name": "mc-remote-scratch-LAN-2321.0.0rc1-macos-arm64.zip",
+        "size": 266199673,
+        "digest": "sha256:bdfff47b8c1210a359ed65a8be6fca26624546e3c04add125063968acc091412",
+        "browser_download_url": "https://github.com/Naohiro2g/scratch-editor/releases/download/v2321.0.0rc1/mc-remote-scratch-LAN-2321.0.0rc1-macos-arm64.zip"
+      },
+      {
+        "id": 655637917,
+        "name": "mc-remote-scratch-LAN-2321.0.0rc1-windows-x64.zip",
+        "size": 261848009,
+        "digest": "sha256:86bbaf9a278683315ffe2ebd4f19d56ba53f5501289e4cddfc22f284d8d4e209",
+        "browser_download_url": "https://github.com/Naohiro2g/scratch-editor/releases/download/v2321.0.0rc1/mc-remote-scratch-LAN-2321.0.0rc1-windows-x64.zip"
+      },
+      {
+        "id": 655637915,
+        "name": "scratch-gui.tar.gz",
+        "size": 138835708,
+        "digest": "sha256:2dafb257c511989946da021591191cc1501e0d1a9211cc559373ed7de30f19c2",
+        "browser_download_url": "https://github.com/Naohiro2g/scratch-editor/releases/download/v2321.0.0rc1/scratch-gui.tar.gz"
+      },
+      {
+        "id": 655637975,
+        "name": "wirescope-app.manifest.json",
+        "size": 2339,
+        "digest": "sha256:3dd668a236463809a4cdc6d19375f3e6d75eea0c8089a616d2b761d3a4a05235",
+        "browser_download_url": "https://github.com/Naohiro2g/scratch-editor/releases/download/v2321.0.0rc1/wirescope-app.manifest.json"
+      },
+      {
+        "id": 655637947,
+        "name": "wirescope-app.zip",
+        "size": 83854,
+        "digest": "sha256:da3da0b6cf4d05265bc0c11abaa4913208c7cfc3600b0c3e78c93a356fc431ad",
+        "browser_download_url": "https://github.com/Naohiro2g/scratch-editor/releases/download/v2321.0.0rc1/wirescope-app.zip"
+      }
+    ]
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "platform": {
+      "architecture": "amd64",
+      "os": "linux"
+    },
+    "manifest_digest": "sha256:1d693113e4563184154f6a992e8bfc623f4807280bb6fe52d3370fd83bffd47c",
+    "version": "v2321.0.0rc1",
+    "revision": "ec79b3b0e364e722d6926a0932eb4bf088ddd3a1",
+    "created": "2026-10-17T21:50:00Z",
+    "copy_layer_digest": "sha256:0ab69fcfed558a6f55b8b213cafcba652fb27fe74fe432cbac800d59c5b96842",
+    "copy_mtimes": {
+      "1769548773": 1,
+      "1770334556": 1,
+      "1770328285": 1,
+      "1792274147": 758,
+      "1792274146": 985
+    }
+  },
+  {
+    "platform": {
+      "architecture": "arm64",
+      "os": "linux"
+    },
+    "manifest_digest": "sha256:c24e61d35509d14ed7ec348183c9d5ee0c7bada0e8018b684ba0c8131442b0e0",
+    "version": "v2321.0.0rc1",
+    "revision": "ec79b3b0e364e722d6926a0932eb4bf088ddd3a1",
+    "created": "2026-10-17T21:50:00Z",
+    "copy_layer_digest": "sha256:f20fc9592f345e5daefa280550497e94986187573b6c970413306e84be0eb893",
+    "copy_mtimes": {
+      "1769548774": 1,
+      "1770334573": 1,
+      "1770328298": 1,
+      "1792274147": 758,
+      "1792274146": 985
+    }
+  }
+]

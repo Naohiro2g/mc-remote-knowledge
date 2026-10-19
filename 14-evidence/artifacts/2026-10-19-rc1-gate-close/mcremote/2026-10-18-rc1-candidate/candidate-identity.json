@@ -1,0 +1,28 @@
+{
+  "source_commit": "192a777ae1d484bcc9b58fcc7c58d6aed1a374af",
+  "branch": "agent/rc1-pre-fixture",
+  "ci_run": 39065266196,
+  "ci_conclusion": "success",
+  "artifact_id": 12112853171,
+  "artifact_bytes": 294255,
+  "artifact_sha256": "sha256:ef4bf641ac4c229a6c1ca413c0698dd4350559bdcb5f643e72cdf807b53686be",
+  "files": {
+    "mc-remote-2321.0.0rc1.jar": {
+      "bytes": 315352,
+      "sha256": "917c358c201aa219277b96a447fb85116e8bdb0260870a4d76a8c51219d31c37"
+    },
+    "minecraft-targets.json": {
+      "bytes": 126,
+      "sha256": "8e830732decd6bcde13f91eb6c071d062ba6993342a7edb52e6ea543b9e0c361"
+    },
+    "source-commit.txt": {
+      "bytes": 41,
+      "sha256": "44a636de07554e45336e40c297738a966673f35f1eb4eee8b6efd5dc8d0a0d4c"
+    },
+    "SHA256SUMS": {
+      "bytes": 92,
+      "sha256": "d73bd65a3b0c133b57d4376137bbc66b2c8af9ef5d737aa2f4cb4c4d4cd40ee4"
+    }
+  },
+  "tooling_source_commit": "6447f6e8cbfbeeb9d229990b5c4f6e82a5875666"
+}

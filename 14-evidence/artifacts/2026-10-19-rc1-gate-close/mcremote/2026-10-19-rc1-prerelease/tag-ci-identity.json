@@ -1,0 +1,12 @@
+{
+  "ci_run": 39216357412,
+  "source_commit": "192a777ae1d484bcc9b58fcc7c58d6aed1a374af",
+  "head_branch": "v2321.0.0rc1",
+  "conclusion": "success",
+  "artifact_id": 12170425142,
+  "artifact_bytes": 294255,
+  "artifact_sha256": "sha256:6f0318caa196b7c58d56b070f6a4505ad3e916457a26ecc4288cdfb9dc08d224",
+  "jar_bytes": 315352,
+  "jar_sha256": "917c358c201aa219277b96a447fb85116e8bdb0260870a4d76a8c51219d31c37",
+  "frozen_match": true
+}

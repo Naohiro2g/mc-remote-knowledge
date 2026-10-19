@@ -1,0 +1,103 @@
+[
+  {
+    "component": "tooling",
+    "file": "wirescope-app.zip",
+    "bytes": 83854,
+    "sha256": "da3da0b6cf4d05265bc0c11abaa4913208c7cfc3600b0c3e78c93a356fc431ad",
+    "frozen_match": true
+  },
+  {
+    "component": "tooling",
+    "file": "wirescope-app.manifest.json",
+    "bytes": 2339,
+    "sha256": "3dd668a236463809a4cdc6d19375f3e6d75eea0c8089a616d2b761d3a4a05235",
+    "frozen_match": true
+  },
+  {
+    "component": "tooling",
+    "file": "bridge.oci.tar",
+    "bytes": 114626048,
+    "sha256": "3982876466fb860dca250438d73e18e441a2a85d67d9f149f537a7a8d1a1c44c",
+    "frozen_match": true,
+    "digest": "sha256:305d6e38b36e195a0e158522f32f3a8c45d39da2aeec7b7e46f785c920406acf"
+  },
+  {
+    "component": "scratch",
+    "file": "wirescope-app.zip",
+    "bytes": 83854,
+    "sha256": "da3da0b6cf4d05265bc0c11abaa4913208c7cfc3600b0c3e78c93a356fc431ad",
+    "frozen_match": true
+  },
+  {
+    "component": "scratch",
+    "file": "wirescope-app.manifest.json",
+    "bytes": 2339,
+    "sha256": "3dd668a236463809a4cdc6d19375f3e6d75eea0c8089a616d2b761d3a4a05235",
+    "frozen_match": true
+  },
+  {
+    "component": "scratch",
+    "file": "bridge.oci.tar",
+    "bytes": 114626048,
+    "sha256": "3982876466fb860dca250438d73e18e441a2a85d67d9f149f537a7a8d1a1c44c",
+    "frozen_match": true,
+    "digest": "sha256:305d6e38b36e195a0e158522f32f3a8c45d39da2aeec7b7e46f785c920406acf"
+  },
+  {
+    "component": "scratch",
+    "file": "mc-remote-scratch-LAN-2321.0.0rc1-windows-x64.zip",
+    "bytes": 261848009,
+    "sha256": "86bbaf9a278683315ffe2ebd4f19d56ba53f5501289e4cddfc22f284d8d4e209",
+    "frozen_match": true
+  },
+  {
+    "component": "scratch",
+    "file": "mc-remote-scratch-LAN-2321.0.0rc1-macos-arm64.zip",
+    "bytes": 266199673,
+    "sha256": "bdfff47b8c1210a359ed65a8be6fca26624546e3c04add125063968acc091412",
+    "frozen_match": true
+  },
+  {
+    "component": "scratch",
+    "file": "mc-remote-scratch-LAN-2321.0.0rc1-linux-x64.zip",
+    "bytes": 271455727,
+    "sha256": "b76b574803c58403e38438d2569917bd72ca95f039026f12ed3a294edfcfba54",
+    "frozen_match": true
+  },
+  {
+    "component": "scratch",
+    "file": "scratch-gui.tar.gz",
+    "bytes": 138835708,
+    "sha256": "2dafb257c511989946da021591191cc1501e0d1a9211cc559373ed7de30f19c2",
+    "frozen_match": true
+  },
+  {
+    "component": "scratch",
+    "file": "contracts.tar.gz",
+    "bytes": 1908,
+    "sha256": "48948ba47d55409f02a8ff8e0d44021b07859e11ffa5ca0f8598e6ef06082390",
+    "frozen_match": true
+  },
+  {
+    "component": "scratch",
+    "file": "scratch.oci.tar",
+    "bytes": 325822464,
+    "sha256": "88d81fba1aca0194c85f638cf19c66a1a2087748f32ff501bdb1dd283ea1d0c5",
+    "frozen_match": true,
+    "digest": "sha256:75e76edb6b8a1de4fb896184b5c26bed7cb1791296f82903e6b1ec4a1a5ab840"
+  },
+  {
+    "component": "tooling-fixture",
+    "file": "chat-event-compat-v23.2.1.json",
+    "bytes": 32384,
+    "sha256": "eead244a7340c315cb63e1e77ede0fe9cf48162c06fedbeef36d941950d5000d",
+    "frozen_match": true
+  },
+  {
+    "component": "tooling-fixture",
+    "file": "entity-particle-v23.2.1.json",
+    "bytes": 36483,
+    "sha256": "0319ff8373a96798cf5e9e421a804729fd33a0fa53e96adc12c93ed7994777ae",
+    "frozen_match": true
+  }
+]

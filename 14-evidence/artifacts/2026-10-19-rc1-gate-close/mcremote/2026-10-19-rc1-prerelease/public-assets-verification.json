@@ -1,0 +1,66 @@
+{
+  "knowledge_contract_commit": "32fd7d4892a410ef9d38f90320a511f383aaa9f9",
+  "main": "192a777ae1d484bcc9b58fcc7c58d6aed1a374af",
+  "tag": "v2321.0.0rc1",
+  "tag_object": "15b3f52a13cd77337349a938ae713c4d0bdce0b3",
+  "tag_target": "192a777ae1d484bcc9b58fcc7c58d6aed1a374af",
+  "release_id": 417021272,
+  "release_url": "https://github.com/Naohiro2g/McRemote/releases/tag/v2321.0.0rc1",
+  "published_at": "2026-10-19T07:50:22Z",
+  "prerelease": true,
+  "draft": false,
+  "latest_tag": "v1.21.8-1.4.0",
+  "latest_unchanged": true,
+  "tag_ci_run": 39216357412,
+  "dry_run": 39217207650,
+  "release_run": 39218586262,
+  "release_conclusion": "success",
+  "public_assets": [
+    {
+      "id": 655603379,
+      "file": "manifest.json",
+      "bytes": 1988,
+      "sha256": "e49761d22c8c60ac49915d04f1c6236ca101b13bf94b257c0cbcbb4328c6a1c2",
+      "download_url": "https://github.com/Naohiro2g/McRemote/releases/download/v2321.0.0rc1/manifest.json",
+      "provider_digest_matches": true,
+      "frozen_materials_match": true
+    },
+    {
+      "id": 655603378,
+      "file": "mc-remote-2321.0.0rc1.jar",
+      "bytes": 315352,
+      "sha256": "917c358c201aa219277b96a447fb85116e8bdb0260870a4d76a8c51219d31c37",
+      "download_url": "https://github.com/Naohiro2g/McRemote/releases/download/v2321.0.0rc1/mc-remote-2321.0.0rc1.jar",
+      "provider_digest_matches": true,
+      "frozen_materials_match": true
+    },
+    {
+      "id": 655577414,
+      "file": "mc-remote-verification-1.21.11.json",
+      "bytes": 62784,
+      "sha256": "b3ae515b037429517ce1f90bc1708d3feeebef4bc9bd359fcf175a5e0a221f49",
+      "download_url": "https://github.com/Naohiro2g/McRemote/releases/download/v2321.0.0rc1/mc-remote-verification-1.21.11.json",
+      "provider_digest_matches": true,
+      "frozen_materials_match": true
+    },
+    {
+      "id": 655577415,
+      "file": "mc-remote-verification-26.3.json",
+      "bytes": 62766,
+      "sha256": "82b62c167bc11b13128f06724b0f66051509ba192d5e302b50d92625a54d0c66",
+      "download_url": "https://github.com/Naohiro2g/McRemote/releases/download/v2321.0.0rc1/mc-remote-verification-26.3.json",
+      "provider_digest_matches": true,
+      "frozen_materials_match": true
+    },
+    {
+      "id": 655603380,
+      "file": "minecraft-targets.json",
+      "bytes": 126,
+      "sha256": "8e830732decd6bcde13f91eb6c071d062ba6993342a7edb52e6ea543b9e0c361",
+      "download_url": "https://github.com/Naohiro2g/McRemote/releases/download/v2321.0.0rc1/minecraft-targets.json",
+      "provider_digest_matches": true,
+      "frozen_materials_match": true
+    }
+  ],
+  "anonymous_https_downloads_match": true
+}
