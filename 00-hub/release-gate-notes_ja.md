@@ -422,6 +422,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     - 記録：`14-evidence/records/2026-10-19-rc1-candidate-3os-live-human_ja.md`（human ownerが照合）
     - 判定（2026-10-19、human owner）：**rc1は合格**。PythonのWireScope（processが早く終わると真っ白）は注意書きで扱う。
       LANパッケージの検証では初学者クラスを対象にしない（`2026-10-19-01`）
+    - 公開の依頼：`00-hub/rc1-gate-release-instructions_ja.md`（2026-10-19）。feedbackの入口のIssueテンプレートは
+      `.github/ISSUE_TEMPLATE/feedback.yml`（`2026-10-18-06`）。PythonのWireScopeの直す方向はhub NOTES 2026-10-19
   - 公開の後（knowledge）：API一覧の`api/23.2.1/`、ホームページの版の表示と`/lan/scratch/`のZIP、ブロック一覧の`2321.0.0rc1`。
     Stack：rc1のpreset、公開VPSの別セットへの切り替え（`2026-10-18-02`）は、リリースの作業を終えてから
   - feedbackの入口（2026-10-18、human owner）：knowledgeのGitHub Issuesに一つ置く（`2026-10-18-06`）。公開の前に、knowledgeへ
