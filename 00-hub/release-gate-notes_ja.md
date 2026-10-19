@@ -327,12 +327,20 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
         ダブルクリック → 設定画面 → Scratch rc1で「接続」。WireScope miniが開き、ペアリング成功。WireScopeのhelloは送信
         `protocol 23.2.1`、client `scratch-mcremote 2321.0.0rc1`、受信`protocol 23.2.0`、`mc_version 26.3`、
         `supported_mc_versions ["1.21.11","26.3"]`。版の違いで止まらず、`chat.post`は`result:null`。「一通りうごく」（human owner）。
-        rc1で設定画面の接続先を入れ直す必要は無く、b10で保存した作品は一覧に残っていた
+        rc1の初回は`settings.json`が無いので設定画面だけが開き、既定の「このPC」のまま保存して進んだ（human ownerの記憶、
+        「はず」）。b10で保存した作品は一覧に残っていた
       - 同じ接続で、カタログピッカーは「取得済み — 26.3 · CACHE · 3eaae42e」。「ポプラ」で23件、`poplar log ポプラの原木`が出た
       - McRemoteをrc1に替えて起動（`Enabling McRemote v2321.0.0rc1`、`Auth enforcement: true`、credential `HEALTHY`、
         catalogはb10と同じblocks=1286、同じhash）。Scratch rc1で接続し、チャットとsetBlockが届いた。前のペアリングから2時間を
         越えていたので、ペアリングし直した（設計どおり）
-      - 残り：手順7（Scratch b10 ↔ McRemote rc1）、手順8
+      - 手順7：b10の起動で、設定画面が開いた後にScratchが表に開いた（human owner：設定が残っているときはこう開き、無いときは
+        設定画面だけなので、違いが分かる）。b10の`settings.json`には、b10の試験のWindows → macOSのLAN構成の接続先が残っていて、
+        「接続」はエラー。WireScope miniの「設定先」「実接続先」にその接続先が出ていて、原因がすぐ分かった。Scratchのタブが
+        開いている間は、設定画面の「設定を保存する」が押せず、「いずれかのタブでScratchが既に開いています。接続先を変えるときは、
+        Scratchのタブを閉じてください。」と出る。版の違いのエラーではない
+      - 読み取り（coordinator）：`settings.json`は版のフォルダーごとなので、b10をLAN構成で使っていた人は、rc1の初回で接続先を
+        入れ直すことになる。1台構成なら既定の「このPC」のままでよい
+      - 残り：手順7（接続先を「このPC」にしてから、Scratch b10 ↔ McRemote rc1）、手順8
   - 公開の後（knowledge）：API一覧の`api/23.2.1/`、ホームページの版の表示と`/lan/scratch/`のZIP、ブロック一覧の`2321.0.0rc1`。
     Stack：rc1のpreset、公開VPSの別セットへの切り替え（`2026-10-18-02`）は、リリースの作業を終えてから
   - feedbackの入口（2026-10-18、human owner）：knowledgeのGitHub Issuesに一つ置く（`2026-10-18-06`）。公開の前に、knowledgeへ
