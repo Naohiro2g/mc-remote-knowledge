@@ -370,6 +370,9 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
       - 手順4（Python b9 ↔ McRemote rc1）：チャットに「Hello from Python b9」、シーランタンが置かれた。ペアリングは
         要らなかった。手順2（Python rc1、McRemote b10）のペアリングが、McRemoteをrc1に替えた後も、b9のclientからも使えたと
         読める（tokenをどこに保存しているかは確かめていない）
+      - 手順5（Python rc1、`wirescope=True`）：端末に「WireScope attach code: 」とコードが出たが、開くURLもリンクも出ず、
+        ブラウザも開かなかった（human owner「Pythonでコードは発行されるが、リンクがない」）。`hello.py`は建てるとすぐ終わるので、
+        WireScopeを開く間もなくprocessが終わる。`CatalogProjectionWarning`は手順2と同じ。attach codeは記録しない
   - 公開の後（knowledge）：API一覧の`api/23.2.1/`、ホームページの版の表示と`/lan/scratch/`のZIP、ブロック一覧の`2321.0.0rc1`。
     Stack：rc1のpreset、公開VPSの別セットへの切り替え（`2026-10-18-02`）は、リリースの作業を終えてから
   - feedbackの入口（2026-10-18、human owner）：knowledgeのGitHub Issuesに一つ置く（`2026-10-18-06`）。公開の前に、knowledgeへ
