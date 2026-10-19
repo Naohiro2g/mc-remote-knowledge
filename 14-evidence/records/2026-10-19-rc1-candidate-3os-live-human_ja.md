@@ -27,7 +27,7 @@
 
 ## 結果
 
-human ownerの判断：（判定待ち）
+human ownerの判断（2026-10-19）：rc1は合格。PythonのWireScope（見つかったことの1）は注意書きで扱う。
 
 | 項目 | 結果 |
 | --- | --- |
@@ -83,6 +83,7 @@ human ownerの判断：（判定待ち）
 
 ## 主張しない範囲
 
-PyPI.orgからの`2321.0.0rc1`の取得（承認の後）。公開VPSへの切り替え。初めて読む人の通し（Pass C）。macOSとUbuntuのZIPの
+PyPI.orgからの`2321.0.0rc1`の取得（承認の後）。公開VPSへの切り替え。初めて読む人の通し（Pass C。rc1では生徒の初学者を対象に
+しない、`2026-10-19-01`）。macOSとUbuntuのZIPの
 bytesの照合（試験ではWindowsだけ記録。置き場所のbytesはcoordinatorが照合済み）。Python b9 ↔ McRemote rc1でペアリングが
 要らなかった理由（tokenの保存場所は確かめていない）。授業規模の同時接続。

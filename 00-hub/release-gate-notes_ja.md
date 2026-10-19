@@ -154,7 +154,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   - 共有fixtureの23.2.1版は新しいfile、23.2の版は履歴（`2026-10-18-03`）
   - PyPIは承認待ちのまま進め、GitHubのpre-releaseで試し終えるまで承認しない（`2026-10-18-04`）
   - 箱庭の名前：beta／rcは`sb-beta`、latestは`sb`。latestのreleaseで旧protocolのサーバーを消す（`2026-10-18-05`）。Pythonのstarterは`sb-beta`へ
-  - Pass Cは生徒が行い、10/24までに済ませる（経験者になる）
+  - Pass Cは生徒が行い、10/24までに済ませる（経験者になる）→ 2026-10-19に改訂：rc1では生徒の初学者を対象にしない（`2026-10-19-01`）
   - Windowsのmiseは今のREADMEの手順のまま出す。困っている生徒のPCで検証が進む見込み
   - pluginの情報は、Stackが別の搬送票で出す
   - McRemoteのREADMEは複数のページに分けたいが、まだできていない。おすすめプラグインのページ（`docs/recommended-plugins_ja.md`）がその足がかり（human owner）
@@ -419,6 +419,9 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
         Scratchが表に開き、ペアリングなしで接続できた
       - 手順4の続き：設定画面は自動で開いた。`はじめに.html`の中の設定画面のURLはリンクで、押すと開いているタブが表に来た
       - 手順6：human owner：新鮮な目で見るのは難しいが、ずれてはいないと思う。ホームページのほうが整理されていて分かりやすい
+    - 記録：`14-evidence/records/2026-10-19-rc1-candidate-3os-live-human_ja.md`（human ownerが照合）
+    - 判定（2026-10-19、human owner）：**rc1は合格**。PythonのWireScope（processが早く終わると真っ白）は注意書きで扱う。
+      LANパッケージの検証では初学者クラスを対象にしない（`2026-10-19-01`）
   - 公開の後（knowledge）：API一覧の`api/23.2.1/`、ホームページの版の表示と`/lan/scratch/`のZIP、ブロック一覧の`2321.0.0rc1`。
     Stack：rc1のpreset、公開VPSの別セットへの切り替え（`2026-10-18-02`）は、リリースの作業を終えてから
   - feedbackの入口（2026-10-18、human owner）：knowledgeのGitHub Issuesに一つ置く（`2026-10-18-06`）。公開の前に、knowledgeへ
