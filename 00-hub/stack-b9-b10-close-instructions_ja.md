@@ -30,4 +30,4 @@
 4. 旧projectの更新snapshotの蓄積：旧セットで`.mcrctl`が50 GBに育っていた。今の実装で同じことが起きるか。起きるなら、
    別セットへの切り替えの前に手当てが要るか
 
-Backstageの返却票の残り2件（公開VPSのrollbackの実試験、手元の配信の終了）は、閉じる案でhuman ownerの判断に回した。
+Backstageの返却票の残り2件（公開VPSのrollbackの実試験、手元の配信の終了）は、human ownerが閉じた（2026-10-19）。

@@ -503,7 +503,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
       knowledgeに全桁であった。残る1件（`b7-python-owner-artifact-set-1/artifact-manifest.json` 1,261 bytes／`4396a73ce3a1…`）も、
       中のwheel、sdist、同梱WireScopeのdigestはすべてknowledgeにある。2.5 GBを消した。`local-archive/minecraft-remote-api-pre-b7-close-20260903/`
       はPython担当へ分類を頼む。返却票のpark確認の候補6件のうち、公開VPSのrollbackの実試験（`2026-10-18-02`でrc1に求めない）と
-      手元の配信の終了（止まっていて、human ownerが不要とした）の2件は閉じる案、残り4件はStackへの確認
+      手元の配信の終了（止まっていて、human ownerが不要とした）の2件は閉じる（human owner 2026-10-19）。残り4件はStackへの確認
       （`00-hub/stack-b9-b10-close-instructions_ja.md`）
     - 着地の確認（2026-10-19）：McRemote、Python、Scratchが、knowledge `b531c38`の①をremoteから取って元とbytesとSHA-256が
       全件一致すると確かめ、①の元と③を整理した（McRemote `handoff-materials/2026-10-19-rc1-close/materials/landing-cleanup-confirmation_ja.md`、
