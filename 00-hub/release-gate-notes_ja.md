@@ -505,6 +505,10 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
       はPython担当へ分類を頼む。返却票のpark確認の候補6件のうち、公開VPSのrollbackの実試験（`2026-10-18-02`でrc1に求めない）と
       手元の配信の終了（止まっていて、human ownerが不要とした）の2件は閉じる案、残り4件はStackへの確認
       （`00-hub/stack-b9-b10-close-instructions_ja.md`）
+    - 着地の確認（2026-10-19）：McRemote、Python、Scratchが、knowledge `b531c38`の①をremoteから取って元とbytesとSHA-256が
+      全件一致すると確かめ、①の元と③を整理した（McRemote `handoff-materials/2026-10-19-rc1-close/materials/landing-cleanup-confirmation_ja.md`、
+      Pythonはrc1の未収容のhandoffなし、Scratch `handoff-materials/2026-10-19-rc1-close-inventory/materials/CLEANUP_RESULT.json`）。②は
+      各担当の用途と捨ててよくなる条件のとおりに持つ
 - **rc1横断release gateを閉じた（2026-10-19、human owner）**。凍結した`rc1-integrated-artifact-set-1`を4 repoのprereleaseとPyPI.orgへ
   出し、どのassetも試験したものと同じbytes。close分類を収容した（`14-evidence/records/2026-10-19-rc1-gate-close_ja.md`）。次は
   LANパッケージの教材の収録、公開VPS（箱庭）のrc1への切り替え（`2026-10-18-02`）、初回stable
