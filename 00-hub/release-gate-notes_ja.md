@@ -525,6 +525,10 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
       `handoff-materials/2026-10-19-pre-b7-archive-classification/materials/classification_ja.md`。8 file、77,366 bytes。①なし。②は`examples/`の
       2 file（Git履歴に無い利用者のコードと設定の原本。Python担当が持つ。値の本文は公開しない）。③は6 file（b1の作業途中のメモ2件と
       Obsidianの設定4件）。archiveは変えていない
+    - 確認4件とPythonのarchiveへの判断（2026-10-19、human owner）：①rc1の別セットで`TZ`を入れる。サーバーのlogとDiscordへ送られる
+      logも、時刻が9時間ずれている（human ownerの観察）②予約portは使わない③公式backstageの移行の時期は、human ownerが
+      `2026-09-29-01`の中身を確かめてから決める④`.mcrctl`は手当てしない。Pythonの③の6 fileは、coordinatorが分類の表のSHA-256と
+      全件一致を確かめて消した（2026-10-19 14:43 UTC）。②の`examples/`の2 fileは残した
 - **rc1横断release gateを閉じた（2026-10-19、human owner）**。凍結した`rc1-integrated-artifact-set-1`を4 repoのprereleaseとPyPI.orgへ
   出し、どのassetも試験したものと同じbytes。close分類を収容した（`14-evidence/records/2026-10-19-rc1-gate-close_ja.md`）。次は
   LANパッケージの教材の収録、公開VPS（箱庭）のrc1への切り替え（`2026-10-18-02`）、初回stable
