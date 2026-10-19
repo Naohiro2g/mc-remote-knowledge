@@ -529,6 +529,11 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
       logも、時刻が9時間ずれている（human ownerの観察）②予約portは使わない③公式backstageの移行の時期は、human ownerが
       `2026-09-29-01`の中身を確かめてから決める④`.mcrctl`は手当てしない。Pythonの③の6 fileは、coordinatorが分類の表のSHA-256と
       全件一致を確かめて消した（2026-10-19 14:43 UTC）。②の`examples/`の2 fileは残した
+    - 整理の確認（2026-10-20）：Stackは③の24件を2026-10-19 15:34 UTCに消した（knowledge `c74bc41`で受領を確かめた後）。
+      `2026-10-03-dev-bedrock`は②の`materials/knowledge-handoff_ja.md`とMANIFESTだけを残した。残りは②の10件と返却票のdirectoryで、
+      coordinatorが手元のcheckoutで同じ11件を確かめた。返却票はこの確認の後に消す。Pythonは`c74bc41`をremoteで確かめ、返却packetの
+      3 fileを消した。②の`examples/`の2 fileはSHA-256が変わらず、用途と捨ててよくなる条件をlocal NOTESに書いた。公開VPS（箱庭）の
+      rc1への切り替え（`2026-10-18-02`）は、human ownerがStackへ直接頼んだ
 - **rc1横断release gateを閉じた（2026-10-19、human owner）**。凍結した`rc1-integrated-artifact-set-1`を4 repoのprereleaseとPyPI.orgへ
   出し、どのassetも試験したものと同じbytes。close分類を収容した（`14-evidence/records/2026-10-19-rc1-gate-close_ja.md`）。次は
   LANパッケージの教材の収録、公開VPS（箱庭）のrc1への切り替え（`2026-10-18-02`）、初回stable
