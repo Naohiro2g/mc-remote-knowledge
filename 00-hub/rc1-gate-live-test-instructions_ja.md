@@ -8,7 +8,7 @@
 - 結果に分類を設けず、判断は結果から行う（b10と同じ）
 - 進め方：OSごとに、Windows → Ubuntu → Macの順に、番号の順で進める（2026-10-19にOS別へ書き直した）。Macは
   Ubuntuのサーバーへつなぐので、Ubuntuの後にする
-- 進み具合：Windowsは済み（2026-10-19）。次はUbuntu。結果は`00-hub/release-gate-notes_ja.md` rc1の「試験」
+- 進み具合：Windowsは済み、Ubuntuは手順1まで（2026-10-19）。結果は`00-hub/release-gate-notes_ja.md` rc1の「試験」
 
 ## 使うもの
 
@@ -58,13 +58,14 @@ Pythonは試験用のフォルダーを2つ作り、それぞれに入れる。�
 実行する。
 
 ```bash
-mkdir -p ~/rc1-test/py-rc1 && cd ~/rc1-test/py-rc1 && uv init
+mkdir -p ~/rc1-test/py-rc1 && cd ~/rc1-test/py-rc1 && uv init --no-package
 uv add "minecraft-remote-api @ https://mc-remote.com/candidates/2321.0.0rc1/set-1/minecraft_remote_api-2321.0.0rc1-py3-none-any.whl"
-mkdir -p ~/rc1-test/py-b9 && cd ~/rc1-test/py-b9 && uv init
+mkdir -p ~/rc1-test/py-b9 && cd ~/rc1-test/py-b9 && uv init --no-package
 uv add "minecraft-remote-api==2320.0.0b9"
 ```
 
-両方のフォルダーに、次の`hello.py`を置く（`12-python-client/python-client-guide_ja.md` §2の形。試験なので接続先を直接書く）。
+両方のフォルダーの直下に、次の`hello.py`を置く（`uv init`だけでは、uv 0.12で`src/<名前>/`のpackageの形になり、階層が深くなる。
+`--no-package`はpackageにしない形。`12-python-client/python-client-guide_ja.md` §2の形。試験なので接続先を直接書く）。
 
 ```python
 from mc_remote.minecraft import Minecraft

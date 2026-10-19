@@ -349,6 +349,15 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
         （後半はb10の見つかったことの8、9と同じ向き。rcからstableにかけて、または初回stableの後の改善として扱う）
       - 手順8：human owner：普通の感覚で、古い版を削除する人は少ないと見る。旧版を残して新版を隣に入れることは図解されているので、
         理解されそう
+    - Ubuntu（2026-10-19、手順1まで）：Ubuntu 24.04（kernel 7.0.0-38）、Chrome 155.0.8059.84、Java 21.0.2+13-58（Oracle OpenJDK）、
+      Paper 1.21.11 build 132
+      - Pythonの試験用フォルダーを2つ作り、rc1は候補のwheelをURLで入れた（`[tool.uv.sources]`に候補のURL）。実施票の`uv init`
+        は、uv 0.12.19では`src/<名前>/`のpackageの形を作り、階層が深くなった（human owner「階層が深いな」）。実施票を
+        `uv init --no-package`（直下に置ける形）へ直した。作ったフォルダーは`src/`の下の`hello.py`のまま使う
+      - McRemote b10で起動（`Enabling McRemote v2320.0.0b10`、`Auth enforcement: true`、credential `HEALTHY`、catalog
+        blocks=1166 hash `6d0f8524b70e37fb8d7b34d0fdb45c2b058dcfea82920d86ca9aaabb9fcadc83`）。WARN「config
+        supported_mc_versions differs from the bundled declaration; hello uses [1.21.11, 26.3]. The configured value is
+        preserved.」（このサーバーの`config.yml`に前の版の値が残っている）。マイクラ1.21.11でサーバーに入った
   - 公開の後（knowledge）：API一覧の`api/23.2.1/`、ホームページの版の表示と`/lan/scratch/`のZIP、ブロック一覧の`2321.0.0rc1`。
     Stack：rc1のpreset、公開VPSの別セットへの切り替え（`2026-10-18-02`）は、リリースの作業を終えてから
   - feedbackの入口（2026-10-18、human owner）：knowledgeのGitHub Issuesに一つ置く（`2026-10-18-06`）。公開の前に、knowledgeへ
