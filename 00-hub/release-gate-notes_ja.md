@@ -459,6 +459,10 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
       OCIのversionラベルは`v2321.0.0rc1`に揃えた。mtimeの正規化は未実装で、凍結したOCIをそのまま転送したので公開物のmtimeも同じ。
       素材は`scratch-editor/handoff-materials/2026-10-19-rc1-release-scratch-tooling/`
     - 4 repoとPyPI.orgの公開がそろい、どのassetも試験したもの（凍結値）と同じbytes（2026-10-19）
+    - human ownerの判断（2026-10-19）：park「Scratch OCIのversionラベルをcandidateと公開で揃える」を閉じる。ホームページを更新する
+      （箱庭のrc1への切り替えはその後なので、箱庭に関わる表記はb10のまま）。候補の置き場所の中身は消してよい。gateを閉じる
+    - 次の操作：close分類と候補の削除の依頼（`00-hub/rc1-gate-close-instructions_ja.md`）を各担当へ回す。返ってきたら、gateを閉じる
+      ときのparkの確認（`2026-09-30-09`）をしてcloseをhuman ownerに諮る
   - 公開の後（knowledge）：API一覧の`api/23.2.1/`、ホームページの版の表示と`/lan/scratch/`のZIP、ブロック一覧の`2321.0.0rc1`。
     Stack：rc1のpreset、公開VPSの別セットへの切り替え（`2026-10-18-02`）は、リリースの作業を終えてから
   - feedbackの入口（2026-10-18、human owner）：knowledgeのGitHub Issuesに一つ置く（`2026-10-18-06`）。公開の前に、knowledgeへ
