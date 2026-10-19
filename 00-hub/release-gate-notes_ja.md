@@ -344,7 +344,9 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
         client `scratch-mcremote 2320.0.0b10`で、まず`token_expired`（前のペアリングから時間がたっていた）。ペアリングの後の
         helloは受信`protocol 23.2.1`、`mc_version 26.3`、`supported_mc_versions ["1.21.11","26.3"]`、catalog hashは上と同じ。
         ハンドシェイクの表示は「26.3 · 23.2.1」。`chat.post`「hello from b10 to rc1」は`result:null`で、マイクラのチャットに出た。
-        setBlockは画面からは確かめられない（確認待ち）
+        続けて`world.setBlocks`で`gold_block`を3段ずつ（x、zは-50〜50）積み、どれも`result:null`で、マイクラに金の塔が建った
+      - human owner：「ぼんやりと操作して間違えても、脱出は容易な感じ。良い。接続の接続先／状態表示が詳細になればもっと良い。」
+        （後半はb10の見つかったことの8、9と同じ向き。rcからstableにかけて、または初回stableの後の改善として扱う）
       - 残り：手順8
   - 公開の後（knowledge）：API一覧の`api/23.2.1/`、ホームページの版の表示と`/lan/scratch/`のZIP、ブロック一覧の`2321.0.0rc1`。
     Stack：rc1のpreset、公開VPSの別セットへの切り替え（`2026-10-18-02`）は、リリースの作業を終えてから
