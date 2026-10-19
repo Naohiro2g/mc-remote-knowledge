@@ -6,6 +6,9 @@
   新しい`はじめに.html`での初めての導入、23.2.0と23.2.1の組み合わせ、26.3の名前
 - test class: live-human。b10の実施票（`00-hub/b10-gate-live-test-instructions_ja.md`）で通ったところは繰り返さない
 - 結果に分類を設けず、判断は結果から行う（b10と同じ）
+- 進め方：OSごとに、Windows → Ubuntu → Macの順に、番号の順で進める（2026-10-19にOS別へ書き直した）。Macは
+  Ubuntuのサーバーへつなぐので、Ubuntuの後にする
+- 進み具合：Windowsは手順6の途中まで（2026-10-18）。結果は`00-hub/release-gate-notes_ja.md` rc1の「試験」
 
 ## 使うもの
 
@@ -19,58 +22,84 @@ mc-remote.comに置いた候補（`rc1-integrated-artifact-set-1`、リリース
   - Linux x64：<https://mc-remote.com/candidates/2321.0.0rc1/set-1/mc-remote-scratch-LAN-2321.0.0rc1-linux-x64.zip>（271,455,727 bytes）
 - McRemote（`192a777`）：<https://mc-remote.com/candidates/2321.0.0rc1/set-1/mc-remote-2321.0.0rc1.jar>（315,352 bytes）
 - Python（`c301053`）：<https://mc-remote.com/candidates/2321.0.0rc1/set-1/minecraft_remote_api-2321.0.0rc1-py3-none-any.whl>（196,098 bytes）。PyPI.orgへはまだ出ていない
-  （承認は試験の後、`2026-10-18-04`）ので、候補のwheelを入れる（例 `uv add "minecraft-remote-api @ <このURL>"`）
+  （承認は試験の後、`2026-10-18-04`）ので、候補のwheelを入れる
 - 比べる相手（b10の公開物）：McRemote `mc-remote-2320.0.0b10.jar`、Scratch LANパッケージ`2320.0.0b10`、Python
   `minecraft-remote-api==2320.0.0b9`（PyPI.org）
-- Paper：1.21.11 build 132（Java 21）と26.3 build 203（Java 25）。McRemoteのcandidateのpulseと同じbuild。試験全体で両方を
-  一度は使う。認証ON、LuckPermsは入れない
+- Paper：Windowsは26.3 build 203（Java 25）、Ubuntuは1.21.11 build 132（Java 21）。Macはサーバーを動かさない。認証ON、
+  LuckPermsは入れない
 
-## 始める前に採ること
+## どのOSでも、始める前に採ること
 
-- OSの版、CPU、ブラウザとその版、Paperの版とbuild、`java -version`
-- 手元に残っている`HOME/mc-remote/mc-remote-scratch-LAN/`の中の版のフォルダー（`2320.0.0b10/`があるか）
+- OSの版、CPU、ブラウザとその版、`java -version`
+- `HOME/mc-remote/mc-remote-scratch-LAN/`の中にある版のフォルダー
 
-## A. b10からの版の更新（b10を入れてあるOSで、一つ以上）
+## Windows（1台構成、Paper 26.3）：b10からの更新、組み合わせ、26.3の名前
 
-1. 候補のURLから、ブラウザで自分のOSのZIPを取る（Windowsは展開の前に「許可する」）。ブラウザのダウンロードの警告が出たら、
-   文言を記録する（mc-remote.comはGitHub.comより評判が低いので、警告が出やすい側の確認になる）
-2. 展開して、`mc-remote-scratch-LAN/2321.0.0rc1/`を、今ある`2320.0.0b10/`の隣に置く。案内から、隣に置けばよいと分かるか
-3. `2321.0.0rc1/`の起動ファイルで始める。設定画面で接続先を入れ直す必要があるか（`settings.json`は版のフォルダーごと）。
-   入れ直すことが案内から分かるか
-4. Scratchを開き、b10で保存した作品が一覧に残っているか（アドレスは`127.0.0.1:8601`のまま変わらない）
-5. 接続する。ペアリングが要るか（b10のsession tokenは約2時間で失効するので、時間がたっていればペアリングし直すのが設計どおり）
-6. 古い`2320.0.0b10/`をどうすればよいか（残す、消す）が案内から分かるか
+1. Chromeで自分のOSのZIPを取る。ダウンロードの警告が出たら、文言とスクリーンショットを記録する（mc-remote.comは
+   GitHub.comより評判が低いので、警告が出やすい側の確認になる）。ZIPのプロパティで「許可する」にチェックしてから展開する
+2. `2321.0.0rc1/`を、今ある`2320.0.0b10/`の隣に置く。隣に置けばよいと案内から分かったか
+3. Paper 26.3を起動する。McRemoteは**b10のまま**
+4. rc1の`start-mc-remote.cmd`をダブルクリックで起動し、接続する（**Scratch rc1 ↔ McRemote b10**）
+   - 設定画面で接続先を入れ直す必要があったか（`settings.json`は版のフォルダーごと）、入れ直すことが案内から分かったか
+   - b10で保存した作品が一覧に残っているか（アドレスは`127.0.0.1:8601`のまま変わらない）
+   - ペアリングが要ったか（b10のsession tokenは約2時間で失効するので、時間がたっていればペアリングし直すのが設計どおり）
+   - チャットとsetBlockが届くか。WireScopeのhelloで、送った版（23.2.1）と返った版（23.2.0）
+   - カタログピッカーで「ポプラの原木」が日本語の名前で出るか、名前で検索できるか
+5. Scratch rc1とPaperを止める。`plugins/`の`mc-remote-2320.0.0b10.jar`を外へ移し、`mc-remote-2321.0.0rc1.jar`を置いて、
+   Paperを起動する。logで`Enabling McRemote v2321.0.0rc1`
+6. Scratch rc1で接続し、チャットとsetBlock（**Scratch rc1 ↔ McRemote rc1**）。ペアリングが要ったか
+7. Scratch rc1を止めて、b10の`start-mc-remote.cmd`で起動し、接続、チャット、setBlock（**Scratch b10 ↔ McRemote rc1**）。
+   rc1とb10は同じ`127.0.0.1:8601`を使うので、同時に起動しない
+8. 古い`2320.0.0b10/`をどうすればよいか（残す、消す）が案内から分かるか
 
-## B. 新しい`はじめに.html`で初めて入れる（Aと別のOSで、一つ以上）
+## Ubuntu（サーバー役、Paper 1.21.11）：Python、Linuxの更新、1.21.11での26.3の名前
 
-`2321.0.0rc1/`も`2320.0.0b10/`も無い状態から始める。
+Pythonは試験用のフォルダーを2つ作り、それぞれに入れる。ペアリングは、Pythonの画面に出たコマンドをMinecraftのチャットで
+実行する。
 
-1. 起動の前に`はじめに.html`を開く。冒頭の概略の流れから、自分のOSの節へ迷わず進めるか
-2. 自分のOSの手順のとおりに起動する。macOSは、警告の窓を閉じる →「システム設定」→「プライバシーとセキュリティ」の
-   「このまま開く」→ 確認の窓でもう一度「このまま開く」→ 管理者のパスワード、の順が実際と合うか
-3. 設定画面のURLがリンクになっていて、開けるか
-4. 1台構成で接続し、チャットとsetBlockが届くか。WireScopeで通信が見えるか
-5. ホームページの`https://mc-remote.com/lan/scratch/`と`はじめに.html`とで、手順の食い違いがないか（ホームページはrc1の
+```bash
+mkdir -p ~/rc1-test/py-rc1 && cd ~/rc1-test/py-rc1 && uv init
+uv add "minecraft-remote-api @ https://mc-remote.com/candidates/2321.0.0rc1/set-1/minecraft_remote_api-2321.0.0rc1-py3-none-any.whl"
+mkdir -p ~/rc1-test/py-b9 && cd ~/rc1-test/py-b9 && uv init
+uv add "minecraft-remote-api==2320.0.0b9"
+```
+
+両方のフォルダーに、次の`hello.py`を置く（`12-python-client/python-client-guide_ja.md` §2の形。試験なので接続先を直接書く）。
+
+```python
+from mc_remote.minecraft import Minecraft
+
+mc = Minecraft.create(address="127.0.0.1", port=25575)
+mc.postToChat("Hello from Python")
+mc.setBlock(5, 62 + 5, 5, "sea_lantern")
+```
+
+1. Paper 1.21.11を起動する。McRemoteは**b10のまま**
+2. `~/rc1-test/py-rc1`で`uv run python hello.py`（**Python rc1 ↔ McRemote b10**）。ペアリング、チャット、setBlock
+3. Paperを止め、McRemoteをrc1のJARに替えて起動する。logで`Enabling McRemote v2321.0.0rc1`
+4. `~/rc1-test/py-b9`で`uv run python hello.py`（**Python b9 ↔ McRemote rc1**）
+5. `~/rc1-test/py-rc1`の`hello.py`の`Minecraft.create(...)`に`wirescope=True`を足して実行し、同梱のWireScopeが開いて
+   通信が見えるか
+6. ChromeでLinuxのZIPを取り、`2321.0.0rc1/`を`2320.0.0b10/`の隣に置く。`start-mc-remote.sh`を右クリック →
+   「プログラムとして実行」で起動し、このPCのサーバーへ接続、チャット、setBlock
+7. カタログピッカーで「ポプラの原木」を探す。1.21.11のサーバーで、26.3にしか無いブロックがどう見えるか（出ない、または
+   使えないと分かるか）
+8. Scratch rc1を止める。Paper 1.21.11（McRemote rc1）は、Macの試験のために動かしたままにする
+
+## Mac（新しく入れる、Mac → UbuntuのLAN構成）：新しい`はじめに.html`
+
+b10の試験と同じMac → Ubuntuにする。Ubuntuのufwが有効なら、25575（Macからマイクラに入るなら25565も）を許可しておく。
+
+1. `HOME/mc-remote/mc-remote-scratch-LAN/`の中の`2320.0.0b10/`を、試験の間だけ別の場所（デスクトップなど）へ移す。
+   `2321.0.0rc1/`も`2320.0.0b10/`も無い状態から始める
+2. ChromeでmacOSのZIPを取って展開し、起動の前に`はじめに.html`を開く。冒頭の概略の流れから、自分のOSの節へ迷わず進めるか
+3. macOSの手順のとおりに起動する。警告の窓を閉じる →「システム設定」→「プライバシーとセキュリティ」の「このまま開く」→
+   確認の窓でもう一度「このまま開く」→ 管理者のパスワード、の順が実際と合うか
+4. 設定画面のURLがリンクになっていて、開けるか。「LAN内の別のPC」でUbuntuのサーバーを入れる
+5. 接続し、チャットとsetBlockが届くか。WireScopeで通信が見えるか
+6. ホームページの`https://mc-remote.com/lan/scratch/`と`はじめに.html`とで、手順の食い違いがないか（ホームページはrc1の
    公開まではb10を指している。版の番号の違いは食い違いに数えない）
-
-## C. 23.2.0と23.2.1の組み合わせ（どのOSでもよい）
-
-各組み合わせで、接続、チャット、setBlockを一度ずつ。
-
-| client | server（McRemote） | 見ること |
-| --- | --- | --- |
-| Scratch rc1 | b10（`2320.0.0b10`） | つながる。版の違いを理由に止まらない |
-| Scratch b10 | rc1（`2321.0.0rc1`） | つながる |
-| Python rc1（wheel） | b10 | つながる |
-| Python b9（`2320.0.0b9`） | rc1 | つながる |
-
-Pythonはサーバーごとにペアリングが要る。可能ならPython rc1で、同梱のWireScopeを開く。
-
-## D. 26.3の名前（Paper 26.3で）
-
-1. Scratch rc1を26.3のサーバーにつなぎ、カタログピッカーで26.3のデータで足したブロック（例：Scratchのtestで使ったポプラの原木）が日本語の名前で
-   出るか、名前で検索できるか
-2. 1.21.11のサーバーにつないだときに、26.3にしか無いブロックがどう見えるか（出ない、または使えないと分かるか）
+7. 移した`2320.0.0b10/`を元の場所へ戻す
 
 ## 範囲の外
 
@@ -82,7 +111,7 @@ Pythonはサーバーごとにペアリングが要る。可能ならPython rc1�
 ## 記録してほしいこと
 
 - 「始める前に採ること」、使ったZIPのファイル名とサイズ
-- 場面ごとの結果と、案内の外で行った操作。迷った箇所、説明が欲しかった箇所
+- 手順ごとの結果と、案内の外で行った操作。迷った箇所、説明が欲しかった箇所
 - 警告の文言とスクリーンショット
 - 記録にtoken、ペアリングのコマンド、実際のIPアドレス、player UUIDを書かない
 

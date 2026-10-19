@@ -313,6 +313,24 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     - 公開後、coordinatorがtag target、prerelease／draft、assetと`manifest.json`のidentityをGitHub APIで照合する。assetが
       試験したもの（凍結値）と同じbytesであることを、ここで確かめる
   - 試験：実施票`00-hub/rc1-gate-live-test-instructions_ja.md`（mc-remote.comに置いた候補で行う）
+    - 2026-10-19：human owner「進め方が自由すぎてやりにくい」。実施票をOS別（Windows → Ubuntu → Mac）に、番号の順で
+      進める形へ書き直した。Linux ZIPもUbuntuで一度起動する。MacのBは1台構成の代わりにMac → Ubuntuにし、1.21.11での
+      26.3の名前はUbuntuで見る
+    - Windows（2026-10-18、手順6の途中まで。割り込みで中断）：Windows 11 Pro 26H2（26300.9711）、Core i3-8145U、メモリ16 GB、
+      Chrome 155.0.8059.85、Java 25.0.2+10-69（Oracle OpenJDK）、Paper 26.3 build 203
+      - ZIP `mc-remote-scratch-LAN-2321.0.0rc1-windows-x64.zip`をmc-remote.comからChromeで取得、261,848,009 bytes（凍結値と一致）。
+        プロパティで「許可する」にチェック。ダウンロードの警告の有無は記録待ち
+      - `2321.0.0rc1/`を`2320.0.0b10/`の隣に置いた（中身はどちらも`NOTICE_ja.md`、`README_ja.md`、`data`、`settings.json`、
+        `start-mc-remote.cmd`、`はじめに.html`）
+      - McRemote b10（起動logで`Enabling McRemote v2320.0.0b10`、`Auth enforcement: true`、credential `HEALTHY`、
+        catalog blocks=1286 hash `3eaae42e9bcbd5e6ef6a2d1df702b25a878ca3157dcadc58ae29822fe5277663`）に、起動ファイルの
+        ダブルクリック → 設定画面 → Scratch rc1で「接続」。WireScope miniが開き、ペアリング成功。WireScopeのhelloは送信
+        `protocol 23.2.1`、client `scratch-mcremote 2321.0.0rc1`、受信`protocol 23.2.0`、`mc_version 26.3`、
+        `supported_mc_versions ["1.21.11","26.3"]`。版の違いで止まらず、`chat.post`は`result:null`。「一通りうごく」（human owner）
+      - 同じ接続で、カタログピッカーは「取得済み — 26.3 · CACHE · 3eaae42e」。「ポプラ」で23件、`poplar log ポプラの原木`が出た
+      - McRemoteをrc1に替えて起動（`Enabling McRemote v2321.0.0rc1`、`Auth enforcement: true`、credential `HEALTHY`、
+        catalogはb10と同じblocks=1286、同じhash）。Scratch rc1で接続した
+      - 記録待ち：設定の入れ直しが要ったか、b10の作品が一覧に残っていたか、rc1 ↔ rc1のチャットとsetBlock、手順7〜8
   - 公開の後（knowledge）：API一覧の`api/23.2.1/`、ホームページの版の表示と`/lan/scratch/`のZIP、ブロック一覧の`2321.0.0rc1`。
     Stack：rc1のpreset、公開VPSの別セットへの切り替え（`2026-10-18-02`）は、リリースの作業を終えてから
   - feedbackの入口（2026-10-18、human owner）：knowledgeのGitHub Issuesに一つ置く（`2026-10-18-06`）。公開の前に、knowledgeへ
