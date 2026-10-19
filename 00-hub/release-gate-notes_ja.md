@@ -424,6 +424,22 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
       LANパッケージの検証では初学者クラスを対象にしない（`2026-10-19-01`）
     - 公開の依頼：`00-hub/rc1-gate-release-instructions_ja.md`（2026-10-19）。feedbackの入口のIssueテンプレートは
       `.github/ISSUE_TEMPLATE/feedback.yml`（`2026-10-18-06`）。PythonのWireScopeの直す方向はhub NOTES 2026-10-19
+    - McRemoteの公開（2026-10-19、coordinatorがGitHub APIとassetのdownloadで照合）：[v2321.0.0rc1](https://github.com/Naohiro2g/McRemote/releases/tag/v2321.0.0rc1)、
+      title「McRemote 2321.0.0rc1 (Minecraft 1.21.11, 26.3)」、prerelease=true、draft=false、Latestは`v1.21.8-1.4.0`のまま。annotated tagの
+      target `192a777ae1d484bcc9b58fcc7c58d6aed1a374af`で、`main`の先頭と同じ。`mc-remote-2321.0.0rc1.jar` 315,352 bytes／
+      `917c358c201aa219277b96a447fb85116e8bdb0260870a4d76a8c51219d31c37`（凍結値と同じ）。`manifest.json`（schema v2）1,988 bytes／
+      `e49761d22c8c60ac49915d04f1c6236ca101b13bf94b257c0cbcbb4328c6a1c2`は`release_tag`、`source_commit`、JARのdigestとbytes、対応版の
+      宣言（`minecraft-targets.json` `8e830732…c361`）と、1.21.11 #132／26.3 #203の検証record 2件（PASS、各JSONのdigestがassetと
+      一致）を持つ。Release本文にprotocol 23.2.1、23.2.0との接続、feedbackのフォームへのリンク。素材は
+      `McRemote/handoff-materials/2026-10-19-rc1-prerelease/`
+    - Pythonの公開（2026-10-19、coordinatorがGitHub APIとassetのdownloadで照合）：[v2321.0.0rc1](https://github.com/Naohiro2g/minecraft-remote-api/releases/tag/v2321.0.0rc1)、
+      prerelease=true、draft=false、Latestは`v1214.10.11`のまま。tag（lightweight）のtargetと`main`の先頭はともに
+      `c30105349ef26413e925699143396ea05bd3e380`。wheel 196,098 bytes／`5f12dfcf…44ca`、sdist 190,285 bytes／`dc8d9f30…5611`（どちらも全桁が
+      凍結値と同じ）。`manifest.json`（schema v1）684 bytes／`c0f5ed68be519e0b40cfa6c890ff6a0aeed791422ca3db75f837ead36a6b8af5`は
+      `source_commit`、`bundled_wirescope_source_commit` `6447f6e`、wheelとsdistのdigestが一致。Release本文に`wirescope=True`の注意書き
+      （開始の直後と最後に`input()`で待つ例）とfeedbackのフォームへのリンク。main CI `39216669184`、Release workflow `39216950884`は
+      PyPI.orgのjobがhuman ownerの承認待ち（TestPyPIは成功、担当報告）。素材は
+      `minecraft-remote-api/handoff-materials/2026-10-19-rc1-python-release/`
   - 公開の後（knowledge）：API一覧の`api/23.2.1/`、ホームページの版の表示と`/lan/scratch/`のZIP、ブロック一覧の`2321.0.0rc1`。
     Stack：rc1のpreset、公開VPSの別セットへの切り替え（`2026-10-18-02`）は、リリースの作業を終えてから
   - feedbackの入口（2026-10-18、human owner）：knowledgeのGitHub Issuesに一つ置く（`2026-10-18-06`）。公開の前に、knowledgeへ
