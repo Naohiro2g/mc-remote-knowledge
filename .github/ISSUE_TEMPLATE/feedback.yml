@@ -1,0 +1,49 @@
+name: フィードバック
+description: マイクラリモコン（Scratch、Python、McRemote、WireScope、ホームページの案内）を使って気づいたこと、困ったこと
+title: "[feedback] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        使ってみて気づいたこと、困ったこと、うれしかったことを書いてください。どのリポジトリの話か分からなくても大丈夫です。
+        ここで受け取って、担当へ振り分けます。
+
+        **書かないでください**：token、ペアコードやペアリングのコマンド、IPアドレス、パスワード、playerのUUID。
+        スクリーンショットにも写らないようにしてください。
+  - type: dropdown
+    id: surface
+    attributes:
+      label: 使ったもの
+      multiple: true
+      options:
+        - Scratch（LANパッケージ）
+        - Scratch（ブラウザ版・箱庭）
+        - Python
+        - McRemote（サーバーのプラグイン）
+        - WireScope
+        - ホームページ・案内
+        - わからない
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: 版
+      description: 分かれば。例：2321.0.0rc1
+  - type: input
+    id: environment
+    attributes:
+      label: OSとブラウザ
+      description: 例：Windows 11、Chrome 155
+  - type: textarea
+    id: what
+    attributes:
+      label: したこと、起きたこと
+      description: 何をしたら、何が起きたか。期待していたことがあれば、それも
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: スクリーンショットやlog
+      description: あれば。tokenやIPアドレスが写っていないか確かめてから貼ってください
