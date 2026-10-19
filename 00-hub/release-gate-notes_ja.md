@@ -463,6 +463,14 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
       （箱庭のrc1への切り替えはその後なので、箱庭に関わる表記はb10のまま）。候補の置き場所の中身は消してよい。gateを閉じる
     - 次の操作：close分類と候補の削除の依頼（`00-hub/rc1-gate-close-instructions_ja.md`）を各担当へ回す。返ってきたら、gateを閉じる
       ときのparkの確認（`2026-09-30-09`）をしてcloseをhuman ownerに諮る
+    - ホームページの更新（2026-10-19、human owner：Pythonの例はrc1、Scratchのブロック一覧の入口はrc1、箱庭に関わる表記はb10のまま）：
+      `/lan/scratch/`をrc1（版、3 OSのZIPのリンク、フォルダーの図、feedbackのフォームへのリンク）に。トップの現在地、ロードマップの
+      rc1、対応表（McRemote、Python、WireScopeはrc1。ScratchはWeb版b10とLANパッケージrc1を並べる。箱庭の2行は変えない）、リリース
+      履歴、Pythonカードの`uv add "minecraft-remote-api==2321.0.0rc1"`。API一覧はmetadataを23.2.1にし、`protocol.note`を外して
+      `api/23.2.1/`を生成し、`api/`の入口を23.2.1へ（`api/23.2.0/`は残す。`--check` OK）。Scratchのブロック一覧は、scratch-editorの
+      tag `ec79b3b`（site tree `5405380937b577491c85c710cb828a17303ec606`）の`site/2321.0.0rc1/`を`api/scratch/2321.0.0rc1/`へ取り込み、
+      入口の`api/scratch/`をそのページと同じbytesにした（Scratchのsiteは、入口を今の版のページと同じbytesで作る。tagのsiteの入口は
+      b10のままだった）
   - 公開の後（knowledge）：API一覧の`api/23.2.1/`、ホームページの版の表示と`/lan/scratch/`のZIP、ブロック一覧の`2321.0.0rc1`。
     Stack：rc1のpreset、公開VPSの別セットへの切り替え（`2026-10-18-02`）は、リリースの作業を終えてから
   - feedbackの入口（2026-10-18、human owner）：knowledgeのGitHub Issuesに一つ置く（`2026-10-18-06`）。公開の前に、knowledgeへ

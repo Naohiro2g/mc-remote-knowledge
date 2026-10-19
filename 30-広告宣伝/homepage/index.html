@@ -195,10 +195,10 @@
 
 				<div style="margin-top: 8px;">
 					<h4>Pythonモジュール（クライアント/API）のインストール：</h4>
-					<p><a href="https://docs.astral.sh/uv/getting-started/installation/" target="_blank" rel="noopener">uv</a>をインストールしたら、プロジェクトを作ってモジュールを追加します。新プロトコルのベータ版はPyPIにあり、版を指定して追加します（版を指定しないと旧プロトコルの安定版が入ります）。</p>
+					<p><a href="https://docs.astral.sh/uv/getting-started/installation/" target="_blank" rel="noopener">uv</a>をインストールしたら、プロジェクトを作ってモジュールを追加します。新プロトコルのリリース候補版はPyPIにあり、版を指定して追加します（版を指定しないと旧プロトコルの安定版が入ります）。</p>
 					<pre><code>uv init --python 3.13 mc-hello
 cd mc-hello
-uv add "minecraft-remote-api==2320.0.0b9"</code></pre>
+uv add "minecraft-remote-api==2321.0.0rc1"</code></pre>
 				</div>
 				<p></p>
 				<p>VS CodeのJupyter Notebookで一行ずつ実行するのもオススメ。手順は<a href="https://github.com/Naohiro2g/minecraft-remote-api#jupyter" target="_blank" rel="noopener">minecraft-remote-apiのREADME</a>へ。</p>
@@ -417,7 +417,7 @@ mc.setBlock(5, 67, 5, "sea_lantern")</code></pre>
 
 			<div class="roadmap-box">
 				<div class="current-status">
-					<span>●</span> 現在地: <strong>R3（学べる・教えられる）進行中 / b10 公開中</strong>
+					<span>●</span> 現在地: <strong>R3（学べる・教えられる）進行中 / rc1 公開中（箱庭はb10）</strong>
 				</div>
 
 				<ul class="timeline-list">
@@ -445,8 +445,8 @@ mc.setBlock(5, 67, 5, "sea_lantern")</code></pre>
 						<div class="timeline-desc"><strong>b10 / Protocol 23.2.0</strong>: 一つのプラグインでPaper 1.21.11と26.3の両方に対応。大きな範囲のブロック設置を、サーバーを止めないよう少しずつ施工。Scratch LANパッケージ（Windows／macOS／Linux用）で、自分のPCや家庭・教室のネットワークでもScratchから操作できるように。</div>
 					</li>
 					<li class="timeline-item">
-						<div class="timeline-date">2026年10月下旬【次】</div>
-						<div class="timeline-desc"><strong>RC (Release Candidate)</strong>: 外部テスターによる実機検証。</div>
+						<div class="timeline-date">2026年10月19日【公開】</div>
+						<div class="timeline-desc"><strong>rc1 / Protocol 23.2.1</strong>: 初回Stableのリリース候補（Release Candidate）。APIはb10と同じで、Protocol 23.2.0のサーバー・クライアントともつながる。Scratchのブロック選びで、マイクラ26.3で増えたブロックも日本語の名前で探せるように。Scratch LANパッケージの<code>はじめに.html</code>を、OSごとの手順に整理。</div>
 					</li>
 					<li class="timeline-item">
 						<div class="timeline-date">2026年11月</div>
@@ -479,9 +479,9 @@ mc.setBlock(5, 67, 5, "sea_lantern")</code></pre>
 				</thead>
 				<tbody>
 					<tr>
-						<td><strong>McRemote（Plugin、ベータ）</strong></td>
-						<td><code>2320.0.0b10</code></td>
-						<td>23.2.0</td>
+						<td><strong>McRemote（Plugin、リリース候補）</strong></td>
+						<td><code>2321.0.0rc1</code></td>
+						<td>23.2.1</td>
 						<td>Paper 1.21.11 / 26.3（同じJARで両方に対応）</td>
 					</tr>
 					<tr>
@@ -492,20 +492,20 @@ mc.setBlock(5, 67, 5, "sea_lantern")</code></pre>
 					</tr>
 					<tr>
 						<td><strong>minecraft-remote-api (Python)</strong></td>
-						<td><code>2320.0.0b9</code></td>
-						<td>23.2.0</td>
-						<td>Python 3.10以上対応。PyPIでベータ版を版指定で取得（<code>==2320.0.0b9</code>）。版指定なしでは旧プロトコルの安定版</td>
+						<td><code>2321.0.0rc1</code></td>
+						<td>23.2.1</td>
+						<td>Python 3.10以上対応。PyPIでリリース候補版を版指定で取得（<code>==2321.0.0rc1</code>）。版指定なしでは旧プロトコルの安定版</td>
 					</tr>
 					<tr>
 						<td><strong>scratch-editor (Scratch)</strong></td>
-						<td><code>2320.0.0b10</code></td>
-						<td>23.2.0</td>
-						<td>ブラウザ完結（Chrome, Safari, Edge等）。自分のPC・LAN向けのScratch LANパッケージ（Windows／macOS／Linux用ZIP）は<a href="https://github.com/Naohiro2g/scratch-editor/releases/tag/v2320.0.0b10" target="_blank" rel="noopener">リリースページ</a>から</td>
+						<td><code>2320.0.0b10</code>（Web版）<br /><code>2321.0.0rc1</code>（LANパッケージ）</td>
+						<td>23.2.0<br />23.2.1</td>
+						<td>Web版はブラウザ完結（Chrome, Safari, Edge等）で、箱庭の切り替えまでb10。自分のPC・LAN向けのScratch LANパッケージ（Windows／macOS／Linux用ZIP）は<a href="lan/scratch/">LANパッケージのページ</a>から</td>
 					</tr>
 					<tr>
 						<td><strong>WireScope</strong></td>
-						<td><code>2320.0.0b9</code></td>
-						<td>23.2.0</td>
+						<td><code>2321.0.0rc1</code></td>
+						<td>23.2.1</td>
 						<td>共通パケット観察Webアプリ（minecraft-remote-tooling）</td>
 					</tr>
 					<tr>
@@ -527,6 +527,12 @@ mc.setBlock(5, 67, 5, "sea_lantern")</code></pre>
 			<details>
 				<summary>📜 過去のリリース履歴を展開して確認する</summary>
 				<ul class="history-timeline" style="margin-top: 14px;">
+						<li>
+							<div class="history-meta"><span class="history-date">2026年10月19日</span><span
+									class="history-version">Protocol 23.2.1 (rc1)</span></div>
+							<div class="history-description">初回Stableのリリース候補。Protocolを23.2.1、配布版を<code>2321.0.0rc1</code>に（APIと通信の中身はb10と同じで、23.2.0のサーバー・クライアントとそのままつながる）。Scratchのブロック選びにマイクラ26.3の日本語の名前を追加。Scratch LANパッケージの<code>はじめに.html</code>をOSごとの手順に整理。不具合や気づいたことは<a href="https://github.com/Naohiro2g/mc-remote-knowledge/issues/new?template=feedback.yml" target="_blank" rel="noopener">フィードバックのフォーム</a>へ。
+							</div>
+						</li>
 						<li>
 							<div class="history-meta"><span class="history-date">2026年10月14日</span><span
 									class="history-version">Protocol 23.2.0 (b10)</span></div>
