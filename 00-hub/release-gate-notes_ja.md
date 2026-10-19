@@ -477,7 +477,26 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
       `handoff-materials/2026-10-19-rc1-close/`、Python `handoff-materials/2026-10-19-rc1-python-release/`のclose分類の節、Scratch
       `handoff-materials/2026-10-19-rc1-close-inventory/`）。①はMcRemote 9 file、Python 10 file、Scratch 15 fileで、coordinatorが
       bytesとSHA-256で照合して`14-evidence/artifacts/2026-10-19-rc1-gate-close/`へ収容した（`14-evidence/records/2026-10-19-rc1-gate-close_ja.md`）。
-      Stackの返却（候補の中身の削除と分類）は待ち
+      Stackの返却は下
+    - Stackのclose返却（2026-10-19、knowledge `04c56b8`を読んだ）：候補の置き場所は2026-10-19 18:15:48 JST（09:15:48 UTC）に、
+      版のdirectory（`candidates/2321.0.0rc1/`、その下の`set-1/`）ごと消した（Stackの手順書`docs/release-candidate-downloads-guide_ja.md`
+      §4どおり）。残るのはCaddyのmount元の空の`candidates/`だけ。生成されたCaddyfileの`handle_path /candidates/*`と、Caddyのcontainerの
+      読み取り専用のmountは残り、18:22 JSTにnoticeの更新でcontainerを作り直した後も同じ。coordinatorが外から、5 fileと`SHA256SUMS`の
+      URLが404になることを確かめた。`handoff-materials`にrc1の期間のdirectoryは無い（最新は2026-10-08）。rc1の成果はStackの公開物
+      （`/candidates/*`の経路、PR #73〜#75）、knowledgeへ返した`rollback-failed`の記録、backstage #25、#28にある
+    - gateを閉じるときのparkの確認（`2026-09-30-09`、2026-10-19、coordinatorの案。human ownerの判断待ち）：
+      | park | 案 |
+      | --- | --- |
+      | テックブログの1本目、下書きのfile名、feedbackの場所（2026-10-17） | ③はIssueのテンプレートを公開して済んだ（`2026-10-18-06`）。①②はhuman ownerの持ち越しのまま |
+      | McRemoteの対応版を各系列の最終版へ広げる検討（2026-10-17） | 再開＝rc1の後で、今が時期。初回stableの対応版は1.21.11と26.3のまま（`2026-10-13-07`）にして、広げるかは初回stableの後に決める案 |
+      | Windowsの生徒のPC（2026-10-17） | rc1は今のREADMEのまま出した。初学者はrc1の検証の対象にしない（`2026-10-19-01`）。生徒のPCの結果が届いたとき、または初回stableの前のWindowsの確認のときに再開 |
+      | LANパッケージのランチャー、`はじめに.html`、Scratchの画面（2026-10-17） | ①はrc1に入った（macOSの手順が実際と合い、設定画面のURLはリンク。rc1の試験で確認）。rc1の試験の見つかったこと（3〜6、9）を足し、②③⑤とともに初回stableへ |
+      | LANパッケージの教材の部分の収録（2026-10-13） | **まだ収録していない**。RCの間（初回stableまで）にknowledgeが`20-教材`へ収録する。gateを閉じた後の最初の作業にする案 |
+      | 未生成chunkへの操作の制限（2026-10-07） | rc1から外した（McRemoteも賛成）。再開＝初回stableの後のAPI計画のとき |
+      | 認証前の内部テーブルの較正（2026-10-07） | rc1は授業規模のloadをしていない。授業相当のloadを行うときのまま |
+      | API一覧（2026-09-30） | `api/23.2.1/`を出した。クライアントAPI一覧へのつなぎ方は初回stableの後のまま |
+      | public README／sample codeの人間向け再編（2026-08-28） | rc1ではPass Cを行わない（`2026-10-19-01`）。閉じる条件（初回stableでPass C）は、初回stableの前に見直す |
+      | WindowsでのPython導入の2ルート（2026-09-28） | rc中に確認、のまま。human ownerの結果待ち |
   - 公開の後（knowledge）：API一覧の`api/23.2.1/`、ホームページの版の表示と`/lan/scratch/`のZIP、ブロック一覧の`2321.0.0rc1`。
     Stack：rc1のpreset、公開VPSの別セットへの切り替え（`2026-10-18-02`）は、リリースの作業を終えてから
   - feedbackの入口（2026-10-18、human owner）：knowledgeのGitHub Issuesに一つ置く（`2026-10-18-06`）。公開の前に、knowledgeへ
@@ -892,6 +911,11 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   止まらずに通ったので閉じた
 - close（2026-10-17、human ownerの判断）：**b10 gateをCLOSEDとする**。残り：shared deploy（VPSベータのMinecraftの版をhuman ownerが
   決めてから）、ホームページ（releasesの記述、LANの入口）、rc1 gateを開くこと
+- Backstageのclose分類（2026-10-19受領、`2026-10-18-01`で管轄に戻したための後追い）：b10のclose依頼の宛先にBackstageが入っていなかったので、
+  Backstage担当がcloseの手順に沿って後から分類した（返却票はBackstage `handoff-receipts/2026-10-18-b9-b10-close-return_ja.md`、main `e3838bc`、
+  4,290 bytes、`e5c86d7ec8ddfa59b47d468c1d41f825b8b845d45357381fb1de87dfb6d85feb`。knowledge `3f80b05`を読んだ。b9とb10の分をまとめた1通）。
+  ①は無い。返却票はcoordinatorがbackstageを直接読まず、human ownerが渡した要約で受けた（`2026-09-03-03`）。管理端末の
+  `~/.local/share/mc-remote/`のBackstage管理外の10件、park確認の候補6件、Stackの分の分類は、rc1の節で扱う
 
 ## 2026-10-04 b9横断release gate（CLOSED）
 
@@ -1154,6 +1178,11 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   b9からPyPI.orgへpre-release）
 - human owner（2026-10-04）: WindowsでのPythonの導入手順の確認とPyPI.orgの準備は、今日中を目標にする。契約2件のcaseを
   足したshared fixtureは、今のownerのScratchが先に出す（移管より前）
+- Backstageのclose分類（2026-10-19受領、`2026-10-18-01`で管轄に戻したための後追い）：b9のclose依頼の宛先にBackstageが入っていなかったので、
+  Backstage担当がcloseの手順に沿って後から分類した（返却票はBackstage `handoff-receipts/2026-10-18-b9-b10-close-return_ja.md`、main `e3838bc`、
+  4,290 bytes、`e5c86d7ec8ddfa59b47d468c1d41f825b8b845d45357381fb1de87dfb6d85feb`。knowledge `3f80b05`を読んだ。b9とb10の分をまとめた1通）。
+  ①は無い。返却票はcoordinatorがbackstageを直接読まず、human ownerが渡した要約で受けた（`2026-09-03-03`）。管理端末の
+  `~/.local/share/mc-remote/`のBackstage管理外の10件、park確認の候補6件、Stackの分の分類は、rc1の節で扱う
 
 ## 2026-09-30 b8横断release gate（CLOSED）
 

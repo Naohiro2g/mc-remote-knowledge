@@ -38,4 +38,5 @@ gate closeの置き場所にまとめた。Scratchのscriptの中の`/tmp/`のpa
   `handoff-materials/2026-10-19-rc1-close-inventory/materials/REFERENCE_SOURCE_ja.md`）。knowledgeの`api/scratch/2321.0.0rc1/blocks.json`は
   Scratchの生成物と同じbytes
 - ①の元は、この収容の照合の後に各担当が整理してよい。②は各担当の書いた用途と、捨ててよくなる条件のとおりに持つ
-- Stackの返却（候補の置き場所の中身の削除と分類）は、この記録の時点でまだ
+- Stack：`handoff-materials`にrc1の期間のdirectoryは無い（①②③なし）。候補の置き場所は2026-10-19 09:15:48 UTCに版のdirectoryごと
+  消し、経路と読み取り専用のmountは残した。coordinatorが外から5 fileと`SHA256SUMS`のURLが404になることを確かめた
