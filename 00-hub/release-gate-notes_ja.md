@@ -534,6 +534,9 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
       coordinatorが手元のcheckoutで同じ11件を確かめた。返却票はこの確認の後に消す。Pythonは`c74bc41`をremoteで確かめ、返却packetの
       3 fileを消した。②の`examples/`の2 fileはSHA-256が変わらず、用途と捨ててよくなる条件をlocal NOTESに書いた。公開VPS（箱庭）の
       rc1への切り替え（`2026-10-18-02`）は、human ownerがStackへ直接頼んだ
+    - 箱庭のrc1への切り替え（2026-10-20、human ownerの報告）：deployは済んだ。DiscordとWireScopeの時刻は日本時間で合っている。
+      Minecraftは、使っているプラグインの対応の状況から1.21.11のままにする。coordinatorが外から、`scratch-beta`の`gui.js`に
+      `2321.0.0rc1`があり`2320.0.0b10`が無いことを確かめた。ホームページの箱庭のb10の表記を外した
 - **rc1横断release gateを閉じた（2026-10-19、human owner）**。凍結した`rc1-integrated-artifact-set-1`を4 repoのprereleaseとPyPI.orgへ
   出し、どのassetも試験したものと同じbytes。close分類を収容した（`14-evidence/records/2026-10-19-rc1-gate-close_ja.md`）。次は
   LANパッケージの教材の収録、公開VPS（箱庭）のrc1への切り替え（`2026-10-18-02`）、初回stable
