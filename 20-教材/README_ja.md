@@ -8,6 +8,11 @@
 
 横断的な影響を持つ決定（複数ワークストリームに波及するもの）は、ここに書くと同時に `00-hub/DECISIONS_ja.md` に1行追記する。
 
+## XYZ軸の空間で建てる
+
+最初のコマで、Scratchから箱庭サーバーにつなぎ、XYZ軸のある空間でブロックを置いて形を作る教材は
+[XYZ軸の空間で建てる教材の設計](xyz-space-learning-design_ja.md)を参照する。
+
 ## Client sample
 
 各Client Library開発repoのREADME隣接examplesと、`mc_remote_samples`のconcept-firstな多言語比較面は役割を分ける。

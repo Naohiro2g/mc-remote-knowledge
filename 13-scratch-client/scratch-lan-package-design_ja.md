@@ -7,7 +7,7 @@ Chromeでつなぐのと同じ難易度と簡便さ）。将来McRemoteが配る
 おすすめプラグインのセットアップ）と併せてLANパッケージとなる。
 
 出典はScratch担当とhuman ownerの設計対話（scratch-editor `mc-remote/local/LAN_EXPERIENCE_DESIGN_ja.md`、2026-10-13）。
-教材の部分（共通教材、整地とXYZ軸、マイクラ課題）はRCの間に`20-教材`へ収録する。
+教材の部分（共通教材、整地とXYZ軸、マイクラ課題）は[XYZ軸の空間で建てる教材の設計](../20-教材/xyz-space-learning-design_ja.md)に収録した。
 
 ## 1. 誰のための、何か
 
