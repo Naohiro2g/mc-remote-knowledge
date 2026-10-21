@@ -15,11 +15,12 @@
 - Phase B／examples commit: `f259b396bfbde6e37e65b3c7916c25af37dc6a29`
 - session credential UX commit: `af95e9ce5202926533d053d9e6d97befc7d006ee`
 - Phase C代表capability commit: `20c47bd2c862b100084ef713ee52f72759fa2d0e`
+- README・APIリファレンス・作例の先行準備commit: `66814b992e629deec60028d4af0d978212477526`
 - Java root package: `club.code2create.mcremote.client`
 - Maven / Gradle group: `club.code2create.mcremote`
 - Maven artifactId: `minecraft-remote-client`
 - build: Gradle wrapper／`java-library`
-- Java target: 21
+- Java target: 21（build・test・実行はmiseで選ぶJDK 21か25）
 - Java bootstrap baseline: protocol 23.0.0／artifact 2300.0.0b6
 
 Gradle clean build、unit test、Java 21 classfile確認、`minecraft-remote-client.jar`／sources JAR生成と
@@ -87,6 +88,13 @@ version、fixture／artifact identityで固定する。Javaの機能充足、同
 b9までは、freezeと移管に役立つ準備を先に進める。契約の疑問点の棚卸しとb9 freeze前の返却、consumerとしての依存の
 明示、再現できる検証の入口、README／examples／対応範囲の整合である。初回stable（GitHubのLatest）の後、b9で移管した
 新しいownerと取得経路で実装を追従し、移管を再検証する（[移管評価計画](../10-protocol/protocol-tooling-migration-plan_ja.md)）。
+
+初回stableの後は、公開tag、解決先commit、protocolを固定し、契約、wire、fixtureを`66814b9`の時点の参照値と照合する。
+差分が無いと確かめた範囲は、下の「README・APIリファレンス・作例の先行準備」のPASSを使い回し、同じ試験を自動では
+やり直さない。版番号の文字列が同じだけでは差分なしとしない。fixtureの取得元をminecraft-remote-toolingへ切り替えることと、
+まだつないでいない共有fixtureをtestへつなぐことは残っており、必要なtestを実行して仕上げてからPhase Cの機能追加へ進む。
+Phase Cの順序はJava repoの局所案（`docs/post-latest-plan_ja.md`）のままとし、横断contractへ固定しない。Javaの再検証を、
+移管全体の完了判定や横断releaseの条件にしない。
 
 ## Phase B後の進行
 
@@ -165,3 +173,34 @@ session tokenを再利用して`chat.post`に成功したと報告された。ma
 
 このsliceはsession tokenの再利用であり、long-lived credentialを公開しない。横断意味は`2026-08-30-03`と
 `00-hub/authentication-roadmap_ja.md` §1.1を正とする。
+
+### README・APIリファレンス・作例の先行準備（2026-10-21）
+
+`66814b992e629deec60028d4af0d978212477526`で、初回stableの前にJavaの入口を整えた。protocolが変わらない予定なので、
+README、API、作例と既存機能のconsumer確認を先に済ませた。
+
+- README：Pythonの「最初の成功→編集→作例→API」の導線にならい、JDKの選び方、接続先、ペアリング、tokenの保存を実行の
+  順に案内する。pair codeは120秒、session tokenは発行から2時間
+- APIリファレンス（`docs/java-api-reference_ja.md`）：JDKのdoclet APIで、公開メソッドの署名、recordの要素、enumの値を
+  抜き出し、日本語の説明を付けて生成する。buildが生成結果と文書の一致を確かめる
+- 作例：接続、block state、catalog、看板、event cursorの短い作例（`docs/java-examples_ja.md`）。実行できるサンプルに、
+  読み取りだけの`inspect`と、時間を区切った`events`を足した。menuはサーバーに操作を拒否されても接続を保ち、`r`で同じ
+  tokenを使って接続し直す。書き込みの自動再試行はしない
+- JDK：build、test、サンプルの実行は、miseで選ぶJDK 21か25（既定は`mise.toml`の21）。classfileのtargetは21のまま。CIは
+  21と25のmatrix（[GitHub Actions](https://github.com/Naohiro2g/minecraft-remote-java/actions/runs/39596340985)、両方PASS）
+- 変えていないもの：core library、要求protocol 23.0.0、vendor fixture、Maven coordinate、公開versionとpublishの流れ
+
+JDK 21と25のそれぞれで、core 23件＋examples 20件の43件がPASSし、core／examplesの全classfileがmajor 65だった。examplesの
+20件には、サンプル本体をloopback TCPの23.2.1のpeerで動かす互換test 8件（request形、cursor、整地の分割、拒否の後の継続、
+同じtokenでの再接続）を含む。rc1のtooling `6447f6e8cbfbeeb9d229990b5c4f6e82a5875666`から取った既存fixture 3本は、vendor copyと
+bytes、SHA-256が一致した。
+
+搬送票では、箱庭（公開VPSのベータ、rc1、Minecraft 1.21.11／protocol 23.2.1）で、ペアリングの後にchat、catalog（blocks 1166／
+entities 157／particles 115）、pose read、AxisFlat、金ブロックのwrite／read、看板のset／update／get、particle accepted 30、
+空event ringの有限poll、cleanupと再実行が成功し、別processの`--save hello`がペアリングなしで接続してchatを送ったと
+報告された。稼働JARのdigestを固定した試験ではない。非空event、axis-flat-clearのlive、Minecraft 26.3、macOS／Windowsの
+保護storeは確かめていない。
+
+途中でsetBlockが`build_denied`になったのは、箱庭のLuckPermsに`mcr.build.blocks`が無かったためだった。LuckPermsがある
+環境ではmetaが無いと上限0になる（b10からの仕様、[platform design](../11-plugin/platform-design_ja.md) §8.2）。human ownerが
+playerとdefault groupに設定し、接続し直して直った。認証やchatが通っても、ブロックを置く量の上限を満たしているとは限らない。
