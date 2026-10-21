@@ -81,7 +81,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   旧protocolの1214系から`2321.0.0`に変わる（`2026-10-22-02`）
 - contract: protocol `23.2.1`のまま、artifact `2321.0.0`。APIとwireは変えない
 - 範囲（`2026-10-22-01`）:
-  1. McRemote：旧`b5.`／`b7.`キーの移行の処理を外す。configに旧キーが残っていたら、エラーをlogに出して止まる。
+  1. McRemote：旧`b5.`／`b7.`キーの移行の処理を外す。configに旧キーが残っていたら、エラーをlogに出してPaperサーバーの起動ごと止める。
      `2321.0.0rc2`をGitHubのpre-releaseで出し、同じJARを1.21.11と26.3で確かめてから`2321.0.0`にする
   2. Python、Scratch（LANパッケージ、OCI）、minecraft-remote-tooling：rc1のsourceから版の番号だけを変える。rc1のPASS
      （`14-evidence/records/2026-10-19-rc1-candidate-3os-live-human_ja.md`、公開の照合）を使い回す
@@ -90,10 +90,10 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
      移行のページ（`2026-10-22-02`④）の入口
 - 範囲の外（`2026-10-22-02`、`2026-10-22-03`）: READMEのPass C（Paperサーバーのガイドで置き換え、年内）、WindowsでのPython
   導入の2ルート（11月中）、Pythonの移行ガイドの強化、PythonとScratchの改善（`2321.1.0`）、サウンドの拡張（`2330.0.0`、12月）
-- 箱庭: 11月中は、latestを`sb-beta`で動かし、`sb`は旧protocolのまま残す。12月に`sb`を新protocolへ切り替える（`2026-10-22-02`⑤。
-  名前の割り当てはcoordinatorの案で、human ownerの確認待ち）
+- 箱庭: 11月中は、latestを`sb-beta`で動かし、`sb`は旧protocolのまま残す。12月から、`sb`を新protocolの安定版、`sb-beta`を
+  `2330.0.0`のbeta版にする（`2026-10-22-02`⑤）
 - 人間の試験（案）: rc2のJARで、1台、PaperはどちらかでPythonとScratchから接続、ペアリング、setBlock、getBlock。旧キーを
-  残したconfigで止まることはMcRemoteのunitで確かめ、live試験にしない
+  残したconfigで止まることはMcRemoteのtestとpulseで確かめ、人間の試験にしない
 - gateを開くときのparkの確認（`2026-09-30-09`、coordinatorの案。human ownerの確認待ち）:
   | park | 案 |
   | --- | --- |
