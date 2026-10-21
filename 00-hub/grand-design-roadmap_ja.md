@@ -56,10 +56,11 @@ Scratch固有の現状は[Scratch roadmap](../13-scratch-client/scratch-roadmap_
 ## 4. 現在の横断優先
 
 1. b9（protocol `23.2.0`／artifact `2320.0.0b9`）を2026-10-05に公開し、b9横断release gateを閉じた（`00-hub/release-gate-notes_ja.md`）。APIは初回stableまで変えない。Python APIはmatureへ移り、PyPI.orgへpre-releaseを出した（`2026-10-05-03`）。Protocol／WireScope／Bridgeは`minecraft-remote-tooling`へ移した（`2026-10-05-01`、`2026-10-05-02`）
-2. b10（protocol `23.2.0`／artifact `2320.0.0b10`）を2026-10-14にGitHubのpre-releaseとして出し、3 OSの試験でhuman ownerが合格とし、2026-10-17にb10横断release gateを閉じた（`00-hub/release-gate-notes_ja.md`、`14-evidence/records/2026-10-17-b10-prerelease-3os-live-human_ja.md`）。pre-releaseの印はbootstrapの間は外さない。McRemoteのsetBlocksのtick分割、1.21.11と26.3で同じJARを使う単一JAR（`2026-10-13-07`）、`mcr.build.blocks`の既定32768、Scratch LANパッケージ（ScratchとBridgeを各PCで動かすOS別ZIP、`2026-10-13-02`）を入れた。APIは変えていない。次はrc1（10月24日まで）。初回stableは11月7日の予定。shared deployはVPSベータのMinecraftの版をhuman ownerが決めてから行う。ホームページのLANの入口をrc1までに作る。LANパッケージの教材の部分はRCの間に`20-教材`へ収録する。rc1 gateを開くときに、parkした行（rollbackの範囲、Scratch OCIを凍結と公開で揃える、製品noticeを一つに絞る、pickerのalias検索と読み上げ、クライアントAPI一覧とのつなぎ方、READMEのPass C）を拾う
-3. `lookAt`、空間query、player別previewを含むサウンド以外の新APIは、初回stable後へ送った（`2026-09-30-03`）。
-4. rc1（10月24日まで）から外部testerが会話履歴なしで開始・更新・復旧・feedbackできる入口を用意し、homepage／release情報／技術記事を並走させる。
-5. long-lived credentialの公開gateは閉じたまま、ケータリングで実需要を観察してから再開する。
+2. b10（protocol `23.2.0`／artifact `2320.0.0b10`）を2026-10-14にGitHubのpre-releaseとして出し、3 OSの試験でhuman ownerが合格とし、2026-10-17にb10横断release gateを閉じた（`00-hub/release-gate-notes_ja.md`、`14-evidence/records/2026-10-17-b10-prerelease-3os-live-human_ja.md`）。pre-releaseの印はbootstrapの間は外さない。McRemoteのsetBlocksのtick分割、1.21.11と26.3で同じJARを使う単一JAR（`2026-10-13-07`）、`mcr.build.blocks`の既定32768、Scratch LANパッケージ（ScratchとBridgeを各PCで動かすOS別ZIP、`2026-10-13-02`）を入れた。APIは変えていない
+3. rc1（protocol `23.2.1`／artifact `2321.0.0rc1`）を2026-10-19に4 repoのGitHubのpre-releaseとPyPI.orgへ出し、3 OSの試験でhuman ownerが合格として、同日rc1横断release gateを閉じた（`00-hub/release-gate-notes_ja.md`、`14-evidence/records/2026-10-19-rc1-candidate-3os-live-human_ja.md`）。APIはb10と同じで、23.2.0のサーバー・クライアントともつながる。どのassetも試験したものと同じbytesで、ScratchのOCIも凍結した値のまま出した。PythonでWireScopeを使うと、短いscriptではページが白いまま終わることがあり、rc1はRelease本文の注意書きで扱い、初回stableの後に優先して直す。rc1のLANパッケージの検証では初学者クラスを対象にしない（`2026-10-19-01`）。公開VPSのベータの箱庭は2026-10-20にrc1へ切り替えた。Minecraftは、使っているプラグインの対応の状況から1.21.11のまま。feedbackの入口はknowledgeのGitHub Issuesに置いた（`2026-10-18-06`）。LANパッケージの教材の部分は`20-教材/xyz-space-learning-design_ja.md`に収録した（教材の実物はhuman ownerが作り直している）。次は初回stable（11月7日の予定）
+4. `lookAt`、空間query、player別previewを含むサウンド以外の新APIは、初回stable後へ送った（`2026-09-30-03`）。
+5. rc1から外部testerが会話履歴なしで開始・更新・復旧・feedbackできる入口を用意し（feedbackはknowledgeのGitHub Issues）、homepage／release情報／技術記事を並走させる。
+6. long-lived credentialの公開gateは閉じたまま、ケータリングで実需要を観察してから再開する。
 
 個別 repo の「次の一手」は保存せず、その repo の NOTES と contract から都度生成します。
 
