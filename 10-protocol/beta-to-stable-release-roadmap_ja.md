@@ -388,6 +388,10 @@ Tier 3へ進み、10月rcでTier 4、capacity、soak、rollbackを閉じます�
 
 stable後の小変更は、同じstable coreへbeta suffixを足さず、次coreの`bN → rc → stable`で進めます。
 
+> 2026-10-22 改訂（`2026-10-22-01`、`2026-10-22-03`）：旧`b5.`／`b7.`キーの移行の処理は、McRemoteだけ`2321.0.0rc2`を挟んで外し、
+> 旧キーが残っていればMcRemoteは止まる。stableの後のbetaは必須にせず、出した後に修正が続くと見込まれる変更でだけ挟む。
+> 同じstable coreへbetaの接尾辞を足さないことは変えない。
+
 ## 6. 却下案
 
 - 旧b6 scopeを8月末へ一括投入する。

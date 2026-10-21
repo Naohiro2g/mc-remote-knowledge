@@ -71,6 +71,46 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - non-claim: PyPI.orgへの公開はしない。mature判定はしない。Windowsでは検証していない
 - coordinator判定／human release owner承認: human ownerがpost2のsetへの組み入れを判定（2026-09-26、`2026-09-27-01`）。coordinatorはchange coneが閉じていることを確認し、単独更新gateを通過とする（2026-09-28）。**CLOSED**
 
+## 2026-10-22 初回stable（2321.0.0）横断release gate
+
+- gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
+- human release owner: プロジェクトオーナー
+- current phase: **OPEN**（2026-10-22、human ownerの判断）
+- 目標日: GitHubのLatestを11月1日。McRemoteのrc2で何か出れば11月7日（`2026-10-22-01`）
+- 位置づけ: 初回stable。pre-releaseの印を外し、各repoのLatestにする。PyPIでは、版を指定しない`pip install`／`uv add`で入る版が
+  旧protocolの1214系から`2321.0.0`に変わる（`2026-10-22-02`）
+- contract: protocol `23.2.1`のまま、artifact `2321.0.0`。APIとwireは変えない
+- 範囲（`2026-10-22-01`）:
+  1. McRemote：旧`b5.`／`b7.`キーの移行の処理を外す。configに旧キーが残っていたら、エラーをlogに出して止まる。
+     `2321.0.0rc2`をGitHubのpre-releaseで出し、同じJARを1.21.11と26.3で確かめてから`2321.0.0`にする
+  2. Python、Scratch（LANパッケージ、OCI）、minecraft-remote-tooling：rc1のsourceから版の番号だけを変える。rc1のPASS
+     （`14-evidence/records/2026-10-19-rc1-candidate-3os-live-human_ja.md`、公開の照合）を使い回す
+  3. Stack：`2321.0.0`のpreset。箱庭のconfigに旧キーが無いことを、切り替えの前に確かめる
+  4. knowledge：ホームページ（版の表、現在地、Pythonの例）、API一覧（23.2.1は同じ）、Scratchのブロック一覧の`2321.0.0`、
+     移行のページ（`2026-10-22-02`④）の入口
+- 範囲の外（`2026-10-22-02`、`2026-10-22-03`）: READMEのPass C（Paperサーバーのガイドで置き換え、年内）、WindowsでのPython
+  導入の2ルート（11月中）、Pythonの移行ガイドの強化、PythonとScratchの改善（`2321.1.0`）、サウンドの拡張（`2330.0.0`、12月）
+- 箱庭: 11月中は、latestを`sb-beta`で動かし、`sb`は旧protocolのまま残す。12月に`sb`を新protocolへ切り替える（`2026-10-22-02`⑤。
+  名前の割り当てはcoordinatorの案で、human ownerの確認待ち）
+- 人間の試験（案）: rc2のJARで、1台、PaperはどちらかでPythonとScratchから接続、ペアリング、setBlock、getBlock。旧キーを
+  残したconfigで止まることはMcRemoteのunitで確かめ、live試験にしない
+- gateを開くときのparkの確認（`2026-09-30-09`、coordinatorの案。human ownerの確認待ち）:
+  | park | 案 |
+  | --- | --- |
+  | public README／sample codeの人間向け再編（2026-08-28） | 初回stableの条件から外す（`2026-10-22-02`①）。Paperサーバーのガイドで置き換え、年内 |
+  | WindowsでのPython導入の2ルート（2026-09-28）、Windowsの生徒のPC（2026-10-17） | 11月中（`2026-10-22-02`②） |
+  | ホームページの次のページ（`/server/`、おすすめプラグイン）（2026-10-17） | Pass Cの置き換えと同じ流れで年内。移行のページは別に、初回stableの公開までに入口を置く案 |
+  | LANパッケージのランチャー、`はじめに.html`、Scratchの画面（2026-10-17） | `2321.1.0`へ |
+  | WireScopeの観測の開始と終了、接続の状態の詳細（2026-10-19） | `2321.1.0`へ。Pythonを優先する |
+  | サーバーの再起動の後の接続（2026-10-12） | `2321.1.0`の候補 |
+  | 初回stable後のサウンド拡張（2026-09-30） | `2330.0.0`、12月 |
+  | 初期のスポーンと建築原点（2026-10-17） | 初回stableの後のまま。飛行のAPIが要るなら`2330.0.0`以降 |
+  | McRemoteの対応版を各系列の最終版へ広げる検討（2026-10-17） | 初回stableは1.21.11と26.3のまま。広げるかは初回stableの後 |
+  | API一覧（2026-09-30） | `api/23.2.1/`のまま。クライアントAPI一覧へのつなぎ方は初回stableの後 |
+  | テックブログの1本目（2026-10-17） | human ownerの持ち越しのまま。初回stableの後のガイドの側の進行と合わせる |
+- 次の操作（2026-10-22）：各担当へ確認票（`00-hub/stable-gate-confirmation-instructions_ja.md`）。McRemoteは同じ票でrc2の実装に
+  着手してよい
+
 ## 2026-10-17 rc1横断release gate（CLOSED）
 
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
