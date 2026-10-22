@@ -40,7 +40,7 @@
 			<article class="lan-card">
 				<p class="lan-trail"><a href="../">マイクラリモコン</a>　／　旧版からの移行</p>
 				<h1>🔄 旧版からの移行</h1>
-				<p class="lan-lead">2021年から2025年ごろのマイクラリモコンを使っていた方への案内です。新しいマイクラリモコンは、マイクラとプログラムの間の通信の決まり（プロトコル）が新しくなり、旧版とはつながりません。旧版のまま使える期間と、新しい版へ移る手順をまとめました。</p>
+				<p class="lan-lead">2026年10月までのマイクラリモコンを使っていた方への案内です。新しいマイクラリモコンは、マイクラとプログラムの間の通信の決まり（プロトコル）が新しくなり、旧版とはつながりません。旧版のまま使える期間と、新しい版へ移る手順をまとめました。</p>
 
 				<nav class="lan-entrances" aria-label="このページの入口">
 					<a href="#who">🙋 対象の方</a>
@@ -52,14 +52,46 @@
 
 				<section id="who">
 					<h2>🙋 対象の方</h2>
-					<p>次のどれかを使っていた方が対象です。</p>
-					<ul>
-						<li>改造版Scratch（マイクラ1.12.2用、1.16.5用）</li>
-						<li>Forgeで動かすマイクラリモコンのmod</li>
-						<li>Pythonの<code>minecraft-remote-api</code>の1214系（<code>1214.10.13</code>など）</li>
-						<li>旧プロトコルの箱庭サーバー（2026年10月までの<code>sb.mc-remote.com</code>）</li>
-					</ul>
-					<p>これから始める方は、移行は要りません。<a href="../#quickstart">はじめる</a>へ進んでください。</p>
+					<p>マイクラリモコンは、時期によって次の構成で動いてきました。2026年10月までの構成を使っていた方が対象です。</p>
+					<div class="table-wrap">
+						<table class="lan-table">
+							<thead>
+								<tr>
+									<th>時期</th>
+									<th>マイクラサーバーの側</th>
+									<th>Python</th>
+									<th>Scratch</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>2021年7月〜2024年10月</td>
+									<td>RemoteControllerMod（Forgeのmod）</td>
+									<td>Pythonモジュール<code>mcje</code>（<a href="https://github.com/Naohiro2g/minecraft_remote" target="_blank" rel="noopener">MinecraftRemote</a>）</td>
+									<td>takecxさんの改造版Scratch</td>
+								</tr>
+								<tr>
+									<td>2024年10月〜2025年3月</td>
+									<td>JuicyRaspberryPie（プラグイン）。modも引き続き使う</td>
+									<td><code>mcje</code></td>
+									<td>旧版の改造版Scratch（modとつなぐ）</td>
+								</tr>
+								<tr>
+									<td>2025年3月〜2026年10月</td>
+									<td>McRemote <code>v1.21.8-1.4.0</code>（プラグイン）。modも引き続き使う</td>
+									<td><code>minecraft-remote-api</code> <code>1214.10.11</code>など1214系</td>
+									<td>旧版の改造版Scratch（modとつなぐ）</td>
+								</tr>
+								<tr>
+									<td><strong>2026年11月から</strong></td>
+									<td><strong>McRemote <code>2321.0.0</code></strong>（Paper 1.21.11、26.3のプラグイン）</td>
+									<td><strong><code>minecraft-remote-api</code> <code>2321.0.0</code></strong></td>
+									<td><strong>マイクラリモコンのScratch <code>2321.0.0</code></strong>（箱庭のScratch、Scratch LANパッケージ）</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<p>2026年11月からの構成は、通信の決まり（プロトコル）が新しく、それより前の構成とはつながりません。これから始める方は、移行は要りません。<a href="../#quickstart">はじめる</a>へ進んでください。</p>
 				</section>
 
 				<section id="schedule">
@@ -113,7 +145,7 @@
 					<pre><code>pip install "minecraft-remote-api==1214.10.13"</code></pre>
 
 					<h3>新しい版へ移る</h3>
-					<p>新しい版では、Pythonの環境とパッケージの管理に<a href="https://docs.astral.sh/uv/" target="_blank" rel="noopener">uv</a>を使います。pyenvやpoetryを使っていた方も、uvへ移ると手順が短くなります。</p>
+					<p><code>mcje</code>を使っていた方も、新しい<code>minecraft-remote-api</code>へ移ります。新しい版では、Pythonの環境とパッケージの管理に<a href="https://docs.astral.sh/uv/" target="_blank" rel="noopener">uv</a>を使います。pyenvやpoetryを使っていた方も、uvへ移ると手順が短くなります。</p>
 					<ol>
 						<li>uvを入れます（手順はuvの公式の案内にあります）。</li>
 						<li>作業用のフォルダーで、<code>uv init --no-package</code>を実行します。</li>
@@ -125,7 +157,7 @@
 
 				<section id="scratch">
 					<h2>🐱 Scratch</h2>
-					<p>旧版の改造版Scratch（マイクラ1.12.2用、1.16.5用）から、新しいScratchへ移ります。拡張機能が新しくなり、ブロックも変わっています。ブロックは<a href="../api/scratch/">Scratchのブロック一覧</a>で確かめられます。</p>
+					<p>旧版の改造版Scratch（マイクラ1.12.2用、1.16.5用）とRemoteControllerModから、新しいScratchへ移ります。新しいScratchはmodを使わず、マイクラサーバーのMcRemoteとつながります。拡張機能が新しくなり、ブロックも変わっています。ブロックは<a href="../api/scratch/">Scratchのブロック一覧</a>で確かめられます。</p>
 					<ul>
 						<li><strong>箱庭サーバーで使う</strong>：ブラウザで<a href="https://scratch-beta.mc-remote.com/?extension=mcremote" target="_blank" rel="noopener">箱庭のScratch</a>を開きます。手順は<a href="../#quickstart">はじめる</a>にあります。</li>
 						<li><strong>自分のワールドで使う</strong>：<a href="../lan/scratch/">Scratch LANパッケージ</a>を使います。</li>
@@ -134,7 +166,7 @@
 
 				<section id="server">
 					<h2>🖥️ マイクラサーバー</h2>
-					<p>旧版のForgeのmodから、Paperサーバーと、そこへ入れるプラグイン<strong>McRemote</strong>へ移ります。対応するマイクラの版は1.21.11と26.3です。準備のしかたは<a href="https://github.com/Naohiro2g/McRemote#readme" target="_blank" rel="noopener">McRemoteのREADME</a>にあります。</p>
+					<p>Forgeのmod（RemoteControllerMod）、JuicyRaspberryPie、旧版のMcRemote（<code>v1.21.8-1.4.0</code>など）から、Paperサーバーと、そこへ入れる新しいプラグイン<strong>McRemote</strong>（<code>2321.0.0</code>）へ移ります。対応するマイクラの版は1.21.11と26.3です。準備のしかたは<a href="https://github.com/Naohiro2g/McRemote#readme" target="_blank" rel="noopener">McRemoteのREADME</a>にあります。</p>
 				</section>
 
 				<section id="help">
