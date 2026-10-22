@@ -139,8 +139,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     worldをリセットするか（10/31まで）。Stackの確定搬送票は`2026-10-22-05`に着地した
 - 判断（2026-10-22、human owner）：McRemoteのrc2の公開、Scratch／toolingの最小限の配布対応（配布のscript 2か所、`はじめに.html`の
   リンク、toolingはrc1の生成物）、Pythonの版の番号だけの候補（starterは変えない）を了承。`sb-beta`は12月以降も公開VPS
-  （`2026-10-22-04`）。DirectionHUDは取り込めるまで残す（`2026-10-22-05`）。WebのScratchとWireScopeも11月1日から`-beta`なしに
-  そろえたい（未決。影響の範囲を各担当に聞く）。着手依頼は`00-hub/stable-gate-work-instructions_ja.md`
+  （`2026-10-22-04`）。DirectionHUDは取り込めるまで残す（`2026-10-22-05`）。WebのScratchとWireScopeも11月1日から`-beta`なしの
+  名前で安定版を出し、11月中は`-beta`の名前でも同じ安定版を出す。リンクは`-beta`なしにそろえる（`2026-10-22-06`）。着手依頼は`00-hub/stable-gate-work-instructions_ja.md`
 - 時間割（2026-10-22、human owner了承）：10/31に、全部を出すだけの状態にする（版を`2321.0.0`にした候補の凍結、coordinatorの
   照合、ホームページ、Stackの切り替えの準備）。日付が変わったら公開し、続けて箱庭を切り替える
   | 日 | 作業 |

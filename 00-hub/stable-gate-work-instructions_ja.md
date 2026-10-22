@@ -16,18 +16,18 @@
   rc2を除き、tag／Releaseの公開はしない
 - 返却：実際に読んだknowledge commit、候補のsource commit、assetごとのファイル名、bytes、SHA-256（OCIはdigest）
 
-### WebのScratchとWireScopeの名前について（聞くこと）
+### WebのScratchとWireScopeの名前（`2026-10-22-06`）
 
-human ownerは、11月1日から`scratch-beta`と`wirescope-beta`も`-beta`なしにそろえたい（`scratch.mc-remote.com`、
-`wirescope.mc-remote.com`。WireScopeの名前の決まり`2026-08-20-01`は、stableを接尾辞なし、betaを`-beta`としている）。11月中は
-`-beta`の名前も同じ安定版を指す案。まだ決めていない。影響の範囲を判断するため、自repoで次を返してほしい。
+11月1日から、WebのScratchとWireScopeの安定版を`scratch.mc-remote.com`、`wirescope.mc-remote.com`で動かす。11月中は
+`scratch-beta`と`wirescope-beta`も同じ安定版を出し続け、12月から`2330.0.0`のbeta版にする（ブラウザに保存した作品はoriginごとに
+分かれるので、`scratch-beta`に保存した人が`.sb3`で書き出して移れる期間を置く）。README、教材、作例のリンクは`-beta`なしの名前
+（`sb`、`scratch`、`wirescope`）にそろえる。`-beta`の名前は、ホームページからの案内と、将来は教材の一部で使う。自repoで次を返す。
 
-- その名前が、build済みの生成物（JS、OCI、ZIP、wheel）に入っているか、実行時の設定（runtime config、Caddy、Bridgeの許可）で
-  決まるか
-- 名前を変えたとき、または二つの名前で同じサーバーを出すときに、変える箇所と手間
-- 利用者への影響：ブラウザに保存した作品、ペアリングのtoken、WireScopeの設定は、originごとに分かれる。名前が変わると
-  見えなくなるものと、その案内
-- README、文書、作例のリンクで、その名前を書いている箇所の数
+- その名前が、build済みの生成物（JS、OCI、ZIP、wheel）に入っているか、実行時の設定（runtime config、Caddy、Bridgeが受け付ける
+  origin）で決まるか。生成物に入っているなら、stableの候補で変える箇所
+- 二つの名前（`-beta`ありとなし）で同じ安定版を出すときに、変える箇所と手間
+- README、文書、作例のリンクで、`-beta`の名前を書いている箇所の数と、`-beta`なしへ変える時期の案（stableの候補に入れるか、
+  `2321.1.0`か）
 
 ## McRemote
 
@@ -77,8 +77,9 @@ human ownerは、11月1日から`scratch-beta`と`wirescope-beta`も`-beta`な�
 2. **確認票の判定を求める事項への答え**（human owner 2026-10-22）
    - 11月の`sb-beta`：公開VPSを指したまま残す。12月以降も公開VPSに置く（`2026-10-22-04`）。Scratchからもつなげるよう、Bridgeの
      許可に`sb-beta`も入れる
-   - `scratch-beta`と`wirescope-beta`：上の「WebのScratchとWireScopeの名前」で影響の範囲を返す。DNS、TLS、Caddyの経路、Bridgeの
-     許可、runtime config、COOPなどのheaderを含めて
+   - `scratch`と`wirescope`（`2026-10-22-06`）：11月1日から`-beta`なしの名前で安定版を出し、11月中は`-beta`の名前でも同じ安定版を
+     出す。DNS、TLS、Caddyの経路、Bridgeが受け付けるorigin、runtime config、ScratchからWireScopeへの受け渡しのheaderを、二つの
+     名前の組で確かめる。手順と手間を返す
    - 12月の`sb-beta`（`2330.0.0`のbeta）：公開VPSに、安定版の`sb`と並べて置く。同じhostで二つのMinecraftのセットを動かすときの
      portの割り当て（予約の25566／25576、Java版のSRV record、統合版のUDP）、memoryなどの資源、Bridgeの経路の案を返す。急がない
      （11月中でよい）
