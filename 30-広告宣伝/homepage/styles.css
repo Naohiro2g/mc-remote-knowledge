@@ -730,6 +730,7 @@ section {
 }
 
 .connect-guide {
+  scroll-margin-top: 76px;
   background: #d9f9d0;
   border: 1px solid #afecb1;
   border-radius: 12px;
@@ -1033,6 +1034,10 @@ footer {
     padding-top: 6px;
     padding-bottom: 0;
     gap: 4px;
+  }
+
+  .connect-guide {
+    scroll-margin-top: 112px;
   }
 
   .brand-logo {
