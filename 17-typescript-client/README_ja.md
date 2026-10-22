@@ -8,7 +8,10 @@
 `2026-10-22-07`で、担当sessionを呼べるbootstrapまでrepoを先に作ると決めた。実装は、多言語の比較とconformanceの
 一般化（`10-protocol/polyglot-client-roadmap_ja.md`のPhase E／F）をknowledgeで具体化してから始める。
 
-- repository: `Naohiro2g/minecraft-remote-typescript`（まだ作っていない）
+- repository: `Naohiro2g/minecraft-remote-typescript`。bootstrapは`6758b9ee93c9dcaf4b5dd7fa7fc8f3ca83fb6092`（knowledge
+  `41e3680`を読んだ。CI 39826231537が成功し、test 1件が通った。2026-10-23にknowledgeが照合した）
+- toolchain: miseで固定したNode.js 24.22.1、TypeScript 6.0.3、ESLint 10.13.0。package managerはNode付属のnpm 11.19.1
+  （lockfileで依存を再現する）、test runnerはNode標準の`node:test`（依存を足さずにESMのroot moduleを確かめる）
 - package名: `@mc-remote/client`は第一候補で、npmへ出す準備のときに決める（NOTES 2026-08-29）
 - 比べる基準: 初回stable `2321.0.0`（protocol `23.2.1`）
 - `@mc-remote/protocol`（minecraft-remote-tooling）のコードには依存しない。protocolの型と定数はこのrepoで持ち、共有

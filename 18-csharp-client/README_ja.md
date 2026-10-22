@@ -8,7 +8,9 @@ Unityは、このlibraryを使う主な場の一つである（`10-protocol/poly
 `2026-10-22-07`で、担当sessionを呼べるbootstrapまでrepoを先に作ると決めた。実装は、多言語の比較とconformanceの
 一般化（ロードマップのPhase E／F）をknowledgeで具体化してから始める。
 
-- repository: `Naohiro2g/minecraft-remote-csharp`（まだ作っていない）
+- repository: `Naohiro2g/minecraft-remote-csharp`。bootstrapは`4b295a0404b2fea7b4e5d4eedc3e880d2bc8aec7`（knowledge
+  `41e3680`を読んだ。CI 39832732071が成功し、test 1件が通った。2026-10-23にknowledgeが照合した）
+- toolchain: miseで固定した.NET SDK 10.0.402。library projectのtargetは`netstandard2.1`だけで、test projectは.NET 10で動く
 - 根のnamespace: `Code2Create.MinecraftRemote.Client`（Javaの`club.code2create.mcremote.client`と同じC2CCの系列）
 - target: `netstandard2.1`を含める（Unityから使える）
 - NuGetのpackage ID: `MinecraftRemote.Client`は第一候補で、NuGetへ出す準備のときに決める（NOTES 2026-08-29）
