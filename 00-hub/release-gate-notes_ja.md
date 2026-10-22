@@ -237,7 +237,13 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   - serverの起動log（human owner）：Windows 11、Java 25.0.2、Paper `26.3-214-main@e65c076`。pluginはMcRemoteの1つだけで、
     `Enabling McRemote v2321.0.0rc2`。Resource catalogの`hash`は上の`hello`の`catalog_hash`と同じ`3eaae42e…`。権限は
     LuckPermsなしのfallback。同じ時刻に、Scratchからの`hello OK (client protocol 23.2.1, advertising 23.2.1, …)`とチャットが出た
-  - 残り：Pythonからの同じ往復（human owner）
+  - Python：`minecraft-remote-api`の手元のcheckoutから`uv run --no-editable python examples/hello.py`で、同じserverへつないだ。
+    `hello`（protocol `23.2.1`、応答は上と同じ）、`build.setDimension`、`build.setOrigin`、`chat.post`、`world.setBlock`
+    （`gold_block`）、`world.getBlock`で`minecraft:gold_block`を読み返せた。WireScopeでも見えた。この12フレームにペアリングは無い
+  - Pythonのclientは公開したrc1のwheelではない。checkoutは`v2321.0.0rc1`のtag（`c301053`）で、作業中のcommit前の変更
+    （作例と`mc_remote/_wirescope_app.py`）が入った状態で動かした。`hello`の送信にはclientの版が出ない
+  - coordinatorの案：この確認の対象はserverのrc2のJARで、ScratchとPythonの両方から代表の往復が通った。rc2の確認は済んだと
+    してよい（human ownerの判断を待つ）
 - 時間割（2026-10-22、human owner了承）：10/31に、全部を出すだけの状態にする（版を`2321.0.0`にした候補の凍結、coordinatorの
   照合、ホームページ、Stackの切り替えの準備）。日付が変わったら公開し、続けて箱庭を切り替える
   | 日 | 作業 |
