@@ -65,7 +65,7 @@ rc2の実装に着手してよい。tag、Releaseの公開は、返却を受け�
 - `2321.0.0`のpreset。rc1からの差分
 - 箱庭（`sb-beta`）のMcRemoteのconfigに、旧`b5:`／`b7:`のキーが残っていないこと。残っていると、stableのMcRemoteは止まる
   （`2026-10-22-01`）。切り替えの前のdoctorで確かめられるか
-- 11月1日に名前を切り替える（`2026-10-22-04`）：旧protocolのサーバーの`sb`を`sb-retro`へ、公開VPSの`sb-beta`を`sb`へ。11月中、
-  `sb-beta`は`sb`と同じサーバーを指す案。`sb-retro`は11月末で止め、12月から`sb-beta`を`2330.0.0`のbeta版にする。DNSと証明書の
+- 11月1日に名前を切り替える（`2026-10-22-04`）：旧protocolのサーバーの`sb`を`sb-retro`へ、公開VPSの`sb-beta`を`sb`へ。11月中は、
+  `sb`と`sb-beta`のどちらも公開VPSの同じ安定版を指す。`sb-retro`は11月末で止め、12月から`sb-beta`を`2330.0.0`のbeta版にする。DNSと証明書の
   手順、切り替えにかかる時間の見込み、ScratchとWireScopeの名前（`scratch-beta`、`wirescope-beta`）を同じく切り替えるかの案
 - 候補の置き場所（`/candidates/`、`2026-10-18-07`）：McRemoteのrc2とstableの候補を置くか。置くなら、rc1と同じ経路でよいか

@@ -91,8 +91,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - 範囲の外（`2026-10-22-02`、`2026-10-22-03`）: READMEのPass C（Paperサーバーのガイドで置き換え、年内）、WindowsでのPython
   導入の2ルート（11月中）、Pythonの移行ガイドの強化、PythonとScratchの改善（`2321.1.0`）、サウンドの拡張（`2330.0.0`、12月）
 - 箱庭（`2026-10-22-04`）: 11月1日に名前を切り替える。旧protocolのサーバーの`sb`を`sb-retro`へ、公開VPSの`sb-beta`を`sb`へ。
-  `sb-retro`は11月末で止める。11月中、`sb-beta`は`sb`と同じサーバーを指す（human ownerの確認待ち）。12月から`sb`は新protocolの
-  安定版、`sb-beta`は`2330.0.0`のbeta版
+  `sb-retro`は11月末で止める。11月中は`sb`と`sb-beta`のどちらも公開VPSの同じ安定版を指す。12月から`sb`は新protocolの
+  安定版、`sb-beta`は`2330.0.0`のbeta版。基本のクラスと教材は`sb`、発展のクラスは`sb-beta`もよく使う
 - 人間の試験（案）: rc2のJARで、1台、PaperはどちらかでPythonとScratchから接続、ペアリング、setBlock、getBlock。旧キーを
   残したconfigで止まることはMcRemoteのtestとpulseで確かめ、人間の試験にしない
 - gateを開くときのparkの確認（`2026-09-30-09`、coordinatorの案。human ownerの確認待ち）:
