@@ -176,8 +176,9 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   - `/mc-remote-runtime-config.json`の`wirescope_url`は、`scratch.`では`https://wirescope.mc-remote.com/`、`scratch-beta`では
     `https://wirescope-beta.mc-remote.com/`。組は混ざっていない。`bridge_url`（`bridge-beta`）、`default_sandbox`（`sb-beta`）、
     お知らせの文（「公開ベータ」「rc1版」）は二つの名前で同じ
-  - 外から確かめていないこと：二つの名前での、拡張の読み込み、接続とペアリング、チャットとsetBlock、WireScope miniと
-    WireScopeを開くこと（人の操作が要る）
+  - 人の操作（human owner 2026-10-22）：二つの名前で、拡張の読み込み、接続とペアリング、代表の操作、WireScopeを操作した。
+    getBlocksも動いた。WireScopeのlogでは、`[-2,100,-2,8,100,8]`（x、zが各11）は`work_limit_exceeded`、`[-2,100,-2,5,100,5]`と
+    `[-6,100,-6,2,100,2]`（各8、各9）はblockの値を返した。各軸10以下の契約（`2026-08-19-03`）どおり
 - 時間割（2026-10-22、human owner了承）：10/31に、全部を出すだけの状態にする（版を`2321.0.0`にした候補の凍結、coordinatorの
   照合、ホームページ、Stackの切り替えの準備）。日付が変わったら公開し、続けて箱庭を切り替える
   | 日 | 作業 |
