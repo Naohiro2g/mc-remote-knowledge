@@ -41,6 +41,8 @@
 14-evidence/       公開可能な evidence policy / sanitized records
 15-wirescope/      共通 observer UI・station・deployment 配置・attach 境界
 16-java-client/    Java Client Library の設計・bootstrap 状態
+17-typescript-client/ TypeScript Client Library の設計・bootstrap 状態
+18-csharp-client/  C# Client Library の設計・bootstrap 状態
 20-教材/           学習支援・教材設計
 30-広告宣伝/        公開戦略
 ```

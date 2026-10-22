@@ -97,6 +97,8 @@ Scratch や Python などで書いたプログラムから、マインクラフ�
 14-evidence/       実機テスト・検証ログ
 15-wirescope/      通信パケットをリアルタイム可視化する観察UI
 16-java-client/    Java クライアントライブラリの設計
+17-typescript-client/ TypeScript クライアントライブラリの設計
+18-csharp-client/  C# クライアントライブラリの設計
 20-教材/           学習支援・教育設計・チュートリアル設計
 30-広告宣伝/        公開戦略・発信
 ```

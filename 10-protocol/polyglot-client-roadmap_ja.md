@@ -263,6 +263,9 @@ Phase J  多言語Client Libraryの通常運用
 未固定なのはロードマップ全体ではなく、各Phaseが所有するexact API、wire shape、registry name、実装slice等の
 局所contractである。各段階はコード量ではなく、**得られた保証と次に観察可能になった境界**で進行を判断する。
 
+`2026-10-22-07`で、TypeScript（Phase G）とC#（Phase I）のrepoを、担当sessionを呼べるbootstrapまで先に作ることにした。
+実装の順番は変えず、Phase E／Fを具体化してから始める（`17-typescript-client/`、`18-csharp-client/`）。
+
 ---
 
 ## 6. Java bootstrap baseline
