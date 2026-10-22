@@ -28,7 +28,7 @@ Javaは調べる材料として使う（ロードマップ§21）。最初はNod
 ## bootstrapの手順
 
 1. human ownerがGitHubでrepoを作る。Javaと同じく、LICENSE（MIT）とREADMEの初期commit
-2. knowledgeが`AGENTS.md`と`.gitignore`（`CLAUDE.md`と`NOTES_ja.md`を外す）をcommitしてpushする
+2. knowledgeが`AGENTS.md`と`.gitignore`（operator-localの`CLAUDE.md`、`NOTES_ja.md`、`handoff-materials/`と、`.env`を外す。Javaと同じ）をcommitしてpushする
    （`00-hub/dev-repo-protocol_ja.md`の雛形。関連スポークは`17-typescript-client/`と`10-protocol/`）
 3. knowledgeが手元のcloneを作り、`CLAUDE.md`（`@AGENTS.md`の1行）を置いて、`AGENTS.md`のbootstrap commandが
    通ることを確かめる（human owner 2026-10-22の依頼。dev-repo protocolでは運用者の作業）
