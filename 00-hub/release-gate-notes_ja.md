@@ -166,7 +166,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     `plugin.yml`の版だけがrc2と違う（McRemoteの比較）
   - Webの名前：McRemoteの追跡fileとJARに、`sb`／`scratch`／`wirescope`の名前（`-beta`の有無とも）の埋め込みとリンクは0件。
     変える箇所は無い
-- Stackの`scratch.`と`wirescope.`の追加（2026-10-22、human ownerの完了の報告。報告のPRは#32、#33。mc-remote-stackの実装は
+- Stackの`scratch.`と`wirescope.`の追加（2026-10-22、human ownerの完了の報告。適用の記録はbackstageの#32、#33（coordinatorは読んでいない）。mc-remote-stackの実装は
   #78、merge `bb98746b901b5b188548dddce333f75039da1ebc`、`public-routes@3`の`[[web_pairs]]`、`compose@17`／`vps-server@15`）。
   coordinatorが外から確かめた：
   - 4つの名前（`scratch`、`scratch-beta`、`wirescope`、`wirescope-beta`）のどれもHTTPS 200、Let's Encryptの証明書で検証が通り、
