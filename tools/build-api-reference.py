@@ -207,7 +207,7 @@ def render_html(data: dict) -> str:
 					<li><a href="../../#ecosystem">エコシステム</a></li>
 					<li><a href="../../roadmap/">ロードマップ</a></li>
 					<li><a href="../../releases/">リリース</a></li>
-					<li><a href="../../migration/">移行スケジュール</a></li>
+					<li><a href="../../migration/">移行</a></li>
 				</ul>
 			</nav>
 		</div>
