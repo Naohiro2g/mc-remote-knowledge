@@ -109,6 +109,34 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   | McRemoteの対応版を各系列の最終版へ広げる検討（2026-10-17） | 初回stableは1.21.11と26.3のまま。広げるかは初回stableの後 |
   | API一覧（2026-09-30） | `api/23.2.1/`のまま。クライアントAPI一覧へのつなぎ方は初回stableの後 |
   | テックブログの1本目（2026-10-17） | human ownerの持ち越しのまま。初回stableの後のガイドの側の進行と合わせる |
+- 確認票の返却（2026-10-22、どれもknowledge `61d5fd8`を読んだ。箱庭の名前の切り替え（`2026-10-22-04`）より前の版）:
+  - McRemote（`handoff-materials/2026-10-22-stable-rc2-confirmation/materials/confirmation_ja.md`、10,090 bytes、
+    `26e48701dcf9486df4c40b925a1bcb77aff15fb530df11d14c2093b3e3639215`）：rc1のtagの後にmainへ入ったものは無い。rc2を実装した
+    （`agent/stable-rc2-legacy-config@7960a913a11c621d85e6120ee412b696fe125457`、mainへは未統合）。旧キーを見つけたら`Server.shutdown()`で
+    Paperごと止め（終了コード0）、どのキーを新しいどのキーにして旧キーを消すかをERRORで出す。値はlogに出さない。configと
+    credential DBは変えない。clean buildで357 tests、CI 7 jobs（3 OS × Java 21／25）がPASS。同じCIのJARで、Paper 1.21.11 #132と
+    26.3 #203のそれぞれで通常8 groups、再起動4 groups、旧キーでの停止、rc1が移行したconfig（rc1の公開JARで実際に移したもの）が
+    PASS（LuckPermsなしのfallback権限）。候補：`mc-remote-2321.0.0rc2.jar` 315,871 bytes、
+    `ce66abaf41a94800217a11161145b9f868333b7bfa605fd1f77b888878620e50`（CI run `39699287525`）。READMEに旧キーの対応表と直し方を
+    足した。stableは同じsourceで版だけ変える（半日以内）
+  - Python（`handoff-materials/2026-10-22-stable-python-confirmation/materials/confirmation_ja.md`、12,900 bytes、
+    `3e7a12397773f80ed3ec7fb1e3921f6c7f5c405ae1563e8a624f9cac717bb5b7`）：rc1のtagの後のcommitは0。stableはrc1のtagから版だけ
+    変える（0.5〜1人日）。作業中のREADMEの再編、旧protocolの移行ガイドの草稿、教材の作例は混ぜない。PyPIの今の既定は
+    `1214.10.13`（yankされていない）。Release本文に最小の移行案内（版を指定しないと新しい版が入る、旧protocolを続けるなら
+    `==1214.10.13`）と`/migration/`へのリンク、rc1のWireScopeの注意を入れる。starterは11月は`sb-beta`のまま、12月に`sb`へ
+    変える案（`2026-10-22-04`の前の案）
+  - Scratch／tooling（`handoff-materials/2026-10-22-stable-confirmation-scratch-tooling/materials/CONFIRMATION_ja.md`、13,825 bytes、
+    `f54ee1e14f668b48abfdb4d9bd52efb7b7c4325754566715ae0df3af2b5fd92f`）：Scratchのdevelopはrc1のtagより140 commit先（本家の取り込み
+    136件など）なので、stableはrc1のtagから作る。配布のscript 2か所（`build-mcremote-release-manifest.mjs`、
+    `mcremote-local-artifacts.mjs`）が`bN`／`rcN`の付かない版を拒むので、受け入れる直しと回帰testが要る。`はじめに.html`に
+    `/lan/scratch/`へのリンクを足す案。toolingはrc1の後の変更が無く、`v2321.0.0`も`6447f6e`を指してrc1の生成物をそのまま
+    昇格する案。OCIはrc1と同じくCLIで凍結物を昇格。ブロック一覧は`site/2321.0.0/`。Scratch 1〜1.5開発日、tooling 0.25〜0.5開発日
+  - Stack（human ownerが貼った返却、`main@f25b11d`）：stableのpresetは今のmainの上に作る（rc1の後は#76（rc1のpreset、TZ）と
+    #77（LuckPermsの注意、文書）だけ）。26.3のためPaper JARとJava 25のimageを変え、別セットへ切り替える。名前は新しいセットの
+    `routes.minecraft`とtargets.tomlの`sandbox`だけで変わる。稼働中の箱庭のconfigとseedに旧キーは無い（2026-10-22 09:20 JSTに
+    VPSで確かめた）。rc2のpre-releaseでrc2と26.3のpresetを作り、新しいセットを公開portなしで先に起動して試す。stableのpresetは
+    10/31に凍結値で作り、公開の後に照合してmergeする。待っているもの：rc2、26.3用のプラグインの一覧（human owner、10/28ごろ）、
+    worldをリセットするか（10/31まで）。Stackの確定搬送票は`2026-10-22-05`に着地した
 - 時間割（2026-10-22、human owner了承）：10/31に、全部を出すだけの状態にする（版を`2321.0.0`にした候補の凍結、coordinatorの
   照合、ホームページ、Stackの切り替えの準備）。日付が変わったら公開し、続けて箱庭を切り替える
   | 日 | 作業 |
