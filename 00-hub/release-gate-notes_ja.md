@@ -199,6 +199,34 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   - Webの名前：Pythonの生成物と文書に`scratch`／`wirescope`の名前は0件（WireScopeはloopbackで開く）。箱庭の`sb-beta`は
     README 1、starter 1、test 1の3か所で、`2321.1.0`で`sb`へ替える案
   - 判断（human owner 2026-10-22）：この候補を10/31の凍結の対象にする。`sb-beta`を`sb`へ替えるのは`2321.1.0`
+- Scratch／toolingのstableの候補（2026-10-22、返却`scratch-editor/handoff-materials/2026-10-22-stable-work-scratch-tooling/materials/RETURN_ja.md`、
+  9,733 bytes、`484fb297e93264ae765fa539ac99d830de76c5a69eafc02da57fdfb2d6d97c32`。identityは同じ場所の`IDENTITY.json`、3,501 bytes、
+  `f8448ca6e8411b175339aa5b293c371abd6bc73db2ed6631c5f1813ed81a11f0`。knowledge `abf8130`を読んだ）。coordinatorがGitHubで照合した：
+  - source：`agent/stable-scratch-2321@ffb496ed50d751d307f685f2ae555c94c893fae5`。rc1のtag `ec79b3b`から3 commit、71 file。ブロック
+    一覧の`site/2321.0.0/`（追加）と入口（`site/index.html`、`site/blocks.json`）のほかは、`client-version.js`の版、VMのtestの版の
+    期待値3か所、配布のscript 2か所の正規表現（`(?:b|rc)\d+`を省略できるようにした）とその回帰test、`USER_GUIDE_ja.md`の
+    `/lan/scratch/`へのリンク1行だけ。着手依頼の範囲どおり。`site/2321.0.0/index.html`と入口の`index.html`は同じblob
+  - 候補のrun `39744827621`（Build McRemote candidate）success、headは`ffb496e`。artifact `12410683112`
+    （`scratch-candidate-ffb496e…`）は1,370,347,310 bytes、`sha256:9f0a148a286c8bc3528f1b0e4f948f2d5b9d0da141ac9d393e610e3615d81a6c`で
+    返却と一致（API。rc1と同じく、1.3 GBのartifactはdownloadしていない。中の9 fileの値はScratch担当の照合）
+  - 中の値（返却）：LANのZIP 3つ（Windows 261,870,138 bytes `262f67442e9699a06afb39d2259fda7f429a1a16524539e2ba51b52ceddd9525`、macOS
+    266,221,800 bytes `8cacff36c64adf8a9a6570e76db564bc81a54d1ace180e0042dbd1836f77b92f`、Linux 271,477,855 bytes
+    `e3361bf69036417c8f9d03db7087d00b46e680f0f0fca1360994f16cbadba581`）、Scratch OCI index
+    `sha256:d85e37291ef75e4d64ab7f0c52b9a496889205071d3afc51b796dbcc1161903c`（両architectureでversionラベル`v2321.0.0`、revision
+    `ffb496e`、createdはcommitの時刻）、ブロック一覧のarchive 247,864 bytes
+    `76eda18e7fd92ebd3366eff7c01104bca7bb8143b44c19c88db70fbac28ee708`（packetの実物で計算が一致）
+  - tooling：`6447f6e`のrc1の生成物をそのまま使う。WireScopeのZIPとmanifest、`bridge.oci.tar`はrc1の凍結値と同じで、Bridgeの
+    index digest `sha256:305d6e38b36e195a0e158522f32f3a8c45d39da2aeec7b7e46f785c920406acf`もrc1の凍結と同じ。ファイル名とWireScopeの
+    中身に`rc1`の文字は無い。Bridgeのprovenanceの2つのblobにだけ、生成時のbranch名`agent/rc1-protocol-2321`が残る
+  - 一般CI `39744780763`はfailure。Build、VMを含む7 packageはsuccess。scratch-guiのintegrationで`menu-bar.test.js`の1件
+    （作品の上書きの前の確認を期待する旧test、`NoSuchAlertError`）だけが落ちる。rc1でも、その基準のdevelopでも同じく落ちた
+    既存の失敗で、GUIの本体とこのtestはrc1のtagから差分0
+  - Webの名前：Scratch／toolingの文書と作例に`-beta`のWebの名前は0件。生成物の既定値（`sb.mc-remote.com`、Bridgeの
+    `scratch.mc-remote.com`）はruntime configとBridgeの環境変数で上書きされ、作り直しは要らない。組はStackがoriginごとに決める
+  - Release本文の案：Scratch（`scratch-release-notes-draft_ja.md`）とtooling（`tooling-release-notes-draft_ja.md`）
+  - 判定を求める事項とcoordinatorの案：①一般CIの既知の1件は、初回stableを止めない（rc1と同じsource、同じtest）。developの
+    PR #27の正しいtestへの置き換えは`2321.1.0`で入る ②toolingはprovenanceを書き換えず、同じBridgeのindexへ`v2321.0.0`のtagを
+    足す。rc1のtagも残す ③この候補を10/31の凍結の対象にするか（human owner）
 - 時間割（2026-10-22、human owner了承）：10/31に、全部を出すだけの状態にする（版を`2321.0.0`にした候補の凍結、coordinatorの
   照合、ホームページ、Stackの切り替えの準備）。日付が変わったら公開し、続けて箱庭を切り替える
   | 日 | 作業 |
