@@ -58,39 +58,43 @@
 							<thead>
 								<tr>
 									<th>時期</th>
-									<th>マイクラサーバーの側</th>
 									<th>Python</th>
+									<th>Pythonのつなぎ先</th>
 									<th>Scratch</th>
+									<th>Scratchのつなぎ先</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
 									<td>2021年7月〜2024年10月</td>
-									<td>RemoteControllerMod（Forgeのmod）</td>
 									<td>Pythonモジュール<code>mcje</code>（<a href="https://github.com/Naohiro2g/minecraft_remote" target="_blank" rel="noopener">MinecraftRemote</a>）</td>
-									<td>takecxさんの改造版Scratch</td>
+									<td>自分のマイクラ（ForgeとRemoteControllerModを入れたマイクラアプリ）</td>
+									<td><a href="https://github.com/takecx" target="_blank" rel="noopener">takecx</a>さんの改造版Scratch</td>
+									<td>自分のマイクラ（同じmod）</td>
 								</tr>
 								<tr>
 									<td>2024年10月〜2025年3月</td>
-									<td>JuicyRaspberryPie（プラグイン）。modも引き続き使う</td>
 									<td><code>mcje</code></td>
-									<td>旧版の改造版Scratch（modとつなぐ）</td>
+									<td>箱庭などのマイクラサーバー（JuicyRaspberryPieプラグイン）</td>
+									<td>旧版の改造版Scratch</td>
+									<td>自分のマイクラ（ForgeとRemoteControllerMod）</td>
 								</tr>
 								<tr>
 									<td>2025年3月〜2026年10月</td>
-									<td>McRemote <code>v1.21.8-1.4.0</code>（プラグイン）。modも引き続き使う</td>
-									<td><code>minecraft-remote-api</code> <code>1214.10.11</code>など1214系</td>
-									<td>旧版の改造版Scratch（modとつなぐ）</td>
+									<td><code>minecraft-remote-api</code> <code>1214.10.13</code>など1214系</td>
+									<td>箱庭などのマイクラサーバー（McRemote <code>v1.21.8-1.4.0</code>プラグイン）</td>
+									<td>旧版の改造版Scratch</td>
+									<td>自分のマイクラ（ForgeとRemoteControllerMod）</td>
 								</tr>
 								<tr>
 									<td><strong>2026年11月から</strong></td>
-									<td><strong>McRemote <code>2321.0.0</code></strong>（Paper 1.21.11、26.3のプラグイン）</td>
 									<td><strong><code>minecraft-remote-api</code> <code>2321.0.0</code></strong></td>
-									<td><strong>マイクラリモコンのScratch <code>2321.0.0</code></strong>（箱庭のScratch、Scratch LANパッケージ）</td>
+									<td colspan="3"><strong>箱庭や自分のPaperサーバー（McRemote <code>2321.0.0</code>プラグイン、マイクラ1.21.11、26.3）</strong>。Scratchは<strong>マイクラリモコンのScratch <code>2321.0.0</code></strong>（箱庭のScratch、Scratch LANパッケージ）で、Pythonと同じサーバーにつなぐ</td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
+					<p>2024年10月から2026年10月までは、つなぎ先が2系統でした。Pythonなどは箱庭などのマイクラサーバー（プラグイン）へ、旧版のScratchは自分のPCのマイクラ（Forgeとmodを入れたマイクラアプリ。アプリの中でサーバーも動いている）へつないでいました。2026年11月からは、PythonもScratchも、McRemoteを入れた同じマイクラサーバーにつなぎます。</p>
 					<p>2026年11月からの構成は、通信の決まり（プロトコル）が新しく、それより前の構成とはつながりません。これから始める方は、移行は要りません。<a href="../#quickstart">はじめる</a>へ進んでください。</p>
 				</section>
 
@@ -98,7 +102,7 @@
 					<h2>📅 予定</h2>
 					<p>初回Stableを公開する2026年11月1日に、箱庭サーバーの名前を切り替えます。<code>sb.mc-remote.com</code>は新しいプロトコルの安定版になり、旧プロトコルのサーバーは<code>sb-retro.mc-remote.com</code>として11月末まで動かします。12月から、箱庭サーバーは新しいプロトコルに一本化します。</p>
 					<p>11月の間は、<code>sb.mc-remote.com</code>と<code>sb-beta.mc-remote.com</code>のどちらにつないでも、同じ安定版のサーバーにつながります。12月からは、ふだんは安定版の<code>sb.mc-remote.com</code>を使い、新しい機能を先に試したいときにベータ版の<code>sb-beta.mc-remote.com</code>を使います。</p>
-					<p>11月1日からは、旧版のScratchやPythonで<code>sb.mc-remote.com</code>につなごうとしても、つながりません。旧版を使い続ける間は、つなぎ先を<code>sb-retro.mc-remote.com</code>に変えてください。</p>
+					<p>11月1日からは、旧版のPython（<code>1214</code>系）で<code>sb.mc-remote.com</code>につなごうとしても、つながりません。旧版を使い続ける間は、つなぎ先を<code>sb-retro.mc-remote.com</code>に変えてください。旧版のScratchは自分のPCのマイクラにつなぐので、この切り替えの影響はありません。</p>
 					<div class="table-wrap">
 						<table class="lan-table">
 							<thead>
