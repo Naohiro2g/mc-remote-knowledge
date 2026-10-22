@@ -142,6 +142,11 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   （`2026-10-22-04`）。DirectionHUDは取り込めるまで残す（`2026-10-22-05`）。WebのScratchとWireScopeも11月1日から`-beta`なしの
   名前で安定版を出し、11月中は`-beta`の名前でも同じ安定版を出す。リンクは`-beta`なしにそろえる（`2026-10-22-06`）。`scratch.`と`wirescope.`は、今の箱庭（rc1のセット）に先に名前を足して通し、11月1日まではリンクしない
   （human owner 2026-10-22「先に動かす案で進めて」）。着手依頼は`00-hub/stable-gate-work-instructions_ja.md`
+- ホームページの組み替えの公開（2026-10-22）：human ownerが同期し、coordinatorがトップ、`styles.css`、`/roadmap/`、`/releases/`、
+  `/migration/`、`/lan/scratch/`、`lan.css`、`/thoughts/why-coding.html`、`/api/`、`/api/23.2.1/`、`/api/23.2.0/`の11 fileを外から取って、
+  repo（`abf8130`）と同じbytesと確かめた。`scratch.mc-remote.com`と`wirescope.mc-remote.com`のDNSは、すでに`-beta`と同じ先を
+  向いている（human owner。coordinatorも名前の解決が同じことを確かめた）。HTTPSはまだつながらない（TLSの接続で失敗）。Stackが
+  名前を足すまでの状態
 - 時間割（2026-10-22、human owner了承）：10/31に、全部を出すだけの状態にする（版を`2321.0.0`にした候補の凍結、coordinatorの
   照合、ホームページ、Stackの切り替えの準備）。日付が変わったら公開し、続けて箱庭を切り替える
   | 日 | 作業 |
