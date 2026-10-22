@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Cache-Control" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<meta name="robots" content="index, follow" />
+	<meta name="description" content="旧版のマイクラリモコン（改造版Scratch、Forgeのmod、Pythonの1214系、旧箱庭サーバー）から、新しいマイクラリモコンへ移るための案内。" />
+	<title>旧版からの移行 — マイクラリモコン (mc-remote)</title>
+	<link rel="stylesheet" href="../styles.css" />
+	<link rel="stylesheet" href="../lan/lan.css" />
+</head>
+
+<body>
+
+	<!-- Header -->
+	<header>
+		<div class="container nav-container">
+			<a href="../" class="brand-group">
+				<img src="../images/mc-remote_com_logo.png" alt="Minecraft Remote" class="brand-logo" />
+			</a>
+			<nav>
+				<ul>
+					<li><a href="../#quickstart">はじめる</a></li>
+					<li><a href="../#ecosystem">エコシステム</a></li>
+					<li><a href="../roadmap/">ロードマップ</a></li>
+					<li><a href="../releases/">リリース</a></li>
+					<li><a href="../migration/">移行</a></li>
+					<li><a href="https://discord.gg/xUqhhqWsuS" target="_blank" rel="noopener">Discord</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+
+	<main class="lan-page">
+		<div class="container">
+			<article class="lan-card">
+				<p class="lan-trail"><a href="../">マイクラリモコン</a>　／　旧版からの移行</p>
+				<h1>🔄 旧版からの移行</h1>
+				<p class="lan-lead">2021年から2025年ごろのマイクラリモコンを使っていた方への案内です。新しいマイクラリモコンは、マイクラとプログラムの間の通信の決まり（プロトコル）が新しくなり、旧版とはつながりません。旧版のまま使える期間と、新しい版へ移る手順をまとめました。</p>
+
+				<nav class="lan-entrances" aria-label="このページの入口">
+					<a href="#who">🙋 対象の方</a>
+					<a href="#schedule">📅 予定</a>
+					<a href="#python">🐍 Python</a>
+					<a href="#scratch">🐱 Scratch</a>
+					<a href="#server">🖥️ マイクラサーバー</a>
+				</nav>
+
+				<section id="who">
+					<h2>🙋 対象の方</h2>
+					<p>次のどれかを使っていた方が対象です。</p>
+					<ul>
+						<li>改造版Scratch（マイクラ1.12.2用、1.16.5用）</li>
+						<li>Forgeで動かすマイクラリモコンのmod</li>
+						<li>Pythonの<code>minecraft-remote-api</code>の1214系（<code>1214.10.13</code>など）</li>
+						<li>旧プロトコルの箱庭サーバー（2026年10月までの<code>sb.mc-remote.com</code>）</li>
+					</ul>
+					<p>これから始める方は、移行は要りません。<a href="../#quickstart">はじめる</a>へ進んでください。</p>
+				</section>
+
+				<section id="schedule">
+					<h2>📅 予定</h2>
+					<p>初回Stableを公開する2026年11月1日に、箱庭サーバーの名前を切り替えます。<code>sb.mc-remote.com</code>は新しいプロトコルの安定版になり、旧プロトコルのサーバーは<code>sb-retro.mc-remote.com</code>として11月末まで動かします。12月から、箱庭サーバーは新しいプロトコルに一本化します。</p>
+					<p>11月1日からは、旧版のScratchやPythonで<code>sb.mc-remote.com</code>につなごうとしても、つながりません。旧版を使い続ける間は、つなぎ先を<code>sb-retro.mc-remote.com</code>に変えてください。</p>
+					<div class="table-wrap">
+						<table class="lan-table">
+							<thead>
+								<tr>
+									<th>時期</th>
+									<th><code>sb.mc-remote.com</code></th>
+									<th><code>sb-retro.mc-remote.com</code></th>
+									<th><code>sb-beta.mc-remote.com</code></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>2026年10月31日まで</td>
+									<td>旧プロトコル</td>
+									<td>―</td>
+									<td>新しいプロトコル（リリース候補版）</td>
+								</tr>
+								<tr>
+									<td>2026年11月1日〜30日</td>
+									<td>新しいプロトコルの安定版</td>
+									<td>旧プロトコル</td>
+									<td><code>sb.mc-remote.com</code>と同じサーバー</td>
+								</tr>
+								<tr>
+									<td>2026年12月から</td>
+									<td>新しいプロトコルの安定版</td>
+									<td>終了</td>
+									<td>新しいプロトコルのベータ版</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<p class="lan-small">初回Stable（2026年11月）を公開すると、Pythonで版を指定せずに入れたときに入る版も、新しい版に変わります（下の「Python」）。</p>
+				</section>
+
+				<section id="python">
+					<h2>🐍 Python</h2>
+
+					<h3>何が変わるか</h3>
+					<p>初回Stableの公開の後、版を指定しない<code>pip install minecraft-remote-api</code>や<code>uv add minecraft-remote-api</code>で入るのは、新しい版（<code>2321.0.0</code>）になります。新しい版は旧プロトコルのサーバーにはつながりません。また、旧版のプログラムは、接続のしかたなどが変わるため、そのままでは動かないものがあります。</p>
+
+					<h3>旧版を使い続ける（2026年11月まで）</h3>
+					<p>旧プロトコルの箱庭サーバーや、旧版のmodを入れたサーバーにつなぐ間は、旧版を版を指定して入れてください。11月1日からは、箱庭サーバーのつなぎ先を<code>sb-retro.mc-remote.com</code>に変えてください。</p>
+					<pre><code>pip install "minecraft-remote-api==1214.10.13"</code></pre>
+
+					<h3>新しい版へ移る</h3>
+					<p>新しい版では、Pythonの環境とパッケージの管理に<a href="https://docs.astral.sh/uv/" target="_blank" rel="noopener">uv</a>を使います。pyenvやpoetryを使っていた方も、uvへ移ると手順が短くなります。</p>
+					<ol>
+						<li>uvを入れます（手順はuvの公式の案内にあります）。</li>
+						<li>作業用のフォルダーで、<code>uv init --no-package</code>を実行します。</li>
+						<li><code>uv add minecraft-remote-api</code>で新しい版を入れます。</li>
+						<li>トップページの<a href="../#quickstart">PythonでのHello, world!</a>の<code>hello.py</code>を、<code>uv run hello.py</code>で動かします。初めてつなぐときは、マイクラのチャットでペアリングします。</li>
+					</ol>
+					<p>くわしい手順は、<a href="https://github.com/Naohiro2g/minecraft-remote-api#readme" target="_blank" rel="noopener">minecraft-remote-apiのREADME</a>にあります。使える命令は<a href="../api/">API一覧</a>で確かめられます。</p>
+				</section>
+
+				<section id="scratch">
+					<h2>🐱 Scratch</h2>
+					<p>旧版の改造版Scratch（マイクラ1.12.2用、1.16.5用）から、新しいScratchへ移ります。拡張機能が新しくなり、ブロックも変わっています。ブロックは<a href="../api/scratch/">Scratchのブロック一覧</a>で確かめられます。</p>
+					<ul>
+						<li><strong>箱庭サーバーで使う</strong>：ブラウザで<a href="https://scratch-beta.mc-remote.com/?extension=mcremote" target="_blank" rel="noopener">箱庭のScratch</a>を開きます。手順は<a href="../#quickstart">はじめる</a>にあります。</li>
+						<li><strong>自分のワールドで使う</strong>：<a href="../lan/scratch/">Scratch LANパッケージ</a>を使います。</li>
+					</ul>
+				</section>
+
+				<section id="server">
+					<h2>🖥️ マイクラサーバー</h2>
+					<p>旧版のForgeのmodから、Paperサーバーと、そこへ入れるプラグイン<strong>McRemote</strong>へ移ります。対応するマイクラの版は1.21.11と26.3です。準備のしかたは<a href="https://github.com/Naohiro2g/McRemote#readme" target="_blank" rel="noopener">McRemoteのREADME</a>にあります。</p>
+				</section>
+
+				<section id="help">
+					<h2>💬 困ったときは</h2>
+					<p>分からないことは<a href="https://discord.gg/xUqhhqWsuS" target="_blank" rel="noopener">Discord</a>で相談できます。不具合や気づいたことは<a href="https://github.com/Naohiro2g/mc-remote-knowledge/issues/new?template=feedback.yml" target="_blank" rel="noopener">フィードバックのフォーム</a>へお寄せください。</p>
+				</section>
+			</article>
+		</div>
+	</main>
+
+	<!-- Footer -->
+	<footer>
+		<div class="container">
+			<div class="footer-links">
+				<a href="../#quickstart">はじめる</a>
+				<a href="../#about">プロジェクト理念</a>
+				<a href="../#ecosystem">エコシステム・リポジトリ一覧</a>
+				<a href="../roadmap/">ロードマップ</a>
+				<a href="../releases/">リリースノート</a>
+				<a href="../migration/">旧版からの移行</a>
+				<a href="https://github.com/Naohiro2g/mc-remote-knowledge/blob/main/LANGUAGE_POLICY.md" target="_blank"
+					rel="noopener">言語方針 (Language Policy)</a>
+				<a href="https://discord.gg/xUqhhqWsuS" target="_blank" rel="noopener">Discordコミュニティ</a>
+			</div>
+
+			<div class="footer-images">
+				<img src="../images/MinecraftRemote-blue.png" alt="Minecraft Remote Logo" />
+				<img src="../images/maikura_rimokon-logo.png" alt="マイクラ リモコン ロゴ" />
+			</div>
+
+			<p style="margin-top: 12px; font-size: 0.85rem;">
+				Minecraft Remote Project &mdash; Run by Code2CreateClub.<br />
+				Minecraft is a trademark of Mojang Synergies AB. This project is not affiliated with or endorsed by
+				Mojang or Microsoft.
+			</p>
+			<p style="margin-top: 8px; font-size: 0.8rem; color: #94a3b8;">
+				Copyright &copy; Code2CreateClub All Rights Reserved.
+			</p>
+		</div>
+	</footer>
+
+</body>
+
+</html>

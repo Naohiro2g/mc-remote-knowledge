@@ -49,8 +49,8 @@ rc2の実装に着手してよい。tag、Releaseの公開は、返却を受け�
 - 移行ガイド（`2026-10-22-02`③）：旧protocolから新protocolへ、pyenv／poetryからuvへ。今ある案内の場所と、強くするときの
   案。初回stableの公開に要る最小限（版を指定しないと新しい版が入ること、旧protocolを使い続ける人の版の指定）と、11月中に
   強くする部分を分けて返す
-- starter（`sb-beta`を指している）：11月中はlatestを`sb-beta`で動かし、12月から`sb`を新protocolの安定版、`sb-beta`を`2330.0.0`の
-  beta版にする（`2026-10-22-02`⑤）。starterとREADMEの箱庭の名前を、12月にどう変えるかの案
+- starter（`sb-beta`を指している）：11月1日に箱庭の名前を切り替え、`sb`が新protocolの安定版になる（`2026-10-22-04`。旧protocolは
+  `sb-retro`で11月末まで）。starterとREADMEの箱庭の名前を`sb`へ変える案。旧版を使い続ける人の案内は`sb-retro`
 
 ## Scratch editor（WireScope、minecraft-remote-tooling）
 
@@ -65,6 +65,7 @@ rc2の実装に着手してよい。tag、Releaseの公開は、返却を受け�
 - `2321.0.0`のpreset。rc1からの差分
 - 箱庭（`sb-beta`）のMcRemoteのconfigに、旧`b5:`／`b7:`のキーが残っていないこと。残っていると、stableのMcRemoteは止まる
   （`2026-10-22-01`）。切り替えの前のdoctorで確かめられるか
-- 11月中は`sb-beta`がlatest、`sb`は旧protocolのまま。12月から`sb`を新protocolの安定版、`sb-beta`を`2330.0.0`のbeta版にし、
-  旧protocolのサーバーを止める（`2026-10-22-02`⑤）。12月の切り替えの手順の案（名前（DNS）を替えるのか、中身を替えるのか）
+- 11月1日に名前を切り替える（`2026-10-22-04`）：旧protocolのサーバーの`sb`を`sb-retro`へ、公開VPSの`sb-beta`を`sb`へ。11月中、
+  `sb-beta`は`sb`と同じサーバーを指す案。`sb-retro`は11月末で止め、12月から`sb-beta`を`2330.0.0`のbeta版にする。DNSと証明書の
+  手順、切り替えにかかる時間の見込み、ScratchとWireScopeの名前（`scratch-beta`、`wirescope-beta`）を同じく切り替えるかの案
 - 候補の置き場所（`/candidates/`、`2026-10-18-07`）：McRemoteのrc2とstableの候補を置くか。置くなら、rc1と同じ経路でよいか

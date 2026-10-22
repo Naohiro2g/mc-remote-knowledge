@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Cache-Control" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<meta name="robots" content="index, follow" />
+	<meta name="description" content="マイクラリモコン（mc-remote）の開発ロードマップと、いまどこにいるか。" />
+	<title>ロードマップ — マイクラリモコン (mc-remote)</title>
+	<link rel="stylesheet" href="../styles.css" />
+</head>
+
+<body>
+
+	<!-- Header -->
+	<header>
+		<div class="container nav-container">
+			<a href="../" class="brand-group">
+				<img src="../images/mc-remote_com_logo.png" alt="Minecraft Remote" class="brand-logo" />
+			</a>
+			<nav>
+				<ul>
+					<li><a href="../#quickstart">はじめる</a></li>
+					<li><a href="../#ecosystem">エコシステム</a></li>
+					<li><a href="../roadmap/">ロードマップ</a></li>
+					<li><a href="../releases/">リリース</a></li>
+					<li><a href="../migration/">移行</a></li>
+					<li><a href="https://discord.gg/xUqhhqWsuS" target="_blank" rel="noopener">Discord</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+
+	<!-- Roadmap Section -->
+	<section id="roadmap">
+		<div class="container">
+			<h2 class="section-title">開発ロードマップ & 進捗状況</h2>
+			<p class="section-desc">2027年春の教室本番導入に向けた公開ロードマップです。</p>
+
+			<div class="roadmap-box">
+				<div class="current-status">
+					<span>●</span> 現在地: <strong>R3（学べる・教えられる）進行中 / rc1 公開中</strong>
+				</div>
+
+				<ul class="timeline-list">
+					<li class="timeline-item">
+						<div class="timeline-date">2026年8月末</div>
+						<div class="timeline-desc"><strong>b6 / Protocol 23.0.0</strong>:
+							看板（Sign）API、ツルハシ叩き（poke）イベント、ブラウザ内自動保存の統合。</div>
+					</li>
+					<li class="timeline-item">
+						<div class="timeline-date">2026年9月前半【完了】</div>
+						<div class="timeline-desc"><strong>b7 / Protocol 23.1.0</strong>:
+							プレイヤーおよびエンティティの方向（direction）操作、落雷（lightning）、WireScope detached
+							ZIP同梱。ホームページ骨格・README近代化（Pass A）。</div>
+					</li>
+					<li class="timeline-item">
+						<div class="timeline-date">2026年10月3日【公開】</div>
+						<div class="timeline-desc"><strong>b8 / Protocol 23.2.0</strong>: エンティティライフサイクル（近くのエンティティの検索、位置と向き、削除）、パーティクルStage 2（色・大きさ、見せる相手）、サウンド（位置とブロックの音）。Pythonの短いimport。Windowsでの導入手順の確認。</div>
+					</li>
+					<li class="timeline-item">
+						<div class="timeline-date">2026年10月5日【公開】</div>
+						<div class="timeline-desc"><strong>b9 / Protocol 23.2.0</strong>: APIフリーズ（初回Stableまで、APIは追加・変更しない）。PythonモジュールをPyPIへ登録（ベータ版は版を指定して取得）。プロトコル定義、WireScope、Bridgeを共通の開発基盤リポジトリ（minecraft-remote-tooling）へ移管。</div>
+					</li>
+					<li class="timeline-item">
+						<div class="timeline-date">2026年10月14日【公開】</div>
+						<div class="timeline-desc"><strong>b10 / Protocol 23.2.0</strong>: 一つのプラグインでPaper 1.21.11と26.3の両方に対応。大きな範囲のブロック設置を、サーバーを止めないよう少しずつ施工。Scratch LANパッケージ（Windows／macOS／Linux用）で、自分のPCや家庭・教室のネットワークでもScratchから操作できるように。</div>
+					</li>
+					<li class="timeline-item">
+						<div class="timeline-date">2026年10月19日【公開】</div>
+						<div class="timeline-desc"><strong>rc1 / Protocol 23.2.1</strong>: 初回Stableのリリース候補（Release Candidate）。APIはb10と同じで、Protocol 23.2.0のサーバー・クライアントともつながる。Scratchのブロック選びで、マイクラ26.3で増えたブロックも日本語の名前で探せるように。Scratch LANパッケージの<code>はじめに.html</code>を、OSごとの手順に整理。</div>
+					</li>
+					<li class="timeline-item">
+						<div class="timeline-date">2026年11月</div>
+						<div class="timeline-desc"><strong>初回 Stable リリース（2321.0.0）</strong>: 安定導入手順と公式サポート版の公開。箱庭サーバー<code>sb.mc-remote.com</code>が新しいプロトコルの安定版になり、旧プロトコルのサーバーは<code>sb-retro.mc-remote.com</code>へ（11月末まで）。旧版からの移行は<a href="../migration/">移行ガイド</a>へ。</div>
+					</li>
+					<li class="timeline-item">
+						<div class="timeline-date">2026年11月</div>
+						<div class="timeline-desc"><strong>2321.1.0</strong>: Stableを出した後の改善。PythonでWireScopeを使うときの観測の始まりと終わり、Scratch LANパッケージのランチャーと<code>はじめに.html</code>など。</div>
+					</li>
+					<li class="timeline-item">
+						<div class="timeline-date">2026年12月</div>
+						<div class="timeline-desc"><strong>2330.0.0 ベータ版</strong>: サウンドの拡張。旧プロトコルの<code>sb-retro.mc-remote.com</code>を終え、箱庭サーバーは新しいプロトコルの安定版（<code>sb.mc-remote.com</code>）とベータ版（<code>sb-beta.mc-remote.com</code>）の二つになります。</div>
+					</li>
+					<li class="timeline-item">
+						<div class="timeline-date">2027年春（4月）</div>
+						<div class="timeline-desc"><strong>新学年・教室本番導入</strong>:
+							確定したStable環境での教材運用開始。独自Mobやエージェント型建築カリキュラムへの発展。</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<!-- Footer -->
+	<footer>
+		<div class="container">
+			<div class="footer-links">
+				<a href="../#quickstart">はじめる</a>
+				<a href="../#about">プロジェクト理念</a>
+				<!-- <a href="#curriculum">カリキュラム</a> -->
+				<a href="../#ecosystem">エコシステム・リポジトリ一覧</a>
+				<a href="../roadmap/">ロードマップ</a>
+				<a href="../releases/">リリースノート</a>
+				<a href="../migration/">旧版からの移行</a>
+				<a href="https://github.com/Naohiro2g/mc-remote-knowledge/blob/main/LANGUAGE_POLICY.md" target="_blank"
+					rel="noopener">言語方針 (Language Policy)</a>
+				<a href="https://discord.gg/xUqhhqWsuS" target="_blank" rel="noopener">Discordコミュニティ</a>
+			</div>
+
+			<div class="footer-images">
+				<img src="../images/MinecraftRemote-blue.png" alt="Minecraft Remote Logo" />
+				<img src="../images/maikura_rimokon-logo.png" alt="マイクラ リモコン ロゴ" />
+				<!-- <img src="../images/TNT.png" alt="TNT" /> -->
+			</div>
+
+			<p style="margin-top: 12px; font-size: 0.85rem;">
+				Minecraft Remote Project &mdash; Run by Code2CreateClub.<br />
+				Minecraft is a trademark of Mojang Synergies AB. This project is not affiliated with or endorsed by
+				Mojang or Microsoft.
+			</p>
+			<p style="margin-top: 8px; font-size: 0.8rem; color: #94a3b8;">
+				Copyright &copy; Code2CreateClub All Rights Reserved.
+			</p>
+		</div>
+	</footer>
+
+</body>
+
+</html>

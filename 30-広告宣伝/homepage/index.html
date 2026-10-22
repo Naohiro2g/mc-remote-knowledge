@@ -29,8 +29,9 @@
 					<li><a href="#about">理念・起源</a></li>
 					<!-- <li><a href="#curriculum">カリキュラム</a></li> -->
 					<li><a href="#ecosystem">エコシステム</a></li>
-					<li><a href="#roadmap">ロードマップ</a></li>
-					<li><a href="#releases">リリース</a></li>
+					<li><a href="roadmap/">ロードマップ</a></li>
+					<li><a href="releases/">リリース</a></li>
+					<li><a href="migration/">移行</a></li>
 					<li><a href="https://discord.gg/xUqhhqWsuS" target="_blank" rel="noopener">Discord</a></li>
 				</ul>
 			</nav>
@@ -53,9 +54,24 @@
 					一本道のカリキュラムではなく、Scratchによるマイクラ世界へのブロック配置、Pythonなど各種言語での自動建築、マイクラリモコン自体の改造など、いろいろな入口から入れて自由に探索できます。<strong>AIアシスト前提の学び／開発も開発者自身が模索中です。</strong>
 				</div>
 			</div>
-			<p></p>
 		</div>
 	</div>
+
+	<!-- What's New Section -->
+	<section id="news" class="news-section">
+		<div class="container">
+			<div class="news-panel">
+				<h2>📣 いまのマイクラリモコン</h2>
+				<p class="news-status"><span>●</span> 現在地：<strong>リリース候補版（rc1）公開中。初回Stableは2026年11月</strong></p>
+				<ul class="news-list">
+					<li><span class="news-date">2026年10月22日</span><a href="migration/">旧版からの移行ガイド</a>を公開しました。11月1日に箱庭サーバーの名前を切り替え、<code>sb.mc-remote.com</code>は新しいプロトコルの安定版になります。旧プロトコルのサーバーは<code>sb-retro.mc-remote.com</code>として11月末まで動かします。</li>
+					<li><span class="news-date">2026年10月19日</span>リリース候補版（rc1）を公開しました。不具合や気づいたことは<a href="https://github.com/Naohiro2g/mc-remote-knowledge/issues/new?template=feedback.yml" target="_blank" rel="noopener">フィードバックのフォーム</a>へ。</li>
+					<li><span class="news-date">2026年10月18日</span><a href="#notebook">Notebook先生</a>に、マイクラリモコンのことを訊けるようになりました。</li>
+				</ul>
+				<p class="news-links"><a href="releases/">リリースノートと互換性</a>　／　<a href="roadmap/">ロードマップ</a>　／　<a href="migration/">旧版からの移行</a></p>
+			</div>
+		</div>
+	</section>
 
 	<div class="container">
 		<div class="thoughts-content">
@@ -120,7 +136,7 @@
 		</div>
 
 
-		<details class="connect-guide" style="margin-top: 10px; text-align: left;">
+		<details class="connect-guide" id="quickstart" style="margin-top: 10px; text-align: left;">
 			<summary>
 				<h2>🌍 マルチプレイ可能なアカウントで、マイクラリモコン対応サーバーに接続してみよう！</h2>
 			</summary>
@@ -159,7 +175,7 @@
 			</div>
 		</details>
 
-		<div class="action-cards" id="quickstart">
+		<div class="action-cards">
 			<!-- Scratch Card -->
 			<div class="card">
 				<div class="card-tag scratch">8歳からのビジュアルコーディング</div>
@@ -252,6 +268,26 @@ mc.setBlock(5, 67, 5, "sea_lantern")</code></pre>
 			</div>
 		</details>
 	</div>
+
+	<!-- Pages Section -->
+	<section id="pages" class="pages-section">
+		<div class="container">
+			<div class="page-links">
+				<a class="page-link" href="roadmap/">
+					<strong>🗺️ ロードマップ</strong>
+					<span>いまどこにいて、次に何を出すか。</span>
+				</a>
+				<a class="page-link" href="releases/">
+					<strong>📦 リリース</strong>
+					<span>各コンポーネントの版と互換性、これまでの履歴。</span>
+				</a>
+				<a class="page-link" href="migration/">
+					<strong>🔄 移行</strong>
+					<span>旧版のScratch、Python、サーバーから移る方へ。</span>
+				</a>
+			</div>
+		</div>
+	</section>
 
 	<!-- Gemini Notebook Section -->
 	<section id="notebook">
@@ -409,205 +445,6 @@ mc.setBlock(5, 67, 5, "sea_lantern")</code></pre>
 		</div>
 	</section>
 
-	<!-- Roadmap Section -->
-	<section id="roadmap">
-		<div class="container">
-			<h2 class="section-title">開発ロードマップ & 進捗状況</h2>
-			<p class="section-desc">2027年春の教室本番導入に向けた公開ロードマップです。</p>
-
-			<div class="roadmap-box">
-				<div class="current-status">
-					<span>●</span> 現在地: <strong>R3（学べる・教えられる）進行中 / rc1 公開中</strong>
-				</div>
-
-				<ul class="timeline-list">
-					<li class="timeline-item">
-						<div class="timeline-date">2026年8月末</div>
-						<div class="timeline-desc"><strong>b6 / Protocol 23.0.0</strong>:
-							看板（Sign）API、ツルハシ叩き（poke）イベント、ブラウザ内自動保存の統合。</div>
-					</li>
-					<li class="timeline-item">
-						<div class="timeline-date">2026年9月前半【完了】</div>
-						<div class="timeline-desc"><strong>b7 / Protocol 23.1.0</strong>:
-							プレイヤーおよびエンティティの方向（direction）操作、落雷（lightning）、WireScope detached
-							ZIP同梱。ホームページ骨格・README近代化（Pass A）。</div>
-					</li>
-					<li class="timeline-item">
-						<div class="timeline-date">2026年10月3日【公開】</div>
-						<div class="timeline-desc"><strong>b8 / Protocol 23.2.0</strong>: エンティティライフサイクル（近くのエンティティの検索、位置と向き、削除）、パーティクルStage 2（色・大きさ、見せる相手）、サウンド（位置とブロックの音）。Pythonの短いimport。Windowsでの導入手順の確認。</div>
-					</li>
-					<li class="timeline-item">
-						<div class="timeline-date">2026年10月5日【公開】</div>
-						<div class="timeline-desc"><strong>b9 / Protocol 23.2.0</strong>: APIフリーズ（初回Stableまで、APIは追加・変更しない）。PythonモジュールをPyPIへ登録（ベータ版は版を指定して取得）。プロトコル定義、WireScope、Bridgeを共通の開発基盤リポジトリ（minecraft-remote-tooling）へ移管。</div>
-					</li>
-					<li class="timeline-item">
-						<div class="timeline-date">2026年10月14日【公開】</div>
-						<div class="timeline-desc"><strong>b10 / Protocol 23.2.0</strong>: 一つのプラグインでPaper 1.21.11と26.3の両方に対応。大きな範囲のブロック設置を、サーバーを止めないよう少しずつ施工。Scratch LANパッケージ（Windows／macOS／Linux用）で、自分のPCや家庭・教室のネットワークでもScratchから操作できるように。</div>
-					</li>
-					<li class="timeline-item">
-						<div class="timeline-date">2026年10月19日【公開】</div>
-						<div class="timeline-desc"><strong>rc1 / Protocol 23.2.1</strong>: 初回Stableのリリース候補（Release Candidate）。APIはb10と同じで、Protocol 23.2.0のサーバー・クライアントともつながる。Scratchのブロック選びで、マイクラ26.3で増えたブロックも日本語の名前で探せるように。Scratch LANパッケージの<code>はじめに.html</code>を、OSごとの手順に整理。</div>
-					</li>
-					<li class="timeline-item">
-						<div class="timeline-date">2026年11月</div>
-						<div class="timeline-desc"><strong>初回 Stable リリース</strong>: 安定導入手順と公式サポート版の公開。</div>
-					</li>
-					<li class="timeline-item">
-						<div class="timeline-date">2027年春（4月）</div>
-						<div class="timeline-desc"><strong>新学年・教室本番導入</strong>:
-							確定したStable環境での教材運用開始。独自Mobやエージェント型建築カリキュラムへの発展。</div>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</section>
-
-	<!-- Releases & Matrix Section -->
-	<section id="releases">
-		<div class="container">
-			<h2 class="section-title">横断リリースノート & 互換性情報</h2>
-			<p class="section-desc">各コンポーネントの動作確認済みバージョン対応表です。</p>
-
-			<table class="matrix-table">
-				<thead>
-					<tr>
-						<th>コンポーネント</th>
-						<th>最新バージョン／公開サーバー</th>
-						<th>プロトコル</th>
-						<th>マインクラフトバージョン / 備考</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td><strong>McRemote（Plugin、リリース候補）</strong></td>
-						<td><code>2321.0.0rc1</code></td>
-						<td>23.2.1</td>
-						<td>Paper 1.21.11 / 26.3（同じJARで両方に対応）</td>
-					</tr>
-					<tr>
-						<td><strong>McRemote（Plugin）</strong></td>
-						<td><code>v1.21.8-1.4.0</code></td>
-						<td>旧プロトコル</td>
-						<td>Paper 1.21.11</td>
-					</tr>
-					<tr>
-						<td><strong>minecraft-remote-api (Python)</strong></td>
-						<td><code>2321.0.0rc1</code></td>
-						<td>23.2.1</td>
-						<td>Python 3.10以上対応。PyPIでリリース候補版を版指定で取得（<code>==2321.0.0rc1</code>）。版指定なしでは旧プロトコルの安定版</td>
-					</tr>
-					<tr>
-						<td><strong>scratch-editor (Scratch)</strong></td>
-						<td><code>2321.0.0rc1</code></td>
-						<td>23.2.1</td>
-						<td>Web版はブラウザ完結（Chrome, Safari, Edge等）。自分のPC・LAN向けのScratch LANパッケージ（Windows／macOS／Linux用ZIP）は<a href="lan/scratch/">LANパッケージのページ</a>から</td>
-					</tr>
-					<tr>
-						<td><strong>WireScope</strong></td>
-						<td><code>2321.0.0rc1</code></td>
-						<td>23.2.1</td>
-						<td>共通パケット観察Webアプリ（minecraft-remote-tooling）</td>
-					</tr>
-					<tr>
-						<td><strong>公式箱庭マイクラサーバー（ベータ）</strong></td>
-						<td><code>sb-beta.mc-remote.com</code></td>
-						<td>23.2.1</td>
-						<td>1.21.11、Java版：TCP25565 / 統合版：UDP25565</td>
-					</tr>
-					<tr>
-						<td><strong>公式箱庭マイクラサーバー</strong></td>
-						<td><code>sb.mc-remote.com</code></td>
-						<td>旧プロトコル</td>
-						<td>1.21.11、Java版：TCP25565 / 統合版：UDP25565</td>
-					</tr>
-				</tbody>
-			</table>
-
-			<!-- Past History Collapsible -->
-			<details>
-				<summary>📜 過去のリリース履歴を展開して確認する</summary>
-				<ul class="history-timeline" style="margin-top: 14px;">
-						<li>
-							<div class="history-meta"><span class="history-date">2026年10月19日</span><span
-									class="history-version">Protocol 23.2.1 (rc1)</span></div>
-							<div class="history-description">初回Stableのリリース候補。Protocolを23.2.1、配布版を<code>2321.0.0rc1</code>に（APIと通信の中身はb10と同じで、23.2.0のサーバー・クライアントとそのままつながる）。Scratchのブロック選びにマイクラ26.3の日本語の名前を追加。Scratch LANパッケージの<code>はじめに.html</code>をOSごとの手順に整理。不具合や気づいたことは<a href="https://github.com/Naohiro2g/mc-remote-knowledge/issues/new?template=feedback.yml" target="_blank" rel="noopener">フィードバックのフォーム</a>へ。
-							</div>
-						</li>
-						<li>
-							<div class="history-meta"><span class="history-date">2026年10月14日</span><span
-									class="history-version">Protocol 23.2.0 (b10)</span></div>
-							<div class="history-description">McRemoteを一つのJAR（<code>mc-remote-2320.0.0b10.jar</code>）でPaper 1.21.11と26.3に対応し、tagとJARの名前からMinecraftの版を外した。<code>setBlocks</code>の大きな要求（既定で1要求32768ブロックまで）を複数tickに分けて施工。Scratch LANパッケージ（Scratch、ランチャーと設定画面、WireScopeを同梱したOS別ZIP）を追加。APIの変更はなし。
-							</div>
-						</li>
-						<li>
-							<div class="history-meta"><span class="history-date">2026年10月5日</span><span
-									class="history-version">Protocol 23.2.0 (b9)</span></div>
-							<div class="history-description">APIフリーズ。<code>chat.post</code>の成功時の応答を<code>null</code>に固定し、知らない種類のイベントが届いても<code>events.poll</code>全体を失敗させないように統一。PythonモジュールをPyPIへ登録（<code>uv add "minecraft-remote-api==2320.0.0b9"</code>）。プロトコル定義・WireScope・Bridgeを<code>minecraft-remote-tooling</code>へ移管。
-							</div>
-						</li>
-						<li>
-							<div class="history-meta"><span class="history-date">2026年10月3日</span><span
-									class="history-version">Protocol 23.2.0 (b8)</span></div>
-							<div class="history-description">近くのエンティティの検索（<code>getNearbyEntities</code>）、エンティティの位置と向き・削除（<code>entity.getPose</code> /
-								<code>setPose</code> / <code>remove</code>）、パーティクルの色・大きさと見せる相手（<code>receiver</code>）、サウンド（<code>playSound</code> /
-								<code>playBlockSound</code>）。<code>minecraft:</code>を省いたIDの受け付けを全種類で統一。
-							</div>
-						</li>
-					<li>
-						<div class="history-meta"><span class="history-date">2026年9月3日</span><span
-								class="history-version">Protocol 23.1.0 (b7)</span></div>
-						<div class="history-description">プレイヤーおよびエンティティの向き（<code>getDirection</code> /
-							<code>setDirection</code>）の操作、落雷（<code>strikeLightning</code>）、WireScope detached ZIPの同梱。
-						</div>
-					</li>
-					<li>
-						<div class="history-meta"><span class="history-date">2026年8月28日</span><span
-								class="history-version">Protocol 23.0.0 (b6)</span></div>
-						<div class="history-description">看板操作（<code>getSign</code>, <code>setSign</code>,
-							<code>updateSignLine</code>）、ツルハシによるブロック叩きイベント（<code>pickaxe_poke</code>）、ブラウザ内自動保存（IndexedDB）の導入。
-						</div>
-					</li>
-					<li>
-						<div class="history-meta"><span class="history-date">2026年8月23日</span><span
-								class="history-version">Protocol 22.0.0 (b5)</span></div>
-						<div class="history-description">構造化ブロック値（ブロックIDとブロック状態 <code>state</code> の分離）、空間識別子の Minecraft
-							DimensionKey への統一、高速建築モード（DEBUG,
-							TRACE, FAST）の整備。
-						</div>
-					</li>
-					<li>
-						<div class="history-meta"><span class="history-date">2026年8月18日</span><span
-								class="history-version">Protocol 21.0.0 (b4)</span></div>
-						<div class="history-description">建築状態（ワールド＋原点）とプレイヤー識別の完全分離（<code>setPlayer</code>
-							廃止、<code>setWorld</code> /
-							<code>setBuildOrigin</code> 導入）、向きを含むプレイヤー姿勢（<code>getPose</code> /
-							<code>setPose</code>）の追加。
-						</div>
-					</li>
-					<li>
-						<div class="history-meta"><span class="history-date">2026年8月7日</span><span
-								class="history-version">Protocol 21.0.0 (b3)</span></div>
-						<div class="history-description">
-							生きたブロック／アイテム／パーティクルカタログの自動取得（<code>catalog.get</code>）と、型補完アーティファクト（<code>mc_constants</code>）の生成機構。
-						</div>
-					</li>
-					<li>
-						<div class="history-meta"><span class="history-date">2026年7月11日</span><span
-								class="history-version">Protocol 21.0.0 (b2)</span></div>
-						<div class="history-description">安全なトークン認証およびワンタイム・ペアリング機構（<code>/mcremote pair</code> コマンド）の確立。
-						</div>
-					</li>
-					<li>
-						<div class="history-meta"><span class="history-date">2026年7月3日</span><span
-								class="history-version">Protocol 21.0.0 (b1)</span></div>
-						<div class="history-description">通信ワイヤ形式を JSON-RPC 2.0 エンベロープへ全面刷新。多言語クライアント共通の基盤を確定。
-						</div>
-					</li>
-				</ul>
-			</details>
-		</div>
-	</section>
-
 	<!-- Footer -->
 	<footer>
 		<div class="container">
@@ -616,6 +453,9 @@ mc.setBlock(5, 67, 5, "sea_lantern")</code></pre>
 				<a href="#about">プロジェクト理念</a>
 				<!-- <a href="#curriculum">カリキュラム</a> -->
 				<a href="#ecosystem">エコシステム・リポジトリ一覧</a>
+				<a href="roadmap/">ロードマップ</a>
+				<a href="releases/">リリースノート</a>
+				<a href="migration/">旧版からの移行</a>
 				<a href="https://github.com/Naohiro2g/mc-remote-knowledge/blob/main/LANGUAGE_POLICY.md" target="_blank"
 					rel="noopener">言語方針 (Language Policy)</a>
 				<a href="https://discord.gg/xUqhhqWsuS" target="_blank" rel="noopener">Discordコミュニティ</a>

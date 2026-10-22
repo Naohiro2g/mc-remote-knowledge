@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Cache-Control" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<meta name="robots" content="index, follow" />
+	<meta name="description" content="マイクラリモコン（mc-remote）の各コンポーネントの版と互換性、リリースの履歴。" />
+	<title>リリースノートと互換性 — マイクラリモコン (mc-remote)</title>
+	<link rel="stylesheet" href="../styles.css" />
+</head>
+
+<body>
+
+	<!-- Header -->
+	<header>
+		<div class="container nav-container">
+			<a href="../" class="brand-group">
+				<img src="../images/mc-remote_com_logo.png" alt="Minecraft Remote" class="brand-logo" />
+			</a>
+			<nav>
+				<ul>
+					<li><a href="../#quickstart">はじめる</a></li>
+					<li><a href="../#ecosystem">エコシステム</a></li>
+					<li><a href="../roadmap/">ロードマップ</a></li>
+					<li><a href="../releases/">リリース</a></li>
+					<li><a href="../migration/">移行</a></li>
+					<li><a href="https://discord.gg/xUqhhqWsuS" target="_blank" rel="noopener">Discord</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+
+	<!-- Releases & Matrix Section -->
+	<section id="releases">
+		<div class="container">
+			<h2 class="section-title">横断リリースノート & 互換性情報</h2>
+			<p class="section-desc">各コンポーネントの動作確認済みバージョン対応表です。</p>
+
+			<table class="matrix-table">
+				<thead>
+					<tr>
+						<th>コンポーネント</th>
+						<th>最新バージョン／公開サーバー</th>
+						<th>プロトコル</th>
+						<th>マインクラフトバージョン / 備考</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><strong>McRemote（Plugin、リリース候補）</strong></td>
+						<td><code>2321.0.0rc1</code></td>
+						<td>23.2.1</td>
+						<td>Paper 1.21.11 / 26.3（同じJARで両方に対応）</td>
+					</tr>
+					<tr>
+						<td><strong>McRemote（Plugin）</strong></td>
+						<td><code>v1.21.8-1.4.0</code></td>
+						<td>旧プロトコル</td>
+						<td>Paper 1.21.11</td>
+					</tr>
+					<tr>
+						<td><strong>minecraft-remote-api (Python)</strong></td>
+						<td><code>2321.0.0rc1</code></td>
+						<td>23.2.1</td>
+						<td>Python 3.10以上対応。PyPIでリリース候補版を版指定で取得（<code>==2321.0.0rc1</code>）。版指定なしでは旧プロトコルの安定版</td>
+					</tr>
+					<tr>
+						<td><strong>scratch-editor (Scratch)</strong></td>
+						<td><code>2321.0.0rc1</code></td>
+						<td>23.2.1</td>
+						<td>Web版はブラウザ完結（Chrome, Safari, Edge等）。自分のPC・LAN向けのScratch LANパッケージ（Windows／macOS／Linux用ZIP）は<a href="../lan/scratch/">LANパッケージのページ</a>から</td>
+					</tr>
+					<tr>
+						<td><strong>WireScope</strong></td>
+						<td><code>2321.0.0rc1</code></td>
+						<td>23.2.1</td>
+						<td>共通パケット観察Webアプリ（minecraft-remote-tooling）</td>
+					</tr>
+					<tr>
+						<td><strong>公式箱庭マイクラサーバー（ベータ）</strong></td>
+						<td><code>sb-beta.mc-remote.com</code></td>
+						<td>23.2.1</td>
+						<td>1.21.11、Java版：TCP25565 / 統合版：UDP25565</td>
+					</tr>
+					<tr>
+						<td><strong>公式箱庭マイクラサーバー</strong></td>
+						<td><code>sb.mc-remote.com</code></td>
+						<td>旧プロトコル</td>
+						<td>1.21.11、Java版：TCP25565 / 統合版：UDP25565</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<!-- Past History Collapsible -->
+			<details>
+				<summary>📜 過去のリリース履歴を展開して確認する</summary>
+				<ul class="history-timeline" style="margin-top: 14px;">
+						<li>
+							<div class="history-meta"><span class="history-date">2026年10月19日</span><span
+									class="history-version">Protocol 23.2.1 (rc1)</span></div>
+							<div class="history-description">初回Stableのリリース候補。Protocolを23.2.1、配布版を<code>2321.0.0rc1</code>に（APIと通信の中身はb10と同じで、23.2.0のサーバー・クライアントとそのままつながる）。Scratchのブロック選びにマイクラ26.3の日本語の名前を追加。Scratch LANパッケージの<code>はじめに.html</code>をOSごとの手順に整理。不具合や気づいたことは<a href="https://github.com/Naohiro2g/mc-remote-knowledge/issues/new?template=feedback.yml" target="_blank" rel="noopener">フィードバックのフォーム</a>へ。
+							</div>
+						</li>
+						<li>
+							<div class="history-meta"><span class="history-date">2026年10月14日</span><span
+									class="history-version">Protocol 23.2.0 (b10)</span></div>
+							<div class="history-description">McRemoteを一つのJAR（<code>mc-remote-2320.0.0b10.jar</code>）でPaper 1.21.11と26.3に対応し、tagとJARの名前からMinecraftの版を外した。<code>setBlocks</code>の大きな要求（既定で1要求32768ブロックまで）を複数tickに分けて施工。Scratch LANパッケージ（Scratch、ランチャーと設定画面、WireScopeを同梱したOS別ZIP）を追加。APIの変更はなし。
+							</div>
+						</li>
+						<li>
+							<div class="history-meta"><span class="history-date">2026年10月5日</span><span
+									class="history-version">Protocol 23.2.0 (b9)</span></div>
+							<div class="history-description">APIフリーズ。<code>chat.post</code>の成功時の応答を<code>null</code>に固定し、知らない種類のイベントが届いても<code>events.poll</code>全体を失敗させないように統一。PythonモジュールをPyPIへ登録（<code>uv add "minecraft-remote-api==2320.0.0b9"</code>）。プロトコル定義・WireScope・Bridgeを<code>minecraft-remote-tooling</code>へ移管。
+							</div>
+						</li>
+						<li>
+							<div class="history-meta"><span class="history-date">2026年10月3日</span><span
+									class="history-version">Protocol 23.2.0 (b8)</span></div>
+							<div class="history-description">近くのエンティティの検索（<code>getNearbyEntities</code>）、エンティティの位置と向き・削除（<code>entity.getPose</code> /
+								<code>setPose</code> / <code>remove</code>）、パーティクルの色・大きさと見せる相手（<code>receiver</code>）、サウンド（<code>playSound</code> /
+								<code>playBlockSound</code>）。<code>minecraft:</code>を省いたIDの受け付けを全種類で統一。
+							</div>
+						</li>
+					<li>
+						<div class="history-meta"><span class="history-date">2026年9月3日</span><span
+								class="history-version">Protocol 23.1.0 (b7)</span></div>
+						<div class="history-description">プレイヤーおよびエンティティの向き（<code>getDirection</code> /
+							<code>setDirection</code>）の操作、落雷（<code>strikeLightning</code>）、WireScope detached ZIPの同梱。
+						</div>
+					</li>
+					<li>
+						<div class="history-meta"><span class="history-date">2026年8月28日</span><span
+								class="history-version">Protocol 23.0.0 (b6)</span></div>
+						<div class="history-description">看板操作（<code>getSign</code>, <code>setSign</code>,
+							<code>updateSignLine</code>）、ツルハシによるブロック叩きイベント（<code>pickaxe_poke</code>）、ブラウザ内自動保存（IndexedDB）の導入。
+						</div>
+					</li>
+					<li>
+						<div class="history-meta"><span class="history-date">2026年8月23日</span><span
+								class="history-version">Protocol 22.0.0 (b5)</span></div>
+						<div class="history-description">構造化ブロック値（ブロックIDとブロック状態 <code>state</code> の分離）、空間識別子の Minecraft
+							DimensionKey への統一、高速建築モード（DEBUG,
+							TRACE, FAST）の整備。
+						</div>
+					</li>
+					<li>
+						<div class="history-meta"><span class="history-date">2026年8月18日</span><span
+								class="history-version">Protocol 21.0.0 (b4)</span></div>
+						<div class="history-description">建築状態（ワールド＋原点）とプレイヤー識別の完全分離（<code>setPlayer</code>
+							廃止、<code>setWorld</code> /
+							<code>setBuildOrigin</code> 導入）、向きを含むプレイヤー姿勢（<code>getPose</code> /
+							<code>setPose</code>）の追加。
+						</div>
+					</li>
+					<li>
+						<div class="history-meta"><span class="history-date">2026年8月7日</span><span
+								class="history-version">Protocol 21.0.0 (b3)</span></div>
+						<div class="history-description">
+							生きたブロック／アイテム／パーティクルカタログの自動取得（<code>catalog.get</code>）と、型補完アーティファクト（<code>mc_constants</code>）の生成機構。
+						</div>
+					</li>
+					<li>
+						<div class="history-meta"><span class="history-date">2026年7月11日</span><span
+								class="history-version">Protocol 21.0.0 (b2)</span></div>
+						<div class="history-description">安全なトークン認証およびワンタイム・ペアリング機構（<code>/mcremote pair</code> コマンド）の確立。
+						</div>
+					</li>
+					<li>
+						<div class="history-meta"><span class="history-date">2026年7月3日</span><span
+								class="history-version">Protocol 21.0.0 (b1)</span></div>
+						<div class="history-description">通信ワイヤ形式を JSON-RPC 2.0 エンベロープへ全面刷新。多言語クライアント共通の基盤を確定。
+						</div>
+					</li>
+				</ul>
+			</details>
+		</div>
+	</section>
+
+	<!-- Footer -->
+	<footer>
+		<div class="container">
+			<div class="footer-links">
+				<a href="../#quickstart">はじめる</a>
+				<a href="../#about">プロジェクト理念</a>
+				<!-- <a href="#curriculum">カリキュラム</a> -->
+				<a href="../#ecosystem">エコシステム・リポジトリ一覧</a>
+				<a href="../roadmap/">ロードマップ</a>
+				<a href="../releases/">リリースノート</a>
+				<a href="../migration/">旧版からの移行</a>
+				<a href="https://github.com/Naohiro2g/mc-remote-knowledge/blob/main/LANGUAGE_POLICY.md" target="_blank"
+					rel="noopener">言語方針 (Language Policy)</a>
+				<a href="https://discord.gg/xUqhhqWsuS" target="_blank" rel="noopener">Discordコミュニティ</a>
+			</div>
+
+			<div class="footer-images">
+				<img src="../images/MinecraftRemote-blue.png" alt="Minecraft Remote Logo" />
+				<img src="../images/maikura_rimokon-logo.png" alt="マイクラ リモコン ロゴ" />
+				<!-- <img src="../images/TNT.png" alt="TNT" /> -->
+			</div>
+
+			<p style="margin-top: 12px; font-size: 0.85rem;">
+				Minecraft Remote Project &mdash; Run by Code2CreateClub.<br />
+				Minecraft is a trademark of Mojang Synergies AB. This project is not affiliated with or endorsed by
+				Mojang or Microsoft.
+			</p>
+			<p style="margin-top: 8px; font-size: 0.8rem; color: #94a3b8;">
+				Copyright &copy; Code2CreateClub All Rights Reserved.
+			</p>
+		</div>
+	</footer>
+
+</body>
+
+</html>

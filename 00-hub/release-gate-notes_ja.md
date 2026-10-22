@@ -90,8 +90,9 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
      移行のページ（`2026-10-22-02`④）の入口
 - 範囲の外（`2026-10-22-02`、`2026-10-22-03`）: READMEのPass C（Paperサーバーのガイドで置き換え、年内）、WindowsでのPython
   導入の2ルート（11月中）、Pythonの移行ガイドの強化、PythonとScratchの改善（`2321.1.0`）、サウンドの拡張（`2330.0.0`、12月）
-- 箱庭: 11月中は、latestを`sb-beta`で動かし、`sb`は旧protocolのまま残す。12月から、`sb`を新protocolの安定版、`sb-beta`を
-  `2330.0.0`のbeta版にする（`2026-10-22-02`⑤）
+- 箱庭（`2026-10-22-04`）: 11月1日に名前を切り替える。旧protocolのサーバーの`sb`を`sb-retro`へ、公開VPSの`sb-beta`を`sb`へ。
+  `sb-retro`は11月末で止める。11月中、`sb-beta`は`sb`と同じサーバーを指す（human ownerの確認待ち）。12月から`sb`は新protocolの
+  安定版、`sb-beta`は`2330.0.0`のbeta版
 - 人間の試験（案）: rc2のJARで、1台、PaperはどちらかでPythonとScratchから接続、ペアリング、setBlock、getBlock。旧キーを
   残したconfigで止まることはMcRemoteのtestとpulseで確かめ、人間の試験にしない
 - gateを開くときのparkの確認（`2026-09-30-09`、coordinatorの案。human ownerの確認待ち）:
@@ -118,7 +119,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   | 10/29–30 | 各担当が版の番号だけ変えたstableの候補を作る。knowledgeはホームページ（新着、`/roadmap/`、`/releases/`、`/migration/`）と公開の手順書。予備日 |
   | 10/31 | 集中日：候補を凍結し、coordinatorが全部照合する。ホームページとRelease本文を確定。Stackの切り替えの準備 |
   | 11/1 0:00 | toolingのtagとRelease → 照合 → Scratch、McRemote、PythonのRelease → 照合 → PyPIの承認 → 照合 → ホームページの同期 → 照合 |
-  | 11/1 続けて | 箱庭（`sb-beta`）を`2321.0.0`へ切り替え → 外から照合 → 告知 |
+  | 11/1 続けて | 箱庭（公開VPS）を`2321.0.0`へ切り替え、名前を切り替える（`sb`→`sb-retro`、`sb-beta`→`sb`、`2026-10-22-04`） → 外から照合 → 告知 |
 
   公開の後に作り直されたassetは、凍結した値とbytesが一致することを照合する。夜中に止まったら、公開済みの分はそのままに
   して止め、朝に回す。PyPIの承認はGitHubの4 repoが揃ってから（`2026-10-13-05`）。rc2で何か出れば、同じ形で11/6を集中日、
