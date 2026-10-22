@@ -179,6 +179,25 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   - 人の操作（human owner 2026-10-22）：二つの名前で、拡張の読み込み、接続とペアリング、代表の操作、WireScopeを操作した。
     getBlocksも動いた。WireScopeのlogでは、`[-2,100,-2,8,100,8]`（x、zが各11）は`work_limit_exceeded`、`[-2,100,-2,5,100,5]`と
     `[-6,100,-6,2,100,2]`（各8、各9）はblockの値を返した。各軸10以下の契約（`2026-08-19-03`）どおり
+- Pythonのstableの候補（2026-10-22、返却`handoff-materials/2026-10-22-stable-python-candidate/materials/candidate_ja.md`、
+  11,608 bytes、`7d2a868ce7949b7cbb3b160c4158aa7c1de62cc548f2cca33019c9a46f561142`。knowledge `abf8130`を読んだ）。coordinatorが
+  GitHubから取り直して照合した：
+  - source：`agent/stable-python-2321@fac0313ea9162dc0730412c53d665e6c42a93791`。rc1のtag `c301053`から1 commit、12 file。
+    差分の行は、`2321.0.0rc1`を`2321.0.0`へ替えたことだけ（compare APIの差分で、版を伏せると前後が一致）。mainはrc1のtagのまま
+  - CI `39720157153`：test 3.10〜3.13とbuild-candidateの5 jobがsuccess、headが`fac0313`（各784 PASSは返却の値）
+  - artifact（`minecraft-remote-api-dist`）を取り直し、返却の値と一致：`minecraft_remote_api-2321.0.0-py3-none-any.whl` 196,033 bytes
+    `a0c88b864c26e6e1a0ab2ef2248df6851cc9a3189af93579fbd50132d8c747a0`、`minecraft_remote_api-2321.0.0.tar.gz` 190,248 bytes
+    `a6feaec48ac5df1611208c42e7770d87e0a7bafe66794a39b30942f94140cb88`、`manifest.json` 668 bytes
+    `47dd3820a8e75951df4a4e7d360cb7c3685921e137ebd5ee3feb1238416577b9`。wheelの`Version`は`2321.0.0`。同梱の
+    `wirescope-app.zip` 83,854 bytes `da3da0b6cf4d05265bc0c11abaa4913208c7cfc3600b0c3e78c93a356fc431ad`と
+    `wirescope-app.manifest.json` 2,339 bytes `3dd668a236463809a4cdc6d19375f3e6d75eea0c8089a616d2b761d3a4a05235`はrc1の組
+  - 公開のときの`manifest.json`の期待値：675 bytes `229179c8274d54f06765bf2d717ae416f02742a99077acde09787ea6bd90ee4a`。候補の
+    manifestに`release_tag`を`v2321.0.0`と入れたもの（coordinatorも同じjqで作って一致、違いは`release_tag`だけ）
+  - Release本文の案（`stable-release-notes-draft_ja.md`）：`2026-10-22-04`どおり（11月1日に`sb`が安定版、旧protocolは`sb-retro`で
+    11月末まで、11月中は`sb-beta`も同じ安定版、starterは`2321.1.0`で`sb`へ）。`==1214.10.13`、`/migration/`、uvの移行の案内
+    （`docs/migrate-to-uv_ja.md`は候補のsourceにある）、rc1のWireScopeの注意、feedbackの入口
+  - Webの名前：Pythonの生成物と文書に`scratch`／`wirescope`の名前は0件（WireScopeはloopbackで開く）。箱庭の`sb-beta`は
+    README 1、starter 1、test 1の3か所で、`2321.1.0`で`sb`へ替える案
 - 時間割（2026-10-22、human owner了承）：10/31に、全部を出すだけの状態にする（版を`2321.0.0`にした候補の凍結、coordinatorの
   照合、ホームページ、Stackの切り替えの準備）。日付が変わったら公開し、続けて箱庭を切り替える
   | 日 | 作業 |
