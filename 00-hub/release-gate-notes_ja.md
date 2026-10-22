@@ -147,6 +147,37 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   repo（`abf8130`）と同じbytesと確かめた。`scratch.mc-remote.com`と`wirescope.mc-remote.com`のDNSは、すでに`-beta`と同じ先を
   向いている（human owner。coordinatorも名前の解決が同じことを確かめた）。HTTPSはまだつながらない（TLSの接続で失敗）。Stackが
   名前を足すまでの状態
+- McRemoteのrc2の公開（2026-10-22、返却`handoff-materials/2026-10-22-rc2-publication-stable-candidate/materials/work-report_ja.md`、
+  7,567 bytes。knowledge `b388712`と`abf8130`を読んだ）。coordinatorがGitHubから取り直して照合した：
+  - mainは`192a777`から`7960a913a11c621d85e6120ee412b696fe125457`へfast-forward。annotated tag `v2321.0.0rc2`も同じcommitを指す。
+    Release ID `420311190`、`prerelease=true`、`draft=false`、Latestは`v1.21.8-1.4.0`のまま。CI `39719769373`、Releaseのdry run
+    `39723170103`、公開`39723317773`はどれもsuccessで、headが`7960a91`
+  - 5 assetを取り直し、返却の値とbytesが一致：`mc-remote-2321.0.0rc2.jar` 315,871 bytes
+    `ce66abaf41a94800217a11161145b9f868333b7bfa605fd1f77b888878620e50`（着手依頼の凍結値と同じ）、`manifest.json` 1,988 bytes
+    `f5c60a852921e25c1cfb00d4a4f5df76afa0e8de701ae61e8c1f397993c524b6`、`minecraft-targets.json` 126 bytes
+    `8e830732decd6bcde13f91eb6c071d062ba6993342a7edb52e6ea543b9e0c361`、`mc-remote-verification-1.21.11.json` 62,784 bytes
+    `96cb1262c0c422a06c39e2af5e3aea4659c47ab74ec7ac12fcfe76a984a3c5cd`、`mc-remote-verification-26.3.json` 62,766 bytes
+    `f31d7ddff902c8951242d0a95fa1e24a6a5083235de2e8603a788a16b2a50501`
+  - Release本文：旧`b5:`／`b7:`が残るとPaperごと止まること、直し方、READMEの対応表へのリンク（`7960a91`の固定）、protocol
+    `23.2.1`、feedbackの入口がある
+  - stableの候補（公開していない）：`agent/stable-2321-candidate@525c31823a8efb736463aec471c2756089546391`。rc2からの差分は
+    `gradle.properties`の`pluginVersion`の1行だけ（compare APIで確かめた）。CI `39720103168` success。`mc-remote-2321.0.0.jar`
+    315,868 bytes `e3f7cc2ab9ee9b3130f927935634e32e8ddffe7d7603b6d873973968f68db4ab`（返却の素材のJARで計算が一致）。JARの中は
+    `plugin.yml`の版だけがrc2と違う（McRemoteの比較）
+  - Webの名前：McRemoteの追跡fileとJARに、`sb`／`scratch`／`wirescope`の名前（`-beta`の有無とも）の埋め込みとリンクは0件。
+    変える箇所は無い
+- Stackの`scratch.`と`wirescope.`の追加（2026-10-22、human ownerの完了の報告。報告のPRは#32、#33。mc-remote-stackの実装は
+  #78、merge `bb98746b901b5b188548dddce333f75039da1ebc`、`public-routes@3`の`[[web_pairs]]`、`compose@17`／`vps-server@15`）。
+  coordinatorが外から確かめた：
+  - 4つの名前（`scratch`、`scratch-beta`、`wirescope`、`wirescope-beta`）のどれもHTTPS 200、Let's Encryptの証明書で検証が通り、
+    SANは各自の名前
+  - `scratch.`と`scratch-beta`のトップは同じbytes、`wirescope.`と`wirescope-beta`のトップも同じbytes。WireScopeのheader
+    （CSP、`no-store`、`nosniff`、`no-referrer`）は二つの名前で同じ
+  - `/mc-remote-runtime-config.json`の`wirescope_url`は、`scratch.`では`https://wirescope.mc-remote.com/`、`scratch-beta`では
+    `https://wirescope-beta.mc-remote.com/`。組は混ざっていない。`bridge_url`（`bridge-beta`）、`default_sandbox`（`sb-beta`）、
+    お知らせの文（「公開ベータ」「rc1版」）は二つの名前で同じ
+  - 外から確かめていないこと：二つの名前での、拡張の読み込み、接続とペアリング、チャットとsetBlock、WireScope miniと
+    WireScopeを開くこと（人の操作が要る）
 - 時間割（2026-10-22、human owner了承）：10/31に、全部を出すだけの状態にする（版を`2321.0.0`にした候補の凍結、coordinatorの
   照合、ホームページ、Stackの切り替えの準備）。日付が変わったら公開し、続けて箱庭を切り替える
   | 日 | 作業 |
