@@ -227,6 +227,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   - 判定を求める事項とcoordinatorの案：①一般CIの既知の1件は、初回stableを止めない（rc1と同じsource、同じtest）。developには
     PR #27で正しい保存と復元のtestが入っており、developから作る`2321.1.0`で置き換わる見込み ②toolingはprovenanceを書き換えず、同じBridgeのindexへ`v2321.0.0`のtagを
     足す。rc1のtagも残す ③この候補を10/31の凍結の対象にするか（human owner）
+  - 判断（human owner 2026-10-22）：①②③とも案のとおり。この候補を10/31の凍結の対象にする。Stackへrc2とPaper 26.3の
+    presetを依頼した（human owner）。human ownerがrc2の確認に入った
 - 時間割（2026-10-22、human owner了承）：10/31に、全部を出すだけの状態にする（版を`2321.0.0`にした候補の凍結、coordinatorの
   照合、ホームページ、Stackの切り替えの準備）。日付が変わったら公開し、続けて箱庭を切り替える
   | 日 | 作業 |
