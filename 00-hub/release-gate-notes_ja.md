@@ -198,6 +198,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     （`docs/migrate-to-uv_ja.md`は候補のsourceにある）、rc1のWireScopeの注意、feedbackの入口
   - Webの名前：Pythonの生成物と文書に`scratch`／`wirescope`の名前は0件（WireScopeはloopbackで開く）。箱庭の`sb-beta`は
     README 1、starter 1、test 1の3か所で、`2321.1.0`で`sb`へ替える案
+  - 判断（human owner 2026-10-22）：この候補を10/31の凍結の対象にする。`sb-beta`を`sb`へ替えるのは`2321.1.0`
 - 時間割（2026-10-22、human owner了承）：10/31に、全部を出すだけの状態にする（版を`2321.0.0`にした候補の凍結、coordinatorの
   照合、ホームページ、Stackの切り替えの準備）。日付が変わったら公開し、続けて箱庭を切り替える
   | 日 | 作業 |
