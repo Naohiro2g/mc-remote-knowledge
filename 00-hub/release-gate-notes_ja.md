@@ -229,6 +229,12 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     足す。rc1のtagも残す ③この候補を10/31の凍結の対象にするか（human owner）
   - 判断（human owner 2026-10-22）：①②③とも案のとおり。この候補を10/31の凍結の対象にする。Stackへrc2とPaper 26.3の
     presetを依頼した（human owner）。human ownerがrc2の確認に入った
+- human ownerのrc2の確認（2026-10-23、WireScopeの通信フレームと画面）
+  - Scratch：rc1のLANパッケージ（Ubuntu、client `2321.0.0rc1`）から、LANの別のPCのPaper 26.3へつないだ。`hello`はprotocol
+    `23.2.1`、`mc_version` `26.3`、`supported_mc_versions` `1.21.11`と`26.3`。ペアリングの後に`chat.post`、`world.setBlock`
+    （`sea_lantern`）、`world.getBlock`で置いたブロックを読み返せた。WireScope miniとWireScopeでも見えた
+  - `hello`の応答にはMcRemoteの版が出ないので、serverのJARがrc2であることはこのフレームからは確かめられない
+  - 残り：Pythonからの同じ往復と、serverのJARがrc2であること（human owner）
 - 時間割（2026-10-22、human owner了承）：10/31に、全部を出すだけの状態にする（版を`2321.0.0`にした候補の凍結、coordinatorの
   照合、ホームページ、Stackの切り替えの準備）。日付が変わったら公開し、続けて箱庭を切り替える
   | 日 | 作業 |
