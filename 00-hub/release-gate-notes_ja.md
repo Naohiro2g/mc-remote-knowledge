@@ -224,8 +224,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   - Webの名前：Scratch／toolingの文書と作例に`-beta`のWebの名前は0件。生成物の既定値（`sb.mc-remote.com`、Bridgeの
     `scratch.mc-remote.com`）はruntime configとBridgeの環境変数で上書きされ、作り直しは要らない。組はStackがoriginごとに決める
   - Release本文の案：Scratch（`scratch-release-notes-draft_ja.md`）とtooling（`tooling-release-notes-draft_ja.md`）
-  - 判定を求める事項とcoordinatorの案：①一般CIの既知の1件は、初回stableを止めない（rc1と同じsource、同じtest）。developの
-    PR #27の正しいtestへの置き換えは`2321.1.0`で入る ②toolingはprovenanceを書き換えず、同じBridgeのindexへ`v2321.0.0`のtagを
+  - 判定を求める事項とcoordinatorの案：①一般CIの既知の1件は、初回stableを止めない（rc1と同じsource、同じtest）。developには
+    PR #27で正しい保存と復元のtestが入っており、developから作る`2321.1.0`で置き換わる見込み ②toolingはprovenanceを書き換えず、同じBridgeのindexへ`v2321.0.0`のtagを
     足す。rc1のtagも残す ③この候補を10/31の凍結の対象にするか（human owner）
 - 時間割（2026-10-22、human owner了承）：10/31に、全部を出すだけの状態にする（版を`2321.0.0`にした候補の凍結、coordinatorの
   照合、ホームページ、Stackの切り替えの準備）。日付が変わったら公開し、続けて箱庭を切り替える
