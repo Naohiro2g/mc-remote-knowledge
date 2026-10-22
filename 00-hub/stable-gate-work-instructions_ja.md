@@ -80,6 +80,18 @@
    - `scratch`と`wirescope`（`2026-10-22-06`）：11月1日から`-beta`なしの名前で安定版を出し、11月中は`-beta`の名前でも同じ安定版を
      出す。DNS、TLS、Caddyの経路、Bridgeが受け付けるorigin、runtime config、ScratchからWireScopeへの受け渡しのheaderを、二つの
      名前の組で確かめる。手順と手間を返す
+3. **`scratch.mc-remote.com`と`wirescope.mc-remote.com`を先に動かす**（human owner 2026-10-22「先に動かす案で進めて」）
+   - 今の箱庭（rc1のセット）に、`scratch.mc-remote.com`と`wirescope.mc-remote.com`の名前を足す。`scratch-beta`と`wirescope-beta`は
+     今のまま動かす。11月1日の夜中に、新しい名前の組で詰まらないよう、先に通しておくのが目的
+   - ホームページや各repoからは、11月1日までリンクしない（knowledgeが11月1日にリンクを替える）
+   - DNSはhuman ownerが付ける。Stackは、TLS、Caddyの経路、Bridgeが受け付けるorigin、runtime config、ScratchからWireScopeへの
+     受け渡しのheaderを、`scratch.`→`wirescope.`の組と、`scratch-beta`→`wirescope-beta`の組の両方で通す。二つの組が混ざらないこと
+     （`scratch.`から`wirescope-beta`へ渡るなど）も確かめる
+   - 確かめること：二つの名前のどちらでも、Scratchを開いて拡張を読み込み、接続とペアリング、代表の操作（チャット、setBlock）、
+     WireScope miniとWireScopeを開くことができる。外から証明書と応答のheaderを取って照合する。人間の操作が要る部分はhuman ownerへ
+     頼む
+   - 11月1日に切り替える26.3の新しいセットは、初めから両方の名前で作る
+   - 返却：変えた設定（orderやoperator入力）のcommit、照合の結果、11月1日の当日に残る作業
    - 12月の`sb-beta`（`2330.0.0`のbeta）：公開VPSに、安定版の`sb`と並べて置く。同じhostで二つのMinecraftのセットを動かすときの
      portの割り当て（予約の25566／25576、Java版のSRV record、統合版のUDP）、memoryなどの資源、Bridgeの経路の案を返す。急がない
      （11月中でよい）
