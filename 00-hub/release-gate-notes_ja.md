@@ -247,7 +247,9 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   - Python（Windows→Windows、2026-10-23）：手元のrepoを使わず、別のフォルダから`uv run hello.py`で同じserverへつないだ。
     `/mcremote pair`でペアリングし、Minecraftに「ペアリング成功 / Paired.」が出た。`hello`（protocol `23.2.1`、`mc_version`
     `26.3`）、`build.setDimension`、`build.setOrigin`、`chat.post`、`world.setBlock`（`gold_block`）、`world.setBlocks`
-    （`sea_lantern`）が通り、WireScopeでも見えた。画面に入っているclientの版の表示と、getBlockのフレームは無い
+    （`sea_lantern`）が通り、WireScopeでも見えた。同じフォルダで`importlib.metadata`が`2321.0.0rc1`を返した（公開した
+    rc1）。2回目の実行では`world.getBlock`で`minecraft:gold_block`を読み返せた。両方の実行で、`mc_constants.py`を更新しない
+    （`stage=ignore`）warningが出て、接続と操作は続いた（human owner：カタログがないため）
 - 時間割（2026-10-22、human owner了承）：10/31に、全部を出すだけの状態にする（版を`2321.0.0`にした候補の凍結、coordinatorの
   照合、ホームページ、Stackの切り替えの準備）。日付が変わったら公開し、続けて箱庭を切り替える
   | 日 | 作業 |
