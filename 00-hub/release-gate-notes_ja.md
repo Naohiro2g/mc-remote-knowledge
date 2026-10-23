@@ -244,6 +244,10 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     （作例と`mc_remote/_wirescope_app.py`）が入った状態で動かした。`hello`の送信にはclientの版が出ない
   - coordinatorの案：この確認の対象はserverのrc2のJARで、ScratchとPythonの両方から代表の往復が通った。rc2の確認は済んだと
     してよい（human ownerの判断を待つ）
+  - Python（Windows→Windows、2026-10-23）：手元のrepoを使わず、別のフォルダから`uv run hello.py`で同じserverへつないだ。
+    `/mcremote pair`でペアリングし、Minecraftに「ペアリング成功 / Paired.」が出た。`hello`（protocol `23.2.1`、`mc_version`
+    `26.3`）、`build.setDimension`、`build.setOrigin`、`chat.post`、`world.setBlock`（`gold_block`）、`world.setBlocks`
+    （`sea_lantern`）が通り、WireScopeでも見えた。画面に入っているclientの版の表示と、getBlockのフレームは無い
 - 時間割（2026-10-22、human owner了承）：10/31に、全部を出すだけの状態にする（版を`2321.0.0`にした候補の凍結、coordinatorの
   照合、ホームページ、Stackの切り替えの準備）。日付が変わったら公開し、続けて箱庭を切り替える
   | 日 | 作業 |
