@@ -21,6 +21,7 @@ public 正本世代の入口です。ここに載る path は、このリポ内�
 | `00-hub/llm-agent-boundary-guide_ja.md` | agent の権限・実行・検証境界 |
 | `00-hub/release-operations-responsibility-design_ja.md` | 公開runbook、物理host、deployment、component担当、gate coordinator、人間release ownerの責務、test tier／change cone／常設dev harness／gate manifest／release close |
 | `00-hub/release-gate-notes_ja.md` | 公開release gateの確認票、coordinator、phase、exact set、許可済み次操作の状態集約 |
+| `00-hub/decisions-deferral-inventory-plan_ja.md` | DECISIONSで「bN」へ送った残りの棚卸し計画（草稿、初回stableの後に実施） |
 | `00-hub/b10-gate-live-test-instructions_ja.md` | b10横断release gateで、ケータリング型簡易版の固定した3つのZIPをWindows 11／macOS／Linuxで試すhuman owner向けの実施票（取得、警告の記録、1台構成とLAN構成、記録の注意） |
 | `00-hub/b10-gate-close-instructions_ja.md` | b10横断release gateを閉じる前の、McRemoteとScratchの`handoff-materials`の分類の依頼 |
 | `00-hub/stable-gate-confirmation-instructions_ja.md` | 初回stable（2321.0.0）横断release gateを開いたときの確認票の依頼（rc1のtagの後の変更、版の番号だけの変更、McRemoteのrc2で旧キーの移行の処理を外すこと、PyPIの既定の版、箱庭の名前） |
@@ -51,6 +52,7 @@ public 正本世代の入口です。ここに載る path は、このリポ内�
 | `10-protocol/versioning-design_ja.md` | protocol version と release compatibility の contract |
 | `10-protocol/beta-to-stable-release-roadmap_ja.md` | method成熟状態、b6 sign／b7 direction／b8 entity lifecycle、WireScope companion、Paper 26.x pulse、初回stableまでの現行roadmap |
 | `10-protocol/polyglot-client-roadmap_ja.md` | Java bootstrapを起点に、developer experience評価、Python／Java比較、既存conformance資産の一般化、TypeScript／browser／C#展開へ進む多言語Client Libraryロードマップ |
+| `10-protocol/polyglot-phase-ef-plan_ja.md` | Phase E（Protocol Inventory）とF（共有fixtureの一般化）の進め方。`2026-10-23-01`の案と判断 |
 | `10-protocol/protocol-tooling-migration-plan_ja.md` | b8後へ送ることが確定（2026-09-13-02）したProtocol／WireScope／Bridge／TCP接続の移管評価、monorepo・分離・hybrid候補、park境界 |
 | `10-protocol/protocol-tooling-migration-human-guide_ja.md` | 同移管計画の人間向けverbatim版。自動開始を禁止するhard gate、再開前の提示事項、未決範囲 |
 | `10-protocol/wire-format-design_ja.md` | wire envelope、hello/auth、command/error の contract |

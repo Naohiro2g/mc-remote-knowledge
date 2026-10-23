@@ -23,6 +23,7 @@
 - 多言語展開の進行: `10-protocol/polyglot-client-roadmap_ja.md`（§21、§22、§23）
 - 名前: `2026-08-29-03`
 - bootstrapと実装の順番、`@mc-remote/protocol`との関係: `2026-10-22-07`
+- Phase E／Fの進め方、共有fixtureのlicense（MIT）: `2026-10-23-01`
 - 実装、build、TypeScriptに閉じるClient APIの判断: `Naohiro2g/minecraft-remote-typescript`
 
 TypeScriptは、JavaやPythonのコードを翻訳して作らない。Protocol contractと共有fixtureを主な入力にし、Pythonと

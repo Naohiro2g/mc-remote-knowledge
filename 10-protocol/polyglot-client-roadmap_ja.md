@@ -265,6 +265,8 @@ Phase J  多言語Client Libraryの通常運用
 
 `2026-10-22-07`で、TypeScript（Phase G）とC#（Phase I）のrepoを、担当sessionを呼べるbootstrapまで先に作ることにした。
 実装の順番は変えず、Phase E／Fを具体化してから始める（`17-typescript-client/`、`18-csharp-client/`）。
+Phase E／Fの進め方は`2026-10-23-01`で決めた（`10-protocol/polyglot-phase-ef-plan_ja.md`）。E1の確認票は初回stableの後に
+Javaの追従と同じ票で出し、Phase DはE1へ入れる。C#／Unityは、共通contractに依存しないUnity内部の準備を並行して進める。
 
 ---
 

@@ -26,6 +26,12 @@ Unityは、このlibraryを使う主な場の一つである（`10-protocol/poly
 Unityの世界のserverとして後で戻る。server側の範囲と学習の登山道は、`00-hub/NOTES_ja.md`の2026-10-18のpark
 （for Unityを新しいprotocolで続ける）に置いている。
 
+C#の実装はTypeScriptのPhase Bが通ってから始め、Unityは共通のProtocolとClient Libraryに依存しない内部の準備（ブロックの
+材質、地面と座標、HUDのローカル表示、Web build、描画の性能）を並行して進める（`2026-10-23-01`）。到達形の案（URLを開けば
+Python、Scratch、C#で建築でき、複数人が同じ箱庭を見られるUnity Webの公開共有箱庭）と先行作業の範囲は、このrepoの
+`docs/unity-shared-sandbox-draft_ja.md`と`docs/unity-internal-preparation_ja.md`にある（`680ebb3`、human owner）。Unity用の
+repoやpackageの置き場所は未決。
+
 ## 正本境界
 
 - wire、versioning、authentication等のProtocol contract: `10-protocol`
@@ -33,6 +39,7 @@ Unityの世界のserverとして後で戻る。server側の範囲と学習の登
 - 名前: `2026-08-29-03`
 - bootstrapと実装の順番、namespace、target: `2026-10-22-07`
 - 旧for Unityの扱い: `2026-10-22-08`
+- Phase E／Fの進め方、C#の実装の時期、Unityの準備: `2026-10-23-01`
 - 実装、build、C#に閉じるClient APIの判断: `Naohiro2g/minecraft-remote-csharp`
 
 C#も、JavaやPythonのコードを翻訳して作らない。Protocol contractと共有fixtureを主な入力にする。
