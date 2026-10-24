@@ -251,6 +251,16 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     rc1）。2回目の実行では`world.getBlock`で`minecraft:gold_block`を読み返せた。両方の実行で、`mc_constants.py`を更新しない
     （`stage=ignore`）warningが出て、接続と操作は続いた（human owner：カタログがないため）
   - 判断（human owner 2026-10-23）：rc2の確認は済んだ
+- 箱庭のhostと統合版のport（2026-10-24）
+  - Stackの取り違えの原因は、knowledgeの指示票の誤り（12月の`sb`も公開VPSに置く前提）だった。12月から`sb`のMinecraftは
+    有料GAMEs、`sb-beta`は公開VPS（`2026-10-24-01`）。`scratch.`は`sb`が既定で`sb-beta`も選べ、`scratch-beta`はその逆
+  - 統合版はどの形態でもTCPとUDPの19132（`2026-10-24-02`、`F-geyser-nethernet`）。有料GAMEsの`sb`は変更済み（human owner）
+  - ホームページ：移行のページに「統合版のポート」の節と、Geyserを入れているサーバーへの案内を足した。リリース一覧の
+    `sb`の行を19132にした。トップの「はじめる」の`sb-beta`の統合版のport（`25565`）と、リリース一覧の`sb-beta`の行は、
+    公開VPSのGeyserを19132へ替えたことをStackの返却で確かめてから直す
+  - Stackへ：12月の配置の訂正、公開VPSのGeyser（今のrc1のセットと、11月1日の26.3のセット）、`connection_targets`と
+    Bridgeの許可（`scratch.`と`scratch-beta`の両方に`sb`と`sb-beta`）、12月に公開VPSのBridgeから有料GAMEsの`sb`の
+    TCP 25575へつなぐこと
 - 時間割（2026-10-22、human owner了承）：10/31に、全部を出すだけの状態にする（版を`2321.0.0`にした候補の凍結、coordinatorの
   照合、ホームページ、Stackの切り替えの準備）。日付が変わったら公開し、続けて箱庭を切り替える
   | 日 | 作業 |

@@ -95,5 +95,8 @@
    - 12月の`sb-beta`（`2330.0.0`のbeta）：公開VPSに、安定版の`sb`と並べて置く。同じhostで二つのMinecraftのセットを動かすときの
      portの割り当て（予約の25566／25576、Java版のSRV record、統合版のUDP）、memoryなどの資源、Bridgeの経路の案を返す。急がない
      （11月中でよい）
+     - **訂正（2026-10-24、`2026-10-24-01`）**：上の「安定版の`sb`と並べて置く」はknowledgeの誤り。12月から、`sb`の
+       Minecraftは有料のXServer GAMEs、`sb-beta`のMinecraftは公開VPSで動かす。公開VPSで二つのMinecraftのセットを常に
+       並べることはない。統合版のportはTCPとUDPの19132（`2026-10-24-02`）
    - 26.3用のプラグインの一覧：human ownerが10/28ごろに出す。DirectionHUDは、McRemoteのHUDへ機能を取り込めるまで残す
      （`2026-10-22-05`）。worldをリセットするかは、human ownerが10/31までに決める
