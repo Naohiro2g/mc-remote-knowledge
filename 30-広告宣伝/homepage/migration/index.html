@@ -136,7 +136,7 @@
 
 				<section id="bedrock">
 					<h2>📱 統合版のポート</h2>
-					<p>統合版のマイクラ（PC、タブレット、スマホなど）で箱庭サーバーにつなぐときのポートが、<code>25565</code>から、統合版のデフォルトの<code>19132</code>に変わります。サーバーを追加するとき、ポートの欄は最初から入っている<code>19132</code>のままでつながります。</p>
+					<p>統合版のマイクラ（PC、タブレット、スマホなど）で箱庭サーバーにつなぐときのポートが、<code>25565</code>から、統合版のデフォルトの<code>19132</code>に変わりました。サーバーを追加するとき、ポートの欄は最初から入っている<code>19132</code>のままでつながります。</p>
 					<p>箱庭サーバーで統合版を受け付けているプラグインのGeyserが、統合版の大型アップデート（2026年10月27日の予定）に合わせて、UDPに加えてTCPも使うように変わりました（<a href="https://geysermc.org/blog/preparing-for-nethernet/" target="_blank" rel="noopener">Geyserの案内</a>）。Java版がTCPの<code>25565</code>を使っているので、統合版を<code>25565</code>のままにできなくなり、統合版のデフォルトの<code>19132</code>にしました。</p>
 					<div class="table-wrap">
 						<table class="lan-table">
@@ -162,6 +162,11 @@
 							</tbody>
 						</table>
 					</div>
+					<div class="lan-windows-note">
+						<img src="../images/bedrock-trust-server.png" alt="「このサーバーを信頼しますか？」の画面。「信頼して参加」と「信頼しない」のボタンがある" />
+						<p>初めてつなぐときに、「このサーバーを信頼しますか？」という画面が出ます。時間切れになると失敗するので、そのまま「信頼して参加」を押してください。</p>
+					</div>
+					<p>iPad、iPhoneの統合版からは、今は箱庭サーバーにつながりません。新しいつなぎ方では、iPad、iPhoneのマイクラが暗号化した通信でしかつなごうとしないためです。つなげるように対応を進めていて、わかったらここに書きます。</p>
 				</section>
 
 				<section id="python">
@@ -199,7 +204,7 @@
 				<section id="server">
 					<h2>🖥️ マイクラサーバー</h2>
 					<p>Forgeのmod（RemoteControllerMod）、JuicyRaspberryPie、旧版のMcRemote（<code>v1.21.8-1.4.0</code>など）から、Paperサーバーと、そこへ入れる新しいプラグイン<strong>McRemote</strong>（<code>2321.0.0</code>）へ移ります。対応するマイクラの版は1.21.11と26.3です。準備のしかたは<a href="https://github.com/Naohiro2g/McRemote#readme" target="_blank" rel="noopener">McRemoteのREADME</a>にあります。</p>
-					<p>統合版でも遊べるようにGeyserを入れている場合は、Geyserを新しい版にして、TCPとUDPの両方で<code>19132</code>を開けます（<a href="https://geysermc.org/blog/preparing-for-nethernet/" target="_blank" rel="noopener">Geyserの案内</a>）。XServer GAMEsの無料サーバーでは、統合版も使いたいときに制約があります。</p>
+					<p>統合版でも遊べるようにGeyserを入れている場合は、Geyserを新しい版にして、TCPとUDPの両方で<code>19132</code>を開けます（<a href="https://geysermc.org/blog/preparing-for-nethernet/" target="_blank" rel="noopener">Geyserの案内</a>）。XServer GAMEsの無料サーバーでは、統合版も使いたいときに制約があります。この新しいつなぎ方では、iPad、iPhoneからは、そのままではつながりません。</p>
 				</section>
 
 				<section id="help">

@@ -296,6 +296,33 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     - 担当の案：tooling `v2321.1.0`の候補で、名前→`{host, port}`の対応表とtestを足す。`?sandbox=`とJSON-RPCは変えない。
       初回stableのBridge（`v2321.0.0`、index `sha256:305d6e38b36e195a0e158522f32f3a8c45d39da2aeec7b7e46f785c920406acf`）は
       変えない。採番と着手はhuman ownerの判断待ち
+  - Stackの返却（2026-10-24、Geyserの結果。knowledge `89202fc`を読んだ。human ownerの訂正2か所を入れた版を正とする）
+    - 今のセット（rc1、presetは`public-web-paper@15`のまま）を`vps-server@16`（compose@18、Stack `488475f`、lock
+      `sha256:fab36a05e301b33b8fe623790257cf76aceb53cb34cbe0d1fafebb5da6a859ee`）へ。2026-10-24 19:28 JSTにhuman ownerが
+      applyし、`status=complete`。planの差は、公開（25565/udp → 19132/tcpと19132/udp）、Geyserのjar、compose@18の見出しと
+      lockだけ。Geyser b1269（`2.12.0-b1269`、sha256は上の値で照合。`mcrctl artifact import-reviewed`はgit-build専用なので、
+      artifact storeの`sha256/<sha>`へ直接置き、`--replace-input`で渡した）
+    - Geyserの設定は`bedrock.port: 19132`、`transport: nethernet`の2行だけを変えた。signalingはHTTPS無しのbuilt-inで
+      19132に起動し、STUNで公開IPv4の:19132を見つけた。Paper、プラグイン11個、doctorはOK
+    - firewall（human ownerが変更、Stackが確認）：UFW、providerのfilter、Docker用filterで、TCPとUDPの19132を許可し、
+      UDP 25565（と、UFWとproviderではUDP 25566）を外した。外からTCP 19132とTCP 25565がつながる
+    - 統合版からの接続（human owner）：Windowsは成功（`sb-beta`、19:37 JST。最初の1回は信頼の確認の画面で時間切れ）。
+      Androidは成功（21:31 JST、信頼の確認が出た）。iPadとiPhone（1.26.52、iOS 27.0.1）は失敗（Wi-Fiでもモバイル回線でも）。
+      有料GAMEsの`sb`（b1269、nethernet）でも、iOSだけが失敗する
+    - iOSが失敗する理由（`F-bedrock-ios-signaling-tls`）：VPSのtcpdumpで、iPhoneはUDP 19132へRakNetを送った後、TCP 19132へ
+      TLSのClientHello（SNIは`sb-beta.mc-remote.com`）を送り、平文HTTPのGeyserが切っていた。human ownerは`transport: both`を
+      使わないと決めた
+    - Stackの直し方の候補（試していない）：Geyserの`bedrock.signaling.builtin.https`に、公に信頼される`sb`と`sb-beta`の
+      名前ごとの証明書を入れる。公開VPSでは、Caddyに取らせて読み取り専用でMinecraftのcontainerへ渡す案。わかっていないこと：
+      それでiOSが入れるか、証明書の読み直しに再起動が要るか、有料GAMEsで証明書を入れられるか。GeyserのGitHubにiOSやTLSの
+      signalingの報告は無い（近い症状に#6820）
+    - human owner／knowledgeが決めること：証明書をどこで取り、どう更新するか（形態ごと）。公開VPSでまず1回試すか、最初から
+      Stackの描画に入れるか（NOTES 2026-10-24「統合版のsignalingの証明書」）
+    - Stackに残ること：証明書の件、11月1日の26.3のセット（`vps-server@16`、b1269、この設定。証明書が決まっていれば最初から）、
+      `home-server`（compose@14、まだUDP 25565）を別PRで19132へ
+    - ホームページ：トップの`sb-beta`の統合版を`19132`（デフォルトなので省略可能）にし、信頼の確認の画面（「信頼して参加」）と、
+      iPad／iPhoneが今はつながらないことを書いた。リリース一覧の`sb-beta`の行を19132にした。移行のページに、信頼の確認の
+      画面の画像（human ownerのWindowsの画面）と、iPad／iPhoneのことを足した
 - 時間割（2026-10-22、human owner了承）：10/31に、全部を出すだけの状態にする（版を`2321.0.0`にした候補の凍結、coordinatorの
   照合、ホームページ、Stackの切り替えの準備）。日付が変わったら公開し、続けて箱庭を切り替える
   | 日 | 作業 |
