@@ -281,7 +281,21 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     - 有料GAMEsで新protocolを動かし始めるのは12月1日（human owner）。12月1日の当日は、`sb`のDNSの切り替え、(b)の
       適用、有料GAMEsへの到達と認証の確認、ScratchからのペアリングとHelloの4つ
     - Stackの外で要るもの：`sb`のDNS（human owner／backstage）、有料GAMEsのMcRemoteのTCP 25575と認証の強制、Bridgeが
-      名前ごとに外のhostへつなげるかの確認（Bridgeの担当、まだ確認票を出していない）
+      名前ごとに外のhostへつなげるかの確認（Bridgeの担当）
+  - Bridgeの確認票の返却（2026-10-24、Scratch／tooling担当、scratch-editorの
+    `handoff-materials/2026-10-24-bridge-multiple-targets-confirmation/materials/HANDOFF_ja.md` 7,745 bytes
+    `b9e86b1f1053e9265f959b4e492ebaf61bee0be781c904563c5b81bccac328b5`、詳細は同じpacketの`RETURN_ja.md`）
+    - 読んだもの：knowledge `89202fc`、tooling `main@6447f6e8cbfbeeb9d229990b5c4f6e82a5875666`（rc1のtagと同じ）。sourceとtestの
+      読解だけで、testの実行、外への接続、配備はしていない
+    - Bridgeは`?sandbox=`の名前をallowlist（`BRIDGE_SANDBOX_ALLOWLIST`）で照合し、その名前をそのままhostにして、全部の接続先に
+      共通のport（`BRIDGE_SANDBOX_PORT`、既定25575）へつなぐ。宛先が同じhostか外かは区別せず、内外を混ぜて3件以上も許可できる。
+      名前を別のhost:portへ対応付ける表は無い（`2026-07-25-02`の`server_id → host:port`が実装に反映されていない）。同じhostの
+      別port（25575と25576など）は選び分けられない。外への平文TCPを受け入れるflagや検査は無い。外のhostへの実接続のtestは無い
+      （knowledgeが`config.ts`と`allowlist.ts`の該当箇所をGitHubで照合）
+    - 12月の`sb`と`sb-beta`はどちらも25575なので、Bridgeのprogramは今のままで表せる（返却）
+    - 担当の案：tooling `v2321.1.0`の候補で、名前→`{host, port}`の対応表とtestを足す。`?sandbox=`とJSON-RPCは変えない。
+      初回stableのBridge（`v2321.0.0`、index `sha256:305d6e38b36e195a0e158522f32f3a8c45d39da2aeec7b7e46f785c920406acf`）は
+      変えない。採番と着手はhuman ownerの判断待ち
 - 時間割（2026-10-22、human owner了承）：10/31に、全部を出すだけの状態にする（版を`2321.0.0`にした候補の凍結、coordinatorの
   照合、ホームページ、Stackの切り替えの準備）。日付が変わったら公開し、続けて箱庭を切り替える
   | 日 | 作業 |
