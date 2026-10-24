@@ -1,6 +1,7 @@
 # DECISIONSの「bN」送りの棚卸し計画（草稿）
 
-> 状態：草稿（2026-10-23、coordinator）。human ownerの了承の後に実施する。
+> 状態：1段目を実施中（2026-10-23に草稿、2026-10-24にhuman ownerが着手を指示）。結果は§8。取りこぼしの優先度と、
+> NOTESへ置くかどうかはhuman ownerの判断待ち。
 
 ## 1. なぜやるか
 
@@ -92,3 +93,64 @@ DECISIONSで`bN`を含む行は39件ある（2026-10-23の数え方：前後が�
   2026-10-23からそうしている）
 - 道具：`tools/list-reopen-conditions.py`に、DECISIONSで状態が「保留」の行と、その再開トリガも並べる。
   `bN`のような文言の検出までは足さない（言葉の揺れで漏れるので、運用で置く行を正とする）
+
+## 8. 1段目の結果（2026-10-24）
+
+knowledge `c78fcce`の時点で、coordinatorがknowledgeの中だけで判定した。実装に入っているかは確かめていない。
+
+### 8.1 送った17件
+
+| 決定 | 送ったもの | 判定 | 根拠 |
+| --- | --- | --- | --- |
+| `2026-06-25-05` | 認証（pair／hello／token／LuckPerms） | 解決済み | `2026-07-04-03`、`2026-07-04-06`（b2） |
+| `2026-06-25-05` | helloのrole／intent（executor／observer） | 解決済み（別の形） | `2026-08-02-09`（観察をtarget identityとobservation grantに分けた）、`2026-08-11-02` |
+| `2026-06-27-03` | `permission_denied`、`build_denied` | 解決済み | `2026-07-04-06`、`2026-07-01-06` |
+| `2026-06-27-03` | `player_offline` | 解決済み | 現行のwireで使う（`2026-09-30-02`、`2026-10-01-02`） |
+| `2026-06-27-03` | `catalog_cache_stale`、`unknown_namespace`、`out_of_bounds` | 現行contractにある（名前の予約だけ、再開条件なし） | `10-protocol/wire-format-design_ja.md`のerrorの節「後送り（名前予約のみ）」。`out_of_bounds`（yの範囲外）は世界定数の`y_min`／`y_max`と関わる |
+| `2026-06-27-04` | serverからclientへの非同期のerror／log push | 解決済み | `2026-08-16-05`（pushを採らず`events.poll`） |
+| `2026-06-27-05` | `catalogHash`の実値 | 解決済み | `2026-07-29-04` |
+| `2026-06-27-08` | live（WireScope）の実装 | 解決済み | `2026-08-06-03`、`2026-08-16-08` |
+| `2026-07-01-06` | chunk generationを別のreasonとして設計すること | NOTESにある | NOTES 2026-10-07「未生成chunkへの操作の制限」（再開＝初回stableの後のAPI計画のとき） |
+| `2026-07-01-08` | send-only／notificationの既定化 | 解決済み | `2026-08-20-03`（b5のDEBUG／TRACE／FAST） |
+| `2026-07-02-02` | `y_sea`の完全な意味論 | 解決済み | `2026-07-30-01` |
+| `2026-07-02-02` | superflatの判定 | 解決済み | `2026-07-30-02`（非対応） |
+| `2026-07-02-02` | full `world_constants.json`の配送 | NOTESにある | NOTES 2026-10-23 [priority] |
+| `2026-07-02-02`、`2026-07-29-04` | multi-version switching（環境スイッチング） | 現行contractにある（再開条件は「需要が具体化したbN」だけ） | `10-protocol/wire-format-design_ja.md`の`catalog.get`のparams、`00-hub/world-constants-provision-notes_ja.md` §4 |
+| `2026-07-02-03` | 教室コード／区画の割り当て | **取りこぼし** | 却下案の中で「bNの教室コード／区画割当」と書いただけで、どこにも無い。playerごとのbuild range（`2026-09-01-02`）が一部をまかなう |
+| `2026-07-04-01` | — | 不要 | 却下案の「bNへ後送りで放置」への言及で、送りではない |
+| `2026-07-04-03` | async push | 解決済み | `2026-08-16-05` |
+| `2026-07-04-03` | 逆方向ペアリング対策のデプロイ単位オプション | **取りこぼし**（条件が来ている見込み） | `10-protocol/versioning-design_ja.md` §10.11.1 項17。再開条件は「私有サーバー運用がR2リリースに含まれるか確定した時点」。箱庭では対策しない（`13-scratch-client/scratch-plan_ja.md` §2.6）。Stackに家庭のサーバーのprofileがあるので、条件は来ていると見られるが、誰も見ていない |
+| `2026-07-04-06` | 完了のシグナルをpushする最終形 | 解決済み | `2026-08-16-05`（pollのまま） |
+| `2026-07-06-01` | 観測のeventの実装 | 解決済み | WireScopeの実装（`2026-08-02-09`、`2026-08-06-03`、`2026-08-16-08`）。runtime EventEmitterの形で入ったかは確かめていない |
+| `2026-07-06-02` | GUIの観測パネル | 解決済み | `2026-08-02-09`（Scratch内のminiと独立WireScope） |
+| `2026-07-29-04` | 次元×世代の世界定数をhelloで伝える | NOTESにある | NOTES 2026-10-23 [priority] |
+| `2026-07-30-01` | `y_sea`の完全な意味論 | 解決済み | この決定が解決。helloは`y_sea=62`を送っている（human owner 2026-10-23） |
+
+### 8.2 保留の3件
+
+| 決定 | 判定 | 根拠 |
+| --- | --- | --- |
+| `2026-07-02-01`（domain knowledge module） | NOTESに無い | 再開トリガは「b3 catalog生成物の安定化＋第2利用プロジェクトの出現」。前の半分は初回stableで満たす。後の半分はまだ |
+| `2026-07-05-02`（スプライト＝ストリーム） | **取りこぼし** | 後継`2026-07-21-07`は`2026-08-16-08`で「post-b4の起案として維持」になり、NOTES 2026-07-22はその決定で閉じた。post-b4の起案を待つ行が無い。human ownerの強い実施意図がある（`2026-07-05-02`の状態）。⑧だけ`2026-10-13-01`で改めた |
+| `2026-08-02-03`（long-lived credentialの公開） | NOTESに無い | `2026-08-07-01`で後続へ送り、`12-python-client/python-client-guide_ja.md`は「実利用で需要が確認されるまで」とする。credential storeは`2026-10-10-01`でSQLiteになった。決定の再開トリガ(1)〜(6)が満たされたかは、担当への確認が要る |
+
+### 8.3 この数日の保留
+
+| もの | 判定 | 根拠 |
+| --- | --- | --- |
+| 世界定数 | NOTESにある | NOTES 2026-10-23 [priority] |
+| 公開の面とSSOTの書き分け | NOTESにある | NOTES 2026-10-24 [park] |
+| Minecraft 26.4への移行 | NOTESにある | NOTES 2026-10-24 [park]（この棚卸しで置いた） |
+| Bridgeの名前から`{host, port}`への対応表（`2026-07-25-02`の未実装）、`?sandbox=`の名前 | NOTESに無い | `00-hub/release-gate-notes_ja.md`「箱庭のhostと統合版のport（2026-10-24）」のBridgeの返却だけ。wireの名前を変えるかの判断を待っている |
+| Pythonの`WireScope`の接続の手間 | 確かめ中 | NOTES 2026-10-19 [park]（観測の開始と終了）が近いが、同じものかはまだ見ていない |
+
+### 8.4 まとめ
+
+- 送ったものの多くは、後の決定で解決していた
+- 取りこぼしは3つ：教室コード／区画の割り当て、逆方向ペアリング対策のデプロイ単位オプション、スプライト＝ストリーム
+  （post-b4のmain／substream）
+- 再開条件が無いか曖昧なものは5つ：予約だけのerror reason（3つの名前）、環境スイッチング、domain knowledge module、
+  long-lived credential、Bridgeの対応表と名前
+- 第2段（§6）：17件の中から取りこぼしが3つ出た。「将来」「後続」で送ったものも同じ割合で落ちている見込みなので、
+  やる価値はあると見ている。例として、wireの表の`credential_limit_reached`に「bN」とあり、PoPは「将来のhardening」と
+  書いてある（`13-scratch-client/scratch-plan_ja.md` §2.6）

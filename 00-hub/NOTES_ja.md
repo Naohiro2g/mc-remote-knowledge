@@ -8,6 +8,8 @@
 
 ## Inbox
 
+- 2026-10-24 [park] Minecraft 26.4への移行（年内は26.3のまま） / human owner 2026-10-24：MC 26.4は12月16日のリリースと見ている。Paperはベータ版ができるか、ベータも年を越すか。即日の安定版がPaperの目標だが、達成されても、他のプラグインとの兼ね合いから、年内に26.4へ行く可能性は低い。27.1は3月の予定だが、4月からの切り替えに使う見込みは薄く、4月の教室は26.4になっているだろう / 12月の`sb`（有料GAMEs）、`sb-beta`（公開VPS）、`2330.0.0`のbetaは26.3で動かす / 影響＝McRemoteの対応版（2026-10-17の行）、Stack、`2027年4月`の教室導入 / 再開＝Paperの26.4の安定版が出て、使っているプラグインが対応したとき（human ownerが気づく）
+
 - 2026-10-24 [park] 公開の面（ホームページ等）とSSOTで、書くことと言い方を分ける / human owner 2026-10-24：「言及は、表に言うこと。単に言うのはSSOT。リポ直接、Notebook経由などでは全て見えるが」「対象が違うので、言い方も違う。リリース予定日なども同じく。あまり細かいことを表に書くと、面倒なことになる」。例：Geyserの外部signaling（Warden）はSSOT（`2026-10-24-02`、`F-geyser-nethernet`）に書き、ホームページでは触れない。`sb-beta`が「同じか、より新しい」版を出すこと（`2026-10-24-03`）も、テキストなどでは書き方が入り混じるので、別の注意が要るかもしれない（human owner） / 影響＝`30-広告宣伝/homepage`、`20-教材` / 再開＝初回stableの後、`2321.1.0`の範囲を決めるとき
 
 - 2026-10-23 [priority] helloの`world_constants`が`y_sea`だけのまま、ほかの世界定数が忘れられていた / human ownerが2026-10-23に気づいた。`2026-07-02-02`で器を作って`y_sea`だけを入れ、`2026-07-29-04`で「次元×世代の世界定数の表（`00-hub/world-constants-facts_ja.md`）は、既存のhelloの`world_constants`をbNで拡張して伝える」と決めた。しかし拡張する版と担当を決めず、NOTESにも再開条件を置かなかった（2026-07-27のNOTESの行はcarryの[done]）。`2026-07-02-01`の保留の再開トリガ（第2の利用プロジェクトの出現）も来ていない。`tools/list-reopen-conditions.py`はNOTESだけを見るので、DECISIONSの中の「bNで」は拾えなかった / 表にあってhelloに無いもの＝`y_min`、`y_max`、`y_ground`、`y_lava`、`y_cloud`、`y_steve_min`、`y_steve_max`（行は`overworld.modern`、`nether`等。superflatは非対応のまま、`2026-07-30-02`） / 要るもの＝protocol（keyと値の意味、版）、McRemote、各clientの扱い（Pythonの`world_info`／`mc_constants`、Scratch、Java、TS／C#）。Phase EのProtocol Inventoryにも行として入れる / human owner：Latestの後になるが、かなり優先 / 再開＝初回stableの後、`2321.1.0`の範囲を決めるとき
