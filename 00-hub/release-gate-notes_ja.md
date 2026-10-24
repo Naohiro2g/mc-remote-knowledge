@@ -296,6 +296,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     - 担当の案：tooling `v2321.1.0`の候補で、名前→`{host, port}`の対応表とtestを足す。`?sandbox=`とJSON-RPCは変えない。
       初回stableのBridge（`v2321.0.0`、index `sha256:305d6e38b36e195a0e158522f32f3a8c45d39da2aeec7b7e46f785c920406acf`）は
       変えない。採番と着手はhuman ownerの判断待ち
+    - 追加の搬送票（`TARGET_CONFIG_HANDOFF_ja.md`、同じpacket）：human ownerがScratch／tooling担当のsessionで、接続先を一か所の一覧
+      （`id`、`label`、`host`、`port`）で管理する方針を了承した。`2026-10-24-06`として着地。wireの`?sandbox=`の名前は別の判断
   - Stackの返却（2026-10-24、Geyserの結果。knowledge `89202fc`を読んだ。human ownerの訂正2か所を入れた版を正とする）
     - 今のセット（rc1、presetは`public-web-paper@15`のまま）を`vps-server@16`（compose@18、Stack `488475f`、lock
       `sha256:fab36a05e301b33b8fe623790257cf76aceb53cb34cbe0d1fafebb5da6a859ee`）へ。2026-10-24 19:28 JSTにhuman ownerが

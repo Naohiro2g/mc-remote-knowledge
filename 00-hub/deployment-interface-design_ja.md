@@ -245,6 +245,10 @@ Bridge config
 当面は`{id, label, sandbox}`を維持する。browser selector、gameplay address、Bridge upstreamを別modelへ
 分解するのは、現行modelで表現できない実deploymentが現れた場合の別判断とする。
 
+同じhostの別port（通常方式）がそれにあたり、`2026-10-24-06`で、接続先ごとに`id`、`label`、`host`、`port`を持ち、
+Bridgeが`id`から`{host, port}`を引く対応表を持つ方針にした。入力のsyntaxとschemaは担当間の契約で決め、Bridgeの実装は
+後続の版で行う（初回stableのBridgeは今の`{id, label, sandbox}`と共通portのまま）。
+
 ### 6.1 配置topologyとbrowser TLS
 
 同じrelease setでも、Scratch／BridgeとMinecraft／McRemoteを置く場所により、証明書の要否と運用負担が変わる。
