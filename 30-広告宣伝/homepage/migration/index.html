@@ -136,8 +136,32 @@
 
 				<section id="bedrock">
 					<h2>📱 統合版のポート</h2>
-					<p>統合版のマイクラ（PC、タブレット、スマホなど）で箱庭サーバーにつなぐときのポートは、統合版のデフォルトの<code>19132</code>になります。これまでは<code>25565</code>を入力していました。サーバーを追加するとき、ポートの欄はデフォルトの<code>19132</code>のままにしてください。</p>
-					<p>統合版の大型アップデート（2026年10月27日の予定）から、統合版がサーバーにつなぐしくみが変わり、ポートの使い方も変わるためです。Java版のポート（<code>25565</code>）と、マイクラリモコンのポート（<code>25575</code>）は変わりません。</p>
+					<p>統合版のマイクラ（PC、タブレット、スマホなど）で箱庭サーバーにつなぐときのポートが、<code>25565</code>から、統合版のデフォルトの<code>19132</code>に変わります。サーバーを追加するとき、ポートの欄は最初から入っている<code>19132</code>のままでつながります。</p>
+					<p>箱庭サーバーで統合版を受け付けているプラグインのGeyserが、統合版の大型アップデート（2026年10月27日の予定）に合わせて、UDPに加えてTCPも使うように変わりました（<a href="https://geysermc.org/blog/preparing-for-nethernet/" target="_blank" rel="noopener">Geyserの案内</a>）。Java版がTCPの<code>25565</code>を使っているので、統合版を<code>25565</code>のままにできなくなり、統合版のデフォルトの<code>19132</code>にしました。</p>
+					<div class="table-wrap">
+						<table class="lan-table">
+							<thead>
+								<tr>
+									<th>つなぐもの</th>
+									<th>ポート</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Java版のマイクラ</td>
+									<td>TCPの<code>25565</code>（変わりません）</td>
+								</tr>
+								<tr>
+									<td>統合版のマイクラ</td>
+									<td><code>19132</code>（UDPとTCP）。これまではUDPの<code>25565</code></td>
+								</tr>
+								<tr>
+									<td>マイクラリモコン（Python、Scratchなど）</td>
+									<td>TCPの<code>25575</code>（変わりません）</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</section>
 
 				<section id="python">
@@ -175,7 +199,7 @@
 				<section id="server">
 					<h2>🖥️ マイクラサーバー</h2>
 					<p>Forgeのmod（RemoteControllerMod）、JuicyRaspberryPie、旧版のMcRemote（<code>v1.21.8-1.4.0</code>など）から、Paperサーバーと、そこへ入れる新しいプラグイン<strong>McRemote</strong>（<code>2321.0.0</code>）へ移ります。対応するマイクラの版は1.21.11と26.3です。準備のしかたは<a href="https://github.com/Naohiro2g/McRemote#readme" target="_blank" rel="noopener">McRemoteのREADME</a>にあります。</p>
-					<p>統合版でも遊べるようにGeyserを入れている場合は、2026年10月27日の統合版のアップデートまでに、Geyserを新しい版にして、つなぐしくみ（NetherNet）を有効にし、TCPとUDPの両方で<code>19132</code>を開けてください（<a href="https://geysermc.org/blog/preparing-for-nethernet/" target="_blank" rel="noopener">Geyserの案内</a>）。XServer GAMEsの無料サーバーでは、このアップデートの後は統合版でつなげないと見られ、おすすめしません。マイクラリモコン（<code>25575</code>）は使えます。</p>
+					<p>統合版でも遊べるようにGeyserを入れている場合は、Geyserを新しい版にして、TCPとUDPの両方で<code>19132</code>を開けます（<a href="https://geysermc.org/blog/preparing-for-nethernet/" target="_blank" rel="noopener">Geyserの案内</a>）。XServer GAMEsの無料サーバーでは、統合版も使いたいときに制約があります。</p>
 				</section>
 
 				<section id="help">
