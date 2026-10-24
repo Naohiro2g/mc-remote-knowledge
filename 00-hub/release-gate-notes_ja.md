@@ -261,6 +261,27 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   - Stackへ：12月の配置の訂正、公開VPSのGeyser（今のrc1のセットと、11月1日の26.3のセット）、`connection_targets`と
     Bridgeの許可（`scratch.`と`scratch-beta`の両方に`sb`と`sb-beta`）、12月に公開VPSのBridgeから有料GAMEsの`sb`の
     TCP 25575へつなぐこと
+  - Stackの返却（2026-10-24、knowledge `2bb7a4f`を読んだ）
+    - Geyser（途中経過）：PR #80（merge `488475f2b3dfeeb3252bddda2d87b4fca39fb2a6`、knowledgeがGitHubで照合）で
+      `vps-server@16`（compose@18）。Minecraftの公開をUDP 25565から19132のTCPとUDPへ替え、doctorも19132を照合する。
+      Java版のTCP 25565とMcRemoteのTCP 25575は変えていない。今のセットはGeyser b1265、`bedrock.port: 25565`、
+      `transport: raknet`。Geyserはb1269にする（human owner「実績のあるb1269で」。Geyser-Spigotのsha256
+      `6537e1fb6ef1e115172653ca42c0f9c2e38d07ca2415142bb5e0fb9aeecd1e07`は、knowledgeがdownload.geysermc.orgのAPIで照合）。
+      有料GAMEsの`sb`（Paper 26.3）は、b1269でbuilt-in signalingが19132で起動した（human ownerのlog）。firewallは
+      UFWとproviderのfilterが済み、Docker用filterに19132を足すのが残り。適用、doctor、外からのTCP 19132、統合版からの
+      接続（human owner）を確かめてから、改めて返す。11月1日の26.3のセットも、`vps-server@16`とb1269で作る。ホーム用の
+      形（`home-server`、compose@14）はまだUDP 25565で、別のPRで合わせる
+    - 12月の配置：受け取った。公開VPSのMinecraftは12月も1セットで、二つのセットの案は作らない
+    - Scratchの接続先：今のBridgeは内側のnetworkだけにいて、外のhostへつなげない（Stackの描画から読んだ事実）。
+      Stackは、ケータリング方式の一般の形（1つのBridgeから、同じhostのMinecraftと外の複数のhostを選ぶ。`2026-07-30-03`、
+      `2026-09-04-03`、`2026-07-25-02`）で作る。(a)Scratchの組ごとに`connection_targets`と既定を持たせ、11月1日の
+      26.3のセットに入れる (b)接続先ごとに同じhostか外のhostかを書け、外の接続先にはBridgeの外への経路と
+      `2026-09-04-03`の分離型の条件を当て、doctorで25575への到達と認証を確かめる。11月中に作り、別の外の接続先で
+      仕組みを確かめておく。(a)と(b)はどちらを先にしてもよい（human owner）
+    - 有料GAMEsで新protocolを動かし始めるのは12月1日（human owner）。12月1日の当日は、`sb`のDNSの切り替え、(b)の
+      適用、有料GAMEsへの到達と認証の確認、ScratchからのペアリングとHelloの4つ
+    - Stackの外で要るもの：`sb`のDNS（human owner／backstage）、有料GAMEsのMcRemoteのTCP 25575と認証の強制、Bridgeが
+      名前ごとに外のhostへつなげるかの確認（Bridgeの担当、まだ確認票を出していない）
 - 時間割（2026-10-22、human owner了承）：10/31に、全部を出すだけの状態にする（版を`2321.0.0`にした候補の凍結、coordinatorの
   照合、ホームページ、Stackの切り替えの準備）。日付が変わったら公開し、続けて箱庭を切り替える
   | 日 | 作業 |
