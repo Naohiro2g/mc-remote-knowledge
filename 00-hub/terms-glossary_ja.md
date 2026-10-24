@@ -75,6 +75,13 @@ Scratch ClientはTypeScript／JavaScriptで実装されていても、Scratch fo
 一般用途のTypeScript Client Libraryとは別成果物である。`Minecraft Remote for TypeScript`や
 `@mc-remote/client`からScratch extensionへの依存を自動的に導かない。
 
+公開の面では、channelの`beta`を「先行環境」、そこで動く版を「先行版」と呼ぶ（`2026-10-24-04`）。
+
+| 正典表記 | 技術的な意味 | ドリフト注意 |
+| --- | --- | --- |
+| 先行環境 | channel `beta`の公開の呼び方。今のhost名は`sb-beta`、`scratch-beta`、`wirescope-beta` | 版の接尾辞`bN`（beta版）と同じものにしない |
+| 先行版 | 先行環境が出す版。安定版と同じか、それより進んだ版（`2026-10-24-03`）。それより新しいbetaが無い間は安定版と同じ | beta版（`bN`）とは限らない |
+
 ## WireScope roles
 
 WireScopeでは、実装processや物理hostでなく、観察データ経路上の責務をsource／station／browserの三役で表す
