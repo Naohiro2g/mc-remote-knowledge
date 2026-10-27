@@ -349,8 +349,10 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
       分けて扱う。NetherNetのゲームのUDPはDTLSで暗号化されている。RCONは無効、backupはFTPS
   - Stackの返却（2026-10-28、`handoff-materials/2026-10-28-geyser-b1273`。test classは`live-auto`と`live-human`）：統合版26.60への対応
     - human owner：有料GAMEsの`sb`で、iPhoneの26.60がHTTPに落ちて信頼の確認を出した後、Geyser b1269が「26.52までサポート」で
-      切った。GeyserをSpigot版の2.12.1 b1273に替え、`config.yml`を退避して作り直し、`webrtc-port: 30001-30005`を書いて
-      再起動したら参加できた（どの変更が効いたかは切り分けていない）
+      切った。GeyserをSpigot版の2.12.1 b1273に替え、`config.yml`を退避して既定のものを作らせ、再起動したら
+      参加できた。途中で`webrtc-port: 30001-30005`を書いたが、統合版の専用サーバー（BDS）の設定との勘違いで、configが合わ
+      なかったのはそのためと見られる。古いconfigとの差は実質的に無く、今は既定の`config.yml`から変えていない（human owner
+      2026-10-28の訂正）
     - Stack：`sb-beta`のGeyserを2.12.0 b1269から2.12.1 b1273へ（`minecraft-plugins`のtyped inputでSHAだけを変え、通常の
       `deployment update plan`／`apply`、`status=complete`）。JARのSHA-256 `218f57088fd7a147f670c489377da2341fc51f1867b2c36ed181f39c9f379b59`
       （公式metadata、取得物、container内で一致。coordinatorも公式metadataで照合）。plan
