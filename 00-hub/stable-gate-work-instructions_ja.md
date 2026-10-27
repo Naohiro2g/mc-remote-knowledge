@@ -100,3 +100,22 @@
        並べることはない。統合版のportはTCPとUDPの19132（`2026-10-24-02`）
    - 26.3用のプラグインの一覧：human ownerが10/28ごろに出す。DirectionHUDは、McRemoteのHUDへ機能を取り込めるまで残す
      （`2026-10-22-05`）。worldをリセットするかは、human ownerが10/31までに決める
+4. **追補（2026-10-28）：11月1日の26.3のセット**（knowledge `main@d5cb4208dffcafcc9d03eb07801b17e3a4917426`の記録による）
+   - **Geyser**：b1269の指定を、Spigot版の2.12.1 b1273（SHA-256
+     `218f57088fd7a147f670c489377da2341fc51f1867b2c36ed181f39c9f379b59`）に改める。b1269は統合版26.60のclientを切る
+     （`F-geyser-nethernet`）。configは、b1273が作る既定の`config.yml`を変えずに使う（`sb-beta`の2026-10-28の更新と同じ。
+     `transport: nethernet`、port 19132、`webrtc-port: 0`、signalingは`builtin`、HTTPSの指定なし）
+   - **`nethernet/identity.pem`**：特別な作業はしない（human owner 2026-10-28）。平文のHTTPでは、信頼の確認がこの鍵ごとに出る。
+     新しいセットでGeyserのdataが作り直されてidentityが変われば、全員に確認が一度出る。どちらになったかを、前後のSHA-256が
+     同じかどうかで返す（鍵の中身は書かない）
+   - **HTTPS**：入れない。signalingは今の平文のHTTPのまま（`2026-10-27-01`。HTTPSは初回stableの後、NOTES 2026-10-24の行）
+   - **`connection_targets`（(a)）**：2026-10-24の返却どおり、Scratchの組ごとに`connection_targets`と既定を持たせて、
+     このセットに入れる。接続先の一覧ひとつで管理する形（`2026-10-24-06`）と、Bridgeの対応表は後続で、このセットには入れない
+   - **26.3用のプラグインの一覧**と**worldをリセットするか**：どちらもまだ（human owner 2026-10-28）。worldは10/31までに決める
+   - **返してほしいこと（10/29まで）**
+     - rc2と26.3のpresetを作り、新しいセットを公開portなしで起動して試したか。済んでいれば、その結果とidentity
+       （commit、plan、lock）
+     - b1273と既定のconfigで、新しいセットのGeyserが起動し、`/v1/join`が26.60で応答するか（公開portなしで確かめられる範囲で）
+     - 10/31の凍結で、McRemote `2321.0.0`のJARの値を受け取ってから、stableのpresetを作るまでの手順と所要時間
+     - 11月1日の切り替えで、Stackに残る作業の順序と、人間の操作が要る点（DNSはhuman owner）
+   - **このセットに入れないもの**：HTTPS、統合版の別の名前、Bridgeの対応表、`home-server`の19132（別PR、gateに関わらない）
