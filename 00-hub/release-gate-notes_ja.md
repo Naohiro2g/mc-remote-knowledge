@@ -325,6 +325,49 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     - ホームページ：トップの`sb-beta`の統合版を`19132`（デフォルトなので省略可能）にし、信頼の確認の画面（「信頼して参加」）と、
       iPad／iPhoneが今はつながらないことを書いた。リリース一覧の`sb-beta`の行を19132にした。移行のページに、信頼の確認の
       画面の画像（human ownerのWindowsの画面）と、iPad／iPhoneのことを足した
+  - Stackのレビュー（2026-10-27、`handoff-materials/2026-10-27-bedrock-https-review`。knowledge `feabc66`、Stack `488475f`を読んだ。
+    公開の環境には触れず、何も試していない）：coordinatorの相談の8問への答え
+    - `2026-10-27-01`に賛成。ただし、HTTPの廃止日が決まっているという意味にはしない
+    - `sb-beta`は案(a)を最初に試す：統合版client → HTTPS/TCP 19132 → Caddy → 内側のHTTP/TCP 19133 → Geyser。ゲームのUDP 19132は
+      Geyserが直接受ける。trusted proxyは、Geyserから見えるCaddyの実際の接続元だけにする（公式の例のloopbackを写さない）。
+      TCP 19132のlistenerではHTTP/3を切る。証明書はHTTP-01が第一の候補。Caddyが更新するので、更新のたびの`geyser reload`は要らない。
+      案(b)（Caddyが取った証明書をGeyserへ渡して`reload`）は、渡す範囲と`reload`までを組む必要がある
+    - `nethernet/identity.pem`は、HTTPSの証明書と別の、長く持ち続ける署名用のidentity。証明書の更新で上書きしない
+    - 有料GAMEsの`sb`：ファイルは置けるが、自動で更新して`reload`まで回せるかは確認できない。VPSのCaddyからHTTPで渡す形は、
+      backendの平文が残っても暫定の候補に入れる（human ownerの考え。`2026-10-27-01`の補足）。UDPがGAMEsへ直接届くかは、
+      GeyserのICEのcandidateで確かめる
+    - Warden：独自の名前で19132を使えるかは未確認（公開の例は443）。外へ出る情報は、人数のほか、UDPのcandidate、DTLSの指紋、
+      接続の結果など（NXSのwire reference）。プライバシーの文書は見つからない。運用者がCAを選べるかは未確認。Stackは`hybrid`を
+      検証の対象にしなかった
+    - CA：Caddyで発行元を指定し、複数のissuerを並べられる。ただし、発行できることと、各OSやMinecraftが信頼することは別
+    - HTTPSは、4つの端末での参加、証明書の更新の後の新規接続、切り戻しの手順が揃わなければ、10/31の凍結に入れない。
+      HTTPが戻っていれば、今の方式を暫定で使い、HTTPSはすぐ後の作業にする
+    - 平文の経路（Stackの生成コードとSSOTからの読み。packetは採っていない）：統合版のsignaling（TCP 19132、HTTP）、
+      Client LibraryからMcRemote（TCP 25575、TLSなしのJSON。認証のtokenも流れる。knowledgeに「TLSなし」と明記した行は無い）、
+      BridgeからMcRemote（同じComposeの中、TLSなし）、LANパッケージのBridgeから別のPCのMcRemote（TLSなし）。
+      同じhostの内側（CaddyからScratch、Bridge）、ブラウザから同じPCへのloopback、公開WebのTCP 80（redirectとHTTP-01）は、
+      分けて扱う。NetherNetのゲームのUDPはDTLSで暗号化されている。RCONは無効、backupはFTPS
+  - Stackの返却（2026-10-28、`handoff-materials/2026-10-28-geyser-b1273`。test classは`live-auto`と`live-human`）：統合版26.60への対応
+    - human owner：有料GAMEsの`sb`で、iPhoneの26.60がHTTPに落ちて信頼の確認を出した後、Geyser b1269が「26.52までサポート」で
+      切った。GeyserをSpigot版の2.12.1 b1273に替え、`config.yml`を退避して作り直し、`webrtc-port: 30001-30005`を書いて
+      再起動したら参加できた（どの変更が効いたかは切り分けていない）
+    - Stack：`sb-beta`のGeyserを2.12.0 b1269から2.12.1 b1273へ（`minecraft-plugins`のtyped inputでSHAだけを変え、通常の
+      `deployment update plan`／`apply`、`status=complete`）。JARのSHA-256 `218f57088fd7a147f670c489377da2341fc51f1867b2c36ed181f39c9f379b59`
+      （公式metadata、取得物、container内で一致。coordinatorも公式metadataで照合）。plan
+      `sha256:e27828a021de38fd0ebf9a0ebc9b70bab74efb7e9df2b9bb6b758f1998e39468`、source lock
+      `sha256:fab36a05e301b33b8fe623790257cf76aceb53cb34cbe0d1fafebb5da6a859ee`、target lock
+      `sha256:a9eb516219a82c0ee37d3306b4d52c629dac230b440fc7267eef954bb27ea403`。`vps-server@16`と`public-web-paper@15`、Paper、
+      McRemote `2321.0.0rc1`は変えていない
+    - 旧`config.yml`は退避し、b1273が作った既定のconfigを編集せずに使う（`config-version: 11`、`transport: nethernet`、port 19132、
+      `webrtc-port: 0`、signalingは`builtin`、HTTPSの証明書の指定なし）。`identity.pem`は更新の前後で同じSHA-256。Floodgateは
+      自動で検出された。doctorは全部正常。外から`/v1/join`がversion 26.60、protocol 2225で応答。pytest 598 passed、ruff OK
+    - human owner：`sb-beta`にiPhoneの26.60で、信頼の確認の後に参加できた。Windowsは`sb`と`sb-beta`の両方に、信頼の確認なしで
+      入った（前に信頼した端末。identityが同じことと合う）。Androidは最近つないでいないので、条件が違う。iPadは試していない
+    - 言わないこと：26.60だけで直ったという因果、TLSを試してからHTTPへ落ちたかの順序、HTTPが今後も使えること
+    - Stackに残ること：11月1日の26.3のセットは、b1269の指定をb1273（26.60に対応した版）と新しいconfigへ改める。
+      `home-server`を19132へ（別PR）。正式なevidenceにするなら`14-evidence/records/2026-10-28-bedrock-2660-ios-b1273_ja.md`（案）
+    - ホームページ：トップの`sb-beta`の統合版から、iPad／iPhoneがつながらないという行を消した。移行のページの段落を、26.60から
+      つながることに置き換えた。サーバーの節に、26.60には対応したGeyserの版が要ることを書いた
 - 時間割（2026-10-22、human owner了承）：10/31に、全部を出すだけの状態にする（版を`2321.0.0`にした候補の凍結、coordinatorの
   照合、ホームページ、Stackの切り替えの準備）。日付が変わったら公開し、続けて箱庭を切り替える
   | 日 | 作業 |
