@@ -142,6 +142,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     - MinecraftはPaper 26.3。buildはまだ決めない（今のbuild #227をそのまま採用の値にせず、latestへ自動で追従しない）
     - プラグインは今のものをそのまま使う。DirectionHUDを残し、AdvancedPortalsも入れる。DirectionHUDは「保証がないのはDirection HUD
       だけだが、動作には問題なさそう」（human owner）という見立てで、作者の26.3対応の保証や新しい実機のPASSとは記録しない
+    - AdvancedPortalsは、版（`2.8.0`、2026-05-27に公開）は変わらないが、Modrinthの対応版に26.3が入った（human owner 2026-10-29。
+      coordinatorがModrinthのAPIで、Paperの26.3の版として照合）。10/17の記録の「26.2までの宣言」は、その時点のもの
     - worldはリセットせず、新しい26.3のセットへ引き継ぐ（`2026-10-22-05`の「2回ともリセットすることがある」のうち、11月1日の分）。
       12月の分は決めていない
     - 変えないもの：別セットへの切り替え、Geyser b1273と既定のconfig、signalingのHTTP、Scratch／WireScopeの二つの名前の組
