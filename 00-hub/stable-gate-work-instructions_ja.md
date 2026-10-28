@@ -112,6 +112,10 @@
    - **`connection_targets`（(a)）**：2026-10-24の返却どおり、Scratchの組ごとに`connection_targets`と既定を持たせて、
      このセットに入れる。接続先の一覧ひとつで管理する形（`2026-10-24-06`）と、Bridgeの対応表は後続で、このセットには入れない
    - **26.3用のプラグインの一覧**と**worldをリセットするか**：どちらもまだ（human owner 2026-10-28）。worldは10/31までに決める
+     - **決まった（2026-10-29、Stackの確定搬送票）**：MinecraftはPaper 26.3。Paperのbuildはまだ決めない（human ownerが挙げた
+       今のbuild #227を、そのまま採用の値にしない。その時点のlatestにも自動で追従しない）。決めたら、provider APIと取得物で
+       JARのdigestを照合して固定する。プラグインは今のものをそのまま使い、DirectionHUDを残し、AdvancedPortalsも入れる
+       （別の版への更新や削除はしない）。worldはリセットせず、新しい26.3のセットへ引き継ぐ。12月以降のリセットの方針には広げない
    - **返してほしいこと（10/29まで）**
      - rc2と26.3のpresetを作り、新しいセットを公開portなしで起動して試したか。済んでいれば、その結果とidentity
        （commit、plan、lock）

@@ -137,6 +137,15 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     VPSで確かめた）。rc2のpre-releaseでrc2と26.3のpresetを作り、新しいセットを公開portなしで先に起動して試す。stableのpresetは
     10/31に凍結値で作り、公開の後に照合してmergeする。待っているもの：rc2、26.3用のプラグインの一覧（human owner、10/28ごろ）、
     worldをリセットするか（10/31まで）。Stackの確定搬送票は`2026-10-22-05`に着地した
+  - Stackの確定搬送票（2026-10-29、`handoff-materials/2026-10-29-stable-deployment-conditions/materials/KNOWLEDGE_HANDOFF_ja.md`、
+    Stack `main@488475f`、knowledge `165a87f`を読んだ）：human ownerが2026-10-29にStackのsessionで決めた、11月1日の条件
+    - MinecraftはPaper 26.3。buildはまだ決めない（今のbuild #227をそのまま採用の値にせず、latestへ自動で追従しない）
+    - プラグインは今のものをそのまま使う。DirectionHUDを残し、AdvancedPortalsも入れる。DirectionHUDは「保証がないのはDirection HUD
+      だけだが、動作には問題なさそう」（human owner）という見立てで、作者の26.3対応の保証や新しい実機のPASSとは記録しない
+    - worldはリセットせず、新しい26.3のセットへ引き継ぐ（`2026-10-22-05`の「2回ともリセットすることがある」のうち、11月1日の分）。
+      12月の分は決めていない
+    - 変えないもの：別セットへの切り替え、Geyser b1273と既定のconfig、signalingのHTTP、Scratch／WireScopeの二つの名前の組
+    - この票は条件だけ。2026-10-28の追補の「返してほしいこと（10/29まで）」の答えは、まだ来ていない
 - 判断（2026-10-22、human owner）：McRemoteのrc2の公開、Scratch／toolingの最小限の配布対応（配布のscript 2か所、`はじめに.html`の
   リンク、toolingはrc1の生成物）、Pythonの版の番号だけの候補（starterは変えない）を了承。`sb-beta`は12月以降も公開VPS
   （`2026-10-22-04`）。DirectionHUDは取り込めるまで残す（`2026-10-22-05`）。WebのScratchとWireScopeも11月1日から`-beta`なしの
