@@ -140,7 +140,9 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   - Stackの確定搬送票（2026-10-29、`handoff-materials/2026-10-29-stable-deployment-conditions/materials/KNOWLEDGE_HANDOFF_ja.md`、
     Stack `main@488475f`、knowledge `165a87f`を読んだ）：human ownerが2026-10-29にStackのsessionで決めた、11月1日の条件
     - MinecraftはPaper 26.3。buildはまだ決めない（今のbuild #227をそのまま採用の値にせず、latestへ自動で追従しない）
-    - プラグインは今のものをそのまま使う。DirectionHUDを残し、AdvancedPortalsも入れる。DirectionHUDは「保証がないのはDirection HUD
+    - プラグインは今と同じ組みを使う。DirectionHUDを残し、AdvancedPortalsも入れる。それぞれ26.3とJava 25に合う最新版にする
+      （human owner 2026-10-29の訂正：「26.3でデプロイするのだから、java25で、最新版のプラグインを使う必要がある」。票の
+      「今のものをそのまま」を、coordinatorが「別の版への更新や削除はしない」と固めて書いたのを直した）。DirectionHUDは「保証がないのはDirection HUD
       だけだが、動作には問題なさそう」（human owner）という見立てで、作者の26.3対応の保証や新しい実機のPASSとは記録しない
     - AdvancedPortalsは、版（`2.8.0`、2026-05-27に公開）は変わらないが、Modrinthの対応版に26.3が入った（human owner 2026-10-29。
       coordinatorがModrinthのAPIで、Paperの26.3の版として照合）。10/17の記録の「26.2までの宣言」は、その時点のもの
