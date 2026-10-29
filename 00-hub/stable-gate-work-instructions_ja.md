@@ -41,6 +41,16 @@
      protocol `23.2.1`、feedbackの入口<https://github.com/Naohiro2g/mc-remote-knowledge/issues/new?template=feedback.yml>
    - 返却：mainの新しい先頭、tagが指すSHA、Release URL、run ID、assetのbytesとSHA-256
 2. **stableの候補（10/30まで）**：rc2と同じsourceで、`pluginVersion`を`2321.0.0`にする。候補のJARのidentityを返す。公開しない
+3. **追補（2026-10-29）：Temurinでの確認のやり直し**（`2026-10-29-01`）
+   - JAR：同じ候補（`agent/stable-2321-candidate@525c31823a8efb736463aec471c2756089546391`、`mc-remote-2321.0.0.jar` 315,868 bytes、
+     `e3f7cc2ab9ee9b3130f927935634e32e8ddffe7d7603b6d873973968f68db4ab`）。Javaを替えるだけのためにbuildし直さない
+   - Java：Paper 26.3はTemurin `25.0.5+8`、Paper 1.21.11はTemurin `21.0.13+9`
+   - Paper 26.3のbuild：human ownerが10/30の正午ごろに決める。決まったら、その番号とJARのSHA-256をknowledgeから伝える。
+     1.21.11は先に始めてよい
+   - 確かめること（搬送票の§3の1）：両方のPaperで、起動、有効化、正常な停止、認証した接続での建築と読み戻し、再起動の後の接続など
+   - 人の確認はやり直さない（human owner 2026-10-29）。25.0.2などの過去の結果は書き換えない
+   - 返却（10/30まで）：Paperごとに、Javaのvendorとfull version（`java -version`の出力）、PaperのbuildとJARのSHA-256、確認した
+     項目と結果、使ったCIのrun（あれば）
 
 ## Python client
 
@@ -123,3 +133,15 @@
      - 10/31の凍結で、McRemote `2321.0.0`のJARの値を受け取ってから、stableのpresetを作るまでの手順と所要時間
      - 11月1日の切り替えで、Stackに残る作業の順序と、人間の操作が要る点（DNSはhuman owner）
    - **このセットに入れないもの**：HTTPS、統合版の別の名前、Bridgeの対応表、`home-server`の19132（別PR、gateに関わらない）
+5. **追補（2026-10-29）：Java**（`2026-10-29-01`）
+   - 新しい26.3のセットで、**Paperを実際に動かすcontainer**のJavaをTemurin `25.0.5+8`にする。hostのmiseだけを更新したことでは
+     当てたことにしない
+   - Paper 26.3のbuild：human ownerが10/30の正午ごろに決める。決まったら、provider APIと取得物でJARのdigestを照合して固定する
+     （4の「決まった」のとおり）
+   - 起動のflag：今回のreleaseでは変えない（human owner 2026-10-29）。今の箱庭と新しいセットのheap、containerのmemoryの上限、
+     JVMのflagを、記録のために返す
+   - 確かめること：公開予定のPaperのbuild、プラグイン、引き継ぐworldを含む新しいセットで、起動、参加、代表の操作
+   - 返却：containerの中のJavaのvendorとfull version、imageのdigest、今の箱庭のJava（human ownerの報告では25.0.3。配布元と
+     full versionも）、上の起動の設定と確かめた結果
+   - 10/31の凍結の記録に、McRemoteのJAR、Paperのbuild、Javaのvendorとfull version、imageのdigestを入れ、公開まではその環境を
+     保つ。変える必要が出たら、gateで判断し直す

@@ -150,6 +150,22 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
       12月の分は決めていない
     - 変えないもの：別セットへの切り替え、Geyser b1273と既定のconfig、signalingのHTTP、Scratch／WireScopeの二つの名前の組
     - この票は条件だけ。2026-10-28の追補の「返してほしいこと（10/29まで）」の答えは、まだ来ていない
+  - McRemoteの確定搬送票（2026-10-29、`handoff-materials/2026-10-29-java-temurin-policy/materials/knowledge-handoff_ja.md`、
+    16,370 bytes、`3647d06dfb0122d54ca5c4cce4264dfa6541106ed3e967ba8bc5ec855b1e7825`。McRemote
+    `agent/stable-2321-candidate@525c318`、knowledge `1dfff53`を読んだ。coordinatorが最初に読んだ9,705 bytesの版の後に、
+    §4（Paperのbuildの選び方、Java 25の起動のflag）が足された）：`2026-10-29-01`に着地
+    - Javaの配布元はTemurin（確定事項）。パッチの追従は票の案のとおり（human owner 2026-10-29）
+    - 最終確認のJava：Paper 26.3（VPSの新しいセットを含む）はTemurin `25.0.5+8`、Paper 1.21.11は`21.0.13+9`。coordinatorが
+      AdoptiumのAPIで、Linux x64の最新がこの2つ（どちらも2026-10-22）であることを確かめた。McRemoteは同じ候補のJAR
+      （`525c318`、`mc-remote-2321.0.0.jar` `e3f7cc2a…f68db4ab`）を使い、作り直さない
+    - やり直す範囲：McRemoteの自動の確認と、Stackの新しいセットでの確認。人の確認（rc2、Windows 11、Java 25.0.2、Paper 26.3 #214）
+      はやり直さない（human owner 2026-10-29「人間確認は不要」）。過去の結果は当時の環境の実績として残す
+    - Paper 26.3のbuild：human ownerが10/30の正午ごろに決める。票の案は、10/30の最終検証を始める時点で出ている最新のbuildを一度選び、
+      その後に新しいbuildが出ても番号だけを理由に替えない（重大な修正があればcoordinatorが判断）、10/31の凍結から公開まで保つ
+    - 起動のflag：今回のreleaseでは変えない（human owner 2026-10-29「今回のリリースでは起動フラグは変更しません」）。票の勧めは、
+      適切なheapと`nogui`を使い、Aikar's flagsの一式を新しく足さないこと。18のflagは、McRemoteの機械（Temurin 25.0.5+8）でJVMが
+      受け付けることを確かめただけで、Paperを動かした試験や性能の比較ではない
+    - VPSの25.0.3はhuman ownerの報告で、配布元、full version、containerの実体は照合していない
 - 判断（2026-10-22、human owner）：McRemoteのrc2の公開、Scratch／toolingの最小限の配布対応（配布のscript 2か所、`はじめに.html`の
   リンク、toolingはrc1の生成物）、Pythonの版の番号だけの候補（starterは変えない）を了承。`sb-beta`は12月以降も公開VPS
   （`2026-10-22-04`）。DirectionHUDは取り込めるまで残す（`2026-10-22-05`）。WebのScratchとWireScopeも11月1日から`-beta`なしの
