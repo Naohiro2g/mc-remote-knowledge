@@ -304,6 +304,31 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     PyPI.orgから取り直したwheel（196,033 bytes）とsdist（190,248 bytes）のSHA-256はGitHubのRelease assetと凍結値に一致し、yankedでない。
     simpleのindexの最新は`2321.0.0`で、版を指定しない`minecraft-remote-api`はPython 3.13で`2321.0.0`に解決する（uv、cacheなし）。
     project JSONの`info.version`は、照合の時点ではCDNのcache（`max-age=900`）で`1214.10.13`のままだった
+  - 箱庭の切り替え（Stackの作業報告、2026-11-01）：Stack `main@2b5c04842e78b9767c31903e9d8328d7554ce702`（PR #85）。profile
+    `vps-server@18`（content `3d659e8f49e99a7547c331692d8593845550f5cd19a40fc1b33334c89cf432b8`）、preset `public-web-paper@17`（content
+    `5be1bb4323d5ec381cb3355a61eb1c3d0b09eade4428a24750b7444207616d15`）、lock identity
+    `sha256:e4beef4927ecbe5ca60205d04ddfe8200bd41e74960f165fa348fea6bfd37bb3`。Paper 26.3 #231、Temurin 25.0.5+8、heap 3G／3G、McRemote
+    `2321.0.0`、Geyser b1279、安定版のMOTD。TCP 25565とTCP／UDP 19132を公開し、Geyserの`/v1/join`は200で26.60
+    - Stackが確かめた：切り替えの後のdoctorが全項目正常（runtime、lock、render、公開network、Java／McRemoteのport、protocolの応答、
+      認証必須、homepage、Scratchの2つの組、WireScopeの2つの組）。両方のruntime JSONの一覧と、お知らせ「11月の接続先」。切り替えの前に
+      旧Minecraft、Caddy data、Caddy configのvolumeを保存し、新しいセットへのcopyと照合した（`minecraft-data.tar`
+      `2a4556e5574ecb293d89d91c40dde1dcfeada7c0c7b2c6cd24a8a7c43273f427`、`caddy-data.tar`
+      `7570573f5725c2fe3bf44d97500f61812811ffc3c7fe91d075bdbb877e72c6b4`、`caddy-config.tar`
+      `828d8d49c0f7aefc428abebb4bd941c938b990e7c51758251659c31250a38f8c`）。サーバーアイコン
+      `39e93ed95fbd843bc495ff412c98db32facdaf5333eee7d791f791b6b0c7d4c0`
+    - Scratchの組：`scratch`は一覧がstable → beta、既定はstable、WireScopeは`wirescope.mc-remote.com`。`scratch-beta`は一覧がbeta → stable、
+      既定はbeta、WireScopeは`wirescope-beta.mc-remote.com`
+    - human ownerの実機の確認：Ubuntu、macOS、iOS、iPadOS、Windowsから`sb`、`sb-beta`、`sb-retro`へ接続できた。Windowsで`sb`に参加し、
+      Ubuntuの`scratch.mc-remote.com`でペアリングしてpostToChatとsetblocksが通った。`scratch-beta.mc-remote.com`でもペアリングし、
+      保存とロードをした同じコードが動いた。2つのScratchでブラウザーの保存が共通に使えた
+    - coordinatorが照合した：presetの中のMcRemoteのJAR、Paper #231、runtime image `69b73187…`、Scratchのindex、Bridgeのindex、
+      WireScopeの2つのfileが凍結値と同じで、catalogの`content_sha256`が上と同じ。外から、`sb`と`sb-beta`（と`scratch`、`scratch-beta`、
+      `wirescope`、`wirescope-beta`）は同じhostを指し、`sb`はJava版の応答が`Paper 26.3`（protocol 777）、MOTDとアイコンがある。
+      Geyserの`/v1/join`は200。`wirescope`と`wirescope-beta`は200
+    - `sb-retro`は、別のhostで動く旧プロトコルの26.3（human owner 2026-11-01。1.21.11ではない）。応答は`Paper 26.3`。MOTDの末尾に
+      `network-compression-threshold=256`がついていたのをhuman ownerが直し、coordinatorが外から直ったことを確かめた
+    - 確かめていないこと：公開のworldでの自動のpulse（公開のworldを変えないため。上の実機の確認が代わり）、切り替えの後の
+      ServerBackupによるbackupの生成、外からのScratchのruntime JSONと統合版のUDPの応答
   - McRemote：<https://github.com/Naohiro2g/McRemote/releases/tag/v2321.0.0>（2026-10-31T15:27:29Z）。返却
     （`handoff-materials/2026-10-31-stable-release-preparation/materials/stable-publication-report_ja.md`、3,605 bytes、
     `ce83da7b75a92dbd87826ef539eece8edee721070f5fdab515d6d5c3643e8796`）。coordinatorが照合した：annotated tagは
