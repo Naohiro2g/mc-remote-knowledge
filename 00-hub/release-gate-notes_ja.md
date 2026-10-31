@@ -337,6 +337,9 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
       knowledgeの`/api/scratch/`は`ffb496e`の`site/`と同じbytes（2026-10-31に`diff -r`）。rc1も同じ形（`09c59cb`とtagの`ec79b3b`）
     - 判断（human owner 2026-11-01）：作り直さない（作り直すと凍結したtagの`site/`と食い違う）。Stackの照合の条件を、「`sourceCommit`が
       tagの指すcommitの祖先で、間にブロックの定義の変更がなく、取り込むfileがtagの`site/`と同じbytes」に直す
+  - ホームページ：branch `homepage-stable-2321`（sb-retroを26.3に直した分を含む）をmainへ入れ（`460d5fc4db71d2917c108ddb36a007f9d3d23fa5`）、
+    human ownerが同期した。coordinatorが`30-広告宣伝/homepage/`の全338 fileを`https://mc-remote.com/`から取り、`7313afa`のrepoと全部
+    同じbytesであることを確かめた（2026-11-01）
   - McRemote：<https://github.com/Naohiro2g/McRemote/releases/tag/v2321.0.0>（2026-10-31T15:27:29Z）。返却
     （`handoff-materials/2026-10-31-stable-release-preparation/materials/stable-publication-report_ja.md`、3,605 bytes、
     `ce83da7b75a92dbd87826ef539eece8edee721070f5fdab515d6d5c3643e8796`）。coordinatorが照合した：annotated tagは
