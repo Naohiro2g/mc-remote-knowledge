@@ -294,6 +294,29 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     （`wirescope-app.zip`、`wirescope-app.manifest.json`、`bridge.oci.tar`）は凍結値と一致。GHCRの
     `ghcr.io/naohiro2g/mc-remote-bridge:v2321.0.0`はloginなしで、index `sha256:305d6e38b36e195a0e158522f32f3a8c45d39da2aeec7b7e46f785c920406acf`。
     本文にprotocol `23.2.1`、rc1と同じこと、移行のページ、feedbackの入口がある
+  - Python：<https://github.com/Naohiro2g/minecraft-remote-api/releases/tag/v2321.0.0>（2026-10-31T15:10:17Z）。返却
+    （`handoff-materials/2026-10-31-stable-python-release/materials/release-return_ja.md`、4,793 bytes、
+    `4759bd6646e84898de3fbecbb04444274af08f321bf94e48545f78459ec47368`）。coordinatorが照合した：tagとmainは
+    `fac0313ea9162dc0730412c53d665e6c42a93791`（rc1の`c301053`からfast-forward）。`prerelease=false`、`draft=false`、Latest。3つの
+    assetを取り直して計ったbytesとSHA-256は凍結値と一致し、`manifest.json`の`release_tag`は`v2321.0.0`。公開のrun `41213563824`は
+    PyPI.orgの承認待ちで止まり、PyPI.orgの最新は`1214.10.13`のまま
+  - McRemote：<https://github.com/Naohiro2g/McRemote/releases/tag/v2321.0.0>（2026-10-31T15:27:29Z）。返却
+    （`handoff-materials/2026-10-31-stable-release-preparation/materials/stable-publication-report_ja.md`、3,605 bytes、
+    `ce83da7b75a92dbd87826ef539eece8edee721070f5fdab515d6d5c3643e8796`）。coordinatorが照合した：annotated tagは
+    `525c31823a8efb736463aec471c2756089546391`を指す。mainは`7960a91`から`525c318`へfast-forwardし、その上の
+    `331a32644a6b6ee7044a1e4473e5a01c57e040fa`（`README.md`と`docs/java-mise_ja.md`だけ）。`prerelease=false`、`draft=false`、Latestで、
+    `v1.21.8-1.4.0`はLatestでなくなった。5つのassetを取り直して計ったbytesとSHA-256は凍結値と一致。`manifest.json`は公開の前の期待する
+    manifest（`62b9dad0400107798edd110869cc33dbd37dc92c8f40f736378458801a30f8b5`）と同じbytes。本文はhuman ownerが直した本文と
+    末尾の改行のほかは同じ
+  - Scratch：<https://github.com/Naohiro2g/scratch-editor/releases/tag/v2321.0.0>（2026-10-31T15:32:16Z、toolingの照合の後）。返却
+    （scratch-editor `handoff-materials/2026-10-31-stable-publication/materials/SCRATCH_RETURN_ja.md`、4,733 bytes、
+    `b063e1e02f31bbd85b49607e6c442dbd8bf435a83e8b0c5e2060cd45c2156d71`）：公開のrunは無く、GitHubのAPIとregctlで手で出した。
+    `release:published`で作り直さないように、image workflow（`312664341`）を止めて出し、後で戻した。coordinatorが照合した：annotated
+    tagは`ffb496ed50d751d307f685f2ae555c94c893fae5`を指し、`develop`は`bee41dc9629ee3225c19ef1d6be1299b6b4bf7d1`のまま。
+    `prerelease=false`、`draft=false`、Latest。8つのassetを取り直して計ったbytesとSHA-256は凍結値と一致し、`manifest.json`は凍結した
+    `manifest.stable-draft.json`と同じ値。`ghcr.io/naohiro2g/mc-remote-scratch:v2321.0.0`はloginなしで、index
+    `sha256:d85e37291ef75e4d64ab7f0c52b9a496889205071d3afc51b796dbcc1161903c`（amd64とarm64）。workflowは`active`に戻っている。本文に
+    protocol 23.2.1、rc1と同じこと、`scratch.`と`wirescope.`の名前、移行のページ、`sb-retro`がある
 - 判断（2026-10-22、human owner）：McRemoteのrc2の公開、Scratch／toolingの最小限の配布対応（配布のscript 2か所、`はじめに.html`の
   リンク、toolingはrc1の生成物）、Pythonの版の番号だけの候補（starterは変えない）を了承。`sb-beta`は12月以降も公開VPS
   （`2026-10-22-04`）。DirectionHUDは取り込めるまで残す（`2026-10-22-05`）。WebのScratchとWireScopeも11月1日から`-beta`なしの
