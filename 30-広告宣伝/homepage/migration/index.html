@@ -96,7 +96,7 @@
 
 				<section id="schedule">
 					<h2>📅 移行スケジュール</h2>
-					<p>初回Stableを公開する2026年11月1日に、箱庭サーバーの名前を切り替えます。<code>sb.mc-remote.com</code>は新しいプロトコルの安定版になり、旧プロトコルのサーバーは<code>sb-retro.mc-remote.com</code>として11月末まで動かします。12月から、箱庭サーバーは新しいプロトコルに一本化します。</p>
+					<p>初回Stableを公開した2026年11月1日に、箱庭サーバーの名前を切り替えました。<code>sb.mc-remote.com</code>は新しいプロトコルの安定版になり、旧プロトコルのサーバーは<code>sb-retro.mc-remote.com</code>として11月末まで動かします。12月から、箱庭サーバーは新しいプロトコルに一本化します。</p>
 					<p>11月の間は、<code>sb.mc-remote.com</code>と<code>sb-beta.mc-remote.com</code>のどちらにつないでも、同じサーバーにつながります。12月からは、<code>sb-beta.mc-remote.com</code>は別のサーバーになり、安定版か、それより進んだ版（先行版）を動かす先行環境になります。ふだんは安定版の<code>sb.mc-remote.com</code>を使い、新しい機能を先に試したいときに<code>sb-beta.mc-remote.com</code>を使います。</p>
 					<p>11月1日からは、旧版のPython（<code>1214</code>系）で<code>sb.mc-remote.com</code>につなごうとしても、つながりません。旧版を使い続ける間は、つなぎ先を<code>sb-retro.mc-remote.com</code>に変えてください。旧版のScratchは自分のPCのマイクラにつなぐので、この切り替えの影響はありません。</p>
 					<div class="table-wrap">
@@ -131,13 +131,13 @@
 							</tbody>
 						</table>
 					</div>
-					<p class="lan-small">初回Stable（2026年11月）を公開すると、Pythonで版を指定せずに入れたときに入る版も、新しい版に変わります（下の「Python」）。</p>
+					<p class="lan-small">初回Stableの公開で、Pythonで版を指定せずに入れたときに入る版も、新しい版に変わりました（下の「Python」）。</p>
 				</section>
 
 				<section id="bedrock">
 					<h2>📱 統合版のポート</h2>
 					<p>統合版のマイクラ（PC、タブレット、スマホなど）で箱庭サーバーにつなぐときのポートが、<code>25565</code>から、統合版のデフォルトの<code>19132</code>に変わりました。サーバーを追加するとき、ポートの欄は最初から入っている<code>19132</code>のままでつながります。</p>
-					<p>箱庭サーバーで統合版を受け付けているプラグインのGeyserが、統合版の大型アップデート（2026年10月27日の予定）に合わせて、UDPに加えてTCPも使うように変わりました（<a href="https://geysermc.org/blog/preparing-for-nethernet/" target="_blank" rel="noopener">Geyserの案内</a>）。Java版がTCPの<code>25565</code>を使っているので、統合版を<code>25565</code>のままにできなくなり、統合版のデフォルトの<code>19132</code>にしました。</p>
+					<p>箱庭サーバーで統合版を受け付けているプラグインのGeyserが、統合版の大型アップデート（26.60、2026年10月28日）に合わせて、UDPに加えてTCPも使うように変わりました（<a href="https://geysermc.org/blog/preparing-for-nethernet/" target="_blank" rel="noopener">Geyserの案内</a>）。Java版がTCPの<code>25565</code>を使っているので、統合版を<code>25565</code>のままにできなくなり、統合版のデフォルトの<code>19132</code>にしました。</p>
 					<div class="table-wrap">
 						<table class="lan-table">
 							<thead>
@@ -173,7 +173,7 @@
 					<h2>🐍 Python</h2>
 
 					<h3>何が変わるか</h3>
-					<p>初回Stableの公開の後、版を指定しない<code>pip install minecraft-remote-api</code>や<code>uv add minecraft-remote-api</code>で入るのは、新しい版（<code>2321.0.0</code>）になります。新しい版は旧プロトコルのサーバーにはつながりません。また、旧版のプログラムは、接続のしかたなどが変わるため、そのままでは動かないものがあります。</p>
+					<p>初回Stableの公開から、版を指定しない<code>pip install minecraft-remote-api</code>や<code>uv add minecraft-remote-api</code>で入るのは、新しい版（<code>2321.0.0</code>）です。新しい版は旧プロトコルのサーバーにはつながりません。また、旧版のプログラムは、接続のしかたなどが変わるため、そのままでは動かないものがあります。</p>
 
 					<h3>旧版を使い続ける（2026年11月まで）</h3>
 					<p>旧プロトコルの箱庭サーバーや、旧版のmodを入れたサーバーにつなぐ間は、旧版を版を指定して入れてください。11月1日からは、箱庭サーバーのつなぎ先を<code>sb-retro.mc-remote.com</code>に変えてください。</p>
@@ -194,16 +194,16 @@
 					<h2>🐱 Scratch</h2>
 					<p>旧版の改造版Scratch（マイクラ1.12.2用、1.16.5用）とRemoteControllerModから、新しいScratchへ移ります。新しいScratchはmodを使わず、マイクラサーバーのMcRemoteとつながります。拡張機能が新しくなり、ブロックも変わっています。ブロックは<a href="../api/scratch/">Scratchのブロック一覧</a>で確かめられます。</p>
 					<ul>
-						<li><strong>箱庭サーバーで使う</strong>：ブラウザで<a href="https://scratch-beta.mc-remote.com/?extension=mcremote" target="_blank" rel="noopener">箱庭のScratch</a>を開きます。手順は<a href="../#quickstart">はじめる</a>にあります。</li>
+						<li><strong>箱庭サーバーで使う</strong>：ブラウザで<a href="https://scratch.mc-remote.com/?extension=mcremote" target="_blank" rel="noopener">箱庭のScratch</a>を開きます。手順は<a href="../#quickstart">はじめる</a>にあります。</li>
 						<li><strong>自分のワールドで使う</strong>：<a href="../lan/scratch/">Scratch LANパッケージ</a>を使います。</li>
 					</ul>
-					<p>2026年11月1日から、箱庭のScratchは<code>scratch.mc-remote.com</code>で開きます。先行環境は<code>scratch-beta.mc-remote.com</code>です。</p>
+					<p>箱庭のScratchは、2026年11月1日から<code>scratch.mc-remote.com</code>で開きます。先行環境は<code>scratch-beta.mc-remote.com</code>です。</p>
 					<p>ブラウザに保存した作品は、開いたアドレスごとに分かれています。<code>scratch-beta.mc-remote.com</code>で保存した作品を<code>scratch.mc-remote.com</code>で使うときは、<code>scratch-beta.mc-remote.com</code>で開いて「ファイル」→「コンピューターに保存する」で書き出し、<code>scratch.mc-remote.com</code>の「ファイル」→「コンピューターから読み込む」で読み込みます。安定版と先行環境を行き来するときは、いつもこの方法です。</p>
 				</section>
 
 				<section id="server">
 					<h2>🖥️ マイクラサーバー</h2>
-					<p>Forgeのmod（RemoteControllerMod）、JuicyRaspberryPie、旧版のMcRemote（<code>v1.21.8-1.4.0</code>など）から、Paperサーバーと、そこへ入れる新しいプラグイン<strong>McRemote</strong>（<code>2321.0.0</code>）へ移ります。対応するマイクラの版は1.21.11と26.3です。準備のしかたは<a href="https://github.com/Naohiro2g/McRemote#readme" target="_blank" rel="noopener">McRemoteのREADME</a>にあります。</p>
+					<p>Forgeのmod（RemoteControllerMod）、JuicyRaspberryPie、旧版のMcRemote（<code>v1.21.8-1.4.0</code>など）から、Paperサーバーと、そこへ入れる新しいプラグイン<strong>McRemote</strong>（<code>2321.0.0</code>）へ移ります。対応するマイクラの版は1.21.11と26.3です。PaperのJavaは、Temurinの21（マイクラ1.21.11）と25（26.3）を使い、最新のパッチを勧めます。準備のしかたは<a href="https://github.com/Naohiro2g/McRemote#readme" target="_blank" rel="noopener">McRemoteのREADME</a>にあります。</p>
 					<p>統合版でも遊べるようにGeyserを入れている場合は、Geyserを新しい版にして、TCPとUDPの両方で<code>19132</code>を開けます（<a href="https://geysermc.org/blog/preparing-for-nethernet/" target="_blank" rel="noopener">Geyserの案内</a>）。XServer GAMEsの無料サーバーでは、統合版も使いたいときに制約があります。統合版26.60のマイクラをつなぐには、26.60に対応したGeyserの版が要ります。</p>
 				</section>
 
