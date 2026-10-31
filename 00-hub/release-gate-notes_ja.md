@@ -168,6 +168,23 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
       適切なheapと`nogui`を使い、Aikar's flagsの一式を新しく足さないこと。18のflagは、McRemoteの機械（Temurin 25.0.5+8）でJVMが
       受け付けることを確かめただけで、Paperを動かした試験や性能の比較ではない
     - VPSの25.0.3はhuman ownerの報告で、配布元、full version、containerの実体は照合していない
+  - McRemoteのTemurinでの確認のやり直し（確認票`handoff-materials/2026-10-29-stable-temurin-validation/materials/confirmation_ja.md`、
+    8,634 bytes、`179f61e41dc7bf7e0b95ca715e05ee784d96fa6df3ce3e493ac0b8e1a0f5bdaa`。knowledge `d012c91`を読んだ。1.21.11は`99898e5`の
+    指示で実行）：**両方PASS**（live-auto、手元のLinuxの隔離したPaper、LuckPermsなしのfallback権限）
+    - JAR：`525c318`の候補をそのまま使った（再buildなし）。`mc-remote-2321.0.0.jar` `e3f7cc2a…f68db4ab`
+    - Paper 1.21.11 #132（`5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba`、2026-10-29）とTemurin `21.0.13+9`、
+      Paper 26.3 #231（`a836a016…2edb0e6`、2026-10-31）とTemurin `25.0.5+8`。どちらもvendorはEclipse Adoptium
+    - 両方で、通常のpulse 8 groups、通常の再起動の後のpulse 4 groups、認証なしの`hello`の拒否、有効化、credentialのhealth、正常な停止
+      （exit 0）。26.3の2回の起動logはERROR／FATALが0件。起動の設定は`-Xms256M -Xmx1536M -XX:ActiveProcessorCount=2`と`nogui`で、
+      これまでの隔離した確認と同じ
+    - coordinatorが照合した：素材の`mc-remote-verification-1.21.11.json`（63,705 bytes、
+      `34dcf75c54434768463ab69e1e311029fa575044f6765b25a7c82e988e7127fe`）と`mc-remote-verification-26.3.json`（63,667 bytes、
+      `00c4c675a7483793e97bb5853a13d23ac21c28afa501f5cf690e540c8c431545`）が票の値と一致。中の`source_commit`、JAR、Paperのbuildと
+      SHA-256、`java -version`の出力、`result`（PASS）、pulse・再起動・lifecycleの`status`が票と合う。#132のbytesとSHA-256は
+      Paperの公式のAPIと一致。tokenは`[REDACTED_TOKEN]`で、IPアドレスとUUIDの形の値は無かった
+    - 確かめていないこと：VPS、LuckPermsのある構成、人のゲームの操作と表示、負荷と長時間
+    - McRemoteは、README（Temurin Java 21／25、最新パッチ推奨）と`docs/java-mise_ja.md`を、候補のbranchのworking treeで直した
+      （commitしていない）
 - 判断（2026-10-22、human owner）：McRemoteのrc2の公開、Scratch／toolingの最小限の配布対応（配布のscript 2か所、`はじめに.html`の
   リンク、toolingはrc1の生成物）、Pythonの版の番号だけの候補（starterは変えない）を了承。`sb-beta`は12月以降も公開VPS
   （`2026-10-22-04`）。DirectionHUDは取り込めるまで残す（`2026-10-22-05`）。WebのScratchとWireScopeも11月1日から`-beta`なしの
