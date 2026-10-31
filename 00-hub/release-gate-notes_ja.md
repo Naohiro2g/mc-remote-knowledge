@@ -237,6 +237,11 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
       `62b9dad0400107798edd110869cc33dbd37dc92c8f40f736378458801a30f8b5`）のsource、JAR、宣言、verificationは凍結値と合う
     - coordinatorの照合は上のとおり。公開してよいかは、human ownerのレビューを待つ。`525c318`のREADMEのJavaの節はTemurinの前の書き方のままだが、本文がリンクする
       のは旧b5／b7の節だけで、READMEは公開の直後にmainで直す
+    - human ownerがレビューし、同じfileを直接直した（2026-10-31）：2,152 bytes、
+      `0ccf9df7dce03093e5cd741f0a4abf1c471ad17da4130ee26b78cb8e5fbb719a`。冒頭に2025年7月以来の安定版であること、ロードマップと移行の
+      ページへのリンクを足し、確認した環境の表を「対応環境」にして箱庭（ホームページの`#quickstart`）への案内を足した。確かめた範囲の文
+      （隔離環境、McRemoteのみ）は外した（「McRemoteだけで確認したものなど、読む人には意味がない」）。この本文で公開する
+      （human owner 2026-10-31「リリース後に確認するので、これで良い」）
   - Stackのruntime imageの公開（Stackの確定搬送票2通、2026-10-31）
     - PR #83（Stack `main@1f9d7564b97fea8d49f229277061b152fffb123a`）でGHCRへ出すworkflowとDockerfileを入れ、run `41206620334`で
       `ghcr.io/naohiro2g/mc-remote-paper-runtime-temurin:temurin-25.0.5-8`を公開した。中の`JAVA_VERSION`が元のimageの`jdk-25.0.3+9`の
