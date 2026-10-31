@@ -51,46 +51,52 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td><strong>McRemote（Plugin、リリース候補）</strong></td>
-						<td><code>2321.0.0rc1</code></td>
+						<td><strong>McRemote（Plugin）</strong></td>
+						<td><code>2321.0.0</code></td>
 						<td>23.2.1</td>
 						<td>Paper 1.21.11 / 26.3（同じJARで両方に対応）</td>
 					</tr>
 					<tr>
-						<td><strong>McRemote（Plugin）</strong></td>
+						<td><strong>McRemote（Plugin、旧版）</strong></td>
 						<td><code>v1.21.8-1.4.0</code></td>
 						<td>旧プロトコル</td>
 						<td>Paper 1.21.11</td>
 					</tr>
 					<tr>
 						<td><strong>minecraft-remote-api (Python)</strong></td>
-						<td><code>2321.0.0rc1</code></td>
+						<td><code>2321.0.0</code></td>
 						<td>23.2.1</td>
-						<td>Python 3.10以上対応。PyPIでリリース候補版を版指定で取得（<code>==2321.0.0rc1</code>）。版指定なしでは旧プロトコルの安定版</td>
+						<td>Python 3.10以上対応。版を指定しない<code>uv add</code>で入る。旧プロトコルの版は<code>==1214.10.13</code></td>
 					</tr>
 					<tr>
 						<td><strong>scratch-editor (Scratch)</strong></td>
-						<td><code>2321.0.0rc1</code></td>
+						<td><code>2321.0.0</code></td>
 						<td>23.2.1</td>
 						<td>Web版はブラウザ完結（Chrome, Safari, Edge等）。自分のPC・LAN向けのScratch LANパッケージ（Windows／macOS／Linux用ZIP）は<a href="../lan/scratch/">LANパッケージのページ</a>から</td>
 					</tr>
 					<tr>
 						<td><strong>WireScope</strong></td>
-						<td><code>2321.0.0rc1</code></td>
+						<td><code>2321.0.0</code></td>
 						<td>23.2.1</td>
 						<td>共通パケット観察Webアプリ（minecraft-remote-tooling）</td>
 					</tr>
 					<tr>
-						<td><strong>公式箱庭マイクラサーバー（ベータ）</strong></td>
-						<td><code>sb-beta.mc-remote.com</code></td>
-						<td>23.2.1</td>
-						<td>1.21.11、Java版：TCP25565 / 統合版：TCP/UDP19132</td>
-					</tr>
-					<tr>
 						<td><strong>公式箱庭マイクラサーバー</strong></td>
 						<td><code>sb.mc-remote.com</code></td>
+						<td>23.2.1</td>
+						<td>26.3、Java版：TCP25565 / 統合版：TCP/UDP19132</td>
+					</tr>
+					<tr>
+						<td><strong>公式箱庭マイクラサーバー（先行環境）</strong></td>
+						<td><code>sb-beta.mc-remote.com</code></td>
+						<td>23.2.1</td>
+						<td>11月は<code>sb.mc-remote.com</code>と同じサーバー</td>
+					</tr>
+					<tr>
+						<td><strong>公式箱庭マイクラサーバー（旧プロトコル）</strong></td>
+						<td><code>sb-retro.mc-remote.com</code></td>
 						<td>旧プロトコル</td>
-						<td>1.21.11、Java版：TCP25565 / 統合版：TCP/UDP19132</td>
+						<td>26.3、Java版：TCP25565 / 統合版：TCP/UDP19132。2026年11月30日まで</td>
 					</tr>
 				</tbody>
 			</table>
@@ -99,6 +105,18 @@
 			<details>
 				<summary>📜 過去のリリース履歴を展開して確認する</summary>
 				<ul class="history-timeline" style="margin-top: 14px;">
+						<li>
+							<div class="history-meta"><span class="history-date">2026年11月1日</span><span
+									class="history-version">Protocol 23.2.1 (2321.0.0)</span></div>
+							<div class="history-description">初回Stable。McRemote、Python、Scratch、WireScopeの<code>2321.0.0</code>を、各repoの最新の正式版として公開しました。APIと通信の中身はrc1と同じです。McRemoteは、旧版の設定（<code>b5.</code>／<code>b7.</code>で始まる項目）を自動で移さなくなりました。残っていると、直し方をlogに出してサーバーを止めます（直し方は<a href="https://github.com/Naohiro2g/McRemote#readme" target="_blank" rel="noopener">McRemoteのREADME</a>）。Pythonは、版を指定せずに入れると<code>2321.0.0</code>が入るようになりました。箱庭サーバー<code>sb.mc-remote.com</code>は新しいプロトコルとマイクラ26.3に。旧プロトコルは<code>sb-retro.mc-remote.com</code>（11月末まで）。
+							</div>
+						</li>
+						<li>
+							<div class="history-meta"><span class="history-date">2026年10月22日</span><span
+									class="history-version">Protocol 23.2.1 (rc2)</span></div>
+							<div class="history-description">McRemoteだけの2つ目のリリース候補（<code>2321.0.0rc2</code>）。旧版の設定（<code>b5.</code>／<code>b7.</code>で始まる項目）を自動で移す処理を外し、残っていれば、どの項目をどう直すかをlogに出してサーバーを止めるようにしました（直し方は<a href="https://github.com/Naohiro2g/McRemote#readme" target="_blank" rel="noopener">McRemoteのREADME</a>）。不具合や気づいたことは<a href="https://github.com/Naohiro2g/mc-remote-knowledge/issues/new?template=feedback.yml" target="_blank" rel="noopener">フィードバックのフォーム</a>へ。
+							</div>
+						</li>
 						<li>
 							<div class="history-meta"><span class="history-date">2026年10月19日</span><span
 									class="history-version">Protocol 23.2.1 (rc1)</span></div>

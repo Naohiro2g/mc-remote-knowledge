@@ -41,7 +41,7 @@
 				<p class="lan-trail"><a href="../../">マイクラリモコン</a>　／　自分のワールドで使う　／　Scratch LANパッケージ</p>
 				<h1>🐱 Scratch LANパッケージ</h1>
 				<p class="lan-lead">箱庭サーバーで体験したScratchを、自分のPCや、家庭・教室のネットワーク（LAN）で動くマイクラサーバーで使うためのパッケージです。改造版Scratchと、マイクラとの橋渡し、通信を見るWireScopeが一つのZIPに入っていて、ダウンロードして展開すれば動きます。1台のPCですべて動かすこともできます。</p>
-				<p class="lan-version">版：<strong>2321.0.0rc1</strong>（リリース候補版、2026年10月19日公開）。手順を覚えておく必要はありません。次に使うときも、このページを見ながら進めてください。</p>
+				<p class="lan-version">版：<strong>2321.0.0</strong>（初回Stable、2026年11月1日公開）。手順を覚えておく必要はありません。次に使うときも、このページを見ながら進めてください。</p>
 
 				<nav class="lan-entrances" aria-label="このページの入口">
 					<a href="#first">🚀 はじめて使う</a>
@@ -61,26 +61,26 @@
 					<h3>1. 自分のOSのZIPを一つダウンロードする</h3>
 					<div class="lan-downloads">
 						<div class="lan-download">
-							<a class="btn btn-scratch" href="https://github.com/Naohiro2g/scratch-editor/releases/download/v2321.0.0rc1/mc-remote-scratch-LAN-2321.0.0rc1-windows-x64.zip">Windows用 — Intel／AMD 64ビット</a>
+							<a class="btn btn-scratch" href="https://github.com/Naohiro2g/scratch-editor/releases/download/v2321.0.0/mc-remote-scratch-LAN-2321.0.0-windows-x64.zip">Windows用 — Intel／AMD 64ビット</a>
 							<div class="lan-windows-note">
 								<img src="../../images/lan-windows-unblock.png" alt="ZIPのプロパティの全般タブで「許可する」にチェックした画面" />
 								<p><strong>【重要】Windowsでは、ZIPを展開する前に</strong>、エクスプローラーでZIPを右クリックし、「プロパティ」→「全般」の「許可する」にチェックして「適用」を押します。その後で展開すると、起動ファイルをダブルクリックで起動できます（Smart App ControlをオンにしたWindows 11で確認済み）。</p>
 							</div>
 						</div>
 						<div class="lan-download">
-							<a class="btn btn-scratch" href="https://github.com/Naohiro2g/scratch-editor/releases/download/v2321.0.0rc1/mc-remote-scratch-LAN-2321.0.0rc1-macos-arm64.zip">Mac用 — Apple Silicon（Mシリーズ）</a>
+							<a class="btn btn-scratch" href="https://github.com/Naohiro2g/scratch-editor/releases/download/v2321.0.0/mc-remote-scratch-LAN-2321.0.0-macos-arm64.zip">Mac用 — Apple Silicon（Mシリーズ）</a>
 						</div>
 						<div class="lan-download">
-							<a class="btn btn-scratch" href="https://github.com/Naohiro2g/scratch-editor/releases/download/v2321.0.0rc1/mc-remote-scratch-LAN-2321.0.0rc1-linux-x64.zip">Linux用 — Intel／AMD 64ビット</a>
+							<a class="btn btn-scratch" href="https://github.com/Naohiro2g/scratch-editor/releases/download/v2321.0.0/mc-remote-scratch-LAN-2321.0.0-linux-x64.zip">Linux用 — Intel／AMD 64ビット</a>
 						</div>
 					</div>
-					<p class="lan-small">ZIPは約250MBです。ファイルの一覧と、自分で照合したい人向けのSHA-256は<a href="https://github.com/Naohiro2g/scratch-editor/releases/tag/v2321.0.0rc1" target="_blank" rel="noopener">リリースページ</a>にあります。</p>
+					<p class="lan-small">ZIPは約250MBです。ファイルの一覧と、自分で照合したい人向けのSHA-256は<a href="https://github.com/Naohiro2g/scratch-editor/releases/tag/v2321.0.0" target="_blank" rel="noopener">リリースページ</a>にあります。</p>
 
 					<h3>2. 展開して、使い続ける場所へ置く</h3>
 					<p>展開してできたフォルダーの内側にある<code>mc-remote-scratch-LAN</code>フォルダーを、自分のホームフォルダーの<code>mc-remote</code>フォルダーへコピーします（無ければ作ります）。ダウンロードフォルダーに置いたままでも動きますが、マイクラリモコンの標準の置き場所に収めておきましょう。解説に沿って作業するときに迷いや間違いが少なくなり、各言語の作品の置き場所の基準にもなります。</p>
 					<pre><code>ホームフォルダー/mc-remote/
 └─ mc-remote-scratch-LAN/
-   └─ 2321.0.0rc1/
+   └─ 2321.0.0/
       ├─ start-mc-remote.cmd（Macは .command、Linuxは .sh）
       ├─ はじめに.html
       ├─ README_ja.md
@@ -216,7 +216,7 @@
 						<li><strong>LAN内の別のPCのサーバーにつながらない</strong>：サーバー役のPCのファイアウォールで、<code>25565</code>と<code>25575</code>への接続を許可します。</li>
 						<li><strong>ペアリングが通らない</strong>：コマンドの先頭にスペースが無いか確かめます。時間が経ってコードが切れたときは、もう一度「接続する」から始めます。</li>
 					</ul>
-					<p>それでも困ったら、<a href="https://discord.gg/xUqhhqWsuS" target="_blank" rel="noopener">Discord</a>で聞いてください。この版はリリース候補版なので、不具合があるかもしれません。不具合や気づいたことは、<a href="https://github.com/Naohiro2g/mc-remote-knowledge/issues/new?template=feedback.yml" target="_blank" rel="noopener">フィードバックのフォーム</a>から送ってください。</p>
+					<p>それでも困ったら、<a href="https://discord.gg/xUqhhqWsuS" target="_blank" rel="noopener">Discord</a>で聞いてください。不具合や気づいたことは、<a href="https://github.com/Naohiro2g/mc-remote-knowledge/issues/new?template=feedback.yml" target="_blank" rel="noopener">フィードバックのフォーム</a>から送ってください。</p>
 				</section>
 
 				<p class="lan-back"><a href="../../#lan">← トップページへ戻る</a>　／　<a href="../../#quickstart">箱庭サーバーで試す</a></p>

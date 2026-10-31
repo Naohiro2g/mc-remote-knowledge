@@ -62,11 +62,11 @@
 		<div class="container">
 			<div class="news-panel">
 				<h2>📣 いまのマイクラリモコン</h2>
-				<p class="news-status"><span>●</span> 現在地：<strong>リリース候補版（rc1）公開中。初回Stableは2026年11月</strong></p>
+				<p class="news-status"><span>●</span> 現在地：<strong>初回Stable（2321.0.0）公開中</strong></p>
 				<ul class="news-list">
-					<li><span class="news-date">2026年10月22日</span><a href="migration/">移行</a>のページを公開しました。11月1日に箱庭サーバーの名前を切り替え、<code>sb.mc-remote.com</code>は新しいプロトコルの安定版になります。旧プロトコルのサーバーは<code>sb-retro.mc-remote.com</code>として11月末まで動かします。</li>
+					<li><span class="news-date">2026年11月1日</span>初回Stable（<code>2321.0.0</code>）を公開しました。箱庭サーバー<code>sb.mc-remote.com</code>は新しいプロトコルの安定版になり、マイクラ26.3で動いています。旧プロトコルのサーバーは<code>sb-retro.mc-remote.com</code>として11月末まで動かします。旧版からの移り方は<a href="migration/">移行</a>へ。</li>
+					<li><span class="news-date">2026年10月22日</span><a href="migration/">移行</a>のページを公開しました。</li>
 					<li><span class="news-date">2026年10月19日</span>リリース候補版（rc1）を公開しました。不具合や気づいたことは<a href="https://github.com/Naohiro2g/mc-remote-knowledge/issues/new?template=feedback.yml" target="_blank" rel="noopener">フィードバックのフォーム</a>へ。</li>
-					<li><span class="news-date">2026年10月18日</span><a href="#notebook">Notebook先生</a>に、マイクラリモコンのことを訊けるようになりました。</li>
 				</ul>
 				<p class="news-links"><a href="releases/">リリースノートと互換性</a>　／　<a href="roadmap/">ロードマップ</a>　／　<a href="migration/">移行</a></p>
 			</div>
@@ -148,11 +148,11 @@
 				<ul>
 					<li><strong>接続先マインクラフトサーバー</strong></li>
 					<ul>
-						<li><strong>サーバー名</strong>: <strong><code>sb-beta.mc-remote.com</code></strong>　（マイクラリモコン 公式
-							箱庭サーバー ベータ版）
+						<li><strong>サーバー名</strong>: <strong><code>sb.mc-remote.com</code></strong>　（マイクラリモコン 公式
+							箱庭サーバー）
 						</li>
 						<li>サーバーの種類: Paper（Java、プラグインサーバー）</li>
-						<li>バージョン: <strong>1.21.11</strong>（使っているプラグインが新しい版に対応するまで、1.21.11のままにします。）</li>
+						<li>バージョン: <strong>26.3</strong></li>
 					</ul>
 					<li><strong>Java版クライアント (PC)</strong></li>
 					<ul>
@@ -180,8 +180,8 @@
 				<div class="card-tag scratch">8歳からのビジュアルコーディング</div>
 				<h2>🎮 Scratchで今すぐ始める</h2>
 				<p>面倒なインストールは一切不要。PC／タブレット／スマホで開いたマイクラと、PC／タブレットのブラウザを使います。ブラウザのScratchで直感的にマイクラの世界を遠隔操作できます。</p>
-				<a href="https://scratch-beta.mc-remote.com/?extension=mcremote" target="_blank" rel="noopener"
-					class="btn btn-scratch">👉 Web版Scratchエディタ（ベータ版）を開く</a>
+				<a href="https://scratch.mc-remote.com/?extension=mcremote" target="_blank" rel="noopener"
+					class="btn btn-scratch">👉 Web版Scratchエディタを開く</a>
 				<p></p>
 				<div class="server-guide-box">
 					<h4>🔑 マイクラサーバーとの接続とペアリング</h4>
@@ -210,10 +210,10 @@
 
 				<div style="margin-top: 8px;">
 					<h4>Pythonモジュール（クライアント/API）のインストール：</h4>
-					<p><a href="https://docs.astral.sh/uv/getting-started/installation/" target="_blank" rel="noopener">uv</a>をインストールしたら、プロジェクトを作ってモジュールを追加します。新プロトコルのリリース候補版はPyPIにあり、版を指定して追加します（版を指定しないと旧プロトコルの安定版が入ります）。</p>
+					<p><a href="https://docs.astral.sh/uv/getting-started/installation/" target="_blank" rel="noopener">uv</a>をインストールしたら、プロジェクトを作ってモジュールを追加します。PyPIから、版を指定せずに追加すると、新しいプロトコルの安定版（<code>2321.0.0</code>）が入ります。</p>
 					<pre><code>uv init --python 3.13 mc-hello
 cd mc-hello
-uv add "minecraft-remote-api==2321.0.0rc1"</code></pre>
+uv add minecraft-remote-api</code></pre>
 				</div>
 				<p></p>
 				<p>VS CodeのJupyter Notebookで一行ずつ実行するのもオススメ。手順は<a href="https://github.com/Naohiro2g/minecraft-remote-api#jupyter" target="_blank" rel="noopener">minecraft-remote-apiのREADME</a>へ。</p>
@@ -221,8 +221,8 @@ uv add "minecraft-remote-api==2321.0.0rc1"</code></pre>
 				<div style="margin-top: 8px;">
 					<h4>最小コード（<code>hello.py</code>）：</h4>
 					<pre><code>from mc_remote.minecraft import Minecraft
-# 公式箱庭サーバー（ベータ）に接続
-mc = Minecraft.create(address="sb-beta.mc-remote.com", port=25575)
+# 公式箱庭サーバーに接続
+mc = Minecraft.create(address="sb.mc-remote.com", port=25575)
 
 # 建築原点の設定
 mc.setBuildOrigin(200, 0, 200)
@@ -395,8 +395,8 @@ mc.setBlock(5, 67, 5, "sea_lantern")</code></pre>
 					<h3>🔍 WireScope</h3>
 					<h4>（ワイヤースコープ / ライブ画面）</h4>
 					<p>クライアントとサーバーの間を行き来する通信内容（ワイヤメッセージ）をリアルタイムに覗き見できる観察・学習ツール。現在、ScratchやPythonクライアントと連携可能。</p>
-					<a href="https://wirescope-beta.mc-remote.com/" target="_blank" rel="noopener"
-						class="repo-link">WireScope Betaを開く →</a>
+					<a href="https://wirescope.mc-remote.com/" target="_blank" rel="noopener"
+						class="repo-link">WireScopeを開く →</a>
 				</div>
 
 				<div class="repo-card">
