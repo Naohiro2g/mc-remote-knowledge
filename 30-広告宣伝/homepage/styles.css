@@ -1040,6 +1040,10 @@ footer {
     scroll-margin-top: 96px;
   }
 
+  section[id] {
+    scroll-margin-top: 48px;
+  }
+
   .brand-logo {
     width: 220px;
     max-width: 100%;
