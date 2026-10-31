@@ -27,6 +27,7 @@ public 正本世代の入口です。ここに載る path は、このリポ内�
 | `00-hub/b10-gate-close-instructions_ja.md` | b10横断release gateを閉じる前の、McRemoteとScratchの`handoff-materials`の分類の依頼 |
 | `00-hub/stable-gate-confirmation-instructions_ja.md` | 初回stable（2321.0.0）横断release gateを開いたときの確認票の依頼（rc1のtagの後の変更、版の番号だけの変更、McRemoteのrc2で旧キーの移行の処理を外すこと、PyPIの既定の版、箱庭の名前） |
 | `00-hub/stable-gate-work-instructions_ja.md` | 初回stable（2321.0.0）横断release gateの着手依頼（McRemoteのrc2の公開、各componentのstableの候補、Stackのrc2のpresetと事前の起動、WebのScratchとWireScopeの名前の影響の確認） |
+| `00-hub/stable-gate-release-instructions_ja.md` | 初回stable（2321.0.0）の公開の依頼（2026-10-31に凍結したexact setを、11月1日 0:00から作り直さずに公開する順番、凍結値、公開の後の照合） |
 | `00-hub/rc1-gate-confirmation-instructions_ja.md` | rc1横断release gateを開いたときの確認票の依頼（2321への切り替えの変更範囲、README導線、rollback、park確認の各項目） |
 | `00-hub/rc1-gate-work-instructions_ja.md` | rc1横断release gateの着手依頼（toolingから始める依存順、各担当の作業、日程） |
 | `00-hub/rc1-gate-live-test-instructions_ja.md` | rc1横断release gateで、mc-remote.comに置いた候補を試すhuman owner向けの実施票（b10からの版の更新、新しい`はじめに.html`、23.2.0と23.2.1の組み合わせ、26.3の名前） |
