@@ -167,7 +167,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     - 起動のflag：今回のreleaseでは変えない（human owner 2026-10-29「今回のリリースでは起動フラグは変更しません」）。票の勧めは、
       適切なheapと`nogui`を使い、Aikar's flagsの一式を新しく足さないこと。18のflagは、McRemoteの機械（Temurin 25.0.5+8）でJVMが
       受け付けることを確かめただけで、Paperを動かした試験や性能の比較ではない
-    - VPSの25.0.3はhuman ownerの報告で、配布元、full version、containerの実体は照合していない
+    - VPSの25.0.3はhuman ownerの報告で、配布元、full version、containerの実体は照合していない〔訂正（2026-10-31、Stackの返却）：
+      公開VPSのrc1（Paper 1.21.11）はTemurin 21.0.11+10。25.0.3は、10/29の26.3の事前の試験のJava〕
   - McRemoteのTemurinでの確認のやり直し（確認票`handoff-materials/2026-10-29-stable-temurin-validation/materials/confirmation_ja.md`、
     8,634 bytes、`179f61e41dc7bf7e0b95ca715e05ee784d96fa6df3ce3e493ac0b8e1a0f5bdaa`。knowledge `d012c91`を読んだ。1.21.11は`99898e5`の
     指示で実行）：**両方PASS**（live-auto、手元のLinuxの隔離したPaper、LuckPermsなしのfallback権限）
@@ -185,6 +186,33 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     - 確かめていないこと：VPS、LuckPermsのある構成、人のゲームの操作と表示、負荷と長時間
     - McRemoteは、README（Temurin Java 21／25、最新パッチ推奨）と`docs/java-mise_ja.md`を、候補のbranchのworking treeで直した
       （commitしていない）
+    - 判断（human owner 2026-10-31）：McRemoteのtagは`525c318`のままにする。READMEと`docs/java-mise_ja.md`の更新は、11/1の公開の
+      直後にmainへ入れる
+  - Stackの返却（10/28の追補の4点とJava、`handoff-materials/2026-10-31-stack-return-four-items-java/materials/RETURN_ja.md`、16,091 bytes、
+    `0f766ac48fc1ca15a9cef63e0f833ca4b1fbca5e1daa2a80ec5281062f2e1a26`。Stack `main@488475f`、knowledge `d012c91`を読んだ）
+    - 事前の起動（10/29）：rc2、Paper 26.3 #203、Temurin 25.0.3+9で、backupから復元したworldを公開portなしで起動した。WorldEdit 7.4.2は
+      互換性のエラーで、7.4.6にして起動した。b1273（既定のconfig）と当時の最新のb1276が、`/v1/join`に26.60（protocol 2225）を返した
+    - 最終の確認（10/31、human ownerの「最新バージョンで最終確認してください」による）：stableの候補のJAR（`525c318`、`e3f7cc2a…f68db4ab`）、
+      Paper 26.3 #231、Temurin 25.0.5+8、heap `-Xms3G -Xmx3G`（human ownerの指定）。公開portなしの専用のコピーで、通常のpulse 8 groups、
+      再起動の後の4 groups、tokenなしの`hello`の拒否がPASS（live-auto）。起動は34.3秒、再起動は29.7秒。追加のGCのflagは無い
+    - プラグイン（10/31、公式のmetadataと照合）：WorldEdit 7.4.6、ViaVersion 5.12.2、ViaBackwards 5.12.2、Geyser 2.12.1-b1279、LuckPerms
+      5.5.88、DirectionHUD 1.8.4.0+26.2、OtterLib 0.4.0.1+26.2、AdvancedPortals 2.8.0、DiscordSRV 1.30.5、Floodgate 2.2.5-b141、
+      ServerBackup 2.10.0。DirectionHUDとOtterLibは、Paper向けの最新が26.2の表記。確かめたのは起動と有効化で、HUDの画面やportalの
+      人の操作は含まない。試験ではDiscordSRVだけを無効にした（二重の接続を避けるため）
+    - Geyser：最新のb1279（SHA-256 `234fa467a32bbc780bd495296eb18fa0fbd7af8dab41f137ed5f7a45aabfbb90`）を採った。既定のconfigのまま
+      （config-version 11、nethernet、19132、`webrtc-port: 0`、builtinのHTTP）で、`/v1/join`は26.60（2225）。`identity.pem`はbackupと
+      同じhash。指示票の4のb1273からの変更は、最新版を使う判断（human owner 2026-10-29）による。端末からの参加とUDPの到達は確かめていない
+    - Java：最終の確認のimageは`itzg/minecraft-server:2026.7.2-java25`（固定のdigest）のJREを公式のTemurin JRE 25.0.5+8に替えたもの。
+      image IDは`sha256:df6898c45b2decc621a320f09e79dcc700cc6f8852e219a38294269525f6ac1c`（Dockerのconfig digestで、registryの参照ではない）。
+      公開中のrc1はTemurin 21.0.11+10、heapはimageの既定の1G、containerのmemoryの上限は無し
+    - 凍結の手順：受け取ったexact setを照合し、#231、Java、プラグイン、heapを1つの組に固定して、新しいpresetとprofileを作り、
+      停止中のprojectでplanまで通す。repoの検査を含めて30〜45分の見込み
+    - 11/1の順序：exact setの照合 → human ownerと停止を合わせる → 旧セットを退避 → worldを新しいvolumeへ複製 → 新しいセットを起動し、
+      Java、heap、Geyser、19132、Scratchの2つの組を照合（DNSはhuman owner） → backupの確認 → 返却。停止から機械的な確認まで2〜5分の目安
+    - 残り（Stack）：presetとprofileへの正式な組み込み（heap 3Gを含む）、runtime imageの正式な配布参照、`connection_targets`の(a)
+      （今のrendererは、接続先の一覧と既定が全部の組で共通）。どれも上の30〜45分の外
+    - coordinatorが照合した：添付の`SHA256SUMS`が全件一致。Geyser b1279のSHA-256はGeyserの公式のAPIと一致、Temurin JRE 25.0.5+8
+      （61,736,206 bytes、`6fac98f0c8202efc3135a9e9e42aa61963ec42d1c5cbb40caf231e7b14a24ef6`）はAdoptiumのAPIと一致
 - 判断（2026-10-22、human owner）：McRemoteのrc2の公開、Scratch／toolingの最小限の配布対応（配布のscript 2か所、`はじめに.html`の
   リンク、toolingはrc1の生成物）、Pythonの版の番号だけの候補（starterは変えない）を了承。`sb-beta`は12月以降も公開VPS
   （`2026-10-22-04`）。DirectionHUDは取り込めるまで残す（`2026-10-22-05`）。WebのScratchとWireScopeも11月1日から`-beta`なしの
