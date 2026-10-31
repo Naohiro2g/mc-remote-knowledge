@@ -215,6 +215,28 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
       （61,736,206 bytes、`6fac98f0c8202efc3135a9e9e42aa61963ec42d1c5cbb40caf231e7b14a24ef6`）はAdoptiumのAPIと一致
     - 判断（human owner 2026-10-31）：起動の設定は、GCのflagを足さず、heapを3G／3Gにする（指示票の「起動のflagは変えない」を直した）。
       `connection_targets`の(a)は11/1のセットに入れる（Stackの見込み：実装と検査まで1.5〜2時間、組み込みと配信の確認まで2〜3時間）
+  - Stackの返却（(a)、`handoff-materials/2026-10-31-web-pair-target-selections/materials/RETURN_ja.md`、5,230 bytes、
+    `33f65e7ddb4713ed8e40e0ea1b2f615c3bd5c85b5c3855ae825344cb0545b804`。knowledge `d012c91`を読んだ）
+    - 実装：`agent/web-pair-target-sets@392c29a343dc4106645d5ca557f503f307fdbebd`、PR #81。profile `vps-server@17`、renderer `compose@19`、
+      入力`connection-targets@4`。共通の`[[targets]]`と`[[notices]]`に、Scratchの組ごとの`[[selections]]`（一覧のIDと順序、既定）を足す。
+      Bridgeのallowlistと内部DNSの別名は、全部の組で選んだ接続先の和集合。組ごとの一覧は、組ごとの認可にはならない。既存のprofileの
+      生成物は変わらない
+    - 検査（unit/deterministic、exampleのドメインとtest用の配布物）：618件PASS、ruff、preset catalog、diffの検査がPASS。旧VPSの
+      profile 5種類のgoldenは変わらない。PRにGitHubのCIのcheckは無く、結果はStackの手元の実行
+    - human ownerがPR #81をレビューしてmergeした（2026-10-31T09:53:13Z、Stack `main@3aa77230cc0030c1f9b2d08017ee2ac82dfa7059`）
+    - coordinatorが照合した：添付の`SHA256SUMS`が全件一致。PRのheadが返却のcommitと同じで、mergeのcommitの親が`488475f`と`392c29a`
+      であることをGitHubのAPIで確かめた
+    - 残り（Stack）：11/1のセットへの組み込み（`connection-targets@4`の入力、`vps-server@17`での生成、両方の組の一覧・順序・既定・
+      WireScopeのURLの確認、適用の後のdoctor）。公開VPSにはまだ入れていない。別のhostへの経路(b)は11月の別の作業
+  - McRemoteのRelease本文の案（`handoff-materials/2026-10-31-stable-release-preparation/materials/stable-release-body-draft_ja.md`、
+    1,982 bytes、`82157f1f3a9ebe368f193e96681f9daf26c20e7256632fd5c24c1ef9688a26af`。knowledge `9dee688`を読んだ）
+    - coordinatorが照合した：公開の依頼の「共通」と「McRemote」の項目（protocol `23.2.1`、APIと通信がrc1と同じ、「Temurin Java 21／25、
+      最新パッチ推奨」、旧`b5:`／`b7:`でPaperごと止まることと直し方、移行のページ、feedbackの入口）が入っている。「rc2からは版番号のみ」は、
+      `7960a91`から`525c318`の差分が`gradle.properties`の1行だけであることと合う。READMEへのリンクのanchorは`525c318`の見出し
+      「旧b5／b7設定からの更新」と合う。確認した環境の表はTemurinでの確認の記録と合う。期待するmanifest（2,063 bytes、
+      `62b9dad0400107798edd110869cc33dbd37dc92c8f40f736378458801a30f8b5`）のsource、JAR、宣言、verificationは凍結値と合う
+    - この本文で公開してよい（coordinator 2026-10-31）。`525c318`のREADMEのJavaの節はTemurinの前の書き方のままだが、本文がリンクする
+      のは旧b5／b7の節だけで、READMEは公開の直後にmainで直す
 - 凍結するexact set（2026-10-31、coordinatorがまとめた。4つのcomponentはhuman ownerが2026-10-22に凍結の対象にした候補）。
   coordinatorが2026-10-31に、候補のbranchの先頭が下のcommitのままであること、CIのartifactが残っていること（期限は2027-01）をGitHubの
   APIで確かめた
@@ -239,7 +261,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   - 公開VPSの26.3のセット：Paper 26.3 #231（`a836a016be7ac52352eb3a1efb6857bb42ee73a6c78d46e292f7e87742edb0e6`）、Temurin 25.0.5+8、
     heap 3G／3G、追加のGCのflagなし、上のMcRemoteのJAR、Stackの2026-10-31の返却のプラグイン（Geyser b1279
     `234fa467a32bbc780bd495296eb18fa0fbd7af8dab41f137ed5f7a45aabfbb90`と既定のconfig）、worldは引き継ぐ、`connection_targets`の(a)。
-    presetとprofileのcommit、lockのidentity、runtime imageの配布参照は、Stackの組み込みの後に足す
+    (a)の実装はStack `main@3aa77230cc0030c1f9b2d08017ee2ac82dfa7059`（PR #81）。presetとprofileのcommit、lockのidentity、
+    runtime imageの配布参照は、Stackの組み込みの後に足す
 - 判断（2026-10-22、human owner）：McRemoteのrc2の公開、Scratch／toolingの最小限の配布対応（配布のscript 2か所、`はじめに.html`の
   リンク、toolingはrc1の生成物）、Pythonの版の番号だけの候補（starterは変えない）を了承。`sb-beta`は12月以降も公開VPS
   （`2026-10-22-04`）。DirectionHUDは取り込めるまで残す（`2026-10-22-05`）。WebのScratchとWireScopeも11月1日から`-beta`なしの
