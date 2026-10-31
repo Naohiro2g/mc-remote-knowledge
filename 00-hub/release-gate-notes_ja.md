@@ -284,6 +284,16 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     (a)の実装はStack `main@3aa77230cc0030c1f9b2d08017ee2ac82dfa7059`（PR #81）。runtime imageは
     `ghcr.io/naohiro2g/mc-remote-paper-runtime-temurin@sha256:69b73187717bf509fa30937b4e4c202dddf18e523cc9668dcf31dd62851a66f0`
     （tag `temurin-25.0.5-8`）。presetとprofileのcommit、lockのidentityは、Stackの組み込み（McRemoteの公開の後）の後に足す
+- 公開（2026-11-01、`00-hub/stable-gate-release-instructions_ja.md`）
+  - tooling：<https://github.com/Naohiro2g/minecraft-remote-tooling/releases/tag/v2321.0.0>（2026-10-31T15:05:53Z、JSTで11/1 0:05）。
+    Scratch担当の返却（scratch-editor `handoff-materials/2026-10-31-stable-publication/materials/TOOLING_RETURN_ja.md`、2,750 bytes、
+    `adafcb4c98b37a4775455225c0f54887448ff156381802437ecf0526ccb889be`）：公開のrunは無く、GitHubのAPIとregctlで手で出した。assetは
+    候補のrun `39053886890`の生成物で、作り直していない。Bridgeは凍結したindexを同じrepoの中でcopyしてtagを足した。
+    coordinatorがGitHubのAPIで照合した：annotated tag `v2321.0.0`は`6447f6e8cbfbeeb9d229990b5c4f6e82a5875666`を指し、mainも同じ
+    commitのまま。`prerelease=false`、`draft=false`、Latest。rc1のtagとReleaseは残る。3つのassetを取り直して計ったbytesとSHA-256
+    （`wirescope-app.zip`、`wirescope-app.manifest.json`、`bridge.oci.tar`）は凍結値と一致。GHCRの
+    `ghcr.io/naohiro2g/mc-remote-bridge:v2321.0.0`はloginなしで、index `sha256:305d6e38b36e195a0e158522f32f3a8c45d39da2aeec7b7e46f785c920406acf`。
+    本文にprotocol `23.2.1`、rc1と同じこと、移行のページ、feedbackの入口がある
 - 判断（2026-10-22、human owner）：McRemoteのrc2の公開、Scratch／toolingの最小限の配布対応（配布のscript 2か所、`はじめに.html`の
   リンク、toolingはrc1の生成物）、Pythonの版の番号だけの候補（starterは変えない）を了承。`sb-beta`は12月以降も公開VPS
   （`2026-10-22-04`）。DirectionHUDは取り込めるまで残す（`2026-10-22-05`）。WebのScratchとWireScopeも11月1日から`-beta`なしの
