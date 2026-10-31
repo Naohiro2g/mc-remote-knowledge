@@ -237,6 +237,21 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
       `62b9dad0400107798edd110869cc33dbd37dc92c8f40f736378458801a30f8b5`）のsource、JAR、宣言、verificationは凍結値と合う
     - coordinatorの照合は上のとおり。公開してよいかは、human ownerのレビューを待つ。`525c318`のREADMEのJavaの節はTemurinの前の書き方のままだが、本文がリンクする
       のは旧b5／b7の節だけで、READMEは公開の直後にmainで直す
+  - Stackのruntime imageの公開（Stackの確定搬送票2通、2026-10-31）
+    - PR #83（Stack `main@1f9d7564b97fea8d49f229277061b152fffb123a`）でGHCRへ出すworkflowとDockerfileを入れ、run `41206620334`で
+      `ghcr.io/naohiro2g/mc-remote-paper-runtime-temurin:temurin-25.0.5-8`を公開した。中の`JAVA_VERSION`が元のimageの`jdk-25.0.3+9`の
+      ままだったので、PR #84（`main@8b542ee2f5665e80d30dc014dc58a6ab485c39e0`）で`jdk-25.0.5+8`に直し、run `41210840031`で出し直した。
+      tagは新しいdigestを指す。前のdigest `sha256:1e164d67e49f7a16769ad7aa204ec6c05fff5360c3bf566134ea2d0a4481e3b5`は残す
+    - Stackが確かめた：VPSから新しいdigestをloginなしでpullし、`JAVA_VERSION`と`java -version`（Temurin 25.0.5+8）が一致。626件PASS、
+      ruff PASS。VPSのStackを更新し、今のrc1のセットのdoctorはhealthy。動いているMinecraftの環境は変えていない
+    - coordinatorが照合した：GitHubのAPIでPR #83／#84のmerge commitとrunの成功とhead。GHCRからloginなしで、tagが
+      `sha256:69b73187717bf509fa30937b4e4c202dddf18e523cc9668dcf31dd62851a66f0`を指すこと、amd64、`JAVA_VERSION=jdk-25.0.5+8`。
+      JREのlayer（`sha256:0a3a9510dc59c47ae278b466cdd6e5f728d7665fd2265e9a783a29b183b2c6b9`）の`release`が`Temurin-25.0.5+8`、
+      `25.0.5+8-LTS`、`IMAGE_TYPE="JRE"`、配布元Eclipse Adoptium。先にpushされたpullできない`mc-remote-paper-runtime`のpackageは
+      human ownerが消した（GitHubのAPIで404）
+    - 確かめていないこと：このimageでのPaper #231とMcRemoteの起動。10/31の最終の確認は手元で作ったimage（`sha256:df6898c4…`）で、
+      Javaの版は同じ。11/1のセットを起動したときの照合で確かめる
+    - 残り（Stack）：presetとprofile、lockは、McRemoteの公開のReleaseのfileを使って作る（McRemoteの公開の後）
 - 凍結するexact set（2026-10-31、coordinatorがまとめた。4つのcomponentはhuman ownerが2026-10-22に凍結の対象にした候補）。
   coordinatorが2026-10-31に、候補のbranchの先頭が下のcommitのままであること、CIのartifactが残っていること（期限は2027-01）をGitHubの
   APIで確かめた
@@ -261,8 +276,9 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   - 公開VPSの26.3のセット：Paper 26.3 #231（`a836a016be7ac52352eb3a1efb6857bb42ee73a6c78d46e292f7e87742edb0e6`）、Temurin 25.0.5+8、
     heap 3G／3G、追加のGCのflagなし、上のMcRemoteのJAR、Stackの2026-10-31の返却のプラグイン（Geyser b1279
     `234fa467a32bbc780bd495296eb18fa0fbd7af8dab41f137ed5f7a45aabfbb90`と既定のconfig）、worldは引き継ぐ、`connection_targets`の(a)。
-    (a)の実装はStack `main@3aa77230cc0030c1f9b2d08017ee2ac82dfa7059`（PR #81）。presetとprofileのcommit、lockのidentity、
-    runtime imageの配布参照は、Stackの組み込みの後に足す
+    (a)の実装はStack `main@3aa77230cc0030c1f9b2d08017ee2ac82dfa7059`（PR #81）。runtime imageは
+    `ghcr.io/naohiro2g/mc-remote-paper-runtime-temurin@sha256:69b73187717bf509fa30937b4e4c202dddf18e523cc9668dcf31dd62851a66f0`
+    （tag `temurin-25.0.5-8`）。presetとprofileのcommit、lockのidentityは、Stackの組み込み（McRemoteの公開の後）の後に足す
 - 判断（2026-10-22、human owner）：McRemoteのrc2の公開、Scratch／toolingの最小限の配布対応（配布のscript 2か所、`はじめに.html`の
   リンク、toolingはrc1の生成物）、Pythonの版の番号だけの候補（starterは変えない）を了承。`sb-beta`は12月以降も公開VPS
   （`2026-10-22-04`）。DirectionHUDは取り込めるまで残す（`2026-10-22-05`）。WebのScratchとWireScopeも11月1日から`-beta`なしの
