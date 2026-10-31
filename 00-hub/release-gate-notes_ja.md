@@ -329,6 +329,14 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
       `network-compression-threshold=256`がついていたのをhuman ownerが直し、coordinatorが外から直ったことを確かめた
     - 確かめていないこと：公開のworldでの自動のpulse（公開のworldを変えないため。上の実機の確認が代わり）、切り替えの後の
       ServerBackupによるbackupの生成、外からのScratchのruntime JSONと統合版のUDPの応答
+  - Scratchのブロック一覧の取り込み（Stack、2026-11-01）：knowledgeの`/api/scratch/blocks.json`はScratchの公開のReleaseのページと同じ
+    （56ブロック、protocol 23.2.1）。Stackの照合の条件「`sourceCommit`がtagの指すcommitと同じ」には合わなかった（`sourceRef`と
+    `sourceCommit`は`d3aa547ccfdfa00e7164d89df72cfc29cde497eb`、tagは`ffb496ed50d751d307f685f2ae555c94c893fae5`）
+    - 理由：一覧は`d3aa547`から作り、後のcommit（`8783cc4`）で入れたので、同じcommitにはならない。coordinatorが確かめた：`d3aa547`は
+      `ffb496e`の祖先で、間に変わったのは`mc-remote/block-reference/site/`と`packages/scratch-vm/test/unit/extension_mcremote.js`だけ。
+      knowledgeの`/api/scratch/`は`ffb496e`の`site/`と同じbytes（2026-10-31に`diff -r`）。rc1も同じ形（`09c59cb`とtagの`ec79b3b`）
+    - 判断（human owner 2026-11-01）：作り直さない（作り直すと凍結したtagの`site/`と食い違う）。Stackの照合の条件を、「`sourceCommit`が
+      tagの指すcommitの祖先で、間にブロックの定義の変更がなく、取り込むfileがtagの`site/`と同じbytes」に直す
   - McRemote：<https://github.com/Naohiro2g/McRemote/releases/tag/v2321.0.0>（2026-10-31T15:27:29Z）。返却
     （`handoff-materials/2026-10-31-stable-release-preparation/materials/stable-publication-report_ja.md`、3,605 bytes、
     `ce83da7b75a92dbd87826ef539eece8edee721070f5fdab515d6d5c3643e8796`）。coordinatorが照合した：annotated tagは
