@@ -300,6 +300,10 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     `fac0313ea9162dc0730412c53d665e6c42a93791`（rc1の`c301053`からfast-forward）。`prerelease=false`、`draft=false`、Latest。3つの
     assetを取り直して計ったbytesとSHA-256は凍結値と一致し、`manifest.json`の`release_tag`は`v2321.0.0`。公開のrun `41213563824`は
     PyPI.orgの承認待ちで止まり、PyPI.orgの最新は`1214.10.13`のまま
+  - PyPI.org：human ownerが承認し、run `41213563824`はsuccess（2026-10-31T15:40:52Z、JSTで11/1 0:40）。coordinatorが照合した：
+    PyPI.orgから取り直したwheel（196,033 bytes）とsdist（190,248 bytes）のSHA-256はGitHubのRelease assetと凍結値に一致し、yankedでない。
+    simpleのindexの最新は`2321.0.0`で、版を指定しない`minecraft-remote-api`はPython 3.13で`2321.0.0`に解決する（uv、cacheなし）。
+    project JSONの`info.version`は、照合の時点ではCDNのcache（`max-age=900`）で`1214.10.13`のままだった
   - McRemote：<https://github.com/Naohiro2g/McRemote/releases/tag/v2321.0.0>（2026-10-31T15:27:29Z）。返却
     （`handoff-materials/2026-10-31-stable-release-preparation/materials/stable-publication-report_ja.md`、3,605 bytes、
     `ce83da7b75a92dbd87826ef539eece8edee721070f5fdab515d6d5c3643e8796`）。coordinatorが照合した：annotated tagは
