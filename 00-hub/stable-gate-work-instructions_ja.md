@@ -45,8 +45,9 @@
    - JAR：同じ候補（`agent/stable-2321-candidate@525c31823a8efb736463aec471c2756089546391`、`mc-remote-2321.0.0.jar` 315,868 bytes、
      `e3f7cc2ab9ee9b3130f927935634e32e8ddffe7d7603b6d873973968f68db4ab`）。Javaを替えるだけのためにbuildし直さない
    - Java：Paper 26.3はTemurin `25.0.5+8`、Paper 1.21.11はTemurin `21.0.13+9`
-   - Paper 26.3のbuild：human ownerが10/30の正午ごろに決める。決まったら、その番号とJARのSHA-256をknowledgeから伝える。
-     1.21.11は先に始めてよい
+   - Paper 26.3のbuild：**#231**（STABLE、2026-10-30T01:53:29Z。human owner 2026-10-31「#231で確定」）。`paper-26.3-231.jar` 55,258,607 bytes、SHA-256
+     `a836a016be7ac52352eb3a1efb6857bb42ee73a6c78d46e292f7e87742edb0e6`
+     （coordinatorが公式のAPIの値と、取得したJARで照合した）。1.21.11は先に始めてよい
    - 確かめること（搬送票の§3の1）：両方のPaperで、起動、有効化、正常な停止、認証した接続での建築と読み戻し、再起動の後の接続など
    - 人の確認はやり直さない（human owner 2026-10-29）。25.0.2などの過去の結果は書き換えない
    - 返却（10/30まで）：Paperごとに、Javaのvendorとfull version（`java -version`の出力）、PaperのbuildとJARのSHA-256、確認した
@@ -136,8 +137,9 @@
 5. **追補（2026-10-29）：Java**（`2026-10-29-01`）
    - 新しい26.3のセットで、**Paperを実際に動かすcontainer**のJavaをTemurin `25.0.5+8`にする。hostのmiseだけを更新したことでは
      当てたことにしない
-   - Paper 26.3のbuild：human ownerが10/30の正午ごろに決める。決まったら、provider APIと取得物でJARのdigestを照合して固定する
-     （4の「決まった」のとおり）
+   - Paper 26.3のbuild：**#231**（STABLE、2026-10-30T01:53:29Z。human owner 2026-10-31「#231で確定」）。`paper-26.3-231.jar` 55,258,607 bytes、SHA-256
+     `a836a016be7ac52352eb3a1efb6857bb42ee73a6c78d46e292f7e87742edb0e6`
+     （coordinatorが公式のAPIの値と、取得したJARで照合した）。Stackもprovider APIと取得物で照合して固定する（4の「決まった」のとおり）
    - 起動のflag：今回のreleaseでは変えない（human owner 2026-10-29）。今の箱庭と新しいセットのheap、containerのmemoryの上限、
      JVMのflagを、記録のために返す
    - 確かめること：公開予定のPaperのbuild、プラグイン、引き継ぐworldを含む新しいセットで、起動、参加、代表の操作

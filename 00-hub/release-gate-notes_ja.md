@@ -160,7 +160,9 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
       （`525c318`、`mc-remote-2321.0.0.jar` `e3f7cc2a…f68db4ab`）を使い、作り直さない
     - やり直す範囲：McRemoteの自動の確認と、Stackの新しいセットでの確認。人の確認（rc2、Windows 11、Java 25.0.2、Paper 26.3 #214）
       はやり直さない（human owner 2026-10-29「人間確認は不要」）。過去の結果は当時の環境の実績として残す
-    - Paper 26.3のbuild：human ownerが10/30の正午ごろに決める。票の案は、10/30の最終検証を始める時点で出ている最新のbuildを一度選び、
+    - Paper 26.3のbuild：**#231**に決まった（human owner 2026-10-31「paperのビルド、#231で確定」）。STABLE、2026-10-30T01:53:29Z、
+      `paper-26.3-231.jar` 55,258,607 bytes、`a836a016be7ac52352eb3a1efb6857bb42ee73a6c78d46e292f7e87742edb0e6`（coordinatorが
+      fill.papermc.ioのAPIの値と、取得したJARのbytesとSHA-256で照合した）。票の案は、10/30の最終検証を始める時点で出ている最新のbuildを一度選び、
       その後に新しいbuildが出ても番号だけを理由に替えない（重大な修正があればcoordinatorが判断）、10/31の凍結から公開まで保つ
     - 起動のflag：今回のreleaseでは変えない（human owner 2026-10-29「今回のリリースでは起動フラグは変更しません」）。票の勧めは、
       適切なheapと`nogui`を使い、Aikar's flagsの一式を新しく足さないこと。18のflagは、McRemoteの機械（Temurin 25.0.5+8）でJVMが
