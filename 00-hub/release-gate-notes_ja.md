@@ -235,7 +235,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
       `7960a91`から`525c318`の差分が`gradle.properties`の1行だけであることと合う。READMEへのリンクのanchorは`525c318`の見出し
       「旧b5／b7設定からの更新」と合う。確認した環境の表はTemurinでの確認の記録と合う。期待するmanifest（2,063 bytes、
       `62b9dad0400107798edd110869cc33dbd37dc92c8f40f736378458801a30f8b5`）のsource、JAR、宣言、verificationは凍結値と合う
-    - この本文で公開してよい（coordinator 2026-10-31）。`525c318`のREADMEのJavaの節はTemurinの前の書き方のままだが、本文がリンクする
+    - coordinatorの照合は上のとおり。公開してよいかは、human ownerのレビューを待つ。`525c318`のREADMEのJavaの節はTemurinの前の書き方のままだが、本文がリンクする
       のは旧b5／b7の節だけで、READMEは公開の直後にmainで直す
 - 凍結するexact set（2026-10-31、coordinatorがまとめた。4つのcomponentはhuman ownerが2026-10-22に凍結の対象にした候補）。
   coordinatorが2026-10-31に、候補のbranchの先頭が下のcommitのままであること、CIのartifactが残っていること（期限は2027-01）をGitHubの
