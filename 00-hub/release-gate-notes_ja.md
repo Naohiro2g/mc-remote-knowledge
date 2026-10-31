@@ -213,6 +213,33 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
       （今のrendererは、接続先の一覧と既定が全部の組で共通）。どれも上の30〜45分の外
     - coordinatorが照合した：添付の`SHA256SUMS`が全件一致。Geyser b1279のSHA-256はGeyserの公式のAPIと一致、Temurin JRE 25.0.5+8
       （61,736,206 bytes、`6fac98f0c8202efc3135a9e9e42aa61963ec42d1c5cbb40caf231e7b14a24ef6`）はAdoptiumのAPIと一致
+    - 判断（human owner 2026-10-31）：起動の設定は、GCのflagを足さず、heapを3G／3Gにする（指示票の「起動のflagは変えない」を直した）。
+      `connection_targets`の(a)は11/1のセットに入れる（Stackの見込み：実装と検査まで1.5〜2時間、組み込みと配信の確認まで2〜3時間）
+- 凍結するexact set（2026-10-31、coordinatorがまとめた。4つのcomponentはhuman ownerが2026-10-22に凍結の対象にした候補）。
+  coordinatorが2026-10-31に、候補のbranchの先頭が下のcommitのままであること、CIのartifactが残っていること（期限は2027-01）をGitHubの
+  APIで確かめた
+  - McRemote：`agent/stable-2321-candidate@525c31823a8efb736463aec471c2756089546391`（tagは`v2321.0.0`をこのcommitへ。human owner
+    2026-10-31）。CI `39720103168`、artifact `12399974471`。`mc-remote-2321.0.0.jar` 315,868 bytes
+    `e3f7cc2ab9ee9b3130f927935634e32e8ddffe7d7603b6d873973968f68db4ab`
+  - Python：`agent/stable-python-2321@fac0313ea9162dc0730412c53d665e6c42a93791`。CI `39720157153`、artifact `12400618111`。wheel
+    196,033 bytes `a0c88b864c26e6e1a0ab2ef2248df6851cc9a3189af93579fbd50132d8c747a0`、sdist 190,248 bytes
+    `a6feaec48ac5df1611208c42e7770d87e0a7bafe66794a39b30942f94140cb88`、公開のときの`manifest.json` 675 bytes
+    `229179c8274d54f06765bf2d717ae416f02742a99077acde09787ea6bd90ee4a`
+  - Scratch：`agent/stable-scratch-2321@ffb496ed50d751d307f685f2ae555c94c893fae5`。run `39744827621`、artifact `12410683112`
+    （`sha256:9f0a148a286c8bc3528f1b0e4f948f2d5b9d0da141ac9d393e610e3615d81a6c`）。LANのZIPはWindows
+    `262f67442e9699a06afb39d2259fda7f429a1a16524539e2ba51b52ceddd9525`、macOS `8cacff36c64adf8a9a6570e76db564bc81a54d1ace180e0042dbd1836f77b92f`、
+    Linux `e3361bf69036417c8f9d03db7087d00b46e680f0f0fca1360994f16cbadba581`、OCI index
+    `sha256:d85e37291ef75e4d64ab7f0c52b9a496889205071d3afc51b796dbcc1161903c`、ブロック一覧のarchive
+    `76eda18e7fd92ebd3366eff7c01104bca7bb8143b44c19c88db70fbac28ee708`
+  - tooling：`main@6447f6e8cbfbeeb9d229990b5c4f6e82a5875666`（rc1と同じ）。rc1の生成物をそのまま使う（`wirescope-app.zip`
+    `da3da0b6cf4d05265bc0c11abaa4913208c7cfc3600b0c3e78c93a356fc431ad`、`wirescope-app.manifest.json`
+    `3dd668a236463809a4cdc6d19375f3e6d75eea0c8089a616d2b761d3a4a05235`、`bridge.oci.tar`
+    `3982876466fb860dca250438d73e18e441a2a85d67d9f149f537a7a8d1a1c44c`、Bridgeのindex
+    `sha256:305d6e38b36e195a0e158522f32f3a8c45d39da2aeec7b7e46f785c920406acf`）
+  - 公開VPSの26.3のセット：Paper 26.3 #231（`a836a016be7ac52352eb3a1efb6857bb42ee73a6c78d46e292f7e87742edb0e6`）、Temurin 25.0.5+8、
+    heap 3G／3G、追加のGCのflagなし、上のMcRemoteのJAR、Stackの2026-10-31の返却のプラグイン（Geyser b1279
+    `234fa467a32bbc780bd495296eb18fa0fbd7af8dab41f137ed5f7a45aabfbb90`と既定のconfig）、worldは引き継ぐ、`connection_targets`の(a)。
+    presetとprofileのcommit、lockのidentity、runtime imageの配布参照は、Stackの組み込みの後に足す
 - 判断（2026-10-22、human owner）：McRemoteのrc2の公開、Scratch／toolingの最小限の配布対応（配布のscript 2か所、`はじめに.html`の
   リンク、toolingはrc1の生成物）、Pythonの版の番号だけの候補（starterは変えない）を了承。`sb-beta`は12月以降も公開VPS
   （`2026-10-22-04`）。DirectionHUDは取り込めるまで残す（`2026-10-22-05`）。WebのScratchとWireScopeも11月1日から`-beta`なしの

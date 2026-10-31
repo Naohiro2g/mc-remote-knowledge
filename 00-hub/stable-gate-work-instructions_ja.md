@@ -140,10 +140,17 @@
    - Paper 26.3のbuild：**#231**（STABLE、2026-10-30T01:53:29Z。human owner 2026-10-31「#231で確定」）。`paper-26.3-231.jar` 55,258,607 bytes、SHA-256
      `a836a016be7ac52352eb3a1efb6857bb42ee73a6c78d46e292f7e87742edb0e6`
      （coordinatorが公式のAPIの値と、取得したJARで照合した）。Stackもprovider APIと取得物で照合して固定する（4の「決まった」のとおり）
-   - 起動のflag：今回のreleaseでは変えない（human owner 2026-10-29）。今の箱庭と新しいセットのheap、containerのmemoryの上限、
-     JVMのflagを、記録のために返す
+   - 起動のflag：GCのflagは足さない。heapは3G／3G（human owner。2026-10-31に「起動のflagは変えない」をこの形に直した）。今の箱庭と
+     新しいセットのheap、containerのmemoryの上限、JVMのflagを、記録のために返す
    - 確かめること：公開予定のPaperのbuild、プラグイン、引き継ぐworldを含む新しいセットで、起動、参加、代表の操作
    - 返却：containerの中のJavaのvendorとfull version、imageのdigest、今の箱庭のJava（human ownerの報告では25.0.3。配布元と
      full versionも）、上の起動の設定と確かめた結果
    - 10/31の凍結の記録に、McRemoteのJAR、Paperのbuild、Javaのvendorとfull version、imageのdigestを入れ、公開まではその環境を
      保つ。変える必要が出たら、gateで判断し直す
+6. **追補（2026-10-31）：凍結**
+   - 凍結するexact setは`00-hub/release-gate-notes_ja.md`の初回stableの節「凍結するexact set（2026-10-31）」。4つのcomponentは候補の
+     identityで凍結し、11/1の公開の後に、公開のassetが同じbytesとSHA-256であることを照合する
+   - `connection_targets`の(a)は、11/1のセットに入れる（human owner 2026-10-31。Stackの見込みは、実装と検査まで1.5〜2時間、
+     11/1用の設定への組み込みと配信の確認まで2〜3時間）
+   - 返却：stableのpresetとprofileのcommit、lockのidentity、(a)の実装と検査の結果、runtime imageの配布参照、停止中のprojectで
+     planまで通した結果
