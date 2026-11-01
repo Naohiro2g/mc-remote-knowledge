@@ -1,0 +1,9 @@
+# 確定したPaper artifact entry。完全なpresetではない。
+# 組込み時はTemurin25.0.5+8と最終component setを揃える。
+[[artifacts]]
+id = "paper-jar"
+kind = "https-file"
+version = "26.3-231"
+filename = "paper-26.3-231.jar"
+sha256 = "a836a016be7ac52352eb3a1efb6857bb42ee73a6c78d46e292f7e87742edb0e6"
+origin = "https://fill-data.papermc.io/v1/objects/a836a016be7ac52352eb3a1efb6857bb42ee73a6c78d46e292f7e87742edb0e6/paper-26.3-231.jar"

@@ -1,0 +1,12 @@
+{
+  "knowledge_contract_commit": "b3887126aa09ffde1981dcd4b6493ca5056eb3ae",
+  "source_commit": "7960a913a11c621d85e6120ee412b696fe125457",
+  "tag_ci_run": 39719769373,
+  "tag_ci_conclusion": "success",
+  "artifact_id": 12400189381,
+  "artifact_zip_bytes": 294765,
+  "artifact_zip_sha256": "a1b78c18314cab945bca83d814d6642e168c0def94781eebd1e6b05dd0c6b9d7",
+  "jar_bytes": 315871,
+  "jar_sha256": "ce66abaf41a94800217a11161145b9f868333b7bfa605fd1f77b888878620e50",
+  "frozen_candidate_byte_equal": true
+}

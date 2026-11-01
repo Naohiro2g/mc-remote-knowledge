@@ -1,0 +1,62 @@
+{
+  "knowledge_contract_commit": "867adb7ed8d621d72ff97bc39c2b2e8514a79688",
+  "observed_at": "2026-10-31T20:55:41.011302+00:00",
+  "verification_scope": "Read-only provider metadata; no new package download, resolver, installation or live test. Actual published-byte comparison is in the earlier publication observation and coordinator gate notes.",
+  "main": "fac0313ea9162dc0730412c53d665e6c42a93791",
+  "tag": "fac0313ea9162dc0730412c53d665e6c42a93791",
+  "latest_release_id": 430008193,
+  "release": {
+    "id": 430008193,
+    "tag_name": "v2321.0.0",
+    "draft": false,
+    "prerelease": false,
+    "published_at": "2026-10-31T15:10:17Z"
+  },
+  "run": {
+    "id": 41213563824,
+    "status": "completed",
+    "conclusion": "success",
+    "updated_at": "2026-10-31T15:40:55Z"
+  },
+  "jobs": [
+    {
+      "id": 124573339137,
+      "name": "promote",
+      "conclusion": "success"
+    },
+    {
+      "id": 124573374636,
+      "name": "prepare-publication",
+      "conclusion": "success"
+    },
+    {
+      "id": 124573405938,
+      "name": "publish-pypi",
+      "conclusion": "success"
+    },
+    {
+      "id": 124573405943,
+      "name": "publish-testpypi",
+      "conclusion": "success"
+    }
+  ],
+  "version_specific_package_metadata": {
+    "version": "2321.0.0",
+    "files": [
+      {
+        "file": "minecraft_remote_api-2321.0.0-py3-none-any.whl",
+        "provider_reported_bytes": 196033,
+        "sha256": "a0c88b864c26e6e1a0ab2ef2248df6851cc9a3189af93579fbd50132d8c747a0",
+        "yanked": false,
+        "upload_time": "2026-10-31T15:40:52.267972Z"
+      },
+      {
+        "file": "minecraft_remote_api-2321.0.0.tar.gz",
+        "provider_reported_bytes": 190248,
+        "sha256": "a6feaec48ac5df1611208c42e7770d87e0a7bafe66794a39b30942f94140cb88",
+        "yanked": false,
+        "upload_time": "2026-10-31T15:40:51.335916Z"
+      }
+    ]
+  }
+}

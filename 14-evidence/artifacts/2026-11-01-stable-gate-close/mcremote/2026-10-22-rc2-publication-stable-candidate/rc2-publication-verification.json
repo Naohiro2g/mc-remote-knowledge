@@ -1,0 +1,55 @@
+{
+  "knowledge_contract_commits": [
+    "b3887126aa09ffde1981dcd4b6493ca5056eb3ae",
+    "abf8130faf8637fe1167af35477ea97bca43c42a"
+  ],
+  "source_commit": "7960a913a11c621d85e6120ee412b696fe125457",
+  "main_fast_forward_from": "192a777ae1d484bcc9b58fcc7c58d6aed1a374af",
+  "tag": "v2321.0.0rc2",
+  "release_url": "https://github.com/Naohiro2g/McRemote/releases/tag/v2321.0.0rc2",
+  "release_id": 420311190,
+  "prerelease": true,
+  "draft": false,
+  "tag_ci_run": 39719769373,
+  "release_dry_run": 39723170103,
+  "release_publish_run": 39723317773,
+  "all_runs_success": true,
+  "asset_download_byte_comparison": "PASS all 5 public Release assets",
+  "assets": [
+    {
+      "name": "manifest.json",
+      "bytes": 1988,
+      "sha256": "f5c60a852921e25c1cfb00d4a4f5df76afa0e8de701ae61e8c1f397993c524b6",
+      "byte_equal_to_prepublication_material": true
+    },
+    {
+      "name": "mc-remote-2321.0.0rc2.jar",
+      "bytes": 315871,
+      "sha256": "ce66abaf41a94800217a11161145b9f868333b7bfa605fd1f77b888878620e50",
+      "byte_equal_to_prepublication_material": true
+    },
+    {
+      "name": "minecraft-targets.json",
+      "bytes": 126,
+      "sha256": "8e830732decd6bcde13f91eb6c071d062ba6993342a7edb52e6ea543b9e0c361",
+      "byte_equal_to_prepublication_material": true
+    },
+    {
+      "name": "mc-remote-verification-1.21.11.json",
+      "bytes": 62784,
+      "sha256": "96cb1262c0c422a06c39e2af5e3aea4659c47ab74ec7ac12fcfe76a984a3c5cd",
+      "byte_equal_to_prepublication_material": true
+    },
+    {
+      "name": "mc-remote-verification-26.3.json",
+      "bytes": 62766,
+      "sha256": "f31d7ddff902c8951242d0a95fa1e24a6a5083235de2e8603a788a16b2a50501",
+      "byte_equal_to_prepublication_material": true
+    }
+  ],
+  "release_body_required_items": "PASS old keys stop Paper, correction instructions, protocol 23.2.1, feedback link",
+  "latest_expected_unchanged": "v1.21.8-1.4.0",
+  "remote_main_verified": "7960a913a11c621d85e6120ee412b696fe125457",
+  "remote_annotated_tag_target_verified": "7960a913a11c621d85e6120ee412b696fe125457",
+  "latest_observed_after_publication": "v1.21.8-1.4.0"
+}

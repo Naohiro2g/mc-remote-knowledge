@@ -1,0 +1,43 @@
+{
+  "source_materials": [
+    {
+      "path": "2026-10-22-stable-python-confirmation/materials/pypi-observation.json",
+      "bytes": 1143,
+      "sha256": "0d130c0c763b2aa1c0c77593c46e5771b7d195fc0844f26553af3c7dcb5d2302"
+    }
+  ],
+  "sanitization": "Removed the service endpoint URL; retained timestamp and package-file observations.",
+  "observed_at": "2026-10-22T00:17:42.280757+00:00",
+  "json_info_version": "1214.10.13",
+  "highest_non_yanked_stable": "1214.10.13",
+  "legacy_files": [
+    {
+      "filename": "minecraft_remote_api-1214.10.13-py3-none-any.whl",
+      "size": 25853,
+      "sha256": "ae7a910182b9de90658c6a7b8f928f3a257bbbdce1fe005c23364a7ea5b9a6ae",
+      "yanked": false,
+      "requires_python": ">=3.8"
+    },
+    {
+      "filename": "minecraft_remote_api-1214.10.13.tar.gz",
+      "size": 29220,
+      "sha256": "0e62439f502ad690ac25301fe4efe22401838ba80c8a76aeb7c54079e76c6745",
+      "yanked": false,
+      "requires_python": ">=3.8"
+    }
+  ],
+  "rc1_files": [
+    {
+      "filename": "minecraft_remote_api-2321.0.0rc1-py3-none-any.whl",
+      "size": 196098,
+      "sha256": "5f12dfcf4953bfaf5dcbe649d4a1ca2d3f5f4b5307b9896e79284478216944ca",
+      "yanked": false
+    },
+    {
+      "filename": "minecraft_remote_api-2321.0.0rc1.tar.gz",
+      "size": 190285,
+      "sha256": "dc8d9f30f538c14cfa04260c92f32e8f451748b99a8e596aeb3e59b1968e5611",
+      "yanked": false
+    }
+  ]
+}

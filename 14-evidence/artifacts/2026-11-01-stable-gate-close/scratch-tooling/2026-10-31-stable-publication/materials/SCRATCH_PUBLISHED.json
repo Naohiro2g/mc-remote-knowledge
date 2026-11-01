@@ -1,0 +1,205 @@
+{
+  "knowledge_contract_commit": "9dee6881a414a2b1fd4a37fa4fe26ddbedd9d8a5",
+  "knowledge_runtime_commit": "10fe11cfd437ab45f8c000517595598229e1011e",
+  "knowledge_contract_path": "00-hub/stable-gate-release-instructions_ja.md",
+  "repo": "Naohiro2g/scratch-editor",
+  "default_branch": "develop",
+  "default_branch_sha": "bee41dc9629ee3225c19ef1d6be1299b6b4bf7d1",
+  "tag_target": "ffb496ed50d751d307f685f2ae555c94c893fae5",
+  "annotated_tag_object": "f5b93fcc12d22979d4e299f55f97f270af24443b",
+  "release": {
+    "assets": [
+      {
+        "browser_download_url": "https://github.com/Naohiro2g/scratch-editor/releases/download/v2321.0.0/contracts.tar.gz",
+        "digest": "sha256:48948ba47d55409f02a8ff8e0d44021b07859e11ffa5ca0f8598e6ef06082390",
+        "id": 695742437,
+        "name": "contracts.tar.gz",
+        "size": 1908,
+        "state": "uploaded"
+      },
+      {
+        "browser_download_url": "https://github.com/Naohiro2g/scratch-editor/releases/download/v2321.0.0/manifest.json",
+        "digest": "sha256:95b7cf9d997c9da144a5050b30560da311668dcfd35940c32eb012938d8de364",
+        "id": 695742424,
+        "name": "manifest.json",
+        "size": 2093,
+        "state": "uploaded"
+      },
+      {
+        "browser_download_url": "https://github.com/Naohiro2g/scratch-editor/releases/download/v2321.0.0/mc-remote-scratch-LAN-2321.0.0-linux-x64.zip",
+        "digest": "sha256:e3361bf69036417c8f9d03db7087d00b46e680f0f0fca1360994f16cbadba581",
+        "id": 695742427,
+        "name": "mc-remote-scratch-LAN-2321.0.0-linux-x64.zip",
+        "size": 271477855,
+        "state": "uploaded"
+      },
+      {
+        "browser_download_url": "https://github.com/Naohiro2g/scratch-editor/releases/download/v2321.0.0/mc-remote-scratch-LAN-2321.0.0-macos-arm64.zip",
+        "digest": "sha256:8cacff36c64adf8a9a6570e76db564bc81a54d1ace180e0042dbd1836f77b92f",
+        "id": 695742435,
+        "name": "mc-remote-scratch-LAN-2321.0.0-macos-arm64.zip",
+        "size": 266221800,
+        "state": "uploaded"
+      },
+      {
+        "browser_download_url": "https://github.com/Naohiro2g/scratch-editor/releases/download/v2321.0.0/mc-remote-scratch-LAN-2321.0.0-windows-x64.zip",
+        "digest": "sha256:262f67442e9699a06afb39d2259fda7f429a1a16524539e2ba51b52ceddd9525",
+        "id": 695742421,
+        "name": "mc-remote-scratch-LAN-2321.0.0-windows-x64.zip",
+        "size": 261870138,
+        "state": "uploaded"
+      },
+      {
+        "browser_download_url": "https://github.com/Naohiro2g/scratch-editor/releases/download/v2321.0.0/scratch-gui.tar.gz",
+        "digest": "sha256:fa4a1939843a83b453d882dda54ad2713ff3d53f0e1a16458e0bfc731947947a",
+        "id": 695742457,
+        "name": "scratch-gui.tar.gz",
+        "size": 138834579,
+        "state": "uploaded"
+      },
+      {
+        "browser_download_url": "https://github.com/Naohiro2g/scratch-editor/releases/download/v2321.0.0/wirescope-app.manifest.json",
+        "digest": "sha256:3dd668a236463809a4cdc6d19375f3e6d75eea0c8089a616d2b761d3a4a05235",
+        "id": 695742476,
+        "name": "wirescope-app.manifest.json",
+        "size": 2339,
+        "state": "uploaded"
+      },
+      {
+        "browser_download_url": "https://github.com/Naohiro2g/scratch-editor/releases/download/v2321.0.0/wirescope-app.zip",
+        "digest": "sha256:da3da0b6cf4d05265bc0c11abaa4913208c7cfc3600b0c3e78c93a356fc431ad",
+        "id": 695742508,
+        "name": "wirescope-app.zip",
+        "size": 83854,
+        "state": "uploaded"
+      }
+    ],
+    "draft": false,
+    "html_url": "https://github.com/Naohiro2g/scratch-editor/releases/tag/v2321.0.0",
+    "id": 430018752,
+    "prerelease": false,
+    "published_at": "2026-10-31T15:32:16Z",
+    "tag_name": "v2321.0.0",
+    "target_commitish": "ffb496ed50d751d307f685f2ae555c94c893fae5"
+  },
+  "latest": true,
+  "source_run_id": 39744827621,
+  "source_artifact": {
+    "id": 12410683112,
+    "digest": "sha256:9f0a148a286c8bc3528f1b0e4f948f2d5b9d0da141ac9d393e610e3615d81a6c",
+    "bytes": 1370347310
+  },
+  "publication_run_id": null,
+  "rebuild": false,
+  "manifest_diff_from_frozen_draft": false,
+  "scratch_oci": {
+    "reference": "ghcr.io/naohiro2g/mc-remote-scratch:v2321.0.0",
+    "digest": "sha256:d85e37291ef75e4d64ab7f0c52b9a496889205071d3afc51b796dbcc1161903c",
+    "frozen_match": true
+  },
+  "bridge_oci": {
+    "reference": "ghcr.io/naohiro2g/mc-remote-bridge:v2321.0.0",
+    "digest": "sha256:305d6e38b36e195a0e158522f32f3a8c45d39da2aeec7b7e46f785c920406acf",
+    "verification": "coordinator confirmed tooling before Scratch publication"
+  },
+  "asset_checks": [
+    {
+      "name": "scratch-gui.tar.gz",
+      "bytes": 138834579,
+      "sha256": "fa4a1939843a83b453d882dda54ad2713ff3d53f0e1a16458e0bfc731947947a",
+      "frozen_match": true
+    },
+    {
+      "name": "wirescope-app.zip",
+      "bytes": 83854,
+      "sha256": "da3da0b6cf4d05265bc0c11abaa4913208c7cfc3600b0c3e78c93a356fc431ad",
+      "frozen_match": true
+    },
+    {
+      "name": "wirescope-app.manifest.json",
+      "bytes": 2339,
+      "sha256": "3dd668a236463809a4cdc6d19375f3e6d75eea0c8089a616d2b761d3a4a05235",
+      "frozen_match": true
+    },
+    {
+      "name": "contracts.tar.gz",
+      "bytes": 1908,
+      "sha256": "48948ba47d55409f02a8ff8e0d44021b07859e11ffa5ca0f8598e6ef06082390",
+      "frozen_match": true
+    },
+    {
+      "name": "mc-remote-scratch-LAN-2321.0.0-windows-x64.zip",
+      "bytes": 261870138,
+      "sha256": "262f67442e9699a06afb39d2259fda7f429a1a16524539e2ba51b52ceddd9525",
+      "frozen_match": true
+    },
+    {
+      "name": "mc-remote-scratch-LAN-2321.0.0-macos-arm64.zip",
+      "bytes": 266221800,
+      "sha256": "8cacff36c64adf8a9a6570e76db564bc81a54d1ace180e0042dbd1836f77b92f",
+      "frozen_match": true
+    },
+    {
+      "name": "mc-remote-scratch-LAN-2321.0.0-linux-x64.zip",
+      "bytes": 271477855,
+      "sha256": "e3361bf69036417c8f9d03db7087d00b46e680f0f0fca1360994f16cbadba581",
+      "frozen_match": true
+    },
+    {
+      "name": "manifest.json",
+      "bytes": 2093,
+      "sha256": "95b7cf9d997c9da144a5050b30560da311668dcfd35940c32eb012938d8de364",
+      "frozen_match": true
+    }
+  ],
+  "verification_method": "local actual hashes plus GitHub asset size/digest before and after publication; registry HEAD",
+  "workflow": {
+    "id": 312664341,
+    "before": "active",
+    "during": "disabled_manually",
+    "after": "active",
+    "new_runs": 0,
+    "runs_after": [
+      {
+        "conclusion": "success",
+        "created_at": "2026-10-14T07:00:53Z",
+        "event": "release",
+        "head_sha": "0809eb5e49e4b83c17a4e91b435d151b9d1b0655",
+        "id": 38525643511,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "created_at": "2026-10-05T06:03:21Z",
+        "event": "release",
+        "head_sha": "7fbbf034488760d8fc7e034bf23f3e08e6e1807d",
+        "id": 37270517123,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "created_at": "2026-10-03T09:42:05Z",
+        "event": "release",
+        "head_sha": "691576f60b7f0824e1753bd6823901d01fbe2422",
+        "id": 37113933602,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "created_at": "2026-09-07T07:46:14Z",
+        "event": "release",
+        "head_sha": "f133fc95ed7b23109cc1908dc4f0dae066510258",
+        "id": 34097110427,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "created_at": "2026-09-06T18:10:45Z",
+        "event": "workflow_dispatch",
+        "head_sha": "f6699729aea5afb494fb35d12b63ae634975c425",
+        "id": 34050884023,
+        "status": "completed"
+      }
+    ]
+  }
+}

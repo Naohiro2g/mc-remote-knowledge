@@ -1,0 +1,37 @@
+{
+  "knowledge_contract_commits": [
+    "b3887126aa09ffde1981dcd4b6493ca5056eb3ae",
+    "abf8130faf8637fe1167af35477ea97bca43c42a"
+  ],
+  "source_commit": "525c31823a8efb736463aec471c2756089546391",
+  "branch": "agent/stable-2321-candidate",
+  "ci_run": 39720103168,
+  "ci_status": "success",
+  "artifact_id": 12399974471,
+  "artifact_zip_bytes": 294756,
+  "artifact_zip_sha256": "2995b4d47bf8de885c0206d615cf692ac0d583db4c3534320606821aea49d699",
+  "ci_local_candidate_byte_match": true,
+  "assets": [
+    {
+      "name": "mc-remote-2321.0.0.jar",
+      "bytes": 315868,
+      "sha256": "e3f7cc2ab9ee9b3130f927935634e32e8ddffe7d7603b6d873973968f68db4ab"
+    },
+    {
+      "name": "minecraft-targets.json",
+      "bytes": 126,
+      "sha256": "8e830732decd6bcde13f91eb6c071d062ba6993342a7edb52e6ea543b9e0c361"
+    },
+    {
+      "name": "source-commit.txt",
+      "bytes": 41,
+      "sha256": "3201d74bd5e694d735303ef5d55c9591a7796582654f21b723e9050fb380fb47"
+    },
+    {
+      "name": "SHA256SUMS",
+      "bytes": 89,
+      "sha256": "682ea59a1141ce2ab6d6ca810b02fada535c243101a608cf30967b7e2daebb83"
+    }
+  ],
+  "publication": "candidate only; no stable tag or GitHub Release"
+}

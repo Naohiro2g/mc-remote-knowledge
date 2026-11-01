@@ -1,0 +1,25 @@
+{
+  "source_commit": "7960a913a11c621d85e6120ee412b696fe125457",
+  "minecraft_version": "26.3",
+  "paper_build": 203,
+  "paper_server_sha256": "0fcb63f341abe5d8370d354bb2e39d47c917d8010c817f4567f89e97b5c3ecf9",
+  "jar_sha256": "ce66abaf41a94800217a11161145b9f868333b7bfa605fd1f77b888878620e50",
+  "java_version": "openjdk version \"25.0.2\" 2026-01-20\nOpenJDK Runtime Environment (build 25.0.2+10-69)\nOpenJDK 64-Bit Server VM (build 25.0.2+10-69, mixed mode, sharing)",
+  "status": "PASS",
+  "paper_process_exited": true,
+  "exit_code": 0,
+  "api_not_opened": true,
+  "config_unchanged": true,
+  "credentials_unchanged": true,
+  "log_excerpt": [
+    "- McRemote (2321.0.0rc2)",
+    "[10:36:44 INFO]: [McRemote] Loading server plugin McRemote v2321.0.0rc2",
+    "[10:36:45 INFO]: [McRemote] Enabling McRemote v2321.0.0rc2",
+    "[10:36:45 ERROR]: [McRemote] Unsupported legacy keys in plugins/McRemote/config.yml. Stopping the entire Paper server.",
+    "[10:36:45 ERROR]: [McRemote] config.yml: unsupported legacy key 'b5.entity_handle_capacity'. Use 'entities.handle_capacity' instead, then remove 'b5.entity_handle_capacity'.",
+    "[10:36:45 ERROR]: [McRemote] config.yml: unsupported legacy key 'b7.lightning.global_per_tick'. Use 'lightning.global_per_tick' instead, then remove 'b7.lightning.global_per_tick'.",
+    "[10:36:45 ERROR]: [McRemote] Keep the intended values under the new keys, remove the b5: and b7: sections, then restart Paper. No config values have been migrated or saved.",
+    "[10:36:45 INFO]: Stopping server",
+    "[10:36:45 INFO]: [McRemote] Disabling McRemote v2321.0.0rc2"
+  ]
+}

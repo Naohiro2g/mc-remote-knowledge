@@ -1,0 +1,2669 @@
+{
+  "schema": "mc-remote.minecraft-verification",
+  "schema_version": 1,
+  "source_commit": "7960a913a11c621d85e6120ee412b696fe125457",
+  "declaration_sha256": "8e830732decd6bcde13f91eb6c071d062ba6993342a7edb52e6ea543b9e0c361",
+  "minecraft_version": "26.3",
+  "paper_build": 203,
+  "server_sha256": "0fcb63f341abe5d8370d354bb2e39d47c917d8010c817f4567f89e97b5c3ecf9",
+  "java_version": "openjdk version \"25.0.2\" 2026-01-20\nOpenJDK Runtime Environment (build 25.0.2+10-69)\nOpenJDK 64-Bit Server VM (build 25.0.2+10-69, mixed mode, sharing)",
+  "jar_sha256": "ce66abaf41a94800217a11161145b9f868333b7bfa605fd1f77b888878620e50",
+  "result": "PASS",
+  "observations": {
+    "pulse": {
+      "schema": "mc-remote.local-compatibility-pulse",
+      "schema_version": 1,
+      "minecraft_version": "26.3",
+      "jar_sha256": "ce66abaf41a94800217a11161145b9f868333b7bfa605fd1f77b888878620e50",
+      "declaration_sha256": "8e830732decd6bcde13f91eb6c071d062ba6993342a7edb52e6ea543b9e0c361",
+      "declared_versions": [
+        "1.21.11",
+        "26.3"
+      ],
+      "restart_only": false,
+      "status": "PASS",
+      "assertions": [
+        "authenticated_hello_and_bundled_targets",
+        "resource_catalog",
+        "structured_block_read_write",
+        "bulk_32768_scheduler_and_notification_flush",
+        "sign_read_write_style",
+        "entity_handle_pose_remove",
+        "event_poll_surface",
+        "particle_and_chat"
+      ],
+      "non_claims": [
+        "live player event callbacks",
+        "classroom load/MSPT",
+        "public world migration"
+      ],
+      "transcript": [
+        {
+          "method": "hello",
+          "params": {
+            "protocol": "23.2.1",
+            "auth": {
+              "token": "[REDACTED_TOKEN]"
+            },
+            "build": {
+              "dimension": "overworld",
+              "origin": [
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 1,
+            "result": {
+              "protocol": "23.2.1",
+              "mc_version": "26.3",
+              "supported_mc_versions": [
+                "1.21.11",
+                "26.3"
+              ],
+              "world_constants": {
+                "y_sea": -64
+              },
+              "catalogHash": "3eaae42e9bcbd5e6ef6a2d1df702b25a878ca3157dcadc58ae29822fe5277663",
+              "player": "[REDACTED_UUID]",
+              "dimension": "minecraft:overworld",
+              "origin": [
+                0,
+                0,
+                0
+              ],
+              "permissions": {
+                "online": true,
+                "offline": true,
+                "buildRange": 1000
+              }
+            }
+          }
+        },
+        {
+          "method": "catalog.get",
+          "params": [],
+          "response": {
+            "id": 2,
+            "result_summary": {
+              "keys": [
+                "block",
+                "catalogHash",
+                "entity",
+                "particle"
+              ],
+              "sha256": "7c758470e450aa2353e6d8bbbccf8272088ff96ef24d7682b5f12850032f6513"
+            }
+          }
+        },
+        {
+          "method": "build.setDimension",
+          "params": [
+            "minecraft:overworld"
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 3,
+            "result": {
+              "dimension": "minecraft:overworld",
+              "origin": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        },
+        {
+          "method": "world.getBlock",
+          "params": [
+            0,
+            0,
+            0
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 4,
+            "result": {
+              "block_id": "minecraft:air",
+              "state": {}
+            }
+          }
+        },
+        {
+          "method": "world.getHeight",
+          "params": [
+            0,
+            0
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 5,
+            "result": -56
+          }
+        },
+        {
+          "method": "world.setBlock",
+          "params": [
+            0,
+            -55,
+            0,
+            {
+              "block_id": "gold_block",
+              "state": {}
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 6,
+            "result": null
+          }
+        },
+        {
+          "method": "world.getBlock",
+          "params": [
+            0,
+            -55,
+            0
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 7,
+            "result": {
+              "block_id": "minecraft:gold_block",
+              "state": {}
+            }
+          }
+        },
+        {
+          "method": "world.setBlock",
+          "params": [
+            1,
+            -55,
+            0,
+            {
+              "block_id": "oak_log",
+              "state": {
+                "axis": "z"
+              }
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 8,
+            "result": null
+          }
+        },
+        {
+          "method": "world.getBlock",
+          "params": [
+            1,
+            -55,
+            0
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 9,
+            "result": {
+              "block_id": "minecraft:oak_log",
+              "state": {
+                "axis": "z"
+              }
+            }
+          }
+        },
+        {
+          "method": "world.setBlock",
+          "params": [
+            2,
+            -55,
+            0,
+            {
+              "block_id": "oak_stairs",
+              "state": {
+                "waterlogged": true,
+                "half": "top",
+                "facing": "east"
+              }
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 10,
+            "result": null
+          }
+        },
+        {
+          "method": "world.getBlock",
+          "params": [
+            2,
+            -55,
+            0
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 11,
+            "result": {
+              "block_id": "minecraft:oak_stairs",
+              "state": {
+                "facing": "east",
+                "half": "top",
+                "shape": "straight",
+                "waterlogged": true
+              }
+            }
+          }
+        },
+        {
+          "method": "world.setBlocks",
+          "params": [
+            3,
+            -55,
+            0,
+            4,
+            -55,
+            0,
+            {
+              "block_id": "oak_stairs",
+              "state": {
+                "facing": "north"
+              }
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 12,
+            "result": null
+          }
+        },
+        {
+          "method": "world.getBlock",
+          "params": [
+            3,
+            -55,
+            0
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 13,
+            "result": {
+              "block_id": "minecraft:oak_stairs",
+              "state": {
+                "facing": "north",
+                "half": "bottom",
+                "shape": "straight",
+                "waterlogged": false
+              }
+            }
+          }
+        },
+        {
+          "method": "world.getBlock",
+          "params": [
+            4,
+            -55,
+            0
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 14,
+            "result": {
+              "block_id": "minecraft:oak_stairs",
+              "state": {
+                "facing": "north",
+                "half": "bottom",
+                "shape": "straight",
+                "waterlogged": false
+              }
+            }
+          }
+        },
+        {
+          "method": "world.setBlock",
+          "params": [
+            5,
+            -55,
+            0,
+            "stone"
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 15,
+            "error": {
+              "code": -32602,
+              "message": "invalid_params",
+              "data": {
+                "reason": "invalid_params",
+                "path": "params[3]"
+              }
+            }
+          }
+        },
+        {
+          "method": "world.setBlock",
+          "params": [
+            5,
+            -55,
+            0,
+            {
+              "block_id": "stone"
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 16,
+            "error": {
+              "code": -32602,
+              "message": "invalid_params",
+              "data": {
+                "reason": "invalid_params",
+                "path": "params[3].state"
+              }
+            }
+          }
+        },
+        {
+          "method": "world.setBlock",
+          "params": [
+            5,
+            -55,
+            0,
+            {
+              "block_id": "stone",
+              "state": {},
+              "ref": "stone"
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 17,
+            "error": {
+              "code": -32602,
+              "message": "invalid_params",
+              "data": {
+                "reason": "invalid_params",
+                "path": "params[3].ref"
+              }
+            }
+          }
+        },
+        {
+          "method": "world.setBlock",
+          "params": [
+            5,
+            -55,
+            0,
+            {
+              "block_id": "oak_log",
+              "state": {
+                "axis": [
+                  "z"
+                ]
+              }
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 18,
+            "error": {
+              "code": -32602,
+              "message": "invalid_params",
+              "data": {
+                "reason": "invalid_params",
+                "path": "params[3].state.axis"
+              }
+            }
+          }
+        },
+        {
+          "method": "world.setBlock",
+          "params": [
+            5,
+            -55,
+            0,
+            {
+              "block_id": "not_real",
+              "state": {}
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 19,
+            "error": {
+              "code": -32602,
+              "message": "unknown_block",
+              "data": {
+                "reason": "unknown_block",
+                "block_id": "minecraft:not_real"
+              }
+            }
+          }
+        },
+        {
+          "method": "world.setBlock",
+          "params": [
+            5,
+            -55,
+            0,
+            {
+              "block_id": "stone",
+              "state": {
+                "axis": "z"
+              }
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 20,
+            "error": {
+              "code": -32602,
+              "message": "unknown_property",
+              "data": {
+                "reason": "unknown_property",
+                "block_id": "minecraft:stone",
+                "property": "axis"
+              }
+            }
+          }
+        },
+        {
+          "method": "world.setBlock",
+          "params": [
+            5,
+            -55,
+            0,
+            {
+              "block_id": "oak_log",
+              "state": {
+                "axis": "w"
+              }
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 21,
+            "error": {
+              "code": -32602,
+              "message": "invalid_property_value",
+              "data": {
+                "reason": "invalid_property_value",
+                "property": "axis",
+                "allowed": [
+                  "x",
+                  "y",
+                  "z"
+                ],
+                "value": "w",
+                "block_id": "minecraft:oak_log"
+              }
+            }
+          }
+        },
+        {
+          "method": "world.setBlock",
+          "params": [
+            5,
+            -55,
+            0,
+            {
+              "block_id": "oak_log",
+              "state": {
+                "axis": "w"
+              }
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 22,
+            "error": {
+              "code": -32602,
+              "message": "invalid_property_value",
+              "data": {
+                "reason": "invalid_property_value",
+                "property": "axis",
+                "allowed": [
+                  "x",
+                  "y",
+                  "z"
+                ],
+                "value": "w",
+                "block_id": "minecraft:oak_log"
+              }
+            }
+          }
+        },
+        {
+          "method": "world.setBlock",
+          "params": [
+            3,
+            -55,
+            1,
+            {
+              "block_id": "oak_log",
+              "state": {
+                "axis": "x"
+              }
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 23,
+            "result": null
+          }
+        },
+        {
+          "method": "world.setBlock",
+          "params": [
+            4,
+            -55,
+            1,
+            {
+              "block_id": "gold_block",
+              "state": {}
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 24,
+            "result": null
+          }
+        },
+        {
+          "method": "world.getBlocks",
+          "params": [
+            4,
+            -55,
+            1,
+            3,
+            -55,
+            0
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 25,
+            "result": [
+              {
+                "block_id": "minecraft:oak_stairs",
+                "state": {
+                  "facing": "north",
+                  "half": "bottom",
+                  "shape": "straight",
+                  "waterlogged": false
+                }
+              },
+              {
+                "block_id": "minecraft:oak_log",
+                "state": {
+                  "axis": "x"
+                }
+              },
+              {
+                "block_id": "minecraft:oak_stairs",
+                "state": {
+                  "facing": "north",
+                  "half": "bottom",
+                  "shape": "straight",
+                  "waterlogged": false
+                }
+              },
+              {
+                "block_id": "minecraft:gold_block",
+                "state": {}
+              }
+            ]
+          }
+        },
+        {
+          "method": "world.getBlocks",
+          "params": [
+            0,
+            -55,
+            0,
+            10,
+            -55,
+            0
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 26,
+            "error": {
+              "code": -32000,
+              "message": "work_limit_exceeded",
+              "data": {
+                "reason": "work_limit_exceeded"
+              }
+            }
+          }
+        },
+        {
+          "method": "world.getBlocks",
+          "params": [
+            0,
+            -55,
+            0,
+            1.5,
+            -55,
+            0
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 27,
+            "error": {
+              "code": -32602,
+              "message": "invalid_params",
+              "data": {
+                "reason": "invalid_params",
+                "path": "params"
+              }
+            }
+          }
+        },
+        {
+          "method": "world.getBlockWithData",
+          "params": [
+            0,
+            -55,
+            0
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 28,
+            "error": {
+              "code": -32601,
+              "message": "method_not_found",
+              "data": {
+                "reason": "method_not_found"
+              }
+            }
+          }
+        },
+        {
+          "method": "world.setBlocks",
+          "params": [
+            64,
+            -52,
+            64,
+            95,
+            -21,
+            95,
+            {
+              "block_id": "minecraft:stone",
+              "state": {}
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 29,
+            "result": null
+          }
+        },
+        {
+          "method": "world.getBlock",
+          "params": [
+            95,
+            -21,
+            95
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 30,
+            "result": {
+              "block_id": "minecraft:stone",
+              "state": {}
+            }
+          }
+        },
+        {
+          "method": "world.setBlocks",
+          "params": [
+            64,
+            -52,
+            64,
+            95,
+            -21,
+            95,
+            {
+              "block_id": "gold_block",
+              "state": {}
+            }
+          ],
+          "notification": true
+        },
+        {
+          "method": "connection.flush",
+          "params": [],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 31,
+            "result": null
+          }
+        },
+        {
+          "method": "world.getBlock",
+          "params": [
+            95,
+            -21,
+            95
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 32,
+            "result": {
+              "block_id": "minecraft:gold_block",
+              "state": {}
+            }
+          }
+        },
+        {
+          "method": "world.setBlocks",
+          "params": [
+            0,
+            -52,
+            0,
+            330,
+            -42,
+            8,
+            {
+              "block_id": "minecraft:stone",
+              "state": {}
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 33,
+            "error": {
+              "code": -32000,
+              "message": "build_denied",
+              "data": {
+                "reason": "build_denied"
+              }
+            }
+          }
+        },
+        {
+          "method": "world.setBlock",
+          "params": [
+            0,
+            -55,
+            5,
+            {
+              "block_id": "oak_sign",
+              "state": {
+                "rotation": 0
+              }
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 34,
+            "result": null
+          }
+        },
+        {
+          "method": "world.setSign",
+          "params": [
+            0,
+            -55,
+            5,
+            {
+              "front": [
+                "Line 1",
+                "Line 2",
+                "",
+                ""
+              ]
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 35,
+            "result": null
+          }
+        },
+        {
+          "method": "world.setSign",
+          "params": [
+            0,
+            -55,
+            5,
+            {
+              "back": [
+                "Back 1",
+                "",
+                "",
+                ""
+              ]
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 36,
+            "result": null
+          }
+        },
+        {
+          "method": "world.setSign",
+          "params": [
+            0,
+            -55,
+            5,
+            {
+              "front": [
+                "",
+                "",
+                "",
+                ""
+              ],
+              "back": [
+                "",
+                "",
+                "",
+                ""
+              ]
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 37,
+            "result": null
+          }
+        },
+        {
+          "method": "world.setSign",
+          "params": [
+            1,
+            -55,
+            5,
+            {
+              "front": [
+                "a",
+                "",
+                "",
+                ""
+              ]
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 38,
+            "error": {
+              "code": -32000,
+              "message": "not_a_sign",
+              "data": {
+                "reason": "not_a_sign"
+              }
+            }
+          }
+        },
+        {
+          "method": "world.setSign",
+          "params": [
+            0,
+            -55,
+            5,
+            {}
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 39,
+            "error": {
+              "code": -32602,
+              "message": "invalid_params",
+              "data": {
+                "reason": "invalid_params",
+                "path": "params[3]"
+              }
+            }
+          }
+        },
+        {
+          "method": "world.setSign",
+          "params": [
+            0,
+            -55,
+            5,
+            {
+              "front": [
+                "a",
+                "b",
+                "c"
+              ]
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 40,
+            "error": {
+              "code": -32602,
+              "message": "invalid_params",
+              "data": {
+                "reason": "invalid_params",
+                "path": "params[3].front"
+              }
+            }
+          }
+        },
+        {
+          "method": "world.setSign",
+          "params": [
+            0,
+            -55,
+            5,
+            {
+              "front": [
+                "a",
+                1,
+                "c",
+                "d"
+              ]
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 41,
+            "error": {
+              "code": -32602,
+              "message": "invalid_params",
+              "data": {
+                "reason": "invalid_params",
+                "path": "params[3].front[1]"
+              }
+            }
+          }
+        },
+        {
+          "method": "world.setSign",
+          "params": [
+            0,
+            -55,
+            5,
+            {
+              "front": [
+                "a\nb",
+                "",
+                "",
+                ""
+              ]
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 42,
+            "error": {
+              "code": -32602,
+              "message": "invalid_params",
+              "data": {
+                "reason": "invalid_params",
+                "path": "params[3].front[0]"
+              }
+            }
+          }
+        },
+        {
+          "method": "world.setSign",
+          "params": [
+            0,
+            -55,
+            5,
+            {
+              "front": [
+                "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+                "",
+                "",
+                ""
+              ]
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 43,
+            "error": {
+              "code": -32602,
+              "message": "invalid_params",
+              "data": {
+                "reason": "invalid_params",
+                "path": "params[3].front[0]"
+              }
+            }
+          }
+        },
+        {
+          "method": "world.setSign",
+          "params": [
+            0,
+            -55,
+            5,
+            {
+              "side": [
+                "a",
+                "",
+                "",
+                ""
+              ]
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 44,
+            "error": {
+              "code": -32602,
+              "message": "invalid_params",
+              "data": {
+                "reason": "invalid_params",
+                "path": "params[3].side"
+              }
+            }
+          }
+        },
+        {
+          "method": "world.setBlock",
+          "params": [
+            2,
+            -55,
+            5,
+            {
+              "block_id": "oak_sign",
+              "state": {
+                "rotation": 0
+              }
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 45,
+            "result": null
+          }
+        },
+        {
+          "method": "world.setSign",
+          "params": [
+            2,
+            -55,
+            5,
+            {
+              "front": [
+                "plain",
+                "",
+                "",
+                ""
+              ]
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 46,
+            "result": null
+          }
+        },
+        {
+          "method": "world.getSign",
+          "params": [
+            2,
+            -55,
+            5
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 47,
+            "result": {
+              "back": [
+                {
+                  "decorations": [],
+                  "text": "",
+                  "color": "black"
+                },
+                {
+                  "decorations": [],
+                  "text": "",
+                  "color": "black"
+                },
+                {
+                  "decorations": [],
+                  "text": "",
+                  "color": "black"
+                },
+                {
+                  "decorations": [],
+                  "text": "",
+                  "color": "black"
+                }
+              ],
+              "front": [
+                {
+                  "decorations": [],
+                  "text": "plain",
+                  "color": "black"
+                },
+                {
+                  "decorations": [],
+                  "text": "",
+                  "color": "black"
+                },
+                {
+                  "decorations": [],
+                  "text": "",
+                  "color": "black"
+                },
+                {
+                  "decorations": [],
+                  "text": "",
+                  "color": "black"
+                }
+              ],
+              "waxed": false
+            }
+          }
+        },
+        {
+          "method": "world.setSign",
+          "params": [
+            2,
+            -55,
+            5,
+            {
+              "front": [
+                {
+                  "text": "styled",
+                  "color": "red",
+                  "decorations": [
+                    "bold",
+                    "italic",
+                    "underlined",
+                    "strikethrough",
+                    "obfuscated"
+                  ]
+                },
+                "",
+                "",
+                ""
+              ]
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 48,
+            "result": null
+          }
+        },
+        {
+          "method": "world.getSign",
+          "params": [
+            2,
+            -55,
+            5
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 49,
+            "result": {
+              "back": [
+                {
+                  "decorations": [],
+                  "text": "",
+                  "color": "black"
+                },
+                {
+                  "decorations": [],
+                  "text": "",
+                  "color": "black"
+                },
+                {
+                  "decorations": [],
+                  "text": "",
+                  "color": "black"
+                },
+                {
+                  "decorations": [],
+                  "text": "",
+                  "color": "black"
+                }
+              ],
+              "front": [
+                {
+                  "decorations": [
+                    "bold",
+                    "italic",
+                    "obfuscated",
+                    "strikethrough",
+                    "underlined"
+                  ],
+                  "text": "styled",
+                  "color": "red"
+                },
+                {
+                  "decorations": [],
+                  "text": "",
+                  "color": "black"
+                },
+                {
+                  "decorations": [],
+                  "text": "",
+                  "color": "black"
+                },
+                {
+                  "decorations": [],
+                  "text": "",
+                  "color": "black"
+                }
+              ],
+              "waxed": false
+            }
+          }
+        },
+        {
+          "method": "world.setSign",
+          "params": [
+            2,
+            -55,
+            5,
+            {
+              "front": [
+                {
+                  "text": "hexline",
+                  "color": "#123456"
+                },
+                "",
+                "",
+                ""
+              ]
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 50,
+            "result": null
+          }
+        },
+        {
+          "method": "world.getSign",
+          "params": [
+            2,
+            -55,
+            5
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 51,
+            "result": {
+              "back": [
+                {
+                  "decorations": [],
+                  "text": "",
+                  "color": "black"
+                },
+                {
+                  "decorations": [],
+                  "text": "",
+                  "color": "black"
+                },
+                {
+                  "decorations": [],
+                  "text": "",
+                  "color": "black"
+                },
+                {
+                  "decorations": [],
+                  "text": "",
+                  "color": "black"
+                }
+              ],
+              "front": [
+                {
+                  "decorations": [],
+                  "text": "hexline",
+                  "color": "#123456"
+                },
+                {
+                  "decorations": [],
+                  "text": "",
+                  "color": "black"
+                },
+                {
+                  "decorations": [],
+                  "text": "",
+                  "color": "black"
+                },
+                {
+                  "decorations": [],
+                  "text": "",
+                  "color": "black"
+                }
+              ],
+              "waxed": false
+            }
+          }
+        },
+        {
+          "method": "world.setSign",
+          "params": [
+            2,
+            -55,
+            5,
+            {
+              "front": [
+                "plain again",
+                {
+                  "text": "bold only",
+                  "decorations": [
+                    "bold"
+                  ]
+                },
+                "",
+                ""
+              ]
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 52,
+            "result": null
+          }
+        },
+        {
+          "method": "world.getSign",
+          "params": [
+            2,
+            -55,
+            5
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 53,
+            "result": {
+              "back": [
+                {
+                  "decorations": [],
+                  "text": "",
+                  "color": "black"
+                },
+                {
+                  "decorations": [],
+                  "text": "",
+                  "color": "black"
+                },
+                {
+                  "decorations": [],
+                  "text": "",
+                  "color": "black"
+                },
+                {
+                  "decorations": [],
+                  "text": "",
+                  "color": "black"
+                }
+              ],
+              "front": [
+                {
+                  "decorations": [],
+                  "text": "plain again",
+                  "color": "black"
+                },
+                {
+                  "decorations": [
+                    "bold"
+                  ],
+                  "text": "bold only",
+                  "color": "black"
+                },
+                {
+                  "decorations": [],
+                  "text": "",
+                  "color": "black"
+                },
+                {
+                  "decorations": [],
+                  "text": "",
+                  "color": "black"
+                }
+              ],
+              "waxed": false
+            }
+          }
+        },
+        {
+          "method": "world.getSign",
+          "params": [
+            1,
+            -55,
+            5
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 54,
+            "error": {
+              "code": -32000,
+              "message": "not_a_sign",
+              "data": {
+                "reason": "not_a_sign"
+              }
+            }
+          }
+        },
+        {
+          "method": "world.setSign",
+          "params": [
+            2,
+            -55,
+            5,
+            {
+              "front": [
+                {
+                  "text": "x",
+                  "color": "not_a_color"
+                },
+                "",
+                "",
+                ""
+              ]
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 55,
+            "error": {
+              "code": -32602,
+              "message": "invalid_property_value",
+              "data": {
+                "reason": "invalid_property_value",
+                "allowed": [
+                  "black",
+                  "dark_blue",
+                  "dark_green",
+                  "dark_aqua",
+                  "dark_red",
+                  "dark_purple",
+                  "gold",
+                  "gray",
+                  "dark_gray",
+                  "blue",
+                  "green",
+                  "aqua",
+                  "red",
+                  "light_purple",
+                  "yellow",
+                  "white",
+                  "#RRGGBB"
+                ],
+                "value": "not_a_color",
+                "property": "color"
+              }
+            }
+          }
+        },
+        {
+          "method": "world.setSign",
+          "params": [
+            2,
+            -55,
+            5,
+            {
+              "front": [
+                {
+                  "text": "x",
+                  "decorations": [
+                    "glowing"
+                  ]
+                },
+                "",
+                "",
+                ""
+              ]
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 56,
+            "error": {
+              "code": -32602,
+              "message": "invalid_property_value",
+              "data": {
+                "reason": "invalid_property_value",
+                "allowed": [
+                  "bold",
+                  "italic",
+                  "underlined",
+                  "strikethrough",
+                  "obfuscated"
+                ],
+                "value": "glowing",
+                "property": "decorations"
+              }
+            }
+          }
+        },
+        {
+          "method": "world.setSign",
+          "params": [
+            2,
+            -55,
+            5,
+            {
+              "front": [
+                {
+                  "text": "x",
+                  "decorations": "bold"
+                },
+                "",
+                "",
+                ""
+              ]
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 57,
+            "error": {
+              "code": -32602,
+              "message": "invalid_params",
+              "data": {
+                "reason": "invalid_params",
+                "path": "params[3].front[0].decorations"
+              }
+            }
+          }
+        },
+        {
+          "method": "world.setBlock",
+          "params": [
+            3,
+            -55,
+            5,
+            {
+              "block_id": "oak_sign",
+              "state": {
+                "rotation": 0
+              }
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 58,
+            "result": null
+          }
+        },
+        {
+          "method": "world.setSign",
+          "params": [
+            3,
+            -55,
+            5,
+            {
+              "front": [
+                "L0",
+                "L1",
+                "L2",
+                "L3"
+              ]
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 59,
+            "result": null
+          }
+        },
+        {
+          "method": "world.setSign",
+          "params": [
+            3,
+            -55,
+            5,
+            {
+              "back": [
+                "B0",
+                "B1",
+                "B2",
+                "B3"
+              ]
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 60,
+            "result": null
+          }
+        },
+        {
+          "method": "world.updateSignLine",
+          "params": [
+            3,
+            -55,
+            5,
+            "front",
+            1,
+            {
+              "text": "patched",
+              "color": "red",
+              "decorations": [
+                "bold"
+              ]
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 61,
+            "result": null
+          }
+        },
+        {
+          "method": "world.getSign",
+          "params": [
+            3,
+            -55,
+            5
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 62,
+            "result": {
+              "back": [
+                {
+                  "decorations": [],
+                  "text": "B0",
+                  "color": "black"
+                },
+                {
+                  "decorations": [],
+                  "text": "B1",
+                  "color": "black"
+                },
+                {
+                  "decorations": [],
+                  "text": "B2",
+                  "color": "black"
+                },
+                {
+                  "decorations": [],
+                  "text": "B3",
+                  "color": "black"
+                }
+              ],
+              "front": [
+                {
+                  "decorations": [],
+                  "text": "L0",
+                  "color": "black"
+                },
+                {
+                  "decorations": [
+                    "bold"
+                  ],
+                  "text": "patched",
+                  "color": "red"
+                },
+                {
+                  "decorations": [],
+                  "text": "L2",
+                  "color": "black"
+                },
+                {
+                  "decorations": [],
+                  "text": "L3",
+                  "color": "black"
+                }
+              ],
+              "waxed": false
+            }
+          }
+        },
+        {
+          "method": "world.updateSignLine",
+          "params": [
+            3,
+            -55,
+            5,
+            "back",
+            2,
+            "patched back"
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 63,
+            "result": null
+          }
+        },
+        {
+          "method": "world.getSign",
+          "params": [
+            3,
+            -55,
+            5
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 64,
+            "result": {
+              "back": [
+                {
+                  "decorations": [],
+                  "text": "B0",
+                  "color": "black"
+                },
+                {
+                  "decorations": [],
+                  "text": "B1",
+                  "color": "black"
+                },
+                {
+                  "decorations": [],
+                  "text": "patched back",
+                  "color": "black"
+                },
+                {
+                  "decorations": [],
+                  "text": "B3",
+                  "color": "black"
+                }
+              ],
+              "front": [
+                {
+                  "decorations": [],
+                  "text": "L0",
+                  "color": "black"
+                },
+                {
+                  "decorations": [
+                    "bold"
+                  ],
+                  "text": "patched",
+                  "color": "red"
+                },
+                {
+                  "decorations": [],
+                  "text": "L2",
+                  "color": "black"
+                },
+                {
+                  "decorations": [],
+                  "text": "L3",
+                  "color": "black"
+                }
+              ],
+              "waxed": false
+            }
+          }
+        },
+        {
+          "method": "world.updateSignLine",
+          "params": [
+            1,
+            -55,
+            5,
+            "front",
+            0,
+            "x"
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 65,
+            "error": {
+              "code": -32000,
+              "message": "not_a_sign",
+              "data": {
+                "reason": "not_a_sign"
+              }
+            }
+          }
+        },
+        {
+          "method": "world.updateSignLine",
+          "params": [
+            3,
+            -55,
+            5,
+            "left",
+            0,
+            "x"
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 66,
+            "error": {
+              "code": -32602,
+              "message": "invalid_params",
+              "data": {
+                "reason": "invalid_params",
+                "path": "params"
+              }
+            }
+          }
+        },
+        {
+          "method": "world.updateSignLine",
+          "params": [
+            3,
+            -55,
+            5,
+            "front",
+            4,
+            "x"
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 67,
+            "error": {
+              "code": -32602,
+              "message": "invalid_params",
+              "data": {
+                "reason": "invalid_params",
+                "path": "params"
+              }
+            }
+          }
+        },
+        {
+          "method": "world.spawnEntity",
+          "params": [
+            4.5,
+            -55,
+            4.5,
+            "minecraft:pig"
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 68,
+            "result": "mcr_eh_8V0r3qkrQfKCKDbh7GqnNQ"
+          }
+        },
+        {
+          "method": "entity.getPose",
+          "params": [
+            "mcr_eh_8V0r3qkrQfKCKDbh7GqnNQ"
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 69,
+            "result": {
+              "dimension": "minecraft:overworld",
+              "pos": [
+                4.5,
+                -55,
+                4.5
+              ],
+              "yaw": 0,
+              "pitch": 0
+            }
+          }
+        },
+        {
+          "method": "entity.remove",
+          "params": [
+            "mcr_eh_8V0r3qkrQfKCKDbh7GqnNQ"
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 70,
+            "result": null
+          }
+        },
+        {
+          "method": "events.poll",
+          "params": [
+            0
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 71,
+            "result": {
+              "events": [],
+              "through_sequence": 0,
+              "latest_sequence": 0,
+              "filtered_out": 0,
+              "overflow_dropped_total": 0,
+              "capacity_dropped_total": 0,
+              "explicitly_discarded_total": 0
+            }
+          }
+        },
+        {
+          "method": "world.spawnParticle",
+          "params": [
+            0,
+            -54,
+            0,
+            0,
+            0,
+            0,
+            "minecraft:flame",
+            0,
+            1
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 72,
+            "result": 1
+          }
+        },
+        {
+          "method": "chat.post",
+          "params": [
+            "b10 local compatibility pulse"
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 73,
+            "result": null
+          }
+        },
+        {
+          "method": "connection.flush",
+          "params": [],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 74,
+            "result": null
+          }
+        }
+      ],
+      "source_commit": "7960a913a11c621d85e6120ee412b696fe125457",
+      "paper_build": 203,
+      "paper_server_sha256": "0fcb63f341abe5d8370d354bb2e39d47c917d8010c817f4567f89e97b5c3ecf9",
+      "java_version": "openjdk version \"25.0.2\" 2026-01-20\nOpenJDK Runtime Environment (build 25.0.2+10-69)\nOpenJDK 64-Bit Server VM (build 25.0.2+10-69, mixed mode, sharing)"
+    },
+    "ordinary_restart": {
+      "schema": "mc-remote.local-compatibility-pulse",
+      "schema_version": 1,
+      "minecraft_version": "26.3",
+      "jar_sha256": "ce66abaf41a94800217a11161145b9f868333b7bfa605fd1f77b888878620e50",
+      "declaration_sha256": "8e830732decd6bcde13f91eb6c071d062ba6993342a7edb52e6ea543b9e0c361",
+      "declared_versions": [
+        "1.21.11",
+        "26.3"
+      ],
+      "restart_only": true,
+      "status": "PASS",
+      "assertions": [
+        "authenticated_hello_and_bundled_targets",
+        "resource_catalog",
+        "structured_block_read_write",
+        "ordinary_restart_authenticated_read_write"
+      ],
+      "non_claims": [
+        "live player event callbacks",
+        "classroom load/MSPT",
+        "public world migration"
+      ],
+      "transcript": [
+        {
+          "method": "hello",
+          "params": {
+            "protocol": "23.2.1",
+            "auth": {
+              "token": "[REDACTED_TOKEN]"
+            },
+            "build": {
+              "dimension": "overworld",
+              "origin": [
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 1,
+            "result": {
+              "protocol": "23.2.1",
+              "mc_version": "26.3",
+              "supported_mc_versions": [
+                "1.21.11",
+                "26.3"
+              ],
+              "world_constants": {
+                "y_sea": -64
+              },
+              "catalogHash": "3eaae42e9bcbd5e6ef6a2d1df702b25a878ca3157dcadc58ae29822fe5277663",
+              "player": "[REDACTED_UUID]",
+              "dimension": "minecraft:overworld",
+              "origin": [
+                0,
+                0,
+                0
+              ],
+              "permissions": {
+                "online": true,
+                "offline": true,
+                "buildRange": 1000
+              }
+            }
+          }
+        },
+        {
+          "method": "catalog.get",
+          "params": [],
+          "response": {
+            "id": 2,
+            "result_summary": {
+              "keys": [
+                "block",
+                "catalogHash",
+                "entity",
+                "particle"
+              ],
+              "sha256": "7c758470e450aa2353e6d8bbbccf8272088ff96ef24d7682b5f12850032f6513"
+            }
+          }
+        },
+        {
+          "method": "build.setDimension",
+          "params": [
+            "minecraft:overworld"
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 3,
+            "result": {
+              "dimension": "minecraft:overworld",
+              "origin": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        },
+        {
+          "method": "world.getBlock",
+          "params": [
+            0,
+            0,
+            0
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 4,
+            "result": {
+              "block_id": "minecraft:air",
+              "state": {}
+            }
+          }
+        },
+        {
+          "method": "world.getHeight",
+          "params": [
+            0,
+            0
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 5,
+            "result": -55
+          }
+        },
+        {
+          "method": "world.setBlock",
+          "params": [
+            0,
+            -54,
+            0,
+            {
+              "block_id": "gold_block",
+              "state": {}
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 6,
+            "result": null
+          }
+        },
+        {
+          "method": "world.getBlock",
+          "params": [
+            0,
+            -54,
+            0
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 7,
+            "result": {
+              "block_id": "minecraft:gold_block",
+              "state": {}
+            }
+          }
+        },
+        {
+          "method": "world.setBlock",
+          "params": [
+            1,
+            -54,
+            0,
+            {
+              "block_id": "oak_log",
+              "state": {
+                "axis": "z"
+              }
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 8,
+            "result": null
+          }
+        },
+        {
+          "method": "world.getBlock",
+          "params": [
+            1,
+            -54,
+            0
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 9,
+            "result": {
+              "block_id": "minecraft:oak_log",
+              "state": {
+                "axis": "z"
+              }
+            }
+          }
+        },
+        {
+          "method": "world.setBlock",
+          "params": [
+            2,
+            -54,
+            0,
+            {
+              "block_id": "oak_stairs",
+              "state": {
+                "waterlogged": true,
+                "half": "top",
+                "facing": "east"
+              }
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 10,
+            "result": null
+          }
+        },
+        {
+          "method": "world.getBlock",
+          "params": [
+            2,
+            -54,
+            0
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 11,
+            "result": {
+              "block_id": "minecraft:oak_stairs",
+              "state": {
+                "facing": "east",
+                "half": "top",
+                "shape": "straight",
+                "waterlogged": true
+              }
+            }
+          }
+        },
+        {
+          "method": "world.setBlocks",
+          "params": [
+            3,
+            -54,
+            0,
+            4,
+            -54,
+            0,
+            {
+              "block_id": "oak_stairs",
+              "state": {
+                "facing": "north"
+              }
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 12,
+            "result": null
+          }
+        },
+        {
+          "method": "world.getBlock",
+          "params": [
+            3,
+            -54,
+            0
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 13,
+            "result": {
+              "block_id": "minecraft:oak_stairs",
+              "state": {
+                "facing": "north",
+                "half": "bottom",
+                "shape": "straight",
+                "waterlogged": false
+              }
+            }
+          }
+        },
+        {
+          "method": "world.getBlock",
+          "params": [
+            4,
+            -54,
+            0
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 14,
+            "result": {
+              "block_id": "minecraft:oak_stairs",
+              "state": {
+                "facing": "north",
+                "half": "bottom",
+                "shape": "straight",
+                "waterlogged": false
+              }
+            }
+          }
+        },
+        {
+          "method": "world.setBlock",
+          "params": [
+            5,
+            -54,
+            0,
+            "stone"
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 15,
+            "error": {
+              "code": -32602,
+              "message": "invalid_params",
+              "data": {
+                "reason": "invalid_params",
+                "path": "params[3]"
+              }
+            }
+          }
+        },
+        {
+          "method": "world.setBlock",
+          "params": [
+            5,
+            -54,
+            0,
+            {
+              "block_id": "stone"
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 16,
+            "error": {
+              "code": -32602,
+              "message": "invalid_params",
+              "data": {
+                "reason": "invalid_params",
+                "path": "params[3].state"
+              }
+            }
+          }
+        },
+        {
+          "method": "world.setBlock",
+          "params": [
+            5,
+            -54,
+            0,
+            {
+              "block_id": "stone",
+              "state": {},
+              "ref": "stone"
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 17,
+            "error": {
+              "code": -32602,
+              "message": "invalid_params",
+              "data": {
+                "reason": "invalid_params",
+                "path": "params[3].ref"
+              }
+            }
+          }
+        },
+        {
+          "method": "world.setBlock",
+          "params": [
+            5,
+            -54,
+            0,
+            {
+              "block_id": "oak_log",
+              "state": {
+                "axis": [
+                  "z"
+                ]
+              }
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 18,
+            "error": {
+              "code": -32602,
+              "message": "invalid_params",
+              "data": {
+                "reason": "invalid_params",
+                "path": "params[3].state.axis"
+              }
+            }
+          }
+        },
+        {
+          "method": "world.setBlock",
+          "params": [
+            5,
+            -54,
+            0,
+            {
+              "block_id": "not_real",
+              "state": {}
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 19,
+            "error": {
+              "code": -32602,
+              "message": "unknown_block",
+              "data": {
+                "reason": "unknown_block",
+                "block_id": "minecraft:not_real"
+              }
+            }
+          }
+        },
+        {
+          "method": "world.setBlock",
+          "params": [
+            5,
+            -54,
+            0,
+            {
+              "block_id": "stone",
+              "state": {
+                "axis": "z"
+              }
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 20,
+            "error": {
+              "code": -32602,
+              "message": "unknown_property",
+              "data": {
+                "reason": "unknown_property",
+                "property": "axis",
+                "block_id": "minecraft:stone"
+              }
+            }
+          }
+        },
+        {
+          "method": "world.setBlock",
+          "params": [
+            5,
+            -54,
+            0,
+            {
+              "block_id": "oak_log",
+              "state": {
+                "axis": "w"
+              }
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 21,
+            "error": {
+              "code": -32602,
+              "message": "invalid_property_value",
+              "data": {
+                "reason": "invalid_property_value",
+                "allowed": [
+                  "x",
+                  "y",
+                  "z"
+                ],
+                "property": "axis",
+                "block_id": "minecraft:oak_log",
+                "value": "w"
+              }
+            }
+          }
+        },
+        {
+          "method": "world.setBlock",
+          "params": [
+            5,
+            -54,
+            0,
+            {
+              "block_id": "oak_log",
+              "state": {
+                "axis": "w"
+              }
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 22,
+            "error": {
+              "code": -32602,
+              "message": "invalid_property_value",
+              "data": {
+                "reason": "invalid_property_value",
+                "allowed": [
+                  "x",
+                  "y",
+                  "z"
+                ],
+                "property": "axis",
+                "block_id": "minecraft:oak_log",
+                "value": "w"
+              }
+            }
+          }
+        },
+        {
+          "method": "world.setBlock",
+          "params": [
+            3,
+            -54,
+            1,
+            {
+              "block_id": "oak_log",
+              "state": {
+                "axis": "x"
+              }
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 23,
+            "result": null
+          }
+        },
+        {
+          "method": "world.setBlock",
+          "params": [
+            4,
+            -54,
+            1,
+            {
+              "block_id": "gold_block",
+              "state": {}
+            }
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 24,
+            "result": null
+          }
+        },
+        {
+          "method": "world.getBlocks",
+          "params": [
+            4,
+            -54,
+            1,
+            3,
+            -54,
+            0
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 25,
+            "result": [
+              {
+                "block_id": "minecraft:oak_stairs",
+                "state": {
+                  "facing": "north",
+                  "half": "bottom",
+                  "shape": "straight",
+                  "waterlogged": false
+                }
+              },
+              {
+                "block_id": "minecraft:oak_log",
+                "state": {
+                  "axis": "x"
+                }
+              },
+              {
+                "block_id": "minecraft:oak_stairs",
+                "state": {
+                  "facing": "north",
+                  "half": "bottom",
+                  "shape": "straight",
+                  "waterlogged": false
+                }
+              },
+              {
+                "block_id": "minecraft:gold_block",
+                "state": {}
+              }
+            ]
+          }
+        },
+        {
+          "method": "world.getBlocks",
+          "params": [
+            0,
+            -54,
+            0,
+            10,
+            -54,
+            0
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 26,
+            "error": {
+              "code": -32000,
+              "message": "work_limit_exceeded",
+              "data": {
+                "reason": "work_limit_exceeded"
+              }
+            }
+          }
+        },
+        {
+          "method": "world.getBlocks",
+          "params": [
+            0,
+            -54,
+            0,
+            1.5,
+            -54,
+            0
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 27,
+            "error": {
+              "code": -32602,
+              "message": "invalid_params",
+              "data": {
+                "reason": "invalid_params",
+                "path": "params"
+              }
+            }
+          }
+        },
+        {
+          "method": "world.getBlockWithData",
+          "params": [
+            0,
+            -54,
+            0
+          ],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 28,
+            "error": {
+              "code": -32601,
+              "message": "method_not_found",
+              "data": {
+                "reason": "method_not_found"
+              }
+            }
+          }
+        },
+        {
+          "method": "connection.flush",
+          "params": [],
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 29,
+            "result": null
+          }
+        }
+      ],
+      "source_commit": "7960a913a11c621d85e6120ee412b696fe125457",
+      "paper_build": 203,
+      "paper_server_sha256": "0fcb63f341abe5d8370d354bb2e39d47c917d8010c817f4567f89e97b5c3ecf9",
+      "java_version": "openjdk version \"25.0.2\" 2026-01-20\nOpenJDK Runtime Environment (build 25.0.2+10-69)\nOpenJDK 64-Bit Server VM (build 25.0.2+10-69, mixed mode, sharing)"
+    },
+    "lifecycle": {
+      "source_commit": "7960a913a11c621d85e6120ee412b696fe125457",
+      "minecraft_version": "26.3",
+      "jar_sha256": "ce66abaf41a94800217a11161145b9f868333b7bfa605fd1f77b888878620e50",
+      "observations": [
+        {
+          "enabled": true,
+          "disabled": true,
+          "ready": true,
+          "auth_enforcement_on": true,
+          "exit_code": 0
+        },
+        {
+          "enabled": true,
+          "disabled": true,
+          "ready": true,
+          "auth_enforcement_on": true,
+          "exit_code": 0
+        }
+      ]
+    }
+  }
+}

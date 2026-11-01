@@ -1,0 +1,320 @@
+{
+  "source_commit": "ffb496ed50d751d307f685f2ae555c94c893fae5",
+  "generator_source_commit": "d3aa547ccfdfa00e7164d89df72cfc29cde497eb",
+  "file": "scratch-block-reference-2321.0.0.tar.gz",
+  "bytes": 247864,
+  "sha256": "76eda18e7fd92ebd3366eff7c01104bca7bb8143b44c19c88db70fbac28ee708",
+  "entry_matches_versioned_files": true,
+  "files": [
+    {
+      "file": "blocks.json",
+      "bytes": 89128,
+      "sha256": "5e62c30889c752c18b7c14cef42109bc93774c85ad59575f3f6244520c7f64a3"
+    },
+    {
+      "file": "images/block-info-example.svg",
+      "bytes": 11874,
+      "sha256": "8188fdd3f9336d41def6313e5f1672819eba28224a93ffafe608f70b0f53998c"
+    },
+    {
+      "file": "images/blockInfoHasStateProperty.svg",
+      "bytes": 6571,
+      "sha256": "e5dc6a59b3c8024084339019454f35c220b1d202f092cdd4d13e48ea48c88700"
+    },
+    {
+      "file": "images/blockInfoId.svg",
+      "bytes": 3736,
+      "sha256": "5d250275cfe2b761b71df1de551b1a299f56bb49a00c022672d7d394a6bafd10"
+    },
+    {
+      "file": "images/blockInfoState.svg",
+      "bytes": 3743,
+      "sha256": "472fed4c64156d425b947d3fd96b4df9657c5640c2c70baa227dce7c1ae28588"
+    },
+    {
+      "file": "images/blockInfoStateProperty.svg",
+      "bytes": 5989,
+      "sha256": "c3b3d4f4552b8fcf8146b13e5da23c5697b558f9e2d3d38a48ee6f9648d153bc"
+    },
+    {
+      "file": "images/blockParticleSpec.svg",
+      "bytes": 9057,
+      "sha256": "663f5a6ea35900437e309792237b0e6aaef867a2e13db99426c7adb50a8cb02e"
+    },
+    {
+      "file": "images/catalogToList.svg",
+      "bytes": 8757,
+      "sha256": "c7ff2cf4c72e9b91fa24c8cf013516fba0bd216ae86bdd6a5b3bcfb2ba2a2fab"
+    },
+    {
+      "file": "images/connect.svg",
+      "bytes": 2542,
+      "sha256": "e4b7b981054864b5222a3d93e2c9e26707b745a79313d24629a01630119a525f"
+    },
+    {
+      "file": "images/dustParticleSpec.svg",
+      "bytes": 14744,
+      "sha256": "f6e52ce2c69a69811814ba553807cc25f37bfe4a3373b5c6c388331ea303453f"
+    },
+    {
+      "file": "images/entityDirection.svg",
+      "bytes": 6808,
+      "sha256": "a6250bc47698845d7943b7755586f5caf5536f41fda97a9aac76126477345fcc"
+    },
+    {
+      "file": "images/entityInfo.svg",
+      "bytes": 6729,
+      "sha256": "dc38f253b47371d4da878f15db720453004dbdfe40f6002786c73d8aefb82d58"
+    },
+    {
+      "file": "images/entityPoseInfo.svg",
+      "bytes": 6730,
+      "sha256": "d83b9b8722b4c112057786b3d88fcf048b1d24ae4d23fd395820cac306dafe40"
+    },
+    {
+      "file": "images/eventStatus.svg",
+      "bytes": 3931,
+      "sha256": "6302d446eabacf806ce10f58908c8ccb14334704bab240bb3a15cd89cee7421c"
+    },
+    {
+      "file": "images/eventValue.svg",
+      "bytes": 3960,
+      "sha256": "8c82e4cd46583518b1dc11e155d158a536395e2d906281c189a406c60aa16248"
+    },
+    {
+      "file": "images/flushBuildCommands.svg",
+      "bytes": 2596,
+      "sha256": "cd5e9079facd9dab434898f8b8e589c5ced27cbcecfbe15a8b32a6fcde64ae9b"
+    },
+    {
+      "file": "images/getBlock.svg",
+      "bytes": 9986,
+      "sha256": "ca615a3aff7b3833c95c5fd106f5f75cf63a176185f73f8ed975376bfa98cb7b"
+    },
+    {
+      "file": "images/getBlocks.svg",
+      "bytes": 22705,
+      "sha256": "e2d1afc0a0443e5c9bd121dd5507bba9d5f847e584b3dd85aa2ed29e68e96536"
+    },
+    {
+      "file": "images/getEntityPose.svg",
+      "bytes": 4357,
+      "sha256": "8a41d4bf9f2909b9de4c05391b3026c6c764b3610c9053ec6c1970768b0877eb"
+    },
+    {
+      "file": "images/getHeight.svg",
+      "bytes": 7147,
+      "sha256": "0e7e6c9017f07cdd67c4ef7125f56f74cd1a3cee102d083a4dd2e4d4c280c535"
+    },
+    {
+      "file": "images/getHeightBelow.svg",
+      "bytes": 10005,
+      "sha256": "5f849b61face648d7c602e11cde8dcf294bcc7c604f3a8d93ef0c97d271aa65d"
+    },
+    {
+      "file": "images/getNearbyEntities.svg",
+      "bytes": 19893,
+      "sha256": "6d9dc27d1ad457d95d5ac7425acc9ebe9340de8ee1a280ed91e0aeebfebb5b21"
+    },
+    {
+      "file": "images/getSign.svg",
+      "bytes": 9998,
+      "sha256": "1bfed9e677690e33f307d74495fd2fff521c3170dc5b20be50c79c7418242375"
+    },
+    {
+      "file": "images/isMcRemoteError.svg",
+      "bytes": 3708,
+      "sha256": "2b98c390a26f793a1794551c4e29bd6a92c1adabc47fd928a03b398e9e894ed6"
+    },
+    {
+      "file": "images/pairCode.svg",
+      "bytes": 1467,
+      "sha256": "b12a35709ca367dbe0a416da9db78e49f053d1fc7c16891b60be5feba2217aeb"
+    },
+    {
+      "file": "images/pairCommand.svg",
+      "bytes": 1484,
+      "sha256": "69e26894135da6b05797b11f4847782d18ac1c77da9acc038b93fe5c87941933"
+    },
+    {
+      "file": "images/particleSpec.svg",
+      "bytes": 6214,
+      "sha256": "e5c5e7669eaf83d3aeccbd7f2c6602b9b480060788a67f55a01b20bce832eb2d"
+    },
+    {
+      "file": "images/playBlockSound.svg",
+      "bytes": 16351,
+      "sha256": "12c20f945e9753fc21d992cad11f9a80749d7edde778843a2060a3f56ee22a3c"
+    },
+    {
+      "file": "images/playSound.svg",
+      "bytes": 16153,
+      "sha256": "468cca1501c3ef6d3b26436fb4bd63d30a056afe92f8538a7ccd2f339a2066cd"
+    },
+    {
+      "file": "images/playerAttribute.svg",
+      "bytes": 3925,
+      "sha256": "66759d291f80ff5da64444213c8aa7bb50f9e094b1b620012a965892dc4eb860"
+    },
+    {
+      "file": "images/playerDirection.svg",
+      "bytes": 3926,
+      "sha256": "533e8bf019594105720e8c66e5f180208567c0b09b39a898ab71fcfc385c7f2b"
+    },
+    {
+      "file": "images/postToChat.svg",
+      "bytes": 5427,
+      "sha256": "d7d4302d012b7dd6dbb51eb2f32d08b0f8af46920581ce8b6100afde71836f26"
+    },
+    {
+      "file": "images/removeEntity.svg",
+      "bytes": 5443,
+      "sha256": "7a0cbdd9faa66631cfbf010cc032785b703fe55d4fab1dd3bb70b61b0ddcc38d"
+    },
+    {
+      "file": "images/setBlock.svg",
+      "bytes": 17631,
+      "sha256": "d7c9a7c0e320ea39a319e66f1ae550778e96b8235abcfa0300276d20fc3465f9"
+    },
+    {
+      "file": "images/setBlocks.svg",
+      "bytes": 26146,
+      "sha256": "10d3f364410171ff7b7a9cafed58d1a1acf372768d1cbcacd8fdfc87bdc43fd5"
+    },
+    {
+      "file": "images/setBuildMode.svg",
+      "bytes": 9425,
+      "sha256": "b81ac7fee8b2379a36826c6b5b6f83d9e031e6477b21a6c5c7657d4aba6efc79"
+    },
+    {
+      "file": "images/setBuildOrigin.svg",
+      "bytes": 8341,
+      "sha256": "39ae27f1448617232722ba558ae7f594d0a0ffbf9f17bfc3e1185a1d10a9e039"
+    },
+    {
+      "file": "images/setDimension.svg",
+      "bytes": 6486,
+      "sha256": "0cdf2c2c19185bca607a83a96781fc19fedbbf2f6104b8382ae673d07ac2c3c3"
+    },
+    {
+      "file": "images/setEntityDirection.svg",
+      "bytes": 13940,
+      "sha256": "0c3778e230647dfd3a39794bf0ac69c50ac76a1108d38a6a0c6090d585735b00"
+    },
+    {
+      "file": "images/setEntityPose.svg",
+      "bytes": 23593,
+      "sha256": "c69f85f2d0570b8ca4f50d24a2f273ef9d155ece7d49cb81bc188ad2705ef20d"
+    },
+    {
+      "file": "images/setPlayerDirection.svg",
+      "bytes": 11104,
+      "sha256": "b6bda625fed7776eaf72a4668574ad67304a556649b7fe989477ec793fd7b68b"
+    },
+    {
+      "file": "images/setPlayerPos.svg",
+      "bytes": 15005,
+      "sha256": "d5baaf3133743c398604a81fde84a9e9d1bb7477896712e65d57171234926517"
+    },
+    {
+      "file": "images/setPlayerPose.svg",
+      "bytes": 20687,
+      "sha256": "e8440004219c9238de33b099a85ab9a326884435baf99f26b53a39f1d01b0c76"
+    },
+    {
+      "file": "images/setPlayerXYZ.svg",
+      "bytes": 11104,
+      "sha256": "6fbe04381f2e5ff9c7196fc61777cce5a8b8f21631ecfc993d67ec40e7895283"
+    },
+    {
+      "file": "images/setSign.svg",
+      "bytes": 23563,
+      "sha256": "e2e5408cc67c427ec1dbb3f5d0032d0f2d65ba9886c9751b652c84afcd2f5e0d"
+    },
+    {
+      "file": "images/signIsWaxed.svg",
+      "bytes": 3610,
+      "sha256": "65f9577349729219a5bc3832b904539e90a12cff6472bdd32bcb859c983b1115"
+    },
+    {
+      "file": "images/signLineColor.svg",
+      "bytes": 9189,
+      "sha256": "80fe2bfcda4d6e58b5a35646a8b51300e9107218b9e0b45b0e006d17abe7cacf"
+    },
+    {
+      "file": "images/signLineHasDecoration.svg",
+      "bytes": 12227,
+      "sha256": "1fceaec435b3b46fd7d1aec972fca5e05f2eccb5770f6f4f602253e0d6f03e19"
+    },
+    {
+      "file": "images/signLineText.svg",
+      "bytes": 9191,
+      "sha256": "941956429dce3f02749884dedf6708458019a09f61740dd1096ac93213ac5dd6"
+    },
+    {
+      "file": "images/sound-example.svg",
+      "bytes": 24061,
+      "sha256": "632ddf1a249f9b98e6580a9b2abdaf0c4031615e4c5cef6e493fe366b3adf0e1"
+    },
+    {
+      "file": "images/soundOptions.svg",
+      "bytes": 9617,
+      "sha256": "690d4e826ae5d202c2663c5d0f129606b0f758804b15e67c59641329dfa1fb80"
+    },
+    {
+      "file": "images/spawnEntity.svg",
+      "bytes": 17096,
+      "sha256": "b977d011073964c9a143d6755975eda45860e9a35eceff0d35d8533bd5ddb9da"
+    },
+    {
+      "file": "images/spawnParticle.svg",
+      "bytes": 32089,
+      "sha256": "d64a7272bae723d1b4dd425c372db6440e731ad8f7b38c7f0f7b2303cda1fced"
+    },
+    {
+      "file": "images/strikeLightning.svg",
+      "bytes": 11090,
+      "sha256": "55f7e5a48887a6402e73fd4428a25b4a79065c76be8cc0e34d1aa8ecabf1a557"
+    },
+    {
+      "file": "images/updateSignLine.svg",
+      "bytes": 19450,
+      "sha256": "c8e4d303a8438f21e7a6924cb6ed6f9aa8cb09b270519b1619e868c88d2bcbdb"
+    },
+    {
+      "file": "images/whenChatPosted.svg",
+      "bytes": 2069,
+      "sha256": "99bf7e3404ab95ce4f83dcb628db5143b866a80bb3cd02aa8a9ae4551557a5ce"
+    },
+    {
+      "file": "images/whenPaired.svg",
+      "bytes": 2058,
+      "sha256": "c8de3e8201414c2d9d7a1de0e379bdd0512ab1845243b213fd7c1431dfd57f6a"
+    },
+    {
+      "file": "images/whenPickaxePoke.svg",
+      "bytes": 2085,
+      "sha256": "5cc8af13b31134daaa727ec9f30c70a2a70db306782eed9b6b54d10693e3105e"
+    },
+    {
+      "file": "images/whenProjectileHit.svg",
+      "bytes": 2068,
+      "sha256": "56a280113596e75c8703b0c4caac28f9af55f0ba1668da9f96d819c13e32d7c0"
+    },
+    {
+      "file": "index.html",
+      "bytes": 124776,
+      "sha256": "c2dbcc5fc67b905384c1266bc4c74085e3fcc511f1cfaefded6646cb790d7277"
+    },
+    {
+      "file": "page.js",
+      "bytes": 2923,
+      "sha256": "96c14191b02d6b3603047aed4507f8d41ab5e36b3ce28d9e96c928615a3718a1"
+    },
+    {
+      "file": "style.css",
+      "bytes": 10005,
+      "sha256": "bf382b3a5ff2cca2d6d8fed978603fa654ab165dbb636422b9379aa138fd2d14"
+    }
+  ]
+}

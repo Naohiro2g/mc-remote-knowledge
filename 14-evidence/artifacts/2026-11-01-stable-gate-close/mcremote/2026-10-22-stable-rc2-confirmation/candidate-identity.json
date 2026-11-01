@@ -1,0 +1,13 @@
+{
+  "source_commit": "7960a913a11c621d85e6120ee412b696fe125457",
+  "ci_run": 39699287525,
+  "ci_status": "success",
+  "artifact_id": 12392277293,
+  "artifact_archive_bytes": 294765,
+  "artifact_archive_sha256": "7bbcaae733df60baa4502eadcca3e027b28388a729b8f72e00bc176453d24edc",
+  "jar_bytes": 315871,
+  "jar_sha256": "ce66abaf41a94800217a11161145b9f868333b7bfa605fd1f77b888878620e50",
+  "origin": "CI mc-remote-candidate artifact; fixed before runtime validation",
+  "local_pre_clean_difference": "Only an untracked, empty src/main/resources/META-INF/licenses/sqlite-jdbc/ directory was present locally; removed the empty directory, then ./gradlew clean jar reproduced the exact CI bytes. No file content differed.",
+  "clean_local_jar_byte_match": true
+}

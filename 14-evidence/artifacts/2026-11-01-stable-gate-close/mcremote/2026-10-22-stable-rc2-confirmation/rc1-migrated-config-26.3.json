@@ -1,0 +1,16 @@
+{
+  "source_commit": "7960a913a11c621d85e6120ee412b696fe125457",
+  "minecraft_version": "26.3",
+  "paper_build": 203,
+  "paper_server_sha256": "0fcb63f341abe5d8370d354bb2e39d47c917d8010c817f4567f89e97b5c3ecf9",
+  "jar_sha256": "ce66abaf41a94800217a11161145b9f868333b7bfa605fd1f77b888878620e50",
+  "java_version": "openjdk version \"25.0.2\" 2026-01-20\nOpenJDK Runtime Environment (build 25.0.2+10-69)\nOpenJDK 64-Bit Server VM (build 25.0.2+10-69, mixed mode, sharing)",
+  "status": "PASS",
+  "rc1_jar_sha256": "917c358c201aa219277b96a447fb85116e8bdb0260870a4d76a8c51219d31c37",
+  "actual_rc1_migration_observed": true,
+  "rc2_config_byte_unchanged": true,
+  "config_sha256": "57d29a381899eb217dad382a13604ef9275429c3e91ca5b4e755a84f8e088cbf",
+  "entity_handle_capacity": 8,
+  "lightning_global_per_tick": 5,
+  "authenticated_read_write_pulse": "rc1-migrated-pulse-26.3.json"
+}

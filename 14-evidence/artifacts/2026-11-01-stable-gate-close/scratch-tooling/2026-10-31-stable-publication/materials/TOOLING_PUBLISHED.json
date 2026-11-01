@@ -1,0 +1,51 @@
+{
+  "knowledge_contract_path": "00-hub/stable-gate-release-instructions_ja.md",
+  "knowledge_contract_commit": "9dee6881a414a2b1fd4a37fa4fe26ddbedd9d8a5",
+  "runtime_knowledge_commit": "71786f5cd86edd66fc860dd0c855af3a5f91bb59",
+  "repo": "Naohiro2g/minecraft-remote-tooling",
+  "default_branch": "main",
+  "default_branch_head": "6447f6e8cbfbeeb9d229990b5c4f6e82a5875666",
+  "tag": "v2321.0.0",
+  "tag_target": "6447f6e8cbfbeeb9d229990b5c4f6e82a5875666",
+  "tag_object": "3186f47f63f44d9d28eee6ed1e6e3ec6afb573a8",
+  "release": {
+    "assets": [
+      {
+        "browser_download_url": "https://github.com/Naohiro2g/minecraft-remote-tooling/releases/download/v2321.0.0/bridge.oci.tar",
+        "digest": "sha256:3982876466fb860dca250438d73e18e441a2a85d67d9f149f537a7a8d1a1c44c",
+        "id": 695682680,
+        "name": "bridge.oci.tar",
+        "size": 114626048
+      },
+      {
+        "browser_download_url": "https://github.com/Naohiro2g/minecraft-remote-tooling/releases/download/v2321.0.0/wirescope-app.manifest.json",
+        "digest": "sha256:3dd668a236463809a4cdc6d19375f3e6d75eea0c8089a616d2b761d3a4a05235",
+        "id": 695682679,
+        "name": "wirescope-app.manifest.json",
+        "size": 2339
+      },
+      {
+        "browser_download_url": "https://github.com/Naohiro2g/minecraft-remote-tooling/releases/download/v2321.0.0/wirescope-app.zip",
+        "digest": "sha256:da3da0b6cf4d05265bc0c11abaa4913208c7cfc3600b0c3e78c93a356fc431ad",
+        "id": 695682678,
+        "name": "wirescope-app.zip",
+        "size": 83854
+      }
+    ],
+    "draft": false,
+    "html_url": "https://github.com/Naohiro2g/minecraft-remote-tooling/releases/tag/v2321.0.0",
+    "id": 430004222,
+    "prerelease": false,
+    "published_at": "2026-10-31T15:05:53Z",
+    "tag_name": "v2321.0.0"
+  },
+  "latest": true,
+  "bridge_index": "sha256:305d6e38b36e195a0e158522f32f3a8c45d39da2aeec7b7e46f785c920406acf",
+  "all_assets_match_frozen": true,
+  "rebuild": false,
+  "publication_run_id": null,
+  "source_candidate_run_id": 39053886890,
+  "scratch_status": "waiting_for_coordinator_tooling_verification",
+  "scratch_develop": "bee41dc9629ee3225c19ef1d6be1299b6b4bf7d1",
+  "scratch_tag_created": false
+}

@@ -1,0 +1,134 @@
+{
+  "source_materials": [
+    {
+      "path": "2026-10-31-stable-python-release/materials/provider-preflight.json",
+      "bytes": 68013,
+      "sha256": "143ca67ecb9c53219aa2d9f6129124b9991fa38309693e054568d928a9a66399"
+    },
+    {
+      "path": "2026-10-31-stable-python-release/materials/preflight_ja.md",
+      "bytes": 3718,
+      "sha256": "fa328a7f993ca1a89f96ab9e7c9e8b3ef08a6533daa9f4cf4e491312a93e7771"
+    },
+    {
+      "path": "2026-10-31-stable-python-release/materials/published-identity.json",
+      "bytes": 4195,
+      "sha256": "d2f3c77ff68e2e8e8e32d48e1c252ae9c1d02478506fd2280f5dc5e20d1e7bac"
+    },
+    {
+      "path": "2026-10-31-stable-python-release/materials/release-return_ja.md",
+      "bytes": 4793,
+      "sha256": "4759bd6646e84898de3fbecbb04444274af08f321bf94e48545f78459ec47368"
+    },
+    {
+      "path": "2026-10-31-stable-python-release/materials/main-ci-artifact.json",
+      "bytes": 794,
+      "sha256": "4911aba8c44f4af53211f88999c38a48e351300f9f81e7c88a4f0c3da929cd87"
+    },
+    {
+      "path": "2026-10-31-stable-python-release/materials/promote-source.json",
+      "bytes": 116,
+      "sha256": "8efb9a9136c61615c40da232d7d10773c5e8a6f98d8b13c638a0b518da9c4c72"
+    }
+  ],
+  "sanitization": "Kept only publication facts; omitted endpoint URLs, hostname strings, local paths, account-profile data and raw provider responses.",
+  "preflight": {
+    "observed_at": "2026-10-31T07:14:05.299246+00:00",
+    "main": "c30105349ef26413e925699143396ea05bd3e380",
+    "candidate": "fac0313ea9162dc0730412c53d665e6c42a93791",
+    "required_human_review": true,
+    "admin_bypass": false,
+    "publish_enabled": "true"
+  },
+  "published_observation": {
+    "observed_at": "2026-10-31T15:12:41.460481+00:00",
+    "knowledge_contract_commit": "9dee6881a414a2b1fd4a37fa4fe26ddbedd9d8a5",
+    "latest_runtime_and_instructions_read": "10fe11cfd437ab45f8c000517595598229e1011e",
+    "main": "fac0313ea9162dc0730412c53d665e6c42a93791",
+    "tag": "fac0313ea9162dc0730412c53d665e6c42a93791",
+    "is_latest": true,
+    "assets": [
+      {
+        "id": 695695048,
+        "file": "manifest.json",
+        "bytes": 675,
+        "sha256": "229179c8274d54f06765bf2d717ae416f02742a99077acde09787ea6bd90ee4a",
+        "provider_digest": "sha256:229179c8274d54f06765bf2d717ae416f02742a99077acde09787ea6bd90ee4a",
+        "matches_frozen": true
+      },
+      {
+        "id": 695695044,
+        "file": "minecraft_remote_api-2321.0.0-py3-none-any.whl",
+        "bytes": 196033,
+        "sha256": "a0c88b864c26e6e1a0ab2ef2248df6851cc9a3189af93579fbd50132d8c747a0",
+        "provider_digest": "sha256:a0c88b864c26e6e1a0ab2ef2248df6851cc9a3189af93579fbd50132d8c747a0",
+        "matches_frozen": true
+      },
+      {
+        "id": 695695049,
+        "file": "minecraft_remote_api-2321.0.0.tar.gz",
+        "bytes": 190248,
+        "sha256": "a6feaec48ac5df1611208c42e7770d87e0a7bafe66794a39b30942f94140cb88",
+        "provider_digest": "sha256:a6feaec48ac5df1611208c42e7770d87e0a7bafe66794a39b30942f94140cb88",
+        "matches_frozen": true
+      }
+    ],
+    "jobs": [
+      {
+        "id": 124573339137,
+        "name": "promote",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 124573374636,
+        "name": "prepare-publication",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 124573405938,
+        "name": "publish-pypi",
+        "status": "waiting",
+        "conclusion": null
+      },
+      {
+        "id": 124573405943,
+        "name": "publish-testpypi",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ]
+  },
+  "release": {
+    "id": 430008193,
+    "tag_name": "v2321.0.0",
+    "draft": false,
+    "prerelease": false,
+    "published_at": "2026-10-31T15:10:17Z"
+  },
+  "run": {
+    "id": 41213563824,
+    "head_sha": "fac0313ea9162dc0730412c53d665e6c42a93791",
+    "status": "waiting",
+    "conclusion": null
+  },
+  "pending_environment_names": [
+    "pypi"
+  ],
+  "main_ci_artifact": {
+    "id": 13045859840,
+    "name": "minecraft-remote-api-dist",
+    "size_in_bytes": 383066,
+    "digest": "sha256:44c974b45846efe16b8fbb3c5c97f7956d8103c562fc01ec49ca909c52843024",
+    "created_at": "2026-10-31T15:04:07Z",
+    "expires_at": "2027-01-29T15:03:38Z"
+  },
+  "promote_source": {
+    "release_run": 41213563824,
+    "promote_job": 124573339137,
+    "ci_run_ids_in_job_env": [
+      "41213013218"
+    ]
+  }
+}

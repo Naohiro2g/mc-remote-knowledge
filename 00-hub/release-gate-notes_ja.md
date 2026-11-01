@@ -71,11 +71,12 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - non-claim: PyPI.orgへの公開はしない。mature判定はしない。Windowsでは検証していない
 - coordinator判定／human release owner承認: human ownerがpost2のsetへの組み入れを判定（2026-09-26、`2026-09-27-01`）。coordinatorはchange coneが閉じていることを確認し、単独更新gateを通過とする（2026-09-28）。**CLOSED**
 
-## 2026-10-22 初回stable（2321.0.0）横断release gate
+## 2026-10-22 初回stable（2321.0.0）横断release gate（CLOSED）
 
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
-- current phase: **OPEN**（2026-10-22、human ownerの判断）
+- current phase: **CLOSED**（2026-11-01、human ownerの判断）。2026-10-22に開き、2026-11-01に4 repoのLatestとPyPI.orgへ出して、
+  箱庭を切り替えた
 - 目標日: GitHubのLatestを11月1日。McRemoteのrc2で何か出れば11月7日（`2026-10-22-01`）
 - 位置づけ: 初回stable。pre-releaseの印を外し、各repoのLatestにする。PyPIでは、版を指定しない`pip install`／`uv add`で入る版が
   旧protocolの1214系から`2321.0.0`に変わる（`2026-10-22-02`）
@@ -357,6 +358,30 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     `manifest.stable-draft.json`と同じ値。`ghcr.io/naohiro2g/mc-remote-scratch:v2321.0.0`はloginなしで、index
     `sha256:d85e37291ef75e4d64ab7f0c52b9a496889205071d3afc51b796dbcc1161903c`（amd64とarm64）。workflowは`active`に戻っている。本文に
     protocol 23.2.1、rc1と同じこと、`scratch.`と`wirescope.`の名前、移行のページ、`sb-retro`がある
+- close分類（2026-11-01、`00-hub/stable-gate-close-instructions_ja.md`、4担当ともknowledge `867adb7`を読んだ）：McRemote
+  `handoff-materials/2026-11-01-stable-gate-close/`、Python `handoff-materials/2026-11-01-stable-python-close/`、scratch-editor
+  `handoff-materials/2026-11-01-stable-gate-close-scratch-tooling/`、Stack（human ownerが貼った返却と、写しの
+  `handoff-materials/2026-11-01-stable-gate-close/`）。①の52 fileをcoordinatorがbytesとSHA-256で照合して
+  `14-evidence/artifacts/2026-11-01-stable-gate-close/`へ収容した（`14-evidence/records/2026-11-01-stable-gate-close_ja.md`）。Temurinでの確認、
+  26.3のセットの最終の確認、切り替えた後の人の確認は別のrecord（`2026-10-29-mcremote-stable-temurin-runtime`、
+  `2026-10-31-stack-paper231-temurin25-heap3g`、`2026-11-01-stable-public-live-human`）。human ownerが4つのrecordを確かめた（2026-11-01）
+  - Stackの返却票`2026-10-31-stack-return-four-items-java/materials/RETURN_ja.md`は、上の16,091 bytesの版の後、10/31 18:35に
+    (a)の状況の2段落を足して16,291 bytes（`2a39747f5617c4258bae1e92605bc4834fe6a1630b8b4ab28e14eeb63592bed2`）になった。coordinatorが前の版と比べ、
+    観測は変わっていないことを確かめた。収容したのは後の版
+  - Stackの最初の写しは、プラグインの版、APIのメソッド名、公開の出典のURLのホストまで伏せていた。coordinatorが指摘し、直した写しを収容した
+  - Scratch：配布対応の5 fileを`develop`へ入れた（`b1f3ab883a8124b7b3e5a9c46e6f7cc41e3a310b`、`bee41dc`から1 commit）。coordinatorが
+    GitHubのcompareで変わったのがこの5 fileだけで、`d3aa547`と同じ中身であること、CI run `41241123827`のsuccessを確かめた
+  - Stack：ServerBackupは、切り替えの後のarchive（2026-11-01 04:30:48 JST、938,714,728 bytes）を作った。ブロック一覧は直した条件で
+    照合し、作り直しは要らない
+  - 旧セット（rc1のproject、退避したvolume、cutoverのarchive）：Stackは2026-12-01まで持つ案を返した。human ownerの判断（2026-11-01）
+    「旧セットはもう要らないので削除」。消すのはStack
+- close（2026-11-01、human ownerの判断）：**初回stableのgateをCLOSEDとする**。後続へ送ったもの（hub NOTESの行）：
+  - 統合版のsignalingのHTTPS（2026-10-24のpark。入力はStack `2026-10-27-bedrock-https-review`）
+  - WireScopeの観測の開始と終了（2026-10-19のpark。入力はPython `2026-10-23-wirescope-python-development`、Scratch
+    `2026-10-27-scratch-wirescope-lifecycle`）
+  - 座標・時刻HUD（2026-10-13のpark。入力はMcRemoteのHUDの3つのdirectory）
+  - Scratchのパレットの頭出しのずれ、Bridgeの複数の接続先（`2026-10-24-06`）の実装、公開VPSの負荷試験と残りのMOTDとアイコン（どれも
+    2026-11-01の行）
 - 判断（2026-10-22、human owner）：McRemoteのrc2の公開、Scratch／toolingの最小限の配布対応（配布のscript 2か所、`はじめに.html`の
   リンク、toolingはrc1の生成物）、Pythonの版の番号だけの候補（starterは変えない）を了承。`sb-beta`は12月以降も公開VPS
   （`2026-10-22-04`）。DirectionHUDは取り込めるまで残す（`2026-10-22-05`）。WebのScratchとWireScopeも11月1日から`-beta`なしの

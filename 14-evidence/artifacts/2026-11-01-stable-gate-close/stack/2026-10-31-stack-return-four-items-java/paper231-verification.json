@@ -1,0 +1,17 @@
+{
+  "verified_on": "2026-10-31",
+  "knowledge_commit": "d012c910f16d8c89921c8265124049a8c732ab1d",
+  "minecraft_version": "26.3",
+  "build": 231,
+  "channel": "STABLE",
+  "time": "2026-10-30T01:53:29Z",
+  "filename": "paper-26.3-231.jar",
+  "bytes": 55258607,
+  "sha256": "a836a016be7ac52352eb3a1efb6857bb42ee73a6c78d46e292f7e87742edb0e6",
+  "api": "https://fill.papermc.io/v3/projects/paper/versions/26.3/builds/231",
+  "origin": "https://fill-data.papermc.io/v1/objects/a836a016be7ac52352eb3a1efb6857bb42ee73a6c78d46e292f7e87742edb0e6/paper-26.3-231.jar",
+  "api_matches_ssot": true,
+  "jar_matches_api": true,
+  "paper_started": false,
+  "public_changed": false
+}

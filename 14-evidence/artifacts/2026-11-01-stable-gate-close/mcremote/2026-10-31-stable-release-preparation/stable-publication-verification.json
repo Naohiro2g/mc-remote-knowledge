@@ -1,0 +1,87 @@
+{
+  "knowledge_contract_commit": "10fe11cfd437ab45f8c000517595598229e1011e",
+  "main_after_fast_forward": "525c31823a8efb736463aec471c2756089546391",
+  "main_after_docs": "331a32644a6b6ee7044a1e4473e5a01c57e040fa",
+  "tag": "v2321.0.0",
+  "tag_target": "525c31823a8efb736463aec471c2756089546391",
+  "tag_object": "64a85991a67f934a519940efa76583311eb68dfc",
+  "release_url": "https://github.com/Naohiro2g/McRemote/releases/tag/v2321.0.0",
+  "release_id": 430007998,
+  "published_at": "2026-10-31T15:27:29Z",
+  "draft": false,
+  "prerelease": false,
+  "latest": true,
+  "release_body": {
+    "bytes": 2153,
+    "sha256": "4303a024ea09cabafd2620a4b7431f9a0934bd7b499f5b2d74320f705423481d",
+    "approved_source_bytes": 2152,
+    "approved_source_sha256": "0ccf9df7dce03093e5cd741f0a4abf1c471ad17da4130ee26b78cb8e5fbb719a",
+    "only_difference": "one trailing newline added by release workflow"
+  },
+  "runs": [
+    {
+      "id": 41213130587,
+      "url": "https://github.com/Naohiro2g/McRemote/actions/runs/41213130587",
+      "conclusion": "success",
+      "head_sha": "525c31823a8efb736463aec471c2756089546391"
+    },
+    {
+      "id": 41213698159,
+      "url": "https://github.com/Naohiro2g/McRemote/actions/runs/41213698159",
+      "conclusion": "success",
+      "head_sha": "525c31823a8efb736463aec471c2756089546391"
+    },
+    {
+      "id": 41214940424,
+      "url": "https://github.com/Naohiro2g/McRemote/actions/runs/41214940424",
+      "conclusion": "success",
+      "head_sha": "525c31823a8efb736463aec471c2756089546391"
+    }
+  ],
+  "assets": [
+    {
+      "name": "manifest.json",
+      "bytes": 2063,
+      "sha256": "62b9dad0400107798edd110869cc33dbd37dc92c8f40f736378458801a30f8b5",
+      "frozen_match": true
+    },
+    {
+      "name": "mc-remote-2321.0.0.jar",
+      "bytes": 315868,
+      "sha256": "e3f7cc2ab9ee9b3130f927935634e32e8ddffe7d7603b6d873973968f68db4ab",
+      "frozen_match": true
+    },
+    {
+      "name": "mc-remote-verification-1.21.11.json",
+      "bytes": 63705,
+      "sha256": "34dcf75c54434768463ab69e1e311029fa575044f6765b25a7c82e988e7127fe",
+      "frozen_match": true
+    },
+    {
+      "name": "mc-remote-verification-26.3.json",
+      "bytes": 63667,
+      "sha256": "00c4c675a7483793e97bb5853a13d23ac21c28afa501f5cf690e540c8c431545",
+      "frozen_match": true
+    },
+    {
+      "name": "minecraft-targets.json",
+      "bytes": 126,
+      "sha256": "8e830732decd6bcde13f91eb6c071d062ba6993342a7edb52e6ea543b9e0c361",
+      "frozen_match": true
+    }
+  ],
+  "public_docs": [
+    {
+      "path": "README.md",
+      "bytes": 26767,
+      "sha256": "2afa9d3f0304d4f69eeb82e82fb032d8eea76f7b61f29af061d19504506728ce",
+      "remote_match": true
+    },
+    {
+      "path": "docs/java-mise_ja.md",
+      "bytes": 5561,
+      "sha256": "e52e1286db7f7ecb7c83f522e28aa152dafe1dafbc3baae6137b7a0f12672cca",
+      "remote_match": true
+    }
+  ]
+}
