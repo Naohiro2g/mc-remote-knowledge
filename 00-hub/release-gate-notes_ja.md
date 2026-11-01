@@ -396,6 +396,11 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     containerが無いことを確かめた）、その専用のvolume 3つ、cutoverのarchive（1,229,255,439 bytes。projectとvolume 3つのtarを含む）を
     消した。消した後、安定版の4つのcontainerと専用のvolume 3つが動いていることを確かめた。rc1の通常のServerBackupのoutboxは、
     cutoverのarchiveとは別の物として残っている
+  - rc1の通常のServerBackupのoutbox：human ownerの判断（2026-11-01）「削除」。Stackの報告：2026-11-01 22:46:44 JSTに6 file
+    （3,301,977,258 bytes。10/31 20:30と11/1 00:30のbackupの、それぞれ`.zip`、`.zip.age`、`.zip.age.transfer.json`）を消した。消す前に、
+    安定版のoutboxが別の場所にあり、rc1の側のどのfileともdeviceとinodeが違うことを確かめた。消した後も安定版は4つのcontainerで動き、
+    volume 3つとbackupのoutbox（5 file、4,694,012,918 bytes）が残っている。切り替えの後のarchive（04:30:48 JST）は、938,714,728 bytes、
+    更新の時刻、inodeが消す前と同じ。coordinatorは報告の合計の数を確かめた。VPSは見ていない
   - coordinatorが確かめた：McRemote、Python、Scratchの台帳で、残したfileのbytesとSHA-256が手元のfileと一致し（31、6、13 file）、
     消したpathは手元に無い（82、47、153 file）。各担当がremoteから取ったhashは収容したfileと一致する。Stackの手元は報告どおりで、
     写しの7 fileは収容したものと同じbytes。VPSの旧セットの削除はStackの報告で、coordinatorはVPSを見ていない
