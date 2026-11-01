@@ -382,6 +382,24 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   - 座標・時刻HUD（2026-10-13のpark。入力はMcRemoteのHUDの3つのdirectory）
   - Scratchのパレットの頭出しのずれ、Bridgeの複数の接続先（`2026-10-24-06`）の実装、公開VPSの負荷試験と残りのMOTDとアイコン（どれも
     2026-11-01の行）
+- 整理（2026-11-01、4担当ともknowledge `6c680ff`のremoteから自分の①を取り、bytesとSHA-256の一致を確かめてから整理した）：
+  - McRemote（`materials/cleanup-result_ja.md`、`cleanup-receipt.json`）：①の元23 file、③36 file、①の写し23 fileを消した（82 file）。
+    ②の4 directory（31 file）は残した。30 fileは分類の時と同じで、`2026-10-29-java-temurin-policy/MANIFEST_ja.md`だけ、消したpacketへの
+    参照を収容先へ書き換えた
+  - Python（`materials/cleanup-result_ja.md`、`cleanup-verification.json`）：①の元5 file、③35 file、①の写し7 fileを消した（47 file、
+    1,742,540 bytes）。②の`2026-10-23-wirescope-python-development`（6 file）は変えていない
+  - Scratch／tooling（`materials/CLEANUP_RESULT_ja.md`、`CLEANUP_RESULT.json`）：①の元11 file、③127 file、①の写し15 fileを消した。
+    パレットの実測の4 fileは②として元の場所に残した。②の3 directory（13 file）は変えていない
+  - Stack（human ownerが貼った報告）：2026-11-01 14:57:22 JSTに、①の元の2 directory（22 file、121,114 bytes）と③の6 directory（35 file、
+    109,128 bytes）を消した。②の2 directoryと、収容した写しの7 fileは残した
+  - 旧セット（Stackの報告）：2026-11-01 14:56:58〜14:56:59 JSTに、止めてあったrc1のCompose project（2,472,719 bytes。参照する
+    containerが無いことを確かめた）、その専用のvolume 3つ、cutoverのarchive（1,229,255,439 bytes。projectとvolume 3つのtarを含む）を
+    消した。消した後、安定版の4つのcontainerと専用のvolume 3つが動いていることを確かめた。rc1の通常のServerBackupのoutboxは、
+    cutoverのarchiveとは別の物として残っている
+  - coordinatorが確かめた：McRemote、Python、Scratchの台帳で、残したfileのbytesとSHA-256が手元のfileと一致し（31、6、13 file）、
+    消したpathは手元に無い（82、47、153 file）。各担当がremoteから取ったhashは収容したfileと一致する。Stackの手元は報告どおりで、
+    写しの7 fileは収容したものと同じbytes。VPSの旧セットの削除はStackの報告で、coordinatorはVPSを見ていない
+  - 各担当のclose packetは、整理の台帳として②に残っている。捨ててよくなる条件は各packetにある
 - 判断（2026-10-22、human owner）：McRemoteのrc2の公開、Scratch／toolingの最小限の配布対応（配布のscript 2か所、`はじめに.html`の
   リンク、toolingはrc1の生成物）、Pythonの版の番号だけの候補（starterは変えない）を了承。`sb-beta`は12月以降も公開VPS
   （`2026-10-22-04`）。DirectionHUDは取り込めるまで残す（`2026-10-22-05`）。WebのScratchとWireScopeも11月1日から`-beta`なしの
