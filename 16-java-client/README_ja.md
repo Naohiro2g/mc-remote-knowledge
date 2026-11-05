@@ -16,6 +16,9 @@
 - session credential UX commit: `af95e9ce5202926533d053d9e6d97befc7d006ee`
 - Phase C代表capability commit: `20c47bd2c862b100084ef713ee52f72759fa2d0e`
 - README・APIリファレンス・作例の先行準備commit: `66814b992e629deec60028d4af0d978212477526`
+- stable追従とE1の返却commit: `ef71f56af7e433f47c7427f32181bdbe88f1c86d`
+- CIをmiseへ移したcommit: `3bfe40d5046829ba840ecbed3bcd0238d4484b04`
+- E1の追補とCIの記録commit: `6bfea96c4c189c3a1eb56f07cc1bd26b7ad18917`
 - Java root package: `club.code2create.mcremote.client`
 - Maven / Gradle group: `club.code2create.mcremote`
 - Maven artifactId: `minecraft-remote-client`
@@ -204,3 +207,22 @@ entities 157／particles 115）、pose read、AxisFlat、金ブロックのwrite
 途中でsetBlockが`build_denied`になったのは、箱庭のLuckPermsに`mcr.build.blocks`が無かったためだった。LuckPermsがある
 環境ではmetaが無いと上限0になる（b10からの仕様、[platform design](../11-plugin/platform-design_ja.md) §8.2）。human ownerが
 playerとdefault groupに設定し、接続し直して直った。認証やchatが通っても、ブロックを置く量の上限を満たしているとは限らない。
+
+### stableへの追従とE1（2026-11-04〜06）
+
+`ef71f56af7e433f47c7427f32181bdbe88f1c86d`で、追従の対象をstable `2321.0.0`（protocol `23.2.1`）に固定した。McRemoteは
+`v2321.0.0`（`525c31823a8efb736463aec471c2756089546391`）、toolingは`v2321.0.0`（`6447f6e8cbfbeeb9d229990b5c4f6e82a5875666`）。
+要求する最低のprotocolは`23.0.0`のまま。
+
+- fixtureの取得元をScratchからtoolingへ切り替えた。toolingの10本のうち4本をtestへつなぎ、残る6本は理由と予定を
+  返した。`SharedCompatibilityFixtureTest`は`chat-event-compat-v23.2.1.json`の33 case（B9-C01〜C07、B9-E01〜E26）を
+  TCPで確かめる。coordinatorは、Javaの4本がtooling `6447f6e`とbytesで一致することを照合した
+- E1のJava列とPhase Dの評価を返し、[Protocol Inventory](../10-protocol/protocol-inventory_ja.md)へ写した。
+  metadataの32 methodのうち、あり13、部分1、なし18。auth節の5 methodは、pairBegin／pairPollだけが接続の処理の中にある
+- CIは`jdx/mise-action`で`mise.toml`のJDKを使う（human owner 2026-11-05「mise指定で」）。Temurinを使う
+  `2026-10-29-01`と、手元の検証とCIのJDKがそろう。`6bfea96c4c189c3a1eb56f07cc1bd26b7ad18917`の
+  [run 42092723903](https://github.com/Naohiro2g/minecraft-remote-java/actions/runs/42092723903)で、mise `2026.10.25`、
+  Temurin `21.0.13+9`／`25.0.5+8`、両jobの成功をcoordinatorがログで照合した
+- 手元では、Temurin 21.0.13と25.0.5で、core 56件＋examples 20件の76件がPASSしたと返された
+
+F1のhello／auth／blockのscripted case、F2の採用、F3のlive-autoのpulseはまだ。shared環境には接続していない。

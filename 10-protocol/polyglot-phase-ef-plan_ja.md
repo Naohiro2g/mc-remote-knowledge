@@ -84,6 +84,13 @@ F1の範囲がそろったら、TS（Phase G）の実装を始める。C#の実�
 
 ## 3. 次の操作
 
-- tooling担当：共有fixtureのディレクトリにMITのLICENSEを置く（`2026-10-23-01`③）。依頼の時期は、stableの凍結
-  （10/31）の作業と重ねない範囲でcoordinatorが決める
-- coordinator：初回stableの後、E1の確認票（Javaの追従とPhase Dを含む）を起案する
+- 済み：tooling担当が共有fixtureのディレクトリにMITのLICENSEを置いた（`2026-10-23-01`③）。minecraft-remote-tooling
+  `21a2a9a0aed8b4d9c715da46616aad86f1174b4c`、`packages/protocol/test/fixtures/LICENSE`（1,070 bytes、SHA-256
+  `aa329a0bafc839b95124306141db13a381de45818bf629e983c44ea55ab5a7fb`）。package metadataの`license`は`AGPL-3.0-only`のままで、
+  ルートと`packages/protocol`のREADMEにfixtureのディレクトリだけがMITだと書いた。fixtureの10本は`6447f6e`とbytesで
+  一致する（coordinatorがGitHub APIで照合）。fixtureをcopyして持つclientは、取得元をこのcommitへ固定し直し、`LICENSE`も
+  一緒に置く
+- 済み：JavaがE1の列とPhase Dの評価を返した（`16-java-client/README_ja.md`の「stableへの追従とE1」、
+  [Protocol Inventory](protocol-inventory_ja.md)）
+- coordinator：McRemote、Python、ScratchのE1の確認票を起案する。時期は各担当の作業（McRemoteのHUDのrelease、
+  Scratchの本家の追従）と重ならないようにhuman ownerが決める。fixtureの取得元の固定し直しも同じ票に入れる
