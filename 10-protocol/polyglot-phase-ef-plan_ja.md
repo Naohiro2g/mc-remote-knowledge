@@ -89,7 +89,7 @@ F1の範囲がそろったら、TS（Phase G）の実装を始める。C#の実�
   `aa329a0bafc839b95124306141db13a381de45818bf629e983c44ea55ab5a7fb`）。package metadataの`license`は`AGPL-3.0-only`のままで、
   ルートと`packages/protocol`のREADMEにfixtureのディレクトリだけがMITだと書いた。fixtureの10本は`6447f6e`とbytesで
   一致する（coordinatorがGitHub APIで照合）。fixtureをcopyして持つclientは、取得元をこのcommitへ固定し直し、`LICENSE`も
-  一緒に置く
+  一緒に置く。Javaは済み（`2ea54074b6a03161ebe2fa8ecb98647d8a90912e`）
 - 済み：JavaがE1の列とPhase Dの評価を返した（`16-java-client/README_ja.md`の「stableへの追従とE1」、
   [Protocol Inventory](protocol-inventory_ja.md)）
 - coordinator：McRemote、Python、ScratchのE1の確認票を起案する。時期は各担当の作業（McRemoteのHUDのrelease、

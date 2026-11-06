@@ -19,6 +19,7 @@
 - stable追従とE1の返却commit: `ef71f56af7e433f47c7427f32181bdbe88f1c86d`
 - CIをmiseへ移したcommit: `3bfe40d5046829ba840ecbed3bcd0238d4484b04`
 - E1の追補とCIの記録commit: `6bfea96c4c189c3a1eb56f07cc1bd26b7ad18917`
+- fixtureのMITのLICENSEを入れたcommit: `2ea54074b6a03161ebe2fa8ecb98647d8a90912e`
 - Java root package: `club.code2create.mcremote.client`
 - Maven / Gradle group: `club.code2create.mcremote`
 - Maven artifactId: `minecraft-remote-client`
@@ -224,5 +225,9 @@ playerとdefault groupに設定し、接続し直して直った。認証やchat
   [run 42092723903](https://github.com/Naohiro2g/minecraft-remote-java/actions/runs/42092723903)で、mise `2026.10.25`、
   Temurin `21.0.13+9`／`25.0.5+8`、両jobの成功をcoordinatorがログで照合した
 - 手元では、Temurin 21.0.13と25.0.5で、core 56件＋examples 20件の76件がPASSしたと返された
+- 2026-11-06、`2ea54074b6a03161ebe2fa8ecb98647d8a90912e`で、fixtureの取得元をtooling
+  `21a2a9a0aed8b4d9c715da46616aad86f1174b4c`へ固定し直し、MITの`LICENSE`をcopyと同じディレクトリに置いた。
+  coordinatorは、`LICENSE`と4本のfixtureがtoolingとbytesで一致すること、
+  [run 42205883199](https://github.com/Naohiro2g/minecraft-remote-java/actions/runs/42205883199)の両jobの成功を照合した
 
 F1のhello／auth／blockのscripted case、F2の採用、F3のlive-autoのpulseはまだ。shared環境には接続していない。
