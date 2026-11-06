@@ -75,7 +75,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
-- current phase: 範囲を決めた（2026-11-06）。確認票を出す前
+- current phase: PythonとMcRemoteの候補を照合した（2026-11-07）。Scratchの返却を待つ
 - 位置づけ: 初回stableの後の最初の機能のrelease。betaを挟まない（`2026-10-22-03`）。番号は台帳
   （`00-hub/release-train-notes_ja.md`）で予約した（`2026-11-05-02`）
 - contract: protocol `23.2.1`のまま。wire、API、共有fixtureは変えない
@@ -89,8 +89,23 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   接続、WireScopeの観測の開始と終了、世界定数（`2400`へ）
 - 箱庭: DirectionHUDを今回外す（human owner 2026-11-06。`2026-10-22-05`の「McRemoteのHUDへ取り込めるまで残す」の条件が来た）
 - 人間の試験: HUDを1.21.11と26.3の両方で見る（human owner 2026-11-06）
-- 未決: Scratchの配布物のうち作り直すもの、HUDの細部のうち実装で決めたもの（McRemoteの確定搬送票）、Stackのpresetと箱庭の更新の
-  手順
+- 未決: Scratchの配布物のうち作り直すもの、Stackのpresetと箱庭の更新の手順
+
+### 返却の照合（2026-11-06〜07）
+
+- Python: 候補`agent/python-2321-1-starter@09bbda421645235b2433a6c205d528be15a49f34`、CI 42227543303（5 jobs成功）。
+  `v2321.0.0`からの差分は29 filesで、E1の返却（`ac8969f9113afd18f5878068fa8806e89c21f5df`）を含む。`mc_remote/`、`.github/`、
+  `scripts/`、LICENSEは変わらない。wheel 196,026 bytes、SHA-256
+  `ee80d81be4128f8e2327646f607fbc46053bec91a527eb9140f54c9dc9d6a26f`。`sb.mc-remote.com`への実際の接続は未検証。
+  release本文はhuman ownerが編集する（E1の部分は外した）
+- McRemote: 候補`feat/coordinate-time-hud@5b78ded96d1ad6d45160b67c5f8a13e14adb3fc8`、CI 42291740554（7 jobs成功）。JAR
+  340,193 bytes、SHA-256 `cd1fff723b2b8349f45184b940cd5da1ca3cdcacc9bad988fa71cd00ea960112`。前の候補
+  `b42886c51b9076a5c0510404a804b0f031dcdc5e`から、交換での切り替えを既定で有効にし（`db7f7db`）、状態の表示を`on`／`off`に
+  した（`2492150`、`5b78ded`）。差分は8 filesで、wire、hello、権限、保存データは変わらない。Paperの自動の確認（1.21.11と
+  26.3）は`db7f7db`のJARの結果を使う。新しいJARとの差は`CoordinateHud.class`の状態の文字列だけで、HUD関連のunit（Java 21と
+  25で各48件）が確かめている。実際の画面とキーは人間の試験で見る
+- human ownerの判断（2026-11-07）: HUDの初版を確定した（`2026-11-07-01`、`11-plugin/platform-design_ja.md` §11）。HUDの
+  解説ページは今回作らず、追って作る。McRemoteのrelease本文はhuman ownerが編集した
 
 ## 2026-10-22 初回stable（2321.0.0）横断release gate（CLOSED）
 
