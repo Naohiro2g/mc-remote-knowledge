@@ -23,3 +23,4 @@
 | X.Y | 状態 | 日付（JST） | protocol | 出したcomponentと版 | そのときのセット（出さなかったcomponent） | 要る版 | 記録 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | 2321.0 | 公開 | 2026-11-01 | `23.2.1` | McRemote `2321.0.0`、Python（`minecraft-remote-api`）`2321.0.0`、Scratch `v2321.0.0`、minecraft-remote-tooling `v2321.0.0` | Java、TypeScript、C#は公開releaseなし | なし | 1年ぶりの安定版。`00-hub/release-gate-notes_ja.md`の2026-10-22の節 |
+| 2321.1 | 予約 | — | `23.2.1` | McRemote、Python（`minecraft-remote-api`）、Scratch（各`2321.1.0`の予定） | minecraft-remote-tooling `v2321.0.0`。Java、TypeScript、C#は公開releaseなし | なし | 2026-11-06に予約。`00-hub/release-gate-notes_ja.md`の2026-11-06の節 |
