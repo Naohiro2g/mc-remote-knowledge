@@ -8,6 +8,7 @@
 
 ## Inbox
 
+- 2026-11-07 [park] GitHub Actionsのrunnerのimageの版を指定する / `ubuntu-latest`は2026-10-19から少しずつUbuntu 26へ移る（GitHubの告知、actions/runner-images#14748）。`2321.1`の3つの候補（McRemote、Python、Scratch）の配布物を作ったjobは、どれも`ubuntu-24.04`（`20261101.360.1`）で動いた。方針（human owner 2026-11-07）：`2321.1`の候補には手を入れず、gateを閉じた後に全componentのworkflowを`ubuntu-24.04`の指定にそろえる。`windows-latest`と`macos-latest`も一緒に扱う。26.04へは、時期を決めて全componentを一度に移す（たとえば`2400`の準備の中）。`2321.1`の公開で再buildするものは、release指示の票で公開のrunのimageと、配布物が候補と一致することを確かめる / 影響＝全component（CI、配布物の作成） / 再開＝`2321.1`のgateを閉じるとき（coordinatorが各componentへ指示の票を書く） / 閉じる＝全componentのworkflowの指定が着地した時
 - 2026-11-05 [park] protocol 24.0.0に入れる壊す変更 / `2026-11-05-01`で、12月のサウンドの拡張をprotocol `24.0.0`、配布物`2400.0.0`で出すと決めた。majorを上げる理由は番号の区切りで、壊す変更を入れるかはまだ見えない（human owner 2026-11-05「24で実際に壊れる内容を入れるかどうかはまだ見えない」）。入れるなら、`2321`の利用者が一斉に更新する同じ機会にまとめられる / 影響＝McRemote、各client、`10-protocol/wire-format-design_ja.md` / 再開＝`2400`の範囲を決めるとき（coordinatorが気づく） / 閉じる＝入れるもの、または入れないことを決定に入れた時
 
 - 2026-11-01 [park] Scratchのパレットの頭出しのずれ / rc1の試験で、mc-remoteのブロックへパレットの中で頭出しすると、位置が少し下にずれた。ブラウザの表示を拡大縮小すると直る（Linux、macOSのChrome 155、`00-hub/release-gate-notes_ja.md` rc1の「試験」）。Scratch担当が本家への追従の後に実ブラウザで測った（live-auto、`14-evidence/artifacts/2026-11-01-stable-gate-close/scratch-tooling/2026-10-21-upstream-sync/`）。原因は未確定 / 影響＝Scratch / 再開＝`2321.1.0`の範囲を決めるとき（Scratch担当の②、`2026-10-21-upstream-sync`） / 閉じる＝原因と回帰testが着地した時、または範囲に入れないと決めた時
