@@ -23,6 +23,7 @@ public 正本世代の入口です。ここに載る path は、このリポ内�
 | `00-hub/release-operations-responsibility-design_ja.md` | 公開runbook、物理host、deployment、component担当、gate coordinator、人間release ownerの責務、test tier／change cone／常設dev harness／gate manifest／release close |
 | `00-hub/release-gate-notes_ja.md` | 公開release gateの確認票、coordinator、phase、exact set、許可済み次操作の状態集約 |
 | `00-hub/release-train-notes_ja.md` | 横断の版（X.Y）の台帳。X.Yごとに出したcomponentと版、そのときのセット、protocolの版 |
+| `00-hub/23211-gate-live-test-instructions_ja.md` | `2321.1`横断release gateで、mc-remote.comに置いた候補を試すhuman owner向けの実施票（HUDを1.21.11と26.3で、Scratchのパレットとpickerと作品、Pythonの`sb`への接続、公開の後のタブレット） |
 | `00-hub/decisions-deferral-inventory-plan_ja.md` | DECISIONSで「bN」へ送った残りの棚卸し計画（草稿、初回stableの後に実施） |
 | `00-hub/b10-gate-live-test-instructions_ja.md` | b10横断release gateで、ケータリング型簡易版の固定した3つのZIPをWindows 11／macOS／Linuxで試すhuman owner向けの実施票（取得、警告の記録、1台構成とLAN構成、記録の注意） |
 | `00-hub/b10-gate-close-instructions_ja.md` | b10横断release gateを閉じる前の、McRemoteとScratchの`handoff-materials`の分類の依頼 |

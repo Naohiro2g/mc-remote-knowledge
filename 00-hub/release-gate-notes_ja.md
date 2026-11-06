@@ -75,7 +75,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
-- current phase: 3 componentの候補を照合した（2026-11-07）。組の凍結の前
+- current phase: exact set `2321.1-set-1`を凍結した（2026-11-07）。McRemoteの26.3 #244での自動の確認と、Stackの返却を待つ。
+  人間の試験はその後
 - 位置づけ: 初回stableの後の最初の機能のrelease。betaを挟まない（`2026-10-22-03`）。番号は台帳
   （`00-hub/release-train-notes_ja.md`）で予約した（`2026-11-05-02`）
 - contract: protocol `23.2.1`のまま。wire、API、共有fixtureは変えない
@@ -114,6 +115,42 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - human ownerの判断（2026-11-07）: HUDの初版を確定した（`2026-11-07-01`、`11-plugin/platform-design_ja.md` §11）。HUDの
   解説ページは今回作らず、追って作る。McRemoteのrelease本文はhuman ownerが編集した
 - human ownerの判断（2026-11-07）: Scratchは本家への追従と一緒に出す
+
+### 凍結するexact set（2026-11-07、`2321.1-set-1`）
+
+coordinatorがまとめた。2026-11-07に、3つの候補のbranchの先頭が下のcommitのままであること、CIのartifactが残っていること
+（期限は3つとも2027-02-04）をGitHubのAPIで確かめた。配布物を作ったjobは3つとも`ubuntu-24.04`（`20261101.360.1`）で動いた
+
+- McRemote：`feat/coordinate-time-hud@5b78ded96d1ad6d45160b67c5f8a13e14adb3fc8`。CI `42291740554`、artifact `13540651077`
+  （`sha256:9dd6d88106b3415f96cd51c34064d39bbda362411390594462ab3644eb140803`）。`mc-remote-2321.1.0.jar` 340,193 bytes
+  `cd1fff723b2b8349f45184b940cd5da1ca3cdcacc9bad988fa71cd00ea960112`
+- Python：`agent/python-2321-1-starter@09bbda421645235b2433a6c205d528be15a49f34`。CI `42227543303`、artifact `13507135196`
+  （`sha256:3c35499f479bfe0874ef7ddb4e2b04a349cf0118df3efab9a2d8dbdf42c12177`）。wheel 196,026 bytes
+  `ee80d81be4128f8e2327646f607fbc46053bec91a527eb9140f54c9dc9d6a26f`、sdist 190,241 bytes
+  `2d49d096eb30c8721627f8d8f878551396a8f0d298466a007ce1b71559e255d9`
+- Scratch：`agent/palette-picker-2026-11-06@07f98ebf9be84db5ad2467cebe2c166bbe4c43f5`（develop `11bce31`と同じtree）。run
+  `42245622899`、artifact `13518071543`（`sha256:73a6aadbc91571d12f71218f40f54d00b626d05cd148ba8c26f9ec85fe8b6833`）。LANのZIPは
+  Windows 262,461,767 bytes `c077a3b3241cc784b676dc7d0ee25a8f58715c1539961ee876be2325153e0bd4`、macOS 266,813,430 bytes
+  `ba8d2320bda3f60f85d94ed6f96ba6878673a70e08f773cf4b6110268ddcdb0a`、Linux 272,069,485 bytes
+  `a5b8b976da9a02175b7aec67933f7ca76a52052ede11db3ba2f00ff0df8de23c`。Scratch OCI index
+  `sha256:7f79830e7b625ab7d90dccbd5be949bbacd93d83686a3f4c16c9feb4a9dddb6a`（`scratch.oci.tar` 326,607,872 bytes
+  `66440ff7e9cff1cdf322394e9613caef0bfe198eeec44d910e901fe8ea54b777`）、`scratch-gui.tar.gz` 139,262,746 bytes
+  `0f0b2597a8694863fb264340c1b3b89685849c85ce7c32e9f4b210e645fbdff8`
+- tooling：`v2321.0.0`（`6447f6e8cbfbeeb9d229990b5c4f6e82a5875666`）のまま。WireScope ZIP
+  `da3da0b6cf4d05265bc0c11abaa4913208c7cfc3600b0c3e78c93a356fc431ad`、manifest
+  `3dd668a236463809a4cdc6d19375f3e6d75eea0c8089a616d2b761d3a4a05235`、`bridge.oci.tar`
+  `3982876466fb860dca250438d73e18e441a2a85d67d9f149f537a7a8d1a1c44c`、Bridgeのindex
+  `sha256:305d6e38b36e195a0e158522f32f3a8c45d39da2aeec7b7e46f785c920406acf`。Scratchの候補の中のものと同じ
+- Paper 26.3は#244（human owner 2026-11-07。箱庭も人間の試験も）：`paper-26.3-244.jar` 55,279,049 bytes
+  `9601f9a26a2a52a0f2c807cf1abf691f96ee4fb287878313b601cebc2c51eabf`（PaperMCのAPIで2026-11-07に確かめた。STABLE、2026-11-06の
+  build、この日の最新）。McRemote担当の見立て（2026-11-07、human ownerが貼った返却。記録のfileは無い）：#231から#244までの13
+  buildの変更に、McRemoteの修正が要りそうなものは無い。いちばん広いのは#237（Moonrise）、看板のAPIは#238で変わったので、看板の
+  読み書きも自動の確認に含める。HUDの表示、照準、Fでの切り替えを直接変えるものは無い。McRemoteの候補は`5b78ded`のままとし、
+  26.3の自動の確認を#244でやり直す。1.21.11とunitはやり直さない
+- 公開VPSの26.3のセット：Paper 26.3 #244。ほかはStackの返却の後に足す（Stack宛ての票）
+- 人間の試験（human owner 2026-11-07）: 実施票`00-hub/23211-gate-live-test-instructions_ja.md`。候補は
+  `https://mc-remote.com/candidates/2321.1.0/set-1/`に置く（`2026-10-18-07`の形）。Paperは1.21.11 #132（Ubuntu、Java 21）と
+  26.3 #244（Windows、Java 25）。Scratchのタブレット（iPad、Android）は公開の後に公開のWeb editorで見て、問題が出たら次の版で直す
 
 ## 2026-10-22 初回stable（2321.0.0）横断release gate（CLOSED）
 
