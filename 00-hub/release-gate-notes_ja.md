@@ -75,8 +75,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
-- current phase: exact set `2321.1-set-1`を凍結した（2026-11-07）。McRemoteの26.3 #244での自動の確認は通った。Stackの返却を
-  待つ。人間の試験はその後
+- current phase: exact set `2321.1-set-1`を凍結した（2026-11-07）。McRemoteの26.3 #244での自動の確認は通った。Scratchの
+  ブロック一覧の作成と、Stackの#244での事前の起動を待つ
 - 位置づけ: 初回stableの後の最初の機能のrelease。betaを挟まない（`2026-10-22-03`）。番号は台帳
   （`00-hub/release-train-notes_ja.md`）で予約した（`2026-11-05-02`）
 - contract: protocol `23.2.1`のまま。wire、API、共有fixtureは変えない
@@ -154,6 +154,22 @@ coordinatorがまとめた。2026-11-07に、3つの候補のbranchの先頭が�
   `toggle_on_swap`を省いたときの補完がPASS。看板は表裏、色、装飾、1行の更新、入力エラーまでPASS（#238）。group名、結果、
   catalogの要約は#231と同じ。coordinatorは、branchの先頭が`5b78ded`のままで、使ったJARとPaperのidentityが凍結値と同じであることを
   確かめた。HUDの実際の画面とキーは人間の試験で見る
+- Stackの返却（2026-11-07、`handoff-materials/2026-11-07-stack-23211-investigation/materials/RETURN_ja.md`、22,891 bytes、
+  `cb2bc2b98b6af79324b2625f8b6ffbcacbe7ee6a724d0fdddea8790e9b0397f9`、追補`PLUGIN_FOLLOWUP_ja.md`。Stack `main@2b5c048`、
+  knowledge `f40b003`を読んだ。公開VPSは読み取りだけ）
+  - preset：新しく`public-web-paper@18`を作る案。McRemoteは公開のReleaseの`2321.1.0`のJAR、Scratch OCIは
+    `sha256:7f79830e7b625ab7d90dccbd5be949bbacd93d83686a3f4c16c9feb4a9dddb6a`、Paperは26.3 #244。profile `vps-server@18`、Bridge、
+    WireScope、runtime image、heap、worldは変えない
+  - DirectionHUDとOtterLibを外す。OtterLibを依存にしていたのはDirectionHUDだけ
+  - `hud.*`：Stackが作るconfigにも今の箱庭のconfigにもkeyが無い。配布の既定で補われるので、Stackの変更は要らない
+  - 箱庭の更新：同じvolumeでの通常の更新（`deployment update`）。worldは変えない。止まるのは2〜5分の見込み（枠は10〜15分）
+  - `/candidates/`：経路は今も配られていて、置く前の作業は要らない
+  - Scratchのブロック一覧：凍結した`07f98eb`の`site/blocks.json`は`2321.0.0`のままで、`site/2321.1.0/`が無い。記録された
+    生成元は候補の祖先でなく、2026-11-01に直した照合の条件を通らない
+- human ownerの判断（2026-11-07）: ①Scratchのブロック一覧は、Scratch担当が`2321.1.0`の一覧を新しいcommitで作る。Scratchの
+  凍結は、その返却を見て取り直す ②Stackは、残るpluginを全部入れて、隔離したworldの写しでPaper #244の事前の起動をする
+  ③pluginはGeyserを2.12.1-b1294へ、LuckPermsを5.5.91へ上げる。ほかの7本は最新版と照合して今と同じ版（human ownerが
+  Stackに伝えた方針「基本的には最新版に追従し、問題がないか確認する」）
 - 人間の試験（human owner 2026-11-07）: 実施票`00-hub/23211-gate-live-test-instructions_ja.md`。候補は
   `https://mc-remote.com/candidates/2321.1.0/set-1/`に置く（`2026-10-18-07`の形）。Paperは1.21.11 #132（Ubuntu、Java 21）と
   26.3 #244（Windows、Java 25）。Scratchのタブレット（iPad、Android）は公開の後に公開のWeb editorで見て、問題が出たら次の版で直す
