@@ -75,7 +75,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
-- current phase: PythonとMcRemoteの候補を照合した（2026-11-07）。Scratchの返却を待つ
+- current phase: 3 componentの候補を照合した（2026-11-07）。組の凍結の前
 - 位置づけ: 初回stableの後の最初の機能のrelease。betaを挟まない（`2026-10-22-03`）。番号は台帳
   （`00-hub/release-train-notes_ja.md`）で予約した（`2026-11-05-02`）
 - contract: protocol `23.2.1`のまま。wire、API、共有fixtureは変えない
@@ -83,13 +83,13 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   | component | 入れるもの |
   | --- | --- |
   | McRemote | 座標・時刻HUD（`2026-10-13-01`、`11-plugin/platform-design_ja.md` §11）のうち、protocolを変えない部分。HUDのAPIとWireScope IDを取得するAPIは入れない |
-  | Scratch | パレットの頭出しの修正、pickerの検索の改善 |
+  | Scratch | パレットの頭出しの修正、pickerの検索の改善。本家への追従も一緒に出す（human owner 2026-11-07） |
   | Python | starterの接続先を`sb-beta`から`sb`へ（human owner 2026-10-22、2026-10-22の節） |
 - 範囲の外（human owner 2026-11-06）: minecraft-remote-tooling、LANパッケージのランチャーと`はじめに.html`、サーバーの再起動の後の
   接続、WireScopeの観測の開始と終了、世界定数（`2400`へ）
 - 箱庭: DirectionHUDを今回外す（human owner 2026-11-06。`2026-10-22-05`の「McRemoteのHUDへ取り込めるまで残す」の条件が来た）
 - 人間の試験: HUDを1.21.11と26.3の両方で見る（human owner 2026-11-06）
-- 未決: Scratchの配布物のうち作り直すもの、Stackのpresetと箱庭の更新の手順
+- 未決: Stackのpresetと箱庭の更新の手順
 
 ### 返却の照合（2026-11-06〜07）
 
@@ -104,8 +104,16 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   した（`2492150`、`5b78ded`）。差分は8 filesで、wire、hello、権限、保存データは変わらない。Paperの自動の確認（1.21.11と
   26.3）は`db7f7db`のJARの結果を使う。新しいJARとの差は`CoordinateHud.class`の状態の文字列だけで、HUD関連のunit（Java 21と
   25で各48件）が確かめている。実際の画面とキーは人間の試験で見る
+- Scratch: 候補`agent/palette-picker-2026-11-06@07f98ebf9be84db5ad2467cebe2c166bbe4c43f5`。PR 29でdevelop
+  `11bce3193c524135931a5bf342a9edb1bfdfbbac`へmergeし、treeは候補と同じ。CI 42245524926（push）と42245536170（PR）、
+  配布物の生成42245622899はsuccess。作り直すのはWeb editor、LANの3 OSのZIP、Scratch OCI。LANのランチャーは
+  `v2321.0.0`と同じで、「はじめに.html」は版の表示2か所だけを変えた。`v2321.0.0`からの差は205 commits、167 filesで、
+  大半は本家への追従（PR 27、28）。SVG sandbox、作品を読み込むときの定義の修復、依存の更新を含み、推奨ブラウザの
+  下限がChrome／Edge 124、Firefox 125、Safari 17.4へ上がる。McRemoteの拡張のwireとAPI、Bridge、WireScope、共有
+  fixtureは変わらない。pickerの確認は合成のcatalogで、実サーバーへの接続は未検証
 - human ownerの判断（2026-11-07）: HUDの初版を確定した（`2026-11-07-01`、`11-plugin/platform-design_ja.md` §11）。HUDの
   解説ページは今回作らず、追って作る。McRemoteのrelease本文はhuman ownerが編集した
+- human ownerの判断（2026-11-07）: Scratchは本家への追従と一緒に出す
 
 ## 2026-10-22 初回stable（2321.0.0）横断release gate（CLOSED）
 
