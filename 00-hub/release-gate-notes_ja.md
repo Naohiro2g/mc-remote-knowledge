@@ -75,8 +75,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
-- current phase: exact set `2321.1-set-1`を凍結した（2026-11-07）。McRemoteの26.3 #244での自動の確認と、Stackの返却を待つ。
-  人間の試験はその後
+- current phase: exact set `2321.1-set-1`を凍結した（2026-11-07）。McRemoteの26.3 #244での自動の確認は通った。Stackの返却を
+  待つ。人間の試験はその後
 - 位置づけ: 初回stableの後の最初の機能のrelease。betaを挟まない（`2026-10-22-03`）。番号は台帳
   （`00-hub/release-train-notes_ja.md`）で予約した（`2026-11-05-02`）
 - contract: protocol `23.2.1`のまま。wire、API、共有fixtureは変えない
@@ -148,6 +148,12 @@ coordinatorがまとめた。2026-11-07に、3つの候補のbranchの先頭が�
   読み書きも自動の確認に含める。HUDの表示、照準、Fでの切り替えを直接変えるものは無い。McRemoteの候補は`5b78ded`のままとし、
   26.3の自動の確認を#244でやり直す。1.21.11とunitはやり直さない
 - 公開VPSの26.3のセット：Paper 26.3 #244。ほかはStackの返却の後に足す（Stack宛ての票）
+- McRemoteの26.3 #244での自動の確認（2026-11-07、`handoff-materials/2026-11-07-23211-paper244/materials/handoff_ja.md`、8,622 bytes、
+  `5cf1c580a1baff85c69e466bc5d52530c3dc14904b95dbcc01f7845381096db4`。knowledge `f40b003`を読んだ）：凍結したJAR（`cd1fff72…`）と
+  Paper #244（`9601f9a2…`）、Temurin 25.0.5+8で、通常の8 groups、再起動の後の4 groups、両回のlifecycleと正常終了、
+  `toggle_on_swap`を省いたときの補完がPASS。看板は表裏、色、装飾、1行の更新、入力エラーまでPASS（#238）。group名、結果、
+  catalogの要約は#231と同じ。coordinatorは、branchの先頭が`5b78ded`のままで、使ったJARとPaperのidentityが凍結値と同じであることを
+  確かめた。HUDの実際の画面とキーは人間の試験で見る
 - 人間の試験（human owner 2026-11-07）: 実施票`00-hub/23211-gate-live-test-instructions_ja.md`。候補は
   `https://mc-remote.com/candidates/2321.1.0/set-1/`に置く（`2026-10-18-07`の形）。Paperは1.21.11 #132（Ubuntu、Java 21）と
   26.3 #244（Windows、Java 25）。Scratchのタブレット（iPad、Android）は公開の後に公開のWeb editorで見て、問題が出たら次の版で直す
