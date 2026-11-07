@@ -92,5 +92,7 @@ F1の範囲がそろったら、TS（Phase G）の実装を始める。C#の実�
   一緒に置く。Javaは済み（`2ea54074b6a03161ebe2fa8ecb98647d8a90912e`）
 - 済み：JavaがE1の列とPhase Dの評価を返した（`16-java-client/README_ja.md`の「stableへの追従とE1」、
   [Protocol Inventory](protocol-inventory_ja.md)）
+- 済み：PythonがE1の列とPhase Dの評価を返し、fixtureの取得元を`21a2a9a`へ固定し直した（`ac8969f`）。toolingが共有fixtureの
+  列と、F1の不足の案を返した（`1286eb4`）。どちらも[Protocol Inventory](protocol-inventory_ja.md)へ入れた
 - coordinator：McRemote、Python、ScratchのE1の確認票を起案する。時期は各担当の作業（McRemoteのHUDのrelease、
   Scratchの本家の追従）と重ならないようにhuman ownerが決める。fixtureの取得元の固定し直しも同じ票に入れる
