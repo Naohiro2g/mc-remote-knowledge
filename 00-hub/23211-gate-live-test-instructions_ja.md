@@ -1,7 +1,7 @@
 # 2321.1 実施票（human owner 向け）
 
 - 根拠: `00-hub/release-gate-notes_ja.md`「2026-11-06 `2321.1`横断release gate」（範囲、凍結するexact set `2321.1-set-2`）、
-  DECISIONS `2026-11-07-01`、`11-plugin/platform-design_ja.md` §11
+  DECISIONS `2026-11-07-01`、`2026-11-07-02`、`11-plugin/platform-design_ja.md` §11
 - 目的: `2321.1.0`で変わったところを、利用者と同じように確かめる。McRemoteのHUD、Scratchのパレットとpickerと本家への追従、
   Pythonのstarterの接続先
 - test class: live-human。自動の確認とunitで確かめたことは繰り返さない（「範囲の外」）
@@ -24,12 +24,15 @@ mc-remote.comに置いた候補（`2321.1-set-2`、リリースはこの試験�
   - Windows 11 x64：<https://mc-remote.com/candidates/2321.1.0/set-2/mc-remote-scratch-LAN-2321.1.0-windows-x64.zip>
     （262,508,252 bytes）
 - 比べる相手：公開中の`2321.0.0`
-- Paper：Ubuntuは1.21.11 #132（Java 21）、Windowsは26.3 #244（Java 25）。認証ON、LuckPermsは入れない。configは
-  `hud.*`を書かない（配布の既定）
+- Paper：Ubuntuは1.21.11 #132（Java 21）、Windowsは26.3 #244（Java 25）。認証ON。configは`hud.*`を書かない（配布の既定）
+- プラグイン（`2026-11-07-02`）：そのPaperの版に合う最新版を入れる。Geyser／Floodgate、ViaVersion／ViaBackwards。
+  AdvancedPortalsとWorldEditも入れる（必須度は下がる）。LuckPermsは入れない（LANパッケージの利用者と同じ。LuckPermsを
+  入れた構成は公開の箱庭で見る）
 
 ## 始める前に採ること
 
 - OSの版、ブラウザとその版、`java -version`、Paperのbuild、Minecraftのclientの版と言語
+- 入れたプラグインとその版
 
 ## Ubuntu（Paper 1.21.11）：HUD、Scratch
 
