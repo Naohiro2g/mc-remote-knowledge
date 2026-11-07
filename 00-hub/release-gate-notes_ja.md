@@ -75,8 +75,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
-- current phase: exact set `2321.1-set-2`を凍結した（2026-11-07）。McRemoteの26.3 #244での自動の確認と、Stackの#244での
-  事前の起動は通った。Stackが候補を`/candidates/2321.1.0/set-2/`へ置くのを待つ
+- current phase: exact set `2321.1-set-2`を凍結し、候補を`/candidates/2321.1.0/set-2/`に置いて外から照合した（2026-11-07）。
+  人間の試験を始めてよい
 - 位置づけ: 初回stableの後の最初の機能のrelease。betaを挟まない（`2026-10-22-03`）。番号は台帳
   （`00-hub/release-train-notes_ja.md`）で予約した（`2026-11-05-02`）
 - contract: protocol `23.2.1`のまま。wire、API、共有fixtureは変えない
@@ -239,6 +239,18 @@ coordinatorがまとめた。`2321.1-set-1`から、Scratchの行だけを替え
     mtime、build履歴とSBOM、provenanceの記録。Scratch OCIは、同じ中身でもbuildのたびにdigestが変わる
   - 一覧のJSONの`sourceCommit`は`11bce31`のまま（`57fb769`の祖先で、間はsiteの生成物だけ。2026-11-01の条件を満たす）
   - smoke：manifestとacquisitionとLANの境界、Python archiveのtest、LinuxのZIPのsmokeはPASS。実機と人間の操作は人間の試験で見る
+- 候補の配置（2026-11-07、Stack、`handoff-materials/2026-11-07-stack-23211-candidates/materials/RETURN_ja.md`、5,785 bytes、
+  `779cc1d3ed9a97d07ce1760564c5d72ca55eeea23201c0e6497b0e9ba33d0c85`）：3つのartifactの外側のdigestを照合し、JAR、wheel、LANの
+  LinuxとWindowsのZIP、`SHA256SUMS`を`set-2/`に置いた。手元とVPSの上の`sha256sum -c`は4件ともOK。Minecraftとconfig、
+  Caddyには触れていない
+- 外からの照合（2026-11-07、coordinator）：HTTPSで5 fileを取り、4件のbytesとSHA-256が凍結値と全桁で一致し、`SHA256SUMS`の
+  中身も凍結値と同じ。4件とも200で、Content-Typeは`application/java-archive`と`application/zip`（`.whl`も）、`x-robots-tag:
+  noindex, nofollow`、`Content-Encoding`無し（gzip等を受け入れると伝えても）、`accept-ranges: bytes`でRangeに206。
+  `/candidates/`、`/candidates/2321.1.0/`、`set-2/`は404で一覧を出さない
+- Stackのpreset草案：Scratch OCIを`set-2`のdigestに替えたcommit `e5571f7f3898430deafe2ac36c71d9e2f766426a`を、
+  `agent/stack-23211-preparation`へpushした（pytest 628件、ruff、catalogの検査はStackの申告）。PR 86は、その前の`4872d39`の
+  まま2026-11-07に`main`（`a2891cf0b2964166a3b820251fa3e9f0c7707d2a`）へmergeされていて、`e5571f7`は`main`に入っていない。
+  `main`の`public-web-paper@18`の草案はScratch OCIが`set-1`のdigestのまま。草案はregistryとcatalogに載っていない
 
 ## 2026-10-22 初回stable（2321.0.0）横断release gate（CLOSED）
 
