@@ -716,6 +716,7 @@ commandはMinecraftの作法に従い、値は下の表のとおりにする。`
 
 ### 11.4 後続
 
+- HUDを接続に結びつけるか、playerごとの原点で持つか（NOTES 2026-11-07）。複数の接続の対応とQuick Actionsを試作するときに、試して決める
 - 複数の接続の対応と、WireScope IDの表示。Quick Actions（Gキー）と一緒に入れる（`2026-11-07-01`）
 - HUDのAPIと、WireScope IDを取得するAPI（protocolの変更、`2400`の範囲を決めるとき）
 - 接続ごとの表示の設定、WireScopeを開くクリックリンク（ボスバーは押せない。リンクに観察の権限を含めない）
