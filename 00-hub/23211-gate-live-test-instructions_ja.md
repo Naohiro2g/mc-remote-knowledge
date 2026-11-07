@@ -1,6 +1,6 @@
 # 2321.1 実施票（human owner 向け）
 
-- 根拠: `00-hub/release-gate-notes_ja.md`「2026-11-06 `2321.1`横断release gate」（範囲、凍結するexact set `2321.1-set-1`）、
+- 根拠: `00-hub/release-gate-notes_ja.md`「2026-11-06 `2321.1`横断release gate」（範囲、凍結するexact set `2321.1-set-2`）、
   DECISIONS `2026-11-07-01`、`11-plugin/platform-design_ja.md` §11
 - 目的: `2321.1.0`で変わったところを、利用者と同じように確かめる。McRemoteのHUD、Scratchのパレットとpickerと本家への追従、
   Pythonのstarterの接続先
@@ -12,17 +12,17 @@
 
 ## 使うもの
 
-mc-remote.comに置いた候補（`2321.1-set-1`、リリースはこの試験の後）。一覧は出ないので、下のURLを直接開く。運用者が
+mc-remote.comに置いた候補（`2321.1-set-2`、リリースはこの試験の後）。一覧は出ないので、下のURLを直接開く。Stackが
 `rsync`で入れて`sha256sum -c`で確かめ、coordinatorが外からダウンロードして、bytesとSHA-256が凍結値と一致することを確かめる。
 試験ではファイル名とサイズだけ記録する。
 
-- McRemote（`5b78ded`）：<https://mc-remote.com/candidates/2321.1.0/set-1/mc-remote-2321.1.0.jar>（340,193 bytes）
-- Python（`09bbda4`）：<https://mc-remote.com/candidates/2321.1.0/set-1/minecraft_remote_api-2321.1.0-py3-none-any.whl>
+- McRemote（`5b78ded`）：<https://mc-remote.com/candidates/2321.1.0/set-2/mc-remote-2321.1.0.jar>（340,193 bytes）
+- Python（`09bbda4`）：<https://mc-remote.com/candidates/2321.1.0/set-2/minecraft_remote_api-2321.1.0-py3-none-any.whl>
   （196,026 bytes）。PyPI.orgへはまだ出ていないので、候補のwheelを入れる
-- Scratch LANパッケージ（`07f98eb`）
-  - Linux x64：<https://mc-remote.com/candidates/2321.1.0/set-1/mc-remote-scratch-LAN-2321.1.0-linux-x64.zip>（272,069,485 bytes）
-  - Windows 11 x64：<https://mc-remote.com/candidates/2321.1.0/set-1/mc-remote-scratch-LAN-2321.1.0-windows-x64.zip>
-    （262,461,767 bytes）
+- Scratch LANパッケージ（`57fb769`）
+  - Linux x64：<https://mc-remote.com/candidates/2321.1.0/set-2/mc-remote-scratch-LAN-2321.1.0-linux-x64.zip>（272,115,968 bytes）
+  - Windows 11 x64：<https://mc-remote.com/candidates/2321.1.0/set-2/mc-remote-scratch-LAN-2321.1.0-windows-x64.zip>
+    （262,508,252 bytes）
 - 比べる相手：公開中の`2321.0.0`
 - Paper：Ubuntuは1.21.11 #132（Java 21）、Windowsは26.3 #244（Java 25）。認証ON、LuckPermsは入れない。configは
   `hud.*`を書かない（配布の既定）

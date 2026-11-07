@@ -75,9 +75,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
-- current phase: exact set `2321.1-set-1`を凍結した（2026-11-07）。McRemoteの26.3 #244での自動の確認と、Stackの#244での
-  事前の起動は通った。Scratchのブロック一覧は新しいcommitで作った。Scratchの配布物をそのcommitで作り直し、`2321.1-set-2`
-  として凍結し直すのを待つ
+- current phase: exact set `2321.1-set-2`を凍結した（2026-11-07）。McRemoteの26.3 #244での自動の確認と、Stackの#244での
+  事前の起動は通った。Stackが候補を`/candidates/2321.1.0/set-2/`へ置くのを待つ
 - 位置づけ: 初回stableの後の最初の機能のrelease。betaを挟まない（`2026-10-22-03`）。番号は台帳
   （`00-hub/release-train-notes_ja.md`）で予約した（`2026-11-05-02`）
 - contract: protocol `23.2.1`のまま。wire、API、共有fixtureは変えない
@@ -172,8 +171,9 @@ coordinatorがまとめた。2026-11-07に、3つの候補のbranchの先頭が�
   ③pluginはGeyserを2.12.1-b1294へ、LuckPermsを5.5.91へ上げる。ほかの7本は最新版と照合して今と同じ版（human ownerが
   Stackに伝えた方針「基本的には最新版に追従し、問題がないか確認する」）
 - 人間の試験（human owner 2026-11-07）: 実施票`00-hub/23211-gate-live-test-instructions_ja.md`。候補は
-  `https://mc-remote.com/candidates/2321.1.0/set-1/`に置く（`2026-10-18-07`の形）。Paperは1.21.11 #132（Ubuntu、Java 21）と
-  26.3 #244（Windows、Java 25）。Scratchのタブレット（iPad、Android）は公開の後に公開のWeb editorで見て、問題が出たら次の版で直す
+  `https://mc-remote.com/candidates/2321.1.0/set-1/`に置く（`2026-10-18-07`の形。下の`2321.1-set-2`で`set-2/`に替えた）。
+  Paperは1.21.11 #132（Ubuntu、Java 21）と26.3 #244（Windows、Java 25）。Scratchのタブレット（iPad、Android）は公開の後に
+  公開のWeb editorで見て、問題が出たら次の版で直す
 - Scratchのブロック一覧の返却（2026-11-07、`handoff-materials/2026-11-07-scratch-23211-block-list/materials/RETURN_ja.md`、
   12,634 bytes、`4f0e9010a523bf71fb01ce8ac26cabebd7d8ae17802fb24db4b6cf8bd8977ab5`。knowledge `088b734`を読んだ）
   - commit `4a08a6e798d82a35e20c988d93cbb7d5a793220c`（親は`11bce31`）。PR 30でdevelop
@@ -210,6 +210,35 @@ coordinatorがまとめた。2026-11-07に、3つの候補のbranchの先頭が�
   生成元、ブロック一覧の生成元をそろえ、今の公開のworkflowと2026-11-01の照合の条件をそのまま使う。人間の試験はまだ始めて
   いないので、やり直すものは無い。却下＝凍結した`07f98eb`の配布物をそのまま使い、tagだけを新しいcommitへ向ける（昇格の
   手順を別に作ることになり、tagと生成元を分ける運用が加わる）。McRemoteとPythonは`2321.1-set-1`の値のまま
+
+### 凍結し直すexact set（2026-11-07、`2321.1-set-2`）
+
+coordinatorがまとめた。`2321.1-set-1`から、Scratchの行だけを替える。McRemote、Python、tooling、Paperは`set-1`の値のまま。
+人間の試験の候補は`https://mc-remote.com/candidates/2321.1.0/set-2/`に置き、Stackが置く（rc1と同じ）
+
+- Scratch：develop `57fb7691bb5d9a5895785b200ae78734240ebfa6`。run `42350684690`（`workflow_dispatch`、develop）、artifact
+  `13565862576`（`sha256:47a4f4601dbec0c2e8fc58d9359f69290fda4c1f4f2f58bb387e73590a172050`、期限2027-02-05）。coordinatorが
+  GitHubのAPIで、runの`head_sha`、結論、artifactのdigestと期限、developの先頭が`57fb769`のままであることを確かめた。jobは
+  `ubuntu-24.04`（`20261101.360.1`）で動き、`set-1`と同じ
+  - LANのZIP：Windows 262,508,252 bytes `8edf5c1890df3550b3d4ffdd8d39dfbc1cbd35509531266ebd5e80103cab7ad6`、macOS
+    266,859,915 bytes `d9bb5976f62ad5043130c911551f23b0f4b127a5f0a80a6465ff8cd7decb768e`、Linux 272,115,968 bytes
+    `52f1f4b3eff59cec44c634c8974d5b41cfb18ee873d1348021e7e1831a2cbe42`
+  - Scratch OCI index `sha256:f3bcf6a6e9ae939e8a8781628ad1e9b40507286da34224f91dfba711a4920c67`（`scratch.oci.tar`
+    326,605,824 bytes `c1dc8dc79a4e7dd351af728aa5e80677ce3aa08a84f8a4583dc9b4d9d84d7e10`）
+  - `set-1`と同じbytes：`scratch-gui.tar.gz`（`0f0b2597a8694863fb264340c1b3b89685849c85ce7c32e9f4b210e645fbdff8`）、
+    `contracts.tar.gz`（1,908 bytes `48948ba47d55409f02a8ff8e0d44021b07859e11ffa5ca0f8598e6ef06082390`）、Bridge（index
+    `sha256:305d6e38b36e195a0e158522f32f3a8c45d39da2aeec7b7e46f785c920406acf`）、WireScopeのZIPとmanifest
+  - candidate manifest 2,664 bytes `19aec7258f726f11ce497783b0e3c9b97f39be4fc4d8ccd7f25cfdc084061d47`。`source.commit`、LANの
+    `.artifact.json`の`source_commit`、ZIPの中の`data/identity.json`は3つのOSとも`57fb769`
+- Scratchの作り直しの返却（2026-11-07、`handoff-materials/2026-11-07-scratch-23211-rebuild/materials/RETURN_ja.md`、12,161 bytes、
+  `18c3a970f6e8e318b377ba0b39156eb094100c3d266478b723051c7a1bb8cf93`。knowledge `087ff84`を読んだ）
+  - LAN：3つのOSとも、ZIPの中で変わったのは`data/source/scratch-source.tar.gz`（ブロック一覧の64 file）と`data/identity.json`
+    だけ。editor、ランチャー、「はじめに.html」、Node、Bridge、WireScopeは`set-1`と同じbytes。同梱sourceに
+    `site/2321.1.0/`の62 fileが入っている
+  - OCI：Webのfileの中身は`set-1`と同じで、変わったのは入力の`SOURCE_REVISION`と`SOURCE_DATE_EPOCH`、COPY layerのfileの
+    mtime、build履歴とSBOM、provenanceの記録。Scratch OCIは、同じ中身でもbuildのたびにdigestが変わる
+  - 一覧のJSONの`sourceCommit`は`11bce31`のまま（`57fb769`の祖先で、間はsiteの生成物だけ。2026-11-01の条件を満たす）
+  - smoke：manifestとacquisitionとLANの境界、Python archiveのtest、LinuxのZIPのsmokeはPASS。実機と人間の操作は人間の試験で見る
 
 ## 2026-10-22 初回stable（2321.0.0）横断release gate（CLOSED）
 
