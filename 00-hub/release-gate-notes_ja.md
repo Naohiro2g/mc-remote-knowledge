@@ -75,8 +75,9 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
-- current phase: exact set `2321.1-set-1`を凍結した（2026-11-07）。McRemoteの26.3 #244での自動の確認は通った。Scratchの
-  ブロック一覧の作成と、Stackの#244での事前の起動を待つ
+- current phase: exact set `2321.1-set-1`を凍結した（2026-11-07）。McRemoteの26.3 #244での自動の確認と、Stackの#244での
+  事前の起動は通った。Scratchのブロック一覧は新しいcommitで作った。Scratchの配布物をそのcommitで作り直し、`2321.1-set-2`
+  として凍結し直すのを待つ
 - 位置づけ: 初回stableの後の最初の機能のrelease。betaを挟まない（`2026-10-22-03`）。番号は台帳
   （`00-hub/release-train-notes_ja.md`）で予約した（`2026-11-05-02`）
 - contract: protocol `23.2.1`のまま。wire、API、共有fixtureは変えない
@@ -173,6 +174,42 @@ coordinatorがまとめた。2026-11-07に、3つの候補のbranchの先頭が�
 - 人間の試験（human owner 2026-11-07）: 実施票`00-hub/23211-gate-live-test-instructions_ja.md`。候補は
   `https://mc-remote.com/candidates/2321.1.0/set-1/`に置く（`2026-10-18-07`の形）。Paperは1.21.11 #132（Ubuntu、Java 21）と
   26.3 #244（Windows、Java 25）。Scratchのタブレット（iPad、Android）は公開の後に公開のWeb editorで見て、問題が出たら次の版で直す
+- Scratchのブロック一覧の返却（2026-11-07、`handoff-materials/2026-11-07-scratch-23211-block-list/materials/RETURN_ja.md`、
+  12,634 bytes、`4f0e9010a523bf71fb01ce8ac26cabebd7d8ae17802fb24db4b6cf8bd8977ab5`。knowledge `088b734`を読んだ）
+  - commit `4a08a6e798d82a35e20c988d93cbb7d5a793220c`（親は`11bce31`）。PR 30でdevelop
+    `57fb7691bb5d9a5895785b200ae78734240ebfa6`へmergeし、treeは同じ（`55c68c4d1da2ce5984b6b6640ecef544a3d60244`）。差分は
+    `mc-remote/block-reference/site/`の中の64 fileだけ（`site/blocks.json`、`site/index.html`、`site/2321.1.0/`の62 file）。
+    CI 42328403335（push）、42328588564（PR）、42332137940（merge後）はsuccess。coordinatorがGitHubのAPIで確かめた。凍結した
+    `07f98eb`は新しいcommitの祖先
+  - 生成：凍結した`scratch-gui.tar.gz`（`0f0b2597…`）を展開したeditorから、`scripts/build-mcremote-block-reference.cjs`で作った。
+    `release: 2321.1.0`、`sourceRef`と`sourceCommit`は`11bce3193c524135931a5bf342a9edb1bfdfbbac`。ブロックは56
+  - `2321.0.0`との違い：ブロックの数、ID、順序、日本語と英語の表示、説明、入力、分類、画像（SVG 58枚）は全部同じ。変わったのは
+    版と生成元の記録だけ
+  - 凍結した配布物への影響：Web editor、Scratch OCI、`contracts.tar.gz`には`site/`が入らない。LANの3つのZIPは、同梱する
+    sourceの`data/source/scratch-source.tar.gz`に入る。今の公開のworkflowは、tagの指すcommitと配布物の生成元が同じことを
+    求めるので、`07f98eb`の配布物を新しいcommitのtagで公開することはできない
+- Stackの作業の返却（2026-11-07、`handoff-materials/2026-11-07-stack-23211-work/materials/RETURN_ja.md`、13,463 bytes、
+  `4daca9ee07587414245d99a1b5e34ccc96fd68a2f9106c3e7df9f53288eba603`。knowledge `088b734`を読んだ）
+  - #244での事前の起動：Stackの手元の検証機で、独立したcontainerを、公開のportを開けずに動かした（公開VPSは空きのmemoryが
+    足りない）。公開VPSの完成済みのbackupの写し（939,102,968 bytes、`31a5da45fa45e374303c0ecdcdbb2cc18c243f25018c586e2b81b21919c0e6f2`）
+    を使い、公開の箱庭には触れていない。runtimeは`sha256:69b73187717bf509fa30937b4e4c202dddf18e523cc9668dcf31dd62851a66f0`
+    （Temurin 25.0.5+8）、heap 3G／3G
+  - 使ったJAR：Paper #244と凍結したMcRemoteのJARは凍結値と同じ。Geyser 2.12.1-b1294 `Geyser-Spigot.jar` 52,208,355 bytes
+    `71c9ebd88fb729ff8dd881de5846a1cea04eb4ce89dc1004e67002d8a5077e4c`（公式のAPIの値と同じことをcoordinatorも確かめた）。
+    LuckPerms 5.5.91 1,509,565 bytes `2a6834c51830b133ec8763703391b20240f7a3b4748746503251a45d70cf1b39`（公式のdownloadの実物を
+    計測した値。公式の期待値は見つからない）。ほかの7本は今の版。全部のidentityは返却の`FILE_IDENTITIES_ja.md`
+  - 結果：Paperの`Done`まで17.152秒。DiscordSRVを除く9本が有効。DiscordSRVは二重の接続を避けてtokenを空にしたので、
+    有効化とDiscordへの接続は確かめていない。予期しないERROR／FATALは0件。McRemoteの`hud.enabled`と`hud.toggle_on_swap`は
+    `true`で補われた。DirectionHUD、OtterLib、旧McRemoteのJARは残っていない。Geyserのping（b1293の修正の経路）と`/v1/join`
+    （HTTP 200）、LuckPermsのDB（H2の写し）、ServerBackup、worldの3つのdimensionの読み込みが通った。正常な停止は1秒以内
+  - preset草案とrunbookの修正：`agent/stack-23211-preparation@4872d39eb52be9fd341d0d6e69e2d966bede53d7`、PR 86（draft、
+    未merge、6 file）。`public-web-paper@18`の草案と周辺pluginの入力（McRemoteのReleaseの値は空欄）、runbookの2か所
+    （周辺pluginの方針、Scratchの一覧の照合の条件）。Stackにはrepoの中のCIが無く、pytest 628件とruffのpassはStackの申告
+  - 公開の後の残り：presetの正式な収容、merge、箱庭の更新
+- human ownerの判断（2026-11-07）: Scratchは、`57fb769`で候補の配布物を作り直し、`2321.1-set-2`として凍結し直す。tag、配布物の
+  生成元、ブロック一覧の生成元をそろえ、今の公開のworkflowと2026-11-01の照合の条件をそのまま使う。人間の試験はまだ始めて
+  いないので、やり直すものは無い。却下＝凍結した`07f98eb`の配布物をそのまま使い、tagだけを新しいcommitへ向ける（昇格の
+  手順を別に作ることになり、tagと生成元を分ける運用が加わる）。McRemoteとPythonは`2321.1-set-1`の値のまま
 
 ## 2026-10-22 初回stable（2321.0.0）横断release gate（CLOSED）
 
