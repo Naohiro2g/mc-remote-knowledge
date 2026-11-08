@@ -52,7 +52,7 @@
 				<tbody>
 					<tr>
 						<td><strong>McRemote（Plugin）</strong></td>
-						<td><code>2321.0.0</code></td>
+						<td><code>2321.1.0</code></td>
 						<td>23.2.1</td>
 						<td>Paper 1.21.11 / 26.3（同じJARで両方に対応）</td>
 					</tr>
@@ -64,13 +64,13 @@
 					</tr>
 					<tr>
 						<td><strong>minecraft-remote-api (Python)</strong></td>
-						<td><code>2321.0.0</code></td>
+						<td><code>2321.1.0</code></td>
 						<td>23.2.1</td>
 						<td>Python 3.10以上対応。版を指定しない<code>uv add</code>で入る。旧プロトコルの版は<code>==1214.10.13</code></td>
 					</tr>
 					<tr>
 						<td><strong>scratch-editor (Scratch)</strong></td>
-						<td><code>2321.0.0</code></td>
+						<td><code>2321.1.0</code></td>
 						<td>23.2.1</td>
 						<td>Web版はブラウザ完結（Chrome, Safari, Edge等）。自分のPC・LAN向けのScratch LANパッケージ（Windows／macOS／Linux用ZIP）は<a href="../lan/scratch/">LANパッケージのページ</a>から</td>
 					</tr>
@@ -101,10 +101,45 @@
 				</tbody>
 			</table>
 
+			<h3>Scratchの動作環境（2321.1.0から）</h3>
+			<p class="section-desc">ブラウザは、Chrome／Edge 124以降、Firefox 125以降、Safari 17.4以降で使えます。本家のScratchの更新に合わせて、<code>2321.1.0</code>から下限が上がりました。タブレットとスマートフォンでは、次のOSの版が目安です。</p>
+			<table class="matrix-table">
+				<thead>
+					<tr>
+						<th>機器</th>
+						<th>OSの版</th>
+						<th>機種</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><strong>iPad</strong></td>
+						<td>iPadOS 17.4以降</td>
+						<td>iPad（第6世代以降）、iPad mini（第5世代以降）、iPad Air（第3世代以降）、iPad Pro 11インチ（全世代）、10.5インチ、12.9インチ（第2世代以降）</td>
+					</tr>
+					<tr>
+						<td><strong>iPhone</strong></td>
+						<td>iOS 17.4以降</td>
+						<td>iPhone XS、XS Max、XR以降、iPhone SE（第2世代以降）</td>
+					</tr>
+					<tr>
+						<td><strong>Android</strong></td>
+						<td>Android 8.0以降</td>
+						<td>—</td>
+					</tr>
+				</tbody>
+			</table>
+
 			<!-- Past History Collapsible -->
 			<details>
 				<summary>📜 過去のリリース履歴を展開して確認する</summary>
 				<ul class="history-timeline" style="margin-top: 14px;">
+						<li>
+							<div class="history-meta"><span class="history-date">2026年11月9日</span><span
+									class="history-version">Protocol 23.2.1 (2321.1.0)</span></div>
+							<div class="history-description">初回Stableの後の最初の改善。McRemoteは、座標（絶対と、建築の原点からの相対）、方位、時刻を画面の上のバーに出すHUDを入れ、接続すると表示します。足元と照準先の切り替えはFで行います（統合版ではFで切り替えられないので、<code>/mcr hud</code>で切り替えます）。Scratchは、パレットでカテゴリを選んだときの見出しのずれを直し、ブロック選びでマイクラの公式のカテゴリ名でも探せるようにしました。使えるブラウザとOSは「Scratchの動作環境」へ。Pythonは、手引きのテンプレートの接続先を<code>sb.mc-remote.com</code>にしました。APIと通信は<code>2321.0.0</code>と同じです。
+							</div>
+						</li>
 						<li>
 							<div class="history-meta"><span class="history-date">2026年11月1日</span><span
 									class="history-version">Protocol 23.2.1 (2321.0.0)</span></div>
