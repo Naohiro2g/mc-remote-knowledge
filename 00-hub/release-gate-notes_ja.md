@@ -75,7 +75,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
-- current phase: 人間の試験を終え、human ownerが`2321.1-set-2`を公開へ進めると判断した（2026-11-09）。次は公開の手順の票
+- current phase: McRemote、Python（PyPI.orgを含む）、Scratchの`2321.1.0`を公開し、coordinatorが照合した（2026-11-09）。次は
+  Scratchのブロック一覧の取り込み、ホームページ、Stack（箱庭）
 - 位置づけ: 初回stableの後の最初の機能のrelease。betaを挟まない（`2026-10-22-03`）。番号は台帳
   （`00-hub/release-train-notes_ja.md`）で予約した（`2026-11-05-02`）
 - contract: protocol `23.2.1`のまま。wire、API、共有fixtureは変えない
@@ -263,6 +264,54 @@ coordinatorがまとめた。`2321.1-set-1`から、Scratchの行だけを替え
   言語（2026-11-08） ③統合版との差（2026-11-09） ④同じ端末でプレイヤーを替えたときの保存したtoken（2026-11-09）
 - human ownerの判断（2026-11-09）：見つかったことは、どれも`2321.1`を止める理由にしない。①は`2026-11-07-01`のとおり、②と③は
   次のリリースで調整する、④は今回の変更の外にある仕組み（`2321.0.0`での再現は見ていない）。`2321.1-set-2`を公開へ進める
+
+### 公開（2026-11-09、`00-hub/23211-gate-release-instructions_ja.md`）
+
+- McRemote：<https://github.com/Naohiro2g/McRemote/releases/tag/v2321.1.0>（2026-11-08T20:26:59Z、JSTで11/9 5:26）。返却
+  `handoff-materials/2026-11-09-23211-release/materials/RETURN_ja.md`（7,812 bytes、
+  `622bcad5a9a83235b66925397224a19b8661053024067d2dbc060b4957af3449`。knowledge `2f33718`を読んだ）
+  - coordinatorがGitHubのAPIで照合した：annotated tag `v2321.1.0`（object `57fc4fec5e03835d7d53b27d67dfd773f1ba1127`）は
+    `5b78ded96d1ad6d45160b67c5f8a13e14adb3fc8`を指し、`main`も同じ（`77b77c6`からfast-forward）。`prerelease=false`、`draft=false`、
+    Latest。`v2321.0.0`のReleaseは残る。5つのassetを取り直して計り、返却の値と全桁で一致した。JARは凍結値
+    （340,193 bytes、`cd1fff723b2b8349f45184b940cd5da1ca3cdcacc9bad988fa71cd00ea960112`）。`manifest.json`（2,063 bytes、
+    `994e4a7d210ba329c9b9e538a2f636756f07cb0865b736fe96ab51432d865389`）のJARの値も同じ。公開のrun `42520172238`（`promote`、
+    success）のRunner Imageは`ubuntu-24.04` `20261101.360.1`
+  - 公開のworkflowは、tagのCI `42519567217`のartifactから昇格した。ZIPの外側のdigestは凍結のartifactと違うが、中のJARと宣言は
+    同じbytes（McRemoteの申告と`tag-ci-comparison.json`。JARはcoordinatorも上で照合した）
+  - verificationの記録：human ownerの指示（2026-11-09）で、凍結したJARとPaper 1.21.11 #132（54,846,016 bytes、
+    `5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba`）、Temurin 21.0.13+9で自動の確認をやり直し（PASS）、
+    `mc-remote-verification-1.21.11.json`（63,279 bytes、`45c0b5e6d7254a83d820ed7702ad3e67a1540f1d1c7a4ea1dc1aef4ce6c550e1`）を
+    その記録にした。26.3は#244の記録（63,801 bytes、`9c3492739c8088d413f8d3aafad0b733d732db3a1c159363a0e5eb4d5c72b1b5`）。
+    添付の記録は2つとも凍結したJARで採ったもの。`db7f7db`の記録は付け替えていない
+  - 本文：human ownerの原稿に、「統合版ではFで切り替えられない」、APIと通信は`2321.0.0`と同じこと、feedbackの入口を足した
+- Python：<https://github.com/Naohiro2g/minecraft-remote-api/releases/tag/v2321.1.0>（2026-11-08T20:27:02Z）。返却
+  `handoff-materials/2026-11-09-python-23211-release/materials/release-result_ja.md`（6,520 bytes、
+  `9722dc32c3c4f200602c1f5922b437fd2ff0de1cec0ab7352504211dc88e328d`。knowledge `2f33718`を読んだ）
+  - coordinatorが照合した：annotated tag `v2321.1.0`は`09bbda421645235b2433a6c205d528be15a49f34`を指し、`main`も同じ（`fac0313`
+    からfast-forward）。Latest。`v2321.0.0`のReleaseは残る。wheelとsdistを取り直して計り、凍結値と全桁で一致した。
+    `manifest.json`は675 bytes、`460f1558135dbf3e8095bbc8133946641a5eff61ab5f13db3deeb8c693b7c614`で、候補のmanifestとの違いは
+    `release_tag`（`null`→`v2321.1.0`）だけ。公開のrun `42520379366`の`prepare-publication`と`publish-pypi`のRunner Imageは
+    `ubuntu-24.04` `20261101.360.1`
+  - PyPI.org：coordinatorの照合の後、human ownerが承認した（2026-11-09）。`publish-pypi`はsuccess。PyPI.orgのJSON APIで、
+    `minecraft-remote-api` 2321.1.0のwheel（196,026 bytes）とsdist（190,241 bytes）のSHA-256が凍結値と全桁で一致し、yankedでなく、
+    最新版が`2321.1.0`であることを確かめた
+- Scratch：<https://github.com/Naohiro2g/scratch-editor/releases/tag/v2321.1.0>（2026-11-08T22:44:58Z）。返却
+  `handoff-materials/2026-11-09-scratch-23211-release/materials/RETURN_ja.md`（8,146 bytes、
+  `9880e4bc6838dd044030f308c7d6312c9402115b21c201db6a665e745964b7e3`。knowledge `2f33718`を読んだ）
+  - coordinatorが照合した：annotated tag `v2321.1.0`（object `1b62f8b0eddd62dad007b00f5a6979e89fd83174`）は
+    `57fb7691bb5d9a5895785b200ae78734240ebfa6`を指し、`develop`も同じ（動かしていない）。`v2321.0.0`は`ffb496e`のまま。Latest。
+    8つのassetのsizeとGitHubのdigestが凍結値と全桁で一致した（LANの3つのZIP、`scratch-gui.tar.gz`はGitHubのdigestで照合し、
+    取り直していない。`contracts.tar.gz`、WireScopeの2つ、`manifest.json`は取り直して計った）。GHCRの
+    `mc-remote-scratch:v2321.1.0`のindexは`sha256:f3bcf6a6e9ae939e8a8781628ad1e9b40507286da34224f91dfba711a4920c67`、Bridgeは
+    `sha256:305d6e38b36e195a0e158522f32f3a8c45d39da2aeec7b7e46f785c920406acf`のまま（loginなしで取った）
+  - `manifest.json`（2,093 bytes、`bd66f04446bdd37f221dba52df968d4d04e74886b9d6eddc59bf7e0be49171e6`）：`release_tag` `v2321.1.0`、
+    `source_commit`は`57fb769`の全桁。中の8項目（Scratch OCI、Bridge OCI、WireScopeの2つ、contracts、LANの3つ）の値は凍結値と
+    同じ。候補のmanifestからは公開の形式への変換で、`scratch-gui.tar.gz`は公開のmanifestに載らない（`2321.0.0`と同じ生成器）
+  - 本文：coordinatorが見た案（4,763 bytes、`468f0d1e…`）から、human ownerの指示（2026-11-09）で1文だけ替えた（カテゴリ名の
+    版の列挙を外した）。公開の本文がその1行の違いだけであることを照合した
+  - image workflow（`312664341`）は止めて出し、activeへ戻った。`release:published`による新しいimageのrunは0件。生成run
+    `42350684690`のRunner Imageは`ubuntu-24.04` `20261101.360.1`（凍結の記録のとおり）
+- 3つの公開に使ったjobは、どれも`ubuntu-24.04` `20261101.360.1`で、凍結の候補を作ったjobと同じ
 
 ## 2026-10-22 初回stable（2321.0.0）横断release gate（CLOSED）
 
