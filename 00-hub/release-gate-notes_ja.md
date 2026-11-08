@@ -75,8 +75,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
-- current phase: exact set `2321.1-set-2`を凍結し、候補を`/candidates/2321.1.0/set-2/`に置いて外から照合した（2026-11-07）。
-  人間の試験を始めてよい
+- current phase: 人間の試験を終え、human ownerが`2321.1-set-2`を公開へ進めると判断した（2026-11-09）。次は公開の手順の票
 - 位置づけ: 初回stableの後の最初の機能のrelease。betaを挟まない（`2026-10-22-03`）。番号は台帳
   （`00-hub/release-train-notes_ja.md`）で予約した（`2026-11-05-02`）
 - contract: protocol `23.2.1`のまま。wire、API、共有fixtureは変えない
@@ -251,6 +250,19 @@ coordinatorがまとめた。`2321.1-set-1`から、Scratchの行だけを替え
   `agent/stack-23211-preparation`へpushした（pytest 628件、ruff、catalogの検査はStackの申告）。PR 86は、その前の`4872d39`の
   まま2026-11-07に`main`（`a2891cf0b2964166a3b820251fa3e9f0c7707d2a`）へmergeされていて、`e5571f7`は`main`に入っていない。
   `main`の`public-web-paper@18`の草案はScratch OCIが`set-1`のdigestのまま。草案はregistryとcatalogに載っていない
+
+### 人間の試験（2026-11-07〜09）
+
+- human ownerが実施票`00-hub/23211-gate-live-test-instructions_ja.md`に沿って、`set-2`の候補で行った。記録は
+  `14-evidence/records/2026-11-09-23211-set-2-live-human_ja.md`（報告ベース）
+- Ubuntu（Paper 1.21.11 #132、Java版26.3をViaVersion経由）：HUDの1〜5、Scratchの6〜9が、すべて実施票のとおりにできた
+- Windows（Paper 26.3 #244）：統合版26.63（Geyser経由）でHUDの1、3〜5ができた。2のFは、統合版にオフハンドの交換が無いので
+  効かず、commandでは切り替えられた。Java版のclientでもHUDとFが動いた。Pythonは候補のwheelで、localhostと公開の箱庭（starterの
+  既定の`sb.mc-remote.com`、port 25575）へつなぎ、ペアリング、チャット、setBlock、getBlockが通った
+- 見つかったこと4件はNOTESへ置いた：①HUDが接続に結びつくことの違和感（2026-11-07のHUDの原点の行に追記） ②ゲーム内の文の
+  言語（2026-11-08） ③統合版との差（2026-11-09） ④同じ端末でプレイヤーを替えたときの保存したtoken（2026-11-09）
+- human ownerの判断（2026-11-09）：見つかったことは、どれも`2321.1`を止める理由にしない。①は`2026-11-07-01`のとおり、②と③は
+  次のリリースで調整する、④は今回の変更の外にある仕組み（`2321.0.0`での再現は見ていない）。`2321.1-set-2`を公開へ進める
 
 ## 2026-10-22 初回stable（2321.0.0）横断release gate（CLOSED）
 
