@@ -76,7 +76,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
 - current phase: McRemote、Python（PyPI.orgを含む）、Scratchの`2321.1.0`を公開し、coordinatorが照合した（2026-11-09）。
-  Scratchのブロック一覧を取り込んだ。公開の箱庭を`2321.1.0`のセットへ更新した（2026-11-09）。次はホームページ
+  Scratchのブロック一覧を取り込んだ。公開の箱庭を`2321.1.0`のセットへ更新し、ホームページを同期した（2026-11-09）。次は
+  Stackのブロック一覧の照合、告知、gateを閉じる判断
 - 位置づけ: 初回stableの後の最初の機能のrelease。betaを挟まない（`2026-10-22-03`）。番号は台帳
   （`00-hub/release-train-notes_ja.md`）で予約した（`2026-11-05-02`）
 - contract: protocol `23.2.1`のまま。wire、API、共有fixtureは変えない
@@ -366,6 +367,16 @@ coordinatorがまとめた。`2321.1-set-1`から、Scratchの行だけを替え
   切れて参加し直す。NOTES 2026-11-09の行）
 - human ownerの判断（2026-11-09）：mcrctlが作るfileの権限を、手元のumaskに左右されないようにする（NOTES 2026-11-09の行。gateを
   閉じた後にStackへの票）
+
+### ホームページ（2026-11-09）
+
+- branch `homepage-23211`をmainへ入れ（`4d600d2`）、human ownerが同期した。新着、現在地、`/releases/`の版の表と履歴と
+  「Scratchの動作環境」、`/lan/scratch/`のZIP、`/roadmap/`を`2321.1.0`にした。`/releases/`、`/roadmap/`、`/migration/`から各repoと
+  Releaseへつないだ（human owner 2026-11-09。箱庭のサーバーへのリンクは付けない）。iPad、iPhone、Androidでは1台でScratchと
+  マイクラを行き来してペアリングできないことを「Scratchの動作環境」に書いた
+- coordinatorが`30-広告宣伝/homepage/`の全400 fileを`https://mc-remote.com/`から取り、`4d600d2`のrepoと全部同じbytesであることを
+  確かめた。トップ、`/releases/`、`/roadmap/`、`/migration/`、`/lan/scratch/`、`/api/scratch/`は、末尾が`/`のURLでもそれぞれの
+  `index.html`と同じ。`/api/scratch/2321.1.0/blocks.json`は`1fd136f39309fe843427ab4aaa11af8e1588a5eb51a7ecc6451d504aef1bcd2f`
 
 ## 2026-10-22 初回stable（2321.0.0）横断release gate（CLOSED）
 
