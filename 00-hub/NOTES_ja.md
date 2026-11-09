@@ -8,6 +8,8 @@
 
 ## Inbox
 
+- 2026-11-09 [park] mcrctlが作るfileの権限を、手元のumaskに左右されないようにする / `2321.1`の箱庭の更新で、Stack担当の手元のスクリプトが`umask 077`をmcrctlへ引き継ぎ、作り直したCaddyfileなどがcontainerの中から読めずに、apply（`deployment update`）も自動で戻す処理も落ちた（`rollback-failed`、`14-evidence/records/2026-11-09-stack-23211-sandbox-update_ja.md`）。human owner 2026-11-09：mcrctlを手元の設定に左右されないようにする / 欲しいもの：containerが読むfileを、親プロセスのumaskにかかわらず読める権限で作る。更新も、自動で戻す処理も / 影響＝Stack（mcrctl） / 再開＝`2321.1`のgateを閉じた後に、Stackへの票を作るとき / 閉じる＝Stackの変更が着地した時
+
 - 2026-11-09 [park] 同じ端末でプレイヤーを替えると、保存したtokenで前のプレイヤーとしてつながる / `2321.1`の人間の試験（Paper 26.3 #244）で、統合版のアカウントでペアリングした後、同じ端末でJava版の別のアカウントで入り直した。ScratchとPythonは、保存したsession tokenでペアリング無しにつながり、前のプレイヤーとして扱われた。そのプレイヤーは退出しているので、`player.getPos`は`player_offline`になり、`setBlock`も効かず、今のプレイヤーのHUDは`[---]`のまま。sessionが切れる（約2時間）まで戻せない。Floodgateのアカウントと、連携していないJava版のアカウントは別のプレイヤーなので、McRemoteの取り違えではない。`2321.0.0`と同じ仕組みで、今回の版の退行ではないと読む（版を替えての再現は見ていない） / 欲しいもの：clientから今のtokenを捨てて、ペアリングし直す手段（`00-hub/credential-controls-notes_ja.md`の「今のtokenを捨てる」「保存したtokenで自動でつなぐ」の行）。どのプレイヤーとしての接続かが、エラーやclientの表示で分かること / 影響＝Scratch、Python、McRemote（エラーの中身） / 再開＝long-lived credentialの再開（2026-10-25 [priority]の行）の確認票を作るとき / 閉じる＝手段が着地した時
 
 - 2026-11-09 [park] 統合版（Bedrock）でのHUDと`/mcr` / `2321.1`の人間の試験（Paper 26.3 #244、Geyser、統合版26.63）で見えたこと。①統合版にはオフハンドの交換が無く（26.70、12月で入る）、Fでの切り替えが効かない。commandでは切り替えられる ②`/mcr`のcommandの補完が効かない ③barの色の彩度と明るさがJava版と違う。足元と照準の色の差、方位のマークと文字の差が小さく、方位の色は濃い ④統合版には、座標の常時表示、自分の座標のコピー、照準のブロックの座標のコピー、照準のブロックのIDの表示が元からある。human owner 2026-11-09：切り替えの手段は次の版で変えることを考えている（例：Qでのドロップのダブルクリック。手に何も持っていないとイベントが起きない）。統合版とJava版の差は、次のリリースに向けて、統合版での体験を含めて調整する / 関係：HUDの原点の行（2026-11-07）、`11-plugin/platform-design_ja.md` §11.4 / 影響＝McRemote（HUD、切り替え、色）、Geyser / 再開＝HUDの次の版（複数の接続の対応とQuick Actions）を試作するとき / 閉じる＝次の版のHUDで扱いを決めた時

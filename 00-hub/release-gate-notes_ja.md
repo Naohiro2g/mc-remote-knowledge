@@ -76,8 +76,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
 - current phase: McRemote、Python（PyPI.orgを含む）、Scratchの`2321.1.0`を公開し、coordinatorが照合した（2026-11-09）。
-  Scratchのブロック一覧を取り込んだ。Stackが箱庭の更新を準備した（PR 87、plan `prepared`）。次はhuman ownerのPRのmergeと
-  applyの時刻、箱庭の更新、ホームページ
+  Scratchのブロック一覧を取り込んだ。公開の箱庭を`2321.1.0`のセットへ更新した（2026-11-09）。次はホームページ
 - 位置づけ: 初回stableの後の最初の機能のrelease。betaを挟まない（`2026-10-22-03`）。番号は台帳
   （`00-hub/release-train-notes_ja.md`）で予約した（`2026-11-05-02`）
 - contract: protocol `23.2.1`のまま。wire、API、共有fixtureは変えない
@@ -348,6 +347,24 @@ coordinatorがまとめた。`2321.1-set-1`から、Scratchの行だけを替え
   world、session、ペアリングは巻き戻らない
 - 確かめていないこと：公開VPSでの新しいセットの起動、DiscordSRVの接続、人の操作（参加、ペアリング、チャット、setBlock、
   HUDのbar）、backupの実際の復元。applyの後に確かめる
+
+### 箱庭の更新（2026-11-09、Stack）
+
+- human ownerがPR 87をmergeした（`ba40ccdc54b1238d3f7cf9c9fa8dac7a806dca9f`、2026-11-09 10:15 JST）。Stackが、backupの後に
+  planを当て、`complete`になった（lock `sha256:cb5793011d7160edaf321ef1072d1affeb89d300ed8acb058ac3bbc75ab6c5c7`）。記録は
+  `14-evidence/records/2026-11-09-stack-23211-sandbox-update_ja.md`。返却
+  `handoff-materials/2026-11-09-stack-23211-sandbox-update/materials/RETURN_ja.md`（13,124 bytes、
+  `b5d2ba14bf0a11b83679033279c121891b19ab34da1798febb5cd1bf83ee041a`。knowledge `c753874`を読んだ）
+- backup：939,101,768 bytes、`3e83d297a1b683fd78e6b8999f3ce5e58e3577bbc493519fe846c398bb7229e3`
+- 1回目のapplyは`rollback-failed`。Stack担当の手元のスクリプトが`umask 077`をmcrctlへ引き継ぎ、作り直したCaddyfileがcontainerから
+  読めなかった。Stack担当が旧構成を手で戻し、同じplanを当て直した。最後の切り替えは46.5秒。1回目の正確な停止の秒数は分からない
+- 機械の確認：Paper 26.3 #244、McRemote 2321.1.0とHUDの既定の補い、10本のJARのSHA-256、ERROR／FATALは0件、Geyserの
+  `/v1/join`、`scratch.`と`scratch-beta.`の配信、doctor。McRemoteのconfigの今までの値は残っている
+- coordinatorの照合：PR 87のmerge、素材の`SHA256SUMS`、`scratch.`と`scratch-beta.`を外から取ったindex.htmlとruntime JSON
+- 人の確認（human owner）：参加、ペアリング、チャット、hello world、setBlock、getBlock、WireScope、HUDのbarの表示と切り替え。
+  iPadとiPhoneからも接続できた
+- human ownerの判断（2026-11-09）：mcrctlが作るfileの権限を、手元のumaskに左右されないようにする（NOTES 2026-11-09の行。gateを
+  閉じた後にStackへの票）
 
 ## 2026-10-22 初回stable（2321.0.0）横断release gate（CLOSED）
 
