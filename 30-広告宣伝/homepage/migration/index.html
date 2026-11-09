@@ -83,9 +83,9 @@
 								</tr>
 								<tr>
 									<td><strong>2026年11月から</strong></td>
-									<td><strong><code>minecraft-remote-api</code> <code>2321.0.0</code></strong></td>
-									<td><strong>箱庭や自分のPaperサーバー</strong>（McRemote <code>2321.0.0</code>プラグイン、マイクラ1.21.11、26.3）</td>
-									<td><strong>マイクラリモコンのScratch <code>2321.0.0</code></strong>（箱庭のScratch、Scratch LANパッケージ）― Pythonと同じサーバー</td>
+									<td><strong><code>minecraft-remote-api</code> <code>2321.0.0</code>以降</strong></td>
+									<td><strong>箱庭や自分のPaperサーバー</strong>（McRemote <code>2321.0.0</code>以降のプラグイン、マイクラ1.21.11、26.3）</td>
+									<td><strong>マイクラリモコンのScratch <code>2321.0.0</code>以降</strong>（箱庭のScratch、Scratch LANパッケージ）― Pythonと同じサーバー</td>
 								</tr>
 							</tbody>
 						</table>
@@ -173,14 +173,14 @@
 					<h2>🐍 Python</h2>
 
 					<h3>何が変わるか</h3>
-					<p>初回Stableの公開から、版を指定しない<code>pip install minecraft-remote-api</code>や<code>uv add minecraft-remote-api</code>で入るのは、新しい版（<code>2321.0.0</code>）です。新しい版は旧プロトコルのサーバーにはつながりません。また、旧版のプログラムは、接続のしかたなどが変わるため、そのままでは動かないものがあります。</p>
+					<p>初回Stableの公開から、版を指定しない<code>pip install minecraft-remote-api</code>や<code>uv add minecraft-remote-api</code>で入るのは、新しい版（今は<code>2321.1.0</code>）です。新しい版は旧プロトコルのサーバーにはつながりません。また、旧版のプログラムは、接続のしかたなどが変わるため、そのままでは動かないものがあります。</p>
 
 					<h3>旧版を使い続ける（2026年11月まで）</h3>
 					<p>旧プロトコルの箱庭サーバーや、旧版のmodを入れたサーバーにつなぐ間は、旧版を版を指定して入れてください。11月1日からは、箱庭サーバーのつなぎ先を<code>sb-retro.mc-remote.com</code>に変えてください。</p>
 					<pre><code>pip install "minecraft-remote-api==1214.10.13"</code></pre>
 
 					<h3>新しい版へ移る</h3>
-					<p><code>mcje</code>を使っていた方も、新しい<code>minecraft-remote-api</code>へ移ります。新しい版では、Pythonの環境とパッケージの管理に<a href="https://docs.astral.sh/uv/" target="_blank" rel="noopener">uv</a>を使います。pyenvやpoetryを使っていた方も、uvへ移ると手順が短くなります。</p>
+					<p><code>mcje</code>を使っていた方も、新しい<a href="https://github.com/Naohiro2g/minecraft-remote-api" target="_blank" rel="noopener"><code>minecraft-remote-api</code></a>へ移ります。新しい版では、Pythonの環境とパッケージの管理に<a href="https://docs.astral.sh/uv/" target="_blank" rel="noopener">uv</a>を使います。pyenvやpoetryを使っていた方も、uvへ移ると手順が短くなります。</p>
 					<ol>
 						<li>uvを入れます（手順はuvの公式の案内にあります）。</li>
 						<li>作業用のフォルダーで、<code>uv init --no-package</code>を実行します。</li>
@@ -192,7 +192,7 @@
 
 				<section id="scratch">
 					<h2>🐱 Scratch</h2>
-					<p>旧版の改造版Scratch（マイクラ1.12.2用、1.16.5用）とRemoteControllerModから、新しいScratchへ移ります。新しいScratchはmodを使わず、マイクラサーバーのMcRemoteとつながります。拡張機能が新しくなり、ブロックも変わっています。ブロックは<a href="../api/scratch/">Scratchのブロック一覧</a>で確かめられます。</p>
+					<p>旧版の改造版Scratch（マイクラ1.12.2用、1.16.5用）とRemoteControllerModから、新しいScratch（<a href="https://github.com/Naohiro2g/scratch-editor" target="_blank" rel="noopener">scratch-editor</a>）へ移ります。新しいScratchはmodを使わず、マイクラサーバーのMcRemoteとつながります。拡張機能が新しくなり、ブロックも変わっています。ブロックは<a href="../api/scratch/">Scratchのブロック一覧</a>で確かめられます。</p>
 					<ul>
 						<li><strong>箱庭サーバーで使う</strong>：ブラウザで<a href="https://scratch.mc-remote.com/?extension=mcremote" target="_blank" rel="noopener">箱庭のScratch</a>を開きます。手順は<a href="../#quickstart">はじめる</a>にあります。</li>
 						<li><strong>自分のワールドで使う</strong>：<a href="../lan/scratch/">Scratch LANパッケージ</a>を使います。</li>
@@ -203,7 +203,7 @@
 
 				<section id="server">
 					<h2>🖥️ マイクラサーバー</h2>
-					<p>Forgeのmod（RemoteControllerMod）、JuicyRaspberryPie、旧版のMcRemote（<code>v1.21.8-1.4.0</code>など）から、Paperサーバーと、そこへ入れる新しいプラグイン<strong>McRemote</strong>（<code>2321.0.0</code>）へ移ります。対応するマイクラの版は1.21.11と26.3です。PaperのJavaは、Temurinの21（マイクラ1.21.11）と25（26.3）を使い、最新のパッチを勧めます。準備のしかたは<a href="https://github.com/Naohiro2g/McRemote#readme" target="_blank" rel="noopener">McRemoteのREADME</a>にあります。</p>
+					<p>Forgeのmod（RemoteControllerMod）、JuicyRaspberryPie、旧版のMcRemote（<code>v1.21.8-1.4.0</code>など）から、Paperサーバーと、そこへ入れる新しいプラグイン<strong><a href="https://github.com/Naohiro2g/McRemote" target="_blank" rel="noopener">McRemote</a></strong>（今は<code>2321.1.0</code>）へ移ります。対応するマイクラの版は1.21.11と26.3です。PaperのJavaは、Temurinの21（マイクラ1.21.11）と25（26.3）を使い、最新のパッチを勧めます。準備のしかたは<a href="https://github.com/Naohiro2g/McRemote#readme" target="_blank" rel="noopener">McRemoteのREADME</a>にあります。</p>
 					<p>統合版でも遊べるようにGeyserを入れている場合は、Geyserを新しい版にして、TCPとUDPの両方で<code>19132</code>を開けます（<a href="https://geysermc.org/blog/preparing-for-nethernet/" target="_blank" rel="noopener">Geyserの案内</a>）。XServer GAMEsの無料サーバーでは、統合版も使いたいときに制約があります。統合版26.60のマイクラをつなぐには、26.60に対応したGeyserの版が要ります。</p>
 				</section>
 
