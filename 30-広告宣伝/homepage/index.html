@@ -62,8 +62,9 @@
 		<div class="container">
 			<div class="news-panel">
 				<h2>📣 いまのマイクラリモコン</h2>
-				<p class="news-status"><span>●</span> 現在地：<strong>初回Stable（2321.0.0）公開中</strong></p>
+				<p class="news-status"><span>●</span> 現在地：<strong>2321.1.0 公開中</strong></p>
 				<ul class="news-list">
+					<li><span class="news-date">2026年11月9日</span><code>2321.1.0</code>を公開しました。McRemoteに、座標と時刻を画面の上に出すHUDが入りました。Scratchは、パレットの頭出しとブロック選びの検索を直し、本家の更新も取り込みました。Pythonの手引きのテンプレートの接続先は<code>sb.mc-remote.com</code>になりました。APIと通信は<code>2321.0.0</code>と同じです。</li>
 					<li><span class="news-date">2026年11月1日</span>初回Stable（<code>2321.0.0</code>）を公開しました。箱庭サーバー<code>sb.mc-remote.com</code>は新しいプロトコルの安定版になり、マイクラ26.3で動いています。旧プロトコルのサーバーは<code>sb-retro.mc-remote.com</code>として11月末まで動かします。旧版からの移り方は<a href="migration/">移行</a>へ。</li>
 					<li><span class="news-date">2026年10月22日</span><a href="migration/">移行</a>のページを公開しました。</li>
 					<li><span class="news-date">2026年10月19日</span>リリース候補版（rc1）を公開しました。不具合や気づいたことは<a href="https://github.com/Naohiro2g/mc-remote-knowledge/issues/new?template=feedback.yml" target="_blank" rel="noopener">フィードバックのフォーム</a>へ。</li>
@@ -210,7 +211,7 @@
 
 				<div style="margin-top: 8px;">
 					<h4>Pythonモジュール（クライアント/API）のインストール：</h4>
-					<p><a href="https://docs.astral.sh/uv/getting-started/installation/" target="_blank" rel="noopener">uv</a>をインストールしたら、プロジェクトを作ってモジュールを追加します。PyPIから、版を指定せずに追加すると、新しいプロトコルの安定版（<code>2321.0.0</code>）が入ります。</p>
+					<p><a href="https://docs.astral.sh/uv/getting-started/installation/" target="_blank" rel="noopener">uv</a>をインストールしたら、プロジェクトを作ってモジュールを追加します。PyPIから、版を指定せずに追加すると、新しいプロトコルの安定版（<code>2321.1.0</code>）が入ります。</p>
 					<pre><code>uv init --python 3.13 mc-hello
 cd mc-hello
 uv add minecraft-remote-api</code></pre>
