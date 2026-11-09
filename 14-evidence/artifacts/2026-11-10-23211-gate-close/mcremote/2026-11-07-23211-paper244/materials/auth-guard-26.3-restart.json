@@ -1,0 +1,28 @@
+{
+  "source_commit": "5b78ded96d1ad6d45160b67c5f8a13e14adb3fc8",
+  "minecraft_version": "26.3",
+  "paper_build": 244,
+  "jar_sha256": "cd1fff723b2b8349f45184b940cd5da1ca3cdcacc9bad988fa71cd00ea960112",
+  "paper_server_sha256": "9601f9a26a2a52a0f2c807cf1abf691f96ee4fb287878313b601cebc2c51eabf",
+  "java_version": "openjdk version \"25.0.5\" 2026-10-20 LTS\nOpenJDK Runtime Environment Temurin-25.0.5+8 (build 25.0.5+8-LTS)\nOpenJDK 64-Bit Server VM Temurin-25.0.5+8 (build 25.0.5+8-LTS, mixed mode, sharing)",
+  "status": "PASS",
+  "transcript": [
+    {
+      "method": "hello",
+      "params": {
+        "protocol": "23.2.1"
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "error": {
+          "code": -32000,
+          "message": "auth_required",
+          "data": {
+            "reason": "auth_required"
+          }
+        }
+      }
+    }
+  ]
+}

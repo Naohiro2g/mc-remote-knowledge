@@ -1,0 +1,10 @@
+{
+  "run_id": 42519567217,
+  "artifact_id": 13633241102,
+  "zip_bytes": 317670,
+  "zip_sha256": "9179051e38783f9f66e57afe3048285e8f98a16c0363651a7647bcf9efdb65de",
+  "source_commit": "5b78ded96d1ad6d45160b67c5f8a13e14adb3fc8",
+  "jar_bytes": 340193,
+  "jar_sha256": "cd1fff723b2b8349f45184b940cd5da1ca3cdcacc9bad988fa71cd00ea960112",
+  "identical_to_frozen_candidate": true
+}

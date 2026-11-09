@@ -1,0 +1,3 @@
+COLLECTION role=jar kind=https-file file=mc-remote-2321.1.0.jar sha256=cd1fff723b2b8349f45184b940cd5da1ca3cdcacc9bad988fa71cd00ea960112 bytes=340193
+MINECRAFT-COMPATIBILITY minecraft_versions=1.21.11,26.3 external-digests=matched
+MINECRAFT-PRESET minecraft_version=26.3 foundation=matched

@@ -1,0 +1,15 @@
+{
+  "checkout_commit": "7185c726c1258ec5cb348abeef95ee4d290e7b18",
+  "production_difference_from_plan_checkout": [],
+  "plan_id": "sha256:af582efee1b62ef8f952db83bf308caacf3dac05e9c9db7f3a5d197588041bce",
+  "phase": "prepared",
+  "source_lock": "sha256:e4beef4927ecbe5ca60205d04ddfe8200bd41e74960f165fa348fea6bfd37bb3",
+  "target_lock": "sha256:cb5793011d7160edaf321ef1072d1affeb89d300ed8acb058ac3bbc75ab6c5c7",
+  "source_fingerprints_unchanged": true,
+  "live_container_count": 4,
+  "live_containers_running": true,
+  "configured_healthcheck_count": 1,
+  "configured_healthchecks_healthy": true,
+  "live_containers_started_before_preparation": true,
+  "apply_executed": false
+}

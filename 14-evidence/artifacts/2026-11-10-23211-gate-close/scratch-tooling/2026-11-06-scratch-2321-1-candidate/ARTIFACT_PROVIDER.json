@@ -1,0 +1,10 @@
+{
+  "workflow_run": 42245622899,
+  "artifact_id": 13518071543,
+  "name": "scratch-candidate-07f98ebf9be84db5ad2467cebe2c166bbe4c43f5",
+  "bytes": 1373271023,
+  "provider_digest": "sha256:73a6aadbc91571d12f71218f40f54d00b626d05cd148ba8c26f9ec85fe8b6833",
+  "manifest_identity_verified": true,
+  "lan_identity_json_verified": true,
+  "verification": "HTTP RangeでZIPのcentral directoryとJSON entryを取得しCRC照合。全archive再hashはしていない。"
+}

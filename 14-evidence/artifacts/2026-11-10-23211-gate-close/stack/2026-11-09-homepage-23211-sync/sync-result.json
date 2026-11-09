@@ -1,0 +1,14 @@
+{
+  "knowledge_commit": "4d600d21822df002ac4f07cf033962315344fbbe",
+  "started_at_utc": "2026-11-09T04:04:47.728498+00:00",
+  "completed_at_utc": "2026-11-09T04:04:58.988173+00:00",
+  "file_count": 400,
+  "all_deployed_files_match_knowledge": true,
+  "doctor_passed": true,
+  "lock_and_operator_unchanged": true,
+  "notices_and_public_configs_unchanged": true,
+  "minecraft_scratch_bridge_container_id_and_start_unchanged": true,
+  "only_caddy_recreated": true,
+  "sync_attempts": 1,
+  "lock_identity": "sha256:cb5793011d7160edaf321ef1072d1affeb89d300ed8acb058ac3bbc75ab6c5c7"
+}

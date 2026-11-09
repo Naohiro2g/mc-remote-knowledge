@@ -1,0 +1,4 @@
+mc-remote-2321.1.0.jar: OK
+minecraft_remote_api-2321.1.0-py3-none-any.whl: OK
+mc-remote-scratch-LAN-2321.1.0-linux-x64.zip: OK
+mc-remote-scratch-LAN-2321.1.0-windows-x64.zip: OK

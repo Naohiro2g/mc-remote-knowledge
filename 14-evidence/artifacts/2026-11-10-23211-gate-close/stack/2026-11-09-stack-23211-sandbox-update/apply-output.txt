@@ -1,0 +1,6 @@
+PROGRESS deployment-update step=pull-target-images
+PROGRESS deployment-update step=stop-source-runtime
+PROGRESS deployment-update step=publish-target-desired-state
+PROGRESS deployment-update step=start-target-and-wait timeout=300
+PROGRESS deployment-update step=doctor-target
+OK deployment-update status=complete plan=sha256:af582efee1b62ef8f952db83bf308caacf3dac05e9c9db7f3a5d197588041bce source-lock=sha256:e4beef4927ecbe5ca60205d04ddfe8200bd41e74960f165fa348fea6bfd37bb3 target-lock=sha256:cb5793011d7160edaf321ef1072d1affeb89d300ed8acb058ac3bbc75ab6c5c7 phase=complete

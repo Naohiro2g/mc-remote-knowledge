@@ -1,0 +1,10 @@
+{
+  "started_at_utc": "2026-11-09T01:46:41.393474+00:00",
+  "completed_at_utc": "2026-11-09T01:47:38.785790+00:00",
+  "elapsed_seconds": 57.423,
+  "returncode": 0,
+  "phase": "complete",
+  "plan_id": "sha256:af582efee1b62ef8f952db83bf308caacf3dac05e9c9db7f3a5d197588041bce",
+  "lock_identity": "sha256:cb5793011d7160edaf321ef1072d1affeb89d300ed8acb058ac3bbc75ab6c5c7",
+  "backup_sha256": "3e83d297a1b683fd78e6b8999f3ce5e58e3577bbc493519fe846c398bb7229e3"
+}

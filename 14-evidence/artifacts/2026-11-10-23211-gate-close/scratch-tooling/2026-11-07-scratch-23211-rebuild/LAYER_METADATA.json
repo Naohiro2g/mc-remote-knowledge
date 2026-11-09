@@ -1,0 +1,214 @@
+{
+  "amd64": {
+    "layer_entries": 1752,
+    "outside_web_payload_files": [],
+    "changed_metadata_fields": [
+      "mtime"
+    ],
+    "changed_entries": 1749,
+    "parent_entries": {
+      "usr": {
+        "old": {
+          "mtime": 1769548773,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "uname": "",
+          "gname": "",
+          "linkname": "",
+          "type": "b'5'",
+          "pax": {}
+        },
+        "new": {
+          "mtime": 1769548773,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "uname": "",
+          "gname": "",
+          "linkname": "",
+          "type": "b'5'",
+          "pax": {}
+        }
+      },
+      "usr/share": {
+        "old": {
+          "mtime": 1770334556,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "uname": "",
+          "gname": "",
+          "linkname": "",
+          "type": "b'5'",
+          "pax": {}
+        },
+        "new": {
+          "mtime": 1770334556,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "uname": "",
+          "gname": "",
+          "linkname": "",
+          "type": "b'5'",
+          "pax": {}
+        }
+      },
+      "usr/share/nginx": {
+        "old": {
+          "mtime": 1770328285,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "uname": "",
+          "gname": "",
+          "linkname": "",
+          "type": "b'5'",
+          "pax": {}
+        },
+        "new": {
+          "mtime": 1770328285,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "uname": "",
+          "gname": "",
+          "linkname": "",
+          "type": "b'5'",
+          "pax": {}
+        }
+      },
+      "usr/share/nginx/html": {
+        "old": {
+          "mtime": 1793979995,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "uname": "",
+          "gname": "",
+          "linkname": "",
+          "type": "b'5'",
+          "pax": {}
+        },
+        "new": {
+          "mtime": 1794036195,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "uname": "",
+          "gname": "",
+          "linkname": "",
+          "type": "b'5'",
+          "pax": {}
+        }
+      }
+    }
+  },
+  "arm64": {
+    "layer_entries": 1752,
+    "outside_web_payload_files": [],
+    "changed_metadata_fields": [
+      "mtime"
+    ],
+    "changed_entries": 1749,
+    "parent_entries": {
+      "usr": {
+        "old": {
+          "mtime": 1769548774,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "uname": "",
+          "gname": "",
+          "linkname": "",
+          "type": "b'5'",
+          "pax": {}
+        },
+        "new": {
+          "mtime": 1769548774,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "uname": "",
+          "gname": "",
+          "linkname": "",
+          "type": "b'5'",
+          "pax": {}
+        }
+      },
+      "usr/share": {
+        "old": {
+          "mtime": 1770334573,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "uname": "",
+          "gname": "",
+          "linkname": "",
+          "type": "b'5'",
+          "pax": {}
+        },
+        "new": {
+          "mtime": 1770334573,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "uname": "",
+          "gname": "",
+          "linkname": "",
+          "type": "b'5'",
+          "pax": {}
+        }
+      },
+      "usr/share/nginx": {
+        "old": {
+          "mtime": 1770328298,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "uname": "",
+          "gname": "",
+          "linkname": "",
+          "type": "b'5'",
+          "pax": {}
+        },
+        "new": {
+          "mtime": 1770328298,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "uname": "",
+          "gname": "",
+          "linkname": "",
+          "type": "b'5'",
+          "pax": {}
+        }
+      },
+      "usr/share/nginx/html": {
+        "old": {
+          "mtime": 1793979995,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "uname": "",
+          "gname": "",
+          "linkname": "",
+          "type": "b'5'",
+          "pax": {}
+        },
+        "new": {
+          "mtime": 1794036195,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "uname": "",
+          "gname": "",
+          "linkname": "",
+          "type": "b'5'",
+          "pax": {}
+        }
+      }
+    }
+  }
+}

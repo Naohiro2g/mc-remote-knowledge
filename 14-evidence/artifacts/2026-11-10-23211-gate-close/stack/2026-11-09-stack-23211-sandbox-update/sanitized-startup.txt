@@ -1,0 +1,15 @@
+2026-11-09T01:47:20.508222397Z [10:47:20 INFO]: [LuckPerms] Enabling LuckPerms v5.5.91
+2026-11-09T01:47:21.442459461Z [10:47:21 INFO]: [WorldEdit] Enabling WorldEdit v7.4.6+7648-00664b0
+2026-11-09T01:47:23.926494863Z [10:47:23 INFO]: [ViaVersion] Enabling ViaVersion v5.12.2
+2026-11-09T01:47:23.994577700Z [10:47:23 INFO]: [floodgate] Enabling floodgate v2.2.5-SNAPSHOT (b141-81b65cc)
+2026-11-09T01:47:24.231241191Z [10:47:24 INFO]: [ServerBackup] Enabling ServerBackup v2.10.0
+2026-11-09T01:47:24.257206389Z [10:47:24 INFO]: [DiscordSRV] Enabling DiscordSRV v1.30.5
+2026-11-09T01:47:24.269648803Z [10:47:24 INFO]: [Geyser-Spigot] Enabling Geyser-Spigot v2.12.1-SNAPSHOT
+2026-11-09T01:47:25.140201190Z [10:47:25 INFO]: [ViaBackwards] Enabling ViaBackwards v5.12.2
+2026-11-09T01:47:25.148491769Z [10:47:25 INFO]: [McRemote] Enabling McRemote v2321.1.0
+2026-11-09T01:47:25.158884216Z [10:47:25 INFO]: [McRemote] Added missing config defaults: hud.enabled, hud.toggle_on_swap, hud.colors.relative_target.h, hud.colors.relative_target.s, hud.colors.relative_target.b, hud.colors.relative_legs.h, hud.colors.relative_legs.s, hud.colors.relative_legs.b, hud.colors.absolute_target.h, hud.colors.absolute_target.s, hud.colors.absolute_target.b, hud.colors.absolute_legs.h, hud.colors.absolute_legs.s, hud.colors.absolute_legs.b, hud.colors.direction_mark.s, hud.colors.direction_mark.b, hud.colors.direction.s, hud.colors.direction.b, hud.colors.tick.h, hud.colors.tick.s, hud.colors.tick.b, hud.colors.time.h, hud.colors.time.s, hud.colors.time.b, hud.colors.separator.h, hud.colors.separator.s, hud.colors.separator.b, luckperm_permissions.build.blocks, default_build_blocks, connection.command_queue_capacity, connection.response_queue_capacity, events.ring_capacity, events.ring_bytes, events.poll_default, events.poll_limit, entities.handle_capacity, entities.nearby_max_radius, entities.nearby_max_entities, particles.max_count, work.per_request, work.per_session_tick, work.per_player_tick, work.global_per_tick, sound.per_connection_per_tick, sound.global_per_tick, lightning.connection_cooldown_ticks, lightning.player_cooldown_ticks, lightning.global_per_tick, lightning.rolling_window_ticks, lightning.global_per_window
+2026-11-09T01:47:26.044801926Z [10:47:26 INFO]: [AdvancedPortals] Enabling AdvancedPortals v2.8.0
+2026-11-09T01:47:27.411425229Z [10:47:27 INFO]: [DiscordSRV] Enabling LuckPerms hook
+2026-11-09T01:47:31.394835849Z [10:47:31 INFO]: Done (23.661s)! For help, type "help"
+2026-11-09T01:50:33.450213568Z [10:50:33 INFO]: Bukkit Plugins:
+2026-11-09T01:50:33.450813180Z [10:50:33 INFO]:  - AdvancedPortals, DiscordSRV, floodgate, Geyser-Spigot, LuckPerms, McRemote, ServerBackup, ViaBackwards, ViaVersion, WorldEdit

@@ -1,0 +1,18 @@
+{
+  "unchanged_definition_and_descriptions": [
+    {
+      "path": "packages/scratch-vm/src/extensions/scratch3_mcremote/index.js",
+      "sha256": "013beade00f2c2ffb129999a4d774ae0457f4f8363e99b97896ef5c25846b631",
+      "same_as_2321_0_0": true
+    },
+    {
+      "path": "mc-remote/block-reference/content.json",
+      "sha256": "529a2fd55ac8284fc36afed5789273e2c06b7e51e600628078e4b84ff9ea78b2",
+      "same_as_2321_0_0": true
+    }
+  ],
+  "frozen_and_source_trees": {
+    "07f98ebf9be84db5ad2467cebe2c166bbe4c43f5": "50a173cd1933f55afaf8c8b2cfbcb1d3538a4838",
+    "11bce3193c524135931a5bf342a9edb1bfdfbbac": "50a173cd1933f55afaf8c8b2cfbcb1d3538a4838"
+  }
+}

@@ -1,0 +1,49 @@
+[11:00:57 INFO]: [McRemote] Added missing config defaults: hud.enabled, hud.toggle_on_swap, hud.colors.relative_target.h, hud.colors.relative_target.s, hud.colors.relative_target.b, hud.colors.relative_legs.h, hud.colors.relative_legs.s, hud.colors.relative_legs.b, hud.colors.absolute_target.h, hud.colors.absolute_target.s, hud.colors.absolute_target.b, hud.colors.absolute_legs.h, hud.colors.absolute_legs.s, hud.colors.absolute_legs.b, hud.colors.direction_mark.s, hud.colors.direction_mark.b, hud.colors.direction.s, hud.colors.direction.b, hud.colors.tick.h, hud.colors.tick.s, hud.colors.tick.b, hud.colors.time.h, hud.colors.time.s, hud.colors.time.b, hud.colors.separator.h, hud.colors.separator.s, hud.colors.separator.b
+[11:00:57 ERROR]: [DiscordSRV] No bot token has been set in the config; a bot token is required to connect to Discord.
+[11:01:02 INFO]: Done (17.152s)! For help, type "help"
+[11:21:13 INFO]: [LP] stack23211probe was successfully created.
+[11:22:49 INFO]: Stopping server
+[11:23:04 INFO]: [StackGateProbe] Loading server plugin StackGateProbe v1
+[11:23:08 INFO]: [StackGateProbe] Enabling StackGateProbe v1
+[11:23:08 ERROR]: [DiscordSRV] No bot token has been set in the config; a bot token is required to connect to Discord.
+[11:23:12 INFO]: Done (16.817s)! For help, type "help"
+[11:23:17 INFO]: [StackGateProbe] PLUGIN ViaVersion enabled=true
+[11:23:17 INFO]: [StackGateProbe] PLUGIN floodgate enabled=true
+[11:23:17 INFO]: [StackGateProbe] PLUGIN LuckPerms enabled=true
+[11:23:17 INFO]: [StackGateProbe] PLUGIN Geyser-Spigot enabled=true
+[11:23:17 INFO]: [StackGateProbe] PLUGIN AdvancedPortals enabled=true
+[11:23:17 INFO]: [StackGateProbe] PLUGIN WorldEdit enabled=true
+[11:23:17 INFO]: [StackGateProbe] PLUGIN McRemote enabled=true
+[11:23:17 INFO]: [StackGateProbe] PLUGIN DiscordSRV enabled=false
+[11:23:17 INFO]: [StackGateProbe] PLUGIN ViaBackwards enabled=true
+[11:23:17 INFO]: [StackGateProbe] PLUGIN ServerBackup enabled=true
+[11:23:17 ERROR]: [StackGateProbe] STACK_GATE_PROBE_FAIL java.lang.IllegalStateException: Expected 10 product plugins, got 9
+[11:23:17 INFO]: [LP] -  stack23211probe - 0
+[11:23:55 INFO]: Stopping server
+[11:23:55 INFO]: [StackGateProbe] Disabling StackGateProbe v1
+[11:24:10 INFO]: [StackGateProbe] Loading server plugin StackGateProbe v2
+[11:24:14 INFO]: [StackGateProbe] Enabling StackGateProbe v2
+[11:24:14 ERROR]: [DiscordSRV] No bot token has been set in the config; a bot token is required to connect to Discord.
+[11:24:17 INFO]: Done (16.443s)! For help, type "help"
+[11:24:22 INFO]: [StackGateProbe] PLUGIN ViaVersion enabled=true
+[11:24:22 INFO]: [StackGateProbe] PLUGIN floodgate enabled=true
+[11:24:22 INFO]: [StackGateProbe] PLUGIN LuckPerms enabled=true
+[11:24:22 INFO]: [StackGateProbe] PLUGIN Geyser-Spigot enabled=true
+[11:24:22 INFO]: [StackGateProbe] PLUGIN AdvancedPortals enabled=true
+[11:24:22 INFO]: [StackGateProbe] PLUGIN WorldEdit enabled=true
+[11:24:22 INFO]: [StackGateProbe] PLUGIN McRemote enabled=true
+[11:24:22 INFO]: [StackGateProbe] PLUGIN DiscordSRV enabled=false
+[11:24:22 INFO]: [StackGateProbe] PLUGIN ViaBackwards enabled=true
+[11:24:22 INFO]: [StackGateProbe] PLUGIN ServerBackup enabled=true
+[11:24:22 INFO]: [StackGateProbe] PRODUCT_PLUGIN_CHECK enabled=9 DiscordSRV_external_connection_not_tested=true
+[11:24:23 INFO]: [StackGateProbe] DIMENSION minecraft:overworld chunk_0_0_read=true
+[11:24:23 INFO]: [StackGateProbe] DIMENSION minecraft:the_nether chunk_0_0_read=true
+[11:24:23 INFO]: [StackGateProbe] DIMENSION minecraft:the_end chunk_0_0_read=true
+[11:24:23 INFO]: [StackGateProbe] GEYSER_PING_PASS implementation=GeyserPaperPingPassthrough
+[11:24:23 INFO]: [StackGateProbe] STACK_GATE_PROBE_PASS
+[11:24:23 INFO]: [LP] -  stack23211probe - 0
+[13:03:17 INFO]: [LP] > Group Info: stack23211probe
+[13:03:17 INFO]: [LP] - Display Name: stack23211probe
+[13:03:20 INFO]: [LP] stack23211probe was successfully deleted.
+[13:05:24 INFO]: Stopping server
+[13:05:24 INFO]: [StackGateProbe] Disabling StackGateProbe v2

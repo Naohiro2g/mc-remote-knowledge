@@ -1,0 +1,9 @@
+{
+  "first_stop_seconds": 0.867,
+  "first_exit_code": 0,
+  "restart_to_probe_seconds": 27.33,
+  "probe_pass": true,
+  "paper_done_seconds": [
+    "16.443"
+  ]
+}

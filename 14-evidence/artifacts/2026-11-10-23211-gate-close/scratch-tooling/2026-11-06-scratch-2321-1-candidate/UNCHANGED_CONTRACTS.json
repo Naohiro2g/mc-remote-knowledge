@@ -1,0 +1,50 @@
+{
+  "candidate_commit": "07f98ebf9be84db5ad2467cebe2c166bbe4c43f5",
+  "baseline": "v2321.0.0",
+  "tooling_artifact_pins_identical": true,
+  "tooling_artifact_source_identical": true,
+  "existing_fixture_hash_entries_identical": true,
+  "fixture_source": {
+    "repository": "Naohiro2g/minecraft-remote-tooling",
+    "commit": "21a2a9a0aed8b4d9c715da46616aad86f1174b4c"
+  },
+  "files": [
+    {
+      "path": "packages/scratch-vm/src/extensions/scratch3_mcremote/index.js",
+      "bytes": 155465,
+      "sha256": "013beade00f2c2ffb129999a4d774ae0457f4f8363e99b97896ef5c25846b631",
+      "identical_to_stable": true
+    },
+    {
+      "path": "mc-remote/local/launcher.mjs",
+      "bytes": 16319,
+      "sha256": "a16f69951110d81340225046e18442e758992e2ba2c411cc8c5910e016104206",
+      "identical_to_stable": true
+    },
+    {
+      "path": "mc-remote/local/render-guide.mjs",
+      "bytes": 1055,
+      "sha256": "488a970f9a98531bee3342ed3f60d36712d2b9fad50d552e35cbaf65d8ad22c1",
+      "identical_to_stable": true
+    },
+    {
+      "path": "scripts/build-mcremote-local.py",
+      "bytes": 19773,
+      "sha256": "49204fa6eadfdabb65f792aae3f36e3815337b11986093c4171dc15df9d5f803",
+      "identical_to_stable": true
+    },
+    {
+      "path": "mc-remote/local-runtime-lock.json",
+      "bytes": 745,
+      "sha256": "86fed4a5cd301779bcbac9d5bd94bcc29794e0d5b326f0ab24f30091ada6d923",
+      "identical_to_stable": true
+    },
+    {
+      "path": "mc-remote/release-manifest-lock.json",
+      "bytes": 1411,
+      "sha256": "c7de38a3316656d183632b4ca58e8904d67ae722cc9e9959a03fff626ab39298",
+      "identical_to_stable": true
+    }
+  ],
+  "block_reference_site_identical": true
+}

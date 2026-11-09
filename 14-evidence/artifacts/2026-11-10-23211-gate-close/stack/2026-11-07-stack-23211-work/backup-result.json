@@ -1,0 +1,11 @@
+{
+  "file": "backup-2026-11-07~11-21-19-official-public-beta-world.zip",
+  "bytes": 494764866,
+  "sha256": "81fe507d7fb0e76293a3e3ca1bca6129ee98d3be8ea7075873301c0b3aeab174",
+  "crc_pass": true,
+  "dimensions": {
+    "overworld": true,
+    "the_nether": true,
+    "the_end": true
+  }
+}

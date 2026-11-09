@@ -1,0 +1,8 @@
+{
+  "seed_overrides_differing_live_keys": [
+    "supported_mc_versions"
+  ],
+  "extra_live_keys_different_from_packaged_defaults": [],
+  "live_hud_present": false,
+  "target_seed_hud_present": false
+}

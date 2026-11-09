@@ -1,0 +1,65 @@
+{
+  "source_commit": "5b78ded96d1ad6d45160b67c5f8a13e14adb3fc8",
+  "minecraft_version": "1.21.11",
+  "paper_build": 132,
+  "jar_sha256": "cd1fff723b2b8349f45184b940cd5da1ca3cdcacc9bad988fa71cd00ea960112",
+  "paper_server_sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+  "java_version": "openjdk version \"21.0.13\" 2026-10-20 LTS\nOpenJDK Runtime Environment Temurin-21.0.13+9 (build 21.0.13+9-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.13+9 (build 21.0.13+9-LTS, mixed mode, sharing)",
+  "status": "PASS",
+  "transcript": [
+    {
+      "method": "hello",
+      "params": {
+        "protocol": "23.2.1"
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "error": {
+          "code": -32000,
+          "message": "auth_required",
+          "data": {
+            "reason": "auth_required"
+          }
+        }
+      }
+    },
+    {
+      "method": "hello",
+      "params": {
+        "protocol": "23.2.0",
+        "auth": {
+          "token": "[REDACTED_TOKEN]"
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": {
+          "protocol": "23.2.1",
+          "mc_version": "1.21.11",
+          "supported_mc_versions": [
+            "1.21.11",
+            "26.3"
+          ],
+          "world_constants": {
+            "y_sea": -64
+          },
+          "catalogHash": "6d0f8524b70e37fb8d7b34d0fdb45c2b058dcfea82920d86ca9aaabb9fcadc83",
+          "player": "[REDACTED_UUID]",
+          "dimension": "minecraft:overworld",
+          "origin": [
+            200,
+            0,
+            200
+          ],
+          "permissions": {
+            "online": true,
+            "offline": true,
+            "buildRange": 1000
+          }
+        }
+      }
+    }
+  ]
+}

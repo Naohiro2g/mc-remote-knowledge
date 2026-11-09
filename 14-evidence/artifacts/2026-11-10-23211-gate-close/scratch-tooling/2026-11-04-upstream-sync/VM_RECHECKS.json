@@ -1,0 +1,29 @@
+[
+  {
+    "name": "control",
+    "command": [
+      "node",
+      "test/integration/control.js"
+    ],
+    "exit_code": 0,
+    "seconds": 4.29
+  },
+  {
+    "name": "execute",
+    "command": [
+      "node",
+      "test/integration/execute.js"
+    ],
+    "exit_code": 0,
+    "seconds": 11.54
+  },
+  {
+    "name": "vm-state-snapshot",
+    "command": [
+      "node",
+      "test/integration/vm-state-snapshot.js"
+    ],
+    "exit_code": 0,
+    "seconds": 11.86
+  }
+]

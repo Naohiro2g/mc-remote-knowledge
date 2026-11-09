@@ -1,0 +1,51 @@
+1.21.11 full ready
+PASS legacy string union rejection: invalid_params
+PASS missing state rejection: invalid_params
+PASS unknown field rejection: invalid_params
+PASS non-scalar state rejection: invalid_params
+PASS unknown block: unknown_block
+PASS unknown property: unknown_property
+PASS invalid property value: invalid_property_value
+PASS world.getBlocks axis limit: work_limit_exceeded
+PASS world.getBlocks integer validation: invalid_params
+PASS legacy world.getBlockWithData removal: method_not_found
+PASS structured BlockSpec/BlockValue: strict shape, defaults, set/get/getBlocks/setBlocks
+PASS default 32769 rejection: build_denied
+PASS world.setSign against a non-sign block: not_a_sign
+PASS world.setSign neither face given: invalid_params
+PASS world.setSign wrong line count: invalid_params
+PASS world.setSign non-string line: invalid_params
+PASS world.setSign control character in line: invalid_params
+PASS world.setSign line exceeds 64 code points: invalid_params
+PASS world.setSign unknown spec field: invalid_params
+PASS world.setSign: front/back independence, not_a_sign, invalid_params branches (sign_waxed untested here, needs live-human honeycomb step)
+OBSERVED encoder default color token for an unset line: 'black' (convention in code, not a live-verified rendering fact — needs live-human)
+PASS world.getSign against a non-sign block: not_a_sign
+PASS world.setSign unknown color token: invalid_property_value
+PASS world.setSign unknown decoration token: invalid_property_value
+PASS world.setSign non-array decorations: invalid_params
+PASS world.getSign / style setSign: default-line shape, named+hex color round-trip, all 5 decoration tokens, mixed string/object lines, not_a_sign, invalid color/decorations (sign_waxed and rendered-color truth need live-human)
+PASS world.updateSignLine against a non-sign block: not_a_sign
+PASS world.updateSignLine invalid face: invalid_params
+PASS world.updateSignLine line_index out of range: invalid_params
+PASS world.updateSignLine: patches exactly one line, leaves the rest of the face and the other face untouched, not_a_sign, invalid face/line_index (sign_waxed needs live-human)
+PASS Minecraft 1.21.11: 8 groups, JAR cd1fff723b2b8349f45184b940cd5da1ca3cdcacc9bad988fa71cd00ea960112
+PASS authentication enforced: auth_required
+1.21.11 full stopped normally
+1.21.11 restart ready
+PASS legacy string union rejection: invalid_params
+PASS missing state rejection: invalid_params
+PASS unknown field rejection: invalid_params
+PASS non-scalar state rejection: invalid_params
+PASS unknown block: unknown_block
+PASS unknown property: unknown_property
+PASS invalid property value: invalid_property_value
+PASS world.getBlocks axis limit: work_limit_exceeded
+PASS world.getBlocks integer validation: invalid_params
+PASS legacy world.getBlockWithData removal: method_not_found
+PASS structured BlockSpec/BlockValue: strict shape, defaults, set/get/getBlocks/setBlocks
+PASS Minecraft 1.21.11: 4 groups, JAR cd1fff723b2b8349f45184b940cd5da1ca3cdcacc9bad988fa71cd00ea960112
+PASS authentication enforced: auth_required
+1.21.11 restart stopped normally
+[REDACTED_WORKSPACE]/handoff-materials/2026-11-09-23211-release/materials/verification-1.21.11/mc-remote-verification-1.21.11.json
+Paper 1.21.11 #132 PASS; visual HUD and physical-key checks are not claimed

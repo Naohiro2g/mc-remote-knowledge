@@ -1,0 +1,70 @@
+{
+  "source_backup_bytes": 939102968,
+  "source_backup_sha256": "31a5da45fa45e374303c0ecdcdbb2cc18c243f25018c586e2b81b21919c0e6f2",
+  "mcremote_input_config_sha256": "a6c2cd042f648fb4330bbed161c282bb91fad7bede2db2a429f02aba1866ec59",
+  "mcremote_input_hud_keys": {},
+  "dimension_directories": [
+    "official-public-beta-world/dimensions/minecraft/the_end",
+    "official-public-beta-world/dimensions/minecraft/overworld",
+    "official-public-beta-world/dimensions/minecraft/the_nether"
+  ],
+  "discord_token_blank_in_trial_only": true,
+  "scheduled_backup_disabled_in_trial_only": true,
+  "runtime_files": [
+    {
+      "file": "paper-26.3-244.jar",
+      "bytes": 55279049,
+      "sha256": "9601f9a26a2a52a0f2c807cf1abf691f96ee4fb287878313b601cebc2c51eabf"
+    },
+    {
+      "file": "DiscordSRV-Build-1.30.5.jar",
+      "bytes": 10653915,
+      "sha256": "ef2fa1f2eb146c7c77412b7190a7dd33f1fc91282683fe45407739554c8aefef"
+    },
+    {
+      "file": "Geyser-Spigot.jar",
+      "bytes": 52208355,
+      "sha256": "71c9ebd88fb729ff8dd881de5846a1cea04eb4ce89dc1004e67002d8a5077e4c"
+    },
+    {
+      "file": "LuckPerms-Bukkit-5.5.91.jar",
+      "bytes": 1509565,
+      "sha256": "2a6834c51830b133ec8763703391b20240f7a3b4748746503251a45d70cf1b39"
+    },
+    {
+      "file": "ServerBackup-2.10.0.jar",
+      "bytes": 9806864,
+      "sha256": "961e77895a31980b129307f14081231b6b12e84f064a8b74765478d526d4fc1e"
+    },
+    {
+      "file": "ViaBackwards-5.12.2.jar",
+      "bytes": 1439642,
+      "sha256": "9a148a80ea22074f4bd1626cdbe254a4cd998bf44e7ceaff4e285a1b6b35da42"
+    },
+    {
+      "file": "ViaVersion-5.12.2.jar",
+      "bytes": 6508813,
+      "sha256": "24e4876fefe73e08a4c87cd6c457ee0916e62dd69656631caf41e26f909d504b"
+    },
+    {
+      "file": "advanced-portals-2.8.0-spigot.jar",
+      "bytes": 3221235,
+      "sha256": "abd3e4be48c1f34bc60530aaa344ab8bffd4146281b8ad33fc83628c93e7287d"
+    },
+    {
+      "file": "floodgate-spigot.jar",
+      "bytes": 11561096,
+      "sha256": "21570aff9ce17d6983928e8552777760e1ede5050026b04c686b0ae112e6fd7e"
+    },
+    {
+      "file": "mc-remote-2321.1.0.jar",
+      "bytes": 340193,
+      "sha256": "cd1fff723b2b8349f45184b940cd5da1ca3cdcacc9bad988fa71cd00ea960112"
+    },
+    {
+      "file": "worldedit-bukkit-7.4.6.jar",
+      "bytes": 7870216,
+      "sha256": "e0ce67d870ad1fef8a40dd9d7926360caf3bb44722438545d6b20b55f82a0c91"
+    }
+  ]
+}

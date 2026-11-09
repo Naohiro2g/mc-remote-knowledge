@@ -1,0 +1,7 @@
+OK doctor runtime=healthy deployment=public-stable-2321-20261101 environment=public-stable-2321-20261101
+OK doctor lock=sha256:cb5793011d7160edaf321ef1072d1affeb89d300ed8acb058ac3bbc75ab6c5c7 render=current context=default
+OK doctor network=public bind=0.0.0.0 java-port=25565 mcremote-port=25575
+OK doctor protocol=responsive auth=required
+OK doctor homepage=current
+OK doctor scratch-runtime=current web-pairs=2
+OK doctor wirescope=current handoff=cross-origin web-pairs=2

@@ -1,0 +1,73 @@
+{
+  "artifact_id": 13518071543,
+  "archive_bytes": 1373271023,
+  "archive_sha256": "73a6aadbc91571d12f71218f40f54d00b626d05cd148ba8c26f9ec85fe8b6833",
+  "download_seconds": 424.2653141580522,
+  "files": [
+    {
+      "file": "bridge.oci.tar",
+      "bytes": 114626048,
+      "sha256": "3982876466fb860dca250438d73e18e441a2a85d67d9f149f537a7a8d1a1c44c"
+    },
+    {
+      "file": "candidate-manifest.json",
+      "bytes": 2664,
+      "sha256": "95f7d2c35d60488b9408d2b4f66b9bb9fe866fd28f57154982350a801f568bcf"
+    },
+    {
+      "file": "contracts.tar.gz",
+      "bytes": 1908,
+      "sha256": "48948ba47d55409f02a8ff8e0d44021b07859e11ffa5ca0f8598e6ef06082390"
+    },
+    {
+      "file": "mc-remote-scratch-LAN-2321.1.0-linux-x64.artifact.json",
+      "bytes": 336,
+      "sha256": "b63411a47dd87ee530e8b134c94e8b5f9c6abd3c0aa3bff147f16a521c5f210f"
+    },
+    {
+      "file": "mc-remote-scratch-LAN-2321.1.0-linux-x64.zip",
+      "bytes": 272069485,
+      "sha256": "a5b8b976da9a02175b7aec67933f7ca76a52052ede11db3ba2f00ff0df8de23c"
+    },
+    {
+      "file": "mc-remote-scratch-LAN-2321.1.0-macos-arm64.artifact.json",
+      "bytes": 340,
+      "sha256": "9cddfc44f5dc73b7e984155e13cc07d8610618016cbd9b62fad30f72c0bb7403"
+    },
+    {
+      "file": "mc-remote-scratch-LAN-2321.1.0-macos-arm64.zip",
+      "bytes": 266813430,
+      "sha256": "ba8d2320bda3f60f85d94ed6f96ba6878673a70e08f773cf4b6110268ddcdb0a"
+    },
+    {
+      "file": "mc-remote-scratch-LAN-2321.1.0-windows-x64.artifact.json",
+      "bytes": 340,
+      "sha256": "6cbdfa05edee1e25f0661f755a0149c4f33f8065d31540818c6ae82a515078a9"
+    },
+    {
+      "file": "mc-remote-scratch-LAN-2321.1.0-windows-x64.zip",
+      "bytes": 262461767,
+      "sha256": "c077a3b3241cc784b676dc7d0ee25a8f58715c1539961ee876be2325153e0bd4"
+    },
+    {
+      "file": "scratch-gui.tar.gz",
+      "bytes": 139262746,
+      "sha256": "0f0b2597a8694863fb264340c1b3b89685849c85ce7c32e9f4b210e645fbdff8"
+    },
+    {
+      "file": "scratch.oci.tar",
+      "bytes": 326607872,
+      "sha256": "66440ff7e9cff1cdf322394e9613caef0bfe198eeec44d910e901fe8ea54b777"
+    },
+    {
+      "file": "wirescope-app.manifest.json",
+      "bytes": 2339,
+      "sha256": "3dd668a236463809a4cdc6d19375f3e6d75eea0c8089a616d2b761d3a4a05235"
+    },
+    {
+      "file": "wirescope-app.zip",
+      "bytes": 83854,
+      "sha256": "da3da0b6cf4d05265bc0c11abaa4913208c7cfc3600b0c3e78c93a356fc431ad"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "candidate_bytes": 2664,
+  "candidate_sha256": "19aec7258f726f11ce497783b0e3c9b97f39be4fc4d8ccd7f25cfdc084061d47",
+  "public_bytes": 2093,
+  "public_sha256": "bd66f04446bdd37f221dba52df968d4d04e74886b9d6eddc59bf7e0be49171e6",
+  "schema": [
+    "mc-remote.candidate-manifest",
+    "mc-remote.release-manifest"
+  ],
+  "schema_version": [
+    1,
+    2
+  ],
+  "version_to_release_tag": [
+    "2321.1.0",
+    "v2321.1.0"
+  ],
+  "source_commit_identical": true,
+  "removed_top_level": [
+    "tooling",
+    "source.repository"
+  ],
+  "oci_archives_to_registry_locators": true,
+  "file_kind_to_https_file": true,
+  "artifact_count": [
+    9,
+    8
+  ],
+  "scratch_gui_tar_attached_but_not_manifest_role": true
+}

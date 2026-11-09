@@ -407,6 +407,19 @@ coordinatorがまとめた。`2321.1-set-1`から、Scratchの行だけを替え
     消して空く量ではない
 - human ownerの判断（2026-11-09）：片付けは2の案のとおりにする。実行は、gateを閉じた後にStackへの票
 
+### close分類（2026-11-10、`00-hub/23211-gate-close-instructions_ja.md`）
+
+- 4担当ともknowledge `20295d4`を読んだ。返却：McRemote `handoff-materials/2026-11-10-23211-gate-close/`、Python
+  `handoff-materials/2026-11-10-python-23211-close/`、scratch-editor `handoff-materials/2026-11-10-scratch-23211-gate-close/`、Stack
+  `handoff-materials/2026-11-10-stack-23211-handoff-classification/`。どの担当も、元のfileを消していない
+- ①の120 file（3,522,641 bytes）をcoordinatorがbytesとSHA-256で照合し（不一致0）、`14-evidence/artifacts/2026-11-10-23211-gate-close/`へ
+  収容した（`14-evidence/records/2026-11-10-23211-gate-close_ja.md`）。秘密の定型の点検で、収容を止めるものは無かった
+- 依頼の一覧に無かったdirectoryを、McRemote（`2026-11-09-hud-double-drop-research`）とScratch（`2026-11-09-scratch-picker-ux`）が
+  足した。どちらも②（HUDの次の版、pickerの次の改善）
+- パレットの頭出しのずれ：Scratchが原因と回帰のtestを返し、coordinatorがcommitとtestのfileがtagにあることを確かめた。NOTESの
+  2026-11-01の行を閉じた
+- evidenceのINDEXに、`2026-11-09-23211-set-2-live-human`と`2026-11-09-stack-23211-sandbox-update`の行が無かったので足した
+
 ## 2026-10-22 初回stable（2321.0.0）横断release gate（CLOSED）
 
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない

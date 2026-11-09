@@ -1,0 +1,85 @@
+{
+  "runtime_image": "ghcr.io/naohiro2g/mc-remote-paper-runtime-temurin:temurin-25.0.5-8@sha256:69b73187717bf509fa30937b4e4c202dddf18e523cc9668dcf31dd62851a66f0",
+  "heap": "3G/3G",
+  "hud": {
+    "colors": {
+      "direction": {
+        "s": 40,
+        "b": 90
+      },
+      "direction_mark": {
+        "s": 75,
+        "b": 100
+      },
+      "absolute_target": {
+        "h": 40,
+        "s": 90,
+        "b": 90
+      },
+      "absolute_legs": {
+        "h": 40,
+        "s": 40,
+        "b": 90
+      },
+      "relative_target": {
+        "h": 320,
+        "s": 90,
+        "b": 90
+      },
+      "relative_legs": {
+        "h": 320,
+        "s": 40,
+        "b": 90
+      },
+      "tick": {
+        "h": 170,
+        "s": 80,
+        "b": 85
+      },
+      "time": {
+        "h": 120,
+        "s": 80,
+        "b": 85
+      },
+      "separator": {
+        "h": 0,
+        "s": 0,
+        "b": 60
+      }
+    },
+    "enabled": true,
+    "toggle_on_swap": true
+  },
+  "supported_mc_versions_restored": true,
+  "existing_config_keys_preserved": true,
+  "product_plugin_jar_count": 10,
+  "plugin_hashes_matched": true,
+  "removed_plugins_absent": true,
+  "paper_244_running": true,
+  "mcremote_23211_enabled": true,
+  "error_fatal_count": 0,
+  "geyser_join": {
+    "http_status": 200,
+    "protocol": 2225,
+    "version": "26.62",
+    "transportLayer": 2,
+    "dataVersion": 7
+  },
+  "scratch_image": "ghcr.io/naohiro2g/mc-remote-scratch:2321.1.0@sha256:f3bcf6a6e9ae939e8a8781628ad1e9b40507286da34224f91dfba711a4920c67",
+  "scratch_origins": {
+    "scratch.mc-remote.com": {
+      "http_status": 200,
+      "index_matches_frozen_container": true,
+      "index_sha256": "7c6255a2cdb18eebe820c81c79b4c185964e3594d4c1830b9623c16d9ff25ecc",
+      "runtime_sha256": "8a11a534d0ed4af5437c7e2bf97817bc7643029e1680ab2695c78a84c848e65a"
+    },
+    "scratch-beta.mc-remote.com": {
+      "http_status": 200,
+      "index_matches_frozen_container": true,
+      "index_sha256": "7c6255a2cdb18eebe820c81c79b4c185964e3594d4c1830b9623c16d9ff25ecc",
+      "runtime_sha256": "1d64882f97f1bd84ddca22a3027a380471da5cac3c50e112d3bf576b519ee53a"
+    }
+  },
+  "doctor_passed": true,
+  "checked_at_utc": "2026-11-09T01:50:39.177094+00:00"
+}

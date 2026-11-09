@@ -1,0 +1,55 @@
+{
+  "status": "PASS",
+  "release_id": 438498551,
+  "release_url": "https://github.com/Naohiro2g/McRemote/releases/tag/v2321.1.0",
+  "tag": "v2321.1.0",
+  "draft": false,
+  "prerelease": false,
+  "latest": true,
+  "old_release_preserved": true,
+  "manifest_schema_and_content": "PASS",
+  "body_matches_prepared_except_trailing_lf": true,
+  "body_trailing_lf_added": 1,
+  "assets": [
+    {
+      "file": "manifest.json",
+      "bytes": 2063,
+      "sha256": "994e4a7d210ba329c9b9e538a2f636756f07cb0865b736fe96ab51432d865389",
+      "matches_prepared": true,
+      "matches_provider_digest": true,
+      "asset_url": "https://github.com/Naohiro2g/McRemote/releases/download/v2321.1.0/manifest.json"
+    },
+    {
+      "file": "mc-remote-2321.1.0.jar",
+      "bytes": 340193,
+      "sha256": "cd1fff723b2b8349f45184b940cd5da1ca3cdcacc9bad988fa71cd00ea960112",
+      "matches_prepared": true,
+      "matches_provider_digest": true,
+      "asset_url": "https://github.com/Naohiro2g/McRemote/releases/download/v2321.1.0/mc-remote-2321.1.0.jar"
+    },
+    {
+      "file": "mc-remote-verification-1.21.11.json",
+      "bytes": 63279,
+      "sha256": "45c0b5e6d7254a83d820ed7702ad3e67a1540f1d1c7a4ea1dc1aef4ce6c550e1",
+      "matches_prepared": true,
+      "matches_provider_digest": true,
+      "asset_url": "https://github.com/Naohiro2g/McRemote/releases/download/v2321.1.0/mc-remote-verification-1.21.11.json"
+    },
+    {
+      "file": "mc-remote-verification-26.3.json",
+      "bytes": 63801,
+      "sha256": "9c3492739c8088d413f8d3aafad0b733d732db3a1c159363a0e5eb4d5c72b1b5",
+      "matches_prepared": true,
+      "matches_provider_digest": true,
+      "asset_url": "https://github.com/Naohiro2g/McRemote/releases/download/v2321.1.0/mc-remote-verification-26.3.json"
+    },
+    {
+      "file": "minecraft-targets.json",
+      "bytes": 126,
+      "sha256": "8e830732decd6bcde13f91eb6c071d062ba6993342a7edb52e6ea543b9e0c361",
+      "matches_prepared": true,
+      "matches_provider_digest": true,
+      "asset_url": "https://github.com/Naohiro2g/McRemote/releases/download/v2321.1.0/minecraft-targets.json"
+    }
+  ]
+}

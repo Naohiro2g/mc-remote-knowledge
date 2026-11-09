@@ -1,0 +1,42 @@
+{
+  "source_commit": "5b78ded96d1ad6d45160b67c5f8a13e14adb3fc8",
+  "knowledge_contract_commit": "f40b003eda9ec560b0c6b4656b12bfa902746d39",
+  "exact_set": "2321.1-set-1",
+  "jar": {
+    "file": "mc-remote-2321.1.0.jar",
+    "bytes": 340193,
+    "sha256": "cd1fff723b2b8349f45184b940cd5da1ca3cdcacc9bad988fa71cd00ea960112"
+  },
+  "paper": {
+    "file": "paper-26.3-244.jar",
+    "bytes": 55279049,
+    "sha256": "9601f9a26a2a52a0f2c807cf1abf691f96ee4fb287878313b601cebc2c51eabf"
+  },
+  "java_version": "openjdk version \"25.0.5\" 2026-10-20 LTS\nOpenJDK Runtime Environment Temurin-25.0.5+8 (build 25.0.5+8-LTS)\nOpenJDK 64-Bit Server VM Temurin-25.0.5+8 (build 25.0.5+8-LTS, mixed mode, sharing)",
+  "minecraft_version": "26.3",
+  "paper_build": 244,
+  "credential_fixture": {
+    "synthetic": true,
+    "helper": {
+      "file": "LocalCompatibilityFixture.class",
+      "bytes": 1631,
+      "sha256": "f3ed78526f3a24f9c25768e1d29ab3b04fdf6af771ebc95077d33a3898796d49"
+    }
+  },
+  "environment": {
+    "fresh_world": true,
+    "world_type": "flat",
+    "luckperms": false,
+    "auth_enforcement": true,
+    "minecraft_bind": "[REDACTED_ADDRESS]",
+    "api_client_host": "[REDACTED_ADDRESS]",
+    "api_listener": "wildcard (plugin implementation)",
+    "shared_deployment": false,
+    "java_flags": [
+      "-Xms256M",
+      "-Xmx1536M",
+      "-XX:ActiveProcessorCount=2"
+    ]
+  },
+  "rebuild": false
+}

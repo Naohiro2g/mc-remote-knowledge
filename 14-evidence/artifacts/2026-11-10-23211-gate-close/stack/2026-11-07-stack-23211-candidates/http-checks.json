@@ -1,0 +1,45 @@
+{
+  "head": [
+    {
+      "file": "SHA256SUMS",
+      "status": 200,
+      "content_length": 426,
+      "content_type": null,
+      "x_robots_tag": "noindex, nofollow"
+    },
+    {
+      "file": "mc-remote-2321.1.0.jar",
+      "status": 200,
+      "content_length": 340193,
+      "content_type": "application/java-archive",
+      "x_robots_tag": "noindex, nofollow"
+    },
+    {
+      "file": "mc-remote-scratch-LAN-2321.1.0-linux-x64.zip",
+      "status": 200,
+      "content_length": 272115968,
+      "content_type": "application/zip",
+      "x_robots_tag": "noindex, nofollow"
+    },
+    {
+      "file": "mc-remote-scratch-LAN-2321.1.0-windows-x64.zip",
+      "status": 200,
+      "content_length": 262508252,
+      "content_type": "application/zip",
+      "x_robots_tag": "noindex, nofollow"
+    },
+    {
+      "file": "minecraft_remote_api-2321.1.0-py3-none-any.whl",
+      "status": 200,
+      "content_length": 196026,
+      "content_type": "application/zip",
+      "x_robots_tag": "noindex, nofollow"
+    }
+  ],
+  "range": {
+    "status": 206,
+    "content_range": "bytes 0-0/272115968"
+  },
+  "directory_status": 404,
+  "full_external_download_not_tested": true
+}

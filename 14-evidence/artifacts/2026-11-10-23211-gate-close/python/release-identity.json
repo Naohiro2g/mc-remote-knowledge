@@ -1,0 +1,193 @@
+{
+  "knowledge_contract": {
+    "commit": "2f337180c919a80aa80200e9f9d959d64812543e",
+    "path": "00-hub/23211-gate-release-instructions_ja.md",
+    "sections": [
+      "\u5171\u901a",
+      "Python client"
+    ]
+  },
+  "state": {
+    "knowledge_commit": "2f337180c919a80aa80200e9f9d959d64812543e",
+    "main_sha": "09bbda421645235b2433a6c205d528be15a49f34",
+    "tag": "v2321.1.0",
+    "tag_type": "tag",
+    "annotated_tag_object_sha": "4cbe70d859a0f06b34304bb24e42f170480e1bf1",
+    "tag_target_sha": "09bbda421645235b2433a6c205d528be15a49f34",
+    "latest_release_id": 438500924,
+    "pypi_run_id": 42520379366,
+    "pypi_run_status": "waiting",
+    "pypi_pending_environment": "pypi",
+    "environment_approval_submitted": false,
+    "duplicate_automatic_run_id": 42520175969,
+    "duplicate_automatic_run_conclusion": "cancelled",
+    "main_ci": {
+      "run_id": 42520098818,
+      "conclusion": "success",
+      "artifact_id": 13632502854,
+      "artifact_digest": "sha256:da0ef925eb8959218951d2d0dde0f0d5111615a35e36befbb280277ede75563b",
+      "files": [
+        {
+          "file": "minecraft_remote_api-2321.1.0-py3-none-any.whl",
+          "bytes": 196026,
+          "sha256": "ee80d81be4128f8e2327646f607fbc46053bec91a527eb9140f54c9dc9d6a26f",
+          "same_as_frozen_candidate": true
+        },
+        {
+          "file": "minecraft_remote_api-2321.1.0.tar.gz",
+          "bytes": 190241,
+          "sha256": "2d49d096eb30c8721627f8d8f878551396a8f0d298466a007ce1b71559e255d9",
+          "same_as_frozen_candidate": true
+        },
+        {
+          "file": "manifest.json",
+          "bytes": 668,
+          "sha256": "8f361f8b54b1deba76b4105da50acf472e56dbe0d27fd5bd006eefd1bf214d05",
+          "same_as_frozen_candidate": true
+        }
+      ]
+    },
+    "release_workflow_state": "active"
+  },
+  "published": {
+    "release_id": 438500924,
+    "url": "https://github.com/Naohiro2g/minecraft-remote-api/releases/tag/v2321.1.0",
+    "title": "minecraft-remote-api 2321.1.0",
+    "draft": false,
+    "prerelease": false,
+    "latest": true,
+    "published_at": "2026-11-08T20:27:02Z",
+    "body_sha256": "8ed23a8b45113d83f29a479f5149529080a405c3137d764fdb87e1c359f3f14d",
+    "assets": [
+      {
+        "name": "manifest.json",
+        "id": 725104507,
+        "url": "https://github.com/Naohiro2g/minecraft-remote-api/releases/download/v2321.1.0/manifest.json",
+        "bytes": 675,
+        "sha256": "460f1558135dbf3e8095bbc8133946641a5eff61ab5f13db3deeb8c693b7c614",
+        "frozen_comparison": "PASS: release_tag only"
+      },
+      {
+        "name": "minecraft_remote_api-2321.1.0-py3-none-any.whl",
+        "id": 725104509,
+        "url": "https://github.com/Naohiro2g/minecraft-remote-api/releases/download/v2321.1.0/minecraft_remote_api-2321.1.0-py3-none-any.whl",
+        "bytes": 196026,
+        "sha256": "ee80d81be4128f8e2327646f607fbc46053bec91a527eb9140f54c9dc9d6a26f",
+        "frozen_comparison": "PASS"
+      },
+      {
+        "name": "minecraft_remote_api-2321.1.0.tar.gz",
+        "id": 725104514,
+        "url": "https://github.com/Naohiro2g/minecraft-remote-api/releases/download/v2321.1.0/minecraft_remote_api-2321.1.0.tar.gz",
+        "bytes": 190241,
+        "sha256": "2d49d096eb30c8721627f8d8f878551396a8f0d298466a007ce1b71559e255d9",
+        "frozen_comparison": "PASS"
+      }
+    ],
+    "manifest_changes": [
+      "release_tag"
+    ],
+    "old_release_retained": true,
+    "reverified_after_automatic_run": true
+  },
+  "runner_images": {
+    "publication-prepare": {
+      "job_id": 128852384418,
+      "job_name": "prepare-publication",
+      "image": "ubuntu-24.04",
+      "version": "20261101.360.1"
+    },
+    "automatic-testpypi": {
+      "job_id": 128851839415,
+      "job_name": "publish-testpypi",
+      "image": "ubuntu-24.04",
+      "version": "20261101.360.1"
+    },
+    "automatic-promote": {
+      "job_id": 128851745614,
+      "job_name": "promote",
+      "image": "ubuntu-24.04",
+      "version": "20261101.360.1",
+      "source_selection": [
+        "  RUN_ID: 42520098818",
+        "  SOURCE_COMMIT: 09bbda421645235b2433a6c205d528be15a49f34"
+      ]
+    },
+    "source-ci-build": {
+      "run_id": 42227543303,
+      "job_id": 127924972337,
+      "image": "ubuntu-24.04",
+      "version": "20261101.360.1"
+    },
+    "publication-pypi": {
+      "run_id": 42520379366,
+      "job_id": 128852424758,
+      "status": "waiting",
+      "image": null,
+      "version": null,
+      "reason": "Environment approval pending; runner has not started"
+    },
+    "main-ci-build": {
+      "run_id": 42520098818,
+      "job_id": 128851583998,
+      "job_name": "build-candidate",
+      "image": "ubuntu-24.04",
+      "version": "20261101.360.1"
+    }
+  },
+  "source_frozen_artifact": {
+    "source_commit": "09bbda421645235b2433a6c205d528be15a49f34",
+    "ci_run_id": 42227543303,
+    "artifact_id": 13507135196,
+    "artifact_sha256": "3c35499f479bfe0874ef7ddb4e2b04a349cf0118df3efab9a2d8dbdf42c12177",
+    "artifact_bytes": 383489,
+    "manifest_changes": [
+      "release_tag: null -> v2321.1.0"
+    ],
+    "assets": [
+      {
+        "file": "manifest.json",
+        "bytes": 675,
+        "sha256": "460f1558135dbf3e8095bbc8133946641a5eff61ab5f13db3deeb8c693b7c614"
+      },
+      {
+        "file": "minecraft_remote_api-2321.1.0-py3-none-any.whl",
+        "bytes": 196026,
+        "sha256": "ee80d81be4128f8e2327646f607fbc46053bec91a527eb9140f54c9dc9d6a26f"
+      },
+      {
+        "file": "minecraft_remote_api-2321.1.0.tar.gz",
+        "bytes": 190241,
+        "sha256": "2d49d096eb30c8721627f8d8f878551396a8f0d298466a007ce1b71559e255d9"
+      }
+    ]
+  },
+  "testpypi": {
+    "version": "2321.1.0",
+    "files": [
+      {
+        "file": "minecraft_remote_api-2321.1.0-py3-none-any.whl",
+        "bytes": 196026,
+        "sha256": "ee80d81be4128f8e2327646f607fbc46053bec91a527eb9140f54c9dc9d6a26f",
+        "frozen_comparison": "PASS"
+      },
+      {
+        "file": "minecraft_remote_api-2321.1.0.tar.gz",
+        "bytes": 190241,
+        "sha256": "2d49d096eb30c8721627f8d8f878551396a8f0d298466a007ce1b71559e255d9",
+        "frozen_comparison": "PASS"
+      }
+    ]
+  },
+  "publication_path": {
+    "manual_channel": "pypi",
+    "manual_run": 42520379366,
+    "automatic_release_run": 42520175969,
+    "automatic_run_cancelled": true,
+    "automatic_testpypi_job_conclusion": "success",
+    "release_workflow_temporary_disable_did_not_prevent_event_run": true,
+    "release_workflow_restored": true,
+    "publish_environment_policy_changed": false,
+    "main_ci_artifacts_equal_original_frozen_artifact": true
+  }
+}

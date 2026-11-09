@@ -1,0 +1,69 @@
+{
+  "plan_id": "sha256:af582efee1b62ef8f952db83bf308caacf3dac05e9c9db7f3a5d197588041bce",
+  "source_lock": "sha256:e4beef4927ecbe5ca60205d04ddfe8200bd41e74960f165fa348fea6bfd37bb3",
+  "target_lock": "sha256:cb5793011d7160edaf321ef1072d1affeb89d300ed8acb058ac3bbc75ab6c5c7",
+  "profile": {
+    "ref": "vps-server@18",
+    "content_sha256": "3d659e8f49e99a7547c331692d8593845550f5cd19a40fc1b33334c89cf432b8"
+  },
+  "preset": {
+    "ref": "public-web-paper@18",
+    "content_sha256": "e9fe4c6f4e0be3c02d95a52f2e95904463fbd5cdd0250e13518ce7aa566a4b3e"
+  },
+  "world_preserved": true,
+  "volumes_preserved": true,
+  "heap_preserved": true,
+  "network_preserved": true,
+  "source_fingerprints_unchanged": true,
+  "live_containers_unchanged": true,
+  "artifacts": [
+    {
+      "id": "caddy-image",
+      "version": "2.11.4-alpine",
+      "sha256": null,
+      "digest": "sha256:98eb57d882ccd5213d1688764db10c1ca2c58a1ca3a6717a3411ad798f7a423a"
+    },
+    {
+      "id": "scratch-image",
+      "version": "2321.1.0",
+      "sha256": null,
+      "digest": "sha256:f3bcf6a6e9ae939e8a8781628ad1e9b40507286da34224f91dfba711a4920c67"
+    },
+    {
+      "id": "bridge-image",
+      "version": "2321.0.0",
+      "sha256": null,
+      "digest": "sha256:305d6e38b36e195a0e158522f32f3a8c45d39da2aeec7b7e46f785c920406acf"
+    },
+    {
+      "id": "wirescope-zip",
+      "version": "2321.0.0",
+      "sha256": "da3da0b6cf4d05265bc0c11abaa4913208c7cfc3600b0c3e78c93a356fc431ad",
+      "digest": null
+    },
+    {
+      "id": "wirescope-manifest",
+      "version": "2321.0.0",
+      "sha256": "3dd668a236463809a4cdc6d19375f3e6d75eea0c8089a616d2b761d3a4a05235",
+      "digest": null
+    },
+    {
+      "id": "minecraft-image",
+      "version": "temurin-25.0.5-8",
+      "sha256": null,
+      "digest": "sha256:69b73187717bf509fa30937b4e4c202dddf18e523cc9668dcf31dd62851a66f0"
+    },
+    {
+      "id": "paper-jar",
+      "version": "26.3-244",
+      "sha256": "9601f9a26a2a52a0f2c807cf1abf691f96ee4fb287878313b601cebc2c51eabf",
+      "digest": null
+    },
+    {
+      "id": "mcremote-jar",
+      "version": "2321.1.0",
+      "sha256": "cd1fff723b2b8349f45184b940cd5da1ca3cdcacc9bad988fa71cd00ea960112",
+      "digest": null
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "previous_source_commit": "db7f7db53d8647fef2c4112a8d65afb5ff0f0e77",
+  "current_source_commit": "5b78ded96d1ad6d45160b67c5f8a13e14adb3fc8",
+  "previous_paper_build": 231,
+  "current_paper_build": 244,
+  "full_groups": [
+    "authenticated_hello_and_bundled_targets",
+    "resource_catalog",
+    "structured_block_read_write",
+    "bulk_32768_scheduler_and_notification_flush",
+    "sign_read_write_style",
+    "entity_handle_pose_remove",
+    "event_poll_surface",
+    "particle_and_chat"
+  ],
+  "restart_groups": [
+    "authenticated_hello_and_bundled_targets",
+    "resource_catalog",
+    "structured_block_read_write",
+    "ordinary_restart_authenticated_read_write"
+  ],
+  "pulse-26.3.json": {
+    "previous_status": "PASS",
+    "current_status": "PASS",
+    "same_groups": true,
+    "same_declared_versions": true,
+    "same_java_runtime": true,
+    "same_catalog_response_sha256": true,
+    "catalog_response_sha256": [
+      "7c758470e450aa2353e6d8bbbccf8272088ff96ef24d7682b5f12850032f6513"
+    ]
+  },
+  "restart-pulse-26.3.json": {
+    "previous_status": "PASS",
+    "current_status": "PASS",
+    "same_groups": true,
+    "same_declared_versions": true,
+    "same_java_runtime": true,
+    "same_catalog_response_sha256": true,
+    "catalog_response_sha256": [
+      "7c758470e450aa2353e6d8bbbccf8272088ff96ef24d7682b5f12850032f6513"
+    ]
+  },
+  "sign_methods": {
+    "world.setSign": {
+      "calls": 19,
+      "successful_calls": 9,
+      "expected_error_calls": 10
+    },
+    "world.getSign": {
+      "calls": 7,
+      "successful_calls": 6,
+      "expected_error_calls": 1
+    },
+    "world.updateSignLine": {
+      "calls": 5,
+      "successful_calls": 2,
+      "expected_error_calls": 3
+    }
+  },
+  "log_counts": {
+    "full": {
+      "ERROR_or_FATAL": 0
+    },
+    "restart": {
+      "ERROR_or_FATAL": 0
+    }
+  },
+  "non_claims": [
+    "HUD visuals and physical-key input",
+    "waxed sign with honeycomb and rendered sign appearance",
+    "LuckPerms integration",
+    "Windows/macOS runtime",
+    "load/MSPT/soak",
+    "public VPS/production-world migration"
+  ]
+}

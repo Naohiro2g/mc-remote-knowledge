@@ -1,0 +1,7 @@
+2026-11-08T20:21:52.1857179Z ##[group]Runner Image
+2026-11-08T20:21:52.1857706Z Image: ubuntu-24.04
+2026-11-08T20:21:52.1858239Z Version: 20261101.360.1
+2026-11-08T20:21:52.1859304Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261101.360/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-08T20:21:52.1860886Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261101.360
+2026-11-08T20:21:52.1861719Z ##[endgroup]
+2026-11-08T20:21:52.1862830Z ##[group]GITHUB_TOKEN Permissions

@@ -1,0 +1,66 @@
+{
+  "finished_at_utc": "2026-11-07T04:05:25.758509+00:00",
+  "hud": {
+    "colors": {
+      "direction": {
+        "s": 40,
+        "b": 90
+      },
+      "direction_mark": {
+        "s": 75,
+        "b": 100
+      },
+      "absolute_target": {
+        "h": 40,
+        "s": 90,
+        "b": 90
+      },
+      "absolute_legs": {
+        "h": 40,
+        "s": 40,
+        "b": 90
+      },
+      "relative_target": {
+        "h": 320,
+        "s": 90,
+        "b": 90
+      },
+      "relative_legs": {
+        "h": 320,
+        "s": 40,
+        "b": 90
+      },
+      "tick": {
+        "h": 170,
+        "s": 80,
+        "b": 85
+      },
+      "time": {
+        "h": 120,
+        "s": 80,
+        "b": 85
+      },
+      "separator": {
+        "h": 0,
+        "s": 0,
+        "b": 60
+      }
+    },
+    "enabled": true,
+    "toggle_on_swap": true
+  },
+  "removed_jars_absent": true,
+  "product_jar_count": 10,
+  "probe_jar_separate": true,
+  "java": "Temurin 25.0.5+8",
+  "heap": "3G/3G",
+  "luckperms_create_restart_read_delete": true,
+  "stop_seconds": 0.863,
+  "exit_code": 0,
+  "running": false,
+  "port_bindings": {},
+  "probe_jar": {
+    "bytes": 4705,
+    "sha256": "f3ae497bbfea44c54ba3e75ca9f6370e3e98829b147d9b2b63501766bce5abeb"
+  }
+}

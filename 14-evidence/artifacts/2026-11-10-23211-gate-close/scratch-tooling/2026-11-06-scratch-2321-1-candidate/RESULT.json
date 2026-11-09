@@ -1,0 +1,76 @@
+{
+  "source_commit": "07f98ebf9be84db5ad2467cebe2c166bbe4c43f5",
+  "knowledge_contract_commit": "d355cc33cefc7fa361367244d6a982d44945931e",
+  "tests": {
+    "gui_unit": {
+      "pass": 551,
+      "skip": 1,
+      "suites": 74,
+      "snapshots": 15
+    },
+    "targeted": 36,
+    "vm_extension_assertions": 534,
+    "local_python": 11,
+    "build_all_workspaces": "PASS",
+    "changed_file_lint_errors": 0,
+    "new_lint_warnings": 0,
+    "palette_error_px": [
+      0,
+      0,
+      0
+    ],
+    "browser_pageerrors": 0,
+    "picker_applied": {
+      "id": "gold_block",
+      "state": ""
+    }
+  },
+  "ci": {
+    "push": {
+      "run": 42245524926,
+      "conclusion": "success"
+    },
+    "pull_request": {
+      "run": 42245536170,
+      "conclusion": "success"
+    },
+    "candidate": {
+      "run": 42245622899,
+      "conclusion": "success"
+    }
+  },
+  "artifact_id": 13518071543,
+  "human_test": "not_started",
+  "tag_release": "not_created",
+  "shared_deploy": "not_performed",
+  "merge": {
+    "knowledge_commit": "d355cc33cefc7fa361367244d6a982d44945931e",
+    "pull_request": 29,
+    "merged": true,
+    "merged_at": "2026-11-06T21:04:35Z",
+    "merge_commit": "11bce3193c524135931a5bf342a9edb1bfdfbbac",
+    "base_branch": "develop",
+    "remote_develop_verified": "11bce3193c524135931a5bf342a9edb1bfdfbbac",
+    "candidate_commit": "07f98ebf9be84db5ad2467cebe2c166bbe4c43f5",
+    "candidate_tree": "50a173cd1933f55afaf8c8b2cfbcb1d3538a4838",
+    "merge_tree": "50a173cd1933f55afaf8c8b2cfbcb1d3538a4838",
+    "trees_identical": true,
+    "pull_request_ci": {
+      "run": 42245536170,
+      "conclusion": "success"
+    },
+    "push_candidate_ci": {
+      "run": 42245524926,
+      "conclusion": "success"
+    },
+    "merge_ci": {
+      "run": 42293693018,
+      "status": "in_progress",
+      "conclusion": null
+    },
+    "artifact_source_commit": "07f98ebf9be84db5ad2467cebe2c166bbe4c43f5",
+    "candidate_artifact_id": 13518071543,
+    "rebuilt_after_merge": false,
+    "published_tag_release": false
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "knowledge_commit": "d355cc33cefc7fa361367244d6a982d44945931e",
+  "pull_request": 29,
+  "merged": true,
+  "merged_at": "2026-11-06T21:04:35Z",
+  "merge_commit": "11bce3193c524135931a5bf342a9edb1bfdfbbac",
+  "base_branch": "develop",
+  "remote_develop_verified": "11bce3193c524135931a5bf342a9edb1bfdfbbac",
+  "candidate_commit": "07f98ebf9be84db5ad2467cebe2c166bbe4c43f5",
+  "candidate_tree": "50a173cd1933f55afaf8c8b2cfbcb1d3538a4838",
+  "merge_tree": "50a173cd1933f55afaf8c8b2cfbcb1d3538a4838",
+  "trees_identical": true,
+  "pull_request_ci": {
+    "run": 42245536170,
+    "conclusion": "success"
+  },
+  "push_candidate_ci": {
+    "run": 42245524926,
+    "conclusion": "success"
+  },
+  "merge_ci": {
+    "run": 42293693018,
+    "status": "in_progress",
+    "conclusion": null
+  },
+  "artifact_source_commit": "07f98ebf9be84db5ad2467cebe2c166bbe4c43f5",
+  "candidate_artifact_id": 13518071543,
+  "rebuilt_after_merge": false,
+  "published_tag_release": false
+}

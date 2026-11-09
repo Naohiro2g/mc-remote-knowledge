@@ -1,0 +1,134 @@
+[
+  {
+    "name": "svg-unit",
+    "command": [
+      "npm",
+      "run",
+      "test:unit",
+      "--workspace=packages/scratch-svg-renderer"
+    ],
+    "exit_code": 0,
+    "seconds": 28.21,
+    "log": "svg-unit.log"
+  },
+  {
+    "name": "gui-unit",
+    "command": [
+      "npm",
+      "run",
+      "test:unit",
+      "--workspace=packages/scratch-gui",
+      "--",
+      "--runInBand"
+    ],
+    "exit_code": 0,
+    "seconds": 138.15,
+    "log": "gui-unit.log"
+  },
+  {
+    "name": "vm-tests",
+    "command": [
+      "npm",
+      "run",
+      "tap",
+      "--workspace=packages/scratch-vm",
+      "--",
+      "--jobs=2"
+    ],
+    "exit_code": 1,
+    "seconds": 1254.87,
+    "log": "vm-tests.log"
+  },
+  {
+    "name": "local-tests",
+    "command": [
+      "npm",
+      "run",
+      "local:test"
+    ],
+    "exit_code": 0,
+    "seconds": 3.82,
+    "log": "local-tests.log"
+  },
+  {
+    "name": "manifest-tests",
+    "command": [
+      "npm",
+      "run",
+      "release-manifest:test"
+    ],
+    "exit_code": 0,
+    "seconds": 1.52,
+    "log": "manifest-tests.log"
+  },
+  {
+    "name": "tooling-tests",
+    "command": [
+      "node",
+      "--test",
+      "scripts/acquire-mcremote-tooling.test.mjs",
+      "scripts/build-mcremote-candidate-manifest.test.mjs"
+    ],
+    "exit_code": 0,
+    "seconds": 0.81,
+    "log": "tooling-tests.log"
+  },
+  {
+    "name": "gui-lint",
+    "command": [
+      "npm",
+      "run",
+      "test:lint",
+      "--workspace=packages/scratch-gui"
+    ],
+    "exit_code": 0,
+    "seconds": 136.35,
+    "log": "gui-lint.log"
+  },
+  {
+    "name": "vm-lint",
+    "command": [
+      "npm",
+      "run",
+      "lint",
+      "--workspace=packages/scratch-vm"
+    ],
+    "exit_code": 0,
+    "seconds": 58.97,
+    "log": "vm-lint.log"
+  },
+  {
+    "name": "svg-lint",
+    "command": [
+      "npm",
+      "run",
+      "test:lint",
+      "--workspace=packages/scratch-svg-renderer"
+    ],
+    "exit_code": 0,
+    "seconds": 16.99,
+    "log": "svg-lint.log"
+  },
+  {
+    "name": "consumer-lint",
+    "command": [
+      "npm",
+      "run",
+      "local:lint"
+    ],
+    "exit_code": 0,
+    "seconds": 7.72,
+    "log": "consumer-lint.log"
+  },
+  {
+    "name": "manifest-lint",
+    "command": [
+      "npm",
+      "run",
+      "release-manifest:lint"
+    ],
+    "exit_code": 0,
+    "seconds": 6.81,
+    "log": "manifest-lint.log"
+  }
+]

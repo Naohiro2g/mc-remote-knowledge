@@ -1,0 +1,344 @@
+{
+  "events": [
+    {
+      "at_utc": "2026-11-09T01:42:27.381332+00:00",
+      "service": "minecraft",
+      "action": "start"
+    },
+    {
+      "at_utc": "2026-11-09T01:42:27.833155+00:00",
+      "service": "scratch",
+      "action": "start"
+    },
+    {
+      "at_utc": "2026-11-09T01:42:28.081513+00:00",
+      "service": "bridge",
+      "action": "start"
+    },
+    {
+      "at_utc": "2026-11-09T01:42:28.959872+00:00",
+      "service": "caddy",
+      "action": "start"
+    },
+    {
+      "at_utc": "2026-11-09T01:42:30.033661+00:00",
+      "service": "caddy",
+      "action": "die"
+    },
+    {
+      "at_utc": "2026-11-09T01:42:31.227291+00:00",
+      "service": "caddy",
+      "action": "start"
+    },
+    {
+      "at_utc": "2026-11-09T01:42:32.032600+00:00",
+      "service": "caddy",
+      "action": "die"
+    },
+    {
+      "at_utc": "2026-11-09T01:42:32.826353+00:00",
+      "service": "caddy",
+      "action": "start"
+    },
+    {
+      "at_utc": "2026-11-09T01:42:34.541834+00:00",
+      "service": "caddy",
+      "action": "die"
+    },
+    {
+      "at_utc": "2026-11-09T01:42:35.065867+00:00",
+      "service": "caddy",
+      "action": "start"
+    },
+    {
+      "at_utc": "2026-11-09T01:42:35.817524+00:00",
+      "service": "caddy",
+      "action": "die"
+    },
+    {
+      "at_utc": "2026-11-09T01:42:36.764215+00:00",
+      "service": "caddy",
+      "action": "start"
+    },
+    {
+      "at_utc": "2026-11-09T01:42:37.083506+00:00",
+      "service": "caddy",
+      "action": "die"
+    },
+    {
+      "at_utc": "2026-11-09T01:42:38.896797+00:00",
+      "service": "caddy",
+      "action": "start"
+    },
+    {
+      "at_utc": "2026-11-09T01:42:39.271177+00:00",
+      "service": "caddy",
+      "action": "die"
+    },
+    {
+      "at_utc": "2026-11-09T01:42:42.464358+00:00",
+      "service": "caddy",
+      "action": "start"
+    },
+    {
+      "at_utc": "2026-11-09T01:42:43.169775+00:00",
+      "service": "caddy",
+      "action": "die"
+    },
+    {
+      "at_utc": "2026-11-09T01:42:50.045815+00:00",
+      "service": "caddy",
+      "action": "start"
+    },
+    {
+      "at_utc": "2026-11-09T01:42:51.029540+00:00",
+      "service": "caddy",
+      "action": "die"
+    },
+    {
+      "at_utc": "2026-11-09T01:43:03.478870+00:00",
+      "service": "caddy",
+      "action": "start"
+    },
+    {
+      "at_utc": "2026-11-09T01:43:05.090446+00:00",
+      "service": "caddy",
+      "action": "die"
+    },
+    {
+      "at_utc": "2026-11-09T01:43:07.935198+00:00",
+      "service": "minecraft",
+      "action": "health_status: healthy"
+    },
+    {
+      "at_utc": "2026-11-09T01:43:13.445799+00:00",
+      "service": "scratch",
+      "action": "kill"
+    },
+    {
+      "at_utc": "2026-11-09T01:43:13.447688+00:00",
+      "service": "bridge",
+      "action": "kill"
+    },
+    {
+      "at_utc": "2026-11-09T01:43:13.704669+00:00",
+      "service": "minecraft",
+      "action": "kill"
+    },
+    {
+      "at_utc": "2026-11-09T01:43:13.830840+00:00",
+      "service": "bridge",
+      "action": "die"
+    },
+    {
+      "at_utc": "2026-11-09T01:43:13.888971+00:00",
+      "service": "scratch",
+      "action": "die"
+    },
+    {
+      "at_utc": "2026-11-09T01:43:16.004967+00:00",
+      "service": "minecraft",
+      "action": "die"
+    },
+    {
+      "at_utc": "2026-11-09T01:43:16.363637+00:00",
+      "service": "scratch",
+      "action": "start"
+    },
+    {
+      "at_utc": "2026-11-09T01:43:16.943463+00:00",
+      "service": "minecraft",
+      "action": "start"
+    },
+    {
+      "at_utc": "2026-11-09T01:43:17.129152+00:00",
+      "service": "bridge",
+      "action": "start"
+    },
+    {
+      "at_utc": "2026-11-09T01:43:17.569476+00:00",
+      "service": "caddy",
+      "action": "start"
+    },
+    {
+      "at_utc": "2026-11-09T01:43:18.203004+00:00",
+      "service": "caddy",
+      "action": "die"
+    },
+    {
+      "at_utc": "2026-11-09T01:43:18.702626+00:00",
+      "service": "caddy",
+      "action": "start"
+    },
+    {
+      "at_utc": "2026-11-09T01:43:19.071091+00:00",
+      "service": "caddy",
+      "action": "die"
+    },
+    {
+      "at_utc": "2026-11-09T01:43:19.698254+00:00",
+      "service": "caddy",
+      "action": "start"
+    },
+    {
+      "at_utc": "2026-11-09T01:43:20.389313+00:00",
+      "service": "caddy",
+      "action": "die"
+    },
+    {
+      "at_utc": "2026-11-09T01:43:20.989989+00:00",
+      "service": "caddy",
+      "action": "start"
+    },
+    {
+      "at_utc": "2026-11-09T01:43:23.992464+00:00",
+      "service": "caddy",
+      "action": "die"
+    },
+    {
+      "at_utc": "2026-11-09T01:43:24.665847+00:00",
+      "service": "caddy",
+      "action": "start"
+    },
+    {
+      "at_utc": "2026-11-09T01:43:25.018191+00:00",
+      "service": "caddy",
+      "action": "die"
+    },
+    {
+      "at_utc": "2026-11-09T01:43:27.110808+00:00",
+      "service": "caddy",
+      "action": "start"
+    },
+    {
+      "at_utc": "2026-11-09T01:43:27.543653+00:00",
+      "service": "caddy",
+      "action": "die"
+    },
+    {
+      "at_utc": "2026-11-09T01:43:30.843359+00:00",
+      "service": "caddy",
+      "action": "start"
+    },
+    {
+      "at_utc": "2026-11-09T01:43:31.529437+00:00",
+      "service": "caddy",
+      "action": "die"
+    },
+    {
+      "at_utc": "2026-11-09T01:43:37.985799+00:00",
+      "service": "caddy",
+      "action": "start"
+    },
+    {
+      "at_utc": "2026-11-09T01:43:38.998431+00:00",
+      "service": "caddy",
+      "action": "die"
+    },
+    {
+      "at_utc": "2026-11-09T01:43:51.470293+00:00",
+      "service": "caddy",
+      "action": "start"
+    },
+    {
+      "at_utc": "2026-11-09T01:43:51.792756+00:00",
+      "service": "caddy",
+      "action": "die"
+    },
+    {
+      "at_utc": "2026-11-09T01:43:54.735652+00:00",
+      "service": "minecraft",
+      "action": "health_status: healthy"
+    },
+    {
+      "at_utc": "2026-11-09T01:44:17.649658+00:00",
+      "service": "caddy",
+      "action": "start"
+    },
+    {
+      "at_utc": "2026-11-09T01:44:18.128145+00:00",
+      "service": "caddy",
+      "action": "die"
+    },
+    {
+      "at_utc": "2026-11-09T01:44:34.713563+00:00",
+      "service": "caddy",
+      "action": "start"
+    },
+    {
+      "at_utc": "2026-11-09T01:46:44.910266+00:00",
+      "service": "minecraft",
+      "action": "kill"
+    },
+    {
+      "at_utc": "2026-11-09T01:46:44.910311+00:00",
+      "service": "scratch",
+      "action": "kill"
+    },
+    {
+      "at_utc": "2026-11-09T01:46:44.913451+00:00",
+      "service": "caddy",
+      "action": "kill"
+    },
+    {
+      "at_utc": "2026-11-09T01:46:44.918544+00:00",
+      "service": "bridge",
+      "action": "kill"
+    },
+    {
+      "at_utc": "2026-11-09T01:46:45.312596+00:00",
+      "service": "scratch",
+      "action": "die"
+    },
+    {
+      "at_utc": "2026-11-09T01:46:45.444941+00:00",
+      "service": "bridge",
+      "action": "die"
+    },
+    {
+      "at_utc": "2026-11-09T01:46:45.471708+00:00",
+      "service": "caddy",
+      "action": "die"
+    },
+    {
+      "at_utc": "2026-11-09T01:46:54.366092+00:00",
+      "service": "minecraft",
+      "action": "die"
+    },
+    {
+      "at_utc": "2026-11-09T01:46:56.870608+00:00",
+      "service": "scratch",
+      "action": "start"
+    },
+    {
+      "at_utc": "2026-11-09T01:46:57.010056+00:00",
+      "service": "bridge",
+      "action": "start"
+    },
+    {
+      "at_utc": "2026-11-09T01:46:57.391481+00:00",
+      "service": "minecraft",
+      "action": "start"
+    },
+    {
+      "at_utc": "2026-11-09T01:46:57.748723+00:00",
+      "service": "caddy",
+      "action": "start"
+    },
+    {
+      "at_utc": "2026-11-09T01:47:36.451719+00:00",
+      "service": "minecraft",
+      "action": "health_status: healthy"
+    }
+  ],
+  "final_paper_ready_at_utc": "2026-11-09T01:47:31.394835849Z",
+  "final_switch_minecraft_stop_request_at_utc": "2026-11-09T01:46:44.910266+00:00",
+  "final_switch_stop_request_to_paper_ready_seconds": 46.485,
+  "first_attempt_stop_request_at_utc": null,
+  "source_doctor_recovery_completed_at_utc": "2026-11-09T01:46:41.241000+00:00",
+  "first_attempt_stop_to_recovery_doctor_upper_bound_seconds": 271.788,
+  "first_stop_to_final_doctor_completed_upper_bound_seconds": 329.332,
+  "first_attempt_stop_exact_event_available": false,
+  "fallback_bound_start_at_utc": "2026-11-09T01:42:09.453395+00:00",
+  "first_to_final_span_is_not_continuous_outage": true
+}

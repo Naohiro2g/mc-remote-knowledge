@@ -1,0 +1,12 @@
+{
+  "checked_at_utc": "2026-11-09T02:10:35.185683+00:00",
+  "supported_versions": [
+    "1.21.11"
+  ],
+  "all_existing_config_values_preserved": true,
+  "hud_enabled": true,
+  "hud_toggle_on_swap": true,
+  "restart_performed": false,
+  "cause": "ops restore regex left unindented YAML sequence entries; corrected and covered by three tests",
+  "human_owner_confirmed_no_manual_edit": true
+}

@@ -1,0 +1,197 @@
+[
+  {
+    "file": "bridge.oci.tar",
+    "old": {
+      "file": "bridge.oci.tar",
+      "bytes": 114626048,
+      "sha256": "3982876466fb860dca250438d73e18e441a2a85d67d9f149f537a7a8d1a1c44c"
+    },
+    "new": {
+      "file": "bridge.oci.tar",
+      "bytes": 114626048,
+      "sha256": "3982876466fb860dca250438d73e18e441a2a85d67d9f149f537a7a8d1a1c44c"
+    },
+    "size_equal": true,
+    "bytes_equal": true
+  },
+  {
+    "file": "candidate-manifest.json",
+    "old": {
+      "file": "candidate-manifest.json",
+      "bytes": 2664,
+      "sha256": "95f7d2c35d60488b9408d2b4f66b9bb9fe866fd28f57154982350a801f568bcf"
+    },
+    "new": {
+      "file": "candidate-manifest.json",
+      "bytes": 2664,
+      "sha256": "19aec7258f726f11ce497783b0e3c9b97f39be4fc4d8ccd7f25cfdc084061d47"
+    },
+    "size_equal": true,
+    "bytes_equal": false
+  },
+  {
+    "file": "contracts.tar.gz",
+    "old": {
+      "file": "contracts.tar.gz",
+      "bytes": 1908,
+      "sha256": "48948ba47d55409f02a8ff8e0d44021b07859e11ffa5ca0f8598e6ef06082390"
+    },
+    "new": {
+      "file": "contracts.tar.gz",
+      "bytes": 1908,
+      "sha256": "48948ba47d55409f02a8ff8e0d44021b07859e11ffa5ca0f8598e6ef06082390"
+    },
+    "size_equal": true,
+    "bytes_equal": true
+  },
+  {
+    "file": "mc-remote-scratch-LAN-2321.1.0-linux-x64.artifact.json",
+    "old": {
+      "file": "mc-remote-scratch-LAN-2321.1.0-linux-x64.artifact.json",
+      "bytes": 336,
+      "sha256": "b63411a47dd87ee530e8b134c94e8b5f9c6abd3c0aa3bff147f16a521c5f210f"
+    },
+    "new": {
+      "file": "mc-remote-scratch-LAN-2321.1.0-linux-x64.artifact.json",
+      "bytes": 336,
+      "sha256": "49d15735c35e408bbaa7fc81d09ed8325bb9a7b70ad10f751b6ee5c857b59c3f"
+    },
+    "size_equal": true,
+    "bytes_equal": false
+  },
+  {
+    "file": "mc-remote-scratch-LAN-2321.1.0-linux-x64.zip",
+    "old": {
+      "file": "mc-remote-scratch-LAN-2321.1.0-linux-x64.zip",
+      "bytes": 272069485,
+      "sha256": "a5b8b976da9a02175b7aec67933f7ca76a52052ede11db3ba2f00ff0df8de23c"
+    },
+    "new": {
+      "file": "mc-remote-scratch-LAN-2321.1.0-linux-x64.zip",
+      "bytes": 272115968,
+      "sha256": "52f1f4b3eff59cec44c634c8974d5b41cfb18ee873d1348021e7e1831a2cbe42"
+    },
+    "size_equal": false,
+    "bytes_equal": false
+  },
+  {
+    "file": "mc-remote-scratch-LAN-2321.1.0-macos-arm64.artifact.json",
+    "old": {
+      "file": "mc-remote-scratch-LAN-2321.1.0-macos-arm64.artifact.json",
+      "bytes": 340,
+      "sha256": "9cddfc44f5dc73b7e984155e13cc07d8610618016cbd9b62fad30f72c0bb7403"
+    },
+    "new": {
+      "file": "mc-remote-scratch-LAN-2321.1.0-macos-arm64.artifact.json",
+      "bytes": 340,
+      "sha256": "ba46238f36120ee9a38f64c6740c0247a346e500897f9bb6531fd9c1221f3e98"
+    },
+    "size_equal": true,
+    "bytes_equal": false
+  },
+  {
+    "file": "mc-remote-scratch-LAN-2321.1.0-macos-arm64.zip",
+    "old": {
+      "file": "mc-remote-scratch-LAN-2321.1.0-macos-arm64.zip",
+      "bytes": 266813430,
+      "sha256": "ba8d2320bda3f60f85d94ed6f96ba6878673a70e08f773cf4b6110268ddcdb0a"
+    },
+    "new": {
+      "file": "mc-remote-scratch-LAN-2321.1.0-macos-arm64.zip",
+      "bytes": 266859915,
+      "sha256": "d9bb5976f62ad5043130c911551f23b0f4b127a5f0a80a6465ff8cd7decb768e"
+    },
+    "size_equal": false,
+    "bytes_equal": false
+  },
+  {
+    "file": "mc-remote-scratch-LAN-2321.1.0-windows-x64.artifact.json",
+    "old": {
+      "file": "mc-remote-scratch-LAN-2321.1.0-windows-x64.artifact.json",
+      "bytes": 340,
+      "sha256": "6cbdfa05edee1e25f0661f755a0149c4f33f8065d31540818c6ae82a515078a9"
+    },
+    "new": {
+      "file": "mc-remote-scratch-LAN-2321.1.0-windows-x64.artifact.json",
+      "bytes": 340,
+      "sha256": "1c9e9f5b0bd38b3b67af0e5a2123676bd13b8c8e5feb5bc540aadf28c8289cd7"
+    },
+    "size_equal": true,
+    "bytes_equal": false
+  },
+  {
+    "file": "mc-remote-scratch-LAN-2321.1.0-windows-x64.zip",
+    "old": {
+      "file": "mc-remote-scratch-LAN-2321.1.0-windows-x64.zip",
+      "bytes": 262461767,
+      "sha256": "c077a3b3241cc784b676dc7d0ee25a8f58715c1539961ee876be2325153e0bd4"
+    },
+    "new": {
+      "file": "mc-remote-scratch-LAN-2321.1.0-windows-x64.zip",
+      "bytes": 262508252,
+      "sha256": "8edf5c1890df3550b3d4ffdd8d39dfbc1cbd35509531266ebd5e80103cab7ad6"
+    },
+    "size_equal": false,
+    "bytes_equal": false
+  },
+  {
+    "file": "scratch-gui.tar.gz",
+    "old": {
+      "file": "scratch-gui.tar.gz",
+      "bytes": 139262746,
+      "sha256": "0f0b2597a8694863fb264340c1b3b89685849c85ce7c32e9f4b210e645fbdff8"
+    },
+    "new": {
+      "file": "scratch-gui.tar.gz",
+      "bytes": 139262746,
+      "sha256": "0f0b2597a8694863fb264340c1b3b89685849c85ce7c32e9f4b210e645fbdff8"
+    },
+    "size_equal": true,
+    "bytes_equal": true
+  },
+  {
+    "file": "scratch.oci.tar",
+    "old": {
+      "file": "scratch.oci.tar",
+      "bytes": 326607872,
+      "sha256": "66440ff7e9cff1cdf322394e9613caef0bfe198eeec44d910e901fe8ea54b777"
+    },
+    "new": {
+      "file": "scratch.oci.tar",
+      "bytes": 326605824,
+      "sha256": "c1dc8dc79a4e7dd351af728aa5e80677ce3aa08a84f8a4583dc9b4d9d84d7e10"
+    },
+    "size_equal": false,
+    "bytes_equal": false
+  },
+  {
+    "file": "wirescope-app.manifest.json",
+    "old": {
+      "file": "wirescope-app.manifest.json",
+      "bytes": 2339,
+      "sha256": "3dd668a236463809a4cdc6d19375f3e6d75eea0c8089a616d2b761d3a4a05235"
+    },
+    "new": {
+      "file": "wirescope-app.manifest.json",
+      "bytes": 2339,
+      "sha256": "3dd668a236463809a4cdc6d19375f3e6d75eea0c8089a616d2b761d3a4a05235"
+    },
+    "size_equal": true,
+    "bytes_equal": true
+  },
+  {
+    "file": "wirescope-app.zip",
+    "old": {
+      "file": "wirescope-app.zip",
+      "bytes": 83854,
+      "sha256": "da3da0b6cf4d05265bc0c11abaa4913208c7cfc3600b0c3e78c93a356fc431ad"
+    },
+    "new": {
+      "file": "wirescope-app.zip",
+      "bytes": 83854,
+      "sha256": "da3da0b6cf4d05265bc0c11abaa4913208c7cfc3600b0c3e78c93a356fc431ad"
+    },
+    "size_equal": true,
+    "bytes_equal": true
+  }
+]

@@ -1,0 +1,577 @@
+{
+  "platforms": {
+    "amd64": {
+      "config_diffs": [
+        {
+          "path": "/config/Labels/org.opencontainers.image.revision",
+          "old": "07f98ebf9be84db5ad2467cebe2c166bbe4c43f5",
+          "new": "57fb7691bb5d9a5895785b200ae78734240ebfa6"
+        },
+        {
+          "path": "/created",
+          "old": "2026-11-06T15:41:34Z",
+          "new": "2026-11-07T03:02:47Z"
+        },
+        {
+          "path": "/history/27/created",
+          "old": "2026-11-06T15:41:34Z",
+          "new": "2026-11-07T03:02:47Z"
+        },
+        {
+          "path": "/history/27/created_by",
+          "old": "ARG SOURCE_REVISION=07f98ebf9be84db5ad2467cebe2c166bbe4c43f5",
+          "new": "ARG SOURCE_REVISION=57fb7691bb5d9a5895785b200ae78734240ebfa6"
+        },
+        {
+          "path": "/history/28/created",
+          "old": "2026-11-06T15:41:34Z",
+          "new": "2026-11-07T03:02:47Z"
+        },
+        {
+          "path": "/history/29/created",
+          "old": "2026-11-06T15:41:34Z",
+          "new": "2026-11-07T03:02:47Z"
+        },
+        {
+          "path": "/history/29/created_by",
+          "old": "LABEL org.opencontainers.image.source=https://github.com/Naohiro2g/scratch-editor org.opencontainers.image.revision=07f98ebf9be84db5ad2467cebe2c166bbe4c43f5 org.opencontainers.image.version=v2321.1.0 org.opencontainers.image.title=McRemote Scratch editor org.opencontainers.image.licenses=AGPL-3.0-only",
+          "new": "LABEL org.opencontainers.image.source=https://github.com/Naohiro2g/scratch-editor org.opencontainers.image.revision=57fb7691bb5d9a5895785b200ae78734240ebfa6 org.opencontainers.image.version=v2321.1.0 org.opencontainers.image.title=McRemote Scratch editor org.opencontainers.image.licenses=AGPL-3.0-only"
+        },
+        {
+          "path": "/history/30/created",
+          "old": "2026-11-06T15:41:34Z",
+          "new": "2026-11-07T03:02:47Z"
+        },
+        {
+          "path": "/history/31/created",
+          "old": "2026-11-06T15:41:34Z",
+          "new": "2026-11-07T03:02:47Z"
+        },
+        {
+          "path": "/history/31/created_by",
+          "old": "EXPOSE &{[{{15 0} {15 0}}] 0xc00043e100}",
+          "new": "EXPOSE &{[{{15 0} {15 0}}] 0xc0003bc740}"
+        },
+        {
+          "path": "/rootfs/diff_ids/9",
+          "old": "sha256:73da6542302d4d5c4366fc827d276ad0697b11eada22fca51299106b2899b658",
+          "new": "sha256:de7b745c357a08bfd689cfd8e7d8b53fd6a9b33959c3bd363938b28d39f3a479"
+        }
+      ],
+      "web_entries": 1749,
+      "web_metadata_changed": 1748,
+      "web_bytes_changed": 0,
+      "web_changed_fields": [
+        "mtime"
+      ],
+      "old_mtimes_utc": [
+        "2025-12-09T19:41:33+00:00",
+        "2026-11-06T15:46:34+00:00",
+        "2026-11-06T15:46:35+00:00"
+      ],
+      "new_mtimes_utc": [
+        "2025-12-09T19:41:33+00:00",
+        "2026-11-07T07:23:15+00:00"
+      ],
+      "base_layer_digests_same": true
+    },
+    "arm64": {
+      "config_diffs": [
+        {
+          "path": "/config/Labels/org.opencontainers.image.revision",
+          "old": "07f98ebf9be84db5ad2467cebe2c166bbe4c43f5",
+          "new": "57fb7691bb5d9a5895785b200ae78734240ebfa6"
+        },
+        {
+          "path": "/created",
+          "old": "2026-11-06T15:41:34Z",
+          "new": "2026-11-07T03:02:47Z"
+        },
+        {
+          "path": "/history/27/created",
+          "old": "2026-11-06T15:41:34Z",
+          "new": "2026-11-07T03:02:47Z"
+        },
+        {
+          "path": "/history/27/created_by",
+          "old": "ARG SOURCE_REVISION=07f98ebf9be84db5ad2467cebe2c166bbe4c43f5",
+          "new": "ARG SOURCE_REVISION=57fb7691bb5d9a5895785b200ae78734240ebfa6"
+        },
+        {
+          "path": "/history/28/created",
+          "old": "2026-11-06T15:41:34Z",
+          "new": "2026-11-07T03:02:47Z"
+        },
+        {
+          "path": "/history/29/created",
+          "old": "2026-11-06T15:41:34Z",
+          "new": "2026-11-07T03:02:47Z"
+        },
+        {
+          "path": "/history/29/created_by",
+          "old": "LABEL org.opencontainers.image.source=https://github.com/Naohiro2g/scratch-editor org.opencontainers.image.revision=07f98ebf9be84db5ad2467cebe2c166bbe4c43f5 org.opencontainers.image.version=v2321.1.0 org.opencontainers.image.title=McRemote Scratch editor org.opencontainers.image.licenses=AGPL-3.0-only",
+          "new": "LABEL org.opencontainers.image.source=https://github.com/Naohiro2g/scratch-editor org.opencontainers.image.revision=57fb7691bb5d9a5895785b200ae78734240ebfa6 org.opencontainers.image.version=v2321.1.0 org.opencontainers.image.title=McRemote Scratch editor org.opencontainers.image.licenses=AGPL-3.0-only"
+        },
+        {
+          "path": "/history/30/created",
+          "old": "2026-11-06T15:41:34Z",
+          "new": "2026-11-07T03:02:47Z"
+        },
+        {
+          "path": "/history/31/created",
+          "old": "2026-11-06T15:41:34Z",
+          "new": "2026-11-07T03:02:47Z"
+        },
+        {
+          "path": "/history/31/created_by",
+          "old": "EXPOSE &{[{{15 0} {15 0}}] 0xc0003b2640}",
+          "new": "EXPOSE &{[{{15 0} {15 0}}] 0xc0003bc680}"
+        },
+        {
+          "path": "/rootfs/diff_ids/9",
+          "old": "sha256:cc620112ad69125c2d961e702e47769fa39047a6388227a123ab6f257a1b1200",
+          "new": "sha256:bfe5d20b4eac690c7e125eb6dba572a62c10daeca9332129dfcb4791ea05beb1"
+        }
+      ],
+      "web_entries": 1749,
+      "web_metadata_changed": 1748,
+      "web_bytes_changed": 0,
+      "web_changed_fields": [
+        "mtime"
+      ],
+      "old_mtimes_utc": [
+        "2025-12-09T19:40:55+00:00",
+        "2026-11-06T15:46:34+00:00",
+        "2026-11-06T15:46:35+00:00"
+      ],
+      "new_mtimes_utc": [
+        "2025-12-09T19:40:55+00:00",
+        "2026-11-07T07:23:15+00:00"
+      ],
+      "base_layer_digests_same": true
+    }
+  },
+  "attestation_diff_count": 84,
+  "attestation_diffs": [
+    {
+      "path": "/0/annotations/vnd.docker.reference.digest",
+      "old": "sha256:029802f8e48ba1549c185b5e691d75178a2d0fd5ffab9dc57a91293952eda476",
+      "new": "sha256:1426b78e130f9d5276a630aef04b17137646533b1f5b749e126b64ab17253104"
+    },
+    {
+      "path": "/0/digest",
+      "old": "sha256:1688415451ba643dd6b065223e5522ec6a1c7024e6bb217b76e7cd25f39df98e",
+      "new": "sha256:fee5a7e37c5454c5e6a2310fc55cec6d9e989cbc1c30a77b3193d6e7aa48a246"
+    },
+    {
+      "path": "/0/predicates/0/predicate/creationInfo/created",
+      "old": "2026-11-06T15:49:00Z",
+      "new": "2026-11-07T07:26:51Z"
+    },
+    {
+      "path": "/0/predicates/0/predicate/documentNamespace",
+      "old": "https://anchore.com/syft/dir/sbom-0307a084-3bf9-485a-98a8-0bda7fc12912",
+      "new": "https://anchore.com/syft/dir/sbom-3521cb58-045a-42a1-9a01-40d75cece8cc"
+    },
+    {
+      "path": "/0/predicates/0/predicate/files/633/comment",
+      "old": "layerID: sha256:c08acae521048b03f8a02330efeca99a38766565420f394baca90cf615f7b01f",
+      "new": "layerID: sha256:566602e2adccc89cf19152316edec4fff6c12c3436c20710f0f2d3a0a2ae7059"
+    },
+    {
+      "path": "/0/predicates/0/predicate/files/634/comment",
+      "old": "layerID: sha256:c08acae521048b03f8a02330efeca99a38766565420f394baca90cf615f7b01f",
+      "new": "layerID: sha256:566602e2adccc89cf19152316edec4fff6c12c3436c20710f0f2d3a0a2ae7059"
+    },
+    {
+      "path": "/0/predicates/1/predicate/buildDefinition/externalParameters/request/args/build-arg:SOURCE_DATE_EPOCH",
+      "old": "1793979694",
+      "new": "1794020567"
+    },
+    {
+      "path": "/0/predicates/1/predicate/buildDefinition/externalParameters/request/args/build-arg:SOURCE_REVISION",
+      "old": "07f98ebf9be84db5ad2467cebe2c166bbe4c43f5",
+      "new": "57fb7691bb5d9a5895785b200ae78734240ebfa6"
+    },
+    {
+      "path": "/0/predicates/1/predicate/buildDefinition/externalParameters/request/root/request/args/build-arg:SOURCE_DATE_EPOCH",
+      "old": "1793979694",
+      "new": "1794020567"
+    },
+    {
+      "path": "/0/predicates/1/predicate/buildDefinition/externalParameters/request/root/request/args/build-arg:SOURCE_REVISION",
+      "old": "07f98ebf9be84db5ad2467cebe2c166bbe4c43f5",
+      "new": "57fb7691bb5d9a5895785b200ae78734240ebfa6"
+    },
+    {
+      "path": "/0/predicates/1/predicate/buildDefinition/externalParameters/request/root/request/args/vcs:revision",
+      "old": "07f98ebf9be84db5ad2467cebe2c166bbe4c43f5",
+      "new": "57fb7691bb5d9a5895785b200ae78734240ebfa6"
+    },
+    {
+      "path": "/0/predicates/1/predicate/buildDefinition/internalParameters/buildConfig/digestMapping/sha256:3fcbee21188a514f948e8cde3d22313adf6141d54bc67fc5579aaa49b200620c",
+      "old": null,
+      "new": "step2"
+    },
+    {
+      "path": "/0/predicates/1/predicate/buildDefinition/internalParameters/buildConfig/digestMapping/sha256:6a986efcbb3353ca14eb17c7bb540629b3fbcc9fdaf95801da399149d818ad08",
+      "old": null,
+      "new": "step1"
+    },
+    {
+      "path": "/0/predicates/1/predicate/buildDefinition/internalParameters/buildConfig/digestMapping/sha256:8da9434f8a34968ecc9efe575d5af45d7f1756793a5753c7e9a97f5b89c592cf",
+      "old": "step1",
+      "new": null
+    },
+    {
+      "path": "/0/predicates/1/predicate/buildDefinition/internalParameters/buildConfig/digestMapping/sha256:9c9da0426357c0016dd06e13d6fb8d03692c255c170ecc453251411312dab52c",
+      "old": "step3",
+      "new": null
+    },
+    {
+      "path": "/0/predicates/1/predicate/buildDefinition/internalParameters/buildConfig/digestMapping/sha256:d10b80a81fe98015a05a0c7ae907d9067efc3e26515fcc329293a3691f06ba2b",
+      "old": "step2",
+      "new": null
+    },
+    {
+      "path": "/0/predicates/1/predicate/buildDefinition/internalParameters/buildConfig/digestMapping/sha256:d8fd958169caf674faf91637362c3a431c6c18a8cf4f1e96cf4426727662f6d6",
+      "old": null,
+      "new": "step3"
+    },
+    {
+      "path": "/0/predicates/1/predicate/buildDefinition/internalParameters/github_event_payload/ref",
+      "old": "refs/heads/agent/palette-picker-2026-11-06",
+      "new": "refs/heads/develop"
+    },
+    {
+      "path": "/0/predicates/1/predicate/buildDefinition/internalParameters/github_event_payload/repository/open_issues",
+      "old": 1,
+      "new": 0
+    },
+    {
+      "path": "/0/predicates/1/predicate/buildDefinition/internalParameters/github_event_payload/repository/open_issues_count",
+      "old": 1,
+      "new": 0
+    },
+    {
+      "path": "/0/predicates/1/predicate/buildDefinition/internalParameters/github_event_payload/repository/pushed_at",
+      "old": "2026-11-06T15:42:22Z",
+      "new": "2026-11-07T03:02:47Z"
+    },
+    {
+      "path": "/0/predicates/1/predicate/buildDefinition/internalParameters/github_event_payload/repository/size",
+      "old": 726325,
+      "new": 726397
+    },
+    {
+      "path": "/0/predicates/1/predicate/buildDefinition/internalParameters/github_event_payload/repository/updated_at",
+      "old": "2026-11-06T12:20:42Z",
+      "new": "2026-11-07T03:02:53Z"
+    },
+    {
+      "path": "/0/predicates/1/predicate/buildDefinition/internalParameters/github_ref",
+      "old": "refs/heads/agent/palette-picker-2026-11-06",
+      "new": "refs/heads/develop"
+    },
+    {
+      "path": "/0/predicates/1/predicate/buildDefinition/internalParameters/github_ref_name",
+      "old": "agent/palette-picker-2026-11-06",
+      "new": "develop"
+    },
+    {
+      "path": "/0/predicates/1/predicate/buildDefinition/internalParameters/github_run_id",
+      "old": "42245622899",
+      "new": "42350684690"
+    },
+    {
+      "path": "/0/predicates/1/predicate/buildDefinition/internalParameters/github_run_number",
+      "old": "17",
+      "new": "18"
+    },
+    {
+      "path": "/0/predicates/1/predicate/buildDefinition/internalParameters/github_runner_name",
+      "old": "GitHub Actions 1000004044",
+      "new": "GitHub Actions 1000004122"
+    },
+    {
+      "path": "/0/predicates/1/predicate/buildDefinition/internalParameters/github_runner_tracking_id",
+      "old": "github_47d8b471-8a7f-4c88-90b1-fe9e71e70d7b",
+      "new": "github_492b8ec5-ff8c-4f73-825c-79786561fc8f"
+    },
+    {
+      "path": "/0/predicates/1/predicate/buildDefinition/internalParameters/github_workflow_ref",
+      "old": "Naohiro2g/scratch-editor/.github/workflows/mc-remote-candidate.yml@refs/heads/agent/palette-picker-2026-11-06",
+      "new": "Naohiro2g/scratch-editor/.github/workflows/mc-remote-candidate.yml@refs/heads/develop"
+    },
+    {
+      "path": "/0/predicates/1/predicate/buildDefinition/internalParameters/github_workflow_sha",
+      "old": "07f98ebf9be84db5ad2467cebe2c166bbe4c43f5",
+      "new": "57fb7691bb5d9a5895785b200ae78734240ebfa6"
+    },
+    {
+      "path": "/0/predicates/1/predicate/runDetails/builder/id",
+      "old": "https://github.com/Naohiro2g/scratch-editor/actions/runs/42245622899/attempts/1",
+      "new": "https://github.com/Naohiro2g/scratch-editor/actions/runs/42350684690/attempts/1"
+    },
+    {
+      "path": "/0/predicates/1/predicate/runDetails/metadata/buildkit_metadata/layers/step2:0/0/9/digest",
+      "old": "sha256:c08acae521048b03f8a02330efeca99a38766565420f394baca90cf615f7b01f",
+      "new": "sha256:566602e2adccc89cf19152316edec4fff6c12c3436c20710f0f2d3a0a2ae7059"
+    },
+    {
+      "path": "/0/predicates/1/predicate/runDetails/metadata/buildkit_metadata/layers/step2:0/0/9/size",
+      "old": 139306498,
+      "new": 139305979
+    },
+    {
+      "path": "/0/predicates/1/predicate/runDetails/metadata/buildkit_metadata/source/infos/0/digestMapping/sha256:513d5cc2c8808a98b9b04dedea32c0db2de4fc84a8952de0efc353e7554f089e",
+      "old": "step1",
+      "new": null
+    },
+    {
+      "path": "/0/predicates/1/predicate/runDetails/metadata/buildkit_metadata/source/infos/0/digestMapping/sha256:613cd5d2ed17272a9c9c1afaa2a8506f814ae8cac5cd91e49cf9741e4656e8c3",
+      "old": null,
+      "new": "step1"
+    },
+    {
+      "path": "/0/predicates/1/predicate/runDetails/metadata/buildkit_metadata/source/infos/0/digestMapping/sha256:6938bb5a0b23536b34c85f4b0c229190aa12515b4b67ab9cbd0cc00acafe5449",
+      "old": "step0",
+      "new": null
+    },
+    {
+      "path": "/0/predicates/1/predicate/runDetails/metadata/buildkit_metadata/source/infos/0/digestMapping/sha256:af81be87a6b6562d77cd88df317b214523bda9104a39b537b047ccf94e0aa77b",
+      "old": null,
+      "new": "step0"
+    },
+    {
+      "path": "/0/predicates/1/predicate/runDetails/metadata/buildkit_metadata/vcs/revision",
+      "old": "07f98ebf9be84db5ad2467cebe2c166bbe4c43f5",
+      "new": "57fb7691bb5d9a5895785b200ae78734240ebfa6"
+    },
+    {
+      "path": "/0/predicates/1/predicate/runDetails/metadata/finishedOn",
+      "old": "2026-11-06T15:49:08.593285366Z",
+      "new": "2026-11-07T07:27:02.072064209Z"
+    },
+    {
+      "path": "/0/predicates/1/predicate/runDetails/metadata/invocationId",
+      "old": "5mt6yplia1asr7sq9ddte3wh7",
+      "new": "c629wl8ni017ycn7lc5q2o66k"
+    },
+    {
+      "path": "/0/predicates/1/predicate/runDetails/metadata/startedOn",
+      "old": "2026-11-06T15:48:49.538348033Z",
+      "new": "2026-11-07T07:26:42.169980083Z"
+    },
+    {
+      "path": "/1/annotations/vnd.docker.reference.digest",
+      "old": "sha256:cf21d2702c7eebfb1966e255838d83ff561f85d4d9939de2259330da7d4474c7",
+      "new": "sha256:9522809b4cab59d2b67b683fec742f3e49c913f24fb4a0de3b3c50d4684d7bdc"
+    },
+    {
+      "path": "/1/digest",
+      "old": "sha256:573f3973636c681b83f0036d61b2ff81790baade9f79dec86fd8bad3632a8ef2",
+      "new": "sha256:4efdba2f3721aeff52bec5c2fc4db3db58090abcdead85609c3ef505c5832908"
+    },
+    {
+      "path": "/1/predicates/0/predicate/creationInfo/created",
+      "old": "2026-11-06T15:49:00Z",
+      "new": "2026-11-07T07:26:51Z"
+    },
+    {
+      "path": "/1/predicates/0/predicate/documentNamespace",
+      "old": "https://anchore.com/syft/dir/sbom-7bc21493-5618-4bbe-a765-18458f11edb4",
+      "new": "https://anchore.com/syft/dir/sbom-40a3632f-af2a-4a74-9226-c489f12cf4cc"
+    },
+    {
+      "path": "/1/predicates/0/predicate/files/632/comment",
+      "old": "layerID: sha256:bd702bc3780064f209e2945a75632c0b8737f4c86b4697b57a6f2b969903e5ec",
+      "new": "layerID: sha256:171eb7c43d1f0ba202583d368995c28a6411fe37928b9d696b360cdd24116b63"
+    },
+    {
+      "path": "/1/predicates/0/predicate/files/633/comment",
+      "old": "layerID: sha256:bd702bc3780064f209e2945a75632c0b8737f4c86b4697b57a6f2b969903e5ec",
+      "new": "layerID: sha256:171eb7c43d1f0ba202583d368995c28a6411fe37928b9d696b360cdd24116b63"
+    },
+    {
+      "path": "/1/predicates/1/predicate/buildDefinition/externalParameters/request/args/build-arg:SOURCE_DATE_EPOCH",
+      "old": "1793979694",
+      "new": "1794020567"
+    },
+    {
+      "path": "/1/predicates/1/predicate/buildDefinition/externalParameters/request/args/build-arg:SOURCE_REVISION",
+      "old": "07f98ebf9be84db5ad2467cebe2c166bbe4c43f5",
+      "new": "57fb7691bb5d9a5895785b200ae78734240ebfa6"
+    },
+    {
+      "path": "/1/predicates/1/predicate/buildDefinition/externalParameters/request/root/request/args/build-arg:SOURCE_DATE_EPOCH",
+      "old": "1793979694",
+      "new": "1794020567"
+    },
+    {
+      "path": "/1/predicates/1/predicate/buildDefinition/externalParameters/request/root/request/args/build-arg:SOURCE_REVISION",
+      "old": "07f98ebf9be84db5ad2467cebe2c166bbe4c43f5",
+      "new": "57fb7691bb5d9a5895785b200ae78734240ebfa6"
+    },
+    {
+      "path": "/1/predicates/1/predicate/buildDefinition/externalParameters/request/root/request/args/vcs:revision",
+      "old": "07f98ebf9be84db5ad2467cebe2c166bbe4c43f5",
+      "new": "57fb7691bb5d9a5895785b200ae78734240ebfa6"
+    },
+    {
+      "path": "/1/predicates/1/predicate/buildDefinition/internalParameters/buildConfig/digestMapping/sha256:6a986efcbb3353ca14eb17c7bb540629b3fbcc9fdaf95801da399149d818ad08",
+      "old": null,
+      "new": "step1"
+    },
+    {
+      "path": "/1/predicates/1/predicate/buildDefinition/internalParameters/buildConfig/digestMapping/sha256:8da9434f8a34968ecc9efe575d5af45d7f1756793a5753c7e9a97f5b89c592cf",
+      "old": "step1",
+      "new": null
+    },
+    {
+      "path": "/1/predicates/1/predicate/buildDefinition/internalParameters/buildConfig/digestMapping/sha256:9f8a57c5ea1c42273a00b699014dacd7483b319b706f74fa26af147364729882",
+      "old": "step3",
+      "new": null
+    },
+    {
+      "path": "/1/predicates/1/predicate/buildDefinition/internalParameters/buildConfig/digestMapping/sha256:a5d5074e0d399177b98386bf150627f72a48e3f3592ec1f2269cdbbd0a6cc117",
+      "old": null,
+      "new": "step2"
+    },
+    {
+      "path": "/1/predicates/1/predicate/buildDefinition/internalParameters/buildConfig/digestMapping/sha256:cc6835ac6aecf00bfb35c0925c00a2f8acae010ed65e5016885d65ae4acdfabb",
+      "old": null,
+      "new": "step3"
+    },
+    {
+      "path": "/1/predicates/1/predicate/buildDefinition/internalParameters/buildConfig/digestMapping/sha256:f572515cbba30b0b6a2822ca5166fcb11b607c8c6af9c31cabd08245aa55ce41",
+      "old": "step2",
+      "new": null
+    },
+    {
+      "path": "/1/predicates/1/predicate/buildDefinition/internalParameters/github_event_payload/ref",
+      "old": "refs/heads/agent/palette-picker-2026-11-06",
+      "new": "refs/heads/develop"
+    },
+    {
+      "path": "/1/predicates/1/predicate/buildDefinition/internalParameters/github_event_payload/repository/open_issues",
+      "old": 1,
+      "new": 0
+    },
+    {
+      "path": "/1/predicates/1/predicate/buildDefinition/internalParameters/github_event_payload/repository/open_issues_count",
+      "old": 1,
+      "new": 0
+    },
+    {
+      "path": "/1/predicates/1/predicate/buildDefinition/internalParameters/github_event_payload/repository/pushed_at",
+      "old": "2026-11-06T15:42:22Z",
+      "new": "2026-11-07T03:02:47Z"
+    },
+    {
+      "path": "/1/predicates/1/predicate/buildDefinition/internalParameters/github_event_payload/repository/size",
+      "old": 726325,
+      "new": 726397
+    },
+    {
+      "path": "/1/predicates/1/predicate/buildDefinition/internalParameters/github_event_payload/repository/updated_at",
+      "old": "2026-11-06T12:20:42Z",
+      "new": "2026-11-07T03:02:53Z"
+    },
+    {
+      "path": "/1/predicates/1/predicate/buildDefinition/internalParameters/github_ref",
+      "old": "refs/heads/agent/palette-picker-2026-11-06",
+      "new": "refs/heads/develop"
+    },
+    {
+      "path": "/1/predicates/1/predicate/buildDefinition/internalParameters/github_ref_name",
+      "old": "agent/palette-picker-2026-11-06",
+      "new": "develop"
+    },
+    {
+      "path": "/1/predicates/1/predicate/buildDefinition/internalParameters/github_run_id",
+      "old": "42245622899",
+      "new": "42350684690"
+    },
+    {
+      "path": "/1/predicates/1/predicate/buildDefinition/internalParameters/github_run_number",
+      "old": "17",
+      "new": "18"
+    },
+    {
+      "path": "/1/predicates/1/predicate/buildDefinition/internalParameters/github_runner_name",
+      "old": "GitHub Actions 1000004044",
+      "new": "GitHub Actions 1000004122"
+    },
+    {
+      "path": "/1/predicates/1/predicate/buildDefinition/internalParameters/github_runner_tracking_id",
+      "old": "github_47d8b471-8a7f-4c88-90b1-fe9e71e70d7b",
+      "new": "github_492b8ec5-ff8c-4f73-825c-79786561fc8f"
+    },
+    {
+      "path": "/1/predicates/1/predicate/buildDefinition/internalParameters/github_workflow_ref",
+      "old": "Naohiro2g/scratch-editor/.github/workflows/mc-remote-candidate.yml@refs/heads/agent/palette-picker-2026-11-06",
+      "new": "Naohiro2g/scratch-editor/.github/workflows/mc-remote-candidate.yml@refs/heads/develop"
+    },
+    {
+      "path": "/1/predicates/1/predicate/buildDefinition/internalParameters/github_workflow_sha",
+      "old": "07f98ebf9be84db5ad2467cebe2c166bbe4c43f5",
+      "new": "57fb7691bb5d9a5895785b200ae78734240ebfa6"
+    },
+    {
+      "path": "/1/predicates/1/predicate/runDetails/builder/id",
+      "old": "https://github.com/Naohiro2g/scratch-editor/actions/runs/42245622899/attempts/1",
+      "new": "https://github.com/Naohiro2g/scratch-editor/actions/runs/42350684690/attempts/1"
+    },
+    {
+      "path": "/1/predicates/1/predicate/runDetails/metadata/buildkit_metadata/layers/step2:0/0/9/digest",
+      "old": "sha256:bd702bc3780064f209e2945a75632c0b8737f4c86b4697b57a6f2b969903e5ec",
+      "new": "sha256:171eb7c43d1f0ba202583d368995c28a6411fe37928b9d696b360cdd24116b63"
+    },
+    {
+      "path": "/1/predicates/1/predicate/runDetails/metadata/buildkit_metadata/layers/step2:0/0/9/size",
+      "old": 139306514,
+      "new": 139305979
+    },
+    {
+      "path": "/1/predicates/1/predicate/runDetails/metadata/buildkit_metadata/source/infos/0/digestMapping/sha256:513d5cc2c8808a98b9b04dedea32c0db2de4fc84a8952de0efc353e7554f089e",
+      "old": "step1",
+      "new": null
+    },
+    {
+      "path": "/1/predicates/1/predicate/runDetails/metadata/buildkit_metadata/source/infos/0/digestMapping/sha256:613cd5d2ed17272a9c9c1afaa2a8506f814ae8cac5cd91e49cf9741e4656e8c3",
+      "old": null,
+      "new": "step1"
+    },
+    {
+      "path": "/1/predicates/1/predicate/runDetails/metadata/buildkit_metadata/source/infos/0/digestMapping/sha256:6938bb5a0b23536b34c85f4b0c229190aa12515b4b67ab9cbd0cc00acafe5449",
+      "old": "step0",
+      "new": null
+    },
+    {
+      "path": "/1/predicates/1/predicate/runDetails/metadata/buildkit_metadata/source/infos/0/digestMapping/sha256:af81be87a6b6562d77cd88df317b214523bda9104a39b537b047ccf94e0aa77b",
+      "old": null,
+      "new": "step0"
+    },
+    {
+      "path": "/1/predicates/1/predicate/runDetails/metadata/buildkit_metadata/vcs/revision",
+      "old": "07f98ebf9be84db5ad2467cebe2c166bbe4c43f5",
+      "new": "57fb7691bb5d9a5895785b200ae78734240ebfa6"
+    },
+    {
+      "path": "/1/predicates/1/predicate/runDetails/metadata/finishedOn",
+      "old": "2026-11-06T15:49:08.593285366Z",
+      "new": "2026-11-07T07:27:02.072064209Z"
+    },
+    {
+      "path": "/1/predicates/1/predicate/runDetails/metadata/invocationId",
+      "old": "5mt6yplia1asr7sq9ddte3wh7",
+      "new": "c629wl8ni017ycn7lc5q2o66k"
+    },
+    {
+      "path": "/1/predicates/1/predicate/runDetails/metadata/startedOn",
+      "old": "2026-11-06T15:48:49.538348033Z",
+      "new": "2026-11-07T07:26:42.169980083Z"
+    }
+  ]
+}

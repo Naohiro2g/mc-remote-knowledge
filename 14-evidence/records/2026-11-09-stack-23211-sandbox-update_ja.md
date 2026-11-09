@@ -5,6 +5,9 @@
 > `mc-remote-stack`の`handoff-materials/2026-11-09-stack-23211-sandbox-update/materials/RETURN_ja.md`（13,124 bytes、
 > `b5d2ba14bf0a11b83679033279c121891b19ab34da1798febb5cd1bf83ee041a`。knowledge `c753874`を読んだ）。素材はGit外に置き、ここへは
 > 写さない。backupの本体、config、認証のデータ、raw log、player名、token、ペアコードは収録しない。
+> 追記（2026-11-10）：gate closeの分類で、素材のうち7 file（applyの出力と結果、configの値を戻した結果、最後の状態、起動のlog、
+> 時刻の要約）を`14-evidence/artifacts/2026-11-10-23211-gate-close/stack/2026-11-09-stack-23211-sandbox-update/`へ収容した
+> （`14-evidence/records/2026-11-10-23211-gate-close_ja.md`）。1回目のapplyの失敗の素材は、Stackが②で持つ
 
 ## identity
 

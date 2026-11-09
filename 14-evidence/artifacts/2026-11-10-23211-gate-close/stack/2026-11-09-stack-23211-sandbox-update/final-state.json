@@ -1,0 +1,21 @@
+{
+  "checked_at_utc": "2026-11-09T02:15:05.710655+00:00",
+  "operator_cli_commit": "ba40ccdc54b1238d3f7cf9c9fa8dac7a806dca9f",
+  "lock_identity": "sha256:cb5793011d7160edaf321ef1072d1affeb89d300ed8acb058ac3bbc75ab6c5c7",
+  "existing_mcremote_config_values_except_supported_versions_preserved": true,
+  "all_existing_mcremote_config_values_preserved": true,
+  "supported_versions_before": [
+    "1.21.11"
+  ],
+  "supported_versions_now": [
+    "1.21.11"
+  ],
+  "original_supported_versions_retained": true,
+  "hud_enabled": true,
+  "hud_toggle_on_swap": true,
+  "world_preserved": true,
+  "volumes_preserved": true,
+  "heap_preserved": true,
+  "network_preserved": true,
+  "doctor_from_operator_cli_passed": true
+}

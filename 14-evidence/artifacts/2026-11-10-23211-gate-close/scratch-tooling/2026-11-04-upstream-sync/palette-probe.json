@@ -1,0 +1,609 @@
+{
+  "errors": [],
+  "records": [
+    {
+      "category": {
+        "id": "motion",
+        "name": "Motion"
+      },
+      "scale": 0.675,
+      "scrollY": -4.04551768485451,
+      "cached": 6,
+      "metrics": {
+        "contentHeight": 8164.462500000001,
+        "contentWidth": 761.2300964355469,
+        "contentTop": 8.100000000000001,
+        "contentLeft": 8.090589308738709,
+        "scrollHeight": 8180.6625,
+        "scrollWidth": 777.4206857442856,
+        "scrollTop": 0,
+        "scrollLeft": 0,
+        "viewHeight": 870,
+        "viewWidth": 350,
+        "viewTop": 4.04551768485451,
+        "viewLeft": 0,
+        "absoluteTop": 0,
+        "absoluteLeft": 0,
+        "svgHeight": 870,
+        "svgWidth": 350,
+        "toolboxWidth": 0,
+        "toolboxHeight": 0,
+        "toolboxPosition": 2,
+        "flyoutWidth": 0,
+        "flyoutHeight": 0
+      },
+      "labels": [
+        {
+          "y": 12,
+          "screenY": 101.83573150634766
+        }
+      ]
+    },
+    {
+      "category": {
+        "id": "looks",
+        "name": "Looks"
+      },
+      "scale": 0.675,
+      "scrollY": -930.7624709969218,
+      "scrollTarget": 934.2,
+      "cached": 1384,
+      "metrics": {
+        "contentHeight": 8164.462500000001,
+        "contentWidth": 761.2300964355469,
+        "contentTop": 8.100000000000001,
+        "contentLeft": 8.090589308738709,
+        "scrollHeight": 8180.6625,
+        "scrollWidth": 777.4206857442856,
+        "scrollTop": 0,
+        "scrollLeft": 0,
+        "viewHeight": 870,
+        "viewWidth": 350,
+        "viewTop": 930.7624709969218,
+        "viewLeft": 0,
+        "absoluteTop": 0,
+        "absoluteLeft": 0,
+        "svgHeight": 870,
+        "svgWidth": 350,
+        "toolboxWidth": 0,
+        "toolboxHeight": 0,
+        "toolboxPosition": 2,
+        "flyoutWidth": 0,
+        "flyoutHeight": 0
+      },
+      "labels": [
+        {
+          "y": 1390,
+          "screenY": 105.26881408691406
+        }
+      ]
+    },
+    {
+      "category": {
+        "id": "sound",
+        "name": "Sound"
+      },
+      "scale": 0.675,
+      "scrollY": -1932.8116708658918,
+      "scrollTarget": 1939.95,
+      "cached": 2874,
+      "metrics": {
+        "contentHeight": 8164.462500000001,
+        "contentWidth": 761.2300964355469,
+        "contentTop": 8.100000000000001,
+        "contentLeft": 8.090589308738709,
+        "scrollHeight": 8180.6625,
+        "scrollWidth": 777.4206857442856,
+        "scrollTop": 0,
+        "scrollLeft": 0,
+        "viewHeight": 870,
+        "viewWidth": 350,
+        "viewTop": 1932.8116708658918,
+        "viewLeft": 0,
+        "absoluteTop": 0,
+        "absoluteLeft": 0,
+        "svgHeight": 870,
+        "svgWidth": 350,
+        "toolboxWidth": 0,
+        "toolboxHeight": 0,
+        "toolboxPosition": 2,
+        "flyoutWidth": 0,
+        "flyoutHeight": 0
+      },
+      "labels": [
+        {
+          "y": 2880,
+          "screenY": 108.96963500976562
+        }
+      ]
+    },
+    {
+      "category": {
+        "id": "events",
+        "name": "Events"
+      },
+      "scale": 0.675,
+      "scrollY": -2404.9180706389798,
+      "scrollTarget": 2413.8,
+      "cached": 3576,
+      "metrics": {
+        "contentHeight": 8164.462500000001,
+        "contentWidth": 761.2300964355469,
+        "contentTop": 8.100000000000001,
+        "contentLeft": 8.090589308738709,
+        "scrollHeight": 8180.6625,
+        "scrollWidth": 777.4206857442856,
+        "scrollTop": 0,
+        "scrollLeft": 0,
+        "viewHeight": 870,
+        "viewWidth": 350,
+        "viewTop": 2404.9180706389798,
+        "viewLeft": 0,
+        "absoluteTop": 0,
+        "absoluteLeft": 0,
+        "svgHeight": 870,
+        "svgWidth": 350,
+        "toolboxWidth": 0,
+        "toolboxHeight": 0,
+        "toolboxPosition": 2,
+        "flyoutWidth": 0,
+        "flyoutHeight": 0
+      },
+      "labels": [
+        {
+          "y": 3582,
+          "screenY": 110.71332550048828
+        }
+      ]
+    },
+    {
+      "category": {
+        "id": "control",
+        "name": "Control"
+      },
+      "scale": 0.675,
+      "scrollY": -2908.6327336447403,
+      "scrollTarget": 2919.375,
+      "cached": 4325,
+      "metrics": {
+        "contentHeight": 8164.462500000001,
+        "contentWidth": 761.2300964355469,
+        "contentTop": 8.100000000000001,
+        "contentLeft": 8.090589308738709,
+        "scrollHeight": 8180.6625,
+        "scrollWidth": 777.4206857442856,
+        "scrollTop": 0,
+        "scrollLeft": 0,
+        "viewHeight": 870,
+        "viewWidth": 350,
+        "viewTop": 2908.6327336447403,
+        "viewLeft": 0,
+        "absoluteTop": 0,
+        "absoluteLeft": 0,
+        "svgHeight": 870,
+        "svgWidth": 350,
+        "toolboxWidth": 0,
+        "toolboxHeight": 0,
+        "toolboxPosition": 2,
+        "flyoutWidth": 0,
+        "flyoutHeight": 0
+      },
+      "labels": [
+        {
+          "y": 4331,
+          "screenY": 112.573486328125
+        }
+      ]
+    },
+    {
+      "category": {
+        "id": "sensing",
+        "name": "Sensing"
+      },
+      "scale": 0.675,
+      "scrollY": -3736.500223845127,
+      "scrollTarget": 3750.3,
+      "cached": 5555.5,
+      "metrics": {
+        "contentHeight": 8164.462500000001,
+        "contentWidth": 761.2300964355469,
+        "contentTop": 8.100000000000001,
+        "contentLeft": 8.090589308738709,
+        "scrollHeight": 8180.6625,
+        "scrollWidth": 777.4206857442856,
+        "scrollTop": 0,
+        "scrollLeft": 0,
+        "viewHeight": 870,
+        "viewWidth": 350,
+        "viewTop": 3736.500223845127,
+        "viewLeft": 0,
+        "absoluteTop": 0,
+        "absoluteLeft": 0,
+        "svgHeight": 870,
+        "svgWidth": 350,
+        "toolboxWidth": 0,
+        "toolboxHeight": 0,
+        "toolboxPosition": 2,
+        "flyoutWidth": 0,
+        "flyoutHeight": 0
+      },
+      "labels": [
+        {
+          "y": 5561.5,
+          "screenY": 115.29357147216797
+        }
+      ]
+    },
+    {
+      "category": {
+        "id": "operators",
+        "name": "Operators"
+      },
+      "scale": 0.675,
+      "scrollY": -4601.35610719013,
+      "scrollTarget": 4618.35,
+      "cached": 6841.5,
+      "metrics": {
+        "contentHeight": 8164.462500000001,
+        "contentWidth": 761.2300964355469,
+        "contentTop": 8.100000000000001,
+        "contentLeft": 8.090589308738709,
+        "scrollHeight": 8180.6625,
+        "scrollWidth": 777.4206857442856,
+        "scrollTop": 0,
+        "scrollLeft": 0,
+        "viewHeight": 870,
+        "viewWidth": 350,
+        "viewTop": 4601.35610719013,
+        "viewLeft": 0,
+        "absoluteTop": 0,
+        "absoluteLeft": 0,
+        "svgHeight": 870,
+        "svgWidth": 350,
+        "toolboxWidth": 0,
+        "toolboxHeight": 0,
+        "toolboxPosition": 2,
+        "flyoutWidth": 0,
+        "flyoutHeight": 0
+      },
+      "labels": [
+        {
+          "y": 6847.5,
+          "screenY": 118.48787689208984
+        }
+      ]
+    },
+    {
+      "category": {
+        "id": "variables",
+        "name": "Variables"
+      },
+      "scale": 0.675,
+      "scrollY": -5366.679587164165,
+      "scrollTarget": 5386.5,
+      "cached": 7979.5,
+      "metrics": {
+        "contentHeight": 8164.462500000001,
+        "contentWidth": 761.2300964355469,
+        "contentTop": 8.100000000000001,
+        "contentLeft": 8.090589308738709,
+        "scrollHeight": 8180.6625,
+        "scrollWidth": 777.4206857442856,
+        "scrollTop": 0,
+        "scrollLeft": 0,
+        "viewHeight": 870,
+        "viewWidth": 350,
+        "viewTop": 5366.679587164165,
+        "viewLeft": 0,
+        "absoluteTop": 0,
+        "absoluteLeft": 0,
+        "svgHeight": 870,
+        "svgWidth": 350,
+        "toolboxWidth": 0,
+        "toolboxHeight": 0,
+        "toolboxPosition": 2,
+        "flyoutWidth": 0,
+        "flyoutHeight": 0
+      },
+      "labels": [
+        {
+          "y": 7985.5,
+          "screenY": 121.31415557861328
+        }
+      ]
+    },
+    {
+      "category": {
+        "id": "myBlocks",
+        "name": "My Blocks"
+      },
+      "scale": 0.675,
+      "scrollY": -5672.001959666988,
+      "scrollTarget": 5692.950000000001,
+      "cached": 8433.5,
+      "metrics": {
+        "contentHeight": 8164.462500000001,
+        "contentWidth": 761.2300964355469,
+        "contentTop": 8.100000000000001,
+        "contentLeft": 8.090589308738709,
+        "scrollHeight": 8180.6625,
+        "scrollWidth": 777.4206857442856,
+        "scrollTop": 0,
+        "scrollLeft": 0,
+        "viewHeight": 870,
+        "viewWidth": 350,
+        "viewTop": 5672.001959666988,
+        "viewLeft": 0,
+        "absoluteTop": 0,
+        "absoluteLeft": 0,
+        "svgHeight": 870,
+        "svgWidth": 350,
+        "toolboxWidth": 0,
+        "toolboxHeight": 0,
+        "toolboxPosition": 2,
+        "flyoutWidth": 0,
+        "flyoutHeight": 0
+      },
+      "labels": [
+        {
+          "y": 8439.5,
+          "screenY": 122.44189453125
+        }
+      ]
+    },
+    {
+      "category": {
+        "id": "mcremote",
+        "name": "mc-remote"
+      },
+      "scale": 0.675,
+      "scrollY": -5728.493323742403,
+      "scrollTarget": 5749.650000000001,
+      "cached": 8517.5,
+      "metrics": {
+        "contentHeight": 8164.462500000001,
+        "contentWidth": 761.2300964355469,
+        "contentTop": 8.100000000000001,
+        "contentLeft": 8.090589308738709,
+        "scrollHeight": 8180.6625,
+        "scrollWidth": 777.4206857442856,
+        "scrollTop": 0,
+        "scrollLeft": 0,
+        "viewHeight": 870,
+        "viewWidth": 350,
+        "viewTop": 5728.493323742403,
+        "viewLeft": 0,
+        "absoluteTop": 0,
+        "absoluteLeft": 0,
+        "svgHeight": 870,
+        "svgWidth": 350,
+        "toolboxWidth": 0,
+        "toolboxHeight": 0,
+        "toolboxPosition": 2,
+        "flyoutWidth": 0,
+        "flyoutHeight": 0
+      },
+      "labels": [
+        {
+          "y": 8523.5,
+          "screenY": 122.65068817138672
+        }
+      ]
+    }
+  ],
+  "interventions": [
+    {
+      "action": "before",
+      "error": 21.15667625759761,
+      "scrollTarget": 5749.650000000001,
+      "ratio": 0.10563256658133631,
+      "scrollbarLength": 865,
+      "handleLength": 91.90033292576258,
+      "oldHostMetrics": {
+        "contentHeight": 8172.562500000001,
+        "contentWidth": 769.320703125,
+        "contentTop": 0,
+        "contentLeft": 0,
+        "scrollHeight": 8188.762500000001,
+        "scrollWidth": 777.420703125,
+        "scrollTop": 0,
+        "scrollLeft": 0,
+        "viewHeight": 870,
+        "viewWidth": 350,
+        "viewTop": 2.660850000000001,
+        "viewLeft": 0,
+        "absoluteTop": 0,
+        "absoluteLeft": 0,
+        "svgHeight": 870,
+        "svgWidth": 350,
+        "toolboxWidth": 0,
+        "toolboxHeight": 0,
+        "toolboxPosition": 2,
+        "flyoutWidth": 0,
+        "flyoutHeight": 0
+      },
+      "metrics": {
+        "contentHeight": 8164.462500000001,
+        "contentWidth": 761.2300964355469,
+        "contentTop": 8.100000000000001,
+        "contentLeft": 8.090589308738709,
+        "scrollHeight": 8180.6625,
+        "scrollWidth": 777.4206857442856,
+        "scrollTop": 0,
+        "scrollLeft": 0,
+        "viewHeight": 870,
+        "viewWidth": 350,
+        "viewTop": 5728.493323742403,
+        "viewLeft": 0,
+        "absoluteTop": 0,
+        "absoluteLeft": 0,
+        "svgHeight": 870,
+        "svgWidth": 350,
+        "toolboxWidth": 0,
+        "toolboxHeight": 0,
+        "toolboxPosition": 2,
+        "flyoutWidth": 0,
+        "flyoutHeight": 0
+      }
+    },
+    {
+      "action": "scrollbar.resize",
+      "error": 0,
+      "ratio": 0.10573715759573261,
+      "scrollbarLength": 865,
+      "handleLength": 91.99132710828738,
+      "oldHostMetrics": {
+        "contentHeight": 8164.462500000001,
+        "contentWidth": 761.2300964355469,
+        "contentTop": 8.100000000000001,
+        "contentLeft": 8.090589308738709,
+        "scrollHeight": 8180.6625,
+        "scrollWidth": 777.4206857442856,
+        "scrollTop": 0,
+        "scrollLeft": 0,
+        "viewHeight": 870,
+        "viewWidth": 350,
+        "viewTop": 5728.493323742403,
+        "viewLeft": 0,
+        "absoluteTop": 0,
+        "absoluteLeft": 0,
+        "svgHeight": 870,
+        "svgWidth": 350,
+        "toolboxWidth": 0,
+        "toolboxHeight": 0,
+        "toolboxPosition": 2,
+        "flyoutWidth": 0,
+        "flyoutHeight": 0
+      },
+      "metrics": {
+        "contentHeight": 8164.462500000001,
+        "contentWidth": 761.2300964355469,
+        "contentTop": 8.100000000000001,
+        "contentLeft": 8.090589308738709,
+        "scrollHeight": 8180.6625,
+        "scrollWidth": 777.4206857442856,
+        "scrollTop": 0,
+        "scrollLeft": 0,
+        "viewHeight": 870,
+        "viewWidth": 350,
+        "viewTop": 5749.650000000001,
+        "viewLeft": 0,
+        "absoluteTop": 0,
+        "absoluteLeft": 0,
+        "svgHeight": 870,
+        "svgWidth": 350,
+        "toolboxWidth": 0,
+        "toolboxHeight": 0,
+        "toolboxPosition": 2,
+        "flyoutWidth": 0,
+        "flyoutHeight": 0
+      }
+    },
+    {
+      "action": "resizeContents",
+      "error": 0,
+      "ratio": 0.10573715759573261,
+      "scrollbarLength": 865,
+      "handleLength": 91.99132710828738,
+      "oldHostMetrics": {
+        "contentHeight": 8164.462500000001,
+        "contentWidth": 761.2300964355469,
+        "contentTop": 8.100000000000001,
+        "contentLeft": 8.090589308738709,
+        "scrollHeight": 8180.6625,
+        "scrollWidth": 777.4206857442856,
+        "scrollTop": 0,
+        "scrollLeft": 0,
+        "viewHeight": 870,
+        "viewWidth": 350,
+        "viewTop": 5749.650000000001,
+        "viewLeft": 0,
+        "absoluteTop": 0,
+        "absoluteLeft": 0,
+        "svgHeight": 870,
+        "svgWidth": 350,
+        "toolboxWidth": 0,
+        "toolboxHeight": 0,
+        "toolboxPosition": 2,
+        "flyoutWidth": 0,
+        "flyoutHeight": 0
+      },
+      "metrics": {
+        "contentHeight": 8164.462500000001,
+        "contentWidth": 761.2300964355469,
+        "contentTop": 8.100000000000001,
+        "contentLeft": 8.090589308738709,
+        "scrollHeight": 8180.6625,
+        "scrollWidth": 777.4206857442856,
+        "scrollTop": 0,
+        "scrollLeft": 0,
+        "viewHeight": 870,
+        "viewWidth": 350,
+        "viewTop": 5749.650000000001,
+        "viewLeft": 0,
+        "absoluteTop": 0,
+        "absoluteLeft": 0,
+        "svgHeight": 870,
+        "svgWidth": 350,
+        "toolboxWidth": 0,
+        "toolboxHeight": 0,
+        "toolboxPosition": 2,
+        "flyoutWidth": 0,
+        "flyoutHeight": 0
+      }
+    },
+    {
+      "action": "svgResize",
+      "error": 0,
+      "ratio": 0.10573715759573261,
+      "scrollbarLength": 865,
+      "handleLength": 91.99132710828738,
+      "oldHostMetrics": {
+        "contentHeight": 8164.462500000001,
+        "contentWidth": 761.2300964355469,
+        "contentTop": 8.100000000000001,
+        "contentLeft": 8.090589308738709,
+        "scrollHeight": 8180.6625,
+        "scrollWidth": 777.4206857442856,
+        "scrollTop": 0,
+        "scrollLeft": 0,
+        "viewHeight": 870,
+        "viewWidth": 350,
+        "viewTop": 5749.650000000001,
+        "viewLeft": 0,
+        "absoluteTop": 0,
+        "absoluteLeft": 0,
+        "svgHeight": 870,
+        "svgWidth": 350,
+        "toolboxWidth": 0,
+        "toolboxHeight": 0,
+        "toolboxPosition": 2,
+        "flyoutWidth": 0,
+        "flyoutHeight": 0
+      },
+      "metrics": {
+        "contentHeight": 8164.462500000001,
+        "contentWidth": 761.2300964355469,
+        "contentTop": 8.100000000000001,
+        "contentLeft": 8.090589308738709,
+        "scrollHeight": 8180.6625,
+        "scrollWidth": 777.4206857442856,
+        "scrollTop": 0,
+        "scrollLeft": 0,
+        "viewHeight": 870,
+        "viewWidth": 350,
+        "viewTop": 5749.650000000001,
+        "viewLeft": 0,
+        "absoluteTop": 0,
+        "absoluteLeft": 0,
+        "svgHeight": 870,
+        "svgWidth": 350,
+        "toolboxWidth": 0,
+        "toolboxHeight": 0,
+        "toolboxPosition": 2,
+        "flyoutWidth": 0,
+        "flyoutHeight": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "reviewed_bytes": 4763,
+  "reviewed_sha256": "468f0d1e2811d85ee4ed2fee6f3069652bd4543a0aa1ee8913e6a36cc3580e5b",
+  "final_bytes": 4744,
+  "final_sha256": "6ecf13d711589af52a832c82a96fba4bdad42b692097523af516c159de118e66",
+  "replacements": 1,
+  "old": "Minecraft 1.21.11・26.2・26.3の公式の日本語・英語カテゴリ名に対応しています。",
+  "new": "Minecraftの公式の日本語・英語のカテゴリ名に対応しています。",
+  "human_owner_start_received": true,
+  "knowledge_commit": "2f337180c919a80aa80200e9f9d959d64812543e"
+}

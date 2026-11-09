@@ -1,0 +1,18 @@
+{
+  "knowledge_commit": "73dd61443964bfd4f14b857ab9b5ee5a007b6817",
+  "scratch_tag": "v2321.1.0",
+  "scratch_snapshot_commit": "57fb7691bb5d9a5895785b200ae78734240ebfa6",
+  "source_ref_resolves_to_source_commit": true,
+  "source_commit": "11bce3193c524135931a5bf342a9edb1bfdfbbac",
+  "ancestor": true,
+  "between_commits_only_site_outputs_changed": true,
+  "comparison_file_count": 64,
+  "public_file_count": 372,
+  "public_all_bytes_equal": true,
+  "directory_index_equal": true,
+  "versioned_blocks_sha256": "1fd136f39309fe843427ab4aaa11af8e1588a5eb51a7ecc6451d504aef1bcd2f",
+  "rebuild_needed": false,
+  "failures": [],
+  "checked_at_utc": "2026-11-09T07:57:11.843734+00:00",
+  "deployed_file_set_and_sha256_equal": true
+}

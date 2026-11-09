@@ -1,0 +1,23 @@
+[
+  {
+    "artifact_id": "13540651077",
+    "file": "mcremote.zip",
+    "bytes": 317670,
+    "sha256": "9dd6d88106b3415f96cd51c34064d39bbda362411390594462ab3644eb140803",
+    "pass": true
+  },
+  {
+    "artifact_id": "13507135196",
+    "file": "python.zip",
+    "bytes": 383489,
+    "sha256": "3c35499f479bfe0874ef7ddb4e2b04a349cf0118df3efab9a2d8dbdf42c12177",
+    "pass": true
+  },
+  {
+    "artifact_id": "13565862576",
+    "file": "scratch.zip",
+    "bytes": 1373409925,
+    "sha256": "47a4f4601dbec0c2e8fc58d9359f69290fda4c1f4f2f58bb387e73590a172050",
+    "pass": true
+  }
+]

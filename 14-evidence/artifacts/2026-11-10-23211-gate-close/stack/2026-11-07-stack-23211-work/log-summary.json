@@ -1,0 +1,9 @@
+{
+  "startup_count": 3,
+  "expected_discord_token_error_count": 3,
+  "initial_probe_expectation_error_count": 1,
+  "unexpected_product_error_fatal_count": 0,
+  "luckperms_storage_method": "h2",
+  "cloud_backup_enabled": false,
+  "ftp_upload_enabled": false
+}
