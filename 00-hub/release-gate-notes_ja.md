@@ -75,8 +75,9 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
-- current phase: McRemote、Python（PyPI.orgを含む）、Scratchの`2321.1.0`を公開し、coordinatorが照合した（2026-11-09）。次は
-  Scratchのブロック一覧の取り込み、ホームページ、Stack（箱庭）
+- current phase: McRemote、Python（PyPI.orgを含む）、Scratchの`2321.1.0`を公開し、coordinatorが照合した（2026-11-09）。
+  Scratchのブロック一覧を取り込んだ。Stackが箱庭の更新を準備した（PR 87、plan `prepared`）。次はhuman ownerのPRのmergeと
+  applyの時刻、箱庭の更新、ホームページ
 - 位置づけ: 初回stableの後の最初の機能のrelease。betaを挟まない（`2026-10-22-03`）。番号は台帳
   （`00-hub/release-train-notes_ja.md`）で予約した（`2026-11-05-02`）
 - contract: protocol `23.2.1`のまま。wire、API、共有fixtureは変えない
@@ -312,6 +313,41 @@ coordinatorがまとめた。`2321.1-set-1`から、Scratchの行だけを替え
   - image workflow（`312664341`）は止めて出し、activeへ戻った。`release:published`による新しいimageのrunは0件。生成run
     `42350684690`のRunner Imageは`ubuntu-24.04` `20261101.360.1`（凍結の記録のとおり）
 - 3つの公開に使ったjobは、どれも`ubuntu-24.04` `20261101.360.1`で、凍結の候補を作ったjobと同じ
+- Scratchのブロック一覧（2026-11-09、coordinator）：tag `v2321.1.0`の`mc-remote/block-reference/site/`を、ホームページの
+  `/api/scratch/`へそのまま入れた（`8c2a69f`、64 file）。2026-11-01の条件（`sourceCommit` `11bce31`がtagの指すcommitの祖先で、
+  間はsiteの生成物だけ、tagの`site/`と同じbytes）を満たす。ホームページへ出るのは、human ownerが同期してから
+
+### 箱庭の準備（2026-11-09、Stack）
+
+- 依頼：Stackへの票（作業1〜3。4のapplyはhuman ownerが時刻を知らせてから）。返却
+  `handoff-materials/2026-11-09-stack-23211-sandbox-preparation/materials/RETURN_ja.md`（11,817 bytes、
+  `d3b63ab1ae76e3043bccb50d6dde2d820068204416017e755193828b29e85a6d`。knowledge `ccc4a6c`を読んだ）。同じ場所の`SHA256SUMS`の
+  19件は一致した
+- preset：`deploy/23211-sandbox-preparation@7185c726c1258ec5cb348abeef95ee4d290e7b18`、PR 87（open、draftでない、未merge。
+  `main` `a2891cf0b2964166a3b820251fa3e9f0c7707d2a`から）。`public-web-paper@18`をregistryとcatalogに載せた。presetのcontent
+  SHA-256 `e9fe4c6f4e0be3c02d95a52f2e95904463fbd5cdd0250e13518ce7aa566a4b3e`、profile `vps-server@18`（content
+  `3d659e8f49e99a7547c331692d8593845550f5cd19a40fc1b33334c89cf432b8`）。Scratchの`runtime-config`のschemaとfixtureを
+  `57fb769`の分として収めた
+  - coordinatorがGitHubのAPIで照合した：PRのcommitは3つ。`2ab63f8`の2つのfileは`e5571f7`とblobが同じ。PRの先頭から取った
+    presetの値は票と全桁で同じ（McRemoteは公開のReleaseのURLと`cd1fff72…`、Scratch OCI `f3bcf6a6…`、Bridge `305d6e38…`、
+    Paper 26.3 #244 `9601f9a2…`、runtime `69b73187…`）。`hud.*`は無い。GitHubには、この先頭のcheckの結果が無い
+  - 検査（Stackの申告）：pytest 629件、ruff、catalogの`--check`、append-onlyの検査が通った
+  - 公式のReleaseの収集：McRemoteのJARと`manifest.json`、verificationの記録2つ、Scratchの`manifest.json`と`contracts.tar.gz`の
+    値は、上の「公開」の照合と同じ
+- plan：`sha256:af582efee1b62ef8f952db83bf308caacf3dac05e9c9db7f3a5d197588041bce`（`prepared`）。`public-web-paper@17`→`@18`、
+  lock `sha256:e4beef4927ecbe5ca60205d04ddfe8200bd41e74960f165fa348fea6bfd37bb3`→
+  `sha256:cb5793011d7160edaf321ef1072d1affeb89d300ed8acb058ac3bbc75ab6c5c7`。同じvolumeでの更新で、world、heap、networkは続く
+  - 周辺のpluginは11本→9本。DirectionHUDとOtterLibが外れ、Geyserは`71c9ebd8…`、LuckPermsは5.5.91 `2a6834c5…`へ。ほかの7本の
+    SHA-256は、2026-11-07の`FILE_IDENTITIES_ja.md`と同じ（coordinatorが照合した）
+  - 稼働中の4つのcontainerとsourceのfileは、planの前後で変わっていない。doctorは全項目が成功
+  - McRemoteのconfig：今のconfigとseedの共通のkeyの差は`supported_mc_versions`だけ。apply後に保存した値と比べ、変わったらその
+    keyだけ戻す。HUDのkeyは新しいJARが補う
+  - お知らせは今の「11月の接続先」の文を続ける
+- 手順：止まるのは2〜5分、枠は10〜15分の見込み（公開VPSでの実測ではない）。backupは止める前に作り、内容を確かめる。更新が
+  失敗したときは自動でsourceの構成へ戻る。更新が終わった後に旧版へ戻すのは、保存したprojectを元へ戻す手作業。どちらでも
+  world、session、ペアリングは巻き戻らない
+- 確かめていないこと：公開VPSでの新しいセットの起動、DiscordSRVの接続、人の操作（参加、ペアリング、チャット、setBlock、
+  HUDのbar）、backupの実際の復元。applyの後に確かめる
 
 ## 2026-10-22 初回stable（2321.0.0）横断release gate（CLOSED）
 
