@@ -404,6 +404,7 @@ coordinatorがまとめた。`2321.1-set-1`から、Scratchの行だけを替え
     後に消す。元の`2321.0.0`の唯一のcopyになるものは、12/1の判断の後まで持つ
   - Stackの限り：参照は2つのprojectを調べた範囲で、disk全体で参照が無いことは保証しない。imageの大きさは共有layerを含み、
     消して空く量ではない
+- human ownerの判断（2026-11-09）：片付けは2の案のとおりにする。実行は、gateを閉じた後にStackへの票
 
 ## 2026-10-22 初回stable（2321.0.0）横断release gate（CLOSED）
 
