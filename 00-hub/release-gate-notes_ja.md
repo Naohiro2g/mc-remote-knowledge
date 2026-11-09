@@ -77,7 +77,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - human release owner: プロジェクトオーナー
 - current phase: McRemote、Python（PyPI.orgを含む）、Scratchの`2321.1.0`を公開し、coordinatorが照合した（2026-11-09）。
   Scratchのブロック一覧を取り込んだ。公開の箱庭を`2321.1.0`のセットへ更新し、ホームページを同期した（2026-11-09）。Stackが
-  ブロック一覧を照合した。次は片付けの判断、告知、gateを閉じる判断
+  ブロック一覧を照合した。片付けはStackの案のとおり。告知は出さない（human owner 2026-11-09）。次はhandoff-materialsの分類
+  （`00-hub/23211-gate-close-instructions_ja.md`）と、gateを閉じる判断
 - 位置づけ: 初回stableの後の最初の機能のrelease。betaを挟まない（`2026-10-22-03`）。番号は台帳
   （`00-hub/release-train-notes_ja.md`）で予約した（`2026-11-05-02`）
 - contract: protocol `23.2.1`のまま。wire、API、共有fixtureは変えない
