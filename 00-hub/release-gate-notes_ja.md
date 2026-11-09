@@ -362,7 +362,8 @@ coordinatorがまとめた。`2321.1-set-1`から、Scratchの行だけを替え
   `/v1/join`、`scratch.`と`scratch-beta.`の配信、doctor。McRemoteのconfigの今までの値は残っている
 - coordinatorの照合：PR 87のmerge、素材の`SHA256SUMS`、`scratch.`と`scratch-beta.`を外から取ったindex.htmlとruntime JSON
 - 人の確認（human owner）：参加、ペアリング、チャット、hello world、setBlock、getBlock、WireScope、HUDのbarの表示と切り替え。
-  iPadとiPhoneからも接続できた
+  iPad、iPhone、Androidでは、ScratchとMinecraftの参加はできたが、1台ではペアリングできなかった（Minecraftはアプリから離れると
+  切れて参加し直す。NOTES 2026-11-09の行）
 - human ownerの判断（2026-11-09）：mcrctlが作るfileの権限を、手元のumaskに左右されないようにする（NOTES 2026-11-09の行。gateを
   閉じた後にStackへの票）
 

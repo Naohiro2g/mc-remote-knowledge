@@ -65,12 +65,17 @@ ServerBackup 2.10.0、ViaBackwards 5.12.2、ViaVersion 5.12.2、WorldEdit 7.4.6�
 ### 人の確認（human owner）
 
 - Stack担当への返答：参加、ペアリング、チャット、setBlock、HUDのbarの表示と切り替えが、すべて確認できた
-- coordinatorへの報告：hello world、setBlock、getBlock、WireScope、HUDに問題はない。iPadとiPhoneからも接続できた
-- clientの版、Java版と統合版の別、Fとcommandの別、iPadとiPhoneのブラウザと版は報告に無い
+- coordinatorへの報告：hello world、setBlock、getBlock、WireScope、HUDに問題はない
+- iPad（第6世代、iPadOS 17.7.11、Safari）、iPhone SE（第3世代、iOS 27.2、Safari）、Android（Chrome。機種と版は報告に無い）：Scratchを開くことと、
+  Minecraftで参加することはできた。1台ではペアリングが成功しなかった。Scratchでペアコードを出してからMinecraftへ移ると、
+  Minecraftはサーバーから切れて参加し直しになる。Scratchが無くても、Minecraftからアプリの一覧へ行って戻るだけで、切れて自動で
+  参加し直す。ブラウザは、戻っても読み込み直さない。human ownerの見立て：サーバーが切ったのなら自動で参加し直すことはないので、
+  clientがもう一度認証からやり直している。リソース不足ではない（NOTES 2026-11-09の行）
+- clientの版、Java版と統合版の別、Fとcommandの別は報告に無い
 
 ## 確かめていないこと
 
 - backupの別の場所への転送と、実際の復元
 - DiscordSRVからDiscordへの実際の送受信
 - 端末とOSの組み合わせごとの結果、外からのUDPの到達、授業に相当する負荷、長時間の稼働
-- 実施票の「公開の後（タブレット）」の項目ごとの結果（iPadとiPhoneは、接続できたことだけ）
+- 実施票の「公開の後（タブレット）」の1（カテゴリを切り替えてブロックを探す）と2（ソフトウェアキーボードで探す）
