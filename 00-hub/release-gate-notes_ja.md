@@ -76,8 +76,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
 - current phase: McRemote、Python（PyPI.orgを含む）、Scratchの`2321.1.0`を公開し、coordinatorが照合した（2026-11-09）。
-  Scratchのブロック一覧を取り込んだ。公開の箱庭を`2321.1.0`のセットへ更新し、ホームページを同期した（2026-11-09）。次は
-  Stackのブロック一覧の照合、告知、gateを閉じる判断
+  Scratchのブロック一覧を取り込んだ。公開の箱庭を`2321.1.0`のセットへ更新し、ホームページを同期した（2026-11-09）。Stackが
+  ブロック一覧を照合した。次は片付けの判断、告知、gateを閉じる判断
 - 位置づけ: 初回stableの後の最初の機能のrelease。betaを挟まない（`2026-10-22-03`）。番号は台帳
   （`00-hub/release-train-notes_ja.md`）で予約した（`2026-11-05-02`）
 - contract: protocol `23.2.1`のまま。wire、API、共有fixtureは変えない
@@ -377,6 +377,33 @@ coordinatorがまとめた。`2321.1-set-1`から、Scratchの行だけを替え
 - coordinatorが`30-広告宣伝/homepage/`の全400 fileを`https://mc-remote.com/`から取り、`4d600d2`のrepoと全部同じbytesであることを
   確かめた。トップ、`/releases/`、`/roadmap/`、`/migration/`、`/lan/scratch/`、`/api/scratch/`は、末尾が`/`のURLでもそれぞれの
   `index.html`と同じ。`/api/scratch/2321.1.0/blocks.json`は`1fd136f39309fe843427ab4aaa11af8e1588a5eb51a7ecc6451d504aef1bcd2f`
+
+### ブロック一覧の照合と片付けの案（2026-11-09、Stack）
+
+- 依頼：Stackへの票（1はブロック一覧の照合、2は片付けの案で、どちらも読み取りと案だけ）。返却
+  `handoff-materials/2026-11-09-stack-23211-close-proposal/materials/RETURN_ja.md`（11,333 bytes、
+  `f07f871cfdc44ea0568b166f1b86171f930bc94a3c5fc953184ebae49b467b9e`。knowledge `73dd614`を読んだ）。同じ場所の`SHA256SUMS`の
+  7件は一致した。箱庭、VPSのfile、ホームページは変えていない
+- 1：`docs/scratch-api-page-intake-guide_ja.md`の手順で、条件をすべて満たした。作り直しは要らない
+  - tag `v2321.1.0`（annotated `1b62f8b0eddd62dad007b00f5a6979e89fd83174`）は`57fb769`を指す。`sourceRef`と`sourceCommit`は
+    `11bce31`で、その祖先。間に変わった64 fileは、どれも`site/`の中の生成物
+  - 公開の`/api/scratch/`の全372 file（8c2a69fで変わった64 fileを含む）が200で、tagの`site/`と同じbytes。VPSの配信の場所の
+    file集合も同じで、欠けも余りも無い
+  - coordinatorの照合：返却の372 fileのSHA-256は、knowledge `30-広告宣伝/homepage/api/scratch/`とすべて同じ。tagのobjectを
+    GitHubのAPIで確かめ、`/api/scratch/`と`2321.1.0/blocks.json`を外から取った
+- 2：片付けの案（human ownerが決める。実行は別の票）。`2321.0.0`の旧セットを2026-12-01まで持つ判断は変えない
+  - `/candidates/2321.1.0/`：`set-1/`はもう無い。`set-2/`（535,160,865 bytes）はReleaseと同じbytesの重複なので、gateを閉じた
+    7日後より後に消す
+  - 12/1の復帰の判断まで持ち、その後で参照を確かめ直してから消すもの：旧セットだけが使うCAS（6件、109,699,242 bytes。
+    一括のpruneはしない）、`2321.0.0`のScratch image、更新の前に保存したsourceのprojectとconfig（private ops）、更新の前の
+    backup（private。別の場所への転送は確かめていない）
+  - 残すもの：Caddy、Bridge、runtimeのimage（今のlockでも使っている）
+  - gateを閉じた7日後より後で、mcrctlの権限の票で再現に使い終えてから消すもの：1回目のapplyで失敗したtransaction（秘密を
+    含む元はprivate ops）、準備用のCLIのcheckout
+  - 11/7の隔離試験の検証機（2,933,305,344 bytes。containerは止まっている）：重複のdataと試験のbackupは、gateを閉じた7日後より
+    後に消す。元の`2321.0.0`の唯一のcopyになるものは、12/1の判断の後まで持つ
+  - Stackの限り：参照は2つのprojectを調べた範囲で、disk全体で参照が無いことは保証しない。imageの大きさは共有layerを含み、
+    消して空く量ではない
 
 ## 2026-10-22 初回stable（2321.0.0）横断release gate（CLOSED）
 
