@@ -71,14 +71,12 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - non-claim: PyPI.orgへの公開はしない。mature判定はしない。Windowsでは検証していない
 - coordinator判定／human release owner承認: human ownerがpost2のsetへの組み入れを判定（2026-09-26、`2026-09-27-01`）。coordinatorはchange coneが閉じていることを確認し、単独更新gateを通過とする（2026-09-28）。**CLOSED**
 
-## 2026-11-06 `2321.1`横断release gate（OPEN）
+## 2026-11-06 `2321.1`横断release gate（CLOSED）
 
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
-- current phase: McRemote、Python（PyPI.orgを含む）、Scratchの`2321.1.0`を公開し、coordinatorが照合した（2026-11-09）。
-  Scratchのブロック一覧を取り込んだ。公開の箱庭を`2321.1.0`のセットへ更新し、ホームページを同期した（2026-11-09）。Stackが
-  ブロック一覧を照合した。片付けはStackの案のとおり。告知は出さない（human owner 2026-11-09）。次はhandoff-materialsの分類
-  （`00-hub/23211-gate-close-instructions_ja.md`）と、gateを閉じる判断
+- current phase: **CLOSED**（2026-11-10、human ownerの判断）。2026-11-06に開き、2026-11-09にMcRemote、Python、Scratchの
+  `2321.1.0`をLatestとPyPI.orgへ出して、箱庭を更新し、ホームページを同期した
 - 位置づけ: 初回stableの後の最初の機能のrelease。betaを挟まない（`2026-10-22-03`）。番号は台帳
   （`00-hub/release-train-notes_ja.md`）で予約した（`2026-11-05-02`）
 - contract: protocol `23.2.1`のまま。wire、API、共有fixtureは変えない
@@ -419,6 +417,21 @@ coordinatorがまとめた。`2321.1-set-1`から、Scratchの行だけを替え
 - パレットの頭出しのずれ：Scratchが原因と回帰のtestを返し、coordinatorがcommitとtestのfileがtagにあることを確かめた。NOTESの
   2026-11-01の行を閉じた
 - evidenceのINDEXに、`2026-11-09-23211-set-2-live-human`と`2026-11-09-stack-23211-sandbox-update`の行が無かったので足した
+
+### close（2026-11-10、human ownerの判断）
+
+- **`2321.1`のgateをCLOSEDとする**。告知は出さない（human owner 2026-11-09）。台帳（`00-hub/release-train-notes_ja.md`）の
+  `2321.1`の行を「公開」にした
+- release sourceは既定のbranchにある：McRemoteとPythonの`main`はtagと同じcommit、Scratch `develop`はtagと同じcommit
+  （「公開（2026-11-09）」）。handoff-materialsは4担当とも分類した（「close分類」）
+- gateを閉じた後に出す票（hub NOTESの行）：runnerのimageの指定（全component）、mcrctlが作るfileの権限（Stack）、ゲーム内の文の
+  言語（McRemote）、long-lived credentialの確認票（McRemote、Python、Stack）、Bridgeの複数の接続先の実装（Scratch）、対応版を
+  広げる調査（McRemote）、片付け（Stack。gateを閉じた7日後より後から）
+- 優先backlogの確認（`00-hub/release-operations-responsibility-design_ja.md` §10のstep 12）：`tools/list-reopen-conditions.py`の
+  一覧を見た。`2321.1`のgateを開くときにはこの確認をしていなかった。上の票のほかは、WireScopeの観測の開始と終了をScratchの
+  マルチストリームと併せて検討する行へ付け直した。public README／sample codeの再編（`[priority]`）、認証前の内部テーブルの較正、
+  API一覧の残り、ホームページの次のページの4行は、human ownerが数日後に判断する。ほかの「初回stableの後」が条件の行は、
+  次の版の範囲を決めるときに見る
 
 ## 2026-10-22 初回stable（2321.0.0）横断release gate（CLOSED）
 
