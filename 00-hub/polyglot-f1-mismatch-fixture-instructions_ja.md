@@ -41,3 +41,25 @@
 
 - 返却をGitHubのAPI（PR、merge commit、CI、fileのbytes）で照合し、Protocol Inventoryの共有fixtureの列を直す
 - merge commitを、F3の票のPythonとJavaへ伝える（同じPRか次のPRで、fixtureの取得元を固定し直してもらう）
+
+## 返却と照合（2026-11-10）
+
+tooling担当はknowledge `5e00768911feb7be1e54ae3b7e9c2d776b88927a`を読んだ。PR #5（head `b641e5d4914bc3a800580b8fa01eb950c0583c40`）を
+merge commit `ea7838a78bf78947c7dde5876f6cc93b43f7e3cc`でmergeした（toolingの`main`の先頭）。PRのCIはrun 42783622850、merge後のCIは
+run 42784120474で、どちらも成功した。coordinatorはGitHubのAPIで、PRとmerge、CIを確かめ、merge commitから4 fileを取ってbytesと
+SHA-256を照合した（返却の値とすべて一致）。`8264c38`からの差分はこの4 fileだけ。
+
+| file（`packages/protocol/`） | bytes | SHA-256 |
+| --- | ---: | --- |
+| `README.md` | 8,661 | `2cd1ee86cc50ec6204e543eba44efce2e1ae915596c8ca73d0611067e499c79d` |
+| `test/client-bootstrap-owner-fixture.test.ts` | 5,461 | `e50296915d37ad5ecd74d821c0fcee768242e8454b68ac51139eed922c2d7072` |
+| `test/fixtures/client-bootstrap-hello-v23.2.1.json` | 20,913 | `78297f05eb4352b0dabffab3242e933c1e68cb192bbb6d242019c7956c809d57` |
+| `test/fixtures/client-bootstrap-v1.schema.json` | 9,953 | `e848bd3a61d4c0a737f7f3a8963baf2fcbb83247486f3d8aa69f022bb55a7ede` |
+
+- F1-HE-09：errorの`data`は`reason`、`server`（`23.2.1`）、`client_requires`（`24.0.0`）で、codeは`-32000`
+- F1-HE-10（新規）：同じ対話で、codeが`-32600`。期待値は`protocol_mismatch`。READMEに「後者を契約上のcodeとして採用しません」とある
+- どちらも`unresolved`は、messageの文言、範囲の中のcodeの番号、切断の時機だけ。helloのfileは10 caseになり、F1は45 case
+- 値の形：McRemoteの`RemoteSession`と`ProtocolInfo`で、2つの欄がprotocolの文字列であることを確かめた（担当の返却）
+- schemaは、caseのfileごとに違う`knowledge_contract.commit`を受けられるように変えた。ほかの5本のfileは変わっていない
+- 伝えること：Java担当から、F1-ER-01〜03の`matched_ids`は`[2]`でhelloのid 1を含まない（F1-FR-07はすべてを含む）ので、
+  範囲をREADMEに書いてほしい、と返った（`00-hub/polyglot-f3-instructions_ja.md`の「返却と照合（2026-11-10）」）

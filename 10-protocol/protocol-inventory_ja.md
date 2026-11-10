@@ -8,7 +8,8 @@ Protocolの各methodと、methodでない能力を、どのcomponentが投影し
 - セル：「あり」「部分」「なし」。「あり」はClient APIへの投影があることで、全reasonや実機の全経路を確かめたことでは無い
 - 共有fixtureの列：「あり」はそのmethodや能力の入力と期待値のcaseがあること。「部分」は値や一部の状態遷移だけ。
   値ベクトルがあってもmethodのparams／resultが無ければ「なし」。2026-11-06の10本は静的な入力と期待値。2026-11-10にF1の
-  6本（44 case）が加わり、送受信の順を再生するcase（scripted peer）ができた（下の「F1のfixture」）
+  6本（44 case）が加わり、送受信の順を再生するcase（scripted peer）ができた（下の「F1のfixture」）。同じ日に、
+  `protocol_mismatch`の決定（`2026-11-10-01`）に合わせてF1-HE-10が加わり、45 caseになった
 - McRemoteの列は、serverがそのmethodや能力を受けて処理すること。Scratchの列は、blockや拡張機能への投影があること
 - 分類（E2）はまだしていない
 
@@ -22,6 +23,9 @@ Protocolの各methodと、methodでない能力を、どのcomponentが投影し
 | Scratch | 2026-11-10 返却 | `Naohiro2g/scratch-editor` `dc2840ba3c5c9d6938555ed737bc199acca2586e`の`docs/polyglot-e1_ja.md`（PR 32。基準は公開の`v2321.1.0`の`57fb769`、protocol `23.2.1`） |
 | 共有fixture | 2026-11-06 返却 | `Naohiro2g/minecraft-remote-tooling` `1286eb486bcaea93c4195c11e94304bdb51f53ba`の`packages/protocol/FIXTURE_INVENTORY_ja.md`（基準は`21a2a9a`の10本。PR 2で`main`へmerge） |
 | 共有fixture（F1） | 2026-11-10 返却 | `Naohiro2g/minecraft-remote-tooling` `8264c3881bb4128c14cda6d122641ebcfa67d9c5`（PR 4）の`packages/protocol/test/fixtures/client-bootstrap-*`。形の説明は`packages/protocol/README.md`の「F1：client bootstrap の対話データ」 |
+| 共有fixture（F1の追補） | 2026-11-10 返却 | `Naohiro2g/minecraft-remote-tooling` `ea7838a78bf78947c7dde5876f6cc93b43f7e3cc`（PR 5）。F1-HE-09のdataに`server`と`client_requires`、F1-HE-10（code `-32600`） |
+| Python（F3） | 2026-11-10 返却 | `Naohiro2g/minecraft-remote-api` `161cd68514a1fbb018811d3cfab64cb29d5ac98b`の`docs/polyglot-f3_ja.md`（PR 13） |
+| Java（F3） | 2026-11-10 返却 | `Naohiro2g/minecraft-remote-java` `e35144cd44f0622a7df1164e95960f1f44636435`の`docs/polyglot-f3_ja.md`（PR 2） |
 
 ## method
 
@@ -76,7 +80,7 @@ Protocolの各methodと、methodでない能力を、どのcomponentが投影し
 | --- | --- | --- | --- | --- | --- |
 | TCPのframing／JSON-RPC | あり（`BoundedLineReader`、`CommandParser`。LFのほかCRLF／CRも区切り。batchは扱わない） | あり | あり | 部分（JSON-RPCのidの照合とerrorの処理。TCPと改行の区切りはBridgeが持つ） | あり（F1のframing 7 case。clientが受ける側） |
 | WebSocket／browser | 部分（WebSocketは受けない。BridgeがWebSocketのmessageをTCPの行に変える） | なし | なし | あり（browserのWebSocket→Bridge→McRemoteのTCP。Bridgeのsubprotocolを確かめる） | なし |
-| protocol negotiation | あり（`ProtocolInfo.isCompatible`。majorの一致、serverのminorが同じか上、patchは見ない。拒否の後は切断） | 部分（23.2.1を申告し、`protocol_mismatch`を運ぶ。応答の版はPythonでは比べない） | あり（majorの一致、serverのminorが同じか上、patchは見ない） | あり（majorの一致、serverのminorが同じか上、patchは見ない） | あり（F1のhello。応答の版5つの互換判定と`protocol_mismatch`） |
+| protocol negotiation | あり（`ProtocolInfo.isCompatible`。majorの一致、serverのminorが同じか上、patchは見ない。拒否の後は切断） | あり（23.2.1を申告する。応答の版は、majorの一致、serverのminorが同じか上、patchは見ない。2026-11-10のF3で入れた。前は「部分」で、応答の版を比べなかった） | あり（majorの一致、serverのminorが同じか上、patchは見ない） | あり（majorの一致、serverのminorが同じか上、patchは見ない） | あり（F1のhello。応答の版5つの互換判定と、`protocol_mismatch`の受信をcode `-32000`と`-32600`の2つで） |
 | authentication／pairing | あり（`AuthCommands`、`PairingManager`、`PairCommand`。helloの前のpairとtokenつきhelloを分ける） | あり | あり | あり（接続、ペアコード、ペアリングのhat。long-livedの管理のUIは無い） | あり（F1のpairing 7 case。承認を拒む専用の応答は契約に無い。10本には認可と`auth_required`） |
 | session credentialのUX | あり（serverの側：コードの承認、期限つきのsession token、long-livedの一覧と失効） | あり（接続先ごとのlocal token。config下のJSONで、OSのstoreではない） | あり（examplesでOSのstoreを選ぶ。long-livedは別） | あり（localStorageを接続先のsandboxごとに分ける。認証のerrorでtokenを捨てる） | 部分（F1のpairing。tokenの再利用と、無効なtokenを捨てること） |
 | request／notification／flushと順序 | あり（`ConnectionCommandQueue`。notificationにはerrorも返さない。DEBUG／TRACEはclientの方針） | あり（DEBUG／TRACE／FAST、`flush()`、closeのときのflush） | 部分（同期requestと順序だけ。notification、flush、DEBUG／TRACE／FASTは無い） | あり（DEBUG／TRACEは応答を待つ、FASTの設置はnotification、flushが境界） | 部分（雷のrequest／notificationとmode別の失敗だけ。flushは無い） |
@@ -109,12 +113,13 @@ Protocolの能力の提案ではない。
 
 tooling `6447f6e8cbfbeeb9d229990b5c4f6e82a5875666`の`packages/protocol/test/fixtures/`の10本に対して、各clientがどれを
 testへつないでいるか。MITのLICENSEを置いた`21a2a9a0aed8b4d9c715da46616aad86f1174b4c`の10本も同じbytes。
-McRemote、Python、Java、Scratchとも、取得元は`21a2a9a`。F1の6本は、まだどのclientもtestへつないでいない（F3）。
+McRemoteとScratchの取得元は`21a2a9a`。PythonとJavaは、2026-11-10のF3でtooling `8264c38`へ移り、F1の6本（44 case）を
+CIへつないだ。toolingの追補（`ea7838a`、45 case）への固定し直しは、次のPRで行う。
 
 | client | つないでいるもの | つないでいないもの |
 | --- | --- | --- |
-| Java | `chat-event-compat-v23.2.1.json`、`events-v23.json`、`sign-v23.json`、`spawn-v22.json` | `block-value-v22.json`（F1で使う予定）、`dimensions-v22.json`、`direction-lightning-v23.1.json`、`entity-particle-v23.2.1.json`（それぞれ対応する機能のsliceで）、`chat-event-compat-v23.2.json`、`entity-particle-v23.2.json`（履歴の版） |
-| Python | `chat-event-compat-v23.2.1.json`、`direction-lightning-v23.1.json`、`entity-particle-v23.2.1.json`、`events-v23.json`、`sign-v23.json`。`chat-event-compat-v23.2.json`と`entity-particle-v23.2.json`は履歴としてbytesを比べるだけ | `block-value-v22.json`（F1で検討）、`dimensions-v22.json`（F1／build contextで検討）、`spawn-v22.json`（E2／F1で採否）。どれも時期は未定 |
+| Java | `chat-event-compat-v23.2.1.json`、`events-v23.json`、`sign-v23.json`、`spawn-v22.json`。F3でF1の6本（44 caseすべて）、`client-bootstrap-v1.schema.json`、`block-value-v22.json`（F1の`value_refs`の`/catalog/block`の範囲）を足した | `dimensions-v22.json`、`direction-lightning-v23.1.json`、`entity-particle-v23.2.1.json`（それぞれ対応する機能のsliceで）、`chat-event-compat-v23.2.json`、`entity-particle-v23.2.json`（履歴の版） |
+| Python | `chat-event-compat-v23.2.1.json`、`direction-lightning-v23.1.json`、`entity-particle-v23.2.1.json`、`events-v23.json`、`sign-v23.json`。`chat-event-compat-v23.2.json`と`entity-particle-v23.2.json`は履歴としてbytesを比べるだけ。F3でF1の6本（44 caseすべて）、schema、`block-value-v22.json`（blocksの12 caseの`value_refs`の範囲）を足した | `dimensions-v22.json`、`spawn-v22.json`（前のとおり） |
 | McRemote | `chat-event-compat-v23.2.1.json`、`direction-lightning-v23.1.json`、`entity-particle-v23.2.1.json`、`events-v23.json`、`sign-v23.json`（5本、6つのtest class）。`chat-event-compat-v23.2.json`と`entity-particle-v23.2.json`は履歴としてcopyだけ | `block-value-v22.json`、`dimensions-v22.json`、`spawn-v22.json`（copyも無い。McRemote独自のfixtureとは別） |
 | Scratch | 10本すべて（履歴の版も、observerの投影などで使う）。どのfileも全caseを再生しているわけではない | なし |
 
@@ -148,16 +153,17 @@ browserのWebSocketの境界とは分ける。tokenはfixture用の値。
 | file | case | 範囲 |
 | --- | ---: | --- |
 | `client-bootstrap-framing-v23.2.1.json` | 7 | UTF-8の1行、文字の途中での分割、複数行の一括受信、未完の末尾、LFまでは未完、JSONでない行、idの対応 |
-| `client-bootstrap-hello-v23.2.1.json` | 9 | tokenつきhello、最小のhello、完全なparams、応答の版5つの互換判定、`protocol_mismatch`の受信 |
+| `client-bootstrap-hello-v23.2.1.json` | 10 | tokenつきhello、最小のhello、完全なparams、応答の版5つの互換判定、`protocol_mismatch`の受信（code `-32000`のF1-HE-09と、`-32600`のF1-HE-10。HE-10は`ea7838a`で追加） |
 | `client-bootstrap-pairing-v23.2.1.json` | 7 | `auth_required`→pending→承認→tokenつきhello、`pair_expired`、`pair_not_found`、知らない`token_type`、helloの`permission_denied`、tokenの再利用、無効なtoken |
 | `client-bootstrap-blocks-v23.2.1.json` | 12 | set→get（namespace、state）、`unknown_block`、`unknown_property`、`invalid_property_value`、`invalid_params` |
 | `client-bootstrap-errors-v23.2.1.json` | 3 | JSON-RPC errorの外枠、dataを保つこと、未知のreason |
 | `client-bootstrap-close-v23.2.1.json` | 6 | 正常なclose、応答の後のEOF、行の途中のEOF、つながらない、応答待ちのrequestがあるEOF、新しい接続でのhello |
 
 - 既存の10本とLICENSEはbytesが変わっていない。`client-bootstrap-v1.schema.json`とtoolingのowner test（52件）が、形と参照を確かめる
-- toolingが「未確定」とした点：承認を拒む専用の応答（`pair_denied`）は契約に無い。`protocol_mismatch`のdataの欄の名前、
-  messageの文言、codeの番号。EOFの時の末尾の扱い、応答待ちのrequestの例外の型とtimeout、自動の再送
-- 実際のclientで44 caseを流すことと、実McRemoteとのpulseはF3
+- toolingが「未確定」とした点：承認を拒む専用の応答（`pair_denied`）は契約に無い。`protocol_mismatch`のdataの欄の名前
+  （`2026-11-10-01`で決め、`ea7838a`でF1-HE-09へ入れた）、messageの文言、codeの番号。EOFの時の末尾の扱い、応答待ちのrequestの例外の型とtimeout、自動の再送
+- F3：PythonとJavaが、CIで44 caseをすべて通し、実McRemoteとのpulseを1本ずつ通した（2026-11-10、`00-hub/polyglot-f3-instructions_ja.md`の
+  「返却と照合（2026-11-10）」）。45 caseへの固定し直しは次のPR
 
 ## E2への入力（2026-11-10）
 

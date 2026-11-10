@@ -230,4 +230,16 @@ playerとdefault groupに設定し、接続し直して直った。認証やchat
   coordinatorは、`LICENSE`と4本のfixtureがtoolingとbytesで一致すること、
   [run 42205883199](https://github.com/Naohiro2g/minecraft-remote-java/actions/runs/42205883199)の両jobの成功を照合した
 
-F1のhello／auth／blockのscripted case、F2の採用、F3のlive-autoのpulseはまだ。shared環境には接続していない。
+2026-11-06の時点では、F1のhello／auth／blockのscripted case、F2の採用、F3のlive-autoのpulseはまだだった。shared環境には接続していない。
+
+### F3（2026-11-10）
+
+`e35144cd44f0622a7df1164e95960f1f44636435`（PR 2）で、tooling `8264c3881bb4128c14cda6d122641ebcfa67d9c5`のF1の6本（44 case）を
+CIへつないだ。44 caseすべてPASS、skipは0件（[run 42788299291](https://github.com/Naohiro2g/minecraft-remote-java/actions/runs/42788299291)、
+Temurin 21と25）。実McRemote（Paper 1.21.11、McRemote `2321.1.0`）とのpulseが1本PASSした（human ownerがMinecraftの中で承認）。
+照合は`00-hub/polyglot-f3-instructions_ja.md`の「返却と照合（2026-11-10）」。
+
+- 公開APIに足したこと：`MinecraftRemote.Builder.buildContext(dimension, x, y, z)`、`ProtocolMismatchException`（`reason()`、
+  `serverProtocol()`、`clientRequires()`）。helloの`client`は`clientIdentity(...)`を明示したときだけ送る
+- LFだけで行を区切り、idごとの応答待ちの表で応答を対応させる
+- 残り：toolingの追補（`ea7838a`、45 case）への固定し直し。既定の申告protocolは`23.0.0`のまま（human owner 2026-11-10「A：23.0.0のままにする。24.0.0で揃えば問題ない」）

@@ -103,3 +103,5 @@ F1の範囲がそろったら、TS（Phase G）の実装を始める。C#の実�
   [Protocol Inventory](protocol-inventory_ja.md)の「E2への入力（2026-11-10）」。次は、E2の案と、F3（Python、Java）とTypeScriptの票
 - 2026-11-10：E2の最初の判断として、`protocol_mismatch`の形を決めた（`2026-11-10-01`）。toolingへF1のcaseを合わせる票
   （`00-hub/polyglot-f1-mismatch-fixture-instructions_ja.md`）、PythonとJavaへF3の票（`00-hub/polyglot-f3-instructions_ja.md`）を出した
+- 2026-11-10：toolingがF1の追補（`ea7838a`、45 case）を、PythonとJavaがF3を返した。どちらもCIでF1の44 caseを通し、実McRemoteとの
+  pulseを1本通した。45 caseへの固定し直しは次のPR。次は、TypeScriptの実装を始める票とE2の残りの案
