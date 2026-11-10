@@ -96,3 +96,5 @@ F1の範囲がそろったら、TS（Phase G）の実装を始める。C#の実�
   列と、F1の不足の案を返した（`1286eb4`）。どちらも[Protocol Inventory](protocol-inventory_ja.md)へ入れた
 - coordinator：McRemote、Python、ScratchのE1の確認票を起案する。時期は各担当の作業（McRemoteのHUDのrelease、
   Scratchの本家の追従）と重ならないようにhuman ownerが決める。fixtureの取得元の固定し直しも同じ票に入れる
+- 2026-11-10：McRemoteとScratchへE1の票を出した（`00-hub/polyglot-e1-instructions_ja.md`）。human owner：「クライアントの
+  多言語化を最優先とする。その先のUnity版マイクラリモコンを急ぐため」。F1の票は、この票の次にtoolingへ出す

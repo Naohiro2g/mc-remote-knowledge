@@ -204,7 +204,25 @@ Protocol-firstとは、
 
 ## 4. 現在地
 
-現在は次の状態にある。
+2026-11-10の状態（このロードマップを書いた2026-08-29の状態は、下の「起案の時点」）。
+
+```text
+McRemote Protocol       23.2.1
+McRemote Plugin         2321.1.0（公開のLatest）
+Python Client Library   2321.1.0（PyPI.org）
+Scratch Client          2321.1.0（公開のLatest）
+共有Protocol fixture    minecraft-remote-toolingが持つ10本。fixtureのディレクトリだけMIT
+Java Classic            旧Protocol世代として存在する
+新Java Client Library   Phase Cの代表capabilityまで。2321.0.0へ追従した
+一般TypeScript Library  bootstrapまで
+C# Client Library       bootstrapまで
+```
+
+Phase EのE1（[Protocol Inventory](protocol-inventory_ja.md)）の途中。Python、Java、共有fixtureの列が返り、McRemoteと
+Scratchの列が残る（依頼は`00-hub/polyglot-e1-instructions_ja.md`）。human owner 2026-11-10：「クライアントの多言語化を
+最優先とする。その先のUnity版マイクラリモコンを急ぐため」。
+
+起案の時点（2026-08-29）：
 
 ```text
 McRemote Protocol       存在する
@@ -1490,6 +1508,20 @@ Minecraft
 ---
 
 ## 36. 直近の一手
+
+2026-11-10の次の一手（`2026-10-23-01`、[Phase E／Fの案](polyglot-phase-ef-plan_ja.md)）：
+
+```text
+1. E1：McRemoteとScratchの列を返してもらい、Protocol Inventoryをそろえる
+2. F1：新しいclientがhelloからsetBlock／getBlockまでを独立に作れるだけのfixtureを、toolingに足してもらう
+3. E2：Inventoryの各行を分類し、未確定を決める
+4. TypeScriptの実装を始める（Phase G）。C#の実装は、TypeScriptのPhase Bが通ってから
+5. Unityの、共通のProtocolとClient Libraryに依存しない準備は並行して進める
+```
+
+F1はE1の票の後に出す（human owner 2026-11-10）。
+
+起案の時点（2026-08-29）の一手は次のとおりで、Javaの9まで済んだ。
 
 現在の次の一手はProtocol Inventoryを先に完成させることではない。
 
