@@ -98,3 +98,4 @@ F1の範囲がそろったら、TS（Phase G）の実装を始める。C#の実�
   Scratchの本家の追従）と重ならないようにhuman ownerが決める。fixtureの取得元の固定し直しも同じ票に入れる
 - 2026-11-10：McRemoteとScratchへE1の票を出した（`00-hub/polyglot-e1-instructions_ja.md`）。human owner：「クライアントの
   多言語化を最優先とする。その先のUnity版マイクラリモコンを急ぐため」。F1の票は、この票の次にtoolingへ出す
+- 2026-11-10：toolingへF1の票を出した（`00-hub/polyglot-f1-fixture-instructions_ja.md`）
