@@ -248,8 +248,10 @@ player別の1操作の量は、LuckPermsのeffective user meta `mcr.build.blocks
 `luckperm_permissions.build.blocks`はmeta keyの名前の指定のまま）、build.rangeと同じく、LuckPermsが無いときはconfigの値、
 LuckPermsがあってmetaが無いときは`0`とする（`2026-10-07-05`。b10で実装。`a5584fb`は未設定とLuckPerms未導入を4096と
 していた）。既存configに明示した値は`0`も含めて上書きせず、keyが無いときだけ32768を補う。setBlocksは両端を含む直方体の体積を数え、超過はworld変更とwork消費の前に既存の`build_denied`で
-拒否する。tokenに束縛されないauth bypassの接続はmetaの対象外で、work上限だけがかかる。helloのpermissionsは
-変えない。
+拒否する。tokenに束縛されないauth bypassの接続はmetaの対象外で、work上限だけがかかる。helloの`permissions`は
+この上限を返さない。`a5584fb`の実装が上限を足さなかったためで、当時はprotocol `23.2.0`とAPI freezeを保っていた（`2026-10-07-03`）。
+理由の記録は無い。2026-11-10まで、ここを「helloのpermissionsは変えない」と書いていたが、実装の範囲の説明で、規則ではない。
+返すかどうかは、hub NOTESの2026-11-10の行「適用中の権限と上限を照会する」で扱う。
 
 到達点（McRemote担当の報告。unit／deterministicのみで、live・load・MSPT較正は未実施）:
 
