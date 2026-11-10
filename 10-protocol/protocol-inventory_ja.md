@@ -166,7 +166,8 @@ E1の5列とF1の返却で見えた、E2で分類や判断が要るもの。coor
 - `protocol_mismatch`のerror：McRemoteはcode `-32600`、dataに`reason`、`server`、`client_requires`を返す。F1のfixtureは
   code `-32000`、dataは`reason`だけで、版はmessageに書き、dataの欄の名前とcodeの番号は「未確定」とした。契約は、codeを
   `-32000`番台とし（`wire-format-design_ja.md`の「6.3 失敗」）、errorにserverとclientの版を入れるとする
-  （`versioning-design_ja.md`の「8.3 不一致時」）が、欄の名前は書いていない
+  （`versioning-design_ja.md`の「8.3 不一致時」）が、欄の名前は書いていない。→ `2026-11-10-01`で決めた（codeは`-32000`番台、
+  dataは`reason`、`server`、`client_requires`。clientはreasonで判定する）
 - 応答の版の互換判定（`versioning-design_ja.md`の「8.2 互換判定（クライアント側）」）：Java、Scratchはする。Pythonは
   しない（23.2.1を申告するだけ）。F1のhelloの5 caseは、clientが判定することを期待する
 - McRemoteの振る舞いで、F1が仮定しないもの：壊れたJSONや不正なidは、JSON-RPC errorを返さずに捨てるか、helloの前なら

@@ -213,6 +213,7 @@ semver の意味づけ（§3）に従って突き合わせる。
 - 接続を**拒否**し、エラー `PROTOCOL_MISMATCH` を返す。
 - エラーには「サーバの protocol」「クライアントが必要とする protocol」を含め、
   ユーザーが組み合わせを直せるようにする。
+- wireの形（codeと欄の名前`server`、`client_requires`）は、wire-format-designの「7.3 エラー設計」（`2026-11-10-01`）。
 
 > 通信仕様（hello のフレーム構造・エラーフォーマット）の詳細は [wire-format-design](wire-format-design_ja.md) 側に置き、
 > 本節は**版判定のルール**（契約）に限定する。両者が食い違ったら本節（契約）が正。
