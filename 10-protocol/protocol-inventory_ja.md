@@ -178,6 +178,9 @@ E1の5列とF1の返却で見えた、E2で分類や判断が要るもの。coor
 - Scratch：原点のYは0に固定。errorの表示はallowlistで、未知のreasonは`remote_error`にまとめる。公開のブロック一覧
   （`/api/scratch/`の`blocks.json`とindex.html）は、`setDimension`と`setBuildOrigin`のmethodを`connection.setBuildContext`と
   書いているが、VMは`build.setDimension`と`build.setOrigin`を送る（hub NOTES 2026-11-10の行）
+- 学習者が直し方まで分かるエラーと、適用中の権限と上限の照会（2026-11-10の相談、human owner「polyglotプロジェクトにも関わる」）：
+  対処が違う原因をreasonで分け、入力箇所、値、上限をdataで伝える案と、送信前のローカル検証に原因と候補を持たせる案。
+  検討メモ[learner-error-diagnostics-notes_ja.md](learner-error-diagnostics-notes_ja.md)
 
 ## Phase D：開発体験
 
