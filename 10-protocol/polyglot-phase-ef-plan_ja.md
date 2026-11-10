@@ -99,3 +99,5 @@ F1の範囲がそろったら、TS（Phase G）の実装を始める。C#の実�
 - 2026-11-10：McRemoteとScratchへE1の票を出した（`00-hub/polyglot-e1-instructions_ja.md`）。human owner：「クライアントの
   多言語化を最優先とする。その先のUnity版マイクラリモコンを急ぐため」。F1の票は、この票の次にtoolingへ出す
 - 2026-11-10：toolingへF1の票を出した（`00-hub/polyglot-f1-fixture-instructions_ja.md`）
+- 2026-11-10：McRemoteとScratchがE1の列を、toolingがF1の6本（44 case）を返した。E1の5列がそろった。E2で決めることは
+  [Protocol Inventory](protocol-inventory_ja.md)の「E2への入力（2026-11-10）」。次は、E2の案と、F3（Python、Java）とTypeScriptの票

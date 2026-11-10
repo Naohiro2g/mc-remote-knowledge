@@ -49,3 +49,30 @@
 - 「未確定」をE2の案に入れる
 - F3（各clientのCIでF1のfixtureが全件PASSし、実McRemoteとのpulseが1本通る）のため、Python、Javaへ、fixtureをつなぐ票を作る。
   TypeScriptの実装を始める票も作る
+
+## 返却と照合（2026-11-10）
+
+tooling担当はknowledge `308a2a441060265e10af3d5e8e97c826c86b4ed8`を読んだ。PR #4（head `47926406f62925e589afaf5ca1c48ac43e3c5364`）を
+merge commit `8264c3881bb4128c14cda6d122641ebcfa67d9c5`でmergeした。PRのCIはrun 42744132570、merge後のCIはrun 42744476837で、
+どちらも成功した。coordinatorはGitHubのAPIで、PRとmerge、CIを確かめ、merge commitから9 fileを取ってbytesとSHA-256を
+照合した（返却の値とすべて一致）。`df61e58`からの差分はこの9 fileだけで、既存の10本とLICENSEは変わっていない。
+
+| file | case | bytes | SHA-256 |
+| --- | ---: | ---: | --- |
+| `packages/protocol/test/fixtures/client-bootstrap-blocks-v23.2.1.json` | 12 | 45,945 | `664babdf3131a74e4aaf6d9e5dfb5e4cfc6e197df0a0d48142688820f1be813d` |
+| `packages/protocol/test/fixtures/client-bootstrap-close-v23.2.1.json` | 6 | 14,535 | `44e9a4276bbd204671db0385f4f801cd3b152d0853ac943876ede73db6bd8dd1` |
+| `packages/protocol/test/fixtures/client-bootstrap-errors-v23.2.1.json` | 3 | 9,179 | `c458d3ffbae846cfb33c032eba14d8f0005c6a1fbe871290b53fcfec8ec41aaa` |
+| `packages/protocol/test/fixtures/client-bootstrap-framing-v23.2.1.json` | 7 | 15,131 | `be063b519b5d653a4bb4ec3da6f67e5d481a28dcf5913961c848b2b909d4b26d` |
+| `packages/protocol/test/fixtures/client-bootstrap-hello-v23.2.1.json` | 9 | 18,734 | `0164639f946c58f1a2548334d6ff7032a50ec57dd797a328094eff7f104dc0a1` |
+| `packages/protocol/test/fixtures/client-bootstrap-pairing-v23.2.1.json` | 7 | 19,322 | `cdb2209d8a1d46fede158db50c3672936dad152c7fd2bec7ef5a068ed57a1fe1` |
+| `packages/protocol/test/fixtures/client-bootstrap-v1.schema.json` | — | 9,908 | `026d15c2d09f955ba47d6abd0c06a5af3e49ae41e4cc94441b4f0d9829b1d26f` |
+| `packages/protocol/test/client-bootstrap-owner-fixture.test.ts` | — | 4,298 | `d9689e0203574e63c70a16e2f0be89757eef82731e81df754402b998598bcc50` |
+| `packages/protocol/README.md` | — | 8,244 | `ec53c8c62746824413db65889e6127471667bdf3a94d31bb1f06228dc99e77cc` |
+
+- toolingの見立て：hello→setBlock→getBlockの正常な流れを独立に作るためのデータはそろった。承認を拒む応答、closeの時の
+  clientの振る舞い、browserとBridgeの境界、各言語のerrorとcredentialの使い勝手は、これだけでは決まらない
+- McRemoteのE1の返却と突き合わせると、`protocol_mismatch`のcodeとdataが違う（McRemoteは`-32600`と`server`、
+  `client_requires`、F1は`-32000`と`reason`だけ）。F1はこれを「未確定」としているので、E2で決める（Protocol Inventoryの
+  「E2への入力（2026-11-10）」）
+- 中身は[Protocol Inventory](../10-protocol/protocol-inventory_ja.md)の「F1のfixture（2026-11-10、toolingの返却）」と共有fixtureの列へ写した
+

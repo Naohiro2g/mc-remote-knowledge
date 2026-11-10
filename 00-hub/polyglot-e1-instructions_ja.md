@@ -41,3 +41,20 @@
 
 - 返却を、GitHubのAPI（PR、merge commit、CI、文書のcommit）で照合する
 - 2つの列をProtocol Inventoryへ写し、E2（分類と未確定の判断）の案を作る
+
+## 返却と照合（2026-11-10）
+
+McRemote、Scratchとも、knowledge `fc3eeffef28acfa54d1c112751fe95fd4e587fdb`を読んだ。coordinatorがGitHubのAPIで、PR、merge commitと
+既定のbranchの先頭、CIのrun、文書のbytesを確かめた。列は[Protocol Inventory](../10-protocol/protocol-inventory_ja.md)へ写した。
+
+| 担当 | PR | merge commit | CI | 文書（bytes、SHA-256） |
+| --- | --- | --- | --- | --- |
+| McRemote | #15（head `8342936392e0d0c7c6484a452c964ea81bf00b90`） | `a38beaf121ce06594391237cb09745ec0da7649d` | run 42737576092（Build、手動、PRのhead。merge commitとtreeが同じ）、7 job成功 | `docs/polyglot-e1_ja.md`、23,811 bytes、`522f42d7e27b3cdd502b715a16cc8fc1479c83acde9169c892c18a7fafdd3881` |
+| Scratch | #32（head `0ff5abdadda11b6b37f7156638d6449e2bcf8f82`） | `dc2840ba3c5c9d6938555ed737bc199acca2586e` | run 42737534055（PRのheadで全workspaceのbuildとtest）、merge後のrun 42743049672、どちらも成功 | `docs/polyglot-e1_ja.md`、19,675 bytes、`2b97a2169eef13695bfb151f48fa83cde6cdb2b4373002623fe39dd9628917ff` |
+
+- どちらのPRも、変えたのは文書の1 fileだけ
+- fixtureの取得元は、2つとも前から`21a2a9a`で、固定し直す差分は無かった。McRemoteはcopyの7本とLICENSEを、Scratchは
+  取得したLICENSEを、bytesで確かめた
+- McRemoteはmethod 32、auth 5、能力14に、能力5行を足した。Scratchは同じ行に、Scratch固有の投影3行とPhase Dの評価を足した
+- McRemoteのF1への注意は、Inventoryの「E2への入力（2026-11-10）」へ入れた
+
