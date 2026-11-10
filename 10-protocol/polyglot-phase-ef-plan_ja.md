@@ -101,3 +101,5 @@ F1の範囲がそろったら、TS（Phase G）の実装を始める。C#の実�
 - 2026-11-10：toolingへF1の票を出した（`00-hub/polyglot-f1-fixture-instructions_ja.md`）
 - 2026-11-10：McRemoteとScratchがE1の列を、toolingがF1の6本（44 case）を返した。E1の5列がそろった。E2で決めることは
   [Protocol Inventory](protocol-inventory_ja.md)の「E2への入力（2026-11-10）」。次は、E2の案と、F3（Python、Java）とTypeScriptの票
+- 2026-11-10：E2の最初の判断として、`protocol_mismatch`の形を決めた（`2026-11-10-01`）。toolingへF1のcaseを合わせる票
+  （`00-hub/polyglot-f1-mismatch-fixture-instructions_ja.md`）、PythonとJavaへF3の票（`00-hub/polyglot-f3-instructions_ja.md`）を出した
