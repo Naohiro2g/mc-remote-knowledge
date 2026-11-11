@@ -15,6 +15,8 @@ Unityは、このlibraryを使う主な場の一つである（`10-protocol/poly
 - target: `netstandard2.1`を含める（Unityから使える）
 - NuGetのpackage ID: `MinecraftRemote.Client`は第一候補で、NuGetへ出す準備のときに決める（NOTES 2026-08-29）
 - 比べる基準: 初回stable `2321.0.0`（protocol `23.2.1`）
+- 2026-11-11：TypeScriptの最初の縦sliceが通ったので、最初の縦slice（helloからsetBlock／getBlockまで、直接のTCP）の実装を
+  始める票を出した（`00-hub/polyglot-csharp-start-instructions_ja.md`）
 
 ## 旧for UnityとUnityの世界
 
