@@ -18,21 +18,14 @@ Unityは、このlibraryを使う主な場の一つである（`10-protocol/poly
 - 2026-11-11：TypeScriptの最初の縦sliceが通ったので、最初の縦slice（helloからsetBlock／getBlockまで、直接のTCP）の実装を
   始める票を出した（`00-hub/polyglot-csharp-start-instructions_ja.md`）
 
-## 旧for UnityとUnityの世界
+## Unityとの関係
 
-旧for Unity（`Naohiro2g/minecraft_remote_unity`）はアーカイブ扱いにした（`2026-10-22-08`）。Unityの中にserver
-（受け手）とclient（送り手）を持ち、送り手は旧protocolのMcRemoteへもつながった。マイクラの世界とUnityの世界を二つの
-出力先にでき、「serverが2種類×clientが多数」の形になる。
+Unityの世界と箱庭は、2026-11-11に新しいrepo `Naohiro2g/mc-remote-unity-sandbox`へ分けた（`2026-11-11-02`、スポークは
+`19-unity/README_ja.md`）。このrepoは一般用途のClient Libraryだけを持つ。Unityは、ほかの利用者と同じく公開された形で
+このlibraryを使う。Unityへ渡す形（packageやDLL）は、libraryの配布としてこのrepoで扱う。
 
-新protocolでは、まずこのrepoで一般用途のClient Libraryを作る。Unityには、このlibraryを使う側として、また
-Unityの世界のserverとして後で戻る。server側の範囲と学習の登山道は、`00-hub/NOTES_ja.md`の2026-10-18のpark
-（for Unityを新しいprotocolで続ける）に置いている。
-
-C#の実装はTypeScriptのPhase Bが通ってから始め、Unityは共通のProtocolとClient Libraryに依存しない内部の準備（ブロックの
-材質、地面と座標、HUDのローカル表示、Web build、描画の性能）を並行して進める（`2026-10-23-01`）。到達形の案（URLを開けば
-Python、Scratch、C#で建築でき、複数人が同じ箱庭を見られるUnity Webの公開共有箱庭）と先行作業の範囲は、このrepoの
-`docs/unity-shared-sandbox-draft_ja.md`と`docs/unity-internal-preparation_ja.md`にある（`680ebb3`、human owner）。Unity用の
-repoやpackageの置き場所は未決。
+旧for Unity、二つの世界、Unity内部の準備の説明は`19-unity/README_ja.md`へ移した。2026-11-11まで、ここに置き、
+「Unity用のrepoやpackageの置き場所は未決」としていた。
 
 ## 正本境界
 
@@ -40,7 +33,7 @@ repoやpackageの置き場所は未決。
 - 多言語展開の進行: `10-protocol/polyglot-client-roadmap_ja.md`（§25）
 - 名前: `2026-08-29-03`
 - bootstrapと実装の順番、namespace、target: `2026-10-22-07`
-- 旧for Unityの扱い: `2026-10-22-08`
+- 旧for Unityの扱い: `2026-10-22-08`。Unityのrepo: `2026-11-11-02`
 - Phase E／Fの進め方、C#の実装の時期、Unityの準備: `2026-10-23-01`
 - 実装、build、C#に閉じるClient APIの判断: `Naohiro2g/minecraft-remote-csharp`
 

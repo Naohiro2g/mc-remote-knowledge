@@ -86,7 +86,8 @@ public 正本世代の入口です。ここに載る path は、このリポ内�
 | `13-scratch-client/scratch-plan_ja.md` | **原点文書（完全保存・改訂しない）**。再始動の起点。現行 contract の正本ではなく、食い違う場合は 10-protocol が優先（`2026-07-26-01`） |
 | `16-java-client/README_ja.md` | 現行Java Client Libraryのrepository、group／root package、build境界、Java bootstrap baseline、次の縦slice |
 | `17-typescript-client/README_ja.md` | 一般用途TypeScript Client Libraryのrepository、`@mc-remote/protocol`との関係、bootstrapの手順と範囲 |
-| `18-csharp-client/README_ja.md` | C# Client Libraryのrepository、根のnamespace、target、旧for UnityとUnityの世界、bootstrapの手順と範囲 |
+| `18-csharp-client/README_ja.md` | C# Client Libraryのrepository、根のnamespace、target、Unityとの関係、bootstrapの手順と範囲 |
+| `19-unity/README_ja.md` | Unityの世界と箱庭のrepository（`mc-remote-unity-sandbox`）、置くもの、Unityの版、旧for Unityと二つの世界、bootstrapの手順 |
 
 ## WireScope
 

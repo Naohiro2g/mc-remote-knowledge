@@ -68,6 +68,8 @@ C#のコードを書いて実行すると、McRemoteへつながってMinecraft�
   Python、Java、TypeScriptと同じ形にそろえることは求めない（ロードマップ「33. このロードマップが作らないもの」）
 - Unityから使うことを考えて、APIの形を選ぶ。依存を足すときは、`netstandard2.1`とUnityで使えるかを確かめて返す
 - 作例を1つ置く（つないで、ブロックを1つ置き、読み戻す）。pulseと同じものでよい
+- Unityのfile（`experiments/unity-local-demo/`、`docs/unity-*`、`docs/diagrams/unity-*`）は、`mc-remote-unity-sandbox`へ移す票
+  （`00-hub/unity-sandbox-migration-instructions_ja.md`、`2026-11-11-02`）で扱う。その移行を先に済ませ、このsliceでは触らない
 - 既定のbranchへのPRにして、CIが通ったら、担当がmergeしてよい（権限で拒まれたら、human ownerが行う）。NuGetへのpack、publish、
   tag、Release、release workflowは足さない
 
