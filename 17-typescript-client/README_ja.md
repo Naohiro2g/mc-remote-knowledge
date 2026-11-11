@@ -18,6 +18,11 @@
   fixtureはデータとして、固定したcommitで読む（`2026-10-22-07`）
 - 2026-11-11：最初の縦slice（helloからsetBlock／getBlockまで、Node.jsのTCP）の実装を始める票を出した
   （`00-hub/polyglot-typescript-start-instructions_ja.md`）
+- 2026-11-11：最初の縦sliceが`main`に入った（PR 2、merge commit `9984d1a71b554aa62fa176661c15b2671f306353`）。Node.jsのTCPで、
+  `connect()`からhello、protocolの互換判定（申告は`23.2.1`）、pairing、`setBlock`、`getBlock`、closeまで。CIでF1の45 caseを
+  すべて通し、実McRemote（`2321.1.0`）とのpulseを1本通した。credential storeは`none`とin-memoryだけで、timeoutと自動の
+  つなぎ直し（`2026-11-11-01`③⑤）はまだ。照合は票の「返却と照合（2026-11-11）」、投影は
+  `10-protocol/protocol-inventory_ja.md`のTypeScriptの列
 
 ## 正本境界
 

@@ -1,6 +1,10 @@
 # Phase E2：分類と未確定の判断（案）
 
-> 状態：coordinatorの起案（2026-11-11）。未批准。E2は、[Protocol Inventory](protocol-inventory_ja.md)の各行を
+> 状態：U1〜U6は批准した（`2026-11-11-01`、human owner 2026-11-11「E2はU1〜U6すべて案のとおりで進めて」）。同じ日の相談で、
+> U5を変えた（次の呼び出しで自動でつなぎ直す。既定で有効）。U5の理由「自動で再接続すると、build stateとhandleが黙って変わる」は、
+> helloの`build`で戻せるので成り立たなかった。U2に「閉じた」の意味を、U3に待ち方の原則を足し、認証reasonの後の流れ（⑦）と、
+> clientが判断したpairingの期限切れ（⑧）を加えた。拘束の正本はDECISIONSとwire「3.4 id 規律」「6.5」。以下は起案（2026-11-11）の
+> まま残す。E2は、[Protocol Inventory](protocol-inventory_ja.md)の各行を
 > ロードマップ「14. Phase E」の分類に分け、未確定を決める段（`2026-10-23-01`、[Phase E／Fの案](polyglot-phase-ef-plan_ja.md)の「E2」）。
 > 最初の判断として、`protocol_mismatch`の形は`2026-11-10-01`で決めた。この文書は残りの案。批准された部分は
 > DECISIONSと、wire等の拘束層へ移す。

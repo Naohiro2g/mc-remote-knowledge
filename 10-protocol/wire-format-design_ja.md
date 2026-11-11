@@ -79,7 +79,24 @@ JSON-RPC 2.0 を採用する（採用判断と却下案は §8）。
 ### 3.4 id 規律
 
 - id はクライアントが採番（1 始まりの連番、接続単位）。サーバは応答に同じ id を返す。
-- クライアントは未応答要求を id キーの保留表（`_pending`）で管理し、応答到着で解決する。**接続切断時の保留解決は未実装（既知ギャップ、§9）**。
+- クライアントは未応答要求を id キーの保留表（`_pending`）で管理し、応答到着で解決する。
+- 接続が閉じたら、クライアントは保留表の要求をすべて、localな「完了不明」の失敗にする。「閉じた」は、クライアントが
+  その接続でもう応答を受け取れないと分かったときで、相手のEOF、socketのerror、自分で閉じたとき（timeoutで回収したとき、
+  生存確認で切れたと判断したときを含む）。serverのerrorとしては扱わず、reasonを作らない。LFの無い末尾は、JSONとして
+  閉じていても応答にしない。例外の型は言語ごとに決める（`2026-11-11-01`②）。
+- 応答は、既定で長く、粘り強く待つ。保留表に要求がある間、その接続で最後に受信してからの時間で見て、呼び出しや接続ごとに
+  延ばせる。超えたら「完了不明」で、その接続を回収する（§3.5のflushと同じ）。これとは別に、transportの生存確認で切れた
+  接続を見つける。ボットへの短い上限はserverの認証前の上限が持つ。値と設定の仕方は言語ごとに、実測で決める
+  （`2026-11-11-01`③。待ち方の検討は[connection-liveness-notes_ja.md](connection-liveness-notes_ja.md)）。
+- Client Libraryは要求を自動で再送しない（`2026-11-11-01`④）。
+- 接続が切れた後の次の呼び出しで、Client Libraryは自動でつなぎ直す（既定で有効、applicationが無効にできる）。新しい接続の
+  helloから始め、最後に成功を確かめたdimensionとoriginをhelloの`build`で戻す。entity handleとevent cursorは無効にし、
+  つなぎ直したことと、その間のeventのlossを知らせる。前の接続で送ったFASTの設置を、つなぎ直した後の`connection.flush`が
+  保証するように見せない。版の互換判定と`catalogHash`の照合はやり直す。pairingが要るときは自動で進めない。条件の全体は
+  `2026-11-11-01`⑤。
+- serverが壊れた行や不正なidにerrorを返すかは契約にしない。clientは応答が来ないことをtimeoutで扱う（`2026-11-11-01`⑥）。
+- 2026-11-11まで、ここは「接続切断時の保留解決は未実装（既知ギャップ、§9）」としていた。E2の案（U5）は自動で再接続しないと
+  していたが、同じ日の判断で⑤に変えた。
 
 ### 3.5 build execution modeと`connection.flush`
 
@@ -884,8 +901,13 @@ token の入手＝ペアリング。**hello の前段の独立メソッド `auth
   試み、`auth_required`が返ったときだけ**本フロー（`pairBegin`→`pairPoll`→再`hello`）に入る。この1経路が
   OFF／ON／token失効を統一する。明示的bypassでenforcement OFFの場合はtoken無しhelloが成功し
   `auth_required`が返らないためpairingを自動的にスキップする。ONではtoken欠落時に`auth_required`、token検証
-  失敗時に§6.3の認証系reasonが返る。認証系reasonでtokenを破棄したら同じく先頭（hello試行）へ戻る。
-- **非規範（クライアント実装の目安・ratify 対象外）**：poll 間隔 ≈1–2s、poll の timeout は `pairBegin` が返す `expires_in`（`pair_code` TTL・≈120s）で、超過は `pair_expired` として扱う。`pairing_id` はクライアント in-memory 保持でよい（リロードで破棄＝ユーザーは接続ブロックを再実行）。
+  失敗時に§6.3の認証系reasonが返る。認証系reasonでtokenを破棄したら同じく先頭（hello試行）へ戻る。すぐpairingへは
+  進まない（2026-11-11に確かめ直した。`2026-11-11-01`⑦）。
+- **承認の拒否**：人が承認を拒むことを伝える専用の応答は無い。承認されなければpendingのまま期限が切れ、`pair_expired`になる。
+  clientは「承認されなかったか、期限が切れた」と案内する（`2026-11-11-01`①）。
+- **clientが判断した期限切れ**：clientが`expires_in`を過ぎたと判断して止めるときは、`pair_expired`と同じ意味と案内で扱えるように
+  し、serverのerrorの形（codeとreason）は作らない。serverが言ったのか、clientが判断したのかが分かるようにする（`2026-11-11-01`⑧）。
+- **非規範（クライアント実装の目安・ratify 対象外）**：poll 間隔 ≈1–2s、poll の timeout は `pairBegin` が返す `expires_in`（`pair_code` TTL・≈120s）。`pairing_id` はクライアント in-memory 保持でよい（リロードで破棄＝ユーザーは接続ブロックを再実行）。
 
 ### 6.6 credential 管理（確定 `2026-08-02-01`）
 
@@ -1097,7 +1119,7 @@ notification のエラー方針（§7 ③）は**エンベロープ選択に関�
 
 ## 9. 既知ギャップ（実装 TODO・堅牢性）
 
-- **WS close 時の保留解決（§3.4）**：クライアントは未応答要求を id キーの保留表（`_pending`）で管理するが、**接続切断時に `_pending` を reject していない**＝`world.getBlock` 等の応答待ちが接続断で**ハングし得る**。v1 で timeout / close-reject を規定するか、実装 TODO 止まりかは要決定（13-scratch-client の既知ギャップ、scratch-plan §4.1）。
+- **WS close 時の保留解決（§3.4）**：クライアントは未応答要求を id キーの保留表（`_pending`）で管理するが、**接続切断時に `_pending` を reject していない**＝`world.getBlock` 等の応答待ちが接続断で**ハングし得る**。v1 で timeout / close-reject を規定するか、実装 TODO 止まりかは要決定（13-scratch-client の既知ギャップ、scratch-plan §4.1）。→ 2026-11-11：規定すると決めた（`2026-11-11-01`②③、§3.4）。各clientの実装が合っているかは、各clientへの票で確かめる。
 - **Scratch の `setOrigin` UI は b1 最小形（§5.1）**：Scratch b1 は `setWorld` / `setOrigin` を収容するが、`setOrigin` の y は編集可能にせず固定値 `0` として見せ、0 固定で送る。X/Y/Z 編集版は標準導線に入れない。session/reconnect/save と origin 固定タイミングの厳密仕様は未決で、b1 release gate の blocker ではない（DECISIONS `2026-07-01-10` / `2026-07-02-03`）。
 
 ---

@@ -109,3 +109,9 @@ F1の範囲がそろったら、TS（Phase G）の実装を始める。C#の実�
   （[polyglot-e2-plan_ja.md](polyglot-e2-plan_ja.md)）を起案した
 - 2026-11-11：PythonとJavaが`ea7838a`の45 caseへ固定し直した。toolingがREADMEに`matched_ids`の範囲を書いた（`131f315`）。
   F3はPythonとJavaで済んだ
+- 2026-11-11：E2のU1〜U6を決めた（`2026-11-11-01`）。同じ日の相談で、U5を変えて自動のつなぎ直しを既定で有効にし、認証reasonの
+  後の流れと、clientが判断したpairingの期限切れを足した。toolingへF1のcaseを合わせる票
+  （`00-hub/polyglot-f1-e2-fixture-instructions_ja.md`）を出した
+- 2026-11-11：TypeScriptが最初の縦sliceを返した（PR 2、CIでF1の45 case、実McRemoteとのpulse）。Phase GのPhase B相当が通った
+  ので、C#の実装を始める票を作れる（時期はhuman ownerが決める）。次は、toolingの返却の照合と、Python、Java、Scratch、
+  TypeScriptへの、決まったこととの違いと固定し直しの票
