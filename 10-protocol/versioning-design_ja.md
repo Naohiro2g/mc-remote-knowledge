@@ -214,6 +214,8 @@ semver の意味づけ（§3）に従って突き合わせる。
 - エラーには「サーバの protocol」「クライアントが必要とする protocol」を含め、
   ユーザーが組み合わせを直せるようにする。
 - wireの形（codeと欄の名前`server`、`client_requires`）は、wire-format-designの「7.3 エラー設計」（`2026-11-10-01`）。
+- clientが、成功したhelloの応答を§8.2で互換でないと判定したときは、次のrequestを送らずに接続を閉じ、applicationへ失敗を
+  返す（wire-format-designの「6.2 応答 `result`」、`2026-11-12-01`）。
 
 > 通信仕様（hello のフレーム構造・エラーフォーマット）の詳細は [wire-format-design](wire-format-design_ja.md) 側に置き、
 > 本節は**版判定のルール**（契約）に限定する。両者が食い違ったら本節（契約）が正。

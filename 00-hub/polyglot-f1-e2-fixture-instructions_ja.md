@@ -63,3 +63,40 @@
 
 - 返却をGitHubのAPI（PR、merge commit、CI、fileのbytes）で照合し、Protocol Inventoryの共有fixtureの行を直す
 - merge commitを、TypeScriptの担当へ伝える。PythonとJavaとScratchへは、固定し直しと、決まったこととの違いを返してもらう票を作る
+
+## 返却と照合（2026-11-11）
+
+tooling担当はknowledge `562b5c008c7a4e391f04a79ed4496bbd44670896`を読んだ（この票の本文は今と同じ）。minecraft-remote-tooling PR #7
+（head `992d4180775c67abb6baf57fb1c5d25bbc8764a6`、base `131f3153d7ab0b01b6e00a62a8249a55c8fc2ad0`）を、担当が2026-11-11にmerge
+commit `36ebe9e63e4f0afcf949eae998832f68209b8119`でmergeした（`main`の先頭）。coordinatorはGitHubのAPIで、PR、merge commitの親、
+CI（PRのrun `42999179142`、merge後のrun `42999520995`、どちらも成功）、変わった6 fileのbytesとSHA-256を確かめた。
+
+| file（`packages/protocol/`の下） | bytes | SHA-256 |
+| --- | ---: | --- |
+| `F1_E2_PROPOSALS_ja.md` | 9,672 | `aa574639604d2ed36a1947dbab6e566239451b2f46074000d426b5540206d49a` |
+| `README.md` | 11,955 | `ddb8e23d1e5f4424a6788a11d24bedc115c2a5330957898eb388f3e33ca9fd62` |
+| `test/client-bootstrap-owner-fixture.test.ts` | 7,925 | `bd9abfff02deffbb14dd3dba1936ddb516b2623a91ce65074c5cf928220c0594` |
+| `test/fixtures/client-bootstrap-close-v23.2.1.json` | 14,884 | `a030cc72aa0e4f41575cb15610b1e06e941d3eab07157ce47f0eafe744475154` |
+| `test/fixtures/client-bootstrap-pairing-v23.2.1.json` | 35,577 | `5864c23ef3f31af6134d36770cab80b569b708b35fd3fdbed69fb6db195e3aeb` |
+| `test/fixtures/client-bootstrap-v1.schema.json` | 10,916 | `8c3e4ff6e7b5b0cf438d358578096579dafab699a40df9cd56de7b9513837413` |
+
+- case：F1は48 case（closeが6、pairingが10。framing、hello、blocks、errorsは変わらない）。変えたのはF1-CL-03、F1-CL-05、
+  F1-AU-07。足したのはF1-AU-08〜10。ほかの42 caseと、変えていない15 fileは前と同じ。変えた2 fileの`knowledge_contract.commit`は
+  `562b5c0`
+- expectedの形：CL-03とCL-05は、`unanswered_ids: [2]`を残し、`local_failures: [{ id: 2, outcome: "completion_unknown" }]`と
+  `pending_ids: []`を足した。「応答が無い」という観測と、「clientが完了不明として失敗を返した」結果を分けるため。
+  `unanswered_ids`の意味だけを変えると、今のconsumerの未応答の検査を、失敗まで確かめたものと読み違えうる。`local_failures`は
+  wireではなく期待値のmetadataで、schemaは`id`と`outcome`だけを許し、serverのcodeとreasonを入れない。例外の型、名前、message
+  は求めない
+- AU-07：承認を拒む専用の応答が無いことを、`unresolved`から、①に従うpeerの前提へ移した
+- 足したcase：AU-08（認証reasonでtokenを捨て、tokenなしのhello、`auth_required`、pairing、helloが成功）、AU-09（tokenなしの
+  helloが通り、pairingしない）、AU-10（pairingの後のhelloがまた認証reasonで拒まれ、2回目のpairingをせずにapplicationへ失敗を
+  返す）。`pairing_attempts`で、接続試行の全体での`auth.pairBegin`の回数を表す（TCPの張り直しを2回目のpairingの許可と取り違え
+  ないため）。`discard_token`は拒まれたtokenを捨てることで、AU-08では新しく取ったtokenと両立する
+- 案で返したもの（fixtureには足していない）：③④⑤⑧と、互換判定の後のclose（`F1_E2_PROPOSALS_ja.md`の「追加案の返却」）。
+  今の`steps`と`expected`では、applicationの呼び出しとその結果、clientの設定に結びつく仮想の時計、「送らないこと」を見る
+  区間、notification、接続ごとの観測、request idの無いlocalな終了が表せない。互換判定の後のcloseは、clientが閉じることと
+  その時機が契約に書かれていないので、足す前にcoordinatorへ確かめるとした。ほかに、JSONは閉じているがLFの無い末尾でのEOF、
+  socketのerrorと自分で閉じた時の応答待ちの回収も、今のcaseでは直接確かめていない
+- 返却の後に決まったこと：互換判定の後のcloseは`2026-11-12-01`で決めた。案で返したものは、toolingへの次の票
+  （`00-hub/polyglot-f1-e2-ops-fixture-instructions_ja.md`）で頼む

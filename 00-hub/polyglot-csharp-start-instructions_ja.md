@@ -23,18 +23,20 @@ C#のコードを書いて実行すると、McRemoteへつながってMinecraft�
   （「3.4 id 規律」を含む）「6. helloペイロード」「6.5 認証：ペアリングフロー」「4. コマンド表（確定）」「7.1 構造化block value」
   「7.3 エラー設計」、`10-protocol/versioning-design_ja.md`の「8. hello による protocol ネゴシエーション」、
   `10-protocol/block-value-design_ja.md`
-- 共有fixture：minecraft-remote-tooling `131f3153d7ab0b01b6e00a62a8249a55c8fc2ad0`の`packages/protocol/test/fixtures/`にある、F1の6本
-  （`client-bootstrap-{framing,hello,pairing,blocks,errors,close}-v23.2.1.json`、45 case）、`client-bootstrap-v1.schema.json`、
+- 共有fixture：minecraft-remote-tooling `36ebe9e63e4f0afcf949eae998832f68209b8119`の`packages/protocol/test/fixtures/`にある、F1の6本
+  （`client-bootstrap-{framing,hello,pairing,blocks,errors,close}-v23.2.1.json`、48 case）、`client-bootstrap-v1.schema.json`、
   blocksの`value_refs`が参照する`block-value-v22.json`。scripted peerのデータの形は、同じcommitの`packages/protocol/README.md`
 - fixtureは固定したcommitで読む（F2、`2026-10-22-07`）。copyで持つときは、同じディレクトリの`LICENSE`（1,070 bytes、SHA-256
   `aa329a0bafc839b95124306141db13a381de45818bf629e983c44ea55ab5a7fb`）も一緒に置く。`@mc-remote/protocol`のコードには依存しない
-- toolingは今、F1をE2の決定に合わせて直している（`00-hub/polyglot-f1-e2-fixture-instructions_ja.md`）。直したF1のmerge commitは
-  coordinatorから伝えるので、届いたら取得元を固定し直す。それまでは`131f315`で進める
+- F1は、2026-11-11にE2の決定へ合わせた（`00-hub/polyglot-f1-e2-fixture-instructions_ja.md`の「返却と照合（2026-11-11）」）。
+  toolingは今、互換判定の後のcloseと、②の残りのcaseを先に足している（`00-hub/polyglot-f1-e2-ops-fixture-instructions_ja.md`の1）。
+  そのmerge commitはcoordinatorから伝えるので、届いたら取得元を固定し直す。それまでは`36ebe9e`で進める
 
 ## 決まっていること（守るもの）
 
 - 申告するprotocolは、fixtureと同じ`23.2.1`
-- 応答の版の互換判定：majorの一致、serverのminorが同じか上、patchは見ない（versioningの「8.2」）
+- 応答の版の互換判定：majorの一致、serverのminorが同じか上、patchは見ない（versioningの「8.2」）。互換でないと判定したら、
+  次のrequestを送らずに接続を閉じ、applicationへ失敗を返す（`2026-11-12-01`）
 - `protocol_mismatch`は`data.reason`で判定し、codeでは分けない。`data.server`と`data.client_requires`をerrorから読めるようにする
   （`2026-11-10-01`）
 - 認証：まずhelloを試し、`auth_required`のときだけpairingに入る（`2026-07-04-06`）。`token_expired`／`token_revoked`／
@@ -54,7 +56,7 @@ C#のコードを書いて実行すると、McRemoteへつながってMinecraft�
 ## 進め方
 
 - 振る舞いを足すときは、F1のcaseが、足す前に意図した理由で落ちることを見てから足す
-- 合格：CIで、F1の45 caseがすべてPASSする。skipを残したら済みにしない。caseが契約と違う、または読み方が決まらないと思ったら、
+- 合格：CIで、F1の48 caseがすべてPASSする。skipを残したら済みにしない。caseが契約と違う、または読み方が決まらないと思ったら、
   そのcaseのIDと理由を返す
 - 待ち方（`2026-11-11-01`③：既定で長く粘り強く待ち、最後に受信してからの時間で見て、超えたら「完了不明」で回収する）と、
   自動のつなぎ直し（⑤：次の呼び出しで、既定で有効）は、このsliceでは入れなくてよい。入れるなら決定のとおりにする。入れない
@@ -68,8 +70,8 @@ C#のコードを書いて実行すると、McRemoteへつながってMinecraft�
   Python、Java、TypeScriptと同じ形にそろえることは求めない（ロードマップ「33. このロードマップが作らないもの」）
 - Unityから使うことを考えて、APIの形を選ぶ。依存を足すときは、`netstandard2.1`とUnityで使えるかを確かめて返す
 - 作例を1つ置く（つないで、ブロックを1つ置き、読み戻す）。pulseと同じものでよい
-- Unityのfile（`experiments/unity-local-demo/`、`docs/unity-*`、`docs/diagrams/unity-*`）は、`mc-remote-unity-sandbox`へ移す票
-  （`00-hub/unity-sandbox-migration-instructions_ja.md`、`2026-11-11-02`）で扱う。その移行を先に済ませ、このsliceでは触らない
+- Unityのfileは、2026-11-11に`mc-remote-unity-sandbox`へ移した（`00-hub/unity-sandbox-migration-instructions_ja.md`の「返却と照合
+  （2026-11-11）」、`2026-11-11-02`）。このsliceでUnityのprojectを足さない
 - 既定のbranchへのPRにして、CIが通ったら、担当がmergeしてよい（権限で拒まれたら、human ownerが行う）。NuGetへのpack、publish、
   tag、Release、release workflowは足さない
 
@@ -84,8 +86,9 @@ TypeScriptの担当が、F1と契約だけでは足りないと返したもの�
 - 行末のCR：wireの区切りはLF。CRをどう扱ったかを返す
 - credentialのkeyに入れるfieldの組：`2026-08-30-03`の「target単位」を、どのfieldの組で表したかを返す（TypeScriptは
   application、session、tcp、接続先の組）
-- F1に無い流れ（認証reasonの後のhello、pairingの後のhelloがまた拒まれる流れ、clientの側の互換判定で不一致になった後のclose）：
-  toolingへcaseを頼んでいる。それまでは、上の「決まっていること」に合わせ、testは担当のunit testで持つ
+- F1に無い流れ：認証reasonの後のhelloと、pairingの後のhelloがまた拒まれる流れは、F1-AU-08〜10になった（`36ebe9e`）。
+  clientの側の互換判定で不一致になった後のcloseは、`2026-11-12-01`で決め、toolingへcaseを頼んでいる。それまでは、上の
+  「決まっていること」に合わせ、testは担当のunit testで持つ
 
 ## 返却
 

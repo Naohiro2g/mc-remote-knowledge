@@ -9,7 +9,8 @@ Protocolの各methodと、methodでない能力を、どのcomponentが投影し
 - 共有fixtureの列：「あり」はそのmethodや能力の入力と期待値のcaseがあること。「部分」は値や一部の状態遷移だけ。
   値ベクトルがあってもmethodのparams／resultが無ければ「なし」。2026-11-06の10本は静的な入力と期待値。2026-11-10にF1の
   6本（44 case）が加わり、送受信の順を再生するcase（scripted peer）ができた（下の「F1のfixture」）。同じ日に、
-  `protocol_mismatch`の決定（`2026-11-10-01`）に合わせてF1-HE-10が加わり、45 caseになった
+  `protocol_mismatch`の決定（`2026-11-10-01`）に合わせてF1-HE-10が加わり、45 caseになった。2026-11-11に、E2の決定
+  （`2026-11-11-01`）に合わせて3 caseを直し、F1-AU-08〜10が加わって48 caseになった
 - McRemoteの列は、serverがそのmethodや能力を受けて処理すること。Scratchの列は、blockや拡張機能への投影があること
 - TypeScriptの列（2026-11-11）は、最初の縦sliceの返却の案を写す。ほかのmethodは`call(method, params)`で直接呼べるが、
   投影は無いので「なし」とした。「返却に無い」は、担当の案に行が無かったもの
@@ -28,6 +29,7 @@ Protocolの各methodと、methodでない能力を、どのcomponentが投影し
 | 共有fixture（F1の追補） | 2026-11-10 返却 | `Naohiro2g/minecraft-remote-tooling` `ea7838a78bf78947c7dde5876f6cc93b43f7e3cc`（PR 5）。F1-HE-09のdataに`server`と`client_requires`、F1-HE-10（code `-32600`）。2026-11-11に`131f3153d7ab0b01b6e00a62a8249a55c8fc2ad0`（PR 6）で、READMEに`matched_ids`の範囲を書いた（fixtureは同じ） |
 | Python（F3） | 2026-11-10 返却 | `Naohiro2g/minecraft-remote-api` `161cd68514a1fbb018811d3cfab64cb29d5ac98b`の`docs/polyglot-f3_ja.md`（PR 13）。2026-11-11に`8cb2d55db4ee2c59bee3fca2957354aed60ad126`（PR 14）で`ea7838a`へ固定し直した |
 | TypeScript | 2026-11-11 返却 | `Naohiro2g/minecraft-remote-typescript` `9984d1a71b554aa62fa176661c15b2671f306353`（PR 2）。列の案は返却票の「8. E1の列の案」。照合は`00-hub/polyglot-typescript-start-instructions_ja.md`の「返却と照合（2026-11-11）」（protocol `23.2.1`） |
+| 共有fixture（F1のE2） | 2026-11-11 返却 | `Naohiro2g/minecraft-remote-tooling` `36ebe9e63e4f0afcf949eae998832f68209b8119`（PR 7）。F1-CL-03／05に`local_failures`、F1-AU-07の前提、F1-AU-08〜10。照合は`00-hub/polyglot-f1-e2-fixture-instructions_ja.md`の「返却と照合（2026-11-11）」 |
 | Java（F3） | 2026-11-10 返却 | `Naohiro2g/minecraft-remote-java` `e35144cd44f0622a7df1164e95960f1f44636435`の`docs/polyglot-f3_ja.md`（PR 2）。2026-11-11に`dc8992324122611a579f66219a43c88d480fa844`（PR 3）で`ea7838a`へ固定し直した |
 
 ## method
@@ -159,14 +161,16 @@ browserのWebSocketの境界とは分ける。tokenはfixture用の値。
 | --- | ---: | --- |
 | `client-bootstrap-framing-v23.2.1.json` | 7 | UTF-8の1行、文字の途中での分割、複数行の一括受信、未完の末尾、LFまでは未完、JSONでない行、idの対応 |
 | `client-bootstrap-hello-v23.2.1.json` | 10 | tokenつきhello、最小のhello、完全なparams、応答の版5つの互換判定、`protocol_mismatch`の受信（code `-32000`のF1-HE-09と、`-32600`のF1-HE-10。HE-10は`ea7838a`で追加） |
-| `client-bootstrap-pairing-v23.2.1.json` | 7 | `auth_required`→pending→承認→tokenつきhello、`pair_expired`、`pair_not_found`、知らない`token_type`、helloの`permission_denied`、tokenの再利用、無効なtoken |
+| `client-bootstrap-pairing-v23.2.1.json` | 10 | `auth_required`→pending→承認→tokenつきhello、`pair_expired`、`pair_not_found`、知らない`token_type`、helloの`permission_denied`、tokenの再利用、無効なtoken。認証reasonの後のtokenなしのhello（F1-AU-08、09）、pairingの後にまた拒まれる（F1-AU-10）。AU-08〜10は`36ebe9e`で追加 |
 | `client-bootstrap-blocks-v23.2.1.json` | 12 | set→get（namespace、state）、`unknown_block`、`unknown_property`、`invalid_property_value`、`invalid_params` |
 | `client-bootstrap-errors-v23.2.1.json` | 3 | JSON-RPC errorの外枠、dataを保つこと、未知のreason |
-| `client-bootstrap-close-v23.2.1.json` | 6 | 正常なclose、応答の後のEOF、行の途中のEOF、つながらない、応答待ちのrequestがあるEOF、新しい接続でのhello |
+| `client-bootstrap-close-v23.2.1.json` | 6 | 正常なclose、応答の後のEOF、行の途中のEOF、つながらない、応答待ちのrequestがあるEOF、新しい接続でのhello。行の途中のEOFと応答待ちのあるEOFは、`36ebe9e`で`local_failures`（完了不明）を期待する |
 
 - 既存の10本とLICENSEはbytesが変わっていない。`client-bootstrap-v1.schema.json`とtoolingのowner test（52件）が、形と参照を確かめる
 - toolingが「未確定」とした点：承認を拒む専用の応答（`pair_denied`）は契約に無い。`protocol_mismatch`のdataの欄の名前
   （`2026-11-10-01`で決め、`ea7838a`でF1-HE-09へ入れた）、messageの文言、codeの番号。EOFの時の末尾の扱い、応答待ちのrequestの例外の型とtimeout、自動の再送
+  （`2026-11-11-01`で決め、`36ebe9e`でCL-03、CL-05、AU-07へ入れた。timeout、つなぎ直し、clientが判断したpairingの期限切れ、
+  互換判定の後のcloseのcaseは、toolingへの次の票`00-hub/polyglot-f1-e2-ops-fixture-instructions_ja.md`）
 - F3：PythonとJavaが、CIで44 caseをすべて通し、実McRemoteとのpulseを1本ずつ通した（2026-11-10、`00-hub/polyglot-f3-instructions_ja.md`の
   「返却と照合（2026-11-10）」）。45 caseへの固定し直しは次のPR
 
@@ -191,6 +195,9 @@ E1の5列とF1の返却で見えた、E2で分類や判断が要るもの。coor
 - TypeScriptの返却で見えた、Javaとの違い（2026-11-11）：認証reasonでtokenを捨てた後、TypeScriptはtokenなしのhelloへ戻り、Javaは
   すぐpairingへ進む。clientが判断したpairingの期限切れを、TypeScriptは別の型にし、Javaはserverのerrorと同じ形（`-32000`、
   `pair_expired`）で作る。→ `2026-11-11-01`⑦⑧で、TypeScriptの形に決めた
+- clientの側の互換判定が不一致の時（toolingのF1のE2の返却、2026-11-11）：versioning「8.3 不一致時」はserverが拒む場合だけで、
+  clientが接続を閉じることと、その時機が書かれていなかった。TypeScriptは閉じる。→ `2026-11-12-01`で、次のrequestを送らずに
+  接続を閉じ、applicationへ失敗を返すと決めた
 - Scratch：原点のYは0に固定。errorの表示はallowlistで、未知のreasonは`remote_error`にまとめる。公開のブロック一覧
   （`/api/scratch/`の`blocks.json`とindex.html）は、`setDimension`と`setBuildOrigin`のmethodを`connection.setBuildContext`と
   書いているが、VMは`build.setDimension`と`build.setOrigin`を送る（hub NOTES 2026-11-10の行）

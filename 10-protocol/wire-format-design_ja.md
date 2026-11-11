@@ -852,6 +852,8 @@ protocol 23の現行helloはprotocol 22で確定したJSON-RPC／auth／catalog�
 
 - **protocol 23安定形**：protocol 22のhello shapeを変更せずcarryし、版値だけ`23.0.0`へ上げる。応答は`{protocol,mc_version,supported_mc_versions,catalogHash}`にsession／player／`dimension`／origin／permissionsを加える。`dimension`はserverが解決した完全修飾DimensionKeyで、clientは要求値で上書きしない。world/profile情報定数は`world_constants` bucketへ束ねる。`catalogHash`と`world_constants`の既存規律は維持する。
 - **§8 整合**：versioning-design §8.1 が要求する `mc_version` / `supported_mc_versions`（踊り場リスト）を応答に含める（§8.1 必須ゆえ省けない）。互換判定は §8 のメジャー一致則に従う。
+- **clientの側の不一致**（`2026-11-12-01`）：helloが成功しても、clientが応答の`protocol`を互換でないと判定したら
+  （versioning-design §8.2）、次のrequestを送らずに接続を閉じ、applicationへ失敗を返す。
 - **permission snapshot**（確定 `2026-09-01-02`）：auth enforcement ONのplayer-bound helloは、paired UUIDに対する
   `mcr.online`、`mcr.offline`、build rangeを既存`server=global` contextのeffective値から一度だけ解決する。
   playerがonlineなら`online=true`、offlineなら`offline=true`を要求し、現在状態と一致しないpermissionだけでは
