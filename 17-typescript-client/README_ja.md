@@ -16,6 +16,8 @@
 - 比べる基準: 初回stable `2321.0.0`（protocol `23.2.1`）
 - `@mc-remote/protocol`（minecraft-remote-tooling）のコードには依存しない。protocolの型と定数はこのrepoで持ち、共有
   fixtureはデータとして、固定したcommitで読む（`2026-10-22-07`）
+- 2026-11-11：最初の縦slice（helloからsetBlock／getBlockまで、Node.jsのTCP）の実装を始める票を出した
+  （`00-hub/polyglot-typescript-start-instructions_ja.md`）
 
 ## 正本境界
 
