@@ -113,3 +113,36 @@ blobがすべて同じ（bytesが同じ）ことを確かめた。
   24.0.0で揃えば問題ない」。既定の申告は`23.0.0`のまま
 - toolingへの補足：F1-ER-01〜03の`matched_ids`の範囲をREADMEに書いてほしい（tooling担当へ伝える）
 - `docs/polyglot-f3_ja.md`のpulseの項は、merge時点の「未実施」のまま。固定し直しのPRでPASSへ直す
+
+## 固定し直しの返却（2026-11-11）
+
+### Python
+
+Python担当はknowledge `6f7ca001988387d172bd698579a0f42c72d24ac5`を読んだ。minecraft-remote-api PR #14（head
+`2687cfa8af1bb74b7aa4150b06ee9cf52405a0fd`）をmerge commit `8cb2d55db4ee2c59bee3fca2957354aed60ad126`でmergeした（`main`の先頭）。
+PRの自動CIが起動しなかったので、同じheadでCIを手動で起動した（run 42855584026）。merge後のCIはrun 42855966473。どちらも成功
+（全5 job）。coordinatorはGitHubのAPIで、PR、merge、CIのrunとhead、merge commitの`tests/fixtures/`のblobを確かめた。
+
+- 取得元：tooling `8264c38`から`ea7838a78bf78947c7dde5876f6cc93b43f7e3cc`へ。copyの16本はすべて、`ea7838a`の同じ名前のfileと
+  blobが同じ。中身が変わったのは`client-bootstrap-hello-v23.2.1.json`と`client-bootstrap-v1.schema.json`の2本で、bytesとSHA-256は
+  toolingの返却（上の票の「返却と照合（2026-11-10）」）と一致する
+- F1：45 case PASS、skip 0（framing 7、hello 10、pairing 7、blocks 12、errors 3、close 6）。F1-HE-09とHE-10はreasonで判定し、codeでは
+  分けない
+- `mc_remote/`、公開API、wireは変えていない。pulseは再実行していない（前回のpulseのまま）
+- `unresolved`に挙がったことは、決め直していない
+
+### Java
+
+Java担当はknowledge `6f7ca001988387d172bd698579a0f42c72d24ac5`を読んだ。minecraft-remote-java PR #3（head
+`b0c501b86ea5b99186f76a33fcac5211a2040981`）をmerge commit `dc8992324122611a579f66219a43c88d480fa844`でmergeした（`main`の先頭）。
+PRのCIはrun 42849670175、merge後のCIはrun 42850134686で、どちらもbuild (21)とbuild (25)が成功した。coordinatorはGitHubのAPIで、
+PR、merge、CIのrunとjob、merge commitの`src/test/resources/protocol-fixtures/`のblobを確かめた。
+
+- 取得元：tooling `8264c38`から`ea7838a78bf78947c7dde5876f6cc93b43f7e3cc`へ。copyの13本はすべて、`ea7838a`の同じ名前のfileと
+  blobが同じ。中身が変わったのは`client-bootstrap-hello-v23.2.1.json`と`client-bootstrap-v1.schema.json`の2本
+- F1：45 case PASS、skip 0（framing 7、hello 10、pairing 7、blocks 12、errors 3、close 6）。F1-HE-09（`-32000`）とHE-10（`-32600`）も
+  fixtureのcaseとしてPASS
+- testで直したこと：固定するdigest、schemaの`knowledge_contract.commit`を`const`でも`enum`でも読むこと、case数。clientの振る舞いは
+  変えていない
+- `docs/polyglot-f3_ja.md`のpulseの項をPASS（2026-11-10、live-auto相当、`14-evidence/`にrecordなし）へ直し、既定の申告protocolの
+  判断（`23.0.0`のまま）を書いた

@@ -63,3 +63,14 @@ SHA-256を照合した（返却の値とすべて一致）。`8264c38`からの�
 - schemaは、caseのfileごとに違う`knowledge_contract.commit`を受けられるように変えた。ほかの5本のfileは変わっていない
 - 伝えること：Java担当から、F1-ER-01〜03の`matched_ids`は`[2]`でhelloのid 1を含まない（F1-FR-07はすべてを含む）ので、
   範囲をREADMEに書いてほしい、と返った（`00-hub/polyglot-f3-instructions_ja.md`の「返却と照合（2026-11-10）」）
+
+## 追補の返却：`matched_ids`の範囲（2026-11-11）
+
+tooling担当はknowledge `6f7ca001988387d172bd698579a0f42c72d24ac5`を読んだ。PR #6（head `c8b153eed1a7df5f955fcfc6c532a20faf610c5d`）を
+merge commit `131f3153d7ab0b01b6e00a62a8249a55c8fc2ad0`でmergeした（toolingの`main`の先頭）。PRのCIはrun 42854773556、merge後のCIは
+run 42855131443で、どちらも成功した。`ea7838a`からの差分は`packages/protocol/README.md`だけで、fixtureは変わっていない。coordinatorは
+merge commitからfileを取り、9,383 bytes、SHA-256 `4a9d885b3a49c6cd572c666d1f83ee3936350239803756c0440e1e8659a7a69b`で返却と一致した。
+
+- `matched_ids`は、そのcaseで検査するrequestに対応付けた応答idを、対応付けた順に並べる。前準備を含む対話全体の一覧ではない
+- F1-ER-01〜03は`[2]`（helloのid 1は前準備）。F1-FR-07は相関そのものを検査するので`[2, 1]`、未知のid 99は`ignored_ids`
+- 列に含めない前準備の応答も、clientは通常どおり処理する

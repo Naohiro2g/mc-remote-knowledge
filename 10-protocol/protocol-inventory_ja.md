@@ -23,9 +23,9 @@ Protocolの各methodと、methodでない能力を、どのcomponentが投影し
 | Scratch | 2026-11-10 返却 | `Naohiro2g/scratch-editor` `dc2840ba3c5c9d6938555ed737bc199acca2586e`の`docs/polyglot-e1_ja.md`（PR 32。基準は公開の`v2321.1.0`の`57fb769`、protocol `23.2.1`） |
 | 共有fixture | 2026-11-06 返却 | `Naohiro2g/minecraft-remote-tooling` `1286eb486bcaea93c4195c11e94304bdb51f53ba`の`packages/protocol/FIXTURE_INVENTORY_ja.md`（基準は`21a2a9a`の10本。PR 2で`main`へmerge） |
 | 共有fixture（F1） | 2026-11-10 返却 | `Naohiro2g/minecraft-remote-tooling` `8264c3881bb4128c14cda6d122641ebcfa67d9c5`（PR 4）の`packages/protocol/test/fixtures/client-bootstrap-*`。形の説明は`packages/protocol/README.md`の「F1：client bootstrap の対話データ」 |
-| 共有fixture（F1の追補） | 2026-11-10 返却 | `Naohiro2g/minecraft-remote-tooling` `ea7838a78bf78947c7dde5876f6cc93b43f7e3cc`（PR 5）。F1-HE-09のdataに`server`と`client_requires`、F1-HE-10（code `-32600`） |
-| Python（F3） | 2026-11-10 返却 | `Naohiro2g/minecraft-remote-api` `161cd68514a1fbb018811d3cfab64cb29d5ac98b`の`docs/polyglot-f3_ja.md`（PR 13） |
-| Java（F3） | 2026-11-10 返却 | `Naohiro2g/minecraft-remote-java` `e35144cd44f0622a7df1164e95960f1f44636435`の`docs/polyglot-f3_ja.md`（PR 2） |
+| 共有fixture（F1の追補） | 2026-11-10 返却 | `Naohiro2g/minecraft-remote-tooling` `ea7838a78bf78947c7dde5876f6cc93b43f7e3cc`（PR 5）。F1-HE-09のdataに`server`と`client_requires`、F1-HE-10（code `-32600`）。2026-11-11に`131f3153d7ab0b01b6e00a62a8249a55c8fc2ad0`（PR 6）で、READMEに`matched_ids`の範囲を書いた（fixtureは同じ） |
+| Python（F3） | 2026-11-10 返却 | `Naohiro2g/minecraft-remote-api` `161cd68514a1fbb018811d3cfab64cb29d5ac98b`の`docs/polyglot-f3_ja.md`（PR 13）。2026-11-11に`8cb2d55db4ee2c59bee3fca2957354aed60ad126`（PR 14）で`ea7838a`へ固定し直した |
+| Java（F3） | 2026-11-10 返却 | `Naohiro2g/minecraft-remote-java` `e35144cd44f0622a7df1164e95960f1f44636435`の`docs/polyglot-f3_ja.md`（PR 2）。2026-11-11に`dc8992324122611a579f66219a43c88d480fa844`（PR 3）で`ea7838a`へ固定し直した |
 
 ## method
 
@@ -114,12 +114,12 @@ Protocolの能力の提案ではない。
 tooling `6447f6e8cbfbeeb9d229990b5c4f6e82a5875666`の`packages/protocol/test/fixtures/`の10本に対して、各clientがどれを
 testへつないでいるか。MITのLICENSEを置いた`21a2a9a0aed8b4d9c715da46616aad86f1174b4c`の10本も同じbytes。
 McRemoteとScratchの取得元は`21a2a9a`。PythonとJavaは、2026-11-10のF3でtooling `8264c38`へ移り、F1の6本（44 case）を
-CIへつないだ。toolingの追補（`ea7838a`、45 case）への固定し直しは、次のPRで行う。
+CIへつないだ。PythonとJavaは2026-11-11に、toolingの追補（`ea7838a`、45 case）へ固定し直した。
 
 | client | つないでいるもの | つないでいないもの |
 | --- | --- | --- |
-| Java | `chat-event-compat-v23.2.1.json`、`events-v23.json`、`sign-v23.json`、`spawn-v22.json`。F3でF1の6本（44 caseすべて）、`client-bootstrap-v1.schema.json`、`block-value-v22.json`（F1の`value_refs`の`/catalog/block`の範囲）を足した | `dimensions-v22.json`、`direction-lightning-v23.1.json`、`entity-particle-v23.2.1.json`（それぞれ対応する機能のsliceで）、`chat-event-compat-v23.2.json`、`entity-particle-v23.2.json`（履歴の版） |
-| Python | `chat-event-compat-v23.2.1.json`、`direction-lightning-v23.1.json`、`entity-particle-v23.2.1.json`、`events-v23.json`、`sign-v23.json`。`chat-event-compat-v23.2.json`と`entity-particle-v23.2.json`は履歴としてbytesを比べるだけ。F3でF1の6本（44 caseすべて）、schema、`block-value-v22.json`（blocksの12 caseの`value_refs`の範囲）を足した | `dimensions-v22.json`、`spawn-v22.json`（前のとおり） |
+| Java | `chat-event-compat-v23.2.1.json`、`events-v23.json`、`sign-v23.json`、`spawn-v22.json`。F3でF1の6本（44 caseすべて）、`client-bootstrap-v1.schema.json`、`block-value-v22.json`（F1の`value_refs`の`/catalog/block`の範囲）を足した。2026-11-11に`ea7838a`の45 caseへ | `dimensions-v22.json`、`direction-lightning-v23.1.json`、`entity-particle-v23.2.1.json`（それぞれ対応する機能のsliceで）、`chat-event-compat-v23.2.json`、`entity-particle-v23.2.json`（履歴の版） |
+| Python | `chat-event-compat-v23.2.1.json`、`direction-lightning-v23.1.json`、`entity-particle-v23.2.1.json`、`events-v23.json`、`sign-v23.json`。`chat-event-compat-v23.2.json`と`entity-particle-v23.2.json`は履歴としてbytesを比べるだけ。F3でF1の6本（44 caseすべて）、schema、`block-value-v22.json`（blocksの12 caseの`value_refs`の範囲）を足した。2026-11-11に`ea7838a`の45 caseへ | `dimensions-v22.json`、`spawn-v22.json`（前のとおり） |
 | McRemote | `chat-event-compat-v23.2.1.json`、`direction-lightning-v23.1.json`、`entity-particle-v23.2.1.json`、`events-v23.json`、`sign-v23.json`（5本、6つのtest class）。`chat-event-compat-v23.2.json`と`entity-particle-v23.2.json`は履歴としてcopyだけ | `block-value-v22.json`、`dimensions-v22.json`、`spawn-v22.json`（copyも無い。McRemote独自のfixtureとは別） |
 | Scratch | 10本すべて（履歴の版も、observerの投影などで使う）。どのfileも全caseを再生しているわけではない | なし |
 

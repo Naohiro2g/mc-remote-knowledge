@@ -105,3 +105,7 @@ F1の範囲がそろったら、TS（Phase G）の実装を始める。C#の実�
   （`00-hub/polyglot-f1-mismatch-fixture-instructions_ja.md`）、PythonとJavaへF3の票（`00-hub/polyglot-f3-instructions_ja.md`）を出した
 - 2026-11-10：toolingがF1の追補（`ea7838a`、45 case）を、PythonとJavaがF3を返した。どちらもCIでF1の44 caseを通し、実McRemoteとの
   pulseを1本通した。45 caseへの固定し直しは次のPR。次は、TypeScriptの実装を始める票とE2の残りの案
+- 2026-11-11：TypeScriptの実装を始める票（`00-hub/polyglot-typescript-start-instructions_ja.md`）を出し、E2の残りの案
+  （[polyglot-e2-plan_ja.md](polyglot-e2-plan_ja.md)）を起案した
+- 2026-11-11：PythonとJavaが`ea7838a`の45 caseへ固定し直した。toolingがREADMEに`matched_ids`の範囲を書いた（`131f315`）。
+  F3はPythonとJavaで済んだ

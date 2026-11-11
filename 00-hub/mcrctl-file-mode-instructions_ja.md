@@ -37,3 +37,30 @@
 
 - PRの差分とtestをGitHubのAPIで照合する
 - mergeの後に、hub NOTESの行を閉じる
+
+## 返却と照合（2026-11-11）
+
+Stack担当はknowledge `f29ce18129bd6b64eb2dbcaef7b4d89e44c99f7a`を読んだ（この票の本文は今と同じ）。mc-remote-stack PR #89
+（head `34750fdeefe933388e03ba64862019d8d6a04bed`、base `eb19fd2c9b72e8a177d5aa8c9a3945b51153fd7f`）を、human ownerが2026-11-11に
+merge commit `8c6afcb1ad4017c16f1eb14af37bb1db86d6a2ee`でmergeした（`main`の先頭）。coordinatorはGitHubのAPIで、PR、merge commitの
+親、変わった6 fileを確かめた。Stackのtestは、このrepoのCIでは走らない。検査はlocal（`uv run pytest` 655 passed、`ruff check`、
+presetのcatalogの`--check`、`git diff --check`）で、担当の返却による。
+
+- 一覧：mcrctlの作成と書き換えの76箇所を洗い出し、pathの役割ごとにmodeを決めた（PRの`docs/generated-file-permissions_ja.md`）。
+  Caddyfile、Scratchのruntime JSON、Minecraftの生成seed、WireScopeのassetsはfile `0644`、必要なdirectory `0755`。render root
+  は`0700`。Compose、render manifest、compact lock、分類していない新しいfileは`0600`。秘密を含みうる追加のCompose snapshotと
+  新しいoperatorの入力は、元のmodeのまま。secret store、backup、稼働volumeの中のfileは、この処理で変えない
+- 直す前の失敗：`umask 077`で5 failed、1 passed（public renderの2 profile、compactのruntime JSON、更新と自動で戻す処理）。
+  ほかに、private copyと新しいoperator入力が`022`と`002`で広がること、modeだけを直すとseedのmtimeが変わることも、先に落ちる
+  ことを見た
+- 手段：pathの役割を`render_modes.py`で明示し、書く前にdescriptorへmodeを設定する。private copyは元のmodeの一時fileへ書いて
+  置き換える。変わらないかの判定にmodeも入れ、modeだけ違うときはmtimeを保つ。umaskは変えない。選ばなかった手段（umaskを`022`
+  にする、全体を再帰でchmodする、Caddyfileだけ直す、copyの後でmodeを合わせる、imageやUIDを変える）と理由は返却のとおり
+- 結果：`077`、`022`、`002`のどれでも、更新は`complete`、targetの検査を失敗させると自動で`rolled-back`。private snapshotと
+  新しいprivate入力は`0600`のまま、secret storeはfile `0600`／directory `0700`
+- 今の箱庭（読んだだけ）：`generated/compose.yaml`と`generated/render-manifest.json`が`0644`で、直したmcrctlでは`0600`になる。
+  ほかの生成物は一致。稼働volumeの中で、McRemoteのcredential snapshotが`0664`、authorityのdirectoryが`0775`だった（mcrctlの
+  生成物ではなく、比べる対象の外。中身は読んでいない）
+- 1回目のapplyで失敗したtransactionと準備用のCLIのcheckout：この修正の再現と検証には、もう使わない。testは合成のfixtureで
+  再現する。消すのは片付けの票で、それまで消さない
+- 公開の箱庭へはapplyしていない。直したmcrctlは次の更新から使う

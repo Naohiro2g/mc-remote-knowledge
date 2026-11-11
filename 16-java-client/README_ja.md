@@ -242,4 +242,6 @@ Temurin 21と25）。実McRemote（Paper 1.21.11、McRemote `2321.1.0`）とのp
 - 公開APIに足したこと：`MinecraftRemote.Builder.buildContext(dimension, x, y, z)`、`ProtocolMismatchException`（`reason()`、
   `serverProtocol()`、`clientRequires()`）。helloの`client`は`clientIdentity(...)`を明示したときだけ送る
 - LFだけで行を区切り、idごとの応答待ちの表で応答を対応させる
-- 残り：toolingの追補（`ea7838a`、45 case）への固定し直し。既定の申告protocolは`23.0.0`のまま（human owner 2026-11-10「A：23.0.0のままにする。24.0.0で揃えば問題ない」）
+- 既定の申告protocolは`23.0.0`のまま（human owner 2026-11-10「A：23.0.0のままにする。24.0.0で揃えば問題ない」）
+- 2026-11-11：`dc8992324122611a579f66219a43c88d480fa844`（PR 3）で、toolingの追補（`ea7838a`、45 case）へ固定し直した。45 caseすべてPASS、
+  skipは0件（[run 42850134686](https://github.com/Naohiro2g/minecraft-remote-java/actions/runs/42850134686)）
