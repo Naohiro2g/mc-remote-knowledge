@@ -733,3 +733,19 @@ commandはMinecraftの作法に従い、値は下の表のとおりにする。`
   次に試作する）
 - ゲーム内でIDを指定して表示する接続を選ぶ操作が欲しくなったら、`2026-08-12-03`の「検索のキーに使わない」の文言を
   見直す（選べるのが本人の認証済みの接続だけで、観察の権限を与えないなら、主旨は損なわれない）
+
+## 12. playerに見せる文の言語（`2026-11-12-02`）
+
+McRemoteがplayerに見せる文（chat、commandの返事、BossBarなど）は、clientのlocaleのlanguageが`ja`なら日本語、それ以外は英語で
+出す。HUDの方位（11.1）と同じ規則で、McRemote PR #17（`cdafcfd`）から。protocolは変えない。
+
+- localeがまだ取れない、または空のときは英語にする。応答のたびにlocaleを読み、言語を保存しないので、接続中に言語を変えると、
+  次の応答から変わる。HUDの方位は、いつもどおり10 tickごとの更新で変わる
+- 日本語と英語を併記しない。日本語の文は前からの表現を使う。前は英語だけだった管理の案内（credentialのstatus、bootstrap、
+  resetなど）にも、日本語の文がある
+- 訳さないもの：command名、引数（`on`／`off`など）、UUID、code、healthの値などの識別子。playerが書いたchatと看板は原文のまま。
+  例外のdetailなどの診断の値は原文のまま、外側の案内の文だけを切り替える
+- 対象にしないもの：serverのconsoleとlog。consoleへの管理の応答は英語のまま
+- 静的なmetadata（`plugin.yml`のpluginとcommandの説明、usage）は、viewerごとに言語を選べないので、製品名と構文だけにする
+- 統合版（Geyser）：sourceの上では、clientの言語をJava版のlocaleとして渡している（GeyserMC/Geyser `c8758b8`の`GeyserSession`）。
+  実機ではまだ確かめていない
