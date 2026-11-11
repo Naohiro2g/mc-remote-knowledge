@@ -46,3 +46,26 @@
 - 5の案をhuman ownerに見せ、決まったことをDECISIONSと`11-plugin/platform-design_ja.md`の「9.7 plugin が保証する範囲と
   deployment が保証する範囲」へ書く
 - Stackへ、共有の親directoryとmount、今の環境のfileを確かめる票を作る
+
+## 返却と照合（2026-11-11）
+
+McRemote担当はknowledge `562b5c008c7a4e391f04a79ed4496bbd44670896`を読んだ（この票の本文は今と同じ）。McRemote PR #16（head
+`cade9aa734e92e12c7b5f3fe2d5f87069a269928`、base `a38beaf121ce06594391237cb09745ec0da7649d`）を、human ownerが2026-11-11に
+merge commit `bc18243c6275387953f24b59b70a2dbd499b9b20`でmergeした。coordinatorはGitHubのAPIで、PR、変わった7 file、CIの
+run `43012721267`（同じhead、7 jobすべて成功。McRemoteのworkflowはtagと手動で動くので`workflow_dispatch`）、artifact 7件の
+bytesとdigestを確かめた。そのうち2件は取得してSHA-256を照合し、JUnitを読んだ（Ubuntu、Java 21：
+`SqliteCredentialFileModesTest` 10 test、skip 0。Windows、Java 25：10 testのうち、POSIX専用の7がskip）。
+
+- 一覧：snapshotとauthorityの専用DB、そのsidecar、保存のために新しく作るdirectoryを、McRemoteが扱う。前からあるdirectory、
+  共有の親directory、volume rootは変えない。旧file backendのfileは開かず、modeも変えない
+- 直す前の失敗：7 testのうち5が、modeの違いで落ちた（`umask 002`で、新しいdirectoryが`rwxrwxr-x`、広げておいた今あるDBが
+  `rw-rw-r--`のまま）。後から、狭められない時、読み戻し、symlinkの3 testを足して10 test
+- 手段：作る時にfile `0600`、directory `0700`を指定し、読み戻す。SQLiteへ渡す前、開いた後、`BEGIN IMMEDIATE`の後に、DBと、
+  あるsidecarを`0600`へ合わせる。SQLiteはsidecarのmodeをDBから引き継ぐので、DBを先に狭める。選ばなかった手段（umaskを
+  `077`にする、DBだけ、または開いた後だけ合わせる、親を再帰でchmodする）と理由は返却のとおり
+- 結果：Ubuntu 24.04とmacOS 26のJava 21と25で、`umask 077`、`022`、`002`のどれでも、新しく作る時、広い今あるDBとsidecarを
+  起動で開く時、再open、更新、reset、作り直しがPASS。WindowsはPOSIXのmodeを確かめたことにしない
+- 5の案：DECISIONS `2026-11-11-03`の③〜⑥として、案のまま決めた。releaseは⑧（McRemoteの次のreleaseに入れる）
+- Stackが確かめること：共有の親directoryとvolume rootの管理者とアクセス権、mountの配置、同じvolumeを見られるほかの
+  processとcontainer。修正を入れた版を箱庭へ入れた後の、両DBとsidecarのmode
+- 稼働中の環境のfile、release、tagは変えていない

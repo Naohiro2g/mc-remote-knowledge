@@ -426,6 +426,13 @@ rollback domain は物理 volume の個数ではなく、**ある rollback 操�
 
 **二 volume は plugin の起動不変条件にしない。** stack profile の推奨構成として扱う。
 
+**fileの権限（`2026-11-11-03`）**：plugin が保証するのは、POSIXで、専用のcredentialのDB（snapshotとauthority）とその
+sidecar（`-wal`、`-shm`、`-journal`）を`0600`にし、保存のために作ったdirectoryを`0700`にして、読み戻して確かめることである。
+作る時だけでなく、今あるfileを開く時と書込みのtransactionの時にも合わせる。`0600`にできなければ認証を止める。ownerとgroupは
+変えず、前からあるdirectoryのmodeも変えない。symlinkとregular fileでないものは拒む。POSIXのmodeが使えない環境では、OSの
+ACLのままにする。deployment が保証するのは、共有の親directoryとvolume rootのmodeとowner、mountの配置、同じvolumeを見られる
+ほかのprocessやcontainer、McRemoteを動かすuserとfileのownerを合わせることである。
+
 ### 9.8 旧 `mcrp_` からの移行
 
 `2026-08-02-01` が `player_token` / `mcrp_` を long-lived credential / `mcrl_` へ改名した際の移行規則。
