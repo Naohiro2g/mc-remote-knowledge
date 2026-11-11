@@ -7,17 +7,21 @@ Unityの世界と箱庭の設計スポーク。一般用途のC# Client Library�
 
 - repository: `Naohiro2g/mc-remote-unity-sandbox`（MIT、public）。human ownerが2026-11-11に作った（初期commit
   `4d17e03955989f647d12bcff090fc00d94d249a8`。README、LICENSE、Unity用の`.gitignore`）
-- Unityの版：6.6の修正版で試作を進め、近く出る6.7 LTSを検証して基準版にする。6.6の具体的なパッチ版は導入の時に確かめる
-  （`2026-11-11-02`③）
-- 2026-11-11：`minecraft-remote-csharp`の`experiments/unity-local-demo`、設計メモ2本、図3件を、このrepoへ履歴ごと移す票を出した
-  （`00-hub/unity-sandbox-migration-instructions_ja.md`）。移すまでの正本は、C#のrepoの`main`にある
+- Unityの版：6.6の修正版で試作を進め、近く出る6.7 LTSを検証して基準版にする（`2026-11-11-02`③）。移行の検証で使ったのは
+  `6000.6.8f1`
+- 2026-11-11：knowledgeがbootstrap（`AGENTS.md`、`.gitignore`の追記）を`2c1ed9febdee9d2a3d225ae6e3ed503ec1e23270`で置いた
+- 2026-11-11：`minecraft-remote-csharp`から、ローカルデモ、設計メモ2本、図3件を履歴ごと移した（PR #1、merge commit
+  `958b676e293427165e872d9abd7b5bfc4173efd6`。照合は`00-hub/unity-sandbox-migration-instructions_ja.md`の「返却と照合
+  （2026-11-11）」）。正本はこのrepoの`main`にある
 
 ## 何を置くか
 
-- Unityのproject：今の通信を使わないローカルデモから、Unity Webへ
-- 設計メモ：公開共有箱庭（到達形の案：URLを開けばPython、Scratch、C#で建築でき、複数人が同じ箱庭を見られるUnity Webの
-  公開共有箱庭）と、Unity内部の先行作業（ブロックの材質、地面と座標、HUDのローカル表示、Web build、描画の性能）。
-  どちらもhuman ownerの起案（C#のrepoの`680ebb3`で入った）
+- Unityのproject（`unity/`）：今の通信を使わないローカルデモ（手順は`docs/local-demo_ja.md`、準備のscriptは`scripts/`）から、
+  Unity Webへ
+- 設計メモ：公開共有箱庭（`docs/unity-shared-sandbox-draft_ja.md`。到達形の案：URLを開けばPython、Scratch、C#で建築でき、
+  複数人が同じ箱庭を見られるUnity Webの公開共有箱庭）と、Unity内部の先行作業（`docs/unity-internal-preparation_ja.md`。
+  ブロックの材質、地面と座標、HUDのローカル表示、Web build、描画の性能）。図は`docs/diagrams/`。どちらもhuman ownerの起案
+  （C#のrepoの`680ebb3`で入り、移行で`7a16a6e`になった）
 - 後で：箱庭サーバー（Unityの世界のserver）と世界のモデル、C# Client Libraryを使う側のadapter
 
 置かないもの：一般用途のC# Client Library（`minecraft-remote-csharp`）。Unityは公開された形でlibraryを使い、`src/`を直接
@@ -48,7 +52,7 @@ server側の範囲と学習の登山道は、`00-hub/NOTES_ja.md`の2026-10-18�
 2. knowledgeが`AGENTS.md`をcommitし、`.gitignore`にoperator-localの`CLAUDE.md`、`NOTES_ja.md`、`handoff-materials/`と、
    `.env`を足してpushする（`00-hub/dev-repo-protocol_ja.md`の雛形。関連スポークは`19-unity/`、`18-csharp-client/`、`10-protocol/`）
 3. knowledgeが手元のcloneに`CLAUDE.md`（`@AGENTS.md`の1行）を置いて、`AGENTS.md`のbootstrap commandが通ることを確かめる
-4. `minecraft-remote-csharp`のCodexセッションが、移行の票のとおりに移す
+4. `minecraft-remote-csharp`のCodexセッションが、移行の票のとおりに移す（済み。2026-11-11）
 
 ## AGENTS.mdの「このrepository固有の指示」
 
