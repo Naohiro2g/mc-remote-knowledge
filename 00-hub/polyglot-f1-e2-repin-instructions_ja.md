@@ -113,7 +113,7 @@
 | --- | --- | --- | --- | --- |
 | Python | #15 → `9e64b492a90c967675477a495287d9080428b390` | PR `43071491555`、merge後`43071750399` | `36ebe9e`、48/48 | ②⑦⑧、`2026-11-12-01` |
 | Java | #4 → `223ef287f1cb17a7b2cdbf619d08d0ffd7a17e37` | head `43157405386`、merge後`43157617686` | `36ebe9e`、48/48 | ⑦⑧ |
-| Scratch | #33 → `d9a7ec6e825d1a5602db57577009c28830ad0016` | head `43092698764`（push） | `36ebe9e`をlockに固定。再生は0 | ②の一部、`2026-11-12-01` |
+| Scratch | #33 → `d9a7ec6e825d1a5602db57577009c28830ad0016` | head `43092698764`（push）、merge後のheadを手動で`43190707946` | `36ebe9e`をlockに固定。再生は0 | ②の一部、`2026-11-12-01` |
 | TypeScript | #3 → `2b59c5a6e6f2401148f4c79af108b7a6b1f9aba2`、#4 → `f8af802a813c81ad99631e5eb5454de04ae8ae2e` | #3：PR `43070666366`、merge後`43156347232`。#4：PR `43160255273`、merge後`43165316133` | `0d120e5`、v1 52/52、v2 9/12 | ②の型、⑦⑧、③⑤を入れた |
 
 ### Python
@@ -158,6 +158,8 @@
   `43092902585`は、scratch-vmのjobがin_progressのまま止まり、のちにcancelされた。担当は、同じheadのpushのrun `43092698764`
   （10 jobすべて成功）を根拠にmergeした。merge commitの木はheadと同じ。merge後のrun `43097182559`は、照合した時点でqueuedのまま
   だった。変えた6 fileのbytesとSHA-256は返却どおり
+- 照合の後（2026-11-12）：同じhead（`d9a7ec6`）をworkflow_dispatchで動かしたrun `43190707946`（develop）は、10 jobすべて成功した。
+  `43097182559`はjobが作られないままqueuedで止まり、human ownerがcancelしても止まらなかった
 - 固定し直し：lockの取得元を`36ebe9e`にし、F1の6本とschemaを足した。9 fileのSHA-256はtoolingと一致した。F1の対話はtestで
   再生していないので、PASSは0件（schemaと件数の検査だけ）
 - ②：socketのerrorで、応答待ちを回収して閉じるようにした。閉じた時のcodeとreasonが、応答待ちの失敗にも一緒に渡る点は、表示を
@@ -206,5 +208,9 @@
 
 - ③⑤を入れる票（Python、Java、Scratch、C#）：各clientの案は上のとおり。TypeScriptの形を参考に並べる
 - Scratchの⑦と、F1をtestにつなぐ案は、human ownerが決める
+  - 2026-11-12：human ownerが決めた。⑦は入れる。⑧（同じく案で返った）も入れる。F1は担当の案のとおりbrowserの側でつなぎ、
+    直接のTCPのPASSとは別に数える。TCPに固有のcaseは、BridgeとtoolingのTCPの側。どれも③⑤の票でScratchへ頼む
 - F1のcaseへの指摘は、`00-hub/polyglot-f1-e2-ops-fixture-instructions_ja.md`の「返却と照合（2026-11-12）」にまとめた
+  - 2026-11-12：human ownerが、toolingへ頼むと決めた（同じfileの「追加の依頼：F1のcaseの補い（2026-11-12）」）。③⑤の票は、
+    その返却の後に、merge commitへの固定し直しと一緒に出す
 - どれもhub NOTES 2026-11-12の「多言語Client LibraryのE2を各clientへ入れる」の行

@@ -125,3 +125,61 @@ minecraft-remote-tooling PR #9（head `ee61d3ee87dbb928c4307efb5e201259c2b8bd02`
 - 承認を待つ間に、McRemoteが認証前のTCPを閉じ、clientが同じ`pairing_id`のpollを新しいTCPで続ける流れのcaseが無い（C#が実機で
   見た）
 - toolingへ頼むかは、human ownerが決める（hub NOTES 2026-11-12の「多言語Client LibraryのE2を各clientへ入れる」の行）
+- TypeScriptは、F1-OP-05の`connect_error terminal`の表し方も挙げた（以後の接続をすべて断り、既定のpolicyが諦めるまで仮想の
+  時計を進める）。OP-05の前提条件とv2の説明の`connect_attempts`は、待ち時間と内部のretry回数を決めず、確かめないと書いており、
+  TypeScriptの表し方はそれに合う
+- 2026-11-12：human ownerが、上の4つをtoolingへ頼むと決めた。OP-05は頼まない。依頼は下の「追加の依頼：F1のcaseの補い（2026-11-12）」
+
+## 追加の依頼：F1のcaseの補い（2026-11-12）
+
+> 上の「返却の後に、clientから届いたcaseへの指摘」の4つを直す依頼です。この後、Python、Java、Scratch、C#へ③⑤を入れる票を
+> 出し、この依頼のmerge commitへ固定し直してもらう。各clientの固定し直しを1回で済ませるため、この依頼を先に出す。
+> 参照するknowledge commitは、この依頼が入ったmainのcommitです。
+
+### すること
+
+1. **F1-AU-07の観測の終わりを、READMEに書く**（fixtureは変えない）
+   - AU-07は、無効なtokenを捨てるところ（c1のEOF）までを見る。その後のtokenなしのhello（`2026-11-11-01`の⑦）は、AU-08、
+     09、10が持つ。READMEの「認証reasonで保存tokenを破棄したら」の項は、すでにそう書いている
+   - c1のEOFの後に、clientが次の接続を始めたときに、runnerがどう扱えばよいかも書く（JavaとTypeScriptが尋ねた）
+2. **F1-OP-08を、AU-01、02と同じ接続の形にそろえる**
+   - 今のOP-08では、serverが`auth_required`の後に閉じず、clientがhelloと同じ接続（c1）でpairingを始める。AU-01、02では、
+     serverが閉じ、clientは別の接続でpairingする。wire「6.5」はどちらの形も許している
+   - OP-08で確かめるのは、clientがpairingの期限切れを自分で判断すること（⑧）で、どの接続でpairingするかではない。AU-01、02の
+     形は、すべてのclientがもう通っている。TypeScriptは常に別の接続でpairingするので、今はOP-08をtodoにしている
+   - v2の説明（`CLIENT_BOOTSTRAP_V2_ja.md`）の「expectedの欄」でOP-08を例にしている文も、caseに合わせる
+3. **v2の`expected`の比べ方を、欄ごとに書く**
+   - v2の説明の「expectedの欄」は、「記載した行だけを比較します」と書いている。欄ごとに、配列の行をどう対応させるか、書いて
+     いない行があってもよいか、行の順を比べるか、書いていない欄を比べないかを書く
+   - TypeScriptはこう読んだ：`calls`は`call`で対応させて行ごとに比べる。`events`は書いた行が含まれるかを見る。`connections`は
+     書いた欄だけを比べる。根拠は、OP-04、06でsessionがc1からc2へ変わるのに、`session_changed`を書いていないこと
+   - この読み方がtoolingの意図と違うなら、caseの方（OP-04、06など）を直す
+4. **承認を待つ間に、serverが認証前の接続を閉じる流れのcaseを足す**
+   - C#が実McRemoteで見た流れ：承認を待つ間に、McRemoteが認証前のTCPを閉じた。C#は、同じ`pairing_id`の次のpollを新しいTCPで
+     送るように直した
+   - 根拠：wire「6.5」の「bridge 透明性」（pollは`pairing_id`で対応させるので、`auth.pairBegin`と`auth.pairPoll`で同じTCPを
+     保たなくてよい）。serverは認証前の上限に当たった接続を、理由を返さずに閉じる（`2026-10-07-02`）。再pairingは一接続試行に
+     一度だけ（`2026-08-30-03`）
+   - 形の例：AU-01の形で、c2で`pending`を受けた後にpeerがEOFする。clientはc3で同じ`pairing_id`のpollを続け、承認の後に
+     tokenつきのhelloへ進む。二度目の`auth.pairBegin`は送らない
+   - pollの応答を待つ間に閉じる形（`2026-11-11-01`の②④に関わる）も入れるかは、toolingが選ぶ。決める必要が出たら、決めずに返す
+   - v1のpairingのfileへ足すか、v2へ足すかは、toolingが選び、理由を返す
+
+### 進め方
+
+- 既定のbranchへのPRにして、CIが通ったら、担当がmergeしてよい。tag、Release、公開のworkflowの実行はしない
+- 1〜4のほかのcaseは変えない。直したいところが見つかったら、変えずに返す
+- 決まっていないことは、fixtureで決めない。決める必要が出たら、決めずに返す
+- 足したり変えたりしたcaseのfileの`knowledge_contract.commit`は、この依頼が入ったknowledgeのcommitにする
+
+### 返却
+
+- 実際に読んだknowledge commit、PRの番号、merge commit、CIのrun ID
+- 変えたfileの一覧（bytes、SHA-256）、足したり変えたりしたcaseのID、fileごとのcaseの数
+- 1〜4のそれぞれを、どう直したかと、その理由（3は、TypeScriptの読み方と同じか。違うなら、直したcase。4は、置いたfileと形）
+- 表せずに残したこと、決めずに返したことと、その理由
+
+### coordinatorがすること
+
+- 返却をGitHubのAPI（PR、merge commit、CI、fileのbytes）で照合し、Protocol Inventoryの共有fixtureの行を直す
+- Python、Java、Scratch、C#へ③⑤を入れる票を作り、このmerge commitへ固定し直してもらう。TypeScriptへも、固定し直しの票を作る

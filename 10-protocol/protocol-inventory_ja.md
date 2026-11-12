@@ -135,7 +135,7 @@ tooling `131f315`（fixtureは`ea7838a`と同じbytes）からcopyした。2026-
 | TypeScript | F1 v1の6本（52 caseすべて）、F1 v2の`client-bootstrap-operations-v23.2.1.json`（12 caseのうち9 caseがPASS。OP-06、OP-08、OP-11はtodoで、合格に数えない）、`client-bootstrap-v1.schema.json`、`client-bootstrap-v2.schema.json`、`block-value-v22.json`（F1の`value_refs`の範囲）、LICENSE | 10本のうち`block-value-v22.json`以外（このsliceの範囲の外） |
 | C# | F1 v1の6本（52 caseすべて）、`client-bootstrap-v1.schema.json`、`block-value-v22.json`（F1の`value_refs`の範囲）、LICENSE。取得元は`d2691cd` | 10本のうち`block-value-v22.json`以外、F1のv2（このsliceの範囲の外） |
 | McRemote | `chat-event-compat-v23.2.1.json`、`direction-lightning-v23.1.json`、`entity-particle-v23.2.1.json`、`events-v23.json`、`sign-v23.json`（5本、6つのtest class）。`chat-event-compat-v23.2.json`と`entity-particle-v23.2.json`は履歴としてcopyだけ | `block-value-v22.json`、`dimensions-v22.json`、`spawn-v22.json`（copyも無い。McRemote独自のfixtureとは別） |
-| Scratch | 10本すべて（履歴の版も、observerの投影などで使う）。どのfileも全caseを再生しているわけではない。2026-11-12に、F1の6本とschemaを`36ebe9e`で取得し、bytes、SHA-256、形、件数を確かめる | F1の対話の再生（案：browserの側で41 case、TCPに固有の7 caseはBridgeとtoolingの側） |
+| Scratch | 10本すべて（履歴の版も、observerの投影などで使う）。どのfileも全caseを再生しているわけではない。2026-11-12に、F1の6本とschemaを`36ebe9e`で取得し、bytes、SHA-256、形、件数を確かめる | F1の対話の再生（案：browserの側で41 case、TCPに固有の7 caseはBridgeとtoolingの側）。2026-11-12にhuman ownerがこの案を採った。browserの側のPASSは、直接のTCPのPASSとは別に数える |
 
 ### fixtureの中身（toolingの返却）
 
@@ -218,7 +218,8 @@ E1の5列とF1の返却で見えた、E2で分類や判断が要るもの。coor
   使い続ける（③の却下案に当たる）。ScratchとC#は、待ちもつなぎ直しも無い。TypeScriptは入れた（仮の既定値は15分、30秒、
   500ms〜30秒、5分）。F1のcaseへの指摘（F1-AU-07の観測の終わり、F1-OP-08のpairingの接続、v2の`expected`の読み方、承認を待つ間に
   認証前のTCPが閉じる流れ）は、`00-hub/polyglot-f1-e2-ops-fixture-instructions_ja.md`の「返却と照合（2026-11-12）」。どちらも
-  hub NOTES 2026-11-12の「多言語Client LibraryのE2を各clientへ入れる」の行
+  hub NOTES 2026-11-12の「多言語Client LibraryのE2を各clientへ入れる」の行。2026-11-12に、human ownerがこの4つをtoolingへ頼む
+  と決めた（同じfileの「追加の依頼：F1のcaseの補い（2026-11-12）」）
 
 ## Phase D：開発体験
 
