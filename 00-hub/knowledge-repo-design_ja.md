@@ -38,7 +38,7 @@ knowledge の文書を「LLM 向け／人間向け」という読者一軸で分
 
 ## 4. Surface と同期
 
-Git repository が system of record。claude.ai Project や NotebookLM は snapshot / projection であり、食い違えば repository が正しい。snapshot から確定が生まれた場合は固定搬送票で repository 側へ戻し、ID 採番・stage・commit は live repository を所有する surface が行う。
+Git repository が system of record。claude.ai Project はセッションごとの読み取り専用 clone、NotebookLM は projection であり、食い違えば repository が正しい。そこから確定が生まれた場合は固定搬送票で repository 側へ戻し、ID 採番・stage・commit は live repository を所有する surface が行う。
 
 projection は読者、テーマ、現在地、作業に合わせて生成する。projection 自体を第二の正本にしない。
 

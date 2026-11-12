@@ -1,43 +1,42 @@
 # claude.ai プロジェクト運用ガイド
 
-claude.ai 側のプロジェクト（マイクラリモコンのナレッジ）を、このリポと共存させて運用するための手引き。**正本はこのリポ、claude.ai はその下流（スナップショット）。**
+claude.ai 側のプロジェクト（マイクラリモコンのナレッジ）を、このリポと共存させて運用するための手引き。**正本はこのリポ、claude.ai はセッションごとに clone して読む読み取り専用の surface。**
 
 ## 0. プロジェクトは1つに（規模が変わるまで）
 
 claude.ai プロジェクトは**スコープで分けず、リポ全体を1プロジェクトで運用する**。
 
 - 理由: このプロジェクトの価値は横断（protocol が plugin/python/scratch にまたがる、結節点 `debug-session-design` 等）。スコープ分割は AI が一度に見られる文脈を1スライスに狭め、**いちばん効かせたい横断文脈を切り落とす**。
-- claude.ai プロジェクトはフラットで相互参照不可（`knowledge-repo-design_ja.md` §4）。分けると `DECISIONS` の横断ログを片方から見られず、ハブ&スポークが崩れる。
-- 容量上限に達していない間は、手動同期の差し替え先を増やさない意味でも1つが有利。
 - 分けても真実の源は割れない（正本はリポ単一）。分割コストは情報の分断ではなく**文脈の分断**で、それがこの横断重視プロジェクトでは一番痛い。
 
 ### 将来、分割を考える合図
 
-- ナレッジが容量上限に当たったとき。切れ目は**番号スキームに従う**：`00-hub`＋`10番台`（protocol/plugin/python/scratch/evidence、相互参照が濃い）は一緒に残し、比較的独立した `20-教材` / `30-広告宣伝` から切り出す。
 - あるスコープが別の協力者・別読者を持つ独立ワークストリームになり、開発コアとほぼ交わらなくなったとき。
 - 分割する場合は、各プロジェクトの instructions に「**横断決定の正本は単一リポの `00-hub/DECISIONS_ja.md`**」を必ず明記する。
 
-## 1. 現状の同期方式（手動）
+## 1. 読み方：作業領域への clone
 
-MCP の GitHub コネクタは**未設定**。当面は手動の往復で運用する。
+claude.ai は、knowledge repository を Project Knowledge へ同期せず、会話ごとに作業領域へ clone して読む（`2026-11-12-04`）。
 
-- **リポ → claude.ai**：リポを変更・コミットしたら、claude.ai のプロジェクトナレッジの該当ファイルを手動でアップロード差し替え。
-- **claude.ai → リポ**：claude.ai の会話で決定や新文書が生まれたら、手でダウンロード（コピー）してリポに反映 → コミット。
-- claude.ai の回答は常に「**最後にアップロードした時点のスナップショット基準**」と意識する。
+- **会話の最初**：作業領域に clone が無ければ `git clone --depth 1 https://github.com/Naohiro2g/mc-remote-knowledge.git`、あれば `git pull` する。読んだ commit を、答えの根拠として示す。
+- **失敗したら**：clone や pull が通らなかったことを、まず人間へ伝える。
+- **最近の変更を見るとき**：`--depth 1` の clone には最新の commit しかない。`git fetch --deepen=<n>` で深くしてから `git log` を見る（`2026-06-18-12`）。
+- **作業領域に書いたもの**は、チャットとともに消える。claude.ai は repository へ書かず、確定は確定搬送票で repository-owning surface へ渡す（§7）。
+- **Project Knowledge** は、repository の外の資料（PDF など）だけの置き場にする。
 
-## 2. instructions と knowledge の振り分け
+## 2. instructions と読む範囲
 
-claude.ai プロジェクトには「常時効く instructions」と「参照される knowledge」がある。役割で分ける。
+claude.ai Project の instructions 欄には、`00-hub/claude-ai-instructions_ja.md` の中身を貼る。読む範囲は次の表を正本とし、instructions はここを指す。
 
-| 区分 | 置き場 | 中身 |
-| --- | --- | --- |
-| 運用ルール（常時効かせる） | Project の instructions 欄 | `00-hub/claude-ai-instructions_ja.md` の中身を貼る |
-| 設計記録（参照する） | project knowledge | 各スポークの `_ja.md` 設計記録（README を除く）＋ `00-hub/*` ＋ 全体像参照用に `CLAUDE.md` |
-| 実装スナップショット | 原則載せない | 実装議論時のみ、対象 dev リポの固定 commit から必要範囲を選択的に参照する |
+| 区分 | 範囲 |
+| --- | --- |
+| 最初に読む | `00-hub/INDEX_ja.md`、`00-hub/claude-ai-guide_ja.md` |
+| 必要なときに読む | `00-hub/DECISIONS_ja.md`／`NOTES_ja.md`（ID・キーワードで該当行を探す）、票を出すときの `00-hub/dev-repo-protocol_ja.md`、各スポークの設計文書と README、`CLAUDE.md`、`20-教材/`、`30-広告宣伝/`、`14-evidence/` の INDEX・設計文書・`records/` |
+| 既定で読まない | `14-evidence/artifacts/`・`raw/`（依頼されたとき、または特定の record が参照する artifact を照合するときだけ）、`.vscode/` などの設定ファイル |
+| 実装スナップショット | 原則読まない。実装議論のときだけ、対象 dev リポの固定 commit から必要範囲を読む |
 
-- **`CLAUDE.md` は instructions 欄には貼らない**（`@import`・git 等の Code 固有指示が claude.ai を誤誘導する）。instructions は翻案版 `claude-ai-instructions_ja.md` を使う。ただし**全体像把握の参照として knowledge には入れてよい**（Code 固有指示は claude.ai には当てはまらない、と理解する）。
-- **README は claude.ai に上げない**（リポ/IDE のフォルダ道案内用。フラット名前空間では `README_ja.md` が全スポークで名前衝突する）。**例外として `00-hub/README_ja.md`（ディレクトリ索引）だけ上げる**。
-- ディレクトリの番号接頭辞をそのまま反映すれば、リポと 1:1 で見通せる（ファイル名はトピック-ジャンル `<topic>-<genre>_ja.md`）。
+- instructions 欄には未公表の文字数上限がある。2026-07 に一度、上限で書き込めなかった。詳しいことはこのガイドに置き、instructions は薄いポインタに保つ。
+- **`CLAUDE.md` は instructions 欄には貼らない**（`@import`・git 等の Code 固有指示が claude.ai を誤誘導する）。全体像の参照として読むのはよい（Code 固有指示は claude.ai には当てはまらない、と理解する）。
 
 ## 3. 更新ループ
 
@@ -47,24 +46,22 @@ claude.ai プロジェクトには「常時効く instructions」と「参照さ
 ②リポに書く（該当スポーク＋横断なら 00-hub/DECISIONS_ja.md に1行）
    ↓
 ③repository-owning surface でコミット／push
-   ↓
-④claude.ai のナレッジを差し替え（手動アップロード）
 ```
 
-最大の落とし穴は ①②間の「**転記ギャップ**」。snapshot-only surface で出た結論を書き戻し忘れると消える。検証可能な repository-owning surface へ搬送し、②③まで閉じる。
+最大の落とし穴は ①②間の「**転記ギャップ**」。読み取り専用 surface で出た結論を書き戻し忘れると消える。検証可能な repository-owning surface へ搬送し、②③まで閉じる。
 
 ## 4. 共存・競合のベストプラクティス
 
-- **書き込み口を一本化**：同時に複数 surface から repository を書かない。claude.ai Project は現状 snapshot-only とし、repository-owning surface へ搬送する。
+- **書き込み口を一本化**：同時に複数 surface から repository を書かない。claude.ai Project は読み取り専用（clone）とし、repository-owning surface へ搬送する。
 - **IDE 間（VS Code / IntelliJ）は同じローカルリポ＝同じ作業ツリー**。2つで同時に書かせない、切り替え前にコミット、複数 PC は push/pull 規律（GitHub が待ち合わせ点）。
 - **自動メモリの分裂に注意**：claude.ai の自動生成メモリと repository の正典は別物（`00-hub/knowledge-repo-design_ja.md` §4）。効かせたいことは必ずファイルに。
 
 ## 5. 役割分担
 
-| | repository-owning surface | claude.ai Project（snapshot-only） |
+| | repository-owning surface | claude.ai Project（読み取り専用、clone） |
 | --- | --- | --- |
 | 向く作業 | 決定の記録、構成変更、リポに残る文書の起草、コミット | 設計の壁打ち、全ナレッジ横断の検討、記事ドラフト、外出先/モバイル |
-| 強み | 決定→記録→コミットをその場で閉じる | 知識が常時文脈に入る／ローカル環境不要 |
+| 強み | 決定→記録→コミットをその場で閉じる | main の HEAD をパス指定で読める／ローカル環境不要 |
 
 最優先価値が「判断理由を残す」である以上、検証可能で repository に着地できる surface は転記ギャップが少ない。
 
@@ -75,6 +72,8 @@ MCP の GitHub コネクタ＋トークンを設定すると、claude.ai から�
 - **トークンは絞る**：Fine-grained PAT、対象は本リポのみ、権限は Contents: Read/write のみ、有効期限は短め（`00-hub/llm-agent-boundary-guide_ja.md` §3 準拠）。実値はファイルに書かない。
 - 直接 write が可能になっても、**単一書き込み口の規律は維持**（同時書き込みを避ける）。claude.ai が DECISIONS に直接1行追記できるようになれば転記ギャップは消える。
 - 導入したら本ガイド §1、knowledge-repo-design §4/§6、DECISIONS を更新する。
+
+読む側は、token なしの public clone で満たされた（§1、`2026-11-12-04`）。この節は、直接 write を入れるときの方針として残す。
 
 ## 7. セッション・ループ（往来は自由・着地は固定）
 
@@ -160,8 +159,6 @@ step/status の正典語と machine key は [terms-glossary_ja.md](terms-glossar
 ④着地確認依頼を元リポへ戻し、元リポ側で着地を確認する
    ↓
 ⑤取り組んだ未決を捕捉から落とす（ライフサイクル c）
-   ↓
-⑥claude.ai のナレッジを差し替え（手動同期）
 ```
 
 人間が運ぶ部分で迷い・要約揺れ・コピペ漏れが入りやすいので、dev repo 側からは正本の固定ブロックをそのまま渡す。
@@ -170,7 +167,7 @@ step/status の正典語と machine key は [terms-glossary_ja.md](terms-glossar
 票の本文（フィールド一覧）は [dev-repo-protocol](dev-repo-protocol_ja.md) の `確定搬送票` ブロックを唯一の正本とし、
 ここには再掲しない（DECISIONS `2026-07-21-06`）。4 dev リポの bootstrap が同ファイルの runtime marker を直接取得する
 ため、本文を二箇所に置くと片方だけ更新された票が流通し、着地側の照合が崩れる。書式が要るときは正本を読む。
-claude.ai サーフェスでは、同ファイルがプロジェクトナレッジに入っていることがこのリンクの解決条件になる（同期は手動）。
+claude.ai サーフェスでは、作業領域の clone から同ファイルを読めることがこのリンクの解決条件になる（`2026-11-12-04`）。
 
 `根拠/検証` は test evidence class を明記する。`unit/deterministic` はテストコード＋PASS コマンド＋commit で足りる。
 `live-auto` は protocol ratify / release gate の根拠に使う回だけ transcript を保存する。`live-human`
@@ -206,7 +203,7 @@ hub `NOTES_ja.md` / `DECISIONS_ja.md` へ移す。`/compact` は、必要な NOT
 
 ### どこでやるか（再掲）
 
-| | repository-owning / 検証可能 surface | snapshot-only surface |
+| | repository-owning / 検証可能 surface | 読み取り専用 surface |
 | --- | --- | --- |
 | 向く | 確定の書き戻し・実装依存（検証要）の判断・コミット | 壁打ち・横断検討・記事ドラフト・外出先 |
 | Gate | 対象を検証できれば確約へ進める | 実装依存を検証できなければ確約に落とさず park または検証可能 surface へ |
