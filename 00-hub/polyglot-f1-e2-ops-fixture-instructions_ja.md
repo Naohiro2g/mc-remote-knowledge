@@ -183,3 +183,38 @@ minecraft-remote-tooling PR #9（head `ee61d3ee87dbb928c4307efb5e201259c2b8bd02`
 
 - 返却をGitHubのAPI（PR、merge commit、CI、fileのbytes）で照合し、Protocol Inventoryの共有fixtureの行を直す
 - Python、Java、Scratch、C#へ③⑤を入れる票を作り、このmerge commitへ固定し直してもらう。TypeScriptへも、固定し直しの票を作る
+
+## 追加の依頼の返却と照合（2026-11-12）
+
+toolingは、knowledge `cd2ba766576215924ef2e8182b100c6be8c78aaf`（この依頼が入ったcommit）を読んだ。coordinatorはGitHubのAPIで、
+PR、merge commit、CI、fileのbytesを確かめた。
+
+- PR #10（head `5bc03b3a06e0f6e3282d7030bcb62d4bd8ebade4`、base `0d120e5ea1942178983fd0496827df7e7976f4e8`）→ merge
+  `335c604f859d6dfad04f0434bfa4eb6445761430`。mergeの木はheadと同じ。CIはPR `43232567228`、merge後`43233077818`で、どちらも成功
+- case：v1は54（pairingが12）、v2は12。変えたのはF1-OP-08だけで、足したのはF1-AU-11、12。ほかの63 caseはbaseと同じ（AU-07、
+  OP-04、06を含む）。pairingとoperationsのfileの`knowledge_contract.commit`は`cd2ba76`。schemaは、受け付けるcommitに`cd2ba76`を
+  足しただけで、版も形も変わらない
+
+| file（`packages/protocol/`から） | bytes | SHA-256 |
+| --- | ---: | --- |
+| `CLIENT_BOOTSTRAP_V2_ja.md` | 17,029 | `d191a2cbea02c28b5793708c52837a238d267eee8adb18bada26ae664c064106` |
+| `README.md` | 15,073 | `e0937bbeb20e6ab49612aebf3f0a68b65e1f8d097986892bd493eeabbacdb89d` |
+| `test/client-bootstrap-operations-fixture.test.ts` | 6,822 | `b1801487462de860bfa96eba5f296775803db1c66917d74e292ededea28180fc` |
+| `test/client-bootstrap-owner-fixture.test.ts` | 11,537 | `6e4834eada15f0fe558ff9fa45ed9246606eba2c07b4c92e268a533e0b8e5e0e` |
+| `test/fixtures/client-bootstrap-operations-v23.2.1.json` | 66,335 | `8309f5847ad69aa2d82fcbcb1726918c3a69ba875e04e8f38678352b06b7f7a1` |
+| `test/fixtures/client-bootstrap-pairing-v23.2.1.json` | 45,943 | `19230b310c7482adc740095d5604110937ebaa7803a0fed4c294083a9e63a460` |
+| `test/fixtures/client-bootstrap-v1.schema.json` | 11,521 | `970dd68999edc14a4dcc2b67ab2f712e830b7841b2ec4548fee66af117fd281b` |
+| `test/fixtures/client-bootstrap-v2.schema.json` | 19,468 | `8ae1c7313d01fa0fa24f4f2079ba453129dc16b678342df6f7ef66b9255d1381` |
+
+- 1（AU-07）：READMEの「AU-07／AU-12の観測の終わり」に書いた。AU-07は、tokenを捨ててc1がEOFになるまでを見る。その後clientが
+  次の接続を始めても、余分な送信として失敗にしない。runnerは、snapshotを比べた後に片付ける。fixtureは変えていない
+- 2（OP-08）：c1で`auth_required`の後にpeerが閉じ、c2でpairingする形にした。期限の時計はc2に結びつける。c2を閉じるかは決めない
+  ので、c2の`state`は省く。v2の説明の例も直した
+- 3（v2の`expected`）：TypeScriptの読み方と同じ。v2の説明の「expectedの欄」に、8つの欄ごとに、対応させるkey、余分な行、順番、
+  省いた欄の扱いを書いた。OP-04、06は変えていない
+- 4（承認待ちのEOF）：今のopsで表せるので、v1のpairingのfileへ足した。F1-AU-11は、pendingの後のEOFを越えて、同じpairingのpollを
+  新しいTCPで続け、tokenつきのhelloまで進む。`auth.pairBegin`は接続試行の全体で1回。F1-AU-12は、pollの応答の前にEOFになり、
+  そのpollを完了不明として終えるところまで
+- 決めずに返したこと：AU-12の先（応答を失ったpollの後に次のpollを送ってよいか、④の再送に当たるか）。`2026-11-12-05`で決めた。
+  次のpollはpollの続きで、④の再送に当たらない。F1は、この続きをまだcaseにしていない（hub NOTES 2026-11-12の「多言語Client
+  LibraryのE2を各clientへ入れる」の行）

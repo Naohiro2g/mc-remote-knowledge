@@ -11,7 +11,8 @@ Protocolの各methodと、methodでない能力を、どのcomponentが投影し
   6本（44 case）が加わり、送受信の順を再生するcase（scripted peer）ができた（下の「F1のfixture」）。同じ日に、
   `protocol_mismatch`の決定（`2026-11-10-01`）に合わせてF1-HE-10が加わり、45 caseになった。2026-11-11に、E2の決定
   （`2026-11-11-01`）に合わせて3 caseを直し、F1-AU-08〜10が加わって48 caseになった。2026-11-12に、F1-HE-11、12、F1-CL-07、08が
-  加わってv1が52 caseになり、新しいopsを使うv2の`client-bootstrap-operations-v23.2.1.json`（12 case）が加わった
+  加わってv1が52 caseになり、新しいopsを使うv2の`client-bootstrap-operations-v23.2.1.json`（12 case）が加わった。同じ日に、
+  F1-AU-11、12が加わってv1が54 caseになり、F1-OP-08を直した（tooling `335c604`）
 - McRemoteの列は、serverがそのmethodや能力を受けて処理すること。Scratchの列は、blockや拡張機能への投影があること
 - TypeScriptの列（2026-11-11）は、最初の縦sliceの返却の案を写す。ほかのmethodは`call(method, params)`で直接呼べるが、
   投影は無いので「なし」とした。「返却に無い」は、担当の案に行が無かったもの
@@ -33,7 +34,7 @@ Protocolの各methodと、methodでない能力を、どのcomponentが投影し
 | TypeScript | 2026-11-11 返却 | `Naohiro2g/minecraft-remote-typescript` `9984d1a71b554aa62fa176661c15b2671f306353`（PR 2）。列の案は返却票の「8. E1の列の案」。照合は`00-hub/polyglot-typescript-start-instructions_ja.md`の「返却と照合（2026-11-11）」（protocol `23.2.1`）。2026-11-12に`2b59c5a6e6f2401148f4c79af108b7a6b1f9aba2`（PR 3）で`36ebe9e`へ、`f8af802a813c81ad99631e5eb5454de04ae8ae2e`（PR 4）で`0d120e5`へ固定し直した |
 | 共有fixture（F1のE2） | 2026-11-11 返却 | `Naohiro2g/minecraft-remote-tooling` `36ebe9e63e4f0afcf949eae998832f68209b8119`（PR 7）。F1-CL-03／05に`local_failures`、F1-AU-07の前提、F1-AU-08〜10。照合は`00-hub/polyglot-f1-e2-fixture-instructions_ja.md`の「返却と照合（2026-11-11）」 |
 | Java（F3） | 2026-11-10 返却 | `Naohiro2g/minecraft-remote-java` `e35144cd44f0622a7df1164e95960f1f44636435`の`docs/polyglot-f3_ja.md`（PR 2）。2026-11-11に`dc8992324122611a579f66219a43c88d480fa844`（PR 3）で`ea7838a`へ固定し直した。2026-11-12に`223ef287f1cb17a7b2cdbf619d08d0ffd7a17e37`（PR 4）で`36ebe9e`へ固定し直した（`docs/polyglot-f1-e2_ja.md`） |
-| 共有fixture（F1のops） | 2026-11-12 返却 | `Naohiro2g/minecraft-remote-tooling` `d2691cdafb3b7548a4c26960184266c44bfcbd93`（PR 8。v1にF1-HE-11、12、F1-CL-07、08）と`0d120e5ea1942178983fd0496827df7e7976f4e8`（PR 9。v2のschemaと`client-bootstrap-operations-v23.2.1.json`、形の説明は`packages/protocol/CLIENT_BOOTSTRAP_V2_ja.md`）。照合は`00-hub/polyglot-f1-e2-ops-fixture-instructions_ja.md`の「返却と照合（2026-11-12）」 |
+| 共有fixture（F1のops） | 2026-11-12 返却 | `Naohiro2g/minecraft-remote-tooling` `d2691cdafb3b7548a4c26960184266c44bfcbd93`（PR 8。v1にF1-HE-11、12、F1-CL-07、08）と`0d120e5ea1942178983fd0496827df7e7976f4e8`（PR 9。v2のschemaと`client-bootstrap-operations-v23.2.1.json`、形の説明は`packages/protocol/CLIENT_BOOTSTRAP_V2_ja.md`）。照合は`00-hub/polyglot-f1-e2-ops-fixture-instructions_ja.md`の「返却と照合（2026-11-12）」。`335c604f859d6dfad04f0434bfa4eb6445761430`（PR 10。v1にF1-AU-11、12、F1-OP-08の形、AU-07とv2の`expected`の説明）。照合は同じfileの「追加の依頼の返却と照合（2026-11-12）」 |
 | C# | 2026-11-12 返却 | `Naohiro2g/minecraft-remote-csharp` `bbca1e44dd0e6defc1092d1d47f956918904658e`（PR 3）。列の案は`1f069dc321dbb3534447584946ec2cfd7912a289`（PR 4）の`docs/polyglot-e1_ja.md`。照合は`00-hub/polyglot-csharp-start-instructions_ja.md`の「返却と照合（2026-11-12）」（protocol `23.2.1`） |
 | Scratch（F1の取得） | 2026-11-12 返却 | `Naohiro2g/scratch-editor` `d9a7ec6e825d1a5602db57577009c28830ad0016`（PR 33）の`docs/polyglot-f1-e2_ja.md`。F1の取得元を`36ebe9e`に固定した（testにはつないでいない）。照合は`00-hub/polyglot-f1-e2-repin-instructions_ja.md`の「返却と照合（2026-11-12）」 |
 
@@ -168,11 +169,11 @@ browserのWebSocketの境界とは分ける。tokenはfixture用の値。
 | --- | ---: | --- |
 | `client-bootstrap-framing-v23.2.1.json` | 7 | UTF-8の1行、文字の途中での分割、複数行の一括受信、未完の末尾、LFまでは未完、JSONでない行、idの対応 |
 | `client-bootstrap-hello-v23.2.1.json` | 12 | tokenつきhello、最小のhello、完全なparams、応答の版5つの互換判定、`protocol_mismatch`の受信（code `-32000`のF1-HE-09と、`-32600`のF1-HE-10。HE-10は`ea7838a`で追加）、互換でないと判定した後にclientが閉じる（F1-HE-11、12。`d2691cd`で追加） |
-| `client-bootstrap-pairing-v23.2.1.json` | 10 | `auth_required`→pending→承認→tokenつきhello、`pair_expired`、`pair_not_found`、知らない`token_type`、helloの`permission_denied`、tokenの再利用、無効なtoken。認証reasonの後のtokenなしのhello（F1-AU-08、09）、pairingの後にまた拒まれる（F1-AU-10）。AU-08〜10は`36ebe9e`で追加 |
+| `client-bootstrap-pairing-v23.2.1.json` | 12 | `auth_required`→pending→承認→tokenつきhello、`pair_expired`、`pair_not_found`、知らない`token_type`、helloの`permission_denied`、tokenの再利用、無効なtoken。認証reasonの後のtokenなしのhello（F1-AU-08、09）、pairingの後にまた拒まれる（F1-AU-10）。AU-08〜10は`36ebe9e`で追加。承認を待つ間のEOFの後も、新しい接続で同じpairingのpollを続ける（F1-AU-11）、pollの応答の前のEOFで、そのpollを完了不明にする（F1-AU-12）。AU-11、12は`335c604`で追加 |
 | `client-bootstrap-blocks-v23.2.1.json` | 12 | set→get（namespace、state）、`unknown_block`、`unknown_property`、`invalid_property_value`、`invalid_params` |
 | `client-bootstrap-errors-v23.2.1.json` | 3 | JSON-RPC errorの外枠、dataを保つこと、未知のreason |
 | `client-bootstrap-close-v23.2.1.json` | 8 | 正常なclose、応答の後のEOF、行の途中のEOF、つながらない、応答待ちのrequestがあるEOF、新しい接続でのhello。行の途中のEOFと応答待ちのあるEOFは、`36ebe9e`で`local_failures`（完了不明）を期待する。LFの無い末尾のままのEOF（F1-CL-07）と、自分で閉じた時の応答待ち（F1-CL-08）は`d2691cd`で追加 |
-| `client-bootstrap-operations-v23.2.1.json`（v2） | 12 | socketのerror、③の期限と途中の受信、④、⑤のつなぎ直し（buildの復元、つなぎ直せなかった呼び出し、旧FASTとflush、非互換、handleとcursorの失効、`auth_required`で止まる、一回にまとめる）、⑧、生存確認で切れた後。`0d120e5`で追加。applicationの呼び出しとその結果、timeoutに対する分数で進める仮想の時計を、v2のopsで表す |
+| `client-bootstrap-operations-v23.2.1.json`（v2） | 12 | socketのerror、③の期限と途中の受信、④、⑤のつなぎ直し（buildの復元、つなぎ直せなかった呼び出し、旧FASTとflush、非互換、handleとcursorの失効、`auth_required`で止まる、一回にまとめる）、⑧、生存確認で切れた後。`0d120e5`で追加。applicationの呼び出しとその結果、timeoutに対する分数で進める仮想の時計を、v2のopsで表す。`335c604`で、OP-08をc2でpairingする形へ直した |
 
 - 既存の10本とLICENSEはbytesが変わっていない。`client-bootstrap-v1.schema.json`とtoolingのowner test（52件）が、形と参照を確かめる
 - toolingが「未確定」とした点：承認を拒む専用の応答（`pair_denied`）は契約に無い。`protocol_mismatch`のdataの欄の名前
@@ -182,7 +183,7 @@ browserのWebSocketの境界とは分ける。tokenはfixture用の値。
 - F3：PythonとJavaが、CIで44 caseをすべて通し、実McRemoteとのpulseを1本ずつ通した（2026-11-10、`00-hub/polyglot-f3-instructions_ja.md`の
   「返却と照合（2026-11-10）」）。45 caseへの固定し直しは次のPR
 - 2026-11-12の取得元：Python、Java、Scratchは`36ebe9e`（48 case）、TypeScriptは`0d120e5`（v1の52 caseと、v2の12 caseのうち9）、
-  C#は`d2691cd`（52 case）
+  C#は`d2691cd`（52 case）。toolingの今のmainは`335c604`（v1の54 case、v2の12 case）で、③⑤の票で各clientをここへ固定し直す
 
 ## E2への入力（2026-11-10）
 
@@ -219,7 +220,8 @@ E1の5列とF1の返却で見えた、E2で分類や判断が要るもの。coor
   500ms〜30秒、5分）。F1のcaseへの指摘（F1-AU-07の観測の終わり、F1-OP-08のpairingの接続、v2の`expected`の読み方、承認を待つ間に
   認証前のTCPが閉じる流れ）は、`00-hub/polyglot-f1-e2-ops-fixture-instructions_ja.md`の「返却と照合（2026-11-12）」。どちらも
   hub NOTES 2026-11-12の「多言語Client LibraryのE2を各clientへ入れる」の行。2026-11-12に、human ownerがこの4つをtoolingへ頼む
-  と決めた（同じfileの「追加の依頼：F1のcaseの補い（2026-11-12）」）
+  と決めた（同じfileの「追加の依頼：F1のcaseの補い（2026-11-12）」）。toolingが`335c604`で直した。F1-AU-12の先（応答を失った
+  pollの後のpoll）は`2026-11-12-05`で決めた
 
 ## Phase D：開発体験
 

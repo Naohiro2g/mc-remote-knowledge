@@ -909,6 +909,10 @@ token の入手＝ペアリング。**hello の前段の独立メソッド `auth
   clientは「承認されなかったか、期限が切れた」と案内する（`2026-11-11-01`①）。
 - **clientが判断した期限切れ**：clientが`expires_in`を過ぎたと判断して止めるときは、`pair_expired`と同じ意味と案内で扱えるように
   し、serverのerrorの形（codeとreason）は作らない。serverが言ったのか、clientが判断したのかが分かるようにする（`2026-11-11-01`⑧）。
+- **pairingの途中で接続が切れたとき**：期限内なら、clientは同じ`pairing_id`の次のpollを新しい接続で送り、pairingを続ける
+  （上の「bridge 透明性」）。応答の前に切れたpollは完了不明として終え、次のpollはその送り直しではなく、pollの続きとして扱う
+  （`2026-11-11-01`④の「自動で再送しない」に当たらない）。続けたpollが`pair_not_found`などで失敗したら、二度目のpairingは
+  せずapplicationへ失敗を返す（`2026-08-30-03`、`2026-11-12-05`）。
 - **非規範（クライアント実装の目安・ratify 対象外）**：poll 間隔 ≈1–2s、poll の timeout は `pairBegin` が返す `expires_in`（`pair_code` TTL・≈120s）。`pairing_id` はクライアント in-memory 保持でよい（リロードで破棄＝ユーザーは接続ブロックを再実行）。
 
 ### 6.6 credential 管理（確定 `2026-08-02-01`）
