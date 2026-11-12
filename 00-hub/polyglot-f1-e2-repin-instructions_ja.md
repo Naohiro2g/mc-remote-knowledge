@@ -207,6 +207,7 @@
 ### 次にすること
 
 - ③⑤を入れる票（Python、Java、Scratch、C#）：各clientの案は上のとおり。TypeScriptの形を参考に並べる
+  - 2026-11-12：出した（`00-hub/polyglot-e2-reconnect-instructions_ja.md`。TypeScriptの固定し直しも同じ票）
 - Scratchの⑦と、F1をtestにつなぐ案は、human ownerが決める
   - 2026-11-12：human ownerが決めた。⑦は入れる。⑧（同じく案で返った）も入れる。F1は担当の案のとおりbrowserの側でつなぎ、
     直接のTCPのPASSとは別に数える。TCPに固有のcaseは、BridgeとtoolingのTCPの側。どれも③⑤の票でScratchへ頼む
