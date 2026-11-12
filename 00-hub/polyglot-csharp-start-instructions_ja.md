@@ -108,3 +108,53 @@ TypeScriptの担当が、F1と契約だけでは足りないと返したもの�
 - 返却を、GitHubのAPI（PR、merge commit、CI、fixtureのbytes）で照合し、Protocol InventoryにC#の列を足す
 - `18-csharp-client/README_ja.md`の「現在地」を直す
 - toolingが直したF1のmerge commitを伝える
+
+## 返却と照合（2026-11-12）
+
+C#担当はknowledge `076a127a22eaf0188c1d13822bfd55bfeee9ec38`を読んだ（この票の本文は今と同じ）。2つのPRを、担当が2026-11-12に
+mergeした。coordinatorはGitHubのAPIで、PR、merge commit、CI、fixtureのcopyを確かめた。CIのlogは取得が失敗したので、test数は
+担当の返却による。
+
+### 最初の縦slice（PR #3）
+
+- minecraft-remote-csharp PR #3（head `dca92b84899805bfd234e41cae93c8842a95ce3c`、base `9b623c9b1cd0d5b344bd958586af3897f6a19b9b`、
+  26 file）をmerge commit `bbca1e44dd0e6defc1092d1d47f956918904658e`でmergeした。CIはPRのrun `43094217375`、merge後のrun
+  `43094376844`とも成功。71 testが通り、fail 0、skip 0、build警告0
+- fixture：tooling `36ebe9e`の9 file（F1の6本、schema、`block-value-v22.json`、LICENSE）を`tests/MinecraftRemote.Client.Tests/Fixtures/`
+  にcopyした。coordinatorは9 fileが`36ebe9e`の同じfileとGit blobで一致することを確かめた。F1は48 case、48 PASS。空のstubで
+  落ちることを見てから足した
+- Client APIの案：`MinecraftClient.ConnectAsync`、`SetBlockAsync`、`GetBlockAsync`、低水準の`RequestAsync`、`CloseAsync`と
+  `DisposeAsync`（`await using`）。serverのerrorは`RemoteErrorException`（code、元のmessage、data、知らないreasonを保つ。
+  `IsProtocolMismatch`はreasonで判定し、`server`と`client_requires`を読める）。localな失敗は`ProtocolCompatibilityException`、
+  `PairingRequiredException`、`PairingExpiredException`、`ConnectionFailedException`、`RequestNotSentException`、
+  `CompletionUnknownException`で、codeとreasonを作らない。credentialは`ICredentialStore`を接続の時に差し込み、`NoCredentialStore`
+  （既定）と`InMemoryCredentialStore`。削除は、拒まれたtokenと一致するときだけ（別の接続が保存した新しいtokenを消さない）。
+  全体は同じcommitの`docs/client-api_ja.md`
+- Unity：依存はNewtonsoft.Json 13.0.4だけ（netstandard2.0のasset）。repoの外のUnity 6000.6.8f1に、作ったDLLを入れ、loopbackのTCPで
+  hello、setBlock、getBlock、closeを確かめた。IL2CPP、mobile、Web、UPMでの配布は確かめていない。内部の`await`は
+  `ConfigureAwait(false)`で、callbackはbackgroundのthreadから呼ばれうるので、UnityのUIはmain threadへ戻す
+- ③⑤：入れていない。案は`ClientOptions.ResponseIdleTimeout`と呼び出しごとの`RequestOptions.ResponseIdleTimeout`、
+  `ClientOptions.AutoReconnectEnabled`（既定true）、`ConnectionRestored`の通知。つなぎ直しで認証が要れば、pairingせずにcallerへ返す
+- pulse（live-auto相当）：2026-11-12、Paper 1.21.11（build 132）、McRemote `2321.1.0`。`examples/FirstBlock/Program.cs`で、tokenなしの
+  helloからpairing（human ownerがMinecraftの中で承認）、hello、金のブロックを置いて読み戻し、close。PASS。`NoCredentialStore`で
+  tokenを保存しない。置いたブロックは、human ownerの指示で残した
+- 実機で見つかったこと：承認を待つ間に、McRemoteが認証前のTCPを閉じた。C#は、同じ`pairing_id`の未送信のpollだけを新しいTCPで
+  続けるように直し、回帰testを足した（wire「6.5」の「同じTCPを保たなくてよい」のとおり）。F1にこの流れのcaseは無い
+- TypeScriptの返却で、C#のために足りないとされたもの：`auth.pairBegin`の`client`は、helloと同じ情報を必ず付ける。期限とpollの
+  順は、F1-AU-02（期限の後のpollにserverが`pair_expired`）をそのまま通し、公開の`ConnectAsync`はpollの前に単調な時計で期限を
+  見て`PairingExpiredException`にする（serverのerrorを作らない）。行末のCRは、CRLFのCRをJSONの行末の空白として受け、CRだけでは
+  区切らない。credentialのkeyは、applicationId、sessionId、tcp、小文字にしたliteralのhost、portの組。F1に無かった流れは、
+  F1-AU-08〜10と、HE-04、05を使う担当のunit testで確かめた
+- 違うと思ったcase：無し。Protocolで決めるべき違い：Python、Java、TypeScriptを調べていないので、無し
+- E1の列の案：同じcommitの`docs/polyglot-e1_ja.md`。method「あり」はhello、`world.setBlock`、`world.getBlock`、`auth.pairBegin`、
+  `auth.pairPoll`。Protocol InventoryにC#の列を足した
+
+### F1の固定し直し（PR #4）
+
+- toolingの票（`00-hub/polyglot-f1-e2-ops-fixture-instructions_ja.md`）の1のmerge commit `d2691cd`を伝えた。PR #4（head
+  `96b93665638e34b322a2c51f1ab70c908f5760d2`、base `bbca1e4`、9 file）をmerge commit `1f069dc321dbb3534447584946ec2cfd7912a289`で
+  mergeした（`main`の先頭）。CIはPRのrun `43165286710`、merge後のrun `43165425294`とも成功。75 testが通り、skip 0
+- copyした9 fileは、tooling `d2691cd`とGit blobで一致した。v1は52 case、52 PASS。v2は使っていない
+- HE-11、12は、client自身が閉じたことによるEOF、次のrequestが無いこと、clientから来た`ProtocolCompatibilityException`を確かめる。
+  CL-07はLFの無い末尾のEOFで応答にせず完了不明、CL-08は自分で閉じた時に応答待ちをすべて完了不明にする。libraryの振る舞いは
+  変える必要が無かった

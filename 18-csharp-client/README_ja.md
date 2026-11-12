@@ -17,6 +17,10 @@ Unityは、このlibraryを使う主な場の一つである（`10-protocol/poly
 - 比べる基準: 初回stable `2321.0.0`（protocol `23.2.1`）
 - 2026-11-11：TypeScriptの最初の縦sliceが通ったので、最初の縦slice（helloからsetBlock／getBlockまで、直接のTCP）の実装を
   始める票を出した（`00-hub/polyglot-csharp-start-instructions_ja.md`）
+- 2026-11-12：最初の縦sliceが通った（PR #3、merge `bbca1e44dd0e6defc1092d1d47f956918904658e`）。F1の取得元をtooling `d2691cd`へ
+  固定し直し、v1の52 caseをCIで通した（PR #4、merge `1f069dc321dbb3534447584946ec2cfd7912a289`）。実McRemoteとのpulseと、Unity
+  6000.6.8f1でDLLが動くことを確かめた。待ち方と自動のつなぎ直し（`2026-11-11-01`③⑤）はまだ入れていない。照合は同じ票の
+  「返却と照合（2026-11-12）」
 
 ## Unityとの関係
 

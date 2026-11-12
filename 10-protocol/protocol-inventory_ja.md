@@ -10,10 +10,12 @@ Protocolの各methodと、methodでない能力を、どのcomponentが投影し
   値ベクトルがあってもmethodのparams／resultが無ければ「なし」。2026-11-06の10本は静的な入力と期待値。2026-11-10にF1の
   6本（44 case）が加わり、送受信の順を再生するcase（scripted peer）ができた（下の「F1のfixture」）。同じ日に、
   `protocol_mismatch`の決定（`2026-11-10-01`）に合わせてF1-HE-10が加わり、45 caseになった。2026-11-11に、E2の決定
-  （`2026-11-11-01`）に合わせて3 caseを直し、F1-AU-08〜10が加わって48 caseになった
+  （`2026-11-11-01`）に合わせて3 caseを直し、F1-AU-08〜10が加わって48 caseになった。2026-11-12に、F1-HE-11、12、F1-CL-07、08が
+  加わってv1が52 caseになり、新しいopsを使うv2の`client-bootstrap-operations-v23.2.1.json`（12 case）が加わった
 - McRemoteの列は、serverがそのmethodや能力を受けて処理すること。Scratchの列は、blockや拡張機能への投影があること
 - TypeScriptの列（2026-11-11）は、最初の縦sliceの返却の案を写す。ほかのmethodは`call(method, params)`で直接呼べるが、
   投影は無いので「なし」とした。「返却に無い」は、担当の案に行が無かったもの
+- C#の列（2026-11-12）は、最初の縦sliceの返却の案を写す。`RequestAsync(method, params)`で直接呼べるだけのmethodは「なし」とした
 - 分類（E2）はまだしていない
 
 ## 返却の状況
@@ -27,76 +29,79 @@ Protocolの各methodと、methodでない能力を、どのcomponentが投影し
 | 共有fixture | 2026-11-06 返却 | `Naohiro2g/minecraft-remote-tooling` `1286eb486bcaea93c4195c11e94304bdb51f53ba`の`packages/protocol/FIXTURE_INVENTORY_ja.md`（基準は`21a2a9a`の10本。PR 2で`main`へmerge） |
 | 共有fixture（F1） | 2026-11-10 返却 | `Naohiro2g/minecraft-remote-tooling` `8264c3881bb4128c14cda6d122641ebcfa67d9c5`（PR 4）の`packages/protocol/test/fixtures/client-bootstrap-*`。形の説明は`packages/protocol/README.md`の「F1：client bootstrap の対話データ」 |
 | 共有fixture（F1の追補） | 2026-11-10 返却 | `Naohiro2g/minecraft-remote-tooling` `ea7838a78bf78947c7dde5876f6cc93b43f7e3cc`（PR 5）。F1-HE-09のdataに`server`と`client_requires`、F1-HE-10（code `-32600`）。2026-11-11に`131f3153d7ab0b01b6e00a62a8249a55c8fc2ad0`（PR 6）で、READMEに`matched_ids`の範囲を書いた（fixtureは同じ） |
-| Python（F3） | 2026-11-10 返却 | `Naohiro2g/minecraft-remote-api` `161cd68514a1fbb018811d3cfab64cb29d5ac98b`の`docs/polyglot-f3_ja.md`（PR 13）。2026-11-11に`8cb2d55db4ee2c59bee3fca2957354aed60ad126`（PR 14）で`ea7838a`へ固定し直した |
-| TypeScript | 2026-11-11 返却 | `Naohiro2g/minecraft-remote-typescript` `9984d1a71b554aa62fa176661c15b2671f306353`（PR 2）。列の案は返却票の「8. E1の列の案」。照合は`00-hub/polyglot-typescript-start-instructions_ja.md`の「返却と照合（2026-11-11）」（protocol `23.2.1`） |
+| Python（F3） | 2026-11-10 返却 | `Naohiro2g/minecraft-remote-api` `161cd68514a1fbb018811d3cfab64cb29d5ac98b`の`docs/polyglot-f3_ja.md`（PR 13）。2026-11-11に`8cb2d55db4ee2c59bee3fca2957354aed60ad126`（PR 14）で`ea7838a`へ固定し直した。2026-11-12に`9e64b492a90c967675477a495287d9080428b390`（PR 15）で`36ebe9e`へ固定し直した（`docs/polyglot-f1-e2_ja.md`） |
+| TypeScript | 2026-11-11 返却 | `Naohiro2g/minecraft-remote-typescript` `9984d1a71b554aa62fa176661c15b2671f306353`（PR 2）。列の案は返却票の「8. E1の列の案」。照合は`00-hub/polyglot-typescript-start-instructions_ja.md`の「返却と照合（2026-11-11）」（protocol `23.2.1`）。2026-11-12に`2b59c5a6e6f2401148f4c79af108b7a6b1f9aba2`（PR 3）で`36ebe9e`へ、`f8af802a813c81ad99631e5eb5454de04ae8ae2e`（PR 4）で`0d120e5`へ固定し直した |
 | 共有fixture（F1のE2） | 2026-11-11 返却 | `Naohiro2g/minecraft-remote-tooling` `36ebe9e63e4f0afcf949eae998832f68209b8119`（PR 7）。F1-CL-03／05に`local_failures`、F1-AU-07の前提、F1-AU-08〜10。照合は`00-hub/polyglot-f1-e2-fixture-instructions_ja.md`の「返却と照合（2026-11-11）」 |
-| Java（F3） | 2026-11-10 返却 | `Naohiro2g/minecraft-remote-java` `e35144cd44f0622a7df1164e95960f1f44636435`の`docs/polyglot-f3_ja.md`（PR 2）。2026-11-11に`dc8992324122611a579f66219a43c88d480fa844`（PR 3）で`ea7838a`へ固定し直した |
+| Java（F3） | 2026-11-10 返却 | `Naohiro2g/minecraft-remote-java` `e35144cd44f0622a7df1164e95960f1f44636435`の`docs/polyglot-f3_ja.md`（PR 2）。2026-11-11に`dc8992324122611a579f66219a43c88d480fa844`（PR 3）で`ea7838a`へ固定し直した。2026-11-12に`223ef287f1cb17a7b2cdbf619d08d0ffd7a17e37`（PR 4）で`36ebe9e`へ固定し直した（`docs/polyglot-f1-e2_ja.md`） |
+| 共有fixture（F1のops） | 2026-11-12 返却 | `Naohiro2g/minecraft-remote-tooling` `d2691cdafb3b7548a4c26960184266c44bfcbd93`（PR 8。v1にF1-HE-11、12、F1-CL-07、08）と`0d120e5ea1942178983fd0496827df7e7976f4e8`（PR 9。v2のschemaと`client-bootstrap-operations-v23.2.1.json`、形の説明は`packages/protocol/CLIENT_BOOTSTRAP_V2_ja.md`）。照合は`00-hub/polyglot-f1-e2-ops-fixture-instructions_ja.md`の「返却と照合（2026-11-12）」 |
+| C# | 2026-11-12 返却 | `Naohiro2g/minecraft-remote-csharp` `bbca1e44dd0e6defc1092d1d47f956918904658e`（PR 3）。列の案は`1f069dc321dbb3534447584946ec2cfd7912a289`（PR 4）の`docs/polyglot-e1_ja.md`。照合は`00-hub/polyglot-csharp-start-instructions_ja.md`の「返却と照合（2026-11-12）」（protocol `23.2.1`） |
+| Scratch（F1の取得） | 2026-11-12 返却 | `Naohiro2g/scratch-editor` `d9a7ec6e825d1a5602db57577009c28830ad0016`（PR 33）の`docs/polyglot-f1-e2_ja.md`。F1の取得元を`36ebe9e`に固定した（testにはつないでいない）。照合は`00-hub/polyglot-f1-e2-repin-instructions_ja.md`の「返却と照合（2026-11-12）」 |
 
 ## method
 
-| method | 分類 | McRemote | Python | Java | TypeScript | Scratch | 共有fixture |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| `hello` | 接続 | あり（`RemoteSession.handleHello`。拒否は応答をflushして閉じる） | あり（`create()`／`hello()`） | あり（`Builder.connect()`） | あり（`connect()`。buildはhelloでだけ渡す） | あり（「接続する」`connect`） | あり（F1のhello 9 case。10本には認可のsnapshot） |
-| `connection.flush` | 接続 | あり（`ConnectionCommands.handleFlush`。先行commandの終端まで） | あり（`flush()`。timeoutは接続を回収し、再送しない） | なし | なし | あり（「送ったブロック設置が終わるまで待つ」`flushBuildCommands`、`setBuildMode`） | なし |
-| `build.setDimension` | 建築の文脈 | あり（`BuildStateCommands.handleSetDimension`） | あり（`setDimension()`） | なし | なし | あり（「建築する次元を…にする」`setDimension`） | なし（dimensionの値ベクトルだけ） |
-| `build.setOrigin` | 建築の文脈 | あり（`BuildStateCommands.handleSetOrigin`） | あり（`setBuildOrigin()`） | あり（`setOrigin`） | なし | あり（「建築原点…にする」`setBuildOrigin`。Yは0に固定） | なし（build contextの値例だけ） |
-| `world.setBlock` | ブロック | あり（`BlockEditCommands.handleSetBlock`。成功は`null`、notificationも受ける） | あり（`setBlock()`。DEBUG／TRACE／FAST） | あり（`setBlock`／`BlockSpec`） | あり（`setBlock`。`BlockSpec`か文字列。id付きの同期requestだけ） | あり（「…に ブロックID … 状態 … を置く」`setBlock`。StateTextをcatalogの型で解決） | あり（F1のblocks 12 case。set→getと拒否。10本にはStateText／BlockValueの値ベクトル） |
-| `world.setBlocks` | ブロック | あり（`BlockEditCommands.handleSetBlocks`。tickで分けて実行） | あり（`setBlocks()`） | あり（`setBlocks`） | なし | あり（「…から…まで…を置く」`setBlocks`） | なし |
-| `world.getBlock` | ブロック | あり（`BlockQueryCommands.handleGetBlock`。正準のBlockValue） | あり（`getBlock()`→`BlockValue`） | あり（`getBlock`→`BlockValue`） | あり（`getBlock`→`BlockValue`） | あり（「…のブロック情報」`getBlock`。BlockInfoText） | あり（F1のblocks 12 case。10本にはBlockValueの値例） |
-| `world.getBlocks` | ブロック | あり（`BlockQueryCommands.handleGetBlocks`。各軸10 blockまで） | あり（`getBlocks()`） | なし | なし | あり（「…から…までのブロック情報を…に入れる」`getBlocks`） | なし |
-| `world.getHeight` | ブロック | あり（`WorldB5Commands.handleGetHeight`） | あり（`getHeight()`） | なし | なし | あり（「…の地面の高さ」`getHeight`、上限つきの`getHeightBelow`） | なし |
-| `world.getSign` | 看板 | あり（`SignCommands.handleGetSign`） | あり（`getSign()`） | あり（`getSign`） | なし | あり（「看板…の情報」`getSign`） | あり（`sign-v23`） |
-| `world.setSign` | 看板 | あり（`SignCommands.handleSetSign`） | あり（`setSign()`） | あり（`setSign`） | なし | あり（「看板…の…を…にする」`setSign`） | あり（`sign-v23`） |
-| `world.updateSignLine` | 看板 | あり（`SignCommands.handleUpdateSignLine`） | あり（`updateSignLine()`） | あり（`updateSignLine`） | なし | あり（「看板…の…行を…にする」`updateSignLine`） | あり（`sign-v23`） |
-| `player.getPos` | プレイヤー | あり（`PlayerCommands.handleGetPosStructured`） | あり（`getPos()`。dictで返す） | なし | なし | あり（「プレイヤーの…」`playerAttribute`） | なし |
-| `player.setPos` | プレイヤー | あり（`PlayerCommands.handleSetPosStructured`） | あり（`setPos()`） | なし | なし | あり（「プレイヤーを…へ移動する」`setPlayerPos`、`setPlayerXYZ`） | なし |
-| `player.getPose` | プレイヤー | あり（`PlayerCommands.handleGetPoseStructured`） | あり（`getPose()`。dictで返す） | あり（`getPlayerPose`） | なし | あり（「プレイヤーの…」`playerAttribute`） | なし |
-| `player.setPose` | プレイヤー | あり（`PlayerCommands.handleSetPoseStructured`） | あり（`setPose()`） | あり（`setPlayerPose`。liveでの移動は未主張） | なし | あり（「プレイヤーを…水平方向…上下方向…へ移動する」`setPlayerPose`） | なし |
-| `player.getDirection` | プレイヤー | あり（`DirectionCommands`） | あり（`getDirection()`） | なし | なし | あり（「プレイヤーの向き…」`playerDirection`） | あり（`direction-lightning-v23.1`） |
-| `player.setDirection` | プレイヤー | あり（`DirectionCommands`。非ゼロの方向を正準化） | あり（`setDirection()`） | なし | なし | あり（「プレイヤーの向きを…にする」`setPlayerDirection`） | あり（`direction-lightning-v23.1`） |
-| `world.spawnEntity` | エンティティ | あり（`WorldB5Commands.handleSpawnEntity`） | あり（`spawnEntity()`→EntityHandle） | なし | なし | あり（「エンティティ…を…に生成し ハンドルを…に入れる」`spawnEntity`） | なし（履歴の`spawn-v22`だけ。handleは旧形式） |
-| `world.getNearbyEntities` | エンティティ | あり（`EntityLifecycleCommands.handleGetNearbyEntities`。playerを除く） | あり（`getNearbyEntities()`） | なし | なし | あり（「…の半径…以内のエンティティを…に入れる」`getNearbyEntities`） | あり（`entity-particle-v23.2.1`） |
-| `entity.getPose` | エンティティ | あり（`EntityLifecycleCommands`） | あり（`getEntityPose()`） | なし | なし | あり（「エンティティ…の姿勢」`getEntityPose`） | あり（`entity-particle-v23.2.1`） |
-| `entity.setPose` | エンティティ | あり（`EntityLifecycleCommands`） | あり（`setEntityPose()`） | なし | なし | あり（「エンティティ…を…へ移動する」`setEntityPose`） | あり（`entity-particle-v23.2.1`） |
-| `entity.getDirection` | エンティティ | あり（`DirectionCommands`） | あり（`getEntityDirection()`） | なし | なし | あり（「エンティティ…の向き…」`entityDirection`） | あり（`direction-lightning-v23.1`） |
-| `entity.setDirection` | エンティティ | あり（`DirectionCommands`） | あり（`setEntityDirection()`） | なし | なし | あり（「エンティティ…の向きを…にする」`setEntityDirection`） | あり（`direction-lightning-v23.1`） |
-| `entity.remove` | エンティティ | あり（`EntityLifecycleCommands`） | あり（`removeEntity()`） | なし | なし | あり（「エンティティ…を取り除く」`removeEntity`） | あり（`entity-particle-v23.2.1`） |
-| `world.spawnParticle` | 演出 | あり（`WorldB5Commands.handleSpawnParticle`。typed data、receiver、force） | あり（`spawnParticle()`。typed data、receiver、force） | 部分（dataの要らないparticleだけ。typed dataとreceiverはなし） | なし | あり（`spawnParticle`と、receiver、ダスト、ブロックのparticleの指定block） | あり（`entity-particle-v23.2.1`、`direction-lightning-v23.1`） |
-| `world.playSound` | 演出 | あり（`SoundCommands`） | あり（`playSound()`） | なし | なし | あり（「音…を…で鳴らす」`playSound`、`soundOptions`） | あり（`entity-particle-v23.2.1`） |
-| `world.playBlockSound` | 演出 | あり（`SoundCommands`） | あり（`playBlockSound()`） | なし | なし | あり（「…のブロックの…音を鳴らす」`playBlockSound`） | あり（`entity-particle-v23.2.1`） |
-| `world.strikeLightning` | 演出 | あり（`LightningCommands`） | あり（`strikeLightning()`） | なし | なし | あり（「雷を…に落とす」`strikeLightning`） | あり（`direction-lightning-v23.1`） |
-| `chat.post` | チャット | あり（`MiscCommands.handleChatPost`。成功は`null`、notificationは応答なし） | あり（`postToChat()`） | あり（`postToChat`） | なし | あり（「チャットに…と言う」`postToChat`） | あり（`chat-event-compat-v23.2.1`） |
-| `events.poll` | イベント | あり（`EventCommands.handlePoll`、`EventRing`。filtered pollとclearは無い） | あり（`pollEvents()`） | あり（`pollEvents`） | なし | あり（3つのhat、`eventValue`、`eventStatus`。pollerは1つ） | あり（`events-v23`、`chat-event-compat-v23.2.1`） |
-| `catalog.get` | カタログ | あり（`CatalogCommands.handleGet`、`CatalogService`） | あり（`getCatalog()`／`sync_constants()`。別のstreamで取る） | あり（`getCatalog`。生成定数は無い） | なし | あり（「カタログの…を…に入れる」`catalogToList`。hashの照合とcache） | なし（block 4つのcatalog例だけ） |
+| method | 分類 | McRemote | Python | Java | TypeScript | C# | Scratch | 共有fixture |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `hello` | 接続 | あり（`RemoteSession.handleHello`。拒否は応答をflushして閉じる） | あり（`create()`／`hello()`） | あり（`Builder.connect()`） | あり（`connect()`。buildはhelloでだけ渡す） | あり（`ConnectAsync`。protocol、client、build、authを送る） | あり（「接続する」`connect`） | あり（F1のhello 9 case。10本には認可のsnapshot） |
+| `connection.flush` | 接続 | あり（`ConnectionCommands.handleFlush`。先行commandの終端まで） | あり（`flush()`。timeoutは接続を回収し、再送しない） | なし | なし | なし | あり（「送ったブロック設置が終わるまで待つ」`flushBuildCommands`、`setBuildMode`） | なし |
+| `build.setDimension` | 建築の文脈 | あり（`BuildStateCommands.handleSetDimension`） | あり（`setDimension()`） | なし | なし | なし | あり（「建築する次元を…にする」`setDimension`） | なし（dimensionの値ベクトルだけ） |
+| `build.setOrigin` | 建築の文脈 | あり（`BuildStateCommands.handleSetOrigin`） | あり（`setBuildOrigin()`） | あり（`setOrigin`） | なし | なし | あり（「建築原点…にする」`setBuildOrigin`。Yは0に固定） | なし（build contextの値例だけ） |
+| `world.setBlock` | ブロック | あり（`BlockEditCommands.handleSetBlock`。成功は`null`、notificationも受ける） | あり（`setBlock()`。DEBUG／TRACE／FAST） | あり（`setBlock`／`BlockSpec`） | あり（`setBlock`。`BlockSpec`か文字列。id付きの同期requestだけ） | あり（`SetBlockAsync`。id付きのrequest、成功は`null`） | あり（「…に ブロックID … 状態 … を置く」`setBlock`。StateTextをcatalogの型で解決） | あり（F1のblocks 12 case。set→getと拒否。10本にはStateText／BlockValueの値ベクトル） |
+| `world.setBlocks` | ブロック | あり（`BlockEditCommands.handleSetBlocks`。tickで分けて実行） | あり（`setBlocks()`） | あり（`setBlocks`） | なし | なし | あり（「…から…まで…を置く」`setBlocks`） | なし |
+| `world.getBlock` | ブロック | あり（`BlockQueryCommands.handleGetBlock`。正準のBlockValue） | あり（`getBlock()`→`BlockValue`） | あり（`getBlock`→`BlockValue`） | あり（`getBlock`→`BlockValue`） | あり（`GetBlockAsync`→`BlockValue`） | あり（「…のブロック情報」`getBlock`。BlockInfoText） | あり（F1のblocks 12 case。10本にはBlockValueの値例） |
+| `world.getBlocks` | ブロック | あり（`BlockQueryCommands.handleGetBlocks`。各軸10 blockまで） | あり（`getBlocks()`） | なし | なし | なし | あり（「…から…までのブロック情報を…に入れる」`getBlocks`） | なし |
+| `world.getHeight` | ブロック | あり（`WorldB5Commands.handleGetHeight`） | あり（`getHeight()`） | なし | なし | なし | あり（「…の地面の高さ」`getHeight`、上限つきの`getHeightBelow`） | なし |
+| `world.getSign` | 看板 | あり（`SignCommands.handleGetSign`） | あり（`getSign()`） | あり（`getSign`） | なし | なし | あり（「看板…の情報」`getSign`） | あり（`sign-v23`） |
+| `world.setSign` | 看板 | あり（`SignCommands.handleSetSign`） | あり（`setSign()`） | あり（`setSign`） | なし | なし | あり（「看板…の…を…にする」`setSign`） | あり（`sign-v23`） |
+| `world.updateSignLine` | 看板 | あり（`SignCommands.handleUpdateSignLine`） | あり（`updateSignLine()`） | あり（`updateSignLine`） | なし | なし | あり（「看板…の…行を…にする」`updateSignLine`） | あり（`sign-v23`） |
+| `player.getPos` | プレイヤー | あり（`PlayerCommands.handleGetPosStructured`） | あり（`getPos()`。dictで返す） | なし | なし | なし | あり（「プレイヤーの…」`playerAttribute`） | なし |
+| `player.setPos` | プレイヤー | あり（`PlayerCommands.handleSetPosStructured`） | あり（`setPos()`） | なし | なし | なし | あり（「プレイヤーを…へ移動する」`setPlayerPos`、`setPlayerXYZ`） | なし |
+| `player.getPose` | プレイヤー | あり（`PlayerCommands.handleGetPoseStructured`） | あり（`getPose()`。dictで返す） | あり（`getPlayerPose`） | なし | なし | あり（「プレイヤーの…」`playerAttribute`） | なし |
+| `player.setPose` | プレイヤー | あり（`PlayerCommands.handleSetPoseStructured`） | あり（`setPose()`） | あり（`setPlayerPose`。liveでの移動は未主張） | なし | なし | あり（「プレイヤーを…水平方向…上下方向…へ移動する」`setPlayerPose`） | なし |
+| `player.getDirection` | プレイヤー | あり（`DirectionCommands`） | あり（`getDirection()`） | なし | なし | なし | あり（「プレイヤーの向き…」`playerDirection`） | あり（`direction-lightning-v23.1`） |
+| `player.setDirection` | プレイヤー | あり（`DirectionCommands`。非ゼロの方向を正準化） | あり（`setDirection()`） | なし | なし | なし | あり（「プレイヤーの向きを…にする」`setPlayerDirection`） | あり（`direction-lightning-v23.1`） |
+| `world.spawnEntity` | エンティティ | あり（`WorldB5Commands.handleSpawnEntity`） | あり（`spawnEntity()`→EntityHandle） | なし | なし | なし | あり（「エンティティ…を…に生成し ハンドルを…に入れる」`spawnEntity`） | なし（履歴の`spawn-v22`だけ。handleは旧形式） |
+| `world.getNearbyEntities` | エンティティ | あり（`EntityLifecycleCommands.handleGetNearbyEntities`。playerを除く） | あり（`getNearbyEntities()`） | なし | なし | なし | あり（「…の半径…以内のエンティティを…に入れる」`getNearbyEntities`） | あり（`entity-particle-v23.2.1`） |
+| `entity.getPose` | エンティティ | あり（`EntityLifecycleCommands`） | あり（`getEntityPose()`） | なし | なし | なし | あり（「エンティティ…の姿勢」`getEntityPose`） | あり（`entity-particle-v23.2.1`） |
+| `entity.setPose` | エンティティ | あり（`EntityLifecycleCommands`） | あり（`setEntityPose()`） | なし | なし | なし | あり（「エンティティ…を…へ移動する」`setEntityPose`） | あり（`entity-particle-v23.2.1`） |
+| `entity.getDirection` | エンティティ | あり（`DirectionCommands`） | あり（`getEntityDirection()`） | なし | なし | なし | あり（「エンティティ…の向き…」`entityDirection`） | あり（`direction-lightning-v23.1`） |
+| `entity.setDirection` | エンティティ | あり（`DirectionCommands`） | あり（`setEntityDirection()`） | なし | なし | なし | あり（「エンティティ…の向きを…にする」`setEntityDirection`） | あり（`direction-lightning-v23.1`） |
+| `entity.remove` | エンティティ | あり（`EntityLifecycleCommands`） | あり（`removeEntity()`） | なし | なし | なし | あり（「エンティティ…を取り除く」`removeEntity`） | あり（`entity-particle-v23.2.1`） |
+| `world.spawnParticle` | 演出 | あり（`WorldB5Commands.handleSpawnParticle`。typed data、receiver、force） | あり（`spawnParticle()`。typed data、receiver、force） | 部分（dataの要らないparticleだけ。typed dataとreceiverはなし） | なし | なし | あり（`spawnParticle`と、receiver、ダスト、ブロックのparticleの指定block） | あり（`entity-particle-v23.2.1`、`direction-lightning-v23.1`） |
+| `world.playSound` | 演出 | あり（`SoundCommands`） | あり（`playSound()`） | なし | なし | なし | あり（「音…を…で鳴らす」`playSound`、`soundOptions`） | あり（`entity-particle-v23.2.1`） |
+| `world.playBlockSound` | 演出 | あり（`SoundCommands`） | あり（`playBlockSound()`） | なし | なし | なし | あり（「…のブロックの…音を鳴らす」`playBlockSound`） | あり（`entity-particle-v23.2.1`） |
+| `world.strikeLightning` | 演出 | あり（`LightningCommands`） | あり（`strikeLightning()`） | なし | なし | なし | あり（「雷を…に落とす」`strikeLightning`） | あり（`direction-lightning-v23.1`） |
+| `chat.post` | チャット | あり（`MiscCommands.handleChatPost`。成功は`null`、notificationは応答なし） | あり（`postToChat()`） | あり（`postToChat`） | なし | なし | あり（「チャットに…と言う」`postToChat`） | あり（`chat-event-compat-v23.2.1`） |
+| `events.poll` | イベント | あり（`EventCommands.handlePoll`、`EventRing`。filtered pollとclearは無い） | あり（`pollEvents()`） | あり（`pollEvents`） | なし | なし | あり（3つのhat、`eventValue`、`eventStatus`。pollerは1つ） | あり（`events-v23`、`chat-event-compat-v23.2.1`） |
+| `catalog.get` | カタログ | あり（`CatalogCommands.handleGet`、`CatalogService`） | あり（`getCatalog()`／`sync_constants()`。別のstreamで取る） | あり（`getCatalog`。生成定数は無い） | なし | なし | あり（「カタログの…を…に入れる」`catalogToList`。hashの照合とcache） | なし（block 4つのcatalog例だけ） |
 
 ## auth（metadataのauth節）
 
-| method | McRemote | Python | Java | TypeScript | Scratch | 共有fixture |
-| --- | --- | --- | --- | --- | --- | --- |
-| `auth.pairBegin` | あり（`AuthCommands.handlePairBegin`、`PairingManager.begin`。`client`の情報は保存も表示もしない） | あり（`create()`／`authenticate()`の中） | あり（接続の処理の中） | あり（`connect()`の中。`onPairing`。`token_type`はsessionだけ） | あり（「接続する」、`pairCode`、`pairCommand`） | あり（F1のpairing 7 case） |
-| `auth.pairPoll` | あり（`AuthCommands.handlePairPoll`。pendingは成功のresult） | あり（同じ処理の中） | あり（接続の処理の中） | あり（`connect()`の中） | あり（「接続する」、`whenPaired`） | あり（F1のpairing 7 case） |
-| `auth.listCredentials` | あり（`AuthCommands.handleListCredentials`。自分のlong-livedだけ） | なし | なし | なし | なし（管理のblockは無い） | なし |
-| `auth.revoke` | あり（`AuthCommands.handleRevoke`。失効したcredentialの全sessionを閉じる） | なし（`auth.clear_token()`はlocalの削除） | なし（`--forget`はlocalの削除） | なし | なし（管理のblockは無い） | なし |
-| `auth.logout` | あり（`AuthCommands.handleLogout`。long-livedだけ） | なし | なし | なし | なし（管理のblockは無い） | なし |
+| method | McRemote | Python | Java | TypeScript | C# | Scratch | 共有fixture |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `auth.pairBegin` | あり（`AuthCommands.handlePairBegin`、`PairingManager.begin`。`client`の情報は保存も表示もしない） | あり（`create()`／`authenticate()`の中） | あり（接続の処理の中） | あり（`connect()`の中。`onPairing`。`token_type`はsessionだけ） | あり（`ConnectAsync`の中。`client`を必ず付ける。session token、promptのcallback） | あり（「接続する」、`pairCode`、`pairCommand`） | あり（F1のpairing 7 case） |
+| `auth.pairPoll` | あり（`AuthCommands.handlePairPoll`。pendingは成功のresult） | あり（同じ処理の中） | あり（接続の処理の中） | あり（`connect()`の中） | あり（`ConnectAsync`の中。serverの期限切れと、clientが判断した期限切れを分ける） | あり（「接続する」、`whenPaired`） | あり（F1のpairing 7 case） |
+| `auth.listCredentials` | あり（`AuthCommands.handleListCredentials`。自分のlong-livedだけ） | なし | なし | なし | なし | なし（管理のblockは無い） | なし |
+| `auth.revoke` | あり（`AuthCommands.handleRevoke`。失効したcredentialの全sessionを閉じる） | なし（`auth.clear_token()`はlocalの削除） | なし（`--forget`はlocalの削除） | なし | なし | なし（管理のblockは無い） | なし |
+| `auth.logout` | あり（`AuthCommands.handleLogout`。long-livedだけ） | なし | なし | なし | なし | なし（管理のblockは無い） | なし |
 
 ## methodでない能力
 
-| 能力 | McRemote | Python | Java | TypeScript | Scratch | 共有fixture |
-| --- | --- | --- | --- | --- | --- | --- |
-| TCPのframing／JSON-RPC | あり（`BoundedLineReader`、`CommandParser`。LFのほかCRLF／CRも区切り。batchは扱わない） | あり | あり | あり（LFだけで区切る。JSONでない行と知らないidの応答は捨てる） | 部分（JSON-RPCのidの照合とerrorの処理。TCPと改行の区切りはBridgeが持つ） | あり（F1のframing 7 case。clientが受ける側） |
-| WebSocket／browser | 部分（WebSocketは受けない。BridgeがWebSocketのmessageをTCPの行に変える） | なし | なし | なし（Phase H） | あり（browserのWebSocket→Bridge→McRemoteのTCP。Bridgeのsubprotocolを確かめる） | なし |
-| protocol negotiation | あり（`ProtocolInfo.isCompatible`。majorの一致、serverのminorが同じか上、patchは見ない。拒否の後は切断） | あり（23.2.1を申告する。応答の版は、majorの一致、serverのminorが同じか上、patchは見ない。2026-11-10のF3で入れた。前は「部分」で、応答の版を比べなかった） | あり（majorの一致、serverのminorが同じか上、patchは見ない） | あり（23.2.1を申告する。majorの一致、serverのminorが同じか上、patchは見ない） | あり（majorの一致、serverのminorが同じか上、patchは見ない） | あり（F1のhello。応答の版5つの互換判定と、`protocol_mismatch`の受信をcode `-32000`と`-32600`の2つで） |
-| authentication／pairing | あり（`AuthCommands`、`PairingManager`、`PairCommand`。helloの前のpairとtokenつきhelloを分ける） | あり | あり | あり | あり（接続、ペアコード、ペアリングのhat。long-livedの管理のUIは無い） | あり（F1のpairing 7 case。承認を拒む専用の応答は契約に無い。10本には認可と`auth_required`） |
-| session credentialのUX | あり（serverの側：コードの承認、期限つきのsession token、long-livedの一覧と失効） | あり（接続先ごとのlocal token。config下のJSONで、OSのstoreではない） | あり（examplesでOSのstoreを選ぶ。long-livedは別） | あり（storeを差し込む。noneとin-memory。OSのstoreは無い） | あり（localStorageを接続先のsandboxごとに分ける。認証のerrorでtokenを捨てる） | 部分（F1のpairing。tokenの再利用と、無効なtokenを捨てること） |
-| request／notification／flushと順序 | あり（`ConnectionCommandQueue`。notificationにはerrorも返さない。DEBUG／TRACEはclientの方針） | あり（DEBUG／TRACE／FAST、`flush()`、closeのときのflush） | 部分（同期requestと順序だけ。notification、flush、DEBUG／TRACE／FASTは無い） | 部分（同期requestだけ） | あり（DEBUG／TRACEは応答を待つ、FASTの設置はnotification、flushが境界） | 部分（雷のrequest／notificationとmode別の失敗だけ。flushは無い） |
-| events cursor／loss | あり（`EventRing`。有限のring、through／latestのcursor、loss。pushは無い） | あり | あり | なし | あり（未知のeventでもcursorを進め、hatを作らない） | あり（`events-v23`、`chat-event-compat-v23.2.1`） |
-| error reason | あり（`RemoteSession.respondError`がcode、message、`data.reason`を包む。想定外の例外は切断で、errorを返すとは限らない） | あり（code、message、data、reasonを保つ。全reasonの経路は未主張） | あり（code、message、data、reasonを保つ。全reasonの経路は未主張） | あり（code、message、dataを保つ。知らないreasonも保つ） | 部分（code、message、data、reasonは保つが、表示はallowlistのErrorTextで、未知のreasonは`remote_error`へまとめる） | あり（F1のerrors 3 case。JSON-RPC errorの外枠と、未知のreasonを保つ例。10本にはmethodごとのreason／data） |
-| build context | あり（`BuildStateCommands`。dimensionとoriginは接続ごと） | あり | 部分（originだけ変えられる） | 部分（helloの`build`だけ） | 部分（原点のYは0に固定） | 部分（値ベクトルだけ。context変更の対話は無い） |
-| BlockValue／BlockSpec | あり（`BlockCodec`。wireの`block_id`とstateを受けて正準化する） | あり | あり | あり | あり（StateTextとBlockInfoTextの文字列、picker） | あり（F1のblocks。10本の`block-value-v22`の値を参照する） |
-| catalog／constants | あり（registryからcatalogとhashを作る） | あり（catalogHashをkeyにしたcacheと、`.py`／`.pyi`の生成） | 部分（catalogとhashを取る。生成定数とcacheは無い） | なし | 部分（catalogHashの照合とIndexedDBのcache、ID一覧、名前とカテゴリの検索。生成した定数は無い） | 部分（resource IDとblock 4つの例。catalogHashの照合と完全なcatalogは無い） |
-| helloの`world_constants` | 部分（`y_sea`だけ。ほかの世界定数は2400へ） | あり（`world_constants`と`y_sea`。生成では`world_info`） | 部分（Mapのまま渡す） | 返却に無い | 部分（`world_constants`を保持し、observerへは`y_sea`だけ。読むblockは無い） | なし |
-| epoch／reconnect | あり（接続ごとにepoch、handle、ringを作り、closeで捨てる。新しいTCPはhelloから） | 部分（`reconnect()`は新しいepoch。自動の再認証と再開は無い。handleのstaleはserverが判定） | 部分（つなぎ直すとhelloから。entity handleは無い） | 返却に無い（自動のつなぎ直しは入れていない） | 部分（closeで状態を捨て、次の「接続する」でtokenを使い直してhelloから。自動の再認証、再送、scriptの再開は無い） | 部分（F1のclose 6 case。新しい接続でhelloをやり直す。応答待ちのrequestの扱いと自動の再送は未確定。→ `2026-11-11-01`で決めた。fixtureはtoolingへの票で直す。10本にはsession状態とhandleの失効） |
-| WireScopeのobserver | なし（observerはclientとtoolingの側） | あり（`create(wirescope=True)`。TTYが前提） | なし | 返却に無い | あり（WireScope miniと独立のwindow。credentialを伏せる） | 部分（未知eventのobserver投影だけ） |
+| 能力 | McRemote | Python | Java | TypeScript | C# | Scratch | 共有fixture |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| TCPのframing／JSON-RPC | あり（`BoundedLineReader`、`CommandParser`。LFのほかCRLF／CRも区切り。batchは扱わない） | あり | あり | あり（LFだけで区切る。JSONでない行と知らないidの応答は捨てる） | あり（UTF-8とLF、分割と結合、idの照合。JSONでない行、知らないid、末尾の断片は捨てる） | 部分（JSON-RPCのidの照合とerrorの処理。TCPと改行の区切りはBridgeが持つ） | あり（F1のframing 7 case。clientが受ける側） |
+| WebSocket／browser | 部分（WebSocketは受けない。BridgeがWebSocketのmessageをTCPの行に変える） | なし | なし | なし（Phase H） | なし | あり（browserのWebSocket→Bridge→McRemoteのTCP。Bridgeのsubprotocolを確かめる） | なし |
+| protocol negotiation | あり（`ProtocolInfo.isCompatible`。majorの一致、serverのminorが同じか上、patchは見ない。拒否の後は切断） | あり（23.2.1を申告する。応答の版は、majorの一致、serverのminorが同じか上、patchは見ない。2026-11-10のF3で入れた。前は「部分」で、応答の版を比べなかった） | あり（majorの一致、serverのminorが同じか上、patchは見ない） | あり（23.2.1を申告する。majorの一致、serverのminorが同じか上、patchは見ない） | あり（`23.2.1`を申告。majorの一致、serverのminorが同じか上、patchは見ない。不一致は次のrequestの前に閉じる） | あり（majorの一致、serverのminorが同じか上、patchは見ない） | あり（F1のhello。応答の版5つの互換判定と、`protocol_mismatch`の受信をcode `-32000`と`-32600`の2つで） |
+| authentication／pairing | あり（`AuthCommands`、`PairingManager`、`PairCommand`。helloの前のpairとtokenつきhelloを分ける） | あり | あり | あり | あり（helloが先で、`auth_required`のときだけpairing。一試行に一度。無効なtokenの後はtokenなしのhello） | あり（接続、ペアコード、ペアリングのhat。long-livedの管理のUIは無い） | あり（F1のpairing 7 case。承認を拒む専用の応答は契約に無い。10本には認可と`auth_required`） |
+| session credentialのUX | あり（serverの側：コードの承認、期限つきのsession token、long-livedの一覧と失効） | あり（接続先ごとのlocal token。config下のJSONで、OSのstoreではない） | あり（examplesでOSのstoreを選ぶ。long-livedは別） | あり（storeを差し込む。noneとin-memory。OSのstoreは無い） | あり（storeを差し込む。noneとin-memory。targetごとに分け、拒まれたtokenだけ消す。OSのstoreは無い） | あり（localStorageを接続先のsandboxごとに分ける。認証のerrorでtokenを捨てる） | 部分（F1のpairing。tokenの再利用と、無効なtokenを捨てること） |
+| request／notification／flushと順序 | あり（`ConnectionCommandQueue`。notificationにはerrorも返さない。DEBUG／TRACEはclientの方針） | あり（DEBUG／TRACE／FAST、`flush()`、closeのときのflush） | 部分（同期requestと順序だけ。notification、flush、DEBUG／TRACE／FASTは無い） | 部分（同期requestだけ） | 部分（id付きのrequestを順に送り、応答を待つ。notification、FAST、flushは無い） | あり（DEBUG／TRACEは応答を待つ、FASTの設置はnotification、flushが境界） | 部分（雷のrequest／notificationとmode別の失敗だけ。flushは無い） |
+| events cursor／loss | あり（`EventRing`。有限のring、through／latestのcursor、loss。pushは無い） | あり | あり | なし | なし | あり（未知のeventでもcursorを進め、hatを作らない） | あり（`events-v23`、`chat-event-compat-v23.2.1`） |
+| error reason | あり（`RemoteSession.respondError`がcode、message、`data.reason`を包む。想定外の例外は切断で、errorを返すとは限らない） | あり（code、message、data、reasonを保つ。全reasonの経路は未主張） | あり（code、message、data、reasonを保つ。全reasonの経路は未主張） | あり（code、message、dataを保つ。知らないreasonも保つ） | あり（code、message、data、知らないreasonを保つ。`protocol_mismatch`はreasonで判定。localな失敗は別の型） | 部分（code、message、data、reasonは保つが、表示はallowlistのErrorTextで、未知のreasonは`remote_error`へまとめる） | あり（F1のerrors 3 case。JSON-RPC errorの外枠と、未知のreasonを保つ例。10本にはmethodごとのreason／data） |
+| build context | あり（`BuildStateCommands`。dimensionとoriginは接続ごと） | あり | 部分（originだけ変えられる） | 部分（helloの`build`だけ） | 部分（helloの`BuildContext`だけ） | 部分（原点のYは0に固定） | 部分（値ベクトルだけ。context変更の対話は無い） |
+| BlockValue／BlockSpec | あり（`BlockCodec`。wireの`block_id`とstateを受けて正準化する） | あり | あり | あり | あり（構造化したIDとstate。入力の部分のstateはserverが補い、出力は全state） | あり（StateTextとBlockInfoTextの文字列、picker） | あり（F1のblocks。10本の`block-value-v22`の値を参照する） |
+| catalog／constants | あり（registryからcatalogとhashを作る） | あり（catalogHashをkeyにしたcacheと、`.py`／`.pyi`の生成） | 部分（catalogとhashを取る。生成定数とcacheは無い） | なし | なし（helloのhashをJSONで持つだけ） | 部分（catalogHashの照合とIndexedDBのcache、ID一覧、名前とカテゴリの検索。生成した定数は無い） | 部分（resource IDとblock 4つの例。catalogHashの照合と完全なcatalogは無い） |
+| helloの`world_constants` | 部分（`y_sea`だけ。ほかの世界定数は2400へ） | あり（`world_constants`と`y_sea`。生成では`world_info`） | 部分（Mapのまま渡す） | 返却に無い | 部分（`HelloInfo.Json`でそのまま持つ） | 部分（`world_constants`を保持し、observerへは`y_sea`だけ。読むblockは無い） | なし |
+| epoch／reconnect | あり（接続ごとにepoch、handle、ringを作り、closeで捨てる。新しいTCPはhelloから） | 部分（`reconnect()`は新しいepoch。自動の再認証と再開は無い。handleのstaleはserverが判定） | 部分（つなぎ直すとhelloから。entity handleは無い） | 返却に無い（自動のつなぎ直しは入れていない） | 部分（closeで応答待ちをすべて完了不明にする。次の`ConnectAsync`は新しいhello。自動のつなぎ直しは無い） | 部分（closeで状態を捨て、次の「接続する」でtokenを使い直してhelloから。自動の再認証、再送、scriptの再開は無い） | 部分（F1のclose 6 case。新しい接続でhelloをやり直す。応答待ちのrequestの扱いと自動の再送は未確定。→ `2026-11-11-01`で決めた。fixtureはtoolingへの票で直す。10本にはsession状態とhandleの失効） |
+| WireScopeのobserver | なし（observerはclientとtoolingの側） | あり（`create(wirescope=True)`。TTYが前提） | なし | 返却に無い | なし | あり（WireScope miniと独立のwindow。credentialを伏せる） | 部分（未知eventのobserver投影だけ） |
 
 ### 担当が足した行
 
@@ -120,15 +125,17 @@ tooling `6447f6e8cbfbeeb9d229990b5c4f6e82a5875666`の`packages/protocol/test/fix
 testへつないでいるか。MITのLICENSEを置いた`21a2a9a0aed8b4d9c715da46616aad86f1174b4c`の10本も同じbytes。
 McRemoteとScratchの取得元は`21a2a9a`。PythonとJavaは、2026-11-10のF3でtooling `8264c38`へ移り、F1の6本（44 case）を
 CIへつないだ。PythonとJavaは2026-11-11に、toolingの追補（`ea7838a`、45 case）へ固定し直した。TypeScriptは2026-11-11に、
-tooling `131f315`（fixtureは`ea7838a`と同じbytes）からcopyした。
+tooling `131f315`（fixtureは`ea7838a`と同じbytes）からcopyした。2026-11-12に、PythonとJavaは`36ebe9e`（48 case）へ、TypeScriptは
+`0d120e5`（v1の52 caseとv2）へ固定し直し、C#は`d2691cd`（v1の52 case）からcopyした。Scratchは`36ebe9e`のF1をlockに入れた。
 
 | client | つないでいるもの | つないでいないもの |
 | --- | --- | --- |
-| Java | `chat-event-compat-v23.2.1.json`、`events-v23.json`、`sign-v23.json`、`spawn-v22.json`。F3でF1の6本（44 caseすべて）、`client-bootstrap-v1.schema.json`、`block-value-v22.json`（F1の`value_refs`の`/catalog/block`の範囲）を足した。2026-11-11に`ea7838a`の45 caseへ | `dimensions-v22.json`、`direction-lightning-v23.1.json`、`entity-particle-v23.2.1.json`（それぞれ対応する機能のsliceで）、`chat-event-compat-v23.2.json`、`entity-particle-v23.2.json`（履歴の版） |
-| Python | `chat-event-compat-v23.2.1.json`、`direction-lightning-v23.1.json`、`entity-particle-v23.2.1.json`、`events-v23.json`、`sign-v23.json`。`chat-event-compat-v23.2.json`と`entity-particle-v23.2.json`は履歴としてbytesを比べるだけ。F3でF1の6本（44 caseすべて）、schema、`block-value-v22.json`（blocksの12 caseの`value_refs`の範囲）を足した。2026-11-11に`ea7838a`の45 caseへ | `dimensions-v22.json`、`spawn-v22.json`（前のとおり） |
-| TypeScript | F1の6本（45 caseすべて）、`client-bootstrap-v1.schema.json`、`block-value-v22.json`（F1の`value_refs`の範囲）、LICENSE | 10本のうち`block-value-v22.json`以外（このsliceの範囲の外） |
+| Java | `chat-event-compat-v23.2.1.json`、`events-v23.json`、`sign-v23.json`、`spawn-v22.json`。F3でF1の6本（44 caseすべて）、`client-bootstrap-v1.schema.json`、`block-value-v22.json`（F1の`value_refs`の`/catalog/block`の範囲）を足した。2026-11-11に`ea7838a`の45 caseへ。2026-11-12に`36ebe9e`の48 caseすべてへ | `dimensions-v22.json`、`direction-lightning-v23.1.json`、`entity-particle-v23.2.1.json`（それぞれ対応する機能のsliceで）、`chat-event-compat-v23.2.json`、`entity-particle-v23.2.json`（履歴の版） |
+| Python | `chat-event-compat-v23.2.1.json`、`direction-lightning-v23.1.json`、`entity-particle-v23.2.1.json`、`events-v23.json`、`sign-v23.json`。`chat-event-compat-v23.2.json`と`entity-particle-v23.2.json`は履歴としてbytesを比べるだけ。F3でF1の6本（44 caseすべて）、schema、`block-value-v22.json`（blocksの12 caseの`value_refs`の範囲）を足した。2026-11-11に`ea7838a`の45 caseへ。2026-11-12に`36ebe9e`の48 caseへ（9 fileのcopyのbytesをtestで確かめる） | `dimensions-v22.json`、`spawn-v22.json`（前のとおり） |
+| TypeScript | F1 v1の6本（52 caseすべて）、F1 v2の`client-bootstrap-operations-v23.2.1.json`（12 caseのうち9 caseがPASS。OP-06、OP-08、OP-11はtodoで、合格に数えない）、`client-bootstrap-v1.schema.json`、`client-bootstrap-v2.schema.json`、`block-value-v22.json`（F1の`value_refs`の範囲）、LICENSE | 10本のうち`block-value-v22.json`以外（このsliceの範囲の外） |
+| C# | F1 v1の6本（52 caseすべて）、`client-bootstrap-v1.schema.json`、`block-value-v22.json`（F1の`value_refs`の範囲）、LICENSE。取得元は`d2691cd` | 10本のうち`block-value-v22.json`以外、F1のv2（このsliceの範囲の外） |
 | McRemote | `chat-event-compat-v23.2.1.json`、`direction-lightning-v23.1.json`、`entity-particle-v23.2.1.json`、`events-v23.json`、`sign-v23.json`（5本、6つのtest class）。`chat-event-compat-v23.2.json`と`entity-particle-v23.2.json`は履歴としてcopyだけ | `block-value-v22.json`、`dimensions-v22.json`、`spawn-v22.json`（copyも無い。McRemote独自のfixtureとは別） |
-| Scratch | 10本すべて（履歴の版も、observerの投影などで使う）。どのfileも全caseを再生しているわけではない | なし |
+| Scratch | 10本すべて（履歴の版も、observerの投影などで使う）。どのfileも全caseを再生しているわけではない。2026-11-12に、F1の6本とschemaを`36ebe9e`で取得し、bytes、SHA-256、形、件数を確かめる | F1の対話の再生（案：browserの側で41 case、TCPに固有の7 caseはBridgeとtoolingの側） |
 
 ### fixtureの中身（toolingの返却）
 
@@ -160,11 +167,12 @@ browserのWebSocketの境界とは分ける。tokenはfixture用の値。
 | file | case | 範囲 |
 | --- | ---: | --- |
 | `client-bootstrap-framing-v23.2.1.json` | 7 | UTF-8の1行、文字の途中での分割、複数行の一括受信、未完の末尾、LFまでは未完、JSONでない行、idの対応 |
-| `client-bootstrap-hello-v23.2.1.json` | 10 | tokenつきhello、最小のhello、完全なparams、応答の版5つの互換判定、`protocol_mismatch`の受信（code `-32000`のF1-HE-09と、`-32600`のF1-HE-10。HE-10は`ea7838a`で追加） |
+| `client-bootstrap-hello-v23.2.1.json` | 12 | tokenつきhello、最小のhello、完全なparams、応答の版5つの互換判定、`protocol_mismatch`の受信（code `-32000`のF1-HE-09と、`-32600`のF1-HE-10。HE-10は`ea7838a`で追加）、互換でないと判定した後にclientが閉じる（F1-HE-11、12。`d2691cd`で追加） |
 | `client-bootstrap-pairing-v23.2.1.json` | 10 | `auth_required`→pending→承認→tokenつきhello、`pair_expired`、`pair_not_found`、知らない`token_type`、helloの`permission_denied`、tokenの再利用、無効なtoken。認証reasonの後のtokenなしのhello（F1-AU-08、09）、pairingの後にまた拒まれる（F1-AU-10）。AU-08〜10は`36ebe9e`で追加 |
 | `client-bootstrap-blocks-v23.2.1.json` | 12 | set→get（namespace、state）、`unknown_block`、`unknown_property`、`invalid_property_value`、`invalid_params` |
 | `client-bootstrap-errors-v23.2.1.json` | 3 | JSON-RPC errorの外枠、dataを保つこと、未知のreason |
-| `client-bootstrap-close-v23.2.1.json` | 6 | 正常なclose、応答の後のEOF、行の途中のEOF、つながらない、応答待ちのrequestがあるEOF、新しい接続でのhello。行の途中のEOFと応答待ちのあるEOFは、`36ebe9e`で`local_failures`（完了不明）を期待する |
+| `client-bootstrap-close-v23.2.1.json` | 8 | 正常なclose、応答の後のEOF、行の途中のEOF、つながらない、応答待ちのrequestがあるEOF、新しい接続でのhello。行の途中のEOFと応答待ちのあるEOFは、`36ebe9e`で`local_failures`（完了不明）を期待する。LFの無い末尾のままのEOF（F1-CL-07）と、自分で閉じた時の応答待ち（F1-CL-08）は`d2691cd`で追加 |
+| `client-bootstrap-operations-v23.2.1.json`（v2） | 12 | socketのerror、③の期限と途中の受信、④、⑤のつなぎ直し（buildの復元、つなぎ直せなかった呼び出し、旧FASTとflush、非互換、handleとcursorの失効、`auth_required`で止まる、一回にまとめる）、⑧、生存確認で切れた後。`0d120e5`で追加。applicationの呼び出しとその結果、timeoutに対する分数で進める仮想の時計を、v2のopsで表す |
 
 - 既存の10本とLICENSEはbytesが変わっていない。`client-bootstrap-v1.schema.json`とtoolingのowner test（52件）が、形と参照を確かめる
 - toolingが「未確定」とした点：承認を拒む専用の応答（`pair_denied`）は契約に無い。`protocol_mismatch`のdataの欄の名前
@@ -173,6 +181,8 @@ browserのWebSocketの境界とは分ける。tokenはfixture用の値。
   互換判定の後のcloseのcaseは、toolingへの次の票`00-hub/polyglot-f1-e2-ops-fixture-instructions_ja.md`）
 - F3：PythonとJavaが、CIで44 caseをすべて通し、実McRemoteとのpulseを1本ずつ通した（2026-11-10、`00-hub/polyglot-f3-instructions_ja.md`の
   「返却と照合（2026-11-10）」）。45 caseへの固定し直しは次のPR
+- 2026-11-12の取得元：Python、Java、Scratchは`36ebe9e`（48 case）、TypeScriptは`0d120e5`（v1の52 caseと、v2の12 caseのうち9）、
+  C#は`d2691cd`（52 case）
 
 ## E2への入力（2026-11-10）
 
@@ -204,6 +214,11 @@ E1の5列とF1の返却で見えた、E2で分類や判断が要るもの。coor
 - 学習者が直し方まで分かるエラーと、適用中の権限と上限の照会（2026-11-10の相談、human owner「polyglotプロジェクトにも関わる」）：
   対処が違う原因をreasonで分け、入力箇所、値、上限をdataで伝える案と、送信前のローカル検証に原因と候補を持たせる案。
   検討メモ[learner-error-diagnostics-notes_ja.md](learner-error-diagnostics-notes_ja.md)
+- 2026-11-12の返却で見えたもの：③⑤の今は、Pythonは応答の待ちが60秒でつなぎ直しが無い。Javaは10秒で、timeoutの後も接続を
+  使い続ける（③の却下案に当たる）。ScratchとC#は、待ちもつなぎ直しも無い。TypeScriptは入れた（仮の既定値は15分、30秒、
+  500ms〜30秒、5分）。F1のcaseへの指摘（F1-AU-07の観測の終わり、F1-OP-08のpairingの接続、v2の`expected`の読み方、承認を待つ間に
+  認証前のTCPが閉じる流れ）は、`00-hub/polyglot-f1-e2-ops-fixture-instructions_ja.md`の「返却と照合（2026-11-12）」。どちらも
+  hub NOTES 2026-11-12の「多言語Client LibraryのE2を各clientへ入れる」の行
 
 ## Phase D：開発体験
 

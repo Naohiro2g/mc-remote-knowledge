@@ -56,3 +56,72 @@ PRごとに：
 
 - 返却をGitHubのAPI（PR、merge commit、CI、fileのbytes）で照合し、Protocol Inventoryの共有fixtureの行を直す
 - 1のmerge commitをC#へ、2のmerge commitをTypeScriptへ伝える。ほかのclientへは、固定し直しの票を作る
+
+## 返却と照合（2026-11-12）
+
+tooling担当はknowledge `076a127a22eaf0188c1d13822bfd55bfeee9ec38`を読んだ（この票の本文は今と同じ）。2つのPRを、担当が2026-11-12に
+mergeした。coordinatorはGitHubのAPIで、PR、merge commit、CI、変わったfileのbytesとSHA-256を確かめた。
+
+### 1（今のopsで表せるもの）
+
+minecraft-remote-tooling PR #8（head `b4788af1045a409307c3216586137bfaf789b509`、base `36ebe9e63e4f0afcf949eae998832f68209b8119`）を
+merge commit `d2691cdafb3b7548a4c26960184266c44bfcbd93`でmergeした。CIはPRのrun `43067599680`、merge後のrun `43067993877`とも成功。
+
+| file（`packages/protocol/`の下） | bytes | SHA-256 |
+| --- | ---: | --- |
+| `F1_E2_PROPOSALS_ja.md` | 10,006 | `5a8c5fffb3c75b0a9f6ffec02b2d5212b854056cf8cb00ce0939c5588589b58b` |
+| `README.md` | 13,072 | `99a2db475b54520c1010e5796d1c5499251ea031849eb65c76ea88888e4ab149` |
+| `test/client-bootstrap-owner-fixture.test.ts` | 9,804 | `b40da20dee3c9e45edf51fab98023e2fb4be7d51cdfa1f3652481942a8436ed5` |
+| `test/fixtures/client-bootstrap-close-v23.2.1.json` | 20,879 | `2abb6f48942e1dc7bc42014ba016c3d08a6632c59445c048b008a4c411ea1e30` |
+| `test/fixtures/client-bootstrap-hello-v23.2.1.json` | 26,046 | `caf24ad5382e411ba54172b05d6020fc59fc429dc0251ff28db3908b4189784e` |
+| `test/fixtures/client-bootstrap-v1.schema.json` | 11,465 | `4dcce4bc0a63c5e2536411e5276a85ceb8fa20bf5fef64ce2f7a2b8deb069774` |
+
+- 足したcase：F1-HE-11、12（成功形のhelloの応答を、clientが互換でないと判定して閉じる。majorが違う、serverのminorが小さい）、
+  F1-CL-07（JSONは閉じているがLFの無い末尾のままEOFになり、応答にしない）、F1-CL-08（自分で閉じた時に、応答待ちをすべて完了
+  不明にする）。v1は52 case（helloが12、closeが8）。前の48 caseは変わっていない
+- HE-04、05を直さずに新しいcaseへ分けた理由：今のconsumerの互換判定だけの期待値を変えずに、自分で閉じることとapplicationへの
+  失敗までを別に確かめるため。HE-11、12は`application_failure: { source: "client", kind: "incompatible_protocol" }`を期待する
+- socketのerrorはv1にopが無いので、2へ回した。ほかに、1で表せずに残したものは無い
+
+### 2（新しいopsが要るもの）
+
+minecraft-remote-tooling PR #9（head `ee61d3ee87dbb928c4307efb5e201259c2b8bd02`、base `d2691cd`）をmerge commit
+`0d120e5ea1942178983fd0496827df7e7976f4e8`でmergeした（`main`の先頭）。CIはPRのrun `43070183866`、merge後のrun `43070626103`とも成功。
+
+| file（`packages/protocol/`の下） | bytes | SHA-256 |
+| --- | ---: | --- |
+| `CLIENT_BOOTSTRAP_V2_ja.md` | 13,889 | `777911c1a356189b486a3367f330555511c0ef5422d91767f4939c62badbbf51` |
+| `F1_E2_PROPOSALS_ja.md` | 10,159 | `48da4a92369b6fc12268cebd6e7feb7ae1b5cad7db6794ee932c7c797321d287` |
+| `README.md` | 13,732 | `ac80f2d2bb16158ab139b2e5e3755b3665e59dee382caf3ceb51dbb5a2fa1e60` |
+| `test/client-bootstrap-operations-fixture.test.ts` | 5,777 | `88f3d5d49a6c12c6c34e5d9ccd1df319f4dc7778619c125ad8b9d32c7b2ee71e` |
+| `test/fixtures/client-bootstrap-operations-v23.2.1.json` | 66,029 | `3ccc97e4c80dbf51a0de9c27ef4e974fffa1ee7ec1708aeb7a49ffe14b8366a4` |
+| `test/fixtures/client-bootstrap-v2.schema.json` | 19,423 | `f533de2755974147dd3d7c8f61fa3b190fc5031188a67d648b876ee33f979a77` |
+
+- 足したcase：v2の`client-bootstrap-operations-v23.2.1.json`に、F1-OP-01〜12（socketのerror、③の期限と途中の受信、④、⑤の
+  `build`の復元とつなぎ直せなかった呼び出し、旧FASTとflush、つなぎ直したhelloでの非互換、⑧、handleとcursorの失効、
+  `auth_required`で止まる、一回のつなぎ直しへまとめる、生存確認で切れたと分かった後）。v1の6 fileと52 caseは変わっていない
+- 足したops：applicationの入力（`app_connect`、`app_call`）と、その結果の観測（`expect_connect`、`expect_send`）。`socket_error`、
+  `liveness_lost`、`advance_clock`（clientの`receive_idle`のtimeoutか、pairingの`expires_in`に対する分数で進め、秒数を決めない）、
+  `observe`（途中の期待値）、`seed_epoch_state`（test adapterが取得済みのhandle、cursor、catalogのcacheを用意する。wireではない）。
+  `expected.calls`は呼び出しごとの結果（未送信、完了不明、serverのerror、clientが判断したpairingの期限切れなど）と判断元を持ち、
+  localな失敗にcodeとreasonを付けられないことをschemaと負例で確かめる
+- schemaの版：今の対話と同じ方法では読めないので、`mcremote.client-bootstrap.v2`と`client-bootstrap-v2.schema.json`を別に足した。
+  fileを名前で読むconsumerは続けて使える。`client-bootstrap-*-v23.2.1.json`をglobしてすべてv1として読むconsumerは、新しいfileを
+  読めない（schemaで分けるか、v1の一覧を固定する）
+- 表せずに残したもの：⑤Eの実際のthreadの競合（OP-10は重なりだけを表す）、⑤Fのbackoffのばらつきと延長（値も式も言語ごと）、
+  ⑤Gで何を使ってどれだけ待って生存を確かめるか（OP-12は、切れたと判断した後だけ）
+- 伝えたもの：1のmerge commitをC#へ、2のmerge commitをTypeScriptへ伝えた。C#は`d2691cd`で、TypeScriptは`0d120e5`で
+  52 caseを通した（`00-hub/polyglot-csharp-start-instructions_ja.md`と`00-hub/polyglot-f1-e2-repin-instructions_ja.md`の
+  「返却と照合（2026-11-12）」）
+
+### 返却の後に、clientから届いたcaseへの指摘
+
+- F1-AU-07：caseは最初の接続のEOFで終わるが、⑦のclientはその後、tokenなしのhelloを送る。どこで観測を終えるかを書いてほしい
+  （Java、TypeScript）
+- F1-OP-08：pairingを、helloと同じ接続で始める形になっている。AU-01、02は別の接続で、wire「6.5」はどちらでもよい。TypeScriptは
+  いつも別の接続でpairingするので、OP-08をtodoにした
+- v2の`expected`の「書いた行だけを比べる」の読み方を、説明に書いてほしい（TypeScript。OP-04、06でsessionが変わるのに
+  `session_changed`を書いていないことから、そう読んだ）
+- 承認を待つ間に、McRemoteが認証前のTCPを閉じ、clientが同じ`pairing_id`のpollを新しいTCPで続ける流れのcaseが無い（C#が実機で
+  見た）
+- toolingへ頼むかは、human ownerが決める（hub NOTES 2026-11-12の「多言語Client LibraryのE2を各clientへ入れる」の行）

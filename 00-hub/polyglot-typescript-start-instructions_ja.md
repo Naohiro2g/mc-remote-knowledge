@@ -120,3 +120,6 @@ coordinatorはGitHubのAPIで、PR、merge commit、CIの3 run、fixtureのcopy�
 - C#のために足りないと返されたもの（`auth.pairBegin`の`client`を省けるか、期限の後にpollを1回送るか、行末のCR、credentialの
   keyの組、F1に無い流れ）は、C#の票とtoolingへの票で扱う。F1に無い流れと、期限の後のpollは、toolingへの票
   （`00-hub/polyglot-f1-e2-fixture-instructions_ja.md`）に入れた
+- 2026-11-12の訂正：⑦は、`onPairing`を渡さないときに違いがあった（tokenを捨てた後、tokenなしのhelloへ戻らずに止まっていた）。
+  ⑧も、pollの順で、期限の後に1回pollを送りえた。どちらもTypeScriptのPR #3、#4で直った（`00-hub/polyglot-f1-e2-repin-instructions_ja.md`
+  の「返却と照合（2026-11-12）」）
