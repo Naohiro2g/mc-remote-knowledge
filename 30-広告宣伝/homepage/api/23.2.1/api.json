@@ -587,6 +587,13 @@
       "reason": "protocol_mismatch",
       "meaning": "helloで、serverのprotocolがclientの申告を満たさない（versioning §8.2）。`data.server`（serverのprotocol）と`data.client_requires`（clientがhelloで申告したprotocol）を返す。clientはreasonで判定し、codeでは分けない。McRemote `2321.1.0`まではcode `-32600`で、`-32000`番台へ移す（`2026-11-10-01`）",
       "introduced": "○"
+    },
+    {
+      "family": "negotiation",
+      "code": "`-32000`番台（実装定義域）",
+      "reason": "expected_hello",
+      "meaning": "helloが成功する前に、`hello`と`auth.*`（§6.5、§6.6）以外のmethodが来た。serverはerrorを返して接続を閉じる。McRemote `2321.1.0`まではcode `-32600`で、`-32000`番台へ移す（`2026-11-12-03`）",
+      "introduced": "○"
     }
   ]
 }

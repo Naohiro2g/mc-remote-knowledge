@@ -196,6 +196,7 @@
 					<tr><td><code>credential_limit_reached</code></td><td><code>-32000</code>番台（実装定義域）</td><td>credential-state</td><td>UUID ごとの active long-lived credential 上限に到達。<code>data.type</code> / <code>data.limit</code> / <code>data.active</code> を返す。古い credential を自動失効させず、ユーザーが list / revoke する</td><td>bN</td></tr>
 					<tr><td><code>credential_store_unavailable</code></td><td><code>-32000</code>番台（実装定義域）</td><td>auth-service</td><td>server が credential 状態を現在検証できない、または credential 管理操作の durable な結果を確定できない。<code>data.operation</code>（<code>resolve</code>/<code>issue</code>/<code>list</code>/<code>revoke</code>/<code>touch</code>）を返す。<strong>単独では token を invalid と分類せず、client は token を削除せず自動再ペアリングもしない</strong>（token 温存・再試行）</td><td>bN</td></tr>
 					<tr><td><code>protocol_mismatch</code></td><td><code>-32000</code>番台（実装定義域）</td><td>negotiation</td><td>helloで、serverのprotocolがclientの申告を満たさない（versioning §8.2）。<code>data.server</code>（serverのprotocol）と<code>data.client_requires</code>（clientがhelloで申告したprotocol）を返す。clientはreasonで判定し、codeでは分けない。McRemote <code>2321.1.0</code>まではcode <code>-32600</code>で、<code>-32000</code>番台へ移す（<code>2026-11-10-01</code>）</td><td>○</td></tr>
+					<tr><td><code>expected_hello</code></td><td><code>-32000</code>番台（実装定義域）</td><td>negotiation</td><td>helloが成功する前に、<code>hello</code>と<code>auth.*</code>（§6.5、§6.6）以外のmethodが来た。serverはerrorを返して接続を閉じる。McRemote <code>2321.1.0</code>まではcode <code>-32600</code>で、<code>-32000</code>番台へ移す（<code>2026-11-12-03</code>）</td><td>○</td></tr>
 				</tbody>
 			</table></div>
 		</div>

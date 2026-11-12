@@ -35,3 +35,52 @@ serverのための`-32600`のF1-HE-10がある。どちらもこのままにす�
 - PRの差分、test、CIをGitHubのAPIで照合する
 - wire「7.3 エラー設計」の`protocol_mismatch`の行と、Protocol InventoryのMcRemoteの列を、mergeの後に直す
 - human ownerにreleaseの時期を聞き、台帳`00-hub/release-train-notes_ja.md`に行を足す
+
+## 返却と照合（2026-11-12）
+
+- McRemoteは、knowledge `076a127a22eaf0188c1d13822bfd55bfeee9ec38`を読み、PR #18を返した（まだmergeしていない）。head
+  `2ac8dd3a6e81c8fafc8d7458c79a9f2c776606a7`、baseは`main`の`cdafcfd804614def19a35b099bedc93697ca4899`。CIのrun `43068805626`
+  （`workflow_dispatch`、headが同じ）は7 jobすべて成功
+- 差分は2 file。`RemoteSession.java`は、`protocol_mismatch`のcodeを`-32600`から`-32000`へ変えた（`auth_required`、
+  `permission_denied`などと同じcode）。`PreAuthTransportTest.java`に3 case（clientの申告`22.0.0`、`24.0.0`、`23.3.0`、serverは
+  `23.2.1`）を足した。3 caseは、直す前に、codeだけが違う理由で落ちた。直した後、441 testが通った
+- `data`（`reason`、`server`、`client_requires`）、message、errorの後に閉じること、互換判定は変わっていない。F1-HE-09、10も
+  変わっていない
+- 3の一覧は`expected_hello`の1件だった。helloが成功する前に`auth.*`以外のmethodが来ると、code `-32600`のerrorを返して閉じる。
+  このreasonはwire「7.3 エラー設計」に無かった。`2026-11-12-03`で契約に入れ、下の「追加の依頼：expected_hello」で、PR #18に
+  足してもらう。PR #18のmergeは、足した後にする
+
+## 追加の依頼：expected_hello（2026-11-12）
+
+> 返却の3で、`expected_hello`が契約に無く、codeが`-32600`だと分かった。`2026-11-12-03`で、wire「7.3 エラー設計」に`-32000`番台の
+> reasonとして入れた。human owner 2026-11-12：「expected_helloもPR #18に足してもらう票を起案して」。参照するknowledge commitは、
+> この追加が入ったmainのcommitです。
+
+### 欲しいもの
+
+- `expected_hello`を、`-32000`番台のcodeで返す。番号は、ほかのreasonと同じく、範囲の中でMcRemoteが選ぶ
+- 変えないもの：`data`の`reason`（`expected_hello`）、message、errorを返した後に閉じること、helloの前に受けるmethod
+  （`hello`と`auth.*`）
+
+### すること
+
+1. 先にtestを足し、今の`-32600`で落ちることを確かめる（落ちたlogを返却に残す）
+2. 直して、PR #18の同じbranchに足す。PRの説明と注記も合わせる
+3. McRemoteが返すreasonのうち、wire「7.3 エラー設計」の表に無いものがあれば、変えずに一覧を返す（reason、code、どんなときに
+   返すか）
+4. localとCIの検査を通す。mergeはhuman ownerが判断する。tag、Release、公開のworkflowの実行はしない
+
+### 返却
+
+- 実際に読んだknowledge commit
+- 1で落ちたtestと、そのlogの抜粋
+- 選んだcodeと理由
+- 3の一覧（あれば）
+- PR #18の新しいhead、CIのrun ID
+
+### coordinatorがすること
+
+- 足した差分、test、CIをGitHubのAPIで照合する
+- mergeの後、wire「7.3 エラー設計」の`protocol_mismatch`と`expected_hello`の行（「McRemote `2321.1.0`まではcode `-32600`」）と、
+  Protocol InventoryのMcRemoteの列を直す
+- human ownerにreleaseの時期を聞き、台帳`00-hub/release-train-notes_ja.md`に行を足す

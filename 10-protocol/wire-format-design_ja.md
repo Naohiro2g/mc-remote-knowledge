@@ -1028,7 +1028,7 @@ protocol 21の文字列`block_state_ref`、`getBlock`文字列result、文字列
 
 > 却下＝カテゴリ別に `catalog.getBlocks`/`getEntities`/`getParticles` を分ける案：往復が増えるだけで、3カテゴリを束ねるコストは低い。却下＝チャンク配送を先に設計する案：未実測のサイズ問題を先回りして複雑化する。却下＝`catalogHash` を素の version 文字列にする案：同一 MC バージョンで mod 構成が異なる場合を区別できない。却下＝world_constants の全表を catalog.get へ折り込む案：mod 非依存の静的 domain fact を毎接続で運ぶ理由がなく、既存 hello 拡張の枠組みと二重管理になる。
 
-### 7.3 エラー設計（確定 `2026-06-27-03`、`2026-07-01-08` で改訂、`2026-07-07-02` で b2 player reason を追加、`2026-08-02-01` で credential reason を追加、`2026-08-02-02` で `data.ref` 規則を改訂、`2026-08-26-05`でsign reason、`2026-09-01-01`でb7 reason、`2026-09-30-01`／`2026-09-30-02`でb8 reasonを追加、`2026-11-10-01`で`protocol_mismatch`の形を追加）
+### 7.3 エラー設計（確定 `2026-06-27-03`、`2026-07-01-08` で改訂、`2026-07-07-02` で b2 player reason を追加、`2026-08-02-01` で credential reason を追加、`2026-08-02-02` で `data.ref` 規則を改訂、`2026-08-26-05`でsign reason、`2026-09-01-01`でb7 reason、`2026-09-30-01`／`2026-09-30-02`でb8 reasonを追加、`2026-11-10-01`で`protocol_mismatch`の形を追加、`2026-11-12-03`で`expected_hello`を追加）
 
 §7③ の b1 部分を画定。**JSON-RPC 標準 error オブジェクトに一本化**（独自封筒を作らない＝`2026-06-26-01` の標準枠原則に忠実）。`code` は JSON-RPC 標準に従い、**意味は `data.reason`（安定 enum）が運ぶ二層**。UI/AI/test は `reason` を分岐 key にし family（code）を意識しなくてよい。
 
@@ -1085,6 +1085,7 @@ string`"3"`は別型とする。BlockValue出力はregistryの正準型を使い
 | credential-state | `-32000`番台（実装定義域） | `credential_limit_reached` | UUID ごとの active long-lived credential 上限に到達。`data.type` / `data.limit` / `data.active` を返す。古い credential を自動失効させず、ユーザーが list / revoke する | bN |
 | auth-service | `-32000`番台（実装定義域） | `credential_store_unavailable` | server が credential 状態を現在検証できない、または credential 管理操作の durable な結果を確定できない。`data.operation`（`resolve`/`issue`/`list`/`revoke`/`touch`）を返す。**単独では token を invalid と分類せず、client は token を削除せず自動再ペアリングもしない**（token 温存・再試行） | bN |
 | negotiation | `-32000`番台（実装定義域） | `protocol_mismatch` | helloで、serverのprotocolがclientの申告を満たさない（versioning §8.2）。`data.server`（serverのprotocol）と`data.client_requires`（clientがhelloで申告したprotocol）を返す。clientはreasonで判定し、codeでは分けない。McRemote `2321.1.0`まではcode `-32600`で、`-32000`番台へ移す（`2026-11-10-01`） | ○ |
+| | | `expected_hello` | helloが成功する前に、`hello`と`auth.*`（§6.5、§6.6）以外のmethodが来た。serverはerrorを返して接続を閉じる。McRemote `2321.1.0`まではcode `-32600`で、`-32000`番台へ移す（`2026-11-12-03`） | ○ |
 
 - **`missing_namespace` は廃止**（無印は有効＝`2026-06-27-02`、`minecraft:` 補完される）。
 - **`credential_not_found` と `token_not_found` は別物**（`2026-08-02-01`）：`token_not_found` は hello で提示した bearer token 自体が無効＝`2026-07-04-03` 項3 の**破棄・再ペアリング**側。`credential_not_found` は `auth.revoke` で指定した管理対象 ID が見つからないだけで、**caller の token は有効なまま**。`credential_store_unavailable` も温存側で、サーバー側の一時的な store 障害で全 client が有効な credential を捨てて再ペアリングへ雪崩れ込むことを防ぐ。プラグイン内部の線形化（authority commit の前後で何を返すか）は wire に出さず `11-plugin/platform-design_ja.md` が持つ。
