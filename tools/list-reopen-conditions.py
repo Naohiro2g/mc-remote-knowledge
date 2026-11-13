@@ -59,7 +59,7 @@ def parse_open_rows(text: str) -> list[OpenRow]:
         if tag not in OPEN_TAGS:
             continue
         title = rest.split(" / ", 1)[0].strip()
-        # 棚卸しで条件を付け直すときは行末へ追記するので、最後の「再開＝」を使う。
+        # 行末へ追記してきた古い行もあるので、最後の「再開＝」を使う（`2026-11-13-03`からは同じ行を書き直す）。
         reopen_matches = REOPEN_RE.findall(rest)
         reopen = reopen_matches[-1].strip() if reopen_matches else None
         rows.append(OpenRow(date=date, tag=tag, title=title, reopen=reopen or None))

@@ -35,7 +35,31 @@ Unityの世界と箱庭の設計スポーク。一般用途のC# Client Library�
 
 新protocolでは、一般用途のC# Client Libraryを先に作り、Unityには、そのlibraryを使う側として、またUnityの世界のserverと
 して戻る。Unityの内部の準備は、共通のProtocolとClient Libraryに依存しないので、並行して進める（`2026-10-23-01`④）。
-server側の範囲と学習の登山道は、`00-hub/NOTES_ja.md`の2026-10-18のpark（for Unityを新しいprotocolで続ける）に置いている。
+server側の範囲と学習の登山道は、下の「やりたいことと未決」に置く。
+
+## やりたいことと未決
+
+もとはhub NOTESの2026-10-18のpark（for Unityを新しいprotocolで続ける）にあった。2026-11-13に、ここへ移した（`2026-11-13-03`）。
+
+- 旧for Unity：`Naohiro2g/minecraft_remote_unity`（最後のcommitは2023-10、forkに`kazu2g/minecraft_remote_unity`）は、C#の
+  serverとclientを内包し、旧protocolの`setBlock`と`setBlocks`を持っていた。`PythonScripts/`のコードは、Unityの世界とマイクラの
+  世界を切り替えてそのまま動き、外のPythonからのリモコンもできた。マイクラの世界とUnityの世界を交換できた。ブロックは4、5種類の
+  制限があったが、テクスチャを取り込んでほぼすべてのブロックを再現しようとしていた
+- やりたいこと（human owner 2026-10-18）：C#のclientと、C#のserver／Unityの世界の利用の両方。できるならどこまでも。PythonがTCPを
+  残すのは、シンプルな通信を学ぶ素材としてで、Unityでもそれができる。Scratchと同じWebSocketのルートも使えるようにする。
+  マイクラの単純なシミュレーションから、もっとUnityネイティブに振ってもよい
+- 見込み（human owner）：認証はclientとしてはそれほど大変でなく、serverとしてもMcRemoteで実現したものを取り込める。wire §2
+  では、Bridgeからプラグインまでも直接TCPなので、UnityのserverがTCPを話せば、ScratchがBridge経由で届く見込みがある（未確認）
+- 二つの向き（2026-10-18）：Unityからマイクラへは、C#のclient（Phase Iに収録済み）。外形はPythonのclientと同じ系列で、Unityの
+  中にpairingを入れれば、Unityのフレームの中からマイクラへつながる。Pygameへ出しているものがマイクラにも、というのと同じで、
+  `20-教材/ai-learning-design_ja.md`の出力先の軸（`REAL`／`PREVIEW`／`PYGAME`）にUnityが加わる。PythonからUnityへは、Unityが
+  serverになる側。二つがそろうと旧for Unityの交換になる
+- clientの気をつける点：通信でフレームを止めない（UnityのAPIは主スレッドから）、pairingの表示とcredentialの置き場所、WebGLでは
+  TCPが使えずWebSocketとBridgeを通る
+- 判断の軸：なんでもできるからなんでもやる、ではなく、その中で創造性を引き出せる学習の登山道を見つけ出す
+- 未決：どのAPIの範囲で交換できればよいか、ブロックIDとUnityの表現の対応、登山道の形
+- 記録の欠け：`10-protocol/polyglot-client-roadmap_ja.md`の「25. Phase I — C# / Unity」はC#のclientしか扱わず、server側と、
+  二つの世界を交換できることは収録されていない
 
 ## 正本境界
 
