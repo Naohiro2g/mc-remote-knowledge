@@ -867,6 +867,9 @@ protocol 23の現行helloはprotocol 22で確定したJSON-RPC／auth／catalog�
 - **`permissions.buildRange` の意味論**（確定 `2026-08-06-01`、解決時点を`2026-09-01-02`で改訂）：hello が返す整数値と server の実際の build guard は、paired UUID に対する同じ `PermissionProvider` の値解決経路でhello時に一度解決した同じsnapshotを使う。LuckPerms 使用時は、既存 `QueryOptions` における User の effective meta を正本とし、McRemote が primary group だけを直接読んだり、user node・継承・context・weight・meta stacking の優先順位を再実装したりしない。meta key、context、meta 欠落または整数 parse 失敗時の `0`、LuckPerms 不在時の fallback は既存どおり。これは既存 field の値解決修正であり、wire field 名・shape・protocol `21.0.0` を変更しない。負値の意味論は別判断とする。
 - **`catalogHash`**（確定 `2026-06-26-03`・§7.2）：ブロック等カタログのキャッシュ識別子＝`mc_version`/`supported_mc_versions` 広告に**紐づくレジストリ指紋**（重複フィールドにしない）。クライアントは `catalogHash` が実値で、その hash に一致する cache を持たない場合にだけ本体を取得する。`catalogHash` が null なら本体を取得しない（b1 は無認証ゆえ常に null）。**クライアント別の非同梱・利用規則は §7.2 に従う**（`2026-08-02-05` / `2026-08-02-07` で「同梱既定版 fallback」は Python・Scratch とも廃止済み）。
 - **`world_constants`**（確定 `2026-07-02-02`）：world/profile 依存の情報定数を束ねる object。b1 では object と `y_sea` key の存在だけを確認対象にする。wire key は `y_sea`、値は `number | null`。Python 生成定数名として `Y_SEA` を使うのは可。`y_sea` は座標式には使わず、完全な意味論、superflat 判定、full `world_constants.json` 配送、multi-version switching は bN / domain knowledge 側へ送る。**値は `world.getSeaLevel() - 1`（最上段の水ブロックの標高）**とする（`2026-07-30-01`）。`getSeaLevel()` 自体は `00-hub/world-constants-facts_ja.md` の `y_ground`（水面直上・地表の配置基準）に当たり、`y_sea` とは1ブロック異なる。
+- **Minecraftでないserver**（`2026-11-14-01`）：Unity箱庭のserverは、`mc_version`と`supported_mc_versions`に、世界のモデルが従う
+  Minecraftの版（`1.21.11`）を入れ、Unity箱庭であることを`server`で名乗る。`server`の形は、McRemoteが今入れているものを確かめて決める。
+  Unity箱庭のserverが応える範囲は`19-unity/README_ja.md`の「Unity箱庭のserverが応えるもの」
 
 ### 6.3 失敗
 
@@ -1099,7 +1102,7 @@ string`"3"`は別型とする。BlockValue出力はregistryの正準型を使い
 - **`credential_not_found` と `token_not_found` は別物**（`2026-08-02-01`）：`token_not_found` は hello で提示した bearer token 自体が無効＝`2026-07-04-03` 項3 の**破棄・再ペアリング**側。`credential_not_found` は `auth.revoke` で指定した管理対象 ID が見つからないだけで、**caller の token は有効なまま**。`credential_store_unavailable` も温存側で、サーバー側の一時的な store 障害で全 client が有効な credential を捨てて再ペアリングへ雪崩れ込むことを防ぐ。プラグイン内部の線形化（authority commit の前後で何を返すか）は wire に出さず `11-plugin/platform-design_ja.md` が持つ。
 - **reason 分割の理由**：生徒のミスが別物（付け忘れ/構文破壊/prop 無い/値不正）で、ライブ画面が別メッセージを出せると切り分け教育になる。`allowed` を返せるのは `invalid_property_value` だけ＝非対称が綺麗に出る。
 - **`unloaded_chunk` は b1 reason から廃止**（DECISIONS `2026-07-01-08`）。未生成 chunk に対してロード/生成せず有意味な block 操作や query を行う実体はなく、許可された操作ならロード/生成して処理する。禁止すべき操作は chunk ロード状態ではなく build policy / 範囲 / 認可の問題なので、ユーザーに返す安定 reason は `build_denied` とする。chunk generation policy が必要になった場合は bN で別 reason として設計する。
-- **後送り（名前予約のみ）**：`catalog_cache_stale`・`unknown_namespace`・`out_of_bounds`(world-state/y 範囲外・即判定で混乱しないため後送り)。
+- **後送り（名前予約のみ）**：`catalog_cache_stale`・`unknown_namespace`・`out_of_bounds`(world-state/y 範囲外・即判定で混乱しないため後送り)。`out_of_bounds`は、世界の外の意味で使う（`2026-11-14-02`）：ブロックを置ける高さ（`y_min`〜`y_max`）の外と、水平方向の世界の端（Minecraftではworld border、Unity箱庭では400×400の外周）の外への`world.setBlock`／`world.setBlocks`／`world.getBlock`は、`out_of_bounds`（code `-32000`番台）で拒む。`data.bounds`に世界の範囲、`data.violating`に外れた座標を入れ、`setBlocks`は一部でも外れたら何も置かない。権限やbuild policyの範囲（`build_denied`）より先に判定する。McRemoteが実装してreleaseに入った後に、上の表へ移す。
 - **適用範囲**：b1 では getBlock に加え、chat.post/setBlock/setBlocks も **id 付き同期 request** として result/error を取れる形を基準にする（`2026-07-01-08`）。notification は JSON-RPC 上は可能だが result/error を返さないため、send-only 既定化は b1 の疎通確認対象から外す。server pushは採らず、eventは§5.4のpollへ進める（`2026-08-16-05`）。
 - **送信モードの体験タクソノミー**はprotocol 22／b5でDEBUG／TRACE／FASTへ具体化した（`2026-08-20-03`）。wire上の実体はnotification（応答なし）、id付きrequest（同期result/error）、`connection.flush` barrierであり、mode名やdelayはwireへ送らない。TRACEはclient側pacing、FASTはsend-onlyで、batch／jobは引き続き高水準API・後続protocolの話である。
 
