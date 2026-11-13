@@ -5,6 +5,9 @@
 - y_cloudは雲（厚さ4ブロック）の最下段ブロックの標高
 - steve_min_y, steve_max_yはプレイヤー下半身の標高の最小値・最大値
 - steve_max_yは（今の所）常にy_max + 1である。
+- ブロックを置ける高さは、y_minからy_maxまで（両端を含む）。McRemoteから置ける範囲も、プレイヤーが手で置ける範囲も同じ。
+  Paperの`World#getMinHeight()`は-64、`World#getMaxHeight()`は320で、上端を含まない。McRemoteでは`Y_MIN=-64`、`Y_MAX=319`
+  （human owner 2026-11-14）
 - **スーパーフラットは非対応**：Paper サーバ API では稼働中ワールドが superflat かどうかを高信頼に自己判定できず、hello の `world_constants` は world_type を問わず通常世代表（`overworld.modern` 等）の該当行のみを返す。`overworld_superflat` 系列の行は非対応系列の参考値であり、superflat を使う利用者は Y オフセット等の食い違いを自分で扱う（`2026-07-30-02`）。
 
 コーディングの際は基本的にこれらの実値そのものを意識する必要はないが、クライアント側に通知されて、実ファイル化などによりIDEで補完可能状態になっていれば、知りたいときに確認できるようになる。

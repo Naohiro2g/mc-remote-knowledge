@@ -36,6 +36,24 @@ Unityの世界と箱庭は、2026-11-11に新しいrepo `Naohiro2g/mc-remote-uni
 旧for Unity、二つの世界、Unity内部の準備の説明は`19-unity/README_ja.md`へ移した。2026-11-11まで、ここに置き、
 「Unity用のrepoやpackageの置き場所は未決」としていた。
 
+## 2つの始め方
+
+同じClient Libraryを、2つの入口から使う。どちらも同じClient APIを使う（human owner 2026-11-13「mc-remoteのC#クライアントは、
+純粋c＃ / VS Codeと、C# / Unity / VS Codeになる」。名前と置き場所はC#担当の案）。
+
+| 入口 | 編集と実行 | 向いていること | 作例の置き場所 |
+| --- | --- | --- | --- |
+| .NETコンソールで始める | VS Codeで編集し、`dotnet run`で実行 | コードを書いて世界の変化を観察する。通信や建築の処理を小さく試す | このrepoの`examples` |
+| Unityで始める | VS CodeでC#を編集し、Unity Editorで実行 | 画面、ボタン、3D空間の操作と世界を結び付ける | `mc-remote-unity-sandbox` |
+
+- つなぐ先は、MinecraftでもUnity箱庭でもよい。Unity箱庭のserverも、McRemoteと同じprotocolを受ける（`2026-11-13-04`）
+- 導入の説明は2本に分ける。どちらも、最初の成功体験は「1ブロックを置いて読み戻す」にする
+- Unityで始める側は、UI、main threadへの通知、シーンを終えるときの接続の処理を扱う。Unity Web（browser）のbuildではTCPが
+  使えないので、今のlibraryではつながらない
+- 時期：「.NETコンソールで始める」の作例と導入の説明は、次のC#の票で頼む（hub NOTESの「次のC#、TypeScript、toolingの票に
+  入れるもの」の行）。「Unityで始める」には、Unityが使える公開の形のlibraryが要る（`2026-11-11-02`②）。公開Unity箱庭の後に
+  する（`2026-11-13-04`①、ロードマップのMilestone I）
+
 ## 正本境界
 
 - wire、versioning、authentication等のProtocol contract: `10-protocol`

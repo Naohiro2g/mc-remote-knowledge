@@ -28,6 +28,9 @@ URLを開けば、Minecraftを買わず入れずに、Scratchから建てられ�
 - pairing：Scratchに出たcodeを、Unity Webのchatで`/mcremote pair NNN-NNN`と打って承認する。Minecraftでの操作と同じにする
 - 世界のモデル：Minecraft 1.21.11に準拠する。高さは-64〜319、地面も置き換えられ（リセットで戻す）、blockはIDとstateで持つ
   （`minecraft:gold_block`など）。どこまで沿わせるか（blockのふるまいなど）は段ごとに決める
+- 地形と基本のblock（human owner 2026-11-14）：草（`minecraft:grass_block`）がy=62、土（`minecraft:dirt`）が61〜60、石
+  （`minecraft:stone`）が59〜-64。基本のblockは、空気、草、土、石、金、鉄、シーランタン、ガラス、ダイヤモンド、TNT。
+  地面の中のイースターエッグは、試行錯誤と実装の中で決める（アイデアは、x0の層のblock）
 - ホームページのトップの「はじめる」：公開Unity箱庭が使えるようになったら、Scratch→Unity箱庭にする。それまでは今の流れのまま
 - UnityからMinecraftを動かすこと（`10-protocol/polyglot-client-roadmap_ja.md`のMilestone I）は、その後にする
 - 最初の区切り：1台のPCで、今のScratchからBridgeを通して、Unity箱庭のserverへ4つの操作（`chat.post`、`world.setBlock`、
