@@ -169,3 +169,83 @@ human ownerが、前の票で案として返った次のことを決めた（202
 
 - 返却を、GitHubのAPI（PR、merge commit、CI、fixtureのbytes）で照合し、Protocol Inventoryへ写す
 - 各clientの既定の値と、生存確認の答えを突き合わせる。検討メモの「6」のMcRemote、Stack、WireScopeの項は、別の票にする
+
+## 返却と照合（2026-11-13）
+
+5つの担当とも、knowledge `125812b47bae32120f56febc4d30058ab0fe8248`（この依頼が入ったcommit）を読んだ。coordinatorはGitHubの
+APIで、PR、merge commit、CI、fixtureのbytesを確かめた。どのmergeも、木はPRのheadと同じ。
+
+| client | PR | head | merge commit | CI（PR／merge後） |
+| --- | --- | --- | --- | --- |
+| Python | minecraft-remote-api #16 | `4a0c23ea4cbfd2cc19e0da26e9968a3ba4cd28ae` | `70be7410b453bc56e92e4c588e07a54af3cb1e51` | `43255100136`／`43255318792` |
+| Java | minecraft-remote-java #5 | `a0d27f444ee8d90732e28bccfd74a81a86aa04d3` | `51d35027ed437924045c4dff64bf560323af6dad` | `43383153248`／`43383364695` |
+| Scratch | scratch-editor #34 | `0e4aea4bca42988122feb46e36b952c2e8e9a733` | `d0b4bb7e541872c25b58d7fc7a22ee5f8a88e951` | `43259037195`／`43366653465` |
+| C# | minecraft-remote-csharp #5 | `c5f8e057505aec1ec2fddaa26161214add5ed6d7` | `0f9f12d41376d78b92e51700b395dde50ee56de9` | `43374320341`／`43374456501` |
+| TypeScript | minecraft-remote-typescript #5 | `19e498adcce5bfde113f3c3630468e129887bc16` | `0344731cc793fa87f68e4e5c1b5c7b655f233f82` | `43245240103`／`43380164480` |
+
+- CIはどれも成功。TypeScriptはhuman ownerがmergeした（担当のmergeは権限で拒まれた）
+- fixture：Python、Java、C#、TypeScriptは、merge commitのcopy 11本のbytesとSHA-256が、上の「F1の取得元」の表と一致した。
+  Scratchは`mc-remote/tooling-lock.json`の取得元を`335c604`にし、lockの値が同じ表と一致した（entryは23から25。Bridgeと
+  WireScopeの取得元`6447f6e`は変わらない）
+- 返却の本文：Python `docs/polyglot-e2-reconnect_ja.md`（`70be741`）、Java `docs/polyglot-e2-reconnect_ja.md`（`51d3502`）、
+  C# `docs/e2-reconnect_ja.md`（`0f9f12d`）、Scratch `docs/polyglot-f1-browser_ja.md`（`0e4aea4`）。TypeScriptは返却票だけ
+
+### caseとPASS
+
+| client | v1（54） | v2（12） | todo |
+| --- | ---: | ---: | --- |
+| Python | 54 | 12 | なし（FAST、flush、entity、cursor、catalogがある） |
+| Java | 54 | 10 | F1-OP-06（FASTと`connection.flush`が無い）、F1-OP-11（entity handle、event cursor、catalogのcacheが無い） |
+| C# | 54 | 10 | Javaと同じ2つ、同じ理由 |
+| TypeScript | 54 | 10 | Javaと同じ2つ、同じ理由。F1-OP-08はtodoから外れた |
+| Scratch | browserの側で46 | browserの側で12 | なし |
+
+- Scratchは、TCPに固有のF1-FR-01〜06、F1-CL-03、F1-CL-07の8 caseをBridgeとtoolingの側に置き、PASSに数えない（前の案の7に、
+  CL-07が加わった）。browserの側のPASSは、直接のTCPのPASSとは別に数える
+- 5つとも、F1-AU-12の先と⑤Eを担当のtestで確かめ、直す前に落ちるのを見たcaseと落ち方を返した
+- 契約と違うと返したcaseは無い
+
+### 既定の値と、「すること」の6
+
+| | Python | Java | C# | TypeScript | Scratch |
+| --- | --- | --- | --- | --- | --- |
+| 応答の待ち（最後の受信から） | 15分 | 15分 | 15分 | 15分 | 15分 |
+| 呼び出しごとに延ばす | `call_options` | 無い（接続ごとの`setResponseTimeout`） | `RequestOptions` | `CallOptions` | `_request`のoptions |
+| 延ばした長さが違うとき | 最長 | （接続ごと） | 最短 | 返却に無い | 最長 |
+| TCP keepalive（静か、間隔、回数） | 60秒、30秒、10回 | 30秒、15秒、8回 | 2分、30秒、10回 | 30秒、1秒、10回（間隔と回数はNode.jsのlibuvが決める） | 無い（browser） |
+| 切れたと分かるまで（設定からの計算） | 約6分 | 約2.5分 | 約7分 | 約40秒 | closeとerror。応答待ちがあれば15分 |
+| つなぎ直しの間隔、続ける長さ | 0.5〜30秒、5分 | 0.5〜30秒、5分 | 0.5〜30秒、5分 | 0.5〜30秒、5分 | 0.5〜30秒、5分 |
+| 1つのobjectを複数から | thread | thread | thread | 同時の呼び出し | 同時の呼び出し |
+
+- 値はどれも仮で、実ネットワークで測っていない
+- TypeScriptは、前の返却の「⑤GはOSの既定に任せる」と、codeのコメント「Linuxの既定で約12分」が誤りだったと返した。この票は
+  固定し直しだけなので、まだ直していない
+- 延ばした長さが違うときは、`2026-11-13-01`で最長に揃えた。生存確認は、`2026-11-13-02`で、測らずに「切れたと判断するまで
+  数分」と決めた。C#の最長への直しと、TypeScriptの確かめと約40秒の直しは、それぞれの次の票で頼む（hub NOTES 2026-11-13の
+  「次のC#、TypeScript、toolingの票に入れるもの」の行）
+
+### pulse
+
+5つとも、2026-11-13にPaper 1.21.11（build 132）と公開のMcRemote `2321.1.0`で、hello → `world.setBlock` → `world.getBlock`が
+通った。認証は、human ownerがMinecraftの中で承認した。つなぎ直しを実機で見たのは2つ。
+
+- Java：human ownerがPaperを再起動し、次の呼び出しで自分でつなぎ直した。保存したtokenのhelloがそのまま通った
+- Python：clientのTCPだけを切り、次の呼び出しでつなぎ直した。originを戻し、eventのlossを知らせた
+
+C#は、repo外のUnity 6000.6.8f1で、更新したDLLのhello、set、get、closeを確かめた。
+
+### Scratch
+
+- ⑦⑧と②を入れた。pairing完了のhatは、続くhelloが成功した時に発火する。blockと文言は変えず、新しいblockも無い
+- `2026-11-12-05`：Bridgeがplugin側の一時的なTCPを閉じても、WebSocketの上でpollは続く。応答の前にWebSocketが閉じたら、そのpollを
+  完了不明にし、新しいWebSocketで同じpairingの次のpollへ進む。実McRemoteが承認を待つ間にTCPを閉じる経路は、実機では見ていない
+- 案として返ったもの（human ownerが決める）：つなぎ直しとeventのlossを状態欄とWireScopeへ出す。FASTの後のepochの変化を、flushの
+  成功と分けて見せる。Bridgeから送るping（間隔と期限は、Wi-Fi、sleep、Caddy、NATを測って決める）
+
+### 決めずに残したこと
+
+- pollを続けるための接続が開けなかったとき：TypeScriptとJavaは、そこでpairingを失敗にした。`2026-11-12-05`は書いていない
+- 実ネットワークでの値の較正、Wi-Fiの切り替え、sleepからの復帰、OSごとの検出時間（`2026-11-13-02`で、今は測らないと決めた）
+- F1-OP-06、OP-11の機能（Java、C#、TypeScript）
+
+各担当が返した「共有fixtureの使い方」の行の前と後を、Protocol Inventoryへ写した。能力の「epoch／reconnect」の行も直した。

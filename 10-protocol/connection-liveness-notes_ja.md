@@ -93,3 +93,23 @@ HUDは、human ownerの方向（接続／streamから独立）により、この
 | McRemote | 認証後の接続の生存確認と回収、接続数の上限、開いている接続と回収した数を観測できるか |
 | Stack | proxyとNATが静かな接続を切る時間。Bridgeからpingを送るか |
 | WireScope | 「切れている」状態と、つなぎ直したことの見せ方。複数のstreamを1つの画面で見る段の順番 |
+
+## 7. 返却で分かったこと（2026-11-13）
+
+「6」のうち、各Client Library、McRemote、Stackの返却。照合は各票の「返却と照合（2026-11-13）」。値はどれも、設定とソースからの
+計算で、実際の切断を測ってはいない。
+
+- 各Client Library（`00-hub/polyglot-e2-reconnect-instructions_ja.md`）：5つとも③⑤を入れた。応答の待ちは15分、つなぎ直しは
+  0.5〜30秒の間隔で5分。直接のTCPの4つはTCP keepaliveで生存確認をし、切れたと分かるまでが約40秒（TypeScript）から約7分（C#）
+  まで開いている。Scratchはbrowserなので、closeとerrorしか見えない
+- McRemote（`00-hub/mcremote-liveness-instructions_ja.md`）：「3」の2は、今そのとおり起きる。認証後はTCP keepaliveだけで、値は
+  OSに任せる。公開VPSのcontainerの既定（7200秒、75秒、9回）なら、黙って消えたclientに気づくまで約2時間11分。その間、その
+  接続は16枠と全体の枠（Paperの`max-players`が16以下なら64）を使う。開いている接続の今の数、最後の受信からの時間、回収した数は、
+  見られない
+- Stack（`00-hub/stack-liveness-instructions_ja.md`）：「3」の4について、Caddyは静かなWebSocketを切らない。browserの側へTCP
+  keepalive（15秒、15秒、9回）を送り、応答しないbrowserを約2.5分で切る。BridgeはpingもMcRemoteへのkeepaliveも持たない。VPSの
+  事業者、clientの側のrouter、homeの入口の値は分からない。測る手順は返ったが、測っていない
+- `2026-11-13-02`で、値を測らずに決めた。McRemoteは、黙って消えたclientの認証後の接続を数分（目安5分）で回収する。直接のTCPの
+  Client Libraryは、切れたと判断するまでを数分にする。⑤があるので、切れても次の呼び出しで戻り、値の差で失うのは応答を待つ
+  最中の切断だけになる。経路の測定、Bridgeのping、McRemoteの観測、WireScopeの見せ方は、今はしない（hub NOTES 2026-11-13の
+  「生存確認とつなぎ直しで、今はしないこと」の行）

@@ -21,6 +21,11 @@ Unityは、このlibraryを使う主な場の一つである（`10-protocol/poly
   固定し直し、v1の52 caseをCIで通した（PR #4、merge `1f069dc321dbb3534447584946ec2cfd7912a289`）。実McRemoteとのpulseと、Unity
   6000.6.8f1でDLLが動くことを確かめた。待ち方と自動のつなぎ直し（`2026-11-11-01`③⑤）はまだ入れていない。照合は同じ票の
   「返却と照合（2026-11-12）」
+- 2026-11-13：待ち方と自動のつなぎ直し（`2026-11-11-01`③⑤）と、pairingの途中の切断（`2026-11-12-05`）を入れ、F1の取得元を
+  tooling `335c604`へ固定し直した（PR #5、merge `0f9f12d41376d78b92e51700b395dde50ee56de9`）。v1の54 caseと、v2の12 caseのうち
+  10 caseをCIで通した（OP-06、OP-11は無い機能のためtodo）。`ConnectionRestored`などをUnityのmain threadへ戻す例をdocsに書き、
+  repo外のUnity 6000.6.8f1で更新したDLLが動くことを確かめた。照合は`00-hub/polyglot-e2-reconnect-instructions_ja.md`の
+  「返却と照合（2026-11-13）」。応答待ちの長さが違うときに最長へ合わせる直し（`2026-11-13-01`）は、次のC#の票で頼む
 
 ## Unityとの関係
 

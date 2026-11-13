@@ -85,9 +85,11 @@ JSON-RPC 2.0 を採用する（採用判断と却下案は §8）。
   生存確認で切れたと判断したときを含む）。serverのerrorとしては扱わず、reasonを作らない。LFの無い末尾は、JSONとして
   閉じていても応答にしない。例外の型は言語ごとに決める（`2026-11-11-01`②）。
 - 応答は、既定で長く、粘り強く待つ。保留表に要求がある間、その接続で最後に受信してからの時間で見て、呼び出しや接続ごとに
-  延ばせる。超えたら「完了不明」で、その接続を回収する（§3.5のflushと同じ）。これとは別に、transportの生存確認で切れた
-  接続を見つける。ボットへの短い上限はserverの認証前の上限が持つ。値と設定の仕方は言語ごとに、実測で決める
-  （`2026-11-11-01`③。待ち方の検討は[connection-liveness-notes_ja.md](connection-liveness-notes_ja.md)）。
+  延ばせる。延ばした長さが要求ごとに違うときは、いちばん長いものに合わせる（`2026-11-13-01`）。超えたら「完了不明」で、
+  その接続を回収する（§3.5のflushと同じ）。これとは別に、transportの生存確認で切れた接続を見つけ、切れたと判断するまでを
+  数分にする。ボットへの短い上限はserverの認証前の上限が持つ。値と設定の仕方は言語ごとに決め、測らずに決める
+  （`2026-11-11-01`③、`2026-11-13-02`。2026-11-13までは「実測で決める」としていた。待ち方の検討は
+  [connection-liveness-notes_ja.md](connection-liveness-notes_ja.md)）。
 - Client Libraryは要求を自動で再送しない（`2026-11-11-01`④）。
 - 接続が切れた後の次の呼び出しで、Client Libraryは自動でつなぎ直す（既定で有効、applicationが無効にできる）。新しい接続の
   helloから始め、最後に成功を確かめたdimensionとoriginをhelloの`build`で戻す。entity handleとevent cursorは無効にし、
@@ -912,7 +914,9 @@ token の入手＝ペアリング。**hello の前段の独立メソッド `auth
 - **pairingの途中で接続が切れたとき**：期限内なら、clientは同じ`pairing_id`の次のpollを新しい接続で送り、pairingを続ける
   （上の「bridge 透明性」）。応答の前に切れたpollは完了不明として終え、次のpollはその送り直しではなく、pollの続きとして扱う
   （`2026-11-11-01`④の「自動で再送しない」に当たらない）。続けたpollが`pair_not_found`などで失敗したら、二度目のpairingは
-  せずapplicationへ失敗を返す（`2026-08-30-03`、`2026-11-12-05`）。
+  せずapplicationへ失敗を返す（`2026-08-30-03`、`2026-11-12-05`）。今のMcRemote（main `cdafcfd`。認証の部分は`2321.1.0`と
+  同じ）は、`ok`を返す時にそのpairingを消し、同じ`pairing_id`の次のpollには`pair_not_found`を返す。失った応答が`ok`だった
+  ときは、続けたpollがこの失敗になる（2026-11-13のMcRemoteの返却）。
 - **非規範（クライアント実装の目安・ratify 対象外）**：poll 間隔 ≈1–2s、poll の timeout は `pairBegin` が返す `expires_in`（`pair_code` TTL・≈120s）。`pairing_id` はクライアント in-memory 保持でよい（リロードで破棄＝ユーザーは接続ブロックを再実行）。
 
 ### 6.6 credential 管理（確定 `2026-08-02-01`）
