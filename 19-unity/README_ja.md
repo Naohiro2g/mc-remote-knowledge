@@ -13,6 +13,26 @@ Unityの世界と箱庭の設計スポーク。一般用途のC# Client Library�
 - 2026-11-11：`minecraft-remote-csharp`から、ローカルデモ、設計メモ2本、図3件を履歴ごと移した（PR #1、merge commit
   `958b676e293427165e872d9abd7b5bfc4173efd6`。照合は`00-hub/unity-sandbox-migration-instructions_ja.md`の「返却と照合
   （2026-11-11）」）。正本はこのrepoの`main`にある
+- 2026-11-13：公開Unity箱庭を最優先にした（`2026-11-13-04`、下の「公開Unity箱庭」）。最初の区切りの票を、Unity
+  （`00-hub/unity-sandbox-first-slice-instructions_ja.md`）とScratch（`00-hub/unity-sandbox-scratch-instructions_ja.md`）へ出した
+
+## 公開Unity箱庭
+
+URLを開けば、Minecraftを買わず入れずに、Scratchから建てられる公開の箱庭。Unity版マイクラリモコンの最初の段として、
+2026-11-13に最優先にした（`2026-11-13-04`）。
+
+- 名前：「Unity箱庭」、そのserverを「Unity箱庭のserver」と呼ぶ。今の記録で「箱庭サーバー」と書くと、Minecraftの公開server
+  を指す
+- 経路：Scratch → Bridge → Unity箱庭のserver → 表示同期 → Unity Web。Unity箱庭のserverは、McRemoteと同じ改行区切りの
+  JSON-RPCをTCPで受ける。ほかのclientも同じserverへつながる。serverの形は、設計メモの第一案（描画しない.NETのprocess）
+- pairing：Scratchに出たcodeを、Unity Webのchatで`/mcremote pair NNN-NNN`と打って承認する。Minecraftでの操作と同じにする
+- 世界のモデル：Minecraft 1.21.11に準拠する。高さは-64〜319、地面も置き換えられ（リセットで戻す）、blockはIDとstateで持つ
+  （`minecraft:gold_block`など）。どこまで沿わせるか（blockのふるまいなど）は段ごとに決める
+- ホームページのトップの「はじめる」：公開Unity箱庭が使えるようになったら、Scratch→Unity箱庭にする。それまでは今の流れのまま
+- UnityからMinecraftを動かすこと（`10-protocol/polyglot-client-roadmap_ja.md`のMilestone I）は、その後にする
+- 最初の区切り：1台のPCで、今のScratchからBridgeを通して、Unity箱庭のserverへ4つの操作（`chat.post`、`world.setBlock`、
+  `world.getBlock`、`world.setBlocks`）を送り、Unity Webの画面に出る。次に、Stackで公開VPSへ出す。hubで決めることと、公開の
+  前に要るものは、hub NOTESの「公開Unity箱庭へ進む」の行にある
 
 ## 何を置くか
 
@@ -22,7 +42,8 @@ Unityの世界と箱庭の設計スポーク。一般用途のC# Client Library�
   複数人が同じ箱庭を見られるUnity Webの公開共有箱庭）と、Unity内部の先行作業（`docs/unity-internal-preparation_ja.md`。
   ブロックの材質、地面と座標、HUDのローカル表示、Web build、描画の性能）。図は`docs/diagrams/`。どちらもhuman ownerの起案
   （C#のrepoの`680ebb3`で入り、移行で`7a16a6e`になった）
-- 後で：箱庭サーバー（Unityの世界のserver）と世界のモデル、C# Client Libraryを使う側のadapter
+- Unity箱庭のserverと世界のモデル：最初の区切りで作る（`2026-11-13-04`）
+- 後で：C# Client Libraryを使う側のadapter
 
 置かないもの：一般用途のC# Client Library（`minecraft-remote-csharp`）。Unityは公開された形でlibraryを使い、`src/`を直接
 参照しない。Minecraft（Mojang）の素材。
@@ -57,7 +78,8 @@ server側の範囲と学習の登山道は、下の「やりたいことと未�
 - clientの気をつける点：通信でフレームを止めない（UnityのAPIは主スレッドから）、pairingの表示とcredentialの置き場所、WebGLでは
   TCPが使えずWebSocketとBridgeを通る
 - 判断の軸：なんでもできるからなんでもやる、ではなく、その中で創造性を引き出せる学習の登山道を見つけ出す
-- 未決：どのAPIの範囲で交換できればよいか、ブロックIDとUnityの表現の対応、登山道の形
+- 未決：どのAPIの範囲で交換できればよいか、ブロックIDとUnityの表現の対応（IDは1.21.11のものを使う：`2026-11-13-04`④）、
+  登山道の形
 - 記録の欠け：`10-protocol/polyglot-client-roadmap_ja.md`の「25. Phase I — C# / Unity」はC#のclientしか扱わず、server側と、
   二つの世界を交換できることは収録されていない
 
@@ -66,6 +88,7 @@ server側の範囲と学習の登山道は、下の「やりたいことと未�
 - wire、versioning、authentication等のProtocol contract: `10-protocol`
 - C# Client Library: `18-csharp-client/`
 - Unityのrepoと置くもの、Unityの版: `2026-11-11-02`
+- 公開Unity箱庭の優先、pairing、1.21.11への準拠、名前: `2026-11-13-04`
 - Unity内部の準備を並行して進めること: `2026-10-23-01`
 - 旧for Unityの扱い: `2026-10-22-08`
 - 実装、build、Unityに閉じる判断: `Naohiro2g/mc-remote-unity-sandbox`
