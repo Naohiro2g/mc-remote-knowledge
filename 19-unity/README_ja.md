@@ -35,10 +35,11 @@ URLを開けば、Minecraftを買わず入れずに、Scratchから建てられ�
 ### Unity箱庭のserverが応えるもの
 
 `2026-11-14-01`、`2026-11-14-02`。Scratchが今のままつながる範囲から決めた（Scratchの返却は
-`00-hub/unity-sandbox-scratch-instructions_ja.md`の「返却と照合（2026-11-14）」）。
+`00-hub/unity-sandbox-scratch-instructions_ja.md`の「返却と照合（2026-11-14）」）。`server`の形と`out_of_bounds`の`data`は、
+McRemoteの返却を見て`2026-11-14-03`、`2026-11-14-04`で決めた。
 
 - hello：`protocol`は`23.2.1`。`mc_version`と`supported_mc_versions`は、世界のモデルが従う`1.21.11`。Unity箱庭であることは`server`で
-  名乗る（形はMcRemoteに合わせる）。`dimension`は`minecraft:overworld`だけ、buildを省いたときの`origin`は`[0, 0, 0]`、`world_constants`は
+  名乗る（`name`は`mc-remote-unity-sandbox`、`version`はUnity箱庭のserverの版）。`dimension`は`minecraft:overworld`だけ、buildを省いたときの`origin`は`[0, 0, 0]`、`world_constants`は
   `y_sea`だけ（ほかのkeyは`2400`）、`permissions`はMcRemoteと同じ形
 - tokenと画面：tokenは、chatで`/mcremote pair NNN-NNN`を打った画面に結ぶ。画面は、browserに残る推測できない画面のIDで見分け、
   そのIDはどこにも出さない。helloの`player`は、画面ごとに作るUUID（画面のIDとは別。Minecraftのaccountではない）。pairingは
@@ -49,7 +50,8 @@ URLを開けば、Minecraftを買わず入れずに、Scratchから建てられ�
   `world.getBlock`、`world.setBlocks`（FASTのnotificationを含む）、`build.setDimension`、`build.setOrigin`、`connection.flush`。
   ほかは`method_not_found`
 - 世界の外：置ける高さ（-64〜319）の外と、400×400の外周の外へ置く、または読むと、`out_of_bounds`（McRemoteも同じ。Minecraftの
-  水平方向の端はworld border）。権限による範囲の外は`build_denied`
+  水平方向の端はworld border）。`data`はwire §7.3の表の下の箇条の形で、外周は中心`(0, 0)`、大きさ`400`のworld borderとして
+  返す。権限による範囲の外は`build_range_exceeded`（`2026-11-14-05`）
 - ホームページのトップの「はじめる」：公開Unity箱庭が使えるようになったら、Scratch→Unity箱庭にする。それまでは今の流れのまま
 - UnityからMinecraftを動かすこと（`10-protocol/polyglot-client-roadmap_ja.md`のMilestone I）は、その後にする
 - 最初の区切り：1台のPCで、今のScratchからBridgeを通して、Unity箱庭のserverへ4つの操作（`chat.post`、`world.setBlock`、

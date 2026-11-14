@@ -45,3 +45,29 @@
 - 1を見て`server`の形の案を作り、wire §6.2に書く。human ownerに見せる
 - 4をknowledgeの記述と突き合わせ、`build_denied`の分け方（reasonの名前、`data`の形）の案を作る。human ownerに見せる
 - 3がreleaseに入ったら、wire §7.3の表へ`out_of_bounds`を移し、F1のcase（tooling）と各clientの表示を頼む
+
+## 返却と照合（2026-11-14）
+
+McRemoteは、knowledge `451988d9cf55cfa0f13f4a1b00dc1983274b719d`（この依頼が入ったcommit）を読み、McRemoteのmain
+`cdafcfd804614def19a35b099bedc93697ca4899`を調べた。返却票はMcRemoteの搬送素材
+`handoff-materials/2026-11-14-world-out-of-bounds/materials/RETURN_ja.md`（17,193 bytes、SHA-256
+`496834f867b908a4055082157f7d5c14b15824adecd842596c8f0332d6ed032f`）。coordinatorはGitHubのAPIで、PR #19のheadが
+`924ca925d3631af846c4ae82d4820867b8bdf2f8`、baseが`cdafcfd`であること、CI run `43589581111`がこのheadで7 jobとも成功した
+ことを確かめた。human ownerが2026-11-14にmergeした（merge commit `3ccb3fd345faa228b195a15c3c45152f5dff7d04`）。
+
+1. **helloの`server`**：成功したhelloの応答には、`server`のkeyが無い。`protocol_mismatch`の`data.server`は、serverの
+   protocolの版（今は`23.2.1`）で、別のもの。形は`2026-11-14-03`で決めた
+2. **世界の外での前の動き**：高さもworld borderも確かめず、Paperへそのまま渡していた。`buildRange`の外と重なれば
+   `build_denied`、内なら`result: null`や読んだblock。置くときだけ、原点からの相対で`x`、`z`が±1,000,000、`y`が±1,000の外を
+   `invalid_params`にしていた。Paperで実際にどうなるかは確かめていない
+3. **`out_of_bounds`（PR #19）**：codeは`-32000`。`data`は`bounds`（`y_min`、`y_max`、`world_border`の中心と大きさ）と
+   `violating`（最初に外と判定した点の絶対座標）。BlockSpecの検査の後、建てる権限、`buildRange`、block数の上限、work、
+   Paperへの読み書きより前に判定する。`setBlocks`は対角の2点を受付のときに確かめ、外なら何も置かない。前の相対座標の上限は、
+   世界の実際の範囲の判定に置き換えた。WorldBoundsTestの24 caseが、直す前にすべて「`out_of_bounds`を期待したが、違う引数で
+   呼ばれた」で落ち、直した後は48 caseが通る。実際のPaperでは試していない。`data`の形は`2026-11-14-04`で決めた
+4. **`build_denied`を返す場面**：14のmethod、16の組。原因は、建築範囲（`buildRange`。原点からのx、zの差）の外と、playerごとの
+   1回に置けるblock数の上限（`mcr.build.blocks`。`world.setBlock`と`world.setBlocks`）の2つ。`data`はどれもreasonだけ。
+   knowledgeの列挙に無かったmethodは、`world.getBlocks`、`world.getHeight`、`world.spawnEntity`。分け方は`2026-11-14-05`で
+   決めた
+
+次の依頼（`build_denied`を分け、世界の外の判定をほかのmethodへ広げる）は`00-hub/mcremote-build-denied-split-instructions_ja.md`。

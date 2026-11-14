@@ -848,7 +848,7 @@ protocol 23の現行helloはprotocol 22で確定したJSON-RPC／auth／catalog�
   "dimension": "minecraft:overworld",
   "origin": [200, 0, 200],
   "permissions": { "online": true, "offline": false, "buildRange": 100 },
-  "server": "..."
+  "server": { "name": "...", "version": "..." }
 }
 ```
 
@@ -868,8 +868,12 @@ protocol 23の現行helloはprotocol 22で確定したJSON-RPC／auth／catalog�
 - **`catalogHash`**（確定 `2026-06-26-03`・§7.2）：ブロック等カタログのキャッシュ識別子＝`mc_version`/`supported_mc_versions` 広告に**紐づくレジストリ指紋**（重複フィールドにしない）。クライアントは `catalogHash` が実値で、その hash に一致する cache を持たない場合にだけ本体を取得する。`catalogHash` が null なら本体を取得しない（b1 は無認証ゆえ常に null）。**クライアント別の非同梱・利用規則は §7.2 に従う**（`2026-08-02-05` / `2026-08-02-07` で「同梱既定版 fallback」は Python・Scratch とも廃止済み）。
 - **`world_constants`**（確定 `2026-07-02-02`）：world/profile 依存の情報定数を束ねる object。b1 では object と `y_sea` key の存在だけを確認対象にする。wire key は `y_sea`、値は `number | null`。Python 生成定数名として `Y_SEA` を使うのは可。`y_sea` は座標式には使わず、完全な意味論、superflat 判定、full `world_constants.json` 配送、multi-version switching は bN / domain knowledge 側へ送る。**値は `world.getSeaLevel() - 1`（最上段の水ブロックの標高）**とする（`2026-07-30-01`）。`getSeaLevel()` 自体は `00-hub/world-constants-facts_ja.md` の `y_ground`（水面直上・地表の配置基準）に当たり、`y_sea` とは1ブロック異なる。
 - **Minecraftでないserver**（`2026-11-14-01`）：Unity箱庭のserverは、`mc_version`と`supported_mc_versions`に、世界のモデルが従う
-  Minecraftの版（`1.21.11`）を入れ、Unity箱庭であることを`server`で名乗る。`server`の形は、McRemoteが今入れているものを確かめて決める。
+  Minecraftの版（`1.21.11`）を入れ、Unity箱庭であることを`server`で名乗る（次の箇条）。
   Unity箱庭のserverが応える範囲は`19-unity/README_ja.md`の「Unity箱庭のserverが応えるもの」
+- **`server`**（`2026-11-14-03`）：serverの名前と版を`{ "name", "version" }`で返す（requestの`client`と同じ形）。Unity箱庭の
+  serverは最初から返し、`name`は`mc-remote-unity-sandbox`。McRemoteは`2400`から返し、`name`は`McRemote`、`version`はpluginの版。
+  Minecraftの版は`mc_version`が持つ。`2400`より前のMcRemoteは`server`を返さないので、clientは`server`が無くても接続を止めない。
+  `protocol_mismatch`の`data.server`（serverのprotocolの版、§7.3）とは別の欄
 
 ### 6.3 失敗
 
@@ -1102,7 +1106,26 @@ string`"3"`は別型とする。BlockValue出力はregistryの正準型を使い
 - **`credential_not_found` と `token_not_found` は別物**（`2026-08-02-01`）：`token_not_found` は hello で提示した bearer token 自体が無効＝`2026-07-04-03` 項3 の**破棄・再ペアリング**側。`credential_not_found` は `auth.revoke` で指定した管理対象 ID が見つからないだけで、**caller の token は有効なまま**。`credential_store_unavailable` も温存側で、サーバー側の一時的な store 障害で全 client が有効な credential を捨てて再ペアリングへ雪崩れ込むことを防ぐ。プラグイン内部の線形化（authority commit の前後で何を返すか）は wire に出さず `11-plugin/platform-design_ja.md` が持つ。
 - **reason 分割の理由**：生徒のミスが別物（付け忘れ/構文破壊/prop 無い/値不正）で、ライブ画面が別メッセージを出せると切り分け教育になる。`allowed` を返せるのは `invalid_property_value` だけ＝非対称が綺麗に出る。
 - **`unloaded_chunk` は b1 reason から廃止**（DECISIONS `2026-07-01-08`）。未生成 chunk に対してロード/生成せず有意味な block 操作や query を行う実体はなく、許可された操作ならロード/生成して処理する。禁止すべき操作は chunk ロード状態ではなく build policy / 範囲 / 認可の問題なので、ユーザーに返す安定 reason は `build_denied` とする。chunk generation policy が必要になった場合は bN で別 reason として設計する。
-- **後送り（名前予約のみ）**：`catalog_cache_stale`・`unknown_namespace`・`out_of_bounds`(world-state/y 範囲外・即判定で混乱しないため後送り)。`out_of_bounds`は、世界の外の意味で使う（`2026-11-14-02`）：ブロックを置ける高さ（`y_min`〜`y_max`）の外と、水平方向の世界の端（Minecraftではworld border、Unity箱庭では400×400の外周）の外への`world.setBlock`／`world.setBlocks`／`world.getBlock`は、`out_of_bounds`（code `-32000`番台）で拒む。`data.bounds`に世界の範囲、`data.violating`に外れた座標を入れ、`setBlocks`は一部でも外れたら何も置かない。権限やbuild policyの範囲（`build_denied`）より先に判定する。McRemoteが実装してreleaseに入った後に、上の表へ移す。
+- **後送り（名前予約のみ）**：`catalog_cache_stale`・`unknown_namespace`・`out_of_bounds`(world-state/y 範囲外・即判定で混乱しないため後送り)。`out_of_bounds`は、世界の外の意味で使う（次の箇条）。
+- **世界の外は`out_of_bounds`**（`2026-11-14-02`、`2026-11-14-04`）：ブロックを置ける高さ（`y_min`〜`y_max`）の外と、水平方向の世界の端（Minecraftではworld border、Unity箱庭では400×400の外周）の外への`world.setBlock`／`world.setBlocks`／`world.getBlock`／`world.getBlocks`／`world.setSign`／`world.updateSignLine`は、`out_of_bounds`（code `-32000`）で拒む。`world.getHeight`は、水平方向の端の外だけを拒む。`setBlocks`は一部でも外れたら何も置かない。権限やbuild policyの範囲より先に判定する。`data`は次の形（値は説明用）。
+
+  ```json
+  {
+    "reason": "out_of_bounds",
+    "bounds": {
+      "y_min": -64,
+      "y_max": 319,
+      "world_border": { "center": { "x": 0.0, "z": 0.0 }, "size": 400.0 }
+    },
+    "violating": { "x": 10, "y": 320, "z": 10 }
+  }
+  ```
+
+  `y_min`と`y_max`は置ける高さで、両端を含む（`00-hub/world-constants-facts_ja.md`のkeyと同じ名前と意味）。`world_border`はそのときの中心と大きさで、内外の判定はMinecraftのworld borderに従う。Unity箱庭の外周（x、zが-200〜199）は、中心`(0, 0)`、大きさ`400`で表す。`violating`は、最初に外と判定した点の世界の絶対座標で、原点からの相対ではない。`setBlocks`と`getBlocks`では、箱の対角の2点のどちらか。McRemoteのreleaseに入った後に、上の表へ移す。
+- **建築範囲の外と、1回に置ける数の上限は、別のreasonにする**（`2026-11-14-05`）：上の表の`build_denied`を、原因ごとに分ける。codeはどちらも`-32000`。
+  - `build_range_exceeded`：建築範囲（helloの`permissions.buildRange`）の外。`world.setBlock`／`world.setBlocks`／`world.getBlock`／`world.getBlocks`／`world.setSign`／`world.updateSignLine`／`world.strikeLightning`／`world.spawnParticle`／`world.getHeight`／`world.spawnEntity`／`world.getNearbyEntities`／`entity.setPose`／`world.playSound`／`world.playBlockSound`。`data.bounds`は`{ "center": { "x", "z" }, "build_range" }`（centerは建築の原点の絶対座標。x、zの差がどちらも`build_range`以下なら内）、`data.violating`は外れた点の絶対座標（`out_of_bounds`と同じ形）
+  - `block_count_limit_exceeded`：playerごとの1回に置けるblock数の上限（`mcr.build.blocks`）を越えた。`world.setBlock`／`world.setBlocks`。`data.limit`に上限、`data.requested`に置こうとした数
+  - McRemoteは`build_denied`を返さなくなる。McRemoteのreleaseに入った後に、2つのreasonを上の表へ移し、`build_denied`の行は消さずに、返さなくなった版を書く（前のclientのために名前を残す）。このファイルのほかの`build_denied`も、そのときに直す
 - **適用範囲**：b1 では getBlock に加え、chat.post/setBlock/setBlocks も **id 付き同期 request** として result/error を取れる形を基準にする（`2026-07-01-08`）。notification は JSON-RPC 上は可能だが result/error を返さないため、send-only 既定化は b1 の疎通確認対象から外す。server pushは採らず、eventは§5.4のpollへ進める（`2026-08-16-05`）。
 - **送信モードの体験タクソノミー**はprotocol 22／b5でDEBUG／TRACE／FASTへ具体化した（`2026-08-20-03`）。wire上の実体はnotification（応答なし）、id付きrequest（同期result/error）、`connection.flush` barrierであり、mode名やdelayはwireへ送らない。TRACEはclient側pacing、FASTはsend-onlyで、batch／jobは引き続き高水準API・後続protocolの話である。
 
