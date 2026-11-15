@@ -70,3 +70,33 @@ Unity Editorの版は`19-unity/README_ja.md`の「現在地」に従い、使っ
 - PRとmerge commitを、GitHubのAPIで照合する
 - Scratchの返却（`00-hub/unity-sandbox-scratch-instructions_ja.md`）と合わせて、hubで決めることの案を作り、human ownerに見せる。
   決まったら、4の票を新しいfileで出す
+
+## 返却と照合（2026-11-15）
+
+Unity担当は、knowledge `b4b23631fc6f053fe4e228bb0447c9b4b9502901`を読んだ。返却は、返却サマリと確定搬送票（既定のport）で、
+human ownerが会話で渡した。coordinatorはGitHubのAPIで、mainが`958b676e293427165e872d9abd7b5bfc4173efd6`（PR #1のmerge
+commit）のままで、PRが#1だけであることを確かめた。1〜4の実装はcommitされていないので、PR、head、CIは無く、GitHubでは照合
+できていない。
+
+1. **できたこと**：Unity `6000.6.8f1`（Linux、Built-in Render Pipeline、Input Manager、WebGL）
+   - 1：`UnityEngine`に頼らない世界のモデル（`Code2Create.UnitySandbox.World`）。基本の10種類のblockとcatalogHash、12のmethodと
+     FASTのnotification、`out_of_bounds`（`2026-11-14-04`の形）。`setBlocks`の上限は32,768で、越えると`work_limit_exceeded`
+     （McRemoteの1要求のwork上限と同じ意味）。`snapshot`に総セルの上限は置かず、まとめて小さく送る
+   - 2〜3：Unity Webと表示同期のserver（`Code2Create.UnitySandbox.Server`）。表示同期は`/ws/sync`で、serverからは
+     `snapshot`、`blockDelta`、`chat`、`streamUpdated`、`pairResult`、Unity Webからは`resync`、`approvePair`、`chat`。文書は
+     このrepoの`docs/unity-sandbox-display-sync_ja.md`。画面のIDはほかの画面へ流さない
+   - 4（票を出す前に作った）：TCPの受付（portの既定は`25585`、`2026-11-15-01`）、helloより前の拒否、`pairing_id`で相関し
+     別のTCPをまたぐペアリング、helloの`server`（`{ "name": "mc-remote-unity-sandbox", "version": "0.1.0" }`）
+   - 地形：区画の原点のまわりだけが草で、区画の間は土が見える。human ownerが決めた形（「最初から整地してある状態」）で、
+     `19-unity/README_ja.md`の「公開Unity箱庭」に書いた
+   - font：`NotoSansJP-Subset.ttf`（4,947,692 bytes）。SIL Open Font License 1.1（licenseの文を同梱）。`fonts-noto-cjk`の
+     `NotoSansCJK-Medium.ttc`から、`pyftsubset`で文字を絞った
+2. **確かめ方**：`dotnet test`で18 testが通る（`2026-11-14-03`〜`05`を入れた後）。Unity Editorで検証とplayのsmoke。Headless
+   ChromeでWebGLまで通した。human ownerが、wireの確定形を入れた後のserverへ、ScratchのLANパッケージとPythonのclient
+   （`minecraft-remote-api`）からつなぎ、ペアリングして建てた（human owner 2026-11-15「さっきのスクショは、wire確定形を入れた
+   あとのもの。」「Scratch LANパッケージ、Pythonクライアントからつながる。」）
+3. **確かめられなかったこと**：tabletの実機、Webでの公開の配信、URPとの比べ。公開の前の上限（送り元ごとと全体のcodeの試行、
+   世界のリセットの間隔）は、hub NOTESの「公開Unity箱庭へ進む」の行にある
+
+human owner「Unity箱庭は、色々と試行錯誤してかなり完成度が上がっているが、もう少し、残っている。」。次の依頼（残りを
+仕上げてPRにする）は`00-hub/unity-sandbox-first-slice-pr-instructions_ja.md`。

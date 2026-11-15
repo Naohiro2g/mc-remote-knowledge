@@ -15,6 +15,10 @@ Unityの世界と箱庭の設計スポーク。一般用途のC# Client Library�
   （2026-11-11）」）。正本はこのrepoの`main`にある
 - 2026-11-13：公開Unity箱庭を最優先にした（`2026-11-13-04`、下の「公開Unity箱庭」）。最初の区切りの票を、Unity
   （`00-hub/unity-sandbox-first-slice-instructions_ja.md`）とScratch（`00-hub/unity-sandbox-scratch-instructions_ja.md`）へ出した
+- 2026-11-15：最初の区切りが1台のPCで動いた。human ownerが、ScratchのLANパッケージとPythonのclientからUnity箱庭のserverへ
+  つなぎ、ペアリングして建てた（wireの確定形を入れた後）。実装はまだcommitされていない（照合は
+  `00-hub/unity-sandbox-first-slice-instructions_ja.md`の「返却と照合（2026-11-15）」）。残りを仕上げてPRにする票を出した
+  （`00-hub/unity-sandbox-first-slice-pr-instructions_ja.md`）
 
 ## 公開Unity箱庭
 
@@ -28,9 +32,10 @@ URLを開けば、Minecraftを買わず入れずに、Scratchから建てられ�
 - pairing：Scratchに出たcodeを、Unity Webのchatで`/mcremote pair NNN-NNN`と打って承認する。Minecraftでの操作と同じにする
 - 世界のモデル：Minecraft 1.21.11に準拠する。高さは-64〜319、地面も置き換えられ（リセットで戻す）、blockはIDとstateで持つ
   （`minecraft:gold_block`など）。どこまで沿わせるか（blockのふるまいなど）は段ごとに決める
-- 地形と基本のblock（human owner 2026-11-14）：草（`minecraft:grass_block`）がy=62、土（`minecraft:dirt`）が61〜60、石
-  （`minecraft:stone`）が59〜-64。基本のblockは、空気、草、土、石、金、鉄、シーランタン、ガラス、ダイヤモンド、TNT。
-  地面の中のイースターエッグは、試行錯誤と実装の中で決める（アイデアは、x0の層のblock）
+- 地形と基本のblock（human owner 2026-11-14、2026-11-15）：最初から整地してある。区画の原点のまわり（x、zが原点から±48）は、
+  草（`minecraft:grass_block`）がy=62。区画の間はy=62が空気で、y=61の土が見える。その下は、土（`minecraft:dirt`）が61〜60、
+  石（`minecraft:stone`）が59〜-64。基本のblockは、空気、草、土、石、金、鉄、シーランタン、ガラス、ダイヤモンド、TNT。
+  地面の中のイースターエッグは、各区画の原点の真下の3×3に、yが10の倍数（-60〜50）の層で置いた
 
 ### Unity箱庭のserverが応えるもの
 
@@ -38,6 +43,8 @@ URLを開けば、Minecraftを買わず入れずに、Scratchから建てられ�
 `00-hub/unity-sandbox-scratch-instructions_ja.md`の「返却と照合（2026-11-14）」）。`server`の形と`out_of_bounds`の`data`は、
 McRemoteの返却を見て`2026-11-14-03`、`2026-11-14-04`で決めた。
 
+- 待ち受け：McRemoteと同じ改行区切りのJSON-RPCをTCPで受ける。portの既定は`25585`で、起動のときに変えられる
+  （`2026-11-15-01`。同じPCでMcRemoteの`25575`と並べられる）
 - hello：`protocol`は`23.2.1`。`mc_version`と`supported_mc_versions`は、世界のモデルが従う`1.21.11`。Unity箱庭であることは`server`で
   名乗る（`name`は`mc-remote-unity-sandbox`、`version`はUnity箱庭のserverの版）。`dimension`は`minecraft:overworld`だけ、buildを省いたときの`origin`は`[0, 0, 0]`、`world_constants`は
   `y_sea`だけ（ほかのkeyは`2400`）、`permissions`はMcRemoteと同じ形
