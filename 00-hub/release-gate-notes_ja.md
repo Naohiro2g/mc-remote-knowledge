@@ -71,6 +71,31 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - non-claim: PyPI.orgへの公開はしない。mature判定はしない。Windowsでは検証していない
 - coordinator判定／human release owner承認: human ownerがpost2のsetへの組み入れを判定（2026-09-26、`2026-09-27-01`）。coordinatorはchange coneが閉じていることを確認し、単独更新gateを通過とする（2026-09-28）。**CLOSED**
 
+## 2026-11-15 `2321.2`横断release gate
+
+- gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
+- human release owner: プロジェクトオーナー
+- current phase: 候補を待つ（2026-11-15に開いた。依頼は`00-hub/23212-gate-candidate-instructions_ja.md`）
+- 位置づけ: 初回stableの後の2回目の機能のrelease。betaを挟まない（`2026-10-22-03`）。番号は台帳
+  （`00-hub/release-train-notes_ja.md`）で予約した（`2026-11-05-02`）
+- contract: protocolを`23.3.0`にする（`2026-11-15-03`）。wire「7.3 エラー設計」の`out_of_bounds`（`2026-11-14-02`、
+  `2026-11-14-04`）、`build_range_exceeded`と`block_count_limit_exceeded`（`2026-11-14-05`、`2026-11-15-02`）、`expected_hello`
+  （`2026-11-12-03`）、`protocol_mismatch`のcode（`2026-11-10-01`①）。共有fixtureは変えない
+- 範囲（human owner 2026-11-15）:
+  | component | 入れるもの |
+  | --- | --- |
+  | McRemote | main `082df43145b4a5bfe5854a3985a82c936ed0ce76`（PR #16〜#20）：credentialのfileのmode（`2026-11-11-03`）、ゲーム内の文の言語（`2026-11-12-02`）、`protocol_mismatch`と`expected_hello`のcode、`out_of_bounds`、`build_denied`を分けること。加えて、helloの`protocol`を`23.3.0`にする |
+  | Scratch | カタログのpickerの改善、パレットの折りたたみ（human owner 2026-11-15「実装済み。単独リリース可能。」） |
+- 範囲の外: Python、minecraft-remote-tooling、Unity箱庭（`2321.3`へ）。McRemoteのBANで拒む経路の直しは`2321.2.1`、
+  socketごとのkeepaliveは`2321.3`（human owner 2026-11-15）。新しいreasonのF1のcase（tooling）と各clientの表示は、
+  このreleaseを出した後に頼む
+- 人間の試験: Paper 26.3だけで行う。1.21.11はMcRemoteのPaperの自動の確認に任せる（human owner 2026-11-15）。見るもの：
+  ゲーム内の文の言語（hub NOTESの行）、新しい3つのreasonを実際のPaperで、Python `2321.1.0`とScratch `v2321.1.0`が新しい
+  reasonとcodeで止まらないこと、Scratchのpickerとパレット、ペアリングと建築の回帰
+- 出した後: Stackが箱庭（`sb`）とWebのScratchを上げ、McRemoteのcredentialのfileのmode（`0600`、`0700`）を確かめる。
+  coordinatorが、wire §7.3の表、Protocol Inventory、API一覧（`api/23.3.0/`）、ホームページを直す
+- 未決: 日付
+
 ## 2026-11-06 `2321.1`横断release gate（CLOSED）
 
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない

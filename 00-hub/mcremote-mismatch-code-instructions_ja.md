@@ -84,3 +84,25 @@ serverのための`-32600`のF1-HE-10がある。どちらもこのままにす�
 - mergeの後、wire「7.3 エラー設計」の`protocol_mismatch`と`expected_hello`の行（「McRemote `2321.1.0`まではcode `-32600`」）と、
   Protocol InventoryのMcRemoteの列を直す
 - human ownerにreleaseの時期を聞き、台帳`00-hub/release-train-notes_ja.md`に行を足す
+
+## 返却と照合（2026-11-15）
+
+- McRemoteは、knowledge `b4b23631fc6f053fe4e228bb0447c9b4b9502901`を読み、PR #18に`expected_hello`を足した。返却票は
+  McRemoteの`handoff-materials/2026-11-15-expected-hello/materials/RETURN_ja.md`（9,414 bytes、SHA-256
+  `0ed6d29ae3c40fdeeac7e893a462159bc7326a850373e281491ef22990231ee8`）で、human ownerが会話で渡した
+- coordinatorがGitHubのAPIで照合した。head `fbb9edc52cbe32634abf11a405204cc80a2a163d`。PR #19のmerge後のmain
+  `3ccb3fd345faa228b195a15c3c45152f5dff7d04`からの差分は2 file（`RemoteSession.java` +4−4、`PreAuthTransportTest.java` +53）。
+  CIのrun `43655720020`（headが同じ）は7 jobすべて成功。2026-11-15にhuman ownerがmergeした（merge commit
+  `3126d3b946efe543be316427ae41eb5a7c1183b6`）。今のmainは`082df43145b4a5bfe5854a3985a82c936ed0ce76`（PR #20のmerge commit）
+- 足したtest（`chat.post`と知らないmethodを、helloより前に送る2 case）は、直す前に2つとも、codeだけが違う理由
+  （`-32600`と`-32000`）で落ちた。直した後、491 testが通った。mergeの後のmain（`082df43`）では、McRemoteの手元のbuildで
+  539 testが通った（CIではない）
+- 選んだcodeは`-32000`（`protocol_mismatch`、`auth_required`などと同じ）。`data.reason`、message、errorを返した後にflushして
+  閉じること、helloの前に受けるmethodは変わっていない
+- 3の一覧：wire「7.3 エラー設計」の表に無いreasonは12。うち9つは、wireの別の節か表の下の箇条で扱っている（`auth_required`、
+  `method_not_found`、`out_of_bounds`、`pair_expired`、`pair_not_found`、`token_expired`、`token_invalid`、`token_not_found`、
+  `token_revoked`）。wireに無いのは、`origin_not_set`（`-32000`。原点が要る操作で原点が無い）、`protocol_required`（`-32602`。
+  helloの`protocol`が取れない）、`too_many_sessions`（`-32000`。束縛先の並行sessionの数が上限に達した）の3つ。表を直すときに
+  一緒に扱う（hub NOTESの「学習者が直し方まで分かるエラー」の行）
+- wireの`protocol_mismatch`と`expected_hello`の行と、Protocol InventoryのMcRemoteの列は、McRemote `2321.2.0`を出した後に
+  直す（`00-hub/release-gate-notes_ja.md`の「2026-11-15 `2321.2`横断release gate」）

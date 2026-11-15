@@ -5,9 +5,10 @@
 ## 決まり
 
 - Xは、protocolのmajorに`00`を付けたもの（`2400`から、`2026-11-05-01`）。`2321`は、それより前の付け方（protocol `23.2.1`を
-  つなげたもの）のまま、major 23の終わりまで使う
-- Yは全component（McRemote、Python、Scratch、minecraft-remote-tooling、Java、TypeScript、C#）で共通。機能を足すreleaseは、
-  同じXの中でいちばん大きいYの次を使う。同じ時期に出すものは、中身が関係しなくても1つのX.Yにまとめてよい
+  つなげたもの）のまま、major 23の終わりまで使う。protocolが`23.3.0`になっても`2321`のまま（`2026-11-15-03`）
+- Yは全component（McRemote、Python、Scratch、minecraft-remote-tooling、Java、TypeScript、C#、Unity箱庭）で共通（Unity箱庭は
+  `2026-11-15-04`から）。機能を足すreleaseは、同じXの中でいちばん大きいYの次を使う。同じ時期に出すものは、中身が
+  関係しなくても1つのX.Yにまとめてよい
 - Zはバグの修正だけで、componentごとに上げる。この台帳には書かない
 - 出さなかったcomponentは、直前の版のまま、そのX.Yのセットに入る
 - protocolの外にあるcomponent同士の約束（ScratchとBridge、Stackのpresetとimage、credentialの運用など）を変えたX.Yでは、
@@ -24,3 +25,4 @@
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | 2321.0 | 公開 | 2026-11-01 | `23.2.1` | McRemote `2321.0.0`、Python（`minecraft-remote-api`）`2321.0.0`、Scratch `v2321.0.0`、minecraft-remote-tooling `v2321.0.0` | Java、TypeScript、C#は公開releaseなし | なし | 1年ぶりの安定版。`00-hub/release-gate-notes_ja.md`の2026-10-22の節 |
 | 2321.1 | 公開 | 2026-11-09 | `23.2.1` | McRemote `2321.1.0`、Python（`minecraft-remote-api`）`2321.1.0`、Scratch `v2321.1.0` | minecraft-remote-tooling `v2321.0.0`。Java、TypeScript、C#は公開releaseなし | なし | 座標・時刻HUD、パレットの頭出しの修正とpickerの検索、starterの接続先を`sb`へ。2026-11-06に予約。`00-hub/release-gate-notes_ja.md`の2026-11-06の節 |
+| 2321.2 | 予約 | — | `23.3.0` | McRemote、Scratch（各`2321.2.0`の予定） | Python（`minecraft-remote-api`）`2321.1.0`、minecraft-remote-tooling `v2321.0.0`。Java、TypeScript、C#、Unity箱庭は公開releaseなし | なし | 2026-11-15に予約。protocolを`23.3.0`へ（`2026-11-15-03`）。`00-hub/release-gate-notes_ja.md`の2026-11-15の節 |

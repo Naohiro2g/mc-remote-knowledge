@@ -19,6 +19,9 @@ Unityの世界と箱庭の設計スポーク。一般用途のC# Client Library�
   つなぎ、ペアリングして建てた（wireの確定形を入れた後）。実装はまだcommitされていない（照合は
   `00-hub/unity-sandbox-first-slice-instructions_ja.md`の「返却と照合（2026-11-15）」）。残りを仕上げてPRにする票を出した
   （`00-hub/unity-sandbox-first-slice-pr-instructions_ja.md`）
+- 2026-11-15：Unity箱庭を台帳のcomponentに入れ、最初の公開を`2321.3`にした（`2026-11-15-04`）。配る形（`2026-11-15-05`）、
+  tokenの扱い（`2026-11-15-06`）、helloの`protocol`（`2026-11-15-03`④）を入れる票を出した
+  （`00-hub/unity-sandbox-release-instructions_ja.md`）
 
 ## 公開Unity箱庭
 
@@ -36,6 +39,9 @@ URLを開けば、Minecraftを買わず入れずに、Scratchから建てられ�
   草（`minecraft:grass_block`）がy=62。区画の間はy=62が空気で、y=61の土が見える。その下は、土（`minecraft:dirt`）が61〜60、
   石（`minecraft:stone`）が59〜-64。基本のblockは、空気、草、土、石、金、鉄、シーランタン、ガラス、ダイヤモンド、TNT。
   地面の中のイースターエッグは、各区画の原点の真下の3×3に、yが10の倍数（-60〜50）の層で置いた
+- 版と配る形：版は台帳のX.Y.Zに従い、serverとUnity Webを同じ版で出す（`2026-11-15-04`）。最初の公開は`2321.3`。Unity Web
+  （WebGLのbuild）を入れたcontainer imageを、ローカルの開発機でbuildしてGHCRへpushし、Stackが公開VPSで動かす
+  （`2026-11-15-05`）
 
 ### Unity箱庭のserverが応えるもの
 
@@ -45,12 +51,12 @@ McRemoteの返却を見て`2026-11-14-03`、`2026-11-14-04`で決めた。
 
 - 待ち受け：McRemoteと同じ改行区切りのJSON-RPCをTCPで受ける。portの既定は`25585`で、起動のときに変えられる
   （`2026-11-15-01`。同じPCでMcRemoteの`25575`と並べられる）
-- hello：`protocol`は`23.2.1`。`mc_version`と`supported_mc_versions`は、世界のモデルが従う`1.21.11`。Unity箱庭であることは`server`で
-  名乗る（`name`は`mc-remote-unity-sandbox`、`version`はUnity箱庭のserverの版）。`dimension`は`minecraft:overworld`だけ、buildを省いたときの`origin`は`[0, 0, 0]`、`world_constants`は
+- hello：`protocol`は`23.2.1`で、`2321.3`で出すときから`23.3.0`（`2026-11-15-03`④）。`mc_version`と`supported_mc_versions`は、世界のモデルが従う`1.21.11`。Unity箱庭であることは`server`で
+  名乗る（`name`は`mc-remote-unity-sandbox`、`version`はUnity箱庭の版、`2026-11-15-04`）。`dimension`は`minecraft:overworld`だけ、buildを省いたときの`origin`は`[0, 0, 0]`、`world_constants`は
   `y_sea`だけ（ほかのkeyは`2400`）、`permissions`はMcRemoteと同じ形
 - tokenと画面：tokenは、chatで`/mcremote pair NNN-NNN`を打った画面に結ぶ。画面は、browserに残る推測できない画面のIDで見分け、
   そのIDはどこにも出さない。helloの`player`は、画面ごとに作るUUID（画面のIDとは別。Minecraftのaccountではない）。pairingは
-  `pairing_id`で相関し、TCPの接続に結ばない。codeの有効時間は120秒。世界のリセットではtokenを消さない
+  `pairing_id`で相関し、TCPの接続に結ばない。codeの有効時間は120秒。世界のリセットではtokenを消さない。serverの再起動の後には残さない（`2026-11-15-06`）
 - catalog：基本の10種類を、1.21.11と同じstatesと既定で返す。同じIDは、McRemoteが1.21.11で返すcatalogと同じ中身。一覧に無い
   blockは`unknown_block`
 - 応えるmethod：`hello`、`auth.pairBegin`、`auth.pairPoll`、`catalog.get`、`events.poll`（空の応答）、`chat.post`、`world.setBlock`、
@@ -120,6 +126,7 @@ server側の範囲と学習の登山道は、下の「やりたいことと未�
 - C# Client Library: `18-csharp-client/`
 - Unityのrepoと置くもの、Unityの版: `2026-11-11-02`
 - 公開Unity箱庭の優先、pairing、1.21.11への準拠、名前: `2026-11-13-04`
+- 版と配る形: `2026-11-15-04`、`2026-11-15-05`
 - Unity内部の準備を並行して進めること: `2026-10-23-01`
 - 旧for Unityの扱い: `2026-10-22-08`
 - 実装、build、Unityに閉じる判断: `Naohiro2g/mc-remote-unity-sandbox`
