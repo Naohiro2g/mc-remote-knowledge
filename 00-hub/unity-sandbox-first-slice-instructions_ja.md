@@ -81,7 +81,8 @@ commit）のままで、PRが#1だけであることを確かめた。1〜4の�
 1. **できたこと**：Unity `6000.6.8f1`（Linux、Built-in Render Pipeline、Input Manager、WebGL）
    - 1：`UnityEngine`に頼らない世界のモデル（`Code2Create.UnitySandbox.World`）。基本の10種類のblockとcatalogHash、12のmethodと
      FASTのnotification、`out_of_bounds`（`2026-11-14-04`の形）。`setBlocks`の上限は32,768で、越えると`work_limit_exceeded`
-     （McRemoteの1要求のwork上限と同じ意味）。`snapshot`に総セルの上限は置かず、まとめて小さく送る
+     （coordinatorはここに「McRemoteの1要求のwork上限と同じ意味」と書いたが、誤り。McRemoteは同じ数を、playerごとの上限で
+     `block_count_limit_exceeded`にする。`2026-11-16-02`でそろえた）。`snapshot`に総セルの上限は置かず、まとめて小さく送る
    - 2〜3：Unity Webと表示同期のserver（`Code2Create.UnitySandbox.Server`）。表示同期は`/ws/sync`で、serverからは
      `snapshot`、`blockDelta`、`chat`、`streamUpdated`、`pairResult`、Unity Webからは`resync`、`approvePair`、`chat`。文書は
      このrepoの`docs/unity-sandbox-display-sync_ja.md`。画面のIDはほかの画面へ流さない

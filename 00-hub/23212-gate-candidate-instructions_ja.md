@@ -54,3 +54,34 @@
 ## coordinatorがすること
 
 - 候補のhead、CI、artifactを、GitHubのAPIで照合する。そろったらexact setを凍結し、人間の試験の票を作る
+
+## Scratchの作り直し（2026-11-16）
+
+> 返却（PR #36、head `12bef132e83901ade2a482836c611aec99d8b104`）を照合した（`00-hub/release-gate-notes_ja.md`の2321.2の節の
+> 「返却の照合（2026-11-15〜16）」）。候補の`mc-remote/block-reference/site/`は`2321.1.0`のままで、`site/2321.2.0/`が無い。
+> 上の依頼にブロック一覧を入れていなかった（coordinatorの漏れ）。参照するknowledge commitは、この節が入ったmainのcommitです。
+
+### 決まったこと
+
+- ブロック一覧を作り直す（human owner 2026-11-16「Scratchのブロック一覧　作り直し。」）。一覧はScratchの版ごとに残す
+  （`2026-10-17-04`）
+- `2321.2.0`の一覧では、`setDimension`と`setBuildOrigin`のmethodを、VMが送る`build.setDimension`と`build.setOrigin`と書く
+  （hub NOTESの2026-11-10の行）。前の版の一覧は直さない
+- tagを付けるcommitと、配布物とブロック一覧の生成元をそろえる（`2321.1`の`set-2`と同じ形）。Stackの取り込みの条件
+  （一覧の`sourceCommit`がtagの指すcommitの祖先で、その間に変わったのは`site/`の生成物だけ）を満たす
+- 人間の試験はPaper 26.3 #244（human owner 2026-11-16）
+
+### すること
+
+1. 候補（`12bef13`）の上で、一覧の生成を直し、`2321.2.0`の一覧を新しいcommitで作る。commitの分け方は担当が決める
+2. その先頭で、CIで配布物（Web editor、LANの3 OSのZIP、Scratch OCI）を作り直す
+3. PR #36を更新する。mergeはhuman ownerが判断する。developには候補に無いcommitがあるので、tagの指すcommitはdevelopの先頭に
+   ならない。merge commitで入れればtagのcommitはdevelopに含まれる。公開のworkflowが、それで通るかを確かめる
+
+### 返却
+
+- 実際に読んだknowledge commit
+- 新しいhead、CIのrun ID、artifactのIDとdigest、配布物の名前とbytesとSHA-256（全桁）、Scratch OCIのdigest
+- 一覧の`release`、`sourceRef`、`sourceCommit`、変わったfileの数。`2321.1.0`の一覧との違い（blockの数、ID、表示、methodの名前）
+- `12bef13`の配布物から変わるもの（どのfileが変わるか）
+- 公開のworkflowが、tagの指すcommitとdevelopの関係に何を求めるか

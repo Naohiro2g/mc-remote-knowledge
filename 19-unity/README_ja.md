@@ -22,6 +22,9 @@ Unityの世界と箱庭の設計スポーク。一般用途のC# Client Library�
 - 2026-11-15：Unity箱庭を台帳のcomponentに入れ、最初の公開を`2321.3`にした（`2026-11-15-04`）。配る形（`2026-11-15-05`）、
   tokenの扱い（`2026-11-15-06`）、helloの`protocol`（`2026-11-15-03`④）を入れる票を出した
   （`00-hub/unity-sandbox-release-instructions_ja.md`）
+- 2026-11-16：PR #2（最初の区切りと`2321.3`の準備、head `bba6e4ca25a7d2a9d5798b99ad049a60022c85b0`）を照合した。human ownerが
+  mergeする。1回に置ける数を越えたときのreason（`2026-11-16-02`）とimageをbuildするmachine（`2026-11-16-03`）を決め、次の票を
+  出した（`00-hub/unity-sandbox-release-instructions_ja.md`の「返却と照合（2026-11-16）」と「次にすること（2026-11-16）」）
 
 ## 公開Unity箱庭
 
@@ -40,8 +43,8 @@ URLを開けば、Minecraftを買わず入れずに、Scratchから建てられ�
   石（`minecraft:stone`）が59〜-64。基本のblockは、空気、草、土、石、金、鉄、シーランタン、ガラス、ダイヤモンド、TNT。
   地面の中のイースターエッグは、各区画の原点の真下の3×3に、yが10の倍数（-60〜50）の層で置いた
 - 版と配る形：版は台帳のX.Y.Zに従い、serverとUnity Webを同じ版で出す（`2026-11-15-04`）。最初の公開は`2321.3`。Unity Web
-  （WebGLのbuild）を入れたcontainer imageを、ローカルの開発機でbuildしてGHCRへpushし、Stackが公開VPSで動かす
-  （`2026-11-15-05`）
+  （WebGLのbuild）を入れたcontainer imageをGHCRへpushし、Stackが公開VPSで動かす（`2026-11-15-05`）。WebGLはUnityの開発機で、
+  imageはhuman ownerが決めた手元の1台のDockerでbuildする（`2026-11-16-03`）
 
 ### Unity箱庭のserverが応えるもの
 
@@ -65,6 +68,8 @@ McRemoteの返却を見て`2026-11-14-03`、`2026-11-14-04`で決めた。
 - 世界の外：置ける高さ（-64〜319）の外と、400×400の外周の外へ置く、または読むと、`out_of_bounds`（McRemoteも同じ。Minecraftの
   水平方向の端はworld border）。`data`はwire §7.3の表の下の箇条の形で、外周は中心`(0, 0)`、大きさ`400`のworld borderとして
   返す。権限による範囲の外は`build_range_exceeded`（`2026-11-14-05`）
+- 1回に置ける数：`world.setBlocks`は32,768個まで。越えると`block_count_limit_exceeded`（`data.limit`と`data.requested`。McRemoteと
+  同じ形、`2026-11-16-02`）
 - ホームページのトップの「はじめる」：公開Unity箱庭が使えるようになったら、Scratch→Unity箱庭にする。それまでは今の流れのまま
 - UnityからMinecraftを動かすこと（`10-protocol/polyglot-client-roadmap_ja.md`のMilestone I）は、その後にする
 - 最初の区切り：1台のPCで、今のScratchからBridgeを通して、Unity箱庭のserverへ4つの操作（`chat.post`、`world.setBlock`、
@@ -126,7 +131,7 @@ server側の範囲と学習の登山道は、下の「やりたいことと未�
 - C# Client Library: `18-csharp-client/`
 - Unityのrepoと置くもの、Unityの版: `2026-11-11-02`
 - 公開Unity箱庭の優先、pairing、1.21.11への準拠、名前: `2026-11-13-04`
-- 版と配る形: `2026-11-15-04`、`2026-11-15-05`
+- 版と配る形: `2026-11-15-04`、`2026-11-15-05`、`2026-11-16-03`
 - Unity内部の準備を並行して進めること: `2026-10-23-01`
 - 旧for Unityの扱い: `2026-10-22-08`
 - 実装、build、Unityに閉じる判断: `Naohiro2g/mc-remote-unity-sandbox`

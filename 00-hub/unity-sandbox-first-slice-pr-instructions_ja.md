@@ -31,3 +31,8 @@
 
 - PRとCIを、GitHubのAPIで照合する。mergeの後に、`19-unity/README_ja.md`の「現在地」を直す
 - 公開の前に決めることの案を、human ownerに見せる（hub NOTESの「公開Unity箱庭へ進む」の行）
+
+## 返却と照合（2026-11-16）
+
+PR #2（head `bba6e4ca25a7d2a9d5798b99ad049a60022c85b0`）で返った。`00-hub/unity-sandbox-release-instructions_ja.md`への返却と
+一緒なので、照合は同じfileの「返却と照合（2026-11-16）」にまとめた。human ownerがmergeする（2026-11-16）。

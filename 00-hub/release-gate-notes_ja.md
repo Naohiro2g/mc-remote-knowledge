@@ -75,7 +75,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
-- current phase: 候補を待つ（2026-11-15に開いた。依頼は`00-hub/23212-gate-candidate-instructions_ja.md`）
+- current phase: Scratchの作り直しを待つ（2026-11-15に開いた。McRemoteの候補は照合した。下の「返却の照合（2026-11-15〜16）」）
 - 位置づけ: 初回stableの後の2回目の機能のrelease。betaを挟まない（`2026-10-22-03`）。番号は台帳
   （`00-hub/release-train-notes_ja.md`）で予約した（`2026-11-05-02`）
 - contract: protocolを`23.3.0`にする（`2026-11-15-03`）。wire「7.3 エラー設計」の`out_of_bounds`（`2026-11-14-02`、
@@ -85,16 +85,53 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   | component | 入れるもの |
   | --- | --- |
   | McRemote | main `082df43145b4a5bfe5854a3985a82c936ed0ce76`（PR #16〜#20）：credentialのfileのmode（`2026-11-11-03`）、ゲーム内の文の言語（`2026-11-12-02`）、`protocol_mismatch`と`expected_hello`のcode、`out_of_bounds`、`build_denied`を分けること。加えて、helloの`protocol`を`23.3.0`にする |
-  | Scratch | カタログのpickerの改善、パレットの折りたたみ（human owner 2026-11-15「実装済み。単独リリース可能。」） |
+  | Scratch | カタログのpickerの改善、パレットの折りたたみ（human owner 2026-11-15「実装済み。単独リリース可能。」）。`2321.2.0`のブロック一覧（`2026-10-17-04`。human owner 2026-11-16） |
 - 範囲の外: Python、minecraft-remote-tooling、Unity箱庭（`2321.3`へ）。McRemoteのBANで拒む経路の直しは`2321.2.1`、
   socketごとのkeepaliveは`2321.3`（human owner 2026-11-15）。新しいreasonのF1のcase（tooling）と各clientの表示は、
   このreleaseを出した後に頼む
-- 人間の試験: Paper 26.3だけで行う。1.21.11はMcRemoteのPaperの自動の確認に任せる（human owner 2026-11-15）。見るもの：
+- 人間の試験: Paper 26.3 #244だけで行う（箱庭と同じbuild、human owner 2026-11-16）。1.21.11はMcRemoteのPaperの自動の確認に任せる
+  （human owner 2026-11-15）。見るもの：
   ゲーム内の文の言語（hub NOTESの行）、新しい3つのreasonを実際のPaperで、Python `2321.1.0`とScratch `v2321.1.0`が新しい
   reasonとcodeで止まらないこと、Scratchのpickerとパレット、ペアリングと建築の回帰
 - 出した後: Stackが箱庭（`sb`）とWebのScratchを上げ、McRemoteのcredentialのfileのmode（`0600`、`0700`）を確かめる。
   coordinatorが、wire §7.3の表、Protocol Inventory、API一覧（`api/23.3.0/`）、ホームページを直す
 - 未決: 日付
+
+### 返却の照合（2026-11-15〜16）
+
+- McRemote：候補`release/2321.2.0@2ccf0b1aba6008c314abe6df4d19b6fffb60ff58`、PR #21（`main` `082df43`から1 commit先）。返却
+  `handoff-materials/2026-11-15-23212-candidate/materials/RETURN_ja.md`（8,093 bytes、
+  `3c61e147f9e4d7f6162b17c337103656442a0fb8b1d3e7b9ad8f621deadba2b2`。knowledge `99e582b`を読んだ）。MANIFESTの14 fileは一致した
+  - coordinatorがGitHubのAPIで照合した：PRのhead、CI `43678473697`（`workflow_dispatch`、7 jobとも成功、head_shaは候補）、artifact
+    `14147053531`（325,685 bytes、`sha256:fe4eeaa73fe7b8de06401e3260cb96ba39a3d6466775c2948e2f1281dbb5e646`、期限2027-02-13）。artifactを
+    取り直して計り、中の`mc-remote-2321.2.0.jar`は348,720 bytes、`16e927a79ea9b9ae9f1aa544cd5101eb3a6c39228ef9c0da7175853d100703f8`。
+    `source-commit.txt`は`2ccf0b1`の全桁
+  - 差分は7 file：版、helloの`protocol`を`23.3.0`へ、pulseがhelloの版を見ることと32,769個の拒否の期待を
+    `block_count_limit_exceeded`へ、test。互換判定（§8.2）は変えていない。`23.3.0`の申告を断るcaseは`23.4.0`へ。共有fixtureを
+    読む2本のtestは、fixtureの中の版を`23.2.1`に固定して確かめる形へ分けた（fixtureのfileは変えていない）
+  - 直す前は対象の12 testのうち4つが落ちた（期待`23.3.0`、実際`23.2.1`など）。直した後はGradle 541件、Python 49件が通った
+  - Paperの自動の確認：1.21.11 #132（Temurin 21.0.13+9）と26.3 #244（Temurin 25.0.5+8）で、通常の8 groupsと再起動の後の
+    4 groupsがPASS。どちらもCIのJARで行った。人の操作、画面、言語は含まない
+  - `2321.1.0`から変わったもの（Release本文の材料）は返却の「2321.1.0から変わったもの」の7項目。credentialのfileのmodeが変わる
+- Scratch：候補`agent/scratch-2321-2-ui-only-2026-11-15@12bef132e83901ade2a482836c611aec99d8b104`、PR #36（`develop`へ）。返却
+  `handoff-materials/2026-11-15-scratch-23212-candidate/materials/RETURN_ja.md`（6,022 bytes、
+  `c5566235c15abf8e57b045f0815a6b0e37385f8d77f5bc98d02f31295d7dad04`。knowledge `99e582b`を読んだ）。人間の試験の手順の案は同じ場所の
+  `HUMAN_TEST_ja.md`（2,437 bytes、`7bb2ed89e25aabf874d2b617c39a1fd942371a1a496c1c1d13fa6e6189fe101c`）
+  - coordinatorがGitHubのAPIで照合した：PRのhead、CIのpush `43679153271`とPR `43679488795`と配布物の生成`43679488365`
+    （`workflow_dispatch`）は成功でhead_shaは候補、artifact `14148405799`（1,373,565,620 bytes、
+    `sha256:3545d67b9d67981859e4cc4e92fd11f23a839aafaa4f7f8a628c012275f315fc`、期限2027-02-13）。返却の表の9件は、CIが作った
+    `candidate-manifest.json`と同じ。Bridge、WireScope、contractsは`2321.1`と同じbytes
+  - `v2321.1.0`（`57fb769`）から3 commit、22 file（GUIとtest 8、版の表示2、CIのrunnerの指定12）。拡張の本体、wire、Bridge、
+    WireScope、共有fixture、LANのランチャーは変わらない。helloの`protocol`は`23.2.1`のまま
+  - developには`57fb769`の後に11 commit（runnerの指定、E1の文書、再接続など。PR #31〜#34）がある。候補は、runnerの指定だけを
+    別のcommitで入れた。今回は、tagの指すcommitがdevelopの先頭と同じにならない
+  - ブロック一覧：候補の`mc-remote/block-reference/site/`は`2321.1.0`のまま（`release` `2321.1.0`、`sourceCommit` `11bce31`）で、
+    `site/2321.2.0/`が無い。`11bce31`から候補までにUIの変更があり、Stackの取り込みの条件（間が`site/`の生成物だけ）も通らない。
+    候補の票にブロック一覧を入れていなかった（coordinatorの漏れ。hub NOTESの2026-11-10の行は「再開＝Scratch担当への次の票」だった）
+- human ownerの判断（2026-11-16）：①Scratchのブロック一覧は作り直す（「Scratchのブロック一覧　作り直し。」）。coordinatorの案の
+  とおり、候補の上の新しいcommitで`2321.2.0`の一覧を作り、一覧のmethodの名前も直し、そのcommitで配布物を作り直す。前の版の
+  一覧は直さない。凍結はその返却の後で、McRemoteと一緒に行う。票は`00-hub/23212-gate-candidate-instructions_ja.md`の
+  「Scratchの作り直し（2026-11-16）」 ②人間の試験はPaper 26.3 #244（「26.3 #244で。」）
 
 ## 2026-11-06 `2321.1`横断release gate（CLOSED）
 

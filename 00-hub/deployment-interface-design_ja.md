@@ -129,6 +129,9 @@ connection_enabled=true
 imageには特定deploymentへ接続しないdisabled runtime configを同梱できる。Stackによるmountはこのfile全体を
 置換してよい。product情報は別fileなので失われない。
 
+接続先ごとにhostとportを持つ形は`schema_version: 2`で、`default_target_id`と`{id, label, host, port}`の
+`connection_targets`を持つ（§6、`2026-11-16-01`）。
+
 ### 3.3 Browserでの扱い
 
 browserは二fileを別々に読み、第三のeffective config fileを生成しない。Notice UIは次の固定順で並べる。
@@ -246,8 +249,9 @@ Bridge config
 分解するのは、現行modelで表現できない実deploymentが現れた場合の別判断とする。
 
 同じhostの別port（通常方式）がそれにあたり、`2026-10-24-06`で、接続先ごとに`id`、`label`、`host`、`port`を持ち、
-Bridgeが`id`から`{host, port}`を引く対応表を持つ方針にした。入力のsyntaxとschemaは担当間の契約で決め、Bridgeの実装は
-後続の版で行う（初回stableのBridgeは今の`{id, label, sandbox}`と共通portのまま）。
+Bridgeが`id`から`{host, port}`を引く対応表を持つ方針にした。入力の形は`2026-11-16-01`で決めた。Bridgeが読む一覧は
+`connection-targets.json`（toolingの`schemas/connection-targets-v1.schema.json`）、`?sandbox=`の値は`id`、Scratchのruntime
+configは`schema_version: 2`。最初に出すのは`2321.3`で、それまでの公開は`{id, label, sandbox}`と共通portのまま。
 
 ### 6.1 配置topologyとbrowser TLS
 
