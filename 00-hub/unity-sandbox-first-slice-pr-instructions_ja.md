@@ -35,4 +35,5 @@
 ## 返却と照合（2026-11-16）
 
 PR #2（head `bba6e4ca25a7d2a9d5798b99ad049a60022c85b0`）で返った。`00-hub/unity-sandbox-release-instructions_ja.md`への返却と
-一緒なので、照合は同じfileの「返却と照合（2026-11-16）」にまとめた。human ownerがmergeする（2026-11-16）。
+一緒なので、照合は同じfileの「返却と照合（2026-11-16）」にまとめた。human ownerがmergeした（2026-11-16、merge commit
+`d29a577643bd44942de99fbd075a24178036f4c4`、親は`958b676`と`bba6e4c`。coordinatorがGitHubのAPIで確かめた）。

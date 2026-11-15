@@ -22,9 +22,11 @@ Unityの世界と箱庭の設計スポーク。一般用途のC# Client Library�
 - 2026-11-15：Unity箱庭を台帳のcomponentに入れ、最初の公開を`2321.3`にした（`2026-11-15-04`）。配る形（`2026-11-15-05`）、
   tokenの扱い（`2026-11-15-06`）、helloの`protocol`（`2026-11-15-03`④）を入れる票を出した
   （`00-hub/unity-sandbox-release-instructions_ja.md`）
-- 2026-11-16：PR #2（最初の区切りと`2321.3`の準備、head `bba6e4ca25a7d2a9d5798b99ad049a60022c85b0`）を照合した。human ownerが
-  mergeする。1回に置ける数を越えたときのreason（`2026-11-16-02`）とimageをbuildするmachine（`2026-11-16-03`）を決め、次の票を
+- 2026-11-16：PR #2（最初の区切りと`2321.3`の準備、head `bba6e4ca25a7d2a9d5798b99ad049a60022c85b0`）を照合し、human ownerが
+  mergeした（merge commit `d29a577643bd44942de99fbd075a24178036f4c4`）。1回に置ける数を越えたときのreason（`2026-11-16-02`）とimageをbuildするmachine（`2026-11-16-03`）を決め、次の票を
   出した（`00-hub/unity-sandbox-release-instructions_ja.md`の「返却と照合（2026-11-16）」と「次にすること（2026-11-16）」）
+- 2026-11-16：LANで配るものを使う側とサーバー役に分け（`2026-11-16-04`）、Unity箱庭のLANのセットをhuman ownerと相談して
+  進める票を出した（`00-hub/unity-sandbox-lan-instructions_ja.md`）。`2321.3`に間に合えば入れ、間に合わなければ`2321.4`
 
 ## 公開Unity箱庭
 
@@ -44,7 +46,8 @@ URLを開けば、Minecraftを買わず入れずに、Scratchから建てられ�
   地面の中のイースターエッグは、各区画の原点の真下の3×3に、yが10の倍数（-60〜50）の層で置いた
 - 版と配る形：版は台帳のX.Y.Zに従い、serverとUnity Webを同じ版で出す（`2026-11-15-04`）。最初の公開は`2321.3`。Unity Web
   （WebGLのbuild）を入れたcontainer imageをGHCRへpushし、Stackが公開VPSで動かす（`2026-11-15-05`）。WebGLはUnityの開発機で、
-  imageはhuman ownerが決めた手元の1台のDockerでbuildする（`2026-11-16-03`）
+  imageはhuman ownerが決めた手元の1台のDockerでbuildする（`2026-11-16-03`）。LANでは、Unity箱庭のserverとUnity Webの
+  セットを、Scratch LANパッケージと別に配る（`2026-11-16-04`）
 
 ### Unity箱庭のserverが応えるもの
 
@@ -131,7 +134,7 @@ server側の範囲と学習の登山道は、下の「やりたいことと未�
 - C# Client Library: `18-csharp-client/`
 - Unityのrepoと置くもの、Unityの版: `2026-11-11-02`
 - 公開Unity箱庭の優先、pairing、1.21.11への準拠、名前: `2026-11-13-04`
-- 版と配る形: `2026-11-15-04`、`2026-11-15-05`、`2026-11-16-03`
+- 版と配る形: `2026-11-15-04`、`2026-11-15-05`、`2026-11-16-03`、`2026-11-16-04`
 - Unity内部の準備を並行して進めること: `2026-10-23-01`
 - 旧for Unityの扱い: `2026-10-22-08`
 - 実装、build、Unityに閉じる判断: `Naohiro2g/mc-remote-unity-sandbox`

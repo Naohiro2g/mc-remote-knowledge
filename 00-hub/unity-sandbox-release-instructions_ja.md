@@ -71,7 +71,7 @@ Unity担当は、knowledge `99e582b`を読んだ。返却は`mc-remote-unity-san
 - McRemoteとの食い違い：32,769個の`world.setBlocks`に`work_limit_exceeded`を返す（coordinatorの前の票のとおり）。McRemoteは
   `block_count_limit_exceeded`
 - human ownerの判断（2026-11-16）：①1回に置ける数を越えたら`block_count_limit_exceeded`（`2026-11-16-02`）②imageのbuildは、
-  human ownerが決めた手元の1台で行う（`2026-11-16-03`）③PR #2はmergeする（「PR#2はマージします。」）
+  human ownerが決めた手元の1台で行う（`2026-11-16-03`）③PR #2はmergeする（「PR#2はマージします。」）。mergeした（merge commit `d29a577643bd44942de99fbd075a24178036f4c4`）
 
 ## 次にすること（2026-11-16）
 
