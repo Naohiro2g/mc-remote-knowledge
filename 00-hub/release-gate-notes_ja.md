@@ -89,7 +89,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - 範囲の外: Python、minecraft-remote-tooling、Unity箱庭（`2321.3`へ）。McRemoteのBANで拒む経路の直しは`2321.2.1`、
   socketごとのkeepaliveは`2321.3`（human owner 2026-11-15）。新しいreasonのF1のcase（tooling）と各clientの表示は、
   このreleaseを出した後に頼む
-- 人間の試験: Paper 26.3 #244だけで行う（箱庭と同じbuild、human owner 2026-11-16）。1.21.11はMcRemoteのPaperの自動の確認に任せる
+- 人間の試験: Paper 26.3 #244だけで行う（箱庭と同じbuild、human owner 2026-11-16）。McRemoteの実施票は
+  `00-hub/23212-gate-live-test-instructions_ja.md`。1.21.11はMcRemoteのPaperの自動の確認に任せる
   （human owner 2026-11-15）。見るもの：
   ゲーム内の文の言語（hub NOTESの行）、新しい3つのreasonを実際のPaperで、Python `2321.1.0`とScratch `v2321.1.0`が新しい
   reasonとcodeで止まらないこと、Scratchのpickerとパレット、ペアリングと建築の回帰
