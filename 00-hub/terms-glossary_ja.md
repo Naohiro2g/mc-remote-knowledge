@@ -75,12 +75,15 @@ Scratch ClientはTypeScript／JavaScriptで実装されていても、Scratch fo
 一般用途のTypeScript Client Libraryとは別成果物である。`Minecraft Remote for TypeScript`や
 `@mc-remote/client`からScratch extensionへの依存を自動的に導かない。
 
-公開の面では、channelの`beta`を「先行環境」、そこで動く版を「先行版」と呼ぶ（`2026-10-24-04`）。
+公開の面では、channelの`beta`を「先行環境」、そこで動く版を「先行版」と呼ぶ（`2026-10-24-04`）。12月1日からは、接尾辞の無い名前の環境を「最新版」、
+`-lts`の名前の環境を「LTS」と呼び、「先行環境」と「先行版」は使わなくなる（`2026-11-16-05`）。
 
 | 正典表記 | 技術的な意味 | ドリフト注意 |
 | --- | --- | --- |
-| 先行環境 | channel `beta`の公開の呼び方。今のhost名は`sb-beta`、`scratch-beta`、`wirescope-beta`。新しい要素とともに不安定な要素も持ち込む、ベータテストの場所で、多少の不具合は容認する（human owner 2026-10-24） | 版の接尾辞`bN`（beta版）と同じものにしない |
-| 先行版 | 先行環境が出す版。安定版と同じか、それより進んだ版（`2026-10-24-03`）。それより新しいbetaが無い間は安定版と同じ | beta版（`bN`）とは限らない |
+| 先行環境 | 12月1日から使わない（`2026-11-16-05`）。channel `beta`の公開の呼び方。今のhost名は`sb-beta`、`scratch-beta`、`wirescope-beta`。新しい要素とともに不安定な要素も持ち込む、ベータテストの場所で、多少の不具合は容認する（human owner 2026-10-24） | 版の接尾辞`bN`（beta版）と同じものにしない |
+| 先行版 | 12月1日から使わない（`2026-11-16-05`）。先行環境が出す版。安定版と同じか、それより進んだ版（`2026-10-24-03`）。それより新しいbetaが無い間は安定版と同じ | beta版（`bN`）とは限らない |
+| 最新版 | 接尾辞の無い名前（`sb`、`scratch`、`wirescope`、`unity-sb`）の環境と、そこで動く版（`2026-11-16-05`） | 版の段階（rc、`bN`の付かない版）の呼び方と同じものにしない |
+| LTS | `-lts`の名前（`sb-lts`、`scratch-lts`、`wirescope-lts`、`unity-sb-lts`）の環境と、そこで動く版。最新版と同じか、前の版（`2026-11-16-05`） | 教材の版と言い切らない（human ownerの近くの教材は最新版を使う） |
 
 ## WireScope roles
 

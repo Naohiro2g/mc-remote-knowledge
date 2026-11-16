@@ -111,8 +111,12 @@ public canonical hostnameを与える（決定`2026-08-20-01`）。
 | --- | --- |
 | stable | `wirescope.mc-remote.com` |
 | beta | `wirescope-beta.mc-remote.com` |
+| lts | `wirescope-lts.mc-remote.com` |
 | alpha | `wirescope-alpha.mc-remote.com` |
 | dev | なし |
+
+12月1日から、無接尾辞は最新版、`wirescope-lts`はLTSを出し、`wirescope-beta`はしばらく最新版を指したまま残る
+（決定`2026-11-16-05`）。
 
 stableは無接尾辞、beta／alphaは`<surface>-<channel>.mc-remote.com`とする。旧`scope.mc-remote.com`は、
 起動導線がruntime config／linkとなって手入力の短さが利点でなくなり、完全なWireScopeブランド名の識別性が
