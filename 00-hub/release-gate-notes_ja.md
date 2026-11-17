@@ -253,7 +253,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   gateの凍結は、Scratchとtoolingの返却を待つ
 - Stackへ、公開VPSでこのdigestを動かす票を出した（`00-hub/unity-sandbox-vps-instructions_ja.md`、`2026-11-17-02`⑤）。Stackの
   PR #90（open）の続き
-- `candidate-6aeb741`を消すかは、human ownerが決める。coordinatorの案は消す（OFLの本文が無いまま公開されている）
+- `candidate-6aeb741`は、human ownerが2026-11-17に消した（OFLの本文が無いまま公開されていた）。coordinatorがloginせずに確かめた：
+  tagは`candidate-be17313`だけで、前のindexのdigest（`sha256:b8bf4fd17ab53bfd3009742715bc8d6512f0eedc4af2f01e9128472fabe53478`）は404
 
 ## 2026-11-06 `2321.1`横断release gate（CLOSED）
 
