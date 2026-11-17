@@ -99,9 +99,9 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   ゲーム内の文の言語（hub NOTESの行）、新しい3つのreasonを実際のPaperで、Python `2321.1.0`とScratch `v2321.1.0`が新しい
   reasonとcodeで止まらないこと、ペアリングと建築の回帰。ScratchとUnity箱庭の票は、候補の返却の後に作る
 - 出した後: Stackが箱庭（`sb`）とWebのScratchを上げ、McRemoteのcredentialのfileのmode（`0600`、`0700`）を確かめる。
-  Scratch、Bridge、runtime config（`schema_version: 2`）は組で入れる（`2026-11-16-01`③）。Unity箱庭を`unity-sb`と`unity-sb-lts`に
-  置く（`2026-11-16-05`③）。coordinatorが、wire §7.3の表、Protocol Inventory、API一覧（`api/23.3.0/`）、ホームページを直す
-- 未決: 日付。公開の前に決めること：Unity箱庭の使いすぎを抑える上限（送り元ごとと全体のcodeの試行、世界のリセットの間隔）。
+  Scratch、Bridge、runtime config（`schema_version: 2`）は組で入れる（`2026-11-16-01`③）。Unity箱庭は、出す前から
+  `unity-sb`と`unity-sb-lts`に置き、`scratch`の組の接続先の一覧に入れる（`2026-11-17-04`）。coordinatorが、wire §7.3の表、Protocol Inventory、API一覧（`api/23.3.0/`）、ホームページを直す
+- 未決: 日付。Unity箱庭の使いすぎを抑える上限は、公開の後に決める（`2026-11-17-04`④）。
   imageの置き方とpushの時期は`2026-11-17-02`、`licenses`のlabelは`2026-11-17-03`
 
 ### 返却の照合（2026-11-15〜16）
@@ -255,6 +255,9 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   PR #90（open）の続き
 - `candidate-6aeb741`は、human ownerが2026-11-17に消した（OFLの本文が無いまま公開されていた）。coordinatorがloginせずに確かめた：
   tagは`candidate-be17313`だけで、前のindexのdigest（`sha256:b8bf4fd17ab53bfd3009742715bc8d6512f0eedc4af2f01e9128472fabe53478`）は404
+- human ownerの判断（2026-11-17）：Unity箱庭を、`2321.2`を出すのを待たずに、`scratch`と`scratch-lts`の組の接続先の一覧に入れる。
+  どちらの組も`unity-sb`と`unity-sb-lts`を選べ、既定は変えない。はじめる（1）は、利用者がUnity箱庭を自分で選ぶ。使いすぎを抑える
+  上限は公開の後に決める（`2026-11-17-04`）。Stackへの票と`00-hub/sandbox-lts-names-instructions_ja.md`を改めた
 
 ## 2026-11-06 `2321.1`横断release gate（CLOSED）
 

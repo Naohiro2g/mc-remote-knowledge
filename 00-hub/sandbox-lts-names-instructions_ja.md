@@ -17,14 +17,16 @@
 - `2400`が出るまでは、LTSも最新版と同じ`2321`の版を出す
 - 有料GAMEsのMinecraftは、11月末までは旧protocolの`sb-retro`で、12月1日から新protocolで動かす（human owner。2026-10-24の節）
 - DNSはhuman owner（backstage）が変える
-- Unity箱庭の`unity-sb`と`unity-sb-lts`は、`2321.3`の公開の票で頼む。この依頼には入れない
+- Unity箱庭の`unity-sb`と`unity-sb-lts`は、`00-hub/unity-sandbox-vps-instructions_ja.md`で頼んだ。`scratch-lts`の組の接続先の
+  一覧には、12月1日にこの依頼で両方を入れる（2026-11-17に改めた、`2026-11-17-04`）
 
 ## すること
 
 1. 12月1日の手順を書く：`scratch-lts`と`wirescope-lts`のTLS、Caddy、Bridgeが受け付けるorigin、runtime configの`connection_targets`、
    WireScopeの受け渡しのheader
 2. 接続先は、`scratch`の組は`sb`を既定にして`sb-lts`も選べ、`scratch-lts`の組は`sb-lts`を既定にして`sb`も選べるようにする
-   （`2026-10-24-01`の形を新しい名前へ移す）。`scratch-beta`の組は今のまま
+   （`2026-10-24-01`の形を新しい名前へ移す）。どちらの組も、`unity-sb`と`unity-sb-lts`も選べる（2026-11-17に足した、
+   `2026-11-17-04`）。`scratch-beta`の組は今のまま
 3. WireScopeの受け渡しに、`scratch-lts`→`wirescope-lts`の組を足す。三つの組が混ざらないこと（`scratch-lts`から`wirescope`へ
    渡るなど）も確かめる
 4. 公開VPSのBridgeから、有料GAMEsの`sb-lts`のTCP 25575へつなぐ（2026-10-24の(b)、外の接続先）
