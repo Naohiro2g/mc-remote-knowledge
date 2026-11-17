@@ -52,7 +52,7 @@ WireScopeに出るerrorを見る。どちらも、errorの後に次の命令（s
    なるか。終わったら`/worldborder set`で、採った値に戻す
 9. **1回に置ける数（`block_count_limit_exceeded`）**：(0,0,0)から(32,32,32)まで（35,937個）をsetBlocksする。reasonが
    `block_count_limit_exceeded`で、1つも置かれないか。(0,0,0)から(31,31,31)まで（32,768個）は置けるか
-10. **建築範囲（`build_range_exceeded`）**：8で変えたworld borderを先に戻す。WireScopeでhelloの`permissions.build_range`を見て、
+10. **建築範囲（`build_range_exceeded`）**：8で変えたworld borderを先に戻す。WireScopeでhelloの`permissions.buildRange`を見て、
     それより遠いxへsetBlockする。reasonが`build_range_exceeded`か。範囲が広すぎて試せなければ、試せなかったと書く
 11. **回帰**：ペアリング、チャット、setBlock、getBlock、HUDの表示が、`2321.1.0`と同じようにできるか
 

@@ -158,3 +158,41 @@
   labelで照合する
 - Unity箱庭のimageは、GHCRに置いた候補で照合する（`2026-11-17-02`④）
 - そろったらexact setを凍結し、Stackへの票（候補を置く、`unity-sb`と`unity-sb-lts`、接続先の一覧）と、人間の試験の票を作る
+
+## Unity箱庭の候補の作り直し（2026-11-17）
+
+> GHCRの候補`candidate-6aeb741`（`6aeb741`、PR #4）を、coordinatorが照合した（`00-hub/release-gate-notes_ja.md`の2321.2の節の
+> 「Unity箱庭の候補の照合（2026-11-17）」）。digest、config、labelは返却と一致したが、`THIRD-PARTY-NOTICES.txt`にOFLの本文が
+> 無い。human owner 2026-11-17「作り直しましょう。」。参照するknowledge commitは、この節が入ったmainのcommitです。
+
+### 直すもの
+
+1. `THIRD-PARTY-NOTICES.txt`のfontの節に、fontの著作権表示とOFL 1.1の本文を入れる（`2026-11-17-03`）。本文は、repoの
+   `unity/Assets/LocalSandboxDemo/Resources/Fonts/LICENSE_NotoSansCJK.txt`にある。今の節にある`Files: debian/*`の行は、Debianの
+   packagingの著作権で、fontのものではない
+2. Unityの節に、imageに入っていないものを書かない。今の「and bundled third-party notices for Unity WebGL runtime components」に
+   当たるfileは、imageに無い
+3. containerを、root以外のuserで動かす。base imageに`APP_UID`（1654）のuserがある。今のimageは、configの`User`が空で、rootで動く
+4. `licenses`のlabelは`MIT`のまま（`2026-11-17-03`）
+
+### 作り方
+
+- 直したcommitをPR #4に積む。`VERSION`は`2321.2.0`のまま
+- そのcommitから、WebGLのbuildとimageのbuildを行い、`candidate-<commitの先頭7桁>`でGHCRへpushする（`2026-11-17-02`）
+- `candidate-6aeb741`を消すかは、human ownerが決める
+
+### 返却
+
+- 実際に読んだknowledge commit
+- 直したcommit（GitHubにあるもの）とPRのhead
+- GHCRのtag、indexのdigest、linux/amd64のmanifestのdigest、configのdigest、loginなしでpullできたこと
+- labelの全部と、configの`User`
+- `THIRD-PARTY-NOTICES.txt`のbytesとSHA-256（全桁）
+- WebGLのbuildをどのcommitで行ったか（前のbuildを使ったなら、そう書く）と、imageの`/app/wwwroot`のfileの数とbytesの計
+- root以外のuserで、`/healthz`、hello、Unity Web、TCPの`25585`が前と同じに動くこと
+- 前の返却の直し：`/app/wwwroot/LICENSE`を入れたとあるが、imageには無い。WebGLのbuildの大きさ（返却は31,933,678 bytes）と、
+  imageの`/app/wwwroot`（31,934,139 bytes）の差は何か
+
+### coordinatorがすること
+
+- 前と同じに照合する（loginなしで取り、digest、config、label、layerの中の`THIRD-PARTY-NOTICES.txt`）。合えば、そのdigestで凍結する

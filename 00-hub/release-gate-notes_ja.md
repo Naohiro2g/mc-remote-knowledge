@@ -76,7 +76,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
 - current phase: 候補の返却を待つ（2026-11-15に開き、2026-11-17に範囲を広げた（`2026-11-17-01`）。McRemoteの候補は照合し、
-  人間の試験を進めている。下の「範囲を広げる（2026-11-17）」）
+  人間の試験を進めている。Unity箱庭は、GHCRの候補を照合して作り直しを頼んだ。下の「範囲を広げる（2026-11-17）」と
+  「Unity箱庭の候補の照合（2026-11-17）」）
 - 位置づけ: 初回stableの後の2回目の機能のrelease。betaを挟まない（`2026-10-22-03`）。番号は台帳
   （`00-hub/release-train-notes_ja.md`）で予約した（`2026-11-05-02`）
 - contract: protocolを`23.3.0`にする（`2026-11-15-03`）。wire「7.3 エラー設計」の`out_of_bounds`（`2026-11-14-02`、
@@ -100,9 +101,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - 出した後: Stackが箱庭（`sb`）とWebのScratchを上げ、McRemoteのcredentialのfileのmode（`0600`、`0700`）を確かめる。
   Scratch、Bridge、runtime config（`schema_version: 2`）は組で入れる（`2026-11-16-01`③）。Unity箱庭を`unity-sb`と`unity-sb-lts`に
   置く（`2026-11-16-05`③）。coordinatorが、wire §7.3の表、Protocol Inventory、API一覧（`api/23.3.0/`）、ホームページを直す
-- 未決: 日付。公開の前に決めること：Unity箱庭の使いすぎを抑える上限（送り元ごとと全体のcodeの試行、世界のリセットの間隔）、
-  imageの`licenses`のlabel（調べてから決める。今は`MIT`。UnityのWebGLの実行部分とOFLのfontも入る）。imageの置き方とpushの時期は
-  `2026-11-17-02`
+- 未決: 日付。公開の前に決めること：Unity箱庭の使いすぎを抑える上限（送り元ごとと全体のcodeの試行、世界のリセットの間隔）。
+  imageの置き方とpushの時期は`2026-11-17-02`、`licenses`のlabelは`2026-11-17-03`
 
 ### 返却の照合（2026-11-15〜16）
 
@@ -183,7 +183,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 
 - 実施票`00-hub/23212-gate-live-test-instructions_ja.md`。human ownerの報告による
 - 環境：Ubuntu 24.04、Temurin 25.0.5+8、Paper 26.3-244（`35a2d15`）。Geyser-Spigot 2.12.1-SNAPSHOT、floodgate 2.2.5-SNAPSHOT（b141）、
-  ViaVersion／ViaBackwards 5.12.3-SNAPSHOT、WorldEdit 7.4.6、AdvancedPortals 2.8.0。LuckPermsなし。helloの`build_range`は1000
+  ViaVersion／ViaBackwards 5.12.3-SNAPSHOT、WorldEdit 7.4.6、AdvancedPortals 2.8.0。LuckPermsなし。helloの`permissions.buildRange`は1000
 - 最初の起動はMcRemote `2321.1.0`のままだった（logのplugin一覧、`/version McRemote`、helloの`23.2.1`）。JARを入れ替えて
   `2321.2.0`で起動し直した。実施票に、版を確かめる0を足した
 - できたこと：0、1〜3（日本語と英語のJava版で、ペアリング成功の文と`/mcr hud status`が画面の言語だけで出る。つないだまま
@@ -195,6 +195,38 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   WireScopeでは全部見える
 - 統合版：Windowsの中でつながるところまでは確かめた。その後、統合版26.65が出て、Geyserがまだ対応していない（human owner 2026-11-17）
 - 残り：4（統合版）、8〜11
+
+### Unity箱庭の候補の照合（2026-11-17）
+
+- 返却は`mc-remote-unity-sandbox`の`handoff-materials/2026-11-17-unity-23212-candidate/materials/RETURN_ja.md`（17,332 bytes、
+  `f01d601c907819fc3ad6e4f07ba7aeae45d3806efb20a7421671fd851a5a1a17`。knowledge `f72d5bf`を読んだ）。人間の試験の案は同じ場所の
+  `HUMAN_TEST_ja.md`（3,661 bytes、`14568bced69354d9ecee05b53f5664747231747a710d9349334d373eb6df9485`）。coordinatorが手元のfileを計り、
+  返却の値と一致した。前の返却（`8099216`、`00-hub/unity-sandbox-release-instructions_ja.md`の「候補の返却と照合（2026-11-17）」）を
+  置き換える
+- coordinatorがGitHubのAPIで照合した：PR #4はopen、head `6aeb74117d2bf0c1413f211126d11c761928720f`（`8099216`の上の1 commitで、版を
+  `2321.2.0`にし、`THIRD-PARTY-NOTICES.txt`を足した）。そのcommitの`VERSION`は`2321.2.0`。CIは無い
+- GHCR：coordinatorがloginせずにRegistry APIで取った。tagは`candidate-6aeb741`だけ
+  - index `sha256:b8bf4fd17ab53bfd3009742715bc8d6512f0eedc4af2f01e9128472fabe53478`（linux/amd64とattestationの2つ）
+  - linux/amd64のmanifest `sha256:5db4b811f60fde45681db9c0b7ef73a072f126bbda68adf36da5357542f922da`、config
+    `sha256:8f1e5115cb6f83494579fc5a512f3e8360c7ea67b6c57a7573e4abd156dcbb46`。返却と一致した。返却の「image ID」はindexのdigest
+    （Dockerのcontainerdのimage storeの表示）で、configのdigestも別に返っている
+  - labelは7つ。`revision`は`6aeb741`の全桁、`version`は`2321.2.0`、`licenses`は`MIT`。base imageの名前とdigestは返却の§1.2
+  - layerを取って中を見た：`/app/LICENSE`と、`/app`と`/app/wwwroot`の`THIRD-PARTY-NOTICES.txt`（4,773 bytes、
+    `655771179e83d9cb34ccd716e1ca5ff8ae708d5c86c846679424100d249b6a3b`）は、GitHubの`6aeb741`のfileと同じ。Unity Webの`index.html`と
+    `WebGL.data`に`2321.2.0`がある
+- 前の返却の気づいたことは片付いた：`zero_direction`は`-32602`。methodは20（一覧は返却の§1.4）。playerは高さ-64.0〜320.0を受け付け、
+  外れたときの`bounds.y_max`は319（置ける高さで、`2026-11-14-04`の`y_max`と同じ意味）。`/healthz`とhelloは`2321.2.0`と`23.3.0`
+- 気づいたこと
+  - `THIRD-PARTY-NOTICES.txt`のfontの節に、OFL 1.1の本文が無い（見出しと、Debianのpackagingの著作権の行だけ）。返却は「全文を
+    同梱」と書いている
+  - Unityの節が、imageに無い「bundled third-party notices」を書いている
+  - configの`User`が空で、rootで動く
+  - 返却は`/app/wwwroot/LICENSE`も入れたと書くが、imageに無い。Unity Webのfileは、imageでは18 file、31,934,139 bytesで、返却の
+    buildの大きさ（31,933,678 bytes）と461 bytes違う
+- licenseの調べ（返却の§2）：このprojectのもの（MIT）、Noto Sans Mono CJK JPのsubset（OFL 1.1）、Newtonsoft.Json 13.0.4（MIT）、
+  .NET 9の実行部分（MIT）とbase imageのDebianのpackage、Unity 6000.6.8f1のWebGLの実行部分（Unityの条件で配る。OSSのlicenseではない）
+- human ownerの判断（2026-11-17）：作り直す（「作り直しましょう。」）。labelは`MIT`のまま（`2026-11-17-03`）。票は
+  `00-hub/23212-gate-candidate-instructions_ja.md`の「Unity箱庭の候補の作り直し（2026-11-17）」。`candidate-6aeb741`は凍結しない
 
 ## 2026-11-06 `2321.1`横断release gate（CLOSED）
 
