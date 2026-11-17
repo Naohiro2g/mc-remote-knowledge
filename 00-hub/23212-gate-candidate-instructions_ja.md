@@ -85,3 +85,65 @@
 - 一覧の`release`、`sourceRef`、`sourceCommit`、変わったfileの数。`2321.1.0`の一覧との違い（blockの数、ID、表示、methodの名前）
 - `12bef13`の配布物から変わるもの（どのfileが変わるか）
 - 公開のworkflowが、tagの指すcommitとdevelopの関係に何を求めるか
+
+## 範囲を広げた後の候補（2026-11-17）
+
+> `2026-11-17-01`で、`2321.2`にUnity箱庭の最初の公開と、ScratchとtoolingのUnity箱庭に向けた変更を入れた。human ownerに
+> よると、ScratchとUnity箱庭の候補はできていて、human ownerが最終の確認をする。この節は、その返却に要るものをまとめる。
+> McRemoteの候補（`2ccf0b1`）は変えない。参照するknowledge commitは、この節が入ったmainのcommitです。
+
+### Scratch
+
+- 入れるもの：`develop`にmergeしたもの（PR #35〜#37、`b9c791d3fe7db8644421b4cbdbb4599b0476239c`まで）。版は`v2321.2.0`
+- Bridge、runtime config（`schema_version: 2`）、Scratchは組で入れる（`2026-11-16-01`③）。LANのZIPに入れるBridgeは、toolingの
+  候補のcommitから作る
+- ブロック一覧は、候補のcommitから`2321.2.0`で作り直す。Stackの取り込みの条件は、上の「Scratchの作り直し（2026-11-16）」と同じ
+- PR #36の`d72a033`の候補（artifact `14173277606`）は使わない
+
+返却：
+
+- 実際に読んだknowledge commit
+- 候補のbranchとhead、CIのrun ID、artifactのIDとdigest、配布物の名前とbytesとSHA-256（全桁）、Scratch OCIのdigest、
+  `candidate-manifest.json`（toolingのcommit、Bridge OCIのdigest）
+- ブロック一覧の`release`と`sourceCommit`。「Unity」の絞り込みに入れたmethodと、何を元にしたか
+- `v2321.1.0`から変わったもの（Release本文の材料。本文はhuman ownerが書く）
+- 人間の試験の手順の案（McRemote `2321.2.0`のPaperと、Unity箱庭の候補の両方につなぐ）
+
+### minecraft-remote-tooling
+
+- 入れるもの：PR #11（Bridgeの接続先ID）とPR #12（WireScopeの`server`の表示とerrorの`data`）。human ownerが2026-11-17に
+  `main`へmergeした（`62f95f4a72db90cdfb2e759150f8488b6a264a49`まで）
+- 版は`v2321.2.0`
+
+返却：
+
+- 実際に読んだknowledge commit
+- mergeしたcommit、候補のhead、CIのrun ID、artifactのIDとdigest、Bridge OCIのdigest、WireScopeのZIPとmanifestのbytesと
+  SHA-256（全桁）
+- `v2321.0.0`から変わったもの
+- 接続先の一覧を与えずに環境変数だけで起動したBridgeが、前と同じに動くこと（`2026-11-16-01`②）を何で確かめたか
+
+### Unity箱庭
+
+- 最初の版は`2321.2.0`（`2026-11-17-01`①）。`VERSION`を`2321.2.0`にしたcommitをGitHubに置き、そのcommitからimageを作る
+  （labelの`revision`を照合するため）
+- GHCRへのpushは、human ownerが判断してから行う（`00-hub/unity-sandbox-release-instructions_ja.md`の「すること」の6のまま）
+- LANのセットを入れるかは、human ownerと相談する（版は決めていない）
+
+返却：
+
+- 実際に読んだknowledge commit
+- 候補のcommit（GitHubにあるもの）とPR
+- imageのIDとbytes、labelの全部、base imageの名前とdigest
+- `/healthz`の応答と、helloの`server.version`と`protocol`
+- 答えるmethodの一覧（Scratchの「Unity」の絞り込みと`19-unity/README_ja.md`のため）
+- `player.setPos`と`player.setPose`で世界の外を指したときの、errorの`data`の例（playerは高さ320まで受け付けるので、
+  `bounds`の`y_max`に何を入れたか）
+- `zero_direction`のcode。wireとMcRemoteは`-32602`で、返却（2026-11-17）の確定搬送票は`-32000`と書いている
+- 人が確かめたことと、確かめられなかったこと
+
+### coordinatorがすること（2026-11-17）
+
+- 返却をGitHubのAPIで照合し、配布物を外からダウンロードして計り直す。Unity箱庭のimageは、GHCRへpushする前なので、IDと
+  labelで照合する
+- そろったらexact setを凍結し、Stackへの票（候補を置く、`unity-sb`と`unity-sb-lts`、接続先の一覧）と、人間の試験の票を作る

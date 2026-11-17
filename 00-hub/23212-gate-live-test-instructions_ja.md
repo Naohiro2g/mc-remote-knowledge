@@ -26,6 +26,11 @@
 - 入れたプラグインとその版
 - `/worldborder get`の値（4で変えて、後で戻す）
 
+## 版を確かめる
+
+0. **版**：起動のlogのplugin一覧が`McRemote (2321.2.0)`か。`/version McRemote`が`2321.2.0`か。前の版のJARが`plugins/`に
+   残っていないか（2つあると、Paperは片方しか読まない）
+
 ## ゲーム内の文の言語
 
 1. **Java版、日本語**：clientの言語を日本語にしてつなぎ、Python（またはScratch）でペアリングする。ペアリング成功の文と、
@@ -47,8 +52,8 @@ WireScopeに出るerrorを見る。どちらも、errorの後に次の命令（s
    なるか。終わったら`/worldborder set`で、採った値に戻す
 9. **1回に置ける数（`block_count_limit_exceeded`）**：(0,0,0)から(32,32,32)まで（35,937個）をsetBlocksする。reasonが
    `block_count_limit_exceeded`で、1つも置かれないか。(0,0,0)から(31,31,31)まで（32,768個）は置けるか
-10. **建築範囲（`build_range_exceeded`）**：WireScopeでhelloの`permissions.buildRange`を見て、それより遠いxへsetBlockする。
-    reasonが`build_range_exceeded`か。範囲が広すぎて試せなければ、試せなかったと書く
+10. **建築範囲（`build_range_exceeded`）**：8で変えたworld borderを先に戻す。WireScopeでhelloの`permissions.build_range`を見て、
+    それより遠いxへsetBlockする。reasonが`build_range_exceeded`か。範囲が広すぎて試せなければ、試せなかったと書く
 11. **回帰**：ペアリング、チャット、setBlock、getBlock、HUDの表示が、`2321.1.0`と同じようにできるか
 
 ## 範囲の外

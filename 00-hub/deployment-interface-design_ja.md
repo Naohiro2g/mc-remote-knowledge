@@ -251,7 +251,7 @@ Bridge config
 同じhostの別port（通常方式）がそれにあたり、`2026-10-24-06`で、接続先ごとに`id`、`label`、`host`、`port`を持ち、
 Bridgeが`id`から`{host, port}`を引く対応表を持つ方針にした。入力の形は`2026-11-16-01`で決めた。Bridgeが読む一覧は
 `connection-targets.json`（toolingの`schemas/connection-targets-v1.schema.json`）、`?sandbox=`の値は`id`、Scratchのruntime
-configは`schema_version: 2`。最初に出すのは`2321.3`で、それまでの公開は`{id, label, sandbox}`と共通portのまま。
+configは`schema_version: 2`。最初に出すのは`2321.2`（`2026-11-17-01`）で、それまでの公開は`{id, label, sandbox}`と共通portのまま。
 
 ### 6.1 配置topologyとbrowser TLS
 

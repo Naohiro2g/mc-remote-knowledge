@@ -75,28 +75,34 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
-- current phase: Scratchの作り直しを待つ（2026-11-15に開いた。McRemoteの候補は照合した。下の「返却の照合（2026-11-15〜16）」）
+- current phase: 候補の返却を待つ（2026-11-15に開き、2026-11-17に範囲を広げた（`2026-11-17-01`）。McRemoteの候補は照合し、
+  人間の試験を進めている。下の「範囲を広げる（2026-11-17）」）
 - 位置づけ: 初回stableの後の2回目の機能のrelease。betaを挟まない（`2026-10-22-03`）。番号は台帳
   （`00-hub/release-train-notes_ja.md`）で予約した（`2026-11-05-02`）
 - contract: protocolを`23.3.0`にする（`2026-11-15-03`）。wire「7.3 エラー設計」の`out_of_bounds`（`2026-11-14-02`、
   `2026-11-14-04`）、`build_range_exceeded`と`block_count_limit_exceeded`（`2026-11-14-05`、`2026-11-15-02`）、`expected_hello`
-  （`2026-11-12-03`）、`protocol_mismatch`のcode（`2026-11-10-01`①）。共有fixtureは変えない
-- 範囲（human owner 2026-11-15）:
+  （`2026-11-12-03`）、`protocol_mismatch`のcode（`2026-11-10-01`①）。共有fixtureは変えない。Unity箱庭のserverも`23.3.0`で応える（`2026-11-15-03`④）
+- 範囲（human owner 2026-11-15。2026-11-17に広げた、`2026-11-17-01`）:
   | component | 入れるもの |
   | --- | --- |
   | McRemote | main `082df43145b4a5bfe5854a3985a82c936ed0ce76`（PR #16〜#20）：credentialのfileのmode（`2026-11-11-03`）、ゲーム内の文の言語（`2026-11-12-02`）、`protocol_mismatch`と`expected_hello`のcode、`out_of_bounds`、`build_denied`を分けること。加えて、helloの`protocol`を`23.3.0`にする |
-  | Scratch | カタログのpickerの改善、パレットの折りたたみ（human owner 2026-11-15「実装済み。単独リリース可能。」）。`2321.2.0`のブロック一覧（`2026-10-17-04`。human owner 2026-11-16） |
-- 範囲の外: Python、minecraft-remote-tooling、Unity箱庭（`2321.3`へ）。McRemoteのBANで拒む経路の直しは`2321.2.1`、
-  socketごとのkeepaliveは`2321.3`（human owner 2026-11-15）。新しいreasonのF1のcase（tooling）と各clientの表示は、
-  このreleaseを出した後に頼む
+  | Scratch | `develop`にmergeしたもの（PR #35の接続先ID、PR #36のpickerの改善とパレットの折りたたみ、PR #37のパレットの並びとerrorの表示など）と、`2321.2.0`のブロック一覧（`2026-10-17-04`） |
+  | minecraft-remote-tooling | Bridgeの接続先ID（PR #11、`2026-11-16-01`）と、WireScopeの`server`の表示とerrorの`data`（PR #12） |
+  | Unity箱庭 | 最初の公開（serverとUnity Web）。`main`（PR #2、#3）に、版を`2321.2.0`にしたもの |
+- 範囲の外: Python。McRemoteのBANで拒む経路の直しは`2321.2.1`、socketごとのkeepaliveは後の版（human owner 2026-11-15、
+  `2026-11-17-01`④）。PaperのLANのセット。Unity箱庭のLANのセットは、版を決めていない。新しいreasonのF1のcase（tooling）と、
+  Scratch以外のclientの表示は、このreleaseを出した後に頼む
 - 人間の試験: Paper 26.3 #244だけで行う（箱庭と同じbuild、human owner 2026-11-16）。McRemoteの実施票は
   `00-hub/23212-gate-live-test-instructions_ja.md`。1.21.11はMcRemoteのPaperの自動の確認に任せる
   （human owner 2026-11-15）。見るもの：
   ゲーム内の文の言語（hub NOTESの行）、新しい3つのreasonを実際のPaperで、Python `2321.1.0`とScratch `v2321.1.0`が新しい
-  reasonとcodeで止まらないこと、Scratchのpickerとパレット、ペアリングと建築の回帰
+  reasonとcodeで止まらないこと、ペアリングと建築の回帰。ScratchとUnity箱庭の票は、候補の返却の後に作る
 - 出した後: Stackが箱庭（`sb`）とWebのScratchを上げ、McRemoteのcredentialのfileのmode（`0600`、`0700`）を確かめる。
-  coordinatorが、wire §7.3の表、Protocol Inventory、API一覧（`api/23.3.0/`）、ホームページを直す
-- 未決: 日付
+  Scratch、Bridge、runtime config（`schema_version: 2`）は組で入れる（`2026-11-16-01`③）。Unity箱庭を`unity-sb`と`unity-sb-lts`に
+  置く（`2026-11-16-05`③）。coordinatorが、wire §7.3の表、Protocol Inventory、API一覧（`api/23.3.0/`）、ホームページを直す
+- 未決: 日付。公開の前に決めること：Unity箱庭の使いすぎを抑える上限（送り元ごとと全体のcodeの試行、世界のリセットの間隔）、
+  imageの`licenses`のlabel（今は`MIT`。UnityのWebGLの実行部分とOFLのfontも入る）、imageの名前とtagとloginなしで取れるか、
+  GHCRへのpush
 
 ### 返却の照合（2026-11-15〜16）
 
@@ -133,6 +139,60 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   とおり、候補の上の新しいcommitで`2321.2.0`の一覧を作り、一覧のmethodの名前も直し、そのcommitで配布物を作り直す。前の版の
   一覧は直さない。凍結はその返却の後で、McRemoteと一緒に行う。票は`00-hub/23212-gate-candidate-instructions_ja.md`の
   「Scratchの作り直し（2026-11-16）」 ②人間の試験はPaper 26.3 #244（「26.3 #244で。」）
+
+### Scratchの作り直しの照合（2026-11-16）
+
+- 返却`handoff-materials/2026-11-16-scratch-23212-rebuild/materials/RETURN_ja.md`（4,718 bytes、
+  `e7b1d818401aa7e1ce1aa29aee3233eadfefb5888b9d89b09855455ce01ecd17`。knowledge `7a56e64`を読んだ）。人間の試験の手順の案は同じ場所の
+  `HUMAN_TEST_ja.md`（7つ）
+- coordinatorがGitHubのAPIで照合した：PR #36のhead `d72a033762edf4a0ba93b1a86f745b538f91e3e7`（`12bef13`から2 commit先）。
+  `c453e652ecdbd614b19ba1bab7fbc90055be0df8`（生成の直し）から`d72a033`までに変わったのは`site/`の生成物だけ（`site/2321.2.0/`の62 fileと、
+  一覧の`blocks.json`、`index.html`）で、Stackの取り込みの条件を満たす。一覧は`release` `2321.2.0`、`sourceCommit` `c453e65`の全桁、
+  56 block。`setDimension`と`setBuildOrigin`のmethodは`build.setDimension`と`build.setOrigin`
+- CI：配布物の生成`43742576261`（`workflow_dispatch`）、push `43742036895`、PR `43742041929`（2回目で成功。1回目は前からある
+  `io_clock.js`の揺らぎ）。どれもhead_shaは`d72a033`
+- artifact `14173277606`（1,373,718,102 bytes、`sha256:c0a62d5147087a1df8e8248e8c47b9d6c9b51ac2e8360d7ad52e4ccd9eb13c53`、期限2027-02-13）を
+  coordinatorが取り直して計った。9 fileのbytesとSHA-256は、返却とCIの`candidate-manifest.json`（2,664 bytes、
+  `c0fc4722e0facc936ec45a9cb92f7899a70251e8ea1bc0f40add32bfde4c3934`。返却の写しと同じ）に一致した。Scratch OCIは
+  `sha256:f9c17d081a83cde900acdcc642241052e2ff800edb8cb1a1bc85c4f22ad7ea81`、Bridgeは`2321.1`と同じ
+  （`sha256:305d6e38b36e195a0e158522f32f3a8c45d39da2aeec7b7e46f785c920406acf`）。toolingのcommitは`6447f6e8cbfbeeb9d229990b5c4f6e82a5875666`。
+  LANの3つのZIPのsidecarは、`source_commit`が`d72a033`、`working_tree_dirty`がfalse
+- 2026-11-17に範囲を広げたので、この候補は凍結しない（`2026-11-17-01`）
+
+### 範囲を広げる（2026-11-17）
+
+- human ownerの判断：Unity箱庭の最初の公開と、ScratchとtoolingのUnity箱庭に向けた変更を`2321.2`に入れる（`2026-11-17-01`。
+  2026-11-16「…2321.2で行けそう、というか片付けたい。」、2026-11-17「Unity箱庭の最初の版は2321.2.0になる。」）
+- coordinatorがGitHubのAPIで確かめた今（2026-11-17）
+  - McRemote：PR #21は2026-11-15に`main`へmergeされた（`5fca9f21e2fd2cd1579a350dcba74c85a199e610`）。候補は`2ccf0b1`のまま
+  - Scratch：PR #37（head `f96ec7909c232096866a33a5ede39bb6fc747ca3`、17 commit）が2026-11-16に`develop`へmergeされた
+    （`b9c791d3fe7db8644421b4cbdbb4599b0476239c`）。PR #35と#36のheadはその中に入り、merge済みになった。pushのCI `43949344458`は成功。
+    候補の配布物（artifact）はまだGitHubに無い
+  - tooling：PR #11（head `df2491d64836215945c32f097456bf7d799c5c98`）と#12（head `891651e8a7b36e2e8892ac3c49d7b573c9a53e6a`）を、
+    human ownerが2026-11-17に`main`へmergeした（`36f0d5538f99def5eed857719bc93d6c524e8f4c`、`62f95f4a72db90cdfb2e759150f8488b6a264a49`）
+  - Unity箱庭：PR #3（head `03d3eade37190a090cee26cfcbccfd6b52e0bb40`）が2026-11-16に`main`へmergeされた
+    （`d3539c3964c4dc9b19b969999ebde729f530fa6e`）。候補はPR #4（Unity Webの画面の改善、head `8099216d5d12b4aed8388e5de17b80b3ac6b90ce`、
+    open）で、`VERSION`は`0.1.0`のまま（`00-hub/unity-sandbox-release-instructions_ja.md`の「候補の返却と照合（2026-11-17）」）
+- human owner 2026-11-17：ScratchとUnity箱庭の候補はできていて、human ownerが最終の確認をする。Stackはalphaでのデプロイの
+  検証を終え、最終のimageを待っている
+- 返却に要るものは`00-hub/23212-gate-candidate-instructions_ja.md`の「範囲を広げた後の候補（2026-11-17）」
+
+### 人間の試験（McRemote、2026-11-17〜）
+
+- 実施票`00-hub/23212-gate-live-test-instructions_ja.md`。human ownerの報告による
+- 環境：Ubuntu 24.04、Temurin 25.0.5+8、Paper 26.3-244（`35a2d15`）。Geyser-Spigot 2.12.1-SNAPSHOT、floodgate 2.2.5-SNAPSHOT（b141）、
+  ViaVersion／ViaBackwards 5.12.3-SNAPSHOT、WorldEdit 7.4.6、AdvancedPortals 2.8.0。LuckPermsなし。helloの`build_range`は1000
+- 最初の起動はMcRemote `2321.1.0`のままだった（logのplugin一覧、`/version McRemote`、helloの`23.2.1`）。JARを入れ替えて
+  `2321.2.0`で起動し直した。実施票に、版を確かめる0を足した
+- できたこと：0、1〜3（日本語と英語のJava版で、ペアリング成功の文と`/mcr hud status`が画面の言語だけで出る。つないだまま
+  切り替えると、HUD statusと方位がそろう）、5（`/help mcr`と`/version McRemote`は製品名と構文だけ）、6（Scratch `v2321.1.0`は
+  `23.2.1`で申告し、`23.3.0`の応答でつながる。WindowsのScratch `v2321.1.0`もペアリングできた）、7（相対のy 319は置け、320は
+  `out_of_bounds`（`-32000`）。`data`の`bounds`と`violating`（絶対座標）は`2026-11-14-04`の形。Scratch `v2321.1.0`はerrorの後も
+  次のブロックへ進む）
+- 気づいたこと：前のWireScope（LANパッケージ`v2321.1.0`に入っているもの）は、同じerrorの`data`を`reason`だけで表示する。新しい
+  WireScopeでは全部見える
+- 統合版：Windowsの中でつながるところまでは確かめた。その後、統合版26.65が出て、Geyserがまだ対応していない（human owner 2026-11-17）
+- 残り：4（統合版）、8〜11
 
 ## 2026-11-06 `2321.1`横断release gate（CLOSED）
 

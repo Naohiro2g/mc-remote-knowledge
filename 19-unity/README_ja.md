@@ -29,6 +29,11 @@ Unityの世界と箱庭の設計スポーク。一般用途のC# Client Library�
   進める票を出した（`00-hub/unity-sandbox-lan-instructions_ja.md`）。`2321.3`に間に合えば入れ、間に合わなければ`2321.4`
 - 2026-11-16：公開の名前を`unity-sb`（最新版）と`unity-sb-lts`（LTS）にした（`2026-11-16-05`）。最初の公開から両方を出し、
   版が分かれるまでは同じcontainerを指す。ホームページの「はじめる（1）」は、`scratch-lts`から`unity-sb-lts`へつなぐ
+- 2026-11-16：PR #3（`block_count_limit_exceeded`と、相談して足したmethod、head `03d3eade37190a090cee26cfcbccfd6b52e0bb40`）を照合し、
+  human ownerがmergeした（merge commit `d3539c3964c4dc9b19b969999ebde729f530fa6e`。`00-hub/unity-sandbox-release-instructions_ja.md`の
+  「PR #3の返却と照合（2026-11-16）」）
+- 2026-11-17：最初の公開を`2321.2.0`にした（`2026-11-17-01`）。候補の返却に要るものは、`00-hub/23212-gate-candidate-instructions_ja.md`の
+  「範囲を広げた後の候補（2026-11-17）」
 
 ## 公開Unity箱庭
 
@@ -46,7 +51,7 @@ URLを開けば、Minecraftを買わず入れずに、Scratchから建てられ�
   草（`minecraft:grass_block`）がy=62。区画の間はy=62が空気で、y=61の土が見える。その下は、土（`minecraft:dirt`）が61〜60、
   石（`minecraft:stone`）が59〜-64。基本のblockは、空気、草、土、石、金、鉄、シーランタン、ガラス、ダイヤモンド、TNT。
   地面の中のイースターエッグは、各区画の原点の真下の3×3に、yが10の倍数（-60〜50）の層で置いた
-- 版と配る形：版は台帳のX.Y.Zに従い、serverとUnity Webを同じ版で出す（`2026-11-15-04`）。最初の公開は`2321.3`。Unity Web
+- 版と配る形：版は台帳のX.Y.Zに従い、serverとUnity Webを同じ版で出す（`2026-11-15-04`）。最初の公開は`2321.2.0`（`2026-11-17-01`）。Unity Web
   （WebGLのbuild）を入れたcontainer imageをGHCRへpushし、Stackが公開VPSで動かす（`2026-11-15-05`）。WebGLはUnityの開発機で、
   imageはhuman ownerが決めた手元の1台のDockerでbuildする（`2026-11-16-03`）。LANでは、Unity箱庭のserverとUnity Webの
   セットを、Scratch LANパッケージと別に配る（`2026-11-16-04`）
@@ -59,7 +64,7 @@ McRemoteの返却を見て`2026-11-14-03`、`2026-11-14-04`で決めた。
 
 - 待ち受け：McRemoteと同じ改行区切りのJSON-RPCをTCPで受ける。portの既定は`25585`で、起動のときに変えられる
   （`2026-11-15-01`。同じPCでMcRemoteの`25575`と並べられる）
-- hello：`protocol`は`23.2.1`で、`2321.3`で出すときから`23.3.0`（`2026-11-15-03`④）。`mc_version`と`supported_mc_versions`は、世界のモデルが従う`1.21.11`。Unity箱庭であることは`server`で
+- hello：`protocol`は`23.3.0`（`2026-11-15-03`④）。`mc_version`と`supported_mc_versions`は、世界のモデルが従う`1.21.11`。Unity箱庭であることは`server`で
   名乗る（`name`は`mc-remote-unity-sandbox`、`version`はUnity箱庭の版、`2026-11-15-04`）。`dimension`は`minecraft:overworld`だけ、buildを省いたときの`origin`は`[0, 0, 0]`、`world_constants`は
   `y_sea`だけ（ほかのkeyは`2400`）、`permissions`はMcRemoteと同じ形
 - tokenと画面：tokenは、chatで`/mcremote pair NNN-NNN`を打った画面に結ぶ。画面は、browserに残る推測できない画面のIDで見分け、
