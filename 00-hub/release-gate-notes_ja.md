@@ -101,8 +101,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   Scratch、Bridge、runtime config（`schema_version: 2`）は組で入れる（`2026-11-16-01`③）。Unity箱庭を`unity-sb`と`unity-sb-lts`に
   置く（`2026-11-16-05`③）。coordinatorが、wire §7.3の表、Protocol Inventory、API一覧（`api/23.3.0/`）、ホームページを直す
 - 未決: 日付。公開の前に決めること：Unity箱庭の使いすぎを抑える上限（送り元ごとと全体のcodeの試行、世界のリセットの間隔）、
-  imageの`licenses`のlabel（今は`MIT`。UnityのWebGLの実行部分とOFLのfontも入る）、imageの名前とtagとloginなしで取れるか、
-  GHCRへのpush
+  imageの`licenses`のlabel（調べてから決める。今は`MIT`。UnityのWebGLの実行部分とOFLのfontも入る）。imageの置き方とpushの時期は
+  `2026-11-17-02`
 
 ### 返却の照合（2026-11-15〜16）
 
@@ -176,6 +176,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - human owner 2026-11-17：ScratchとUnity箱庭の候補はできていて、human ownerが最終の確認をする。Stackはalphaでのデプロイの
   検証を終え、最終のimageを待っている
 - 返却に要るものは`00-hub/23212-gate-candidate-instructions_ja.md`の「範囲を広げた後の候補（2026-11-17）」
+- Unity箱庭のimage：最終の候補を一度だけbuildし、凍結の前にGHCRへ候補のtagで公開して置く。gateはGHCRのdigestで凍結し、Stackは
+  VPSでそのdigestを動かす（`2026-11-17-02`。human owner 2026-11-17「今すぐ。」「公開する。ライセンスを調べる。」「pushはUnity箱庭と私で。」）
 
 ### 人間の試験（McRemote、2026-11-17〜）
 

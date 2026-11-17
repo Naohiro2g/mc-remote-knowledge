@@ -127,7 +127,7 @@
 
 - 最初の版は`2321.2.0`（`2026-11-17-01`①）。`VERSION`を`2321.2.0`にしたcommitをGitHubに置き、そのcommitからimageを作る
   （labelの`revision`を照合するため）
-- GHCRへのpushは、human ownerが判断してから行う（`00-hub/unity-sandbox-release-instructions_ja.md`の「すること」の6のまま）
+- GHCRへは、下の「Unity箱庭のimageをGHCRへ置く（2026-11-17）」のとおり、候補のtagでpushする
 - LANのセットを入れるかは、human ownerと相談する（版は決めていない）
 
 返却：
@@ -142,8 +142,19 @@
 - `zero_direction`のcode。wireとMcRemoteは`-32602`で、返却（2026-11-17）の確定搬送票は`-32000`と書いている
 - 人が確かめたことと、確かめられなかったこと
 
+### Unity箱庭のimageをGHCRへ置く（2026-11-17）
+
+- `2026-11-17-02`。`VERSION`を`2321.2.0`にしたGitHubのcommitから、WebGLのbuildとimageのbuildを一度だけ行う
+- `ghcr.io/naohiro2g/mc-remote-unity-sandbox:candidate-<commitの先頭7桁>`としてpushし、packageを公開にする（Unity担当と
+  human owner）。公開のときは、同じdigestに`v2321.2.0`のtagを足す
+- `licenses`のlabelは、調べてから決める（`00-hub/unity-sandbox-lan-instructions_ja.md`の「進め方の具体（2026-11-17）」の8）。
+  それまでは今の`MIT`のまま。変えるときは候補を作り直す
+
+返却に足すもの：GHCRのtagとmanifestのdigest、configのdigest（imageのID）、loginなしでpullできたこと
+
 ### coordinatorがすること（2026-11-17）
 
 - 返却をGitHubのAPIで照合し、配布物を外からダウンロードして計り直す。Unity箱庭のimageは、GHCRへpushする前なので、IDと
   labelで照合する
+- Unity箱庭のimageは、GHCRに置いた候補で照合する（`2026-11-17-02`④）
 - そろったらexact setを凍結し、Stackへの票（候補を置く、`unity-sb`と`unity-sb-lts`、接続先の一覧）と、人間の試験の票を作る

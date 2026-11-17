@@ -52,7 +52,8 @@ URLを開けば、Minecraftを買わず入れずに、Scratchから建てられ�
   石（`minecraft:stone`）が59〜-64。基本のblockは、空気、草、土、石、金、鉄、シーランタン、ガラス、ダイヤモンド、TNT。
   地面の中のイースターエッグは、各区画の原点の真下の3×3に、yが10の倍数（-60〜50）の層で置いた
 - 版と配る形：版は台帳のX.Y.Zに従い、serverとUnity Webを同じ版で出す（`2026-11-15-04`）。最初の公開は`2321.2.0`（`2026-11-17-01`）。Unity Web
-  （WebGLのbuild）を入れたcontainer imageをGHCRへpushし、Stackが公開VPSで動かす（`2026-11-15-05`）。WebGLはUnityの開発機で、
+  （WebGLのbuild）を入れたcontainer imageをGHCRへpushし、Stackが公開VPSで動かす（`2026-11-15-05`）。imageは`ghcr.io/naohiro2g/mc-remote-unity-sandbox`で公開し、凍結の前に候補のtagで置いて、
+  GHCRのdigestで照合する（`2026-11-17-02`）。WebGLはUnityの開発機で、
   imageはhuman ownerが決めた手元の1台のDockerでbuildする（`2026-11-16-03`）。LANでは、Unity箱庭のserverとUnity Webの
   セットを、Scratch LANパッケージと別に配る（`2026-11-16-04`）
 
