@@ -76,8 +76,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
 - current phase: 候補の返却を待つ（2026-11-15に開き、2026-11-17に範囲を広げた（`2026-11-17-01`）。McRemoteの候補は照合し、
-  人間の試験を進めている。Unity箱庭は、GHCRの候補を照合して作り直しを頼んだ。下の「範囲を広げる（2026-11-17）」と
-  「Unity箱庭の候補の照合（2026-11-17）」）
+  人間の試験を進めている。Unity箱庭は、作り直したGHCRの候補を照合し、凍結の入力にした。Stackへ、公開VPSで動かす票を出した。
+  下の「範囲を広げる（2026-11-17）」と「Unity箱庭の作り直しの照合（2026-11-17）」）
 - 位置づけ: 初回stableの後の2回目の機能のrelease。betaを挟まない（`2026-10-22-03`）。番号は台帳
   （`00-hub/release-train-notes_ja.md`）で予約した（`2026-11-05-02`）
 - contract: protocolを`23.3.0`にする（`2026-11-15-03`）。wire「7.3 エラー設計」の`out_of_bounds`（`2026-11-14-02`、
@@ -227,6 +227,33 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   .NET 9の実行部分（MIT）とbase imageのDebianのpackage、Unity 6000.6.8f1のWebGLの実行部分（Unityの条件で配る。OSSのlicenseではない）
 - human ownerの判断（2026-11-17）：作り直す（「作り直しましょう。」）。labelは`MIT`のまま（`2026-11-17-03`）。票は
   `00-hub/23212-gate-candidate-instructions_ja.md`の「Unity箱庭の候補の作り直し（2026-11-17）」。`candidate-6aeb741`は凍結しない
+
+### Unity箱庭の作り直しの照合（2026-11-17）
+
+- 返却は同じ場所の`RETURN_ja.md`（14,264 bytes、`73639d4c19f86c05ce1be51b4233efee5aba4eabebabbf3a5e723766b86f24f2`。knowledge `77ecc7a`を
+  読んだ）と`HUMAN_TEST_ja.md`（3,763 bytes、`770b79c2626ffbe8023c871a2a6a44810a305392ca3866d65cbb58d9518297f2`）。coordinatorが手元の
+  fileを計り、返却の値と一致した
+- coordinatorがGitHubのAPIで照合した：PR #4はopen、head `be17313007155227a46098e7b8c85c381a0dd3f3`（`6aeb741`の上の1 commit）。
+  変わったのはDockerfile（`USER $APP_UID`）、`THIRD-PARTY-NOTICES.txt`、docsの2つで、`unity/`と`VERSION`は変わらない
+- GHCR：coordinatorがloginせずにRegistry APIで取った。tagは`candidate-6aeb741`と`candidate-be17313`
+  - index `sha256:eef8787de7f61f17e155742900a25013057e06a3b6c879f17d724e490b13460c`（linux/amd64とattestationの2つ）
+  - linux/amd64のmanifest `sha256:81d3f07cb63f0afd358ee76652ab0e65fb5ceb96d9fe06507bdfa8776d2eca5f`、config
+    `sha256:779cd8e58b03c62079afe78b6a5e7d873f37c2e71e0b2c9926c507c6f475c143`。返却と一致した
+  - labelは7つで、`revision`は`be17313`の全桁、`version`は`2321.2.0`、`licenses`は`MIT`。configの`User`は`1654`
+  - layerを取って中を見た：`/app`と`/app/wwwroot`の`THIRD-PARTY-NOTICES.txt`（8,661 bytes、
+    `b8473eb944d98f2b38d65353ff163f1c0fd5b21c5049df4bb68c41988f2164e0`）は、GitHubの`be17313`のfileと同じ。fontの節に著作権表示と
+    OFL 1.1の本文があり、Debianのpackagingの行は無い。Unityの節に、imageに無いものの記述は無い
+- WebGLは`6aeb741`で作ったものを使った（返却。票は「そのcommitから、WebGLのbuildとimageのbuildを行い」）。`unity/`は変わっておらず、
+  imageの中のWebGLの17 fileは、前の候補とSHA-256が全部同じ（layerのdigestの違いはdirectoryの時刻だけ）。serverのlayerは前の候補と
+  同じdigest。このcommitのsourceから作ったものと同じ中身なので、認める
+- 前の返却の直し：`/app/wwwroot/LICENSE`は入っていない（誤記）。461 bytesは、buildの大きさを記録した後に`index.html`へstyleを
+  足すため（6,434→6,895 bytes）
+- uid 1654で、`/healthz`、Unity Web、`/THIRD-PARTY-NOTICES.txt`、`/ws/sync`、TCPの`25585`のhelloが通った。.NETのtestは24（返却）
+- Unity箱庭は`candidate-be17313`（index `sha256:eef8787de7f61f17e155742900a25013057e06a3b6c879f17d724e490b13460c`）を凍結の入力にする。
+  gateの凍結は、Scratchとtoolingの返却を待つ
+- Stackへ、公開VPSでこのdigestを動かす票を出した（`00-hub/unity-sandbox-vps-instructions_ja.md`、`2026-11-17-02`⑤）。Stackの
+  PR #90（open）の続き
+- `candidate-6aeb741`を消すかは、human ownerが決める。coordinatorの案は消す（OFLの本文が無いまま公開されている）
 
 ## 2026-11-06 `2321.1`横断release gate（CLOSED）
 
