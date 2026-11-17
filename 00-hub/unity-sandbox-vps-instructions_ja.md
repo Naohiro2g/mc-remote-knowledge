@@ -45,3 +45,8 @@
 
 - PRをGitHubのAPIで照合する
 - gateを凍結した後に、`2321.2`の公開の票を作る（Scratch、Bridge、runtime configの`schema_version: 2`）
+
+## 返却と照合（2026-11-18）
+
+`00-hub/release-gate-notes_ja.md`の2321.2の節の「公開VPSのUnity箱庭（2026-11-18）」。VPSで動いているimageは凍結したdigestで、
+`unity-sb`と`unity-sb-lts`は`scratch`の組の一覧に入った。4のportは、`2321.2`のBridgeへ移るときに`25585`へ移す（`2026-11-18-01`）

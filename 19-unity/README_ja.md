@@ -66,7 +66,8 @@ URLを開けば、Minecraftを買わず入れずに、Scratchから建てられ�
 McRemoteの返却を見て`2026-11-14-03`、`2026-11-14-04`で決めた。
 
 - 待ち受け：McRemoteと同じ改行区切りのJSON-RPCをTCPで受ける。portの既定は`25585`で、起動のときに変えられる
-  （`2026-11-15-01`。同じPCでMcRemoteの`25575`と並べられる）
+  （`2026-11-15-01`。同じPCでMcRemoteの`25575`と並べられる）。手元のcompose、LAN、公開VPSのどれでも`25585`にそろえる。公開VPSは、
+  `2321.2`のBridgeへ移るまで`25575`で動かす（`2026-11-18-01`）
 - hello：`protocol`は`23.3.0`（`2026-11-15-03`④）。`mc_version`と`supported_mc_versions`は、世界のモデルが従う`1.21.11`。Unity箱庭であることは`server`で
   名乗る（`name`は`mc-remote-unity-sandbox`、`version`はUnity箱庭の版、`2026-11-15-04`）。`dimension`は`minecraft:overworld`だけ、buildを省いたときの`origin`は`[0, 0, 0]`、`world_constants`は
   `y_sea`だけ（ほかのkeyは`2400`）、`permissions`はMcRemoteと同じ形

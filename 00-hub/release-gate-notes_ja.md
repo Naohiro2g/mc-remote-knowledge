@@ -75,9 +75,9 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
-- current phase: 候補の返却を待つ（2026-11-15に開き、2026-11-17に範囲を広げた（`2026-11-17-01`）。McRemoteの候補は照合し、
-  人間の試験を進めている。Unity箱庭は、作り直したGHCRの候補を照合し、凍結の入力にした。Stackへ、公開VPSで動かす票を出した。
-  下の「範囲を広げる（2026-11-17）」と「Unity箱庭の作り直しの照合（2026-11-17）」）
+- current phase: 人間の試験（2026-11-15に開き、2026-11-17に範囲を広げた（`2026-11-17-01`）。2026-11-18に`2321.2-set-1`を凍結した。
+  McRemoteの人間の試験を続け、ScratchとUnity箱庭の人間の試験の票を出した。Stackへ、Unity箱庭を公開VPSで動かす票を出した。
+  下の「範囲を広げる（2026-11-17）」と「凍結するexact set（2026-11-18、`2321.2-set-1`）」）
 - 位置づけ: 初回stableの後の2回目の機能のrelease。betaを挟まない（`2026-10-22-03`）。番号は台帳
   （`00-hub/release-train-notes_ja.md`）で予約した（`2026-11-05-02`）
 - contract: protocolを`23.3.0`にする（`2026-11-15-03`）。wire「7.3 エラー設計」の`out_of_bounds`（`2026-11-14-02`、
@@ -97,10 +97,13 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   `00-hub/23212-gate-live-test-instructions_ja.md`。1.21.11はMcRemoteのPaperの自動の確認に任せる
   （human owner 2026-11-15）。見るもの：
   ゲーム内の文の言語（hub NOTESの行）、新しい3つのreasonを実際のPaperで、Python `2321.1.0`とScratch `v2321.1.0`が新しい
-  reasonとcodeで止まらないこと、ペアリングと建築の回帰。ScratchとUnity箱庭の票は、候補の返却の後に作る
+  reasonとcodeで止まらないこと、ペアリングと建築の回帰。ScratchとUnity箱庭の実施票は
+  `00-hub/23212-gate-scratch-unity-test-instructions_ja.md`（凍結の後、2026-11-18）
 - 出した後: Stackが箱庭（`sb`）とWebのScratchを上げ、McRemoteのcredentialのfileのmode（`0600`、`0700`）を確かめる。
   Scratch、Bridge、runtime config（`schema_version: 2`）は組で入れる（`2026-11-16-01`③）。Unity箱庭は、出す前から
-  `unity-sb`と`unity-sb-lts`に置き、`scratch`の組の接続先の一覧に入れる（`2026-11-17-04`）。coordinatorが、wire §7.3の表、Protocol Inventory、API一覧（`api/23.3.0/`）、ホームページを直す
+  `unity-sb`と`unity-sb-lts`に置き、`scratch`の組の接続先の一覧に入れる（`2026-11-17-04`）。`2321.2`のBridgeへ移るときに、Unity箱庭の
+  portを`25585`へ移す（`2026-11-18-01`）。Scratchのお知らせ（runtime configの`notices`）にUnity箱庭を足す（human owner 2026-11-18）。
+  coordinatorが、wire §7.3の表、Protocol Inventory、API一覧（`api/23.3.0/`）、ホームページを直す
 - 未決: 日付。Unity箱庭の使いすぎを抑える上限は、公開の後に決める（`2026-11-17-04`④）。
   imageの置き方とpushの時期は`2026-11-17-02`、`licenses`のlabelは`2026-11-17-03`
 
@@ -258,6 +261,129 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - human ownerの判断（2026-11-17）：Unity箱庭を、`2321.2`を出すのを待たずに、`scratch`と`scratch-lts`の組の接続先の一覧に入れる。
   どちらの組も`unity-sb`と`unity-sb-lts`を選べ、既定は変えない。はじめる（1）は、利用者がUnity箱庭を自分で選ぶ。使いすぎを抑える
   上限は公開の後に決める（`2026-11-17-04`）。Stackへの票と`00-hub/sandbox-lts-names-instructions_ja.md`を改めた
+
+### Scratchとtoolingの候補の照合（2026-11-18）
+
+- Scratch：返却は`scratch-editor`の`handoff-materials/2026-11-17-scratch-23212-expanded/materials/RETURN_ja.md`（8,494 bytes、
+  `66a16bfe6ca48489544b247fe7b7d782bddac2adf2b2af0fa8274f2444d06512`。knowledge `890945b`を読んだ）。人間の試験の案は同じ場所の
+  `HUMAN_TEST_ja.md`（4,314 bytes、`11373a573cae54bfb03c375c676f121f102cb4c48e596e8af92b199e26cd8269`）。MANIFESTの13 fileは、coordinatorが
+  手元で計り、一致した
+  - coordinatorがGitHubのAPIで照合した：PR #38はopen（`develop`へ）、head `05f7326663627dc9429f0513a2b832e797ad47f5`。`develop`の先頭
+    `b9c791d`の上の2 commitで、`f9e6625f4246529f0e894875ce20dccb21f6fc1c`（toolingの固定とUnityの分類）と、一覧の生成物だけの
+    `05f7326`。CIの配布物の生成`44096287207`（`workflow_dispatch`）、push `44096115099`、PR `44096292807`は成功で、head_shaは候補
+  - artifact `14334227788`（1,385,149,482 bytes、`sha256:8ce65baa9ec64c2c938ac47de3a4b03dd02292c66af18c9d8ff95bac03396b2c`）を
+    coordinatorが取り直して計った。13 fileのbytesとSHA-256は、返却の表と、CIの`candidate-manifest.json`（2,664 bytes、
+    `0772be11c1ae61405ef2cb5cc8d70e114439a106449edcd0372fb76c34f5be3d`。返却の写しと同じ）に一致した
+  - Scratch OCIは`sha256:830710e6f743579b6dc46ab90c790c6dde1cbd9df470364f32d746c0d094955f`（linux/amd64とlinux/arm64）。labelの`version`は
+    `v2321.2.0`、`revision`は`05f7326`の全桁
+  - LANの3つのZIPの`data/identity.json`：版は`2321.2.0`、sourceは`05f7326`、`working_tree_dirty`はfalse。toolingの`37a4e79`、Bridgeの
+    digest、WireScopeの2つのSHA-256は、下のtoolingの候補と同じ
+  - 候補は`mc-remote/tooling-lock.json`で、toolingの候補（commit、CIのrun、artifact、Bridgeのdigest）を固定している。Bridge OCIと、
+    WireScopeのZIPとmanifestは、toolingの候補のfileと同じbytes
+  - ブロック一覧：`release` `2321.2.0`、`sourceCommit` `f9e6625`の全桁。`f9e6625`から`05f7326`までに変わったのは`site/`の生成物の
+    14 fileだけで、Stackの取り込みの条件を満たす。`site/2321.2.0/blocks.json`（88,687 bytes、
+    `40c018b78dba77acfaeacbb59e4bc32a5d90ae96b074d1843753e34abde9af1f`）は、最新の`site/blocks.json`と同じbytes。53 blockで、`2321.1.0`の
+    56からペアリングの3ブロックを外した。`setDimension`と`setBuildOrigin`のmethodは`build.setDimension`と`build.setOrigin`。一覧の
+    `protocol`は`23.2.1`（Scratchが申告する版で、`v2321.1.0`と同じ）
+  - 「Unity」の絞り込みは27 block。基準はUnity箱庭の候補`be17313`のsourceで、20のmethod（Unity箱庭の返却の数と同じ）。世界は
+    オーバーワールド、カタログはブロックID、イベントはチャットだけ（返却の`UNITY_CLASSIFICATION_ja.md`）
+  - `v2321.1.0`から31 commit、157 file。本家への追従、package.json、推奨browserの下限は変わらない。LANのランチャーは接続先の一覧を
+    読み、初めの一覧はMinecraft `25575`とUnity箱庭`25585`。「はじめに.html」は、版と、接続先を選ぶ手順が変わる。Release本文の材料は
+    返却の`CHANGE_SUMMARY_ja.md`
+  - 確かめていないもの（返却）：新しい配布物での人の確認、WindowsとmacOSの実機での起動、iPadとAndroid
+- tooling：返却は、tooling担当の手元の`handoff-materials/2026-11-17-tooling-23212-candidate/materials/RETURN_ja.md`（4,774 bytes、
+  `659881c0fe2aeac0cdd23529d0387683b841ef4343084074c271d3c9874d5d75`。knowledge `890945b`を読んだ）。MANIFESTの8 fileは一致した
+  - coordinatorがGitHubのAPIで照合した：PR #13はopen、head `37a4e79f7536b4b4a5cc9eeb7a2470b1d622a726`（`main` `62f95f4`の上の
+    1 commitで、候補のOCIのversionのlabelをCIで指定する入口とREADME）。CIの候補`44093466928`（`workflow_dispatch`、
+    `release_version=v2321.2.0`）とPR `44093471860`は成功で、head_shaは候補
+  - artifact `14333465844`（114,140,173 bytes、`sha256:9018b672b10096fe0de5b684d22295ca262a3a0a5bce3e1c797b0fbc9e955517`）を取り直して
+    計った。4 fileは、返却の表と`candidate-manifest.json`（972 bytes、`25366528c8d637a8bb96d734b2b30b010b2b4da89cf0c524c7c4ba246ee99f0f`）に
+    一致した：`bridge.oci.tar`（114,626,048 bytes、`6ae3201893676278939ccefb096ce74030aaa69050a8801cfc181aec3d9f3452`）、
+    `wirescope-app.zip`（85,269 bytes、`09a62fc044ccd933614dc6a2cdf5c53b368202d450abd3d66680468b06268a1c`）、
+    `wirescope-app.manifest.json`（2,339 bytes、`fe5f589872d2d64c83082d13b11f60ec302176e7760decde8de22e3ce59a7e99`。sourceは`37a4e79`）
+  - Bridge OCIは`sha256:ae63f463f37eda03ca3442ae848aea03ea57eee9b0fdbc09b91c549370b19acb`（linux/amd64とlinux/arm64）。labelの`version`は
+    `v2321.2.0`、`revision`は`37a4e79`の全桁
+  - `v2321.0.0`から28 commit、34 file
+  - 接続先の一覧を与えない起動（`2026-11-16-01`②）：Bridgeを環境変数だけで起動し、既定の先と`?sandbox=`で指した先の両方で、
+    WebSocketからTCPへの往復が通った（返却の`legacy-env-smoke.mjs`。相手はtestの擬似のserver）。前からのtestも通った
+- 公開のときに合わせること（Scratchの返却）：今の公開のworkflowには、Scratch OCIを作り直す経路がある。凍結したdigestのまま出す
+  手順を、公開の票に書く（`2321.1`では、imageのworkflowを止めて出した）
+
+### 凍結するexact set（2026-11-18、`2321.2-set-1`）
+
+human ownerが承認した（2026-11-18「進めて」）。coordinatorがまとめた。2026-11-18に、候補のbranchの先頭が下のcommitのままであること、
+CIのartifactが残っていること、GHCRのtagが下のdigestを指すことを、GitHubのAPIとloginしないRegistry APIで確かめた。protocolは
+`23.3.0`。Pythonは範囲の外で、`2321.1.0`のまま
+
+- McRemote：`release/2321.2.0@2ccf0b1aba6008c314abe6df4d19b6fffb60ff58`（PR #21で`main`へmerge済み、`5fca9f2`）。CI `43678473697`、
+  artifact `14147053531`（`sha256:fe4eeaa73fe7b8de06401e3260cb96ba39a3d6466775c2948e2f1281dbb5e646`、期限2027-02-13）。
+  `mc-remote-2321.2.0.jar` 348,720 bytes `16e927a79ea9b9ae9f1aa544cd5101eb3a6c39228ef9c0da7175853d100703f8`。JARを作ったjobは
+  `ubuntu-24.04`（`20261111.370.1`）
+- Scratch：`agent/scratch-23212-expanded-20261117@05f7326663627dc9429f0513a2b832e797ad47f5`（PR #38。human ownerが2026-11-18に
+  `develop`へmerge commitで入れた：`8895313602301cf9561ab9ad9180582db1d5dad1`、treeは`05f7326`と同じ）。run `44096287207`、artifact
+  `14334227788`（`sha256:8ce65baa9ec64c2c938ac47de3a4b03dd02292c66af18c9d8ff95bac03396b2c`、期限2027-02-15）。jobは`ubuntu-24.04`
+  （`20261111.127.1`）
+  - LANのZIP：Windows 264,511,615 bytes `1b75f50e2ccfbf3767c5ddeac014df8defeb0700c59127a6c01185dce85a2eaf`、macOS 268,863,280 bytes
+    `8193e35c8e377e494ffa18dfe03f33b3036db6a90be5f1291c0c98e2118aced3`、Linux 274,119,333 bytes
+    `651541f704cff1a392977d81da0cf4f6f99a006f5ac33297877d5f54b803bb20`
+  - Scratch OCI index `sha256:830710e6f743579b6dc46ab90c790c6dde1cbd9df470364f32d746c0d094955f`（`scratch.oci.tar` 330,439,680 bytes
+    `626015e456af2e11f671e8d7b5da9004f579d4a71c8ba040b81c30c6273c0cde`）、`scratch-gui.tar.gz` 141,146,067 bytes
+    `7595eb9133f2eeb42a70beea48f02bf25867c0024fb3bbdd3c7b020cb78837f3`、`contracts.tar.gz` 2,641 bytes
+    `ea16b791383b510de93cce8f43c072b5a9c856df7d23217f825af5cda392eb25`
+  - candidate manifest 2,664 bytes `0772be11c1ae61405ef2cb5cc8d70e114439a106449edcd0372fb76c34f5be3d`。ブロック一覧の`sourceCommit`は
+    `f9e6625`で、tagは`05f7326`を指す
+- tooling：`agent/tooling-23212-candidate-20261117@37a4e79f7536b4b4a5cc9eeb7a2470b1d622a726`（PR #13、open）。CI `44093466928`、artifact
+  `14333465844`（`sha256:9018b672b10096fe0de5b684d22295ca262a3a0a5bce3e1c797b0fbc9e955517`、期限2027-02-15）。jobは`ubuntu-24.04`
+  （`20261111.370.1`）。Bridgeのindex `sha256:ae63f463f37eda03ca3442ae848aea03ea57eee9b0fdbc09b91c549370b19acb`（`bridge.oci.tar`
+  114,626,048 bytes `6ae3201893676278939ccefb096ce74030aaa69050a8801cfc181aec3d9f3452`）、WireScope ZIP 85,269 bytes
+  `09a62fc044ccd933614dc6a2cdf5c53b368202d450abd3d66680468b06268a1c`、manifest 2,339 bytes
+  `fe5f589872d2d64c83082d13b11f60ec302176e7760decde8de22e3ce59a7e99`。Scratchの候補の中のものと同じ
+- Unity箱庭：`ghcr.io/naohiro2g/mc-remote-unity-sandbox@sha256:eef8787de7f61f17e155742900a25013057e06a3b6c879f17d724e490b13460c`
+  （tag `candidate-be17313`、labelの`revision` `be17313007155227a46098e7b8c85c381a0dd3f3`、PR #4、open）。linux/amd64のmanifest
+  `sha256:81d3f07cb63f0afd358ee76652ab0e65fb5ceb96d9fe06507bdfa8776d2eca5f`、config
+  `sha256:779cd8e58b03c62079afe78b6a5e7d873f37c2e71e0b2c9926c507c6f475c143`。公開のときは、同じdigestに`v2321.2.0`のtagを足す
+  （`2026-11-17-02`）
+- Paper 26.3は#244（human owner 2026-11-16）。McRemoteの自動の確認は、1.21.11 #132と26.3 #244で通った（「返却の照合（2026-11-15〜16）」）
+- 人間の試験：McRemoteは`00-hub/23212-gate-live-test-instructions_ja.md`で続ける。ScratchとUnity箱庭は
+  `00-hub/23212-gate-scratch-unity-test-instructions_ja.md`
+
+### 公開VPSのUnity箱庭（2026-11-18）
+
+- human owner 2026-11-18：`https://unity-sb.mc-remote.com/`は使える。`https://scratch.mc-remote.com/?extension=mcremote`から
+  ペアリングできた
+- coordinatorが外から確かめた（2026-11-18）
+  - `unity-sb`と`unity-sb-lts`の`/healthz`は、どちらも`version` `2321.2.0`、`protocol` `23.3.0`、`tcpPort` `25575`
+  - `/THIRD-PARTY-NOTICES.txt`は8,661 bytes、`b8473eb944d98f2b38d65353ff163f1c0fd5b21c5049df4bb68c41988f2164e0`（凍結したimageの中の
+    ものと同じ）。Unity Webの`index.html`は6,895 bytesで、`productVersion`は`2321.2.0`
+  - `scratch.mc-remote.com`のruntime config（`schema_version` 1）の接続先は、`sb`（既定）、`sb-beta`、`unity-sb`、`unity-sb-lts`の
+    4つ。`scratch-beta`の一覧には入っていない（`2026-11-17-04`のとおり）。`scratch-lts.mc-remote.com`はまだ応えない
+  - StackのPR #90は、2026-11-17に`main`へmergeされた（head `63b5370140fe2bce42c4279ffb5b0c91e58e0455`。`84add98`の上の1 commitで、
+    同じcontainerに別名を持たせるもの。merge `0ebf1de8e874a1384c77a28ab20e1baa89b80a57`）
+- Stackの返却（`00-hub/unity-sandbox-vps-instructions_ja.md`）は、`mc-remote-stack`の
+  `handoff-materials/2026-11-17-unity-sandbox-vps/materials/RETURN_ja.md`（11,040 bytes、
+  `9974ab558127fa13551d07a714c22bc18e946fa47e4a4357235257f5f6bad760`。knowledge `890945b`を読んだ）と、外のURLでの自動の確認の
+  `result.json`（6,228 bytes、`aca43cc25d35ee24ac2f7765583bb29827a180704ca4fd1bdefa503a73ce156a`）。`SHA256SUMS`の3 fileは、coordinatorが
+  手元で計って一致した
+  - VPSのcontainer：`RepoDigests`とimageのIDは`sha256:eef8787de7f61f17e155742900a25013057e06a3b6c879f17d724e490b13460c`で、凍結した
+    値と同じ。labelの`revision`は`be17313`の全桁、`version`は`2321.2.0`。`Config.User`は`1654`で、processのuidも1654。外へTCPの
+    portを開けていない。`unity-sb`と`unity-sb-lts`は、同じcontainerのnetworkの別名
+  - profileは`vps-server@19`、presetは`public-web-paper@18`のまま。ほかは今の公開の版（Scratch `2321.1.0`、Bridge `2321.0.0`、
+    McRemote `2321.1.0`）
+  - hello：Bridgeの`?sandbox=`で両方の名前へ、`protocol` `23.2.1`を申告して送った。認証の前は`auth_required`（`-32000`）。ペアリングの
+    後は、`server`が`mc-remote-unity-sandbox` `2321.2.0`、`protocol`が`23.3.0`、`mc_version`が`1.21.11`、`permissions.buildRange`が1000。
+    1つのtokenで、両方の名前に通った
+  - 外のURLでの自動の確認：両方の名前の`/ws/sync`の最初のsnapshot、Bridgeを通したペアリング（Unity Webのchatで承認）、
+    `world.setBlock`が両方の名前の`/ws/sync`に同じ`blockDelta`で届くこと、戻した後の`world.getBlock`。`mcrctl doctor`は全項目PASS
+  - 確かめていないもの（返却）：実際のbrowserでのScratchの操作とUnity Webの表示（上のhuman ownerのペアリングが、その一部に
+    当たる）、`2321.2.0`のScratchとBridgeとの結合、`scratch-lts`の組の一覧
+  - 案（返却）：③uid 1654で、PR #90の構成（Caddy、network、doctor）を変えるところは無い ④今のBridge（`2321.0.0`）と同居する間は
+    `25575`のまま。`2321.2`のBridgeへ移るprofileから、既定の`25585`へ戻す（Minecraftは`25575`、Unity箱庭は`25585`にそろう）
+    ⑤`unity-sandboxes@1`の項目に`aliases`を持たせ、1つの項目で同じcontainerへ向ける（PR #90で入れ、VPSへ適用した）。版が
+    分かれたら、2つの項目にする
+- 気づいたこと：`scratch`のruntime configのお知らせ（「11月の接続先」）は、`sb`と`sb-beta`だけを挙げている
+- human ownerの判断（2026-11-18）：①portは、手元のcompose、LAN、公開VPSのどれでも、Minecraftを`25575`、Unity箱庭を`25585`にする。
+  公開VPSは`2321.2`のBridgeへ移るときに移す（`2026-11-18-01`、Stackの案④） ②Scratchのお知らせには、`2321.2`を出すときに
+  Unity箱庭を足す（「2321.2リリースでは、Unity箱庭を足すのがいいね。」）。文はcoordinatorが案を作って見せる
 
 ## 2026-11-06 `2321.1`横断release gate（CLOSED）
 
