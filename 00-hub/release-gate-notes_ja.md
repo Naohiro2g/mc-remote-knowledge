@@ -85,7 +85,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   | component | 入れるもの |
   | --- | --- |
   | McRemote | `2321.2.0`の候補（`2ccf0b1`）に、版、`protocol` `24.0.0`、helloの`server`（`2026-11-14-03`②） |
-  | Python | `v2321.1.0`に、版と`protocol` `24.0.0`。その後mainに入ったものは、返却を見てhuman ownerと決める |
+  | Python | `v2321.1.0`に、版と`protocol` `24.0.0`。その後mainに入ったもの（PR #13〜#16）と、版が合わないときの例外の文は`2401`（2026-11-20、下の「返却の照合（2026-11-20）」） |
   | Scratch | `develop`（`8895313`）に、版、`protocol` `24.0.0`、`2321.2-set-1`の人間の試験の直し |
   | minecraft-remote-tooling | `2321.2`の候補（`37a4e79`）に、版 |
   | Unity箱庭 | LTSの`2321.2.0`（Unity WebのIMEを直したもの）と同じsourceに、版と`protocol` `24.0.0` |
@@ -108,6 +108,35 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   API一覧（`api/23.3.0/`と`api/24.0.0/`）、ホームページ、`/api/scratch/`を直す。F1のcase（tooling）と、Scratch以外のclientの表示を頼む
 - 公開のときに確かめること: Chromeが、GitHubのActionsのartifactのZIPのダウンロードを止めた（上の`2321.2`の節の「ScratchとUnity
   箱庭の人間の試験（2026-11-18〜19）」）。Releaseの下書きで、配布物のダウンロードを確かめる
+
+### 返却の照合（2026-11-20）
+
+- Python：候補`agent/python-2400-rc1@d0aae0092ee44400b44b56087ec7f9eb49ef8dac`、draft PR #17（差分を見るためのもの）。返却
+  `handoff-materials/2026-11-19-python-2400-rc1/materials/result_ja.md`（6,503 bytes、
+  `9306f02f86eb3dae8e2339dfb4675dece0c2cf33134a34cdf6722e3278d62f85`。knowledge `4187bee`を読んだ）
+  - coordinatorがGitHubのAPIで照合した：tag `v2321.1.0`は`09bbda421645235b2433a6c205d528be15a49f34`を指し、候補はその上の
+    1 commit。CI `44486884399`（`workflow_dispatch`、Python 3.10〜3.13のtestとbuild-candidateの5 jobとも成功、runnerは
+    `ubuntu-24.04`、head_shaは候補）、artifact `14510823109`（383,829 bytes、
+    `sha256:5625636a3055b213446a14b8e8853cec3ef53f2701549e0b370311384388678f`、期限2027-02-17）。artifactを取り直して計り、
+    wheel `minecraft_remote_api-2400.0.0rc1-py3-none-any.whl`（196,455 bytes、
+    `1e54fa253a397ffd4cfef6ba623260386b2414d3543dcbbc1246e1061bf71dc2`）、sdist `minecraft_remote_api-2400.0.0rc1.tar.gz`
+    （190,594 bytes、`1ab6f8c5e43bf1eb50d172572462156141ee0f79877f1b0e921c2e838955e426`）、`manifest.json`（674 bytes、
+    `4a2c86b5d798ac507044b8a14b249cdff12618f7506e13abb28c3c5f8a37804f`）は返却の表と一致した。wheelのmetadataの版は
+    `2400.0.0rc1`、`PROTOCOL`は`24.0.0`
+  - 差分：版、lock、READMEとstarterの導入例（既定の接続先は`sb`のまま）、helloで`24.0.0`を申告してmajorの一致で判定する
+    こと（合わないときは次の要求を送る前に接続を閉じる）、CIとreleaseのrunnerを`ubuntu-24.04`に固定、test。判定を外すと
+    拒否の3 caseが落ちることを担当が見た。全788件が通った。共有fixtureのidentityの検査は`23.2.1`のまま（fixtureのfileは
+    変えていない）
+  - 版が合わないときの例外（担当がMcRemote `2ccf0b1`の応答を模して確かめた）：表示はどちらの向きも
+    `[protocol_mismatch] protocol_mismatch`で、双方の版は`data`にだけ入る。Python `2321.1.0`から`2400`のserverへは
+    `data.server` `24.0.0`、`data.client_requires` `23.2.1`。Python `2400.0.0rc1`から`2321.2`のserverへは`23.3.0`と`24.0.0`。
+    実機では、11/25からの予行演習で確かめる（`sb-beta`がrc1、`sb`が`2321.1`の間）
+  - 決定（2026-11-20）：`2400`のPythonは、この候補のまま（`v2321.1.0`に版とprotocolだけ）にする。`v2321.1.0`の後にmainへ
+    入ったもの（PR #13〜#16。一覧は返却の`post-release-main-changes.txt`）と、版が合わないときの例外の文は、つなぎ直しを
+    人が試してから、12月12日の`2401`で出す。human ownerがcoordinatorの案を採り、「版が合わないときの例外も。」と足した。
+    hub NOTESの2026-11-20の行
+  - 公開の手順の案（返却の「公開手順の案」）は、凍結のときに公開の手順の票で決める。TestPyPIを使うかと、PyPI.orgの承認の
+    時刻が残っている
 
 ## 2026-11-15 `2321.2`横断release gate
 
