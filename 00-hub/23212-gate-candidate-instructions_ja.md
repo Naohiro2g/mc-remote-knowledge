@@ -196,3 +196,15 @@
 ### coordinatorがすること
 
 - 前と同じに照合する（loginなしで取り、digest、config、label、layerの中の`THIRD-PARTY-NOTICES.txt`）。合えば、そのdigestで凍結する
+
+## 人間の試験の後（2026-11-19）
+
+> `2321.2-set-1`のScratchとUnity箱庭の人間の試験（`00-hub/23212-gate-scratch-unity-test-instructions_ja.md`）で、Scratchの
+> 候補`05f7326`のerrorの表示が、返却と違った（記録は`14-evidence/records/2026-11-19-23212-scratch-unity-live-human_ja.md`）。
+> human owner 2026-11-19「Scratchを2321.2で直す。やり直し。」。同じ日に、`2400.0.0`を12月1日に出すと決めた（`2026-11-19-01`）。
+> 12月1日には、LTSとしてMcRemoteとUnity箱庭の`2321.2.0`も出す（`2026-11-19-02`）。
+
+- Scratchとtooling：`v2321.2.0`では出さない。直しとUnity箱庭に向けた変更は、`2400.0.0`で出す（`00-hub/2400-gate-candidate-instructions_ja.md`）
+- McRemote：凍結した`2321.2.0`（`2ccf0b1`）を、LTSとしてそのまま出す。作り直さない
+- Unity箱庭：Unity WebのIMEを直したものを、LTSの`2321.2.0`として作り直す。同じsourceから`2400.0.0`も作る。どちらも
+  `00-hub/2400-gate-candidate-instructions_ja.md`の「Unity箱庭」

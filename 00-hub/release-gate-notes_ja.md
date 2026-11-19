@@ -71,13 +71,53 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - non-claim: PyPI.orgへの公開はしない。mature判定はしない。Windowsでは検証していない
 - coordinator判定／human release owner承認: human ownerがpost2のsetへの組み入れを判定（2026-09-26、`2026-09-27-01`）。coordinatorはchange coneが閉じていることを確認し、単独更新gateを通過とする（2026-09-28）。**CLOSED**
 
+## 2026-11-19 `2400`横断release gate
+
+- gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
+- human release owner: プロジェクトオーナー
+- current phase: 候補（`2400.0.0rc1`）を頼む（2026-11-19に開いた）
+- 位置づけ: protocolのmajorを`24`へ進める区切り（`2026-11-05-01`）。中身は`2321.2`のために作ったもので、版を付け直す
+  （`2026-11-19-01`）。同じ時に、`2321`の系列をLTSの名前で出す（`2026-11-19-02`、上の`2321.2`の節）
+- 日付: 12月1日0時（JST）。デプロイとホームページの改訂まで3時間以内。延期するかは11月27日に決め、延期なら12月5日
+- contract: helloの`protocol`は`24.0.0`。中身は`23.3.0`と同じで、壊す変更は入れない。互換はmajorの一致なので、`2321`のclientと
+  serverとはつながらない（`10-protocol/versioning-design_ja.md` §8.2）
+- 範囲（`2026-11-19-01`）:
+  | component | 入れるもの |
+  | --- | --- |
+  | McRemote | `2321.2.0`の候補（`2ccf0b1`）に、版、`protocol` `24.0.0`、helloの`server`（`2026-11-14-03`②） |
+  | Python | `v2321.1.0`に、版と`protocol` `24.0.0`。その後mainに入ったものは、返却を見てhuman ownerと決める |
+  | Scratch | `develop`（`8895313`）に、版、`protocol` `24.0.0`、`2321.2-set-1`の人間の試験の直し |
+  | minecraft-remote-tooling | `2321.2`の候補（`37a4e79`）に、版 |
+  | Unity箱庭 | LTSの`2321.2.0`（Unity WebのIMEを直したもの）と同じsourceに、版と`protocol` `24.0.0` |
+  | Java、TypeScript、C# | sourceとtestを`24.0.0`と`2400.0.0`に揃え、GitHubのtagまで。package registryには出さない。12月1日の公開を止める条件にしない |
+- 範囲の外: サウンドの拡張（完成度を上げてから。今の仕様の作例を先に増やす）、helloの`world_constants`のkey（`2401`以降）、
+  McRemoteのBANで拒む経路の直しとkeepalive、Unity箱庭のブロックの追加（12月12日）、long-lived credential（1月）
+- 票: 候補は`00-hub/2400-gate-candidate-instructions_ja.md`、Stackは`00-hub/2400-gate-stack-instructions_ja.md`
+- 予行演習: `2400.0.0rc1`をpre-release（GitHub、PyPI、GHCRの候補のtag）で出し、11月中に`sb-beta`、`scratch-beta`、
+  `wirescope-beta`で動かす。人間の試験もそこで行う。最後の候補は、最後のrcと同じsourceで版だけを変える
+- 日程:
+  | 日 | すること |
+  | --- | --- |
+  | 11/24まで | rc1の返却 |
+  | 11/25 | 照合して凍結、pre-release、`-beta` |
+  | 11/26〜27 | 人間の試験。11/27に延期するかを決める |
+  | 11/28〜29 | 最後の候補、検証機での通し、Releaseの下書き、ホームページのPR |
+  | 11/30 | 最終のgo |
+  | 12/1 0:00〜3:00 | 公開と、最新版とLTSの名前 |
+- 出した後: Stackがcredentialのfileのmodeを`sb`と`sb-lts`で確かめる。coordinatorが、wire §7.3の表、Protocol Inventory、
+  API一覧（`api/23.3.0/`と`api/24.0.0/`）、ホームページ、`/api/scratch/`を直す。F1のcase（tooling）と、Scratch以外のclientの表示を頼む
+- 公開のときに確かめること: Chromeが、GitHubのActionsのartifactのZIPのダウンロードを止めた（上の`2321.2`の節の「ScratchとUnity
+  箱庭の人間の試験（2026-11-18〜19）」）。Releaseの下書きで、配布物のダウンロードを確かめる
+
 ## 2026-11-15 `2321.2`横断release gate
 
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
-- current phase: 人間の試験（2026-11-15に開き、2026-11-17に範囲を広げた（`2026-11-17-01`）。2026-11-18に`2321.2-set-1`を凍結した。
-  McRemoteの人間の試験を続け、ScratchとUnity箱庭の人間の試験の票を出した。Stackへ、Unity箱庭を公開VPSで動かす票を出した。
-  下の「範囲を広げる（2026-11-17）」と「凍結するexact set（2026-11-18、`2321.2-set-1`）」）
+- current phase: LTSとして出す準備（2026-11-15に開き、2026-11-17に範囲を広げた（`2026-11-17-01`）。2026-11-18に`2321.2-set-1`を
+  凍結した。2026-11-19に、`2400.0.0`を12月1日に出すと決め、この版はLTSとしてMcRemoteとUnity箱庭を出すことにした（`2026-11-19-01`、
+  `2026-11-19-02`）。ScratchとtoolingのUnity箱庭に向けた変更は`2400`へ移した。Unity箱庭はUnity WebのIMEを直して作り直す。
+  McRemoteの人間の試験（残りの8〜11は、LTSの組み合わせ）を続ける。下の「範囲を広げる（2026-11-17）」、「凍結するexact set
+  （2026-11-18、`2321.2-set-1`）」、「ScratchとUnity箱庭の人間の試験（2026-11-18〜19）」と、上の「2026-11-19 `2400`横断release gate」）
 - 位置づけ: 初回stableの後の2回目の機能のrelease。betaを挟まない（`2026-10-22-03`）。番号は台帳
   （`00-hub/release-train-notes_ja.md`）で予約した（`2026-11-05-02`）
 - contract: protocolを`23.3.0`にする（`2026-11-15-03`）。wire「7.3 エラー設計」の`out_of_bounds`（`2026-11-14-02`、
@@ -90,6 +130,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   | Scratch | `develop`にmergeしたもの（PR #35の接続先ID、PR #36のpickerの改善とパレットの折りたたみ、PR #37のパレットの並びとerrorの表示など）と、`2321.2.0`のブロック一覧（`2026-10-17-04`） |
   | minecraft-remote-tooling | Bridgeの接続先ID（PR #11、`2026-11-16-01`）と、WireScopeの`server`の表示とerrorの`data`（PR #12） |
   | Unity箱庭 | 最初の公開（serverとUnity Web）。`main`（PR #2、#3）に、版を`2321.2.0`にしたもの |
+- 2026-11-19に範囲を改めた（`2026-11-19-02`）：LTSとして、McRemote `2321.2.0`（`2321.2-set-1`のまま）とUnity箱庭`2321.2.0`
+  （Unity WebのIMEを直して作り直すもの）だけを、12月1日に出す。Scratchとtoolingは`v2321.2.0`を出さない
 - 範囲の外: Python。McRemoteのBANで拒む経路の直しは`2321.2.1`、socketごとのkeepaliveは後の版（human owner 2026-11-15、
   `2026-11-17-01`④）。PaperのLANのセット。Unity箱庭のLANのセットは、版を決めていない。新しいreasonのF1のcase（tooling）と、
   Scratch以外のclientの表示は、このreleaseを出した後に頼む
@@ -384,6 +426,22 @@ CIのartifactが残っていること、GHCRのtagが下のdigestを指すこと
 - human ownerの判断（2026-11-18）：①portは、手元のcompose、LAN、公開VPSのどれでも、Minecraftを`25575`、Unity箱庭を`25585`にする。
   公開VPSは`2321.2`のBridgeへ移るときに移す（`2026-11-18-01`、Stackの案④） ②Scratchのお知らせには、`2321.2`を出すときに
   Unity箱庭を足す（「2321.2リリースでは、Unity箱庭を足すのがいいね。」）。文はcoordinatorが案を作って見せる
+
+### ScratchとUnity箱庭の人間の試験（2026-11-18〜19）
+
+- 実施票`00-hub/23212-gate-scratch-unity-test-instructions_ja.md`。human ownerの報告による。記録は
+  `14-evidence/records/2026-11-19-23212-scratch-unity-live-human_ja.md`
+- serverの側（McRemote `2321.2.0`とUnity箱庭`be17313`）は、どの項目も決めた形で応えた。McRemoteの実施票の9と10のserverの側も、
+  新しいScratchから見えた。前のclientで止まらないかは、McRemoteの実施票で見る
+- Scratch `05f7326`：8、9、15、16、17で、errorの原因がminiに出なかった（`zero_direction`には、接続を確かめる案内が出た）。返却の
+  `CHANGE_SUMMARY_ja.md`と違う。3は、前の版の設定を持つ機械が無く、確かめられなかった。ほかはできた
+- Unity箱庭：Unity Webのchatで、日本語のIMEが使えない
+- human ownerの判断（2026-11-19）：「Scratchを2321.2で直す。やり直し。」「両方作り直そう。」。同じ日に、`2400.0.0`を12月1日に
+  出すと決めた（`2026-11-19-01`）。Scratchの直しは`2400`の票（`00-hub/2400-gate-candidate-instructions_ja.md`）へ移した。この版は、
+  LTSとしてMcRemote `2321.2.0`（`2321.2-set-1`のまま）と、Unity WebのIMEを直したUnity箱庭`2321.2.0`を出す（`2026-11-19-02`）。
+  Unity箱庭のブロックの追加は、12月12日の版へ回す
+- 公開のときに確かめること：Chromeが、GitHubのActionsのartifactのZIPのダウンロードを、危険なファイルとして止めた（Ubuntu、
+  Windows）。公開の配布の経路でも同じになるか
 
 ## 2026-11-06 `2321.1`横断release gate（CLOSED）
 
