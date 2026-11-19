@@ -280,6 +280,12 @@ Scratch-visibleなStateText／BlockInfoText、Picker、ErrorTextとfixtureは
   push済みcandidateで、対象14 tests、lint、development build、localhostでの配置／全tab共通表示／折りたたみ／
   dropdown目視確認をPASSした。実plugin接続、default branch統合、releaseは本UI確認から主張しない。palette上の
   絶対配置overlayを維持する案は実際に操作を妨げたため採らない。
+- **操作のエラーの知らせ方**（`2026-11-20-02`）：入力の誤り、操作への拒否、接続先が応えない操作は、ブロックの種類によらず、
+  miniを自動で開いて「最後の操作エラー」に原因を出し、その欄を強調する。上部の通知は、接続の回復（接続、ペアリングのし直し、
+  展示版の案内）、建築の送信の途切れ（送れていないのか、送った後の結果が分からないのかを分ける。混雑で拒まれたら待ってやり直す）、
+  イベントの取りこぼしと受信の停止に限る。建築モード、TRACEの待ち時間、地面が見つからないとき、カタログを取得できないときの
+  説明もminiに置く。FASTの設置は個別の応答を待たないので、serverが個々の設置を拒んだことはScratchから分からない
+  （`connection.flush`の応答は、それを送った時点までの区切り）
 
 #### WireScope 実装ロードマップ
 

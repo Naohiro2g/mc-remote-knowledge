@@ -107,6 +107,18 @@ human ownerが決めた。この候補（`d0aae00`）を凍結に回す（`00-hu
 返却に足すもの：Scratch OCIのdigest、`candidate-manifest.json`、1〜4で変えたものと、reasonごとにminiと通知に出る文、5の結果、
 6のtestの名前、ブロック一覧の`release`と`sourceCommit`、`05f7326`から変わったもの（Release本文の材料）、人間の試験の手順の案
 
+### 操作のエラーの知らせ方（2026-11-20に足した）
+
+Scratchの確定搬送票で、知らせ方を決めた（`2026-11-20-02`）。1〜3は、この形で直す。候補は、搬送票のcommit
+（`agent/scratch-2400-mini-diagnostics@671f5b3ce56f3374978e06e7e946f66d1216df0d`）から作る。同じcommitに入っている、miniのscroll、
+ペアリングのcommandとエラーの詳細のコピー、1行のペアリングのcommandも、`2400`に入れる（human ownerが確認版で見た。human owner 2026-11-20「2400に入れます。」）。
+
+返却に足すもの：
+
+- 上の「reasonごとにminiと通知に出る文」を、`2026-11-20-02`の分け方（miniだけのもの、上部にも出るもの）で
+- 未接続のときの上部の案内が、前と同じく、最初のcommandを実行したときだけか（`13-scratch-client/scratch-roadmap_ja.md`）
+- `zero_direction`などの入力の誤りで、miniの「次にすること」が接続の確認を案内しないこと（3）
+
 ## minecraft-remote-tooling
 
 - base：`agent/tooling-23212-candidate-20261117@37a4e79f7536b4b4a5cc9eeb7a2470b1d622a726`（PR #13）

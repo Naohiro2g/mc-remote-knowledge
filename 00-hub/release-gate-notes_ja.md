@@ -138,6 +138,16 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   - 公開の手順の案（返却の「公開手順の案」）は、凍結のときに公開の手順の票で決める。TestPyPIを使うかと、PyPI.orgの承認の
     時刻が残っている
 
+### Scratchの搬送票：操作のエラーの知らせ方（2026-11-20）
+
+- 搬送票：`handoff-materials/2026-11-20-scratch-notifications/materials/HANDOFF_ja.md`（5,511 bytes、
+  `e657ee6c8a020b87005cb66f28e297603d2250940722aaabacb70dc4575dc7dd`。knowledge `4187bee`を読んだ）。commitは
+  `agent/scratch-2400-mini-diagnostics@671f5b3ce56f3374978e06e7e946f66d1216df0d`で、まだローカル。GitHubでの照合はrc1の返却で行う
+- 決定：`2026-11-20-02`。`2400`の票のScratchの節の直し1〜3を、この形で行う（票の「操作のエラーの知らせ方（2026-11-20に足した）」）
+- 担当の検証：GUIの45件、VMの4 fileの825 assertion。Chromiumのローカルの確認版（日本語）に模したエラーを渡し、画面で見た。
+  human ownerが確認版の動きを見た（2026-11-20）。実serverでの意図した切断とイベントの取りこぼしは、まだ試していない
+- 予行演習の試験の票に、miniだけに出るものと上部にも出るものの両方を入れる
+
 ## 2026-11-15 `2321.2`横断release gate
 
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
