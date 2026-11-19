@@ -146,6 +146,25 @@ human ownerが決めた。この候補（`d0aae00`）を凍結に回す（`00-hu
 - `/healthz`の応答、helloの`server.version`と`protocol`、`catalog.get`の`catalog_hash`、応えるmethodの一覧（前の20と同じか）
 - IMEを確かめたOSとbrowser
 
+### 座標の見え方の直し（2026-11-20に足した）
+
+`2026-11-20-01`④。human owner 2026-11-20「鏡像の直しを12月1日に入れる。Unity箱庭の最初のカメラも北向きにする。」
+
+- LTSの`2321.2.0`に入れる。最新版の`2400`は、その上で版とprotocolだけを変えるので、同じ直しが入る
+- 右手系の見え方にする。北を向くと、東（+X）が右、上（+Y）が上、南（+Z）が手前に見える。今はMinecraftの座標を左手系の
+  Unityへそのまま写していて、北を向くと東が左に見える（claude.aiが`d3539c3`のコードを読んで見たもの：`DemoCoordinates.Center`、
+  北＝−Z、`mcYaw = −eulerY`）
+- 最初のカメラは北を向く
+- wireの値は変えない。座標、yawとpitch、向きのベクトル、`world.getHeight`は、今までどおりMcRemoteと同じ値を返す（wire §5）
+- 説明は`00-hub/world-coordinates-facts_ja.md`（§2と図2が見え方、§4がマイクラリモコンの値）
+
+返却に足すもの：
+
+- 直したものの一覧と、testで確かめたこと（直しを外すと落ちるtestがあるか）
+- 北、東、南、西を向いたとき、画面の右と左がどの方角か。最初のカメラの向き
+- `player.setPose`と`player.getPose`のyaw、`player.setDirection`と`player.getDirection`のベクトルが、McRemoteと同じ値になるか
+- Unity WebのHUDやchatに方位や向きの表示があれば、その値
+
 ## Java、TypeScript、C#（Client Library）
 
 - `2400`に揃える（`2026-11-19-01`①）。sourceとtestを、申告する`protocol` `24.0.0`、helloの互換の判定（major 24）、版`2400.0.0`に
@@ -172,6 +191,6 @@ human ownerが決めた。この候補（`d0aae00`）を凍結に回す（`00-hu
 
 - 返却をGitHubのAPIで照合し、配布物を取り直して計る。Unity箱庭はloginなしでGHCRから取る
 - そろったら、`2400.0.0rc1`のexact setと、LTSのUnity箱庭`2321.2.0`を凍結する
-- 人間の試験の票を、rc1と`-beta`の名前で改める
+- 人間の試験の票を、rc1と`-beta`の名前で改める。Unity箱庭の見え方と最初のカメラの向き、版が合わないときのPythonの文を入れる
 - knowledge：wire §7.3、Protocol Inventory、API一覧（`api/23.3.0/`と`api/24.0.0/`）、versioning、`19-unity/README_ja.md`。
   ホームページ（LTSの説明を含む）の文を、11月25日ごろに見せる

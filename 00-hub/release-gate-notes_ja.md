@@ -88,7 +88,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   | Python | `v2321.1.0`に、版と`protocol` `24.0.0`。その後mainに入ったもの（PR #13〜#16）と、版が合わないときの例外の文は`2401`（2026-11-20、下の「返却の照合（2026-11-20）」） |
   | Scratch | `develop`（`8895313`）に、版、`protocol` `24.0.0`、`2321.2-set-1`の人間の試験の直し |
   | minecraft-remote-tooling | `2321.2`の候補（`37a4e79`）に、版 |
-  | Unity箱庭 | LTSの`2321.2.0`（Unity WebのIMEを直したもの）と同じsourceに、版と`protocol` `24.0.0` |
+  | Unity箱庭 | LTSの`2321.2.0`（Unity WebのIMEと、座標の見え方の鏡像を直し、最初のカメラを北に向けたもの。見え方は2026-11-20、`2026-11-20-01`）と同じsourceに、版と`protocol` `24.0.0` |
   | Java、TypeScript、C# | sourceとtestを`24.0.0`と`2400.0.0`に揃え、GitHubのtagまで。package registryには出さない。12月1日の公開を止める条件にしない |
 - 範囲の外: サウンドの拡張（完成度を上げてから。今の仕様の作例を先に増やす）、helloの`world_constants`のkey（`2401`以降）、
   McRemoteのBANで拒む経路の直しとkeepalive、Unity箱庭のブロックの追加（12月12日）、long-lived credential（1月）
@@ -160,7 +160,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   | minecraft-remote-tooling | Bridgeの接続先ID（PR #11、`2026-11-16-01`）と、WireScopeの`server`の表示とerrorの`data`（PR #12） |
   | Unity箱庭 | 最初の公開（serverとUnity Web）。`main`（PR #2、#3）に、版を`2321.2.0`にしたもの |
 - 2026-11-19に範囲を改めた（`2026-11-19-02`）：LTSとして、McRemote `2321.2.0`（`2321.2-set-1`のまま）とUnity箱庭`2321.2.0`
-  （Unity WebのIMEを直して作り直すもの）だけを、12月1日に出す。Scratchとtoolingは`v2321.2.0`を出さない
+  （Unity WebのIMEを直して作り直すもの。2026-11-20に、座標の見え方の直しも入れると決めた：`2026-11-20-01`）だけを、
+  12月1日に出す。Scratchとtoolingは`v2321.2.0`を出さない
 - 範囲の外: Python。McRemoteのBANで拒む経路の直しは`2321.2.1`、socketごとのkeepaliveは後の版（human owner 2026-11-15、
   `2026-11-17-01`④）。PaperのLANのセット。Unity箱庭のLANのセットは、版を決めていない。新しいreasonのF1のcase（tooling）と、
   Scratch以外のclientの表示は、このreleaseを出した後に頼む

@@ -1,0 +1,41 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 760 424' width='760' height='424' role='img' aria-label='北を向くとxy平面が正面に見える（右手系）' font-family="'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif" font-size='13'>
+<rect width='760' height='424' fill='#ffffff'/>
+<defs>
+<marker id='ax-x' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='6' markerHeight='6' orient='auto-start-reverse'><path d='M0 0L10 5L0 10z' fill='#d23a3a'/></marker>
+<marker id='ax-y' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='6' markerHeight='6' orient='auto-start-reverse'><path d='M0 0L10 5L0 10z' fill='#2a9a3a'/></marker>
+<marker id='ax-z' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='6' markerHeight='6' orient='auto-start-reverse'><path d='M0 0L10 5L0 10z' fill='#2f7bd6'/></marker>
+<marker id='ax-q' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='6' markerHeight='6' orient='auto-start-reverse'><path d='M0 0L10 5L0 10z' fill='#8a8a80'/></marker>
+</defs>
+<text x='24.0' y='30.0' font-size='15' font-weight='600' fill='#1f1f1f' text-anchor='start'>北を向くとxy平面が正面に見える（右手系）</text>
+<text x='24.0' y='66.0' font-size='13' font-weight='600' fill='#1f1f1f' text-anchor='start'>上から見た図（北が上）</text>
+<text x='440.0' y='66.0' font-size='13' font-weight='600' fill='#1f1f1f' text-anchor='start'>北を向いたときの正面</text>
+<line x1='420' x2='420' y1='52' y2='408' stroke='#d6d6d0'/>
+<g stroke-width='1.5' fill='none'>
+<line x1='190' y1='250' x2='300' y2='250' stroke='#d23a3a' marker-end='url(#ax-x)'/>
+<line x1='190' y1='250' x2='80' y2='250' stroke='#d23a3a' stroke-dasharray='4 4' marker-end='url(#ax-x)'/>
+<line x1='190' y1='250' x2='190' y2='360' stroke='#2f7bd6' marker-end='url(#ax-z)'/>
+<line x1='190' y1='250' x2='190' y2='140' stroke='#2f7bd6' stroke-dasharray='4 4' marker-end='url(#ax-z)'/>
+<path d='M190 310A60 60 0 0 1 130 250' stroke='#8a8a80' stroke-width='1.25' marker-end='url(#ax-q)'/>
+</g>
+<text x='190.0' y='112.0' font-size='13' font-weight='600' fill='#1f1f1f' text-anchor='middle'>北 −Z</text>
+<text x='190.0' y='128.0' font-size='11.5' font-weight='400' fill='#666660' text-anchor='middle'>yaw ±180 · 方位角0</text>
+<text x='190.0' y='384.0' font-size='13' font-weight='600' fill='#1f1f1f' text-anchor='middle'>南 +Z</text>
+<text x='190.0' y='400.0' font-size='11.5' font-weight='400' fill='#666660' text-anchor='middle'>yaw 0 · 方位角180</text>
+<text x='290.0' y='222.0' font-size='13' font-weight='600' fill='#1f1f1f' text-anchor='middle'>東 +X</text>
+<text x='290.0' y='238.0' font-size='11.5' font-weight='400' fill='#666660' text-anchor='middle'>yaw −90 · 方位角90</text>
+<text x='90.0' y='222.0' font-size='13' font-weight='600' fill='#1f1f1f' text-anchor='middle'>西 −X</text>
+<text x='90.0' y='238.0' font-size='11.5' font-weight='400' fill='#666660' text-anchor='middle'>yaw 90 · 方位角270</text>
+<text x='150.0' y='334.0' font-size='11.5' font-weight='400' fill='#666660' text-anchor='end'>yawは右回りに増える</text>
+<g stroke-width='1.5' fill='none'>
+<line x1='560' y1='300' x2='680' y2='300' stroke='#d23a3a' marker-end='url(#ax-x)'/>
+<line x1='560' y1='300' x2='560' y2='180' stroke='#2a9a3a' marker-end='url(#ax-y)'/>
+<circle cx='560' cy='300' r='10' stroke='#2f7bd6'/>
+</g>
+<circle cx='560' cy='300' r='3' fill='#2f7bd6'/>
+<text x='672.0' y='288.0' font-size='13' font-weight='600' fill='#1f1f1f' text-anchor='middle'>x：東（右）</text>
+<text x='572.0' y='188.0' font-size='13' font-weight='600' fill='#1f1f1f' text-anchor='start'>y：上</text>
+<text x='578.0' y='328.0' font-size='13' font-weight='600' fill='#1f1f1f' text-anchor='start'>z：南（手前）</text>
+<text x='440.0' y='372.0' font-size='11.5' font-weight='400' fill='#1f1f1f' text-anchor='start'>右手系：x × y ＝ z。zは画面の手前</text>
+<text x='440.0' y='390.0' font-size='11.5' font-weight='400' fill='#666660' text-anchor='start'>Unity（左手系）はx右・y上でzが奥</text>
+<text x='440.0' y='408.0' font-size='11.5' font-weight='400' fill='#666660' text-anchor='start'>色はF3のデバッグ十字と同じ（x赤、y緑、z青）</text>
+</svg>
