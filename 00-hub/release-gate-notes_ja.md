@@ -164,6 +164,36 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     合わなければ、凍結した5つのfileを下書きに付け、`release.yml`を止めて出す。tagのbuildは11/28〜29の準備で行う。凍結の
     ときの検証の記録は、中身を変えずに`mc-remote-verification-*.json`の名前で付ける。human ownerが返却の基本の経路を採った。
     12月1日の順（`v2321.2.0`、次に`v2400.0.0`、最後にLatestが`v2400.0.0`であることを確かめる）は返却の案のまま
+- Scratchとtooling：Scratchの候補`agent/scratch-2400-rc1@0ae8af418d095bac734f37bfca35804810ec1cae`、PR #40（`develop`へ、open）。
+  toolingの候補`agent/tooling-2400-rc1@541e7b3bd3a5653d4a5d2c48f464805782bad9fb`、PR #14（`37a4e79`の上の1 commit、open）。返却
+  `handoff-materials/2026-11-20-scratch-2400-rc1/materials/RETURN_ja.md`（9,862 bytes、
+  `b16f6c82484505faa6fc89c92595140511870a7ab7a20b35f5a74d4a0895764b`。knowledge `a3d82a1`を読んだ。票のScratchの節は、その後
+  変えていない）。同じ場所に、知らせ方の対応表`NOTIFICATIONS_ja.md`（4,785 bytes、
+  `470fdd9c5f4345f1e0437b3cb565e16e265b6cdacd5da78d6fd505125a9b96a2`）と、人間の試験の案`HUMAN_CHECK_ja.md`（2,385 bytes、
+  `e3ebe00b2f498cf7ae1420318014bb124d0f6f91ec8d0930c0901b629321f44e`）
+  - coordinatorがGitHubのAPIで照合した：Scratchの候補は`develop`の`8895313`の上の7 commitで、搬送票の`671f5b3`を含む。差分は
+    24 file（`+1024 / −322`）。PRのCI `44650267324`（10 jobとも成功）と配布物のrun `44650257207`（`workflow_dispatch`、成功）は、
+    runnerが`ubuntu-24.04`、head_shaが候補。toolingはCI `44621700308`（成功）、artifact `14578100932`
+    （`sha256:c85de11b1fde25378dce4f6dfa055348f5e1749ba4fe5c3be72e4452ca523eaf`）。toolingの差分は、WireScopeのpackageの版
+    （`2400.0.0-rc.1`。npmの書き方で、`10-protocol/versioning-design_ja.md` §10.13のとおり）だけ
+  - artifact `14590773440`（1,385,397,752 bytes、`sha256:76ff9210e5c2ef099ad2e7e594af087114dca5c4fe758284dcf6de579ed0edb5`、
+    期限2027-02-18）をcoordinatorが取り直して計った。13 fileのbytesとSHA-256は、返却の表とCIの`candidate-manifest.json`
+    （2,676 bytes、`94a0e2bed7fa8c5a52632c3ba9e5dc8ca6d6ef834b8edb9d2484db1710adc7c3`。返却の写しと同じ）に一致した。Scratch OCIの
+    indexは`sha256:a24be219c79d8fa5273bc0a82df0ec94fcc3da3a2114e5577cde5a3f5d7780a9`、Bridgeは
+    `sha256:d8b7024475c5d1f6a855e1d8be84c2fec7136d6e992cb8464091ebc63a548aa9`。labelの版はどちらも`v2400.0.0rc1`、revisionは
+    Scratchが候補、Bridgeが`541e7b3`。WireScopeのmanifestも`541e7b3`を指す。LANの3つのZIPのsidecarは、`source_commit`が候補、
+    `working_tree_dirty`がfalse
+  - ブロック一覧：`blocks.json`（88,687 bytes、`759573b6c8d8657c812428dccc3f4397644db4ea944c2723c9934ea07ab93dcb`）は`release`
+    `2400.0.0`、`protocol` `24.0.0`、`sourceCommit`が候補の全桁、53 block。`agent/scratch-2400-block-reference@7a4a6db`の同じfileと
+    同じbytes。「Unity」の絞り込みは、Unity箱庭の`be17313`と照合した。積み直した`2400`の候補とは、まだ照合していない
+  - 直し1〜4と知らせ方：reasonごとの文は`NOTIFICATIONS_ja.md`にあり、`2026-11-20-02`の分け方（miniだけ、上部にも）になって
+    いる。未接続の上部の案内は未接続の間の最初のcommandだけ出ること、`zero_direction`ではminiに入力の直し方を出して接続の案内を
+    出さないことを、担当がtestで確かめた。`23.3.0`のserverを断るtestは、判定を外すと落ちることを担当が見た
+  - 6（前の版の設定の読み替え）：担当は、既にあるtest（`mc-remote/local/launcher.test.mjs`の`first launch opens setup, and saved
+    settings open setup followed by the editor with McRemote`）を挙げた。読み替えを外すと落ちることを見るよう、2026-11-20に
+    頼んだ（候補のcodeは変えない）
+  - 5（`.local`とIPv6）：担当の手元に実機が無く、再現していない。担当の人間の試験の案の6に入っている。Unity箱庭の返却も待つ
+  - 実serverでの切断、イベントの取りこぼし、3つのOSの実機は、人間の試験で見る
 
 ### Scratchの搬送票：操作のエラーの知らせ方（2026-11-20）
 
@@ -305,7 +335,11 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   次のブロックへ進む）
 - 気づいたこと：前のWireScope（LANパッケージ`v2321.1.0`に入っているもの）は、同じerrorの`data`を`reason`だけで表示する。新しい
   WireScopeでは全部見える
-- 統合版：Windowsの中でつながるところまでは確かめた。その後、統合版26.65が出て、Geyserがまだ対応していない（human owner 2026-11-17）
+- 統合版：Windowsの中でつながるところまでは確かめた。その後、統合版26.65が出て、Geyserがまだ対応していなかった（human owner
+  2026-11-17）。2026-11-20：Geyser 2.12.1-b1305（2026-11-19、`1760ffb`、統合版26.40〜26.65）で統合版がつながった。公開VPSの
+  箱庭もb1305に入れ替えた（human owner 2026-11-20）。Geyser-Spigotの公式のSHA-256は
+  `590802b7811176b1ccb23d65ae09f4848f32e4262fb76f18869c1698a46b3057`（coordinatorがGeyserの公開APIで見た。VPSに置いたJARは
+  まだ照合していない）
 - 残り：4（統合版）、8〜11
 
 ### Unity箱庭の候補の照合（2026-11-17）

@@ -124,6 +124,10 @@ Scratchの確定搬送票で、知らせ方を決めた（`2026-11-20-02`）。1
 - 未接続のときの上部の案内が、前と同じく、最初のcommandを実行したときだけか（`13-scratch-client/scratch-roadmap_ja.md`）
 - `zero_direction`などの入力の誤りで、miniの「次にすること」が接続の確認を案内しないこと（3）
 
+2026-11-20：返却を照合した。この候補（`0ae8af4`）とtoolingの候補（`541e7b3`）を凍結に回す（`00-hub/release-gate-notes_ja.md`の
+「2026-11-19 `2400`横断release gate」の「返却の照合（2026-11-20）」）。6のtestで、読み替えを外すと落ちることを見てもらう
+（候補のcodeは変えない）。「Unity」の絞り込みは、Unity箱庭の積み直した`2400`の候補と照合する
+
 ## minecraft-remote-tooling
 
 - base：`agent/tooling-23212-candidate-20261117@37a4e79f7536b4b4a5cc9eeb7a2470b1d622a726`（PR #13）
@@ -131,6 +135,8 @@ Scratchの確定搬送票で、知らせ方を決めた（`2026-11-20-02`）。1
 - BridgeとWireScopeに、protocolの版（`23.x`）に頼るところがあるかを確かめる。あれば返却に書く
 
 返却に足すもの：Bridge OCIのdigest、WireScopeのZIPとmanifestのbytesとSHA-256（全桁）
+
+2026-11-20：Scratchの返却に入っていたものを照合した。この候補（`541e7b3`）を凍結に回す（上のScratchの節と同じ記録）
 
 ## Unity箱庭
 
