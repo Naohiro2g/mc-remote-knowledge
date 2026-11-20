@@ -137,6 +137,33 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     hub NOTESの2026-11-20の行
   - 公開の手順の案（返却の「公開手順の案」）は、凍結のときに公開の手順の票で決める。TestPyPIを使うかと、PyPI.orgの承認の
     時刻が残っている
+- McRemote：候補`release/2400.0.0rc1@d93f5212d189650cd1c7c7fb2aa14c8a73934fc1`、PR #22（`main`へ、open）。返却
+  `handoff-materials/2026-11-19-2400-rc1-candidate/materials/RETURN_ja.md`（16,502 bytes、
+  `302c4d4abf0c7b25c2651db457f64989c62e4a4129fa23e1f52599132d3a2536`。knowledge `4187bee`を読んだ。票のMcRemoteの節は、その後
+  変えていない）。最初の返却はhuman ownerが見直しを頼み、2026-11-20に出し直された
+  - coordinatorがGitHubのAPIで照合した：候補は凍結した`2ccf0b1`の上の1 commitで、差分は9 file（`+121 / −26`）。`2ccf0b1`は
+    PR #21で`main`の`5fca9f21e2fd2cd1579a350dcba74c85a199e610`になった（treeは同じ）。CI `44524127846`（`workflow_dispatch`、
+    3 OS × Java 21／25の6 jobと`ubuntu-24.04`の`build-only`の7 jobとも成功、head_shaは候補）、artifact `14529373048`
+    （326,813 bytes、`sha256:ba190fb2f0ec9be9d0e3d2d7590ee6dd086e93081b27511bf36b83e42ef5dc1d`、期限2027-02-17）。artifactを
+    取り直して計り、`mc-remote-2400.0.0rc1.jar`（349,793 bytes、
+    `9583b7e9db16e3062cfb8ea5be1c7b5330e1df92eaeea1dd7b2fdb77a75d457a`）と`minecraft-targets.json`（`1.21.11`と`26.3`、
+    `8e830732decd6bcde13f91eb6c071d062ba6993342a7edb52e6ea543b9e0c361`）は返却と一致した。`source-commit.txt`は候補の全桁、
+    `plugin.yml`の版は`2400.0.0rc1`、`PROTOCOL`は`24.0.0`
+  - 差分：版、`protocol` `24.0.0`、helloの`server`（`{"name": "McRemote", "version": "2400.0.0rc1"}`。版は`plugin.yml`から
+    読む）、Paperの自動の確認に`23.3.0`を断るcase、test。testを先に直して落ちること（16件）と、断る処理を外すと落ちること
+    （2件）を担当が見た。Java 21と25で546件、scriptのtest 49件が通った。共有fixtureのfileは変えていない
+  - Paperの自動の確認：1.21.11 #132と26.3 #244で、通常の9項目と再起動の後の4項目がPASS。CIのJARで行った。記録は
+    `mc-remote-verification-1.21.11.json`（63,255 bytes、`aa4d4807dff3d90295363edcd592a6dfc3ac0cd1ce86fb47a6cb1115e868fb2e`）と
+    `mc-remote-verification-26.3.json`（63,234 bytes、`979c71adeda625a687fd7040cb11d1e39a359f0d99fe3cf8d6a82df9327337dd`）。
+    `23.3.0`を申告したときの応答は、code `-32000`、`protocol_mismatch`、`data.server` `24.0.0`、`data.client_requires`
+    `23.3.0`で、wire §7.3と同じ
+  - helloの`world_constants`の`y_sea`は、試験の平地のworldで`-64`だった（10月のrc1の記録でも同じ）。`2026-07-30-02`の
+    通常世代表の値（`62`）と違う。`2401`でkeyを足すときに決める（hub NOTESの2026-10-23の行）
+  - 公開の手順（2026-11-20に決めた）：`2321.2.0`は、`2ccf0b1`に`v2321.2.0`のtagを打ってCIにbuildさせ、JARが凍結の
+    `16e927a79ea9b9ae9f1aa544cd5101eb3a6c39228ef9c0da7175853d100703f8`と全桁合えば、それを出す（`v2321.1.0`と同じ形）。
+    合わなければ、凍結した5つのfileを下書きに付け、`release.yml`を止めて出す。tagのbuildは11/28〜29の準備で行う。凍結の
+    ときの検証の記録は、中身を変えずに`mc-remote-verification-*.json`の名前で付ける。human ownerが返却の基本の経路を採った。
+    12月1日の順（`v2321.2.0`、次に`v2400.0.0`、最後にLatestが`v2400.0.0`であることを確かめる）は返却の案のまま
 
 ### Scratchの搬送票：操作のエラーの知らせ方（2026-11-20）
 
