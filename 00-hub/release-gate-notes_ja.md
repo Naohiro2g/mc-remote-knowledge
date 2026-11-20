@@ -238,6 +238,25 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     長さにも上限が無い。足したものは無い（担当がhuman ownerと相談し、今回は棚卸しだけ）
   - 決定（2026-11-20、`2026-11-20-04`）：この2つのdigestを公開VPSで動かし、docker側の対策と見張りを用意してTCPを外へ開ける。
     数日のうちに、上限の対策を入れた版へ替える。凍結は、その版で照合する
+- Stack（公開VPSのUnity箱庭のport）：PR #92（head `27eb7be644b6bb0021836546527f9ef38283e604`、2026-11-20に`main`へmerge、
+  `2a0a3d0b4630ea55a563fbb07b27c8eea49d96cc`）。返却`handoff-materials/2026-11-20-unity-sandbox-tcp-ports/materials/RETURN_ja.md`
+  （16,205 bytes、`48d57b13043e23b39195dede0976c146480828e9e58a109396e7c679f43639f4`。knowledge `ce1517a`を読んだ）と`result.json`
+  （6,854 bytes、`924aafb06e96621beeb6e64f3aef7a3ffc46d17a3369fd850fffbddd0c1bfb97`）。2026-11-21に、coordinatorが頼んだ直しを入れた版
+  - coordinatorがGitHubのAPIで照合した：9 file。Unity箱庭の2つのcontainerに、memory 512MB（swap無し）、CPU 0.5、process 256、
+    開けるfile 1024、`restart: unless-stopped`、logは10MBを3つまで。外のport（`25585`、`25586`）を、中の`25575`へつなぐ。Unity箱庭の
+    portが、Minecraft、80、443、Geyserのportとぶつかると拒む。CIは無く、testは担当の手元で702件
+  - 動かしたdigestは、上のUnity箱庭の2つと全桁同じ（返却）。`candidate-be17313`は12月1日まで残す。どちらのcontainerも中では
+    `25575`で待つので、LTSのBridge（`v2321.0.0`）の共通のportのままでつながる
+  - 外からのhello（返却）：LTSは`23.3.0`、rc1は`24.0.0`で、認証の前は`auth_required`。rc1は`23.3.0`を`protocol_mismatch`で断る。
+    ペアリングの後のhelloの`server.version`は`2321.2.0`と`2400.0.0rc1`、`world_constants`の`y_sea`は`62`
+  - 送り元ごとの接続の数を、hostのfirewallで絞った（2026-11-21から）。中身はprivate opsにある
+  - 見張り：1分ごとに記録する（送り元のaddressは残さず、数だけ）。2026-11-21 03:55〜04:37（JST）の43回で、再起動、memoryが
+    足りずに落とされたこと、helloの失敗は0。Unity箱庭のmemoryは最大62.6MiBと55.1MiB
+  - Scratchの接続先の一覧：今の`scratch-beta`（`2321.1.0`）は、一覧の`unity`（rc1）に断られる（human ownerが画面で見た）。
+    11/25〜30は、`scratch`の組が`sb`と`unity-sb-lts`（`sb-beta`を外す）、`scratch-beta`の組が`sb-beta`と`unity-sb`（`sb`を外す）。
+    12月1日からは、`scratch`が`sb`と`unity-sb`、`scratch-lts`が`sb-lts`と`unity-sb-lts`、`scratch-beta`が`2400`の系列だけ
+    （`2026-11-19-02`③。Stackの票の「すること」の1の答え）
+  - 残り：human ownerの自己攻撃と、普通の操作の確かめ。結果は、件数と、containerと機械への影響で追補する
 
 ### Scratchの搬送票：操作のエラーの知らせ方（2026-11-20）
 
