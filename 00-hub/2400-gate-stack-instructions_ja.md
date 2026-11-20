@@ -52,18 +52,42 @@
 `2026-11-20-03`。human owner 2026-11-20「Unity箱庭を25586、Unity箱庭LTSを25585（デフォルト値）として、外部からの接続を許すことに
 する。」「今作っているコンテナイメージをデプロイ。」。今は、Unity箱庭のTCPを外へ開けていない（`2026-11-18-01`）。
 
-- 外へTCPを開ける：`25585`はLTSの系列（`unity-sb-lts`）、`25586`は最新版の系列（`unity-sb`）。開けるのは、Unity担当がTCPの上限を
-  確かめて、coordinatorが知らせてから（`2026-11-20-03`③）
+- 外へTCPを開ける：`25585`はLTSの系列（`unity-sb-lts`）、`25586`は最新版の系列（`unity-sb`）。開ける前に、下の「上限の無い間の
+  対策と見張り（2026-11-20に足した）」を用意する（`2026-11-20-04`。`2026-11-20-03`③を改めた）
 - 12月1日まで：`25585`にLTSの`2321.2.0`を置く。今の公開のScratch（`2321.1.0`、Bridge `2321.0.0`）がつなぐUnity箱庭も、この
   containerにする。`25586`には`2400.0.0rc1`を置き、`scratch-beta`の組からつなぐ（上の「すること」の1の、Unity箱庭のrc1をどう
   つなぐかの答え）。12月1日に、`25586`を`2400.0.0`へ替える
 - Bridgeが中からつなぐportは、外のportと別に持てる。LTSのBridge（`v2321.0.0`）は、全ての接続先に共通のportを1つしか持たない
   （`sb-lts`はGAMEsの`25575`）。中のportの割り当ての案を出す
-- image：Unity箱庭担当が今作り直している候補（LTSの`2321.2.0`と、その上の`2400.0.0rc1`）。coordinatorがGHCRのdigestを照合して
-  から、そのdigestを動かす。`candidate-be17313`は、戻すときのため12月1日まで消さない
+- image：coordinatorが2026-11-20にGHCRで照合した次のdigestを動かす。数日のうちに、上限の対策を入れた版へ替える（coordinatorが
+  照合してから）。`candidate-be17313`は、戻すときのため12月1日まで消さない
+
+  | port | tag | 版 | indexのdigest |
+  | --- | --- | --- | --- |
+  | `25585` | `candidate-f7d0f9a` | `2321.2.0` | `sha256:b11d435f2cd327d66d1af0a424d130970044eeeb55cb2838ff5ad763e008bfc0` |
+  | `25586` | `candidate-1dc3cbd` | `2400.0.0rc1` | `sha256:563f55f456eab1aae90cb522b23e34ed7b0d79b4f9c29b8c9b43bb279ecf67a0` |
 
 返却に足すもの：PR、firewallとcomposeの差分、外から2つのportへhelloを送った結果（`protocol`と`server.version`）、動かしたdigest、
 Bridgeの接続先の設定（中のport）
+
+## 上限の無い間の対策と見張り（2026-11-20に足した）
+
+`2026-11-20-04`。human owner 2026-11-20「docker側でできる対策やモニタリングの手法など準備した上で、実際に攻撃があるのか、プラス
+自分で攻撃して確かめる、で行きたい。」。Unity箱庭のserverには、TCPの接続の数（送り元ごと、全体）、helloの前に待つ時間、
+`auth.pairBegin`の回数、承認を待つcodeの数、1行の長さの上限が無い。待つcodeの記録の一部は、pollされないと消えない。Unity Webの
+`/ws/sync`の受け取る長さにも上限が無い（Unity Webは今も公開している）。数日のうちに、serverに上限を入れた版へ替える
+
+- docker側でできる対策：上のどれかを突かれても、Unity箱庭のcontainerが同じ機械のほかのserviceを巻き込まず、落ちたら戻るように
+  する。案を出し、human ownerと相談して入れる。Unity箱庭のserverは、再起動するとtokenを失い、利用者はペアリングし直す
+  （`2026-11-15-06`）
+- Unity担当の見立て（2026-11-20）：composeで、memory 512MB（swap無し）、CPU 0.5、process 256、開けるfile 1024、
+  `restart: unless-stopped`、logは10MBを3つまで。これで同じ機械のほかのserviceに影響は出ないと見ている。Stackは、これを出発点に、
+  機械の余裕、普段のmemory、送り元ごとの絞り方（hostのfirewall）、見張りを足して案を出す
+- 見張り：接続の数、containerのmemoryとCPU、再起動の回数などを、どう見るかの案
+- 攻撃して確かめる：human ownerが自分で攻撃して確かめる。試す項目（上の上限の無いところ）と、その間に見るものの案を出す
+
+返却に足すもの：docker側の対策の差分、見張りの方法、開けた後に見た接続（攻撃らしいものがあったか）、攻撃して確かめたときに
+起きたこと（containerと機械への影響）。送り元のaddressは返却に書かず、数で返す
 
 ## coordinatorがすること
 

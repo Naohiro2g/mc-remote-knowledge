@@ -93,9 +93,10 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - 範囲の外: サウンドの拡張（完成度を上げてから。今の仕様の作例を先に増やす）、helloの`world_constants`のkey（`2401`以降）、
   McRemoteのBANで拒む経路の直しとkeepalive、Unity箱庭のブロックの追加（12月12日）、long-lived credential（1月）
 - 票: 候補は`00-hub/2400-gate-candidate-instructions_ja.md`、Stackは`00-hub/2400-gate-stack-instructions_ja.md`
-- 公開VPSのUnity箱庭（2026-11-20、`2026-11-20-03`）: TCPを外へ開ける。`unity-sb-lts`は`25585`、`unity-sb`は`25586`。12月1日までは
-  `25585`にLTSの`2321.2.0`、`25586`にrc1を置く。開けるのは、Unity担当がTCPの上限を確かめてから。imageはcoordinatorがGHCRの
-  digestを照合してから動かす
+- 公開VPSのUnity箱庭（2026-11-20、`2026-11-20-03`、`2026-11-20-04`）: TCPを外へ開ける。`unity-sb-lts`は`25585`、`unity-sb`は`25586`。
+  12月1日までは`25585`にLTSの`2321.2.0`、`25586`にrc1を置く。imageはcoordinatorがGHCRのdigestを照合してから動かす。serverに
+  接続とpairingの上限が無いと分かった上で、2026-11-20に今の候補を動かし、docker側の対策と見張りを用意して開ける。数日のうちに、
+  上限の対策を入れた版へ替える
 - 予行演習: `2400.0.0rc1`をpre-release（GitHub、PyPI、GHCRの候補のtag）で出し、11月中に`sb-beta`、`scratch-beta`、
   `wirescope-beta`で動かす。人間の試験もそこで行う。最後の候補は、最後のrcと同じsourceで版だけを変える
 - 日程:
@@ -197,6 +198,46 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     頼んだ（候補のcodeは変えない）
   - 5（`.local`とIPv6）：担当の手元に実機が無く、再現していない。担当の人間の試験の案の6に入っている。Unity箱庭の返却も待つ
   - 実serverでの切断、イベントの取りこぼし、3つのOSの実機は、人間の試験で見る
+- Unity箱庭：LTSの候補`feat/ui-polish-monospace-i18n@f7d0f9a8f706d69bdc3791aedfc8b4d80c27f725`、PR #4（`main`へ、open）。rc1の候補
+  `release/2400.0.0rc1@1dc3cbd4e7d8bea2611d5257f19e18c365de0f95`、draft PR #5（PR #4のbranchへ）。返却
+  `handoff-materials/2026-11-20-unity-2400-and-23212-candidates/materials/RETURN_ja.md`（43,523 bytes、
+  `54ee89c2c1afccafb250b02316a1b048ac5627355a0f737b7b4a3e6c8524df52`。knowledge `cafd3b1`を読んだ）。同じ場所に、人間の試験の案
+  `HUMAN_TEST_ja.md`（5,543 bytes、`01ffe48c348e9787cb8d83cf40fdddfe1b37a132df25173b63433359c536c8ee`）と、北を向いた画面の画像
+  `north_camera_preview.png`（294,391 bytes、`6674f32f2c6393a17edc49dadd548e5614e0a74df42ae25e7f3b8d203aaf5e0f`）
+  - coordinatorがGitHubのAPIで照合した：`f7d0f9a`は`be17313`の上の4 commit（13 file、`+1059 / −100`）で、Unity WebのIMEのchatと
+    16mの照準のHUD、草の質感と照準のblockの縁取り、鏡像の直しと北を向く最初のカメラ、Dockerfileの版の渡し方（数字の部分を
+    `/p:VersionPrefix`、元の文字列を`/p:InformationalVersion`へ渡し、`+<commit>`を付けない）。`1dc3cbd`は`f7d0f9a`の上の1 commitで、
+    6 file（`+29 / −29`）は版、helloの`protocol` `24.0.0`、testの期待値だけ。CIは無く、testは担当の手元で行った（.NETの26件、
+    Unityのbatchmodeの検証）
+  - GHCR：coordinatorがloginせずにRegistry APIで取り、返却と一致した
+    | | `candidate-f7d0f9a`（`2321.2.0`） | `candidate-1dc3cbd`（`2400.0.0rc1`） |
+    | --- | --- | --- |
+    | index | `sha256:b11d435f2cd327d66d1af0a424d130970044eeeb55cb2838ff5ad763e008bfc0` | `sha256:563f55f456eab1aae90cb522b23e34ed7b0d79b4f9c29b8c9b43bb279ecf67a0` |
+    | linux/amd64のmanifest | `sha256:13b5b2029ad09d155dece71c3da9de1d85dc46db92cbf620e239848e1ec12e0e` | `sha256:3cec41519df2c5ec4585fa4997c7a9e01e1bf40fdbb4f920138fdc68972c358e` |
+    | config | `sha256:78cd65de58f96f2a1c8f00c7fc51fdee412f43c42132d1da425feae91d00815b` | `sha256:15bfcd5be39fb1e99eb7c399b19bd9ac9bb630a9dabc2de892aca81254df9d47` |
+  - imageの中：labelは7つで、`revision`はそれぞれのcommitの全桁、`version`は`2321.2.0`と`2400.0.0rc1`、`licenses`は`MIT`。configの
+    `User`は`1654`。layerの下の9つは2つのimageで同じ。coordinatorがlayerを取って中を見た：`/app`と`/app/wwwroot`の
+    `THIRD-PARTY-NOTICES.txt`は8,661 bytes、`b8473eb944d98f2b38d65353ff163f1c0fd5b21c5049df4bb68c41988f2164e0`（`be17313`と同じ）。
+    serverのDLLの版の文字列と、Unity Webの`index.html`の`productVersion`は`2321.2.0`と`2400.0.0rc1`で、`+<commit>`は無い
+  - 返却の実測（担当）：helloの`server.version`、`/healthz`、OCIのlabel、Unity Webの4か所が、どちらも版ちょうど。
+    `UNITY_SANDBOX_VERSION`が空のときも同じ。rc1へ`23.3.0`を申告すると、`protocol_mismatch`（`data.server` `24.0.0`、
+    `data.client_requires` `23.3.0`）で断って切る。判定を外すとtestが落ちることを担当が見た。`catalog_hash`
+    （`a4dba7ad80318919f30255f454497563ce6c136e8f0947930b5cf6a94e7d1b23`）と、応える20のmethodは`be17313`と同じ。Scratchの
+    「Unity」の絞り込み（上のScratchとtooling）は`be17313`と照合したもので、methodが同じなのでそのまま使える
+  - 座標の見え方：北を向くと右が東、東を向くと右が南、南を向くと右が西、西を向くと右が北。最初のカメラは区画8の南から北を向く
+    （yaw `-180`、pitch `8`）。4方位のyawと向きのベクトルはMcRemoteと同じ値（wire §5）。Zの反転を外すとUnityのbatchmodeの検証が
+    落ちることを担当が見た。票の外で入れた3×3の区画のボタンの順、淡い緑の補助線、区画のラベルの向きは、human ownerと相談して
+    決めた（返却）
+  - IME：human ownerがUbuntu＋Chrome、Windows＋Chrome／Edge、macOS＋Chrome／Safari、iPadOS＋Safari／Chromeで確かめた。とても
+    古いiPhoneのSafariは、WebAssemblyの機能が足りず開かない
+  - Scratchの節の5（Unity Webのhostと、Bridgeがつないだhostの違い）：Unity箱庭のserverは、`pairing_id`とcodeだけで照らし、
+    hostを見ない（担当のtest）。`.local`とIPv6で届かなかったのは、名前の引き方かLANのIPv6の届き方だと担当は推している。
+    確かめたのは、serverがhostを見ないことまで
+  - 上限（票の「外へ開けるときの上限」）：TCPの接続の数（送り元ごと、全体）、helloの前に待つ時間、`auth.pairBegin`の回数、
+    承認を待つcodeの数、1行の長さに上限が無い。待つcodeの記録の一部は、pollされないと消えない。Unity Webの`/ws/sync`の受け取る
+    長さにも上限が無い。足したものは無い（担当がhuman ownerと相談し、今回は棚卸しだけ）
+  - 決定（2026-11-20、`2026-11-20-04`）：この2つのdigestを公開VPSで動かし、docker側の対策と見張りを用意してTCPを外へ開ける。
+    数日のうちに、上限の対策を入れた版へ替える。凍結は、その版で照合する
 
 ### Scratchの搬送票：操作のエラーの知らせ方（2026-11-20）
 
