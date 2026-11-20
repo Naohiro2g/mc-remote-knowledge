@@ -93,6 +93,9 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - 範囲の外: サウンドの拡張（完成度を上げてから。今の仕様の作例を先に増やす）、helloの`world_constants`のkey（`2401`以降）、
   McRemoteのBANで拒む経路の直しとkeepalive、Unity箱庭のブロックの追加（12月12日）、long-lived credential（1月）
 - 票: 候補は`00-hub/2400-gate-candidate-instructions_ja.md`、Stackは`00-hub/2400-gate-stack-instructions_ja.md`
+- 公開VPSのUnity箱庭（2026-11-20、`2026-11-20-03`）: TCPを外へ開ける。`unity-sb-lts`は`25585`、`unity-sb`は`25586`。12月1日までは
+  `25585`にLTSの`2321.2.0`、`25586`にrc1を置く。開けるのは、Unity担当がTCPの上限を確かめてから。imageはcoordinatorがGHCRの
+  digestを照合してから動かす
 - 予行演習: `2400.0.0rc1`をpre-release（GitHub、PyPI、GHCRの候補のtag）で出し、11月中に`sb-beta`、`scratch-beta`、
   `wirescope-beta`で動かす。人間の試験もそこで行う。最後の候補は、最後のrcと同じsourceで版だけを変える
 - 日程:

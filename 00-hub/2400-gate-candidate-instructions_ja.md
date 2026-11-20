@@ -188,6 +188,18 @@ Scratchの確定搬送票で、知らせ方を決めた（`2026-11-20-02`）。1
 - `player.setPose`と`player.getPose`のyaw、`player.setDirection`と`player.getDirection`のベクトルが、McRemoteと同じ値になるか
 - Unity WebのHUDやchatに方位や向きの表示があれば、その値
 
+### 外へ開けるときの上限（2026-11-20に足した）
+
+公開VPSで、Unity箱庭のTCPを外へ開ける（`2026-11-20-03`。`unity-sb-lts`は`25585`、`unity-sb`は`25586`）。今の上限は、Unity Webの
+側（WebSocketの接続と画面のIDごとに、codeの失敗は60秒で5回まで、`2026-11-17-04`④）だけが記録にある。外へ開けると、誰でも
+TCPで直接つないで、pairingを始められる。
+
+開ける前に、今のserverにある上限を返す：TCPの接続の数（送り元ごと、全体）、`auth.pairBegin`の回数と、承認を待つcodeの数、
+1つの接続から送れる量。足りないものがあれば、足すかどうかと形をhuman ownerと相談する（仮実装を含む）。LTSの`2321.2.0`に入れる
+ものは、最新版の`2400`にも入る
+
+返却に足すもの：今ある上限とその値、確かめたtestの名前。足したものがあれば、その差分と、外すと落ちるtest
+
 ## Java、TypeScript、C#（Client Library）
 
 - `2400`に揃える（`2026-11-19-01`①）。sourceとtestを、申告する`protocol` `24.0.0`、helloの互換の判定（major 24）、版`2400.0.0`に

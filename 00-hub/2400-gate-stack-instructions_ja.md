@@ -14,12 +14,12 @@
   | --- | --- | --- |
   | Minecraft | `sb`：McRemote `2400.0.0`（公開VPS） | `sb-lts`：McRemote `2321.2.0`（有料GAMEs） |
   | Web | `scratch`、`wirescope`：Scratch `2400.0.0`、Bridge `2400.0.0`、runtime config `schema_version: 2` | `scratch-lts`、`wirescope-lts`：Scratch `v2321.1.0`、Bridge `v2321.0.0` |
-  | Unity箱庭 | `unity-sb`：`2400.0.0`、port `25585` | `unity-sb-lts`：`2321.2.0`（IMEを直したもの）、port `25575` |
+  | Unity箱庭 | `unity-sb`：`2400.0.0`、外のport `25586` | `unity-sb-lts`：`2321.2.0`（IMEと座標の見え方を直したもの）、外のport `25585` |
 
 - 接続先の一覧は、組ごとに同じ系列だけにする。`scratch`の組は`sb`と`unity-sb`、`scratch-lts`の組は`sb-lts`と`unity-sb-lts`
   （`2026-11-19-02`③。前の票の「どちらの組も両方を選べる」を改める）。majorが違うとhelloで断られる
-- Unity箱庭は、`unity-sb`と`unity-sb-lts`を別のcontainerにする。`unity-sb-lts`は、LTSのBridgeが共通のportでつなぐので`25575`の
-  まま（`2026-11-18-01`）
+- Unity箱庭は、`unity-sb`と`unity-sb-lts`を別のcontainerにする。外へTCPを開け、`unity-sb-lts`は`25585`、`unity-sb`は`25586`
+  （`2026-11-20-03`。下の「公開VPSのUnity箱庭のport（2026-11-20に足した）」）
 - `-beta`の名前：11月中は`2400`の予行演習に使う。12月からは、しばらく最新版を指す保険として残す。案内の正面は、接尾辞の無い
   名前とLTS（`2026-11-19-02`④）
 - Scratch OCIは、凍結したdigestのまま出す。今の公開のworkflowには作り直す経路があるので、`2321.1`と同じように止めて出す
@@ -46,6 +46,24 @@
 - 4：12月1日0時からの順番と時間の見込み
 - 5：止まる時間と、Stackの外で要るもの（DNS、有料GAMEsのMcRemoteの設定など）
 - 確かめられなかったことと、その理由
+
+## 公開VPSのUnity箱庭のport（2026-11-20に足した）
+
+`2026-11-20-03`。human owner 2026-11-20「Unity箱庭を25586、Unity箱庭LTSを25585（デフォルト値）として、外部からの接続を許すことに
+する。」「今作っているコンテナイメージをデプロイ。」。今は、Unity箱庭のTCPを外へ開けていない（`2026-11-18-01`）。
+
+- 外へTCPを開ける：`25585`はLTSの系列（`unity-sb-lts`）、`25586`は最新版の系列（`unity-sb`）。開けるのは、Unity担当がTCPの上限を
+  確かめて、coordinatorが知らせてから（`2026-11-20-03`③）
+- 12月1日まで：`25585`にLTSの`2321.2.0`を置く。今の公開のScratch（`2321.1.0`、Bridge `2321.0.0`）がつなぐUnity箱庭も、この
+  containerにする。`25586`には`2400.0.0rc1`を置き、`scratch-beta`の組からつなぐ（上の「すること」の1の、Unity箱庭のrc1をどう
+  つなぐかの答え）。12月1日に、`25586`を`2400.0.0`へ替える
+- Bridgeが中からつなぐportは、外のportと別に持てる。LTSのBridge（`v2321.0.0`）は、全ての接続先に共通のportを1つしか持たない
+  （`sb-lts`はGAMEsの`25575`）。中のportの割り当ての案を出す
+- image：Unity箱庭担当が今作り直している候補（LTSの`2321.2.0`と、その上の`2400.0.0rc1`）。coordinatorがGHCRのdigestを照合して
+  から、そのdigestを動かす。`candidate-be17313`は、戻すときのため12月1日まで消さない
+
+返却に足すもの：PR、firewallとcomposeの差分、外から2つのportへhelloを送った結果（`protocol`と`server.version`）、動かしたdigest、
+Bridgeの接続先の設定（中のport）
 
 ## coordinatorがすること
 
