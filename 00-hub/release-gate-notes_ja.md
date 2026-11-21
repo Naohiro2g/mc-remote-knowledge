@@ -101,6 +101,16 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   これまでの`sb`をworldごと今のGAMEsへ移してMcRemote `2321.2.0`（LTS）にし、`sb`と`sb-lts`がそこを指す。同じ日に、公開VPSの
   `sb-beta`をrc1にする。12/1に、`sb`は公開VPSの`2400.0.0`を指す。GAMEsの作業はhuman owner。LTSは3月と9月に出し、2つまで
   （`2026-11-21-03`）。呼び方は、最新版、LTS、最新版候補（`2026-11-21-02`）
+  - 2026-11-21：human ownerが`sb-retro`を2つ目のGAMEsへ移し、DNSも切り替えた。空いた今のGAMEsに`2321.2.0`のJARを入れて
+    起動し直し、`sb-lts`の名前でつながった（worldは`sb-retro`のもの）。11/25までは、McRemoteの人間の試験の残りに使う（下の
+    `2321.2`の節の「人間の試験（McRemote、2026-11-17〜）」）
+  - 11/25に移すのは、worldとLuckPermsのDB。McRemoteのcredentialは移さないので、`sb-lts`では利用者がペアリングし直す
+    （human owner 2026-11-21）
+  - Paperとplugin：GAMEsも公開VPSも、最新版に合わせる（human owner 2026-11-21。2026-11-07にStackへ伝えた方針「基本的には
+    最新版に追従し、問題がないか確認する」と同じ）。公開VPSは、11/25にrc1を置くときにその時の最新版にし、12/1は11/25〜30に
+    試した組のまま出す。2026-11-21の最新は、Paper 26.3 #257（2026-11-20）、Geyser 2.12.1-b1306（2026-11-20、`cb04ea8`）、
+    LuckPerms 5.5.91（coordinatorが配布元のAPIで見た）。公開VPSの`sb`は、Paper #244、Geyser b1305、LuckPerms 5.5.91
+  - ViaVersion：公開の箱庭では、`block-versions`にJava版の1.20.5〜1.21.4を入れる（`2026-11-21-04`。GAMEsのlogの警告から）
 - 予行演習: `2400.0.0rc1`をpre-release（GitHub、PyPI、GHCRの候補のtag）で出し、11月中に`sb-beta`、`scratch-beta`、
   `wirescope-beta`で動かす。人間の試験もそこで行う。最後の候補は、最後のrcと同じsourceで版だけを変える
 - 日程:
@@ -409,6 +419,16 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   `590802b7811176b1ccb23d65ae09f4848f32e4262fb76f18869c1698a46b3057`（coordinatorがGeyserの公開APIで見た。VPSに置いたJARは
   まだ照合していない）
 - 残り：4（統合版）、8〜11
+- 2026-11-21：残りは、空いた有料GAMEs（11/25から`sb-lts`。上の「2026-11-19 `2400`横断release gate」の「GAMEsの引っ越し」）で
+  試す。human ownerが、GitHubから取ったJARのSHA-256を計り、凍結したもの
+  （`16e927a79ea9b9ae9f1aa544cd5101eb3a6c39228ef9c0da7175853d100703f8`）と全桁同じだった。起動のlogのplugin一覧に
+  `McRemote (2321.2.0)`がある
+  - 環境（logから）：Java 25.0.5.1、Paper 26.3-257（`d81ca50`）、Geyser-Spigot 2.12.1-b1306（`cb04ea8`）、floodgate
+    2.2.5-SNAPSHOT（b141）、ViaVersion／ViaBackwards 5.12.3-SNAPSHOT、WorldEdit 7.4.6、AdvancedPortals 2.8.0、DiscordSRV 1.30.5、
+    ServerBackup 2.10.0、LuckPerms 5.5.71、DirectionHUD 1.8.4.0、OtterLib 0.4.0.1
+  - DirectionHUDとOtterLibは、公開VPSの`sb`では2026-11-07に外したが、GAMEsには残っていた。McRemoteのBossBarの方位と、
+    DirectionHUDの表示が両方出た。human ownerが、DirectionHUDとOtterLibを外し、LuckPermsを5.5.91に上げてから試す
+  - 実施票と違うのは、Paperのbuild（実施票は#244）と、LuckPermsがあること（実施票は「入れない」）
 
 ### Unity箱庭の候補の照合（2026-11-17）
 

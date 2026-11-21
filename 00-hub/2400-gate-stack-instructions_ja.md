@@ -99,6 +99,16 @@ Bridgeの接続先の設定（中のport）
 - human ownerがすること：`sb-retro`を、30日借りる2つ目の有料GAMEs（実験サーバー）へすぐ移す。11月25日に、これまでの`sb`の
   Minecraftをworldごと今のGAMEsへ移し、McRemote `2321.2.0`にする。DNS（11月25日に`sb`と`sb-lts`を今のGAMEsへ、12月1日に
   `sb`を公開VPSへ）
+  - 2026-11-21：`sb-retro`は移し、DNSも切り替えた。今のGAMEsには`2321.2.0`を入れ、`sb-lts`の名前でつながる（worldは
+    `sb-retro`のもの）。11月25日までは、human ownerがMcRemoteの人間の試験に使う
+  - 11月25日に移すのは、worldとLuckPermsのDB。McRemoteのcredentialは移さないので、`sb-lts`では利用者がペアリングし直す
+- Paperとplugin（2026-11-21に足した）：公開VPSも、最新版に合わせる（human owner 2026-11-21。2026-11-07の方針「基本的には
+  最新版に追従し、問題がないか確認する」と同じ）。11月25日に`2400.0.0rc1`を置くときに、その時の最新版にする。12月1日は、
+  11月25日から30日に試した組のまま出す。2026-11-21の最新は、Paper 26.3 #257、Geyser 2.12.1-b1306、LuckPerms 5.5.91。GAMEsは、
+  human ownerが同じ組の最新版にする
+- ViaVersion（2026-11-21に足した）：公開VPSの`sb-beta`（12月1日から`sb`）のViaVersionのconfigの`block-versions`に、
+  `"1.20.5-1.20.6"`、`"1.21-1.21.1"`、`"1.21.2-1.21.3"`、`"1.21.4"`を入れる（`2026-11-21-04`）。今の公開VPSの`sb`も、
+  11月25日に移すまでは同じにする。Stackの配布の既定にも入れるかは、案を出す
 - 11月25日（Stack）：公開VPSで`2400.0.0rc1`を`sb-beta`として動かす（上の「すること」の1）。公開VPSのBridgeが`sb`へつなぐ先を、
   GAMEsのTCP 25575にする（DNSの名前でつないでいるなら、DNSの切り替えで足りるかを確かめる）。Scratchの一覧は、2026-11-21の返却の
   予定のまま（`scratch`の組は`sb`と`unity-sb-lts`、`scratch-beta`の組は`sb-beta`と`unity-sb`）
@@ -106,7 +116,8 @@ Bridgeの接続先の設定（中のport）
 - credentialのfileのmode（`2026-11-11-03`）：`sb-lts`では11月25日の後に確かめる。GAMEsの中の確かめ方は、human ownerと相談する
 - `-lts`の名前は、新しい方のLTSを指す。LTSは3月と9月に出し、2つまで（`2026-11-21-03`）
 
-返却に足すもの：11月25日のBridgeの設定の差分と、doctorの結果（`sb`、`sb-lts`、`sb-beta`）
+返却に足すもの：11月25日のBridgeの設定の差分と、doctorの結果（`sb`、`sb-lts`、`sb-beta`）。入れたPaperとpluginの版と
+SHA-256。ViaVersionのconfigの差分と、起動のlogで警告が消えたこと。配布の既定の案
 
 ## coordinatorがすること
 
