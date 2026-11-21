@@ -97,13 +97,17 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   12月1日までは`25585`にLTSの`2321.2.0`、`25586`にrc1を置く。imageはcoordinatorがGHCRのdigestを照合してから動かす。serverに
   接続とpairingの上限が無いと分かった上で、2026-11-20に今の候補を動かし、docker側の対策と見張りを用意して開ける。数日のうちに、
   上限の対策を入れた版へ替える
+- GAMEsの引っ越し（2026-11-21、`2026-11-21-01`）: `sb-retro`は、30日借りる2つ目の有料GAMEs（実験サーバー、2026-11-21にhuman ownerが契約した）へすぐ移す。11/25に、
+  これまでの`sb`をworldごと今のGAMEsへ移してMcRemote `2321.2.0`（LTS）にし、`sb`と`sb-lts`がそこを指す。同じ日に、公開VPSの
+  `sb-beta`をrc1にする。12/1に、`sb`は公開VPSの`2400.0.0`を指す。GAMEsの作業はhuman owner。LTSは3月と9月に出し、2つまで
+  （`2026-11-21-03`）。呼び方は、最新版、LTS、最新版候補（`2026-11-21-02`）
 - 予行演習: `2400.0.0rc1`をpre-release（GitHub、PyPI、GHCRの候補のtag）で出し、11月中に`sb-beta`、`scratch-beta`、
   `wirescope-beta`で動かす。人間の試験もそこで行う。最後の候補は、最後のrcと同じsourceで版だけを変える
 - 日程:
   | 日 | すること |
   | --- | --- |
   | 11/24まで | rc1の返却 |
-  | 11/25 | 照合して凍結、pre-release、`-beta` |
+  | 11/25 | 照合して凍結、pre-release、`-beta`。McRemote `2321.2.0`を出し、`sb`をLTSとして有料GAMEsへ |
   | 11/26〜27 | 人間の試験。11/27に延期するかを決める |
   | 11/28〜29 | 最後の候補、検証機での通し、Releaseの下書き、ホームページのPR |
   | 11/30 | 最終のgo |
@@ -134,7 +138,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   - 版が合わないときの例外（担当がMcRemote `2ccf0b1`の応答を模して確かめた）：表示はどちらの向きも
     `[protocol_mismatch] protocol_mismatch`で、双方の版は`data`にだけ入る。Python `2321.1.0`から`2400`のserverへは
     `data.server` `24.0.0`、`data.client_requires` `23.2.1`。Python `2400.0.0rc1`から`2321.2`のserverへは`23.3.0`と`24.0.0`。
-    実機では、11/25からの予行演習で確かめる（`sb-beta`がrc1、`sb`が`2321.1`の間）
+    実機では、11/25からの予行演習で確かめる（`sb-beta`がrc1、`sb`が有料GAMEsの`2321.2.0`の間。`2026-11-21-01`）
   - 決定（2026-11-20）：`2400`のPythonは、この候補のまま（`v2321.1.0`に版とprotocolだけ）にする。`v2321.1.0`の後にmainへ
     入ったもの（PR #13〜#16。一覧は返却の`post-release-main-changes.txt`）と、版が合わないときの例外の文は、つなぎ直しを
     人が試してから、12月12日の`2401`で出す。human ownerがcoordinatorの案を採り、「版が合わないときの例外も。」と足した。
@@ -276,7 +280,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   凍結した。2026-11-19に、`2400.0.0`を12月1日に出すと決め、この版はLTSとしてMcRemoteとUnity箱庭を出すことにした（`2026-11-19-01`、
   `2026-11-19-02`）。ScratchとtoolingのUnity箱庭に向けた変更は`2400`へ移した。Unity箱庭はUnity WebのIMEを直して作り直す。
   McRemoteの人間の試験（残りの8〜11は、LTSの組み合わせ）を続ける。下の「範囲を広げる（2026-11-17）」、「凍結するexact set
-  （2026-11-18、`2321.2-set-1`）」、「ScratchとUnity箱庭の人間の試験（2026-11-18〜19）」と、上の「2026-11-19 `2400`横断release gate」）
+  （2026-11-18、`2321.2-set-1`）」、「ScratchとUnity箱庭の人間の試験（2026-11-18〜19）」と、上の「2026-11-19 `2400`横断release gate」）。2026-11-21に、McRemoteの`2321.2.0`は11月25日に出し、同じ日に有料GAMEsの`sb-lts`へ
+  入れると改めた。Unity箱庭は12月1日のまま（`2026-11-21-01`）
 - 位置づけ: 初回stableの後の2回目の機能のrelease。betaを挟まない（`2026-10-22-03`）。番号は台帳
   （`00-hub/release-train-notes_ja.md`）で予約した（`2026-11-05-02`）
 - contract: protocolを`23.3.0`にする（`2026-11-15-03`）。wire「7.3 エラー設計」の`out_of_bounds`（`2026-11-14-02`、
@@ -291,7 +296,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   | Unity箱庭 | 最初の公開（serverとUnity Web）。`main`（PR #2、#3）に、版を`2321.2.0`にしたもの |
 - 2026-11-19に範囲を改めた（`2026-11-19-02`）：LTSとして、McRemote `2321.2.0`（`2321.2-set-1`のまま）とUnity箱庭`2321.2.0`
   （Unity WebのIMEを直して作り直すもの。2026-11-20に、座標の見え方の直しも入れると決めた：`2026-11-20-01`）だけを、
-  12月1日に出す。Scratchとtoolingは`v2321.2.0`を出さない
+  12月1日に出す（McRemoteは11月25日に改めた、`2026-11-21-01`）。Scratchとtoolingは`v2321.2.0`を出さない
 - 範囲の外: Python。McRemoteのBANで拒む経路の直しは`2321.2.1`、socketごとのkeepaliveは後の版（human owner 2026-11-15、
   `2026-11-17-01`④）。PaperのLANのセット。Unity箱庭のLANのセットは、版を決めていない。新しいreasonのF1のcase（tooling）と、
   Scratch以外のclientの表示は、このreleaseを出した後に頼む
