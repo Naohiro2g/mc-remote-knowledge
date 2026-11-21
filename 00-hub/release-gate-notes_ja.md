@@ -110,6 +110,9 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     最新版に追従し、問題がないか確認する」と同じ）。公開VPSは、11/25にrc1を置くときにその時の最新版にし、12/1は11/25〜30に
     試した組のまま出す。2026-11-21の最新は、Paper 26.3 #257（2026-11-20）、Geyser 2.12.1-b1306（2026-11-20、`cb04ea8`）、
     LuckPerms 5.5.91（coordinatorが配布元のAPIで見た）。公開VPSの`sb`は、Paper #244、Geyser b1305、LuckPerms 5.5.91
+  - LuckPermsは、公式のページ（luckperms.net）から取る（human owner 2026-11-21「91。これからは公式ページから取る。」）。
+    luckperms.netの版は、`master`にcommitが入るたびに進む。Modrinthは、作者が時々しか更新しない（2026-11-21は5.5.71。作者
+    2026-08-05「it gets updated occasionally」、LuckPermsのissue #4200）
   - ViaVersion：公開の箱庭では、`block-versions`にJava版の1.20.5〜1.21.4を入れる（`2026-11-21-04`。GAMEsのlogの警告から）
 - 予行演習: `2400.0.0rc1`をpre-release（GitHub、PyPI、GHCRの候補のtag）で出し、11月中に`sb-beta`、`scratch-beta`、
   `wirescope-beta`で動かす。人間の試験もそこで行う。最後の候補は、最後のrcと同じsourceで版だけを変える
