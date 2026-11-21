@@ -272,6 +272,43 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     （`2026-11-19-02`③。Stackの票の「すること」の1の答え）
   - 残り：human ownerの自己攻撃と、普通の操作の確かめ。結果は、件数と、containerと機械への影響で追補する
 
+### 返却の照合（2026-11-21、Java、TypeScript、C#）
+
+- 3つとも、knowledge `fd47fbe`を読んだ。票の「全componentで共通」と「Java、TypeScript、C#（Client Library）」の節は、その後
+  変えていない（その後に変えたのはMcRemoteの節だけ）。3つとも、CIのartifactと配布物は無い（票のとおり、registryにもReleaseにも
+  出さない）。tagはまだ打っていない。`sb-beta`のrc1へつないだ結果は、11/25の後に追補する（12月1日の公開を止める条件にしない）
+- coordinatorがGitHubのAPIで照合した。3つとも、draft PR #6（open）のheadは返却の候補で、baseは今の`main`。候補は`main`の上の
+  1 commit。CIのrunnerは`ubuntu-24.04`で、head_shaは候補
+
+  | component | 候補 | base（`main`） | CI | 差分 |
+  | --- | --- | --- | --- | --- |
+  | Java | `agent/java-2400-candidate-20261121@1300c4e753d7878115862663227a0eb13105b78c` | `51d35027ed437924045c4dff64bf560323af6dad` | PR `44848089571`（JDK 21と25）成功 | 14 file、`+96 / −52` |
+  | TypeScript | `agent/typescript-2400-candidate@7b0e94ec565e92c73957769c08fef1144c03f33a` | `0344731cc793fa87f68e4e5c1b5c7b655f233f82` | push `44847962657`、PR `44848192591`とも成功 | 8 file、`+108 / −31` |
+  | C# | `agent/csharp-2400@870c2ae2e872cb288dff7fee0020e444601f4208` | `0f9f12d41376d78b92e51700b395dde50ee56de9` | push `44847684773`、PR `44847819670`とも成功 | 13 file、`+163 / −33` |
+
+- 差分で見たもの：申告する`protocol`は3つとも`24.0.0`（前は、Javaが`23.0.0`、TypeScriptとC#が`23.2.1`）。版`2400.0.0`は、
+  Javaが`build.gradle.kts`とJARの`Implementation-Version`、TypeScriptが`package.json`、C#が`csproj`。断る処理を外すと、断る
+  testが落ちることを担当が見た（Java 3件、C# 3件、TypeScript 1件）。通ったtestは、Java 162件（JDK 21と25）、TypeScript 91件、
+  C# 99件（担当の申告）
+- 一緒に入れたもの（hub NOTES 2026-11-13の行）
+  - C#：応答待ちの上限を、待っている要求の最短でなく最長にした（`2026-11-13-01`）。作例`examples/FirstBlock`（「.NETコンソール
+    で始める」）と、その説明を改めた
+  - TypeScript：同じことをtestで確かめた（200 msと500 msを重ね、500 msで閉じる）。keepaliveの最初のprobeまでを30秒から3分にし
+    （`2026-11-13-02`）、「Linuxの既定で約12分」のコメントを直した。無応答のときは約3分10秒で切れる（担当の計算）
+- helloの`server`（`2026-11-14-03`②の`{"name", "version"}`）：Javaは、`HelloResult.server()`に「name version」の文字列で入れる。
+  TypeScriptは、公開の型を`string`から`{ name, version }`か`string`（省略もある）に変えた。TypeScriptの利用者から見える型の
+  変更。C#は、最初の返却に`server`の扱いを書いていなかった。coordinatorが聞き、追補（2026-11-21）：候補`870c2ae`で、helloの
+  応答に`server`（`{"name": "McRemote", "version": "2400.0.0rc1"}`）が入っていてもつながる。手元の模擬のTCPのserverにこの応答を
+  返させ、`FirstBlock`でpairing、hello、`setBlock`、`getBlock`が通り、`SERVER_VERSION=2400.0.0rc1`と表示した。自動のtestは
+  足していない。PR #6は変えていない（coordinatorがheadを見た）
+- Javaのpush CI `44847917031`は、JDK 21のBuildで落ちた（Maven Centralで`com.fasterxml.jackson.core:jackson-databind:2.21.4`が
+  見つからなかった）。coordinatorが2026-11-21に見ると、そのPOMはHTTP 200で取れる。同じcommitのPR CIは通った
+- Javaの返却のJAR（`minecraft-remote-client-2400.0.0.jar`など3つ）は、担当の手元のbuild。CIのartifactが無いので、取り直して
+  計れない。配布しないので、照合の対象にしない
+- 気づいたこと：Javaは、JARの`Implementation-Version`が無いときの版を、`ClientIdentity`に`2400.0.0`と書いている。版を上げる
+  ときは、`build.gradle.kts`と合わせて2か所を変える
+- 残り：11/25に、coordinatorが3つの担当へ`sb-beta`の接続先を渡し、pairingを承認する人と試験の場所をhuman ownerと決める
+
 ### Scratchの搬送票：操作のエラーの知らせ方（2026-11-20）
 
 - 搬送票：`handoff-materials/2026-11-20-scratch-notifications/materials/HANDOFF_ja.md`（5,511 bytes、
