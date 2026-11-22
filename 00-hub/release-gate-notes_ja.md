@@ -113,7 +113,31 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   - LuckPermsは、公式のページ（luckperms.net）から取る（human owner 2026-11-21「91。これからは公式ページから取る。」）。
     luckperms.netの版は、`master`にcommitが入るたびに進む。Modrinthは、作者が時々しか更新しない（2026-11-21は5.5.71。作者
     2026-08-05「it gets updated occasionally」、LuckPermsのissue #4200）
+  - Geyser／Floodgateは、公式のページ（geysermc.org/download）から取る。buildは頻繁に出るが、ページが見やすく、同じURLで
+    最新のbuildを取れる（human owner 2026-11-21）
+  - ViaVersion／ViaBackwardsは、これまでと同じくdev build（`-SNAPSHOT`）を使う（human owner 2026-11-21「Via*は、SNAPSHOTを
+    使ってきた。これからも使う。Paperチーム関係者なので、ペースがあっていて、信頼感がある。早めに上げないと「だいたいなんでも
+    つながる」が損なわれる。」）。HangarのSnapshotの版から取る（human owner 2026-11-22）。Hangarへは、`master`への
+    pushごとにGitHub Actionsが自動で上げている（両方のrepoの`publish.yml`。Modrinthへも同時に上がる）。版の名前の`+`の
+    後ろは、そのworkflowの実行の番号で、JARの名前とserverのlogには出ない。2026-11-21の最新は、ViaVersion
+    `5.12.3-SNAPSHOT+1119`（2026-11-07）、ViaBackwards `5.12.3-SNAPSHOT+669`（2026-11-10）。公開VPSの`sb`は、正式版の5.12.2
+  - AdvancedPortalsは、2026-11-21に出た2.8.1にする（human owner 2026-11-21「久々だな。入れましょう。」）。2.8.0（2026-05-27）
+    からのバグの直し。BukkitDev（dev.bukkit.org）のfilesのページから取る（human owner 2026-11-22）。GitHubのReleaseには
+    JARが付いていない。JARは`-spigot.jar`の方を使う。`-legacy-spigot.jar`は、Minecraft 1.13未満用（human owner 2026-11-22）
+  - DiscordSRVは、SpigotMCのページから取る（human owner 2026-11-22。JARは、そのページから`download.discordsrv.com`の
+    1.30.5へつながる）
+  - これまでは、まとめて確かめやすいのでModrinthを見ていた。これからは、上の取り先をブラウザのブックマークでまとめて開く
+    （human owner 2026-11-22）
   - ViaVersion：公開の箱庭では、`block-versions`にJava版の1.20.5〜1.21.4を入れる（`2026-11-21-04`。GAMEsのlogの警告から）
+  - 2026-11-22（human owner）：`sb-lts`と`sb-retro`で、LuckPermsを5.5.91に上げ、ViaVersionの`block-versions`を入れた。どちらも
+    起動のlogからViaVersionの警告が消えた。`sb-lts`は、DirectionHUDとOtterLibを外し、AdvancedPortalsを2.8.1にした（plugin一覧は
+    下の`2321.2`の節の「人間の試験（McRemote、2026-11-17〜）」）。`sb-lts`のDiscordSRVは、Discordのchannelの設定ができるまで
+    無効にしている。`sb-retro`は、Paper 26.3-214（`e65c076`）とMcRemote `1.21.8-1.4.0`で、DirectionHUD、OtterLib、DiscordSRV
+    1.30.5が入っている。McRemote `1.21.8-1.4.0`にはMcRemoteのHUDが無いので、DirectionHUDを入れている（human owner 2026-11-22
+    「RetroはオリジナルHUDがないので入れています。あと一週間なので、このまま。」）
+  - 統合版：どちらの箱庭にも、iPhoneとAndroidの26.62、WindowsとAndroidの26.66でつながった（human owner 2026-11-22）。26.66
+    （2026-11-18に出た）のprotocolは2225で、26.60〜26.65と同じ（Mojangの`bedrock-protocol-docs`のv1.26.66）。Geyserは
+    protocolの番号でclientを受け付けるので（`GameProtocol`）、READMEの対応版の一覧（2026-11-22は26.65まで）に無くてもつながる
 - 予行演習: `2400.0.0rc1`をpre-release（GitHub、PyPI、GHCRの候補のtag）で出し、11月中に`sb-beta`、`scratch-beta`、
   `wirescope-beta`で動かす。人間の試験もそこで行う。最後の候補は、最後のrcと同じsourceで版だけを変える
 - 日程:
@@ -469,6 +493,10 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   - DirectionHUDとOtterLibは、公開VPSの`sb`では2026-11-07に外したが、GAMEsには残っていた。McRemoteのBossBarの方位と、
     DirectionHUDの表示が両方出た。human ownerが、DirectionHUDとOtterLibを外し、LuckPermsを5.5.91に上げてから試す
   - 実施票と違うのは、Paperのbuild（実施票は#244）と、LuckPermsがあること（実施票は「入れない」）
+  - 2026-11-22：human ownerが、DirectionHUDとOtterLibを外し、LuckPermsを5.5.91、AdvancedPortalsを2.8.1に上げた。logのplugin
+    一覧は、AdvancedPortals 2.8.1、Geyser-Spigot 2.12.1-SNAPSHOT、LuckPerms 5.5.91、McRemote 2321.2.0、ServerBackup 2.10.0、
+    ViaVersion／ViaBackwards 5.12.3-SNAPSHOT、WorldEdit 7.4.6、floodgate 2.2.5-SNAPSHOT（b141）の9つ（Paper 26.3-257）。
+    統合版はつながった（上の「GAMEsの引っ越し」）。4（統合版の日本語と英語の画面）の報告はまだ
 
 ### Unity箱庭の候補の照合（2026-11-17）
 

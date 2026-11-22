@@ -106,7 +106,11 @@ Bridgeの接続先の設定（中のport）
   最新版に追従し、問題がないか確認する」と同じ）。11月25日に`2400.0.0rc1`を置くときに、その時の最新版にする。12月1日は、
   11月25日から30日に試した組のまま出す。2026-11-21の最新は、Paper 26.3 #257、Geyser 2.12.1-b1306、LuckPerms 5.5.91。GAMEsは、
   human ownerが同じ組の最新版にする。LuckPermsは、公式のページ（luckperms.net）から取る。Modrinthは時々しか更新されず、
-  2026-11-21は5.5.71（human owner 2026-11-21）
+  2026-11-21は5.5.71（human owner 2026-11-21）。Geyser／Floodgateは、公式のページ（geysermc.org/download）から取る。
+  ViaVersion／ViaBackwardsは、dev build（`-SNAPSHOT`）にし、HangarのSnapshotの版から取る（今の公開VPSの`sb`は、正式版の
+  5.12.2）。AdvancedPortalsは、BukkitDev（dev.bukkit.org）から取り、2026-11-21に出た2.8.1にする。JARは
+  `advanced-portals-2.8.1-spigot.jar`（`-legacy-spigot.jar`は、Minecraft 1.13未満用）。DiscordSRVは、SpigotMCのページから取る
+  （human owner 2026-11-21、2026-11-22）
 - ViaVersion（2026-11-21に足した）：公開VPSの`sb-beta`（12月1日から`sb`）のViaVersionのconfigの`block-versions`に、
   `"1.20.5-1.20.6"`、`"1.21-1.21.1"`、`"1.21.2-1.21.3"`、`"1.21.4"`を入れる（`2026-11-21-04`）。今の公開VPSの`sb`も、
   11月25日に移すまでは同じにする。Stackの配布の既定にも入れるかは、案を出す
@@ -118,7 +122,7 @@ Bridgeの接続先の設定（中のport）
 - `-lts`の名前は、新しい方のLTSを指す。LTSは3月と9月に出し、2つまで（`2026-11-21-03`）
 
 返却に足すもの：11月25日のBridgeの設定の差分と、doctorの結果（`sb`、`sb-lts`、`sb-beta`）。入れたPaperとpluginの版と
-SHA-256。ViaVersionのconfigの差分と、起動のlogで警告が消えたこと。配布の既定の案
+SHA-256（ViaVersion／ViaBackwardsは、Hangarの版の名前も）。ViaVersionのconfigの差分と、起動のlogで警告が消えたこと。配布の既定の案
 
 ## coordinatorがすること
 
