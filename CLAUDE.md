@@ -59,6 +59,7 @@
 ## 作業規律
 
 - token、API key、password、private key 等の秘密の実値を書かない。raw log に秘密が混ざる場合は Git 外へ置く。
+- 一時 file は、リポジトリの中の `.scratch/`（`.gitignore` で Git 外）に置き、使い終わったら消す。`/tmp` などリポジトリの外は使わない。フォルダーの名前が変わると切れ、次のセッションが片付けられないため。
 - 自分が編集した path だけを明示 stage する。`git add -A` / `git add .` は使わない。
 - commit 前に `git diff --staged` を確認する。commit は stage 済み index を `git commit`（pathspec なし）で確定する。
 - ユーザーや他 agent の未関連変更を触らない。競合する場合は止めて確認する。

@@ -47,7 +47,7 @@ upstream貢献
 
 ### 貢献用 clone（2026-07-18 実機検証済み）
 
-- 場所: `AA_KNOWLEGE_BASED_DEV_SYSTEM/scratch-editor-upstream-contrib/`（clone 元: `scratchfoundation/scratch-editor`、作成時 HEAD `bb4337a` / `develop` / clean / full clone）
+- 場所: `AA_KNOWLEDGE_BASED_DEV_SYSTEM/scratch-editor-upstream-contrib/`（2026-11-22 に親フォルダーの綴りを直した。clone 元: `scratchfoundation/scratch-editor`、作成時 HEAD `bb4337a` / `develop` / clean / full clone）
 - push 安全設計（検証済み）: `origin` push URL `DISABLED`／`fork`＝`Naohiro2g/scratch-editor`／`remote.pushDefault=fork`／`push.default=simple`／`branch.develop.pushRemote=origin`。**貢献 branch は fork へ明示 push、`develop` は push 先が無効化 origin のためどこへも push 不能**＝誤 push を構造的に防ぐ。
 
 ### セッション規律

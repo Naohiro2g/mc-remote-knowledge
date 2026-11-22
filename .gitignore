@@ -5,6 +5,7 @@
 __pycache__/
 *.py[cod]
 /.obsidian/
+/.scratch/
 
 # evidence raw may contain secrets and is never public
 /14-evidence/raw/*
