@@ -102,15 +102,31 @@ Bridgeの接続先の設定（中のport）
   - 2026-11-21：`sb-retro`は移し、DNSも切り替えた。今のGAMEsには`2321.2.0`を入れ、`sb-lts`の名前でつながる（worldは
     `sb-retro`のもの）。11月25日までは、human ownerがMcRemoteの人間の試験に使う
   - 11月25日に移すのは、worldとLuckPermsのDB。McRemoteのcredentialは移さないので、`sb-lts`では利用者がペアリングし直す
-- Paperとplugin（2026-11-21に足した）：公開VPSも、最新版に合わせる（human owner 2026-11-21。2026-11-07の方針「基本的には
-  最新版に追従し、問題がないか確認する」と同じ）。11月25日に`2400.0.0rc1`を置くときに、その時の最新版にする。12月1日は、
-  11月25日から30日に試した組のまま出す。2026-11-21の最新は、Paper 26.3 #257、Geyser 2.12.1-b1306、LuckPerms 5.5.91。GAMEsは、
-  human ownerが同じ組の最新版にする。LuckPermsは、公式のページ（luckperms.net）から取る。Modrinthは時々しか更新されず、
-  2026-11-21は5.5.71（human owner 2026-11-21）。Geyser／Floodgateは、公式のページ（geysermc.org/download）から取る。
-  ViaVersion／ViaBackwardsは、dev build（`-SNAPSHOT`）にし、HangarのSnapshotの版から取る（今の公開VPSの`sb`は、正式版の
-  5.12.2）。AdvancedPortalsは、BukkitDev（dev.bukkit.org）から取り、2026-11-21に出た2.8.1にする。JARは
-  `advanced-portals-2.8.1-spigot.jar`（`-legacy-spigot.jar`は、Minecraft 1.13未満用）。DiscordSRVは、SpigotMCのページから取る
-  （human owner 2026-11-21、2026-11-22）
+- Paperとplugin（2026-11-21に足した。取り先のページは2026-11-22に足した）：公開VPSも、最新版に合わせる（human owner
+  2026-11-21。2026-11-07の方針「基本的には最新版に追従し、問題がないか確認する」と同じ）。11月25日に`2400.0.0rc1`を置くときに、
+  その時の最新版にする。12月1日は、11月25日から30日に試した組のまま出す。2026-11-21の最新は、Paper 26.3 #257、Geyser
+  2.12.1-b1306、LuckPerms 5.5.91。GAMEsは、human ownerが同じ組の最新版にする
+  - 取り先は、下の表のダウンロードページ（human owner 2026-11-21、2026-11-22）。入れる前に、ホームページとダウンロードページの
+    注意書き（対応するMinecraftとJavaの版、JARの種類など）を読んで、取るJARを選ぶ。入れた後は、起動のlogでerrorとwarningを
+    見る。配布元の変更や注意書きに合わせられるように、この票ではファイル名を決めない（human owner 2026-11-22「ファイル名
+    レベルでやっていると、変更や注意書きがあったときには対応できないね。」）
+
+    | plugin | ホームページ | ダウンロードページ |
+    | --- | --- | --- |
+    | Paper | <https://papermc.io/> | <https://papermc.io/downloads/paper> |
+    | Geyser、Floodgate | <https://geysermc.org/> | <https://geysermc.org/download> |
+    | ViaVersion | <https://viaversion.com/> | <https://hangar.papermc.io/ViaVersion/ViaVersion/versions?channel=Snapshot> |
+    | ViaBackwards | <https://viaversion.com/> | <https://hangar.papermc.io/ViaVersion/ViaBackwards/versions?channel=Snapshot> |
+    | LuckPerms | <https://luckperms.net/> | <https://luckperms.net/download> |
+    | WorldEdit | <https://enginehub.org/worldedit> | <https://modrinth.com/plugin/worldedit/versions?l=bukkit> |
+    | AdvancedPortals | <https://advancedportals.sekwah.com/> | <https://dev.bukkit.org/projects/advanced-portals/files> |
+    | DiscordSRV | <https://discordsrv.com/> | <https://www.spigotmc.org/resources/discordsrv.18494/> |
+    | ServerBackup | <https://server-backup.net/> | <https://www.spigotmc.org/resources/79320/> |
+
+  - 2026-11-22に分かっていること：ViaVersion／ViaBackwardsは、dev build（`-SNAPSHOT`）にする（今の公開VPSの`sb`は、正式版の
+    5.12.2）。LuckPermsは、Modrinthでは時々しか更新されない（2026-11-21は5.5.71）。AdvancedPortalsは、2026-11-21に2.8.1が
+    出た。BukkitDevには`-spigot.jar`と`-legacy-spigot.jar`があり、`-legacy-spigot.jar`はMinecraft 1.13未満用。
+    `discordsrv.com`は、Modrinthのページへ転送される
 - ViaVersion（2026-11-21に足した）：公開VPSの`sb-beta`（12月1日から`sb`）のViaVersionのconfigの`block-versions`に、
   `"1.20.5-1.20.6"`、`"1.21-1.21.1"`、`"1.21.2-1.21.3"`、`"1.21.4"`を入れる（`2026-11-21-04`）。今の公開VPSの`sb`も、
   11月25日に移すまでは同じにする。Stackの配布の既定にも入れるかは、案を出す
@@ -122,7 +138,8 @@ Bridgeの接続先の設定（中のport）
 - `-lts`の名前は、新しい方のLTSを指す。LTSは3月と9月に出し、2つまで（`2026-11-21-03`）
 
 返却に足すもの：11月25日のBridgeの設定の差分と、doctorの結果（`sb`、`sb-lts`、`sb-beta`）。入れたPaperとpluginの版と
-SHA-256（ViaVersion／ViaBackwardsは、Hangarの版の名前も）。ViaVersionのconfigの差分と、起動のlogで警告が消えたこと。配布の既定の案
+SHA-256と、取ったページ（ViaVersion／ViaBackwardsは、Hangarの版の名前も）。注意書きで気づいたことと、起動のlogのerrorと
+warning。ViaVersionのconfigの差分と、起動のlogで警告が消えたこと。配布の既定の案
 
 ## coordinatorがすること
 

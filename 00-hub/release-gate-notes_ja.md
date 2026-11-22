@@ -128,6 +128,9 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     1.30.5へつながる）
   - これまでは、まとめて確かめやすいのでModrinthを見ていた。これからは、上の取り先をブラウザのブックマークでまとめて開く
     （human owner 2026-11-22）
+  - Stackの指示票には、pluginごとにホームページとダウンロードページのURLを書き、JARはページの注意書きを読んで選んでもらう
+    （human owner 2026-11-22「ファイル名レベルでやっていると、変更や注意書きがあったときには対応できないね。」）。一般向けの
+    解説にも、両方のURLを書く（NOTESの「ホームページの次のページ（`/server/`、おすすめプラグイン）」）
   - ViaVersion：公開の箱庭では、`block-versions`にJava版の1.20.5〜1.21.4を入れる（`2026-11-21-04`。GAMEsのlogの警告から）
   - 2026-11-22（human owner）：`sb-lts`と`sb-retro`で、LuckPermsを5.5.91に上げ、ViaVersionの`block-versions`を入れた。どちらも
     起動のlogからViaVersionの警告が消えた。`sb-lts`は、DirectionHUDとOtterLibを外し、AdvancedPortalsを2.8.1にした（plugin一覧は
