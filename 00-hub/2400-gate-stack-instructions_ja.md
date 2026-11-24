@@ -62,7 +62,8 @@
 - Bridgeが中からつなぐportは、外のportと別に持てる。LTSのBridge（`v2321.0.0`）は、全ての接続先に共通のportを1つしか持たない
   （`sb-lts`はGAMEsの`25575`）。中のportの割り当ての案を出す
 - image：coordinatorが2026-11-20にGHCRで照合した次のdigestを動かす。数日のうちに、上限の対策を入れた版へ替える（coordinatorが
-  照合してから）。`candidate-be17313`は、戻すときのため12月1日まで消さない
+  照合してから。2026-11-24に照合した。下の「上限の対策版へ替える（2026-11-24に足した）」）。`candidate-be17313`は、戻すときのため
+  12月1日まで消さない
 
   | port | tag | 版 | indexのdigest |
   | --- | --- | --- | --- |
@@ -90,6 +91,28 @@ Bridgeの接続先の設定（中のport）
 
 返却に足すもの：docker側の対策の差分、見張りの方法、開けた後に見た接続（攻撃らしいものがあったか）、攻撃して確かめたときに
 起きたこと（containerと機械への影響）。送り元のaddressは返却に書かず、数で返す
+
+## 上限の対策版へ替える（2026-11-24に足した）
+
+`2026-11-20-04`③、`2026-11-24-01`。Unity担当が、serverに上限を入れた版を返し、coordinatorがGHCRで照合した
+（`00-hub/release-gate-notes_ja.md`の「Unity箱庭の上限の対策版の照合（2026-11-24）」）。
+
+- image：11月25日に、次のdigestへ替える（human owner 2026-11-24「上限の対策版は明日で良いです。」）。前の`candidate-f7d0f9a`、`candidate-1dc3cbd`、`candidate-be17313`は、
+  戻すときのため12月1日まで消さない
+
+  | port | tag | 版 | indexのdigest |
+  | --- | --- | --- | --- |
+  | `25585` | `candidate-1594805` | `2321.2.0` | `sha256:9bd2ec444d5cea362729bacbea4d1b8ccd6905b169a467aaa57cdb4b4d05e24a` |
+  | `25586` | `candidate-6ce475e` | `2400.0.0rc1` | `sha256:e39109f0e3ff6bbc9ef2a0f4fb6048735817fa250a5226b404430ace52101097` |
+
+- serverが持つ上限：TCPの接続の数（全体、helloの前、送り元ごと）、helloの前に待つ時間、`auth.pairBegin`の回数、承認を待つcodeの
+  数、1行の長さ、Unity Webの`/ws/sync`の受け取る長さ。当たると、応答を返さずに閉じる。値はgate notesの照合の節にある
+- Bridgeが中からつなぐ利用者は、Unity箱庭のserverから1つの送り元に見え、送り元ごとの上限（同時32本、`auth.pairBegin`は60秒に
+  20回）が全員の合計にかかる。このまま出す（`2026-11-24-01`④）。見張りで、Unity箱庭への接続の数が32本に近づいたら、返却に書く
+- 替えた後：外から2つのportへhelloを送る（`protocol`と`server.version`）。2026-11-24と同じ5つの自己攻撃をもう一度行い、前との
+  違いを見る。ほかのcontainerへの影響も見る。human ownerは、Unity担当の人間の試験の案で、普段の動きを確かめる
+
+返却に足すもの：動かしたdigest、外からのhelloの結果、5つの自己攻撃の結果（前との違い）、ほかのcontainerへの影響
 
 ## GAMEsの引っ越し（2026-11-21に足した）
 

@@ -36,6 +36,8 @@ Unityの世界と箱庭の設計スポーク。一般用途のC# Client Library�
   「範囲を広げた後の候補（2026-11-17）」
 - 2026-11-17：`unity-sb`と`unity-sb-lts`を、`scratch`と`scratch-lts`の組の接続先の一覧に入れる。`2321.2`を出すのを待たない。
   はじめる（1）は、既定のMinecraftのLTSから、利用者がUnity箱庭を選ぶ（`2026-11-17-04`）
+- 2026-11-24：公開VPSのUnity箱庭に、serverに上限を入れた版を出す（`2026-11-24-01`。`2321.2.0`は`1594805`、`2400.0.0rc1`は
+  `6ce475e`。照合は`00-hub/release-gate-notes_ja.md`の「Unity箱庭の上限の対策版の照合（2026-11-24）」）
 
 ## 公開Unity箱庭
 
@@ -85,6 +87,10 @@ McRemoteの返却を見て`2026-11-14-03`、`2026-11-14-04`で決めた。
   返す。権限による範囲の外は`build_range_exceeded`（`2026-11-14-05`）
 - 1回に置ける数：`world.setBlocks`は32,768個まで。越えると`block_count_limit_exceeded`（`data.limit`と`data.requested`。McRemoteと
   同じ形、`2026-11-16-02`）
+- 上限（`2026-11-24-01`）：TCPの接続の数（全体、helloの前、送り元ごと）、helloの前に待つ時間とhelloまでの期限、`auth.pairBegin`の
+  回数、承認を待つcodeの数、1行の長さ、Unity Webの`/ws/sync`の受け取る長さに上限がある。当たると、応答を返さずに閉じる
+  （McRemoteと同じ、`2026-10-07-02`）。helloの後は、何も来なくても切らない。値の正本はUnity箱庭のsource。Bridgeを通る利用者は、
+  serverから1つの送り元に見える
 - ホームページのトップの「はじめる」：公開Unity箱庭が使えるようになったら、Scratch→Unity箱庭にする。それまでは今の流れのまま
 - UnityからMinecraftを動かすこと（`10-protocol/polyglot-client-roadmap_ja.md`のMilestone I）は、その後にする
 - 最初の区切り：1台のPCで、今のScratchからBridgeを通して、Unity箱庭のserverへ4つの操作（`chat.post`、`world.setBlock`、

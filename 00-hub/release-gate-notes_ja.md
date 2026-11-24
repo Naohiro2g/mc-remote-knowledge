@@ -96,7 +96,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - 公開VPSのUnity箱庭（2026-11-20、`2026-11-20-03`、`2026-11-20-04`）: TCPを外へ開ける。`unity-sb-lts`は`25585`、`unity-sb`は`25586`。
   12月1日までは`25585`にLTSの`2321.2.0`、`25586`にrc1を置く。imageはcoordinatorがGHCRのdigestを照合してから動かす。serverに
   接続とpairingの上限が無いと分かった上で、2026-11-20に今の候補を動かし、docker側の対策と見張りを用意して開ける。数日のうちに、
-  上限の対策を入れた版へ替える
+  上限の対策を入れた版へ替える。2026-11-24：対策版が返り、照合した（下の「Unity箱庭の上限の対策版の照合（2026-11-24）」）
 - GAMEsの引っ越し（2026-11-21、`2026-11-21-01`）: `sb-retro`は、30日借りる2つ目の有料GAMEs（実験サーバー、2026-11-21にhuman ownerが契約した）へすぐ移す。11/25に、
   これまでの`sb`をworldごと今のGAMEsへ移してMcRemote `2321.2.0`（LTS）にし、`sb`と`sb-lts`がそこを指す。同じ日に、公開VPSの
   `sb-beta`をrc1にする。12/1に、`sb`は公開VPSの`2400.0.0`を指す。GAMEsの作業はhuman owner。LTSは3月と9月に出し、2つまで
@@ -147,7 +147,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   | 日 | すること |
   | --- | --- |
   | 11/24まで | rc1の返却 |
-  | 11/25 | 照合して凍結、pre-release、`-beta`。McRemote `2321.2.0`を出し、`sb`をLTSとして有料GAMEsへ |
+  | 11/25 | 照合して凍結、pre-release、`-beta`。McRemote `2321.2.0`を出し、`sb`をLTSとして有料GAMEsへ。公開VPSのUnity箱庭を上限の対策版へ |
   | 11/26〜27 | 人間の試験。11/27に延期するかを決める |
   | 11/28〜29 | 最後の候補、検証機での通し、Releaseの下書き、ホームページのPR |
   | 11/30 | 最終のgo |
@@ -397,6 +397,52 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - 残り（Stack）：11/25のrc1のpresetと実機への適用、Paperとpluginの最新版（版、SHA-256、取ったページ、注意書き、起動のlog）、
   Bridgeの設定、doctor（`sb`、`sb-lts`、`sb-beta`）、`session-only/`のmode。12月1日のpresetとlock、検証機での通し
   （11/28〜29）、12月1日の手順と戻し方。実際のブラウザとWireScopeでの確かめ。Stackは、exact setの凍結と指示を待っている
+
+### Unity箱庭の上限の対策版の照合（2026-11-24）
+
+- 返却：`handoff-materials/2026-11-22-unity-2400-and-23212-limits/materials/RETURN_ja.md`（30,440 bytes、
+  `929b31dc1b73f078c4f75f657c04a80c677886ec5ce147f4b953823660422fb8`）と、人間の試験の案`HUMAN_TEST_ja.md`（5,452 bytes、
+  `823d630bde1c9d131ab0cefb5dd2c0a94a147ef3248a4360fc41bc4827f7b45a`）。2026-11-22に作り、knowledge `0aa39fe`を読んだ。2026-11-24に、
+  `97c844b`まで票に差分が無いことを担当が確かめ、確定搬送票と一緒に渡された
+- coordinatorがGitHubのAPIで照合した
+  - LTS：`feat/ui-polish-monospace-i18n@1594805a047f6023f7e8724b4d1724fdaa009bdb`、PR #4（`main`へ、open）。`f7d0f9a`の上の1 commitで、
+    9 file（`+1386 / −56`）。`unity/`は変えていない
+  - rc1：`release/2400.0.0rc1@6ce475ef64155268037c8e13f063b7151aac6134`、draft PR #5（PR #4のbranchへ）。`1594805`の上の1 commitで、
+    6 file（`+29 / −29`）は版、helloの`protocol` `24.0.0`、testの期待値だけ
+  - CIは無く、testは担当の手元で行った（.NETの37件）
+- GHCR：coordinatorがloginせずにRegistry APIで取り、返却と一致した
+
+  | | `candidate-1594805`（`2321.2.0`） | `candidate-6ce475e`（`2400.0.0rc1`） |
+  | --- | --- | --- |
+  | index | `sha256:9bd2ec444d5cea362729bacbea4d1b8ccd6905b169a467aaa57cdb4b4d05e24a` | `sha256:e39109f0e3ff6bbc9ef2a0f4fb6048735817fa250a5226b404430ace52101097` |
+  | linux/amd64のmanifest | `sha256:dc11448df2c8ee9654a7dc07cddc5286aa8829481f7d1d9bd2329f97708d7104` | `sha256:9d0016120bd2d6cbd934fbda2f2fa1051f68954f2da1a91a4e4aed1981e89490` |
+  | attestation | `sha256:fc3ee31ea3b733806e01d82a3c62c30080c3364d01e86b2e57a76eb7e82ad0b4` | `sha256:55d10a650c764b2f484b1686347e4e5251223a4df22a7175292b4923c0bc701e` |
+  | config | `sha256:ee8f5d54262bef5cb6cd2a093234308313fdbaf2e6b6739fae2faeacf3e63bf9` | `sha256:14c745017a472f3f8b0f5f88aae3d2e7697dbdbe661665820c68a94778d56327` |
+
+  - labelの`revision`はそれぞれのcommitの全桁、`version`は`2321.2.0`と`2400.0.0rc1`。configの`User`は`1654`。前の
+    `candidate-be17313`、`candidate-f7d0f9a`、`candidate-1dc3cbd`は、indexのdigestが変わらず残っている
+- 足した上限（返却の§3。値の正本はUnity箱庭のsource、`2026-11-24-01`③）
+  - TCPの接続の数：全体64本、helloの前32本、送り元ごと32本
+  - helloの前：何も来ないまま30秒で切る。helloまでの期限は180秒（McRemoteと同じ）
+  - `auth.pairBegin`の回数：送り元ごとに60秒で20回、全体で1秒に20回と60秒に120回。承認を待つcodeは128件まで
+  - pollされないcodeの記録：期限（120秒）の60秒後に消す。全部で256件まで
+  - 1行の長さと、Unity Webの`/ws/sync`の受け取る長さ：どちらも64 KiB
+  - helloの後は、何も来なくても切らない。TCP keepalive（60秒、30秒、8回）で、黙って消えたclientを約5分で見つける
+  - 当たったときは、応答を返さずに閉じる。`/ws/sync`はWebSocketの`1009`で閉じる。新しいreasonは足していない
+- 担当の検証：10の上限を1つずつ外すと、それぞれのtestが落ちることを見た。rc1で`23.3.0`を断る判定を外すと落ちることも見た。
+  2つのimageを手元で動かし、版の4か所、helloと`/healthz`、`catalog_hash`、20のmethodが前の返却と同じこと、64 KiBを1 byte
+  越える行とframe、21回目の`auth.pairBegin`で切れることを確かめた
+- Stackが2026-11-24の自己攻撃で見つけた弱いところ（送り元を分けた1,000本ほどの接続、`auth.pairBegin`の回数、巨大な入力）は、
+  全体の接続の数、`auth.pairBegin`の回数、1行と`/ws/sync`の長さで塞がる。公開VPSで確かめるのは、替えた後
+- 決定（2026-11-24、`2026-11-24-01`④）：Bridgeを通る利用者は、Unity箱庭のserverから1つの送り元に見え、送り元ごとの上限が全員の
+  合計にかかる。公開VPSでは、Scratchから1つのUnity箱庭へ同時に32人まで、`auth.pairBegin`は全員で60秒に20回まで。このまま出す
+  （human owner 2026-11-24「A. このまま出す」）。人間の試験の案は、1つの送り元を1人として書いてあり、Bridgeを通る大勢の利用者の
+  項目は無い。hub NOTESの行
+- 11/25の凍結に入れるUnity箱庭は、この2つ（`2026-11-20-04`③の「凍結は、その版で照合する」）。公開の手順の案（返却の§6）は、
+  凍結のときに公開の手順の票で決める
+- 次：11月25日に、Stackが公開VPSで替える（human owner 2026-11-24「上限の対策版は明日で良いです。」。Stackの票の「上限の対策版へ
+  替える（2026-11-24に足した）」）。人間の試験（担当の案）は、替えた後。
+  案に足すこと：Scratchで、ペアリングを始める前に30秒より長く待ったときの動き
 
 ### Scratchの搬送票：操作のエラーの知らせ方（2026-11-20）
 
