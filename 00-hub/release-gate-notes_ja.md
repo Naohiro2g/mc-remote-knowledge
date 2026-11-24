@@ -300,7 +300,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     11/25〜30は、`scratch`の組が`sb`と`unity-sb-lts`（`sb-beta`を外す）、`scratch-beta`の組が`sb-beta`と`unity-sb`（`sb`を外す）。
     12月1日からは、`scratch`が`sb`と`unity-sb`、`scratch-lts`が`sb-lts`と`unity-sb-lts`、`scratch-beta`が`2400`の系列だけ
     （`2026-11-19-02`③。Stackの票の「すること」の1の答え）
-  - 残り：human ownerの自己攻撃と、普通の操作の確かめ。結果は、件数と、containerと機械への影響で追補する
+  - 残り：普通の操作の確かめ。自己攻撃は2026-11-24に済んだ（下の「Stackの返却の照合（2026-11-21〜24）」）
 
 ### 返却の照合（2026-11-21、Java、TypeScript、C#）
 
@@ -338,6 +338,65 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - 気づいたこと：Javaは、JARの`Implementation-Version`が無いときの版を、`ClientIdentity`に`2400.0.0`と書いている。版を上げる
   ときは、`build.gradle.kts`と合わせて2か所を変える
 - 残り：11/25に、coordinatorが3つの担当へ`sb-beta`の接続先を渡し、pairingを承認する人と試験の場所をhuman ownerと決める
+
+### Stackの返却の照合（2026-11-21〜24）
+
+- 返却は3つで、どれも`mc-remote-stack`の`handoff-materials/`の下にある。coordinatorがサイズとSHA-256を計り、返却に書かれた
+  値と全桁同じだった
+
+  | 返却 | 読んだknowledge | `materials/RETURN_ja.md` | `materials/result.json` |
+  | --- | --- | --- | --- |
+  | `2026-11-21-stack-early-return` | `873f3f5` | 12,259 bytes、`1354b57438688f02c4f1ca5a47504439294c2bd6b14e923b59742eb9c4a734c4` | 4,287 bytes、`54d0a53414756f9ea55ae2edf27a80fadf4394d79e9e3ba4a88199a59c6af2e9` |
+  | `2026-11-23-vps-server-21-stage2-return` | `0aa39fe`（返却を作った時の`5528677`でも、票は同じ） | 7,586 bytes、`e0b0ee99f753a42912341d4bbca7448a8e2b4e4b6ab56f3184b4905ad3001b73` | 3,325 bytes、`e525734579d3a07053e9eabfadaa8270523a8a862a6569554747c6eedd302d61` |
+  | `2026-11-24-unity-sandbox-self-attack-addendum` | `5528677` | 12,981 bytes、`dbab83f453518468c9134c4202f73bd25ead689e90da042d0ed763a89578a2a0` | 5,550 bytes、`4c0c152267c2c83dc04f0be07ea1e4bcbe858a1c38488187f7042d0305b1dceb` |
+
+- Geyser：公開VPSの`sb`の`Geyser-Spigot.jar`（2.12.1-b1305）は、containerの中の2か所とも52,219,091 bytesで、公式のSHA-256と
+  全桁同じだった（2026-11-21、Stackが計った）。doctorは全部PASS
+- ViaVersion：今の`sb`の`block-versions`に4つを入れて起動し直し、起動のlogから警告が消えた（前後のlogは返却にある）。
+  ViaVersionは正式版の5.12.2のまま
+- 配布の既定：`mcrctl`が作るconfigには入れず、`examples/peripheral-plugins/`の雛形（9つのpluginのホームページとダウンロード
+  ページ、`block-versions`の抜き書き）と、公開の準備の手順書に入れた（PR #93）。human ownerの指示による（human owner
+  2026-11-24「examples/の雛形と手順書に入れるのは、私の指示。」）
+- PR #93：coordinatorがGitHubのAPIで照合した。head `be47b2ccae51927652efdbab788cf1845673e9bb`、base
+  `2a0a3d0b4630ea55a563fbb07b27c8eea49d96cc`、2026-11-22に`main`へmerge（`41d42682f1b42ba8e479c78b45a1a0fda75ca025`）。27 file、
+  `+4,411 / −279`。CIは無く、testは担当の手元で733件（mergeの前のhead）
+  - GAMEsのTCP 25575へは、DNSの切り替えだけではつながらなかった。VPSの中では`sb`の名前がMinecraftのcontainerを指し、Bridgeは
+    外へ出られない。外の接続先を、その名前から外し、外へ出るnetworkをBridgeに足した
+  - 2つの系列のWeb（`scratch-lts`、`bridge-lts`、`wirescope-lts`）を同じVPSに並べる。doctorは、外の接続先へhelloを送り、
+    `auth_required`が返ることを確かめる
+  - 実機にはまだ入れていない
+- PR #91（private opsのガイド）：返却のcommitは`836182296a0cea44dfc6eff45374a99f85965e6c`。2026-11-24に`main`を取り込むcommit
+  （`512a27ad2e5c0674856d2ce228c80b05a788b228`）を載せて、`main`へmergeされた（`2d9df8c50292a55e1b71918d6ff29d2e9116cc88`。
+  coordinatorがGitHubで見た）。8 file、`+196 / −1`
+- off-hostのbackup：VPSの中のServerBackupのZIPは作られているが、外へ送るsystemdの設定が10月のセットのままで止まっていた
+  （`status=226/NAMESPACE`）。human ownerが対処する（2026-11-24）
+- `2321.1`の片付け：human ownerがStackへ指示した（2026-11-24。hub NOTESの行）
+- Unity箱庭の見張り（2026-11-21 04:46〜11-24 12:17、JST、4,773回）：意図した試験での1回のほかは、再起動、memoryが足りずに
+  落とされたこと、helloの失敗は0。2026-11-21 05:31〜23:34は、human ownerの判断で外からのTCPを閉じた。その間に外から
+  `25585`へ127 packet、`25586`へ1 packetが来て、捨てた。23:35から、送り元ごとに32本までで開けている
+- 自己攻撃（2026-11-24。送り先は`unity-sb`の`25586`と`/ws/sync`だけ）
+
+  | 試験 | 起きたこと |
+  | --- | --- |
+  | 1つの送り元から40本つなぐ | 32本までつながり、残りはhostのfirewallで捨てた |
+  | firewallを一時的に開け、1,100本つなぐ | 開けるfileの上限1024に当たり、containerが1回起動し直して戻った |
+  | `auth.pairBegin`を5,000回 | 全部受け付けた（毎秒731回）。memoryは3.4MiB増えた |
+  | 改行の無い行をTCPで送り続ける | 65.0MiBで切られた。memoryは一時329.3MiB（上限512MiB） |
+  | `/ws/sync`へ巨大なframe | 64MiBまでは受け取った。256MiBは、138.5MiBで切られた |
+
+  - どの試験でも、ほかの4つのcontainer（`unity-sandbox-lts`、`minecraft`、`caddy`、`bridge`）は、起動し直さず、memoryで落と
+    されなかった。試験の後、doctorは全部PASS
+  - 残る弱いところ（Stackの評価）：送り元を分けて1,000本ほどつながれると、containerが起動し直して全員のペアリングが消える。
+    `auth.pairBegin`に上限が無い。巨大な入力を並べて送られると、512MiBを越えうる。上限の対策を入れた版へ替える理由を、
+    実測で裏付けた
+- 11/25からの公開VPSのworld：`sb-beta`のrc1は、新しいworldで始める。pluginの設定は引き継ぐ（human owner 2026-11-24）。
+  Stackの票に足した
+- `scratch`の組の一覧の`sb-beta`：11/25〜30は外す（上の「返却の照合（2026-11-20）」で決めたとおり。`2026-11-19-02`③）。
+  human ownerが、つながらない接続先を載せる価値を考えた（2026-11-24）。Scratch担当に聞くと、元へ戻しても壊れないが、今の画面では
+  理由が伝わりきらない（hub NOTESの行）。human owner 2026-11-24「現状を見ると外したほうが良さそう。」
+- 残り（Stack）：11/25のrc1のpresetと実機への適用、Paperとpluginの最新版（版、SHA-256、取ったページ、注意書き、起動のlog）、
+  Bridgeの設定、doctor（`sb`、`sb-lts`、`sb-beta`）、`session-only/`のmode。12月1日のpresetとlock、検証機での通し
+  （11/28〜29）、12月1日の手順と戻し方。実際のブラウザとWireScopeでの確かめ。Stackは、exact setの凍結と指示を待っている
 
 ### Scratchの搬送票：操作のエラーの知らせ方（2026-11-20）
 
@@ -483,8 +542,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - 統合版：Windowsの中でつながるところまでは確かめた。その後、統合版26.65が出て、Geyserがまだ対応していなかった（human owner
   2026-11-17）。2026-11-20：Geyser 2.12.1-b1305（2026-11-19、`1760ffb`、統合版26.40〜26.65）で統合版がつながった。公開VPSの
   箱庭もb1305に入れ替えた（human owner 2026-11-20）。Geyser-Spigotの公式のSHA-256は
-  `590802b7811176b1ccb23d65ae09f4848f32e4262fb76f18869c1698a46b3057`（coordinatorがGeyserの公開APIで見た。VPSに置いたJARは
-  まだ照合していない）
+  `590802b7811176b1ccb23d65ae09f4848f32e4262fb76f18869c1698a46b3057`（coordinatorがGeyserの公開APIで見た）。VPSに置いたJARは、
+  2026-11-21にStackが計り、全桁同じだった（上の`2400`の節の「Stackの返却の照合（2026-11-21〜24）」）
 - 残り：4（統合版）、8〜11
 - 2026-11-21：残りは、空いた有料GAMEs（11/25から`sb-lts`。上の「2026-11-19 `2400`横断release gate」の「GAMEsの引っ越し」）で
   試す。human ownerが、GitHubから取ったJARのSHA-256を計り、凍結したもの

@@ -129,7 +129,10 @@ Bridgeの接続先の設定（中のport）
     `discordsrv.com`は、Modrinthのページへ転送される
 - ViaVersion（2026-11-21に足した）：公開VPSの`sb-beta`（12月1日から`sb`）のViaVersionのconfigの`block-versions`に、
   `"1.20.5-1.20.6"`、`"1.21-1.21.1"`、`"1.21.2-1.21.3"`、`"1.21.4"`を入れる（`2026-11-21-04`）。今の公開VPSの`sb`も、
-  11月25日に移すまでは同じにする。Stackの配布の既定にも入れるかは、案を出す
+  11月25日に移すまでは同じにする。Stackの配布の既定にも入れるかは、案を出す（2026-11-24：`mcrctl`が作るconfigには入れず、
+  `examples/`の雛形と手順書に入れた。human ownerの指示による。PR #93）
+- 11月25日からの公開VPSのworld（2026-11-24に足した）：`sb-beta`のrc1は、新しいworldで始める。pluginの設定は引き継ぐ
+  （human owner 2026-11-24）
 - 11月25日（Stack）：公開VPSで`2400.0.0rc1`を`sb-beta`として動かす（上の「すること」の1）。公開VPSのBridgeが`sb`へつなぐ先を、
   GAMEsのTCP 25575にする（DNSの名前でつないでいるなら、DNSの切り替えで足りるかを確かめる）。Scratchの一覧は、2026-11-21の返却の
   予定のまま（`scratch`の組は`sb`と`unity-sb-lts`、`scratch-beta`の組は`sb-beta`と`unity-sb`）
