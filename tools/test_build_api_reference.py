@@ -100,6 +100,23 @@ class BuildApiReferenceTest(unittest.TestCase):
         self.assertNotEqual(result.returncode, 0)
         self.assertIn("2310", result.stderr)
 
+    def test_applies_to_replaces_the_prefix_sentence(self) -> None:
+        # 23.3.0は版の先頭が2321のまま（2026-11-15-03）なので、たたんだ版で当たるreleaseを言えない
+        meta = json.loads(json.dumps(META))
+        meta["protocol"] = {"version": "23.3.0", "applies_to": "McRemote `2321.2.0`から、このAPIで応えます。"}
+        result, out = run(meta)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        html = (out / "23.3.0" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("McRemote <code>2321.2.0</code>から、このAPIで応えます。", html)
+        self.assertNotIn("で始まる公開release", html)
+
+    def test_fails_without_artifact_prefix_or_applies_to(self) -> None:
+        meta = json.loads(json.dumps(META))
+        meta["protocol"] = {"version": "23.3.0"}
+        result, _ = run(meta)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("applies_to", result.stderr)
+
     def test_fails_when_table_has_unlisted_method(self) -> None:
         meta = json.loads(json.dumps(META))
         meta["excluded"] = []

@@ -681,6 +681,37 @@ feedbackの入口）が入っている
   画面は`v2321.2.0`、`接続中 (stream-1)`、置いたブロックの列が見える）。25は済み
 - 次：検証機での通し（11/28〜29）も、このimageで行う
 
+### Scratchのブロック一覧と、API一覧（2026-11-26）
+
+- 契機：human ownerが「Scratchブロック一覧は更新するよね？」と聞いた。gateの冒頭の「出した後」には`/api/scratch/`と
+  API一覧（`api/23.3.0/`と`api/24.0.0/`）を書いていたが、12月1日のホームページの案と、Stackの票の「coordinatorがすること」に
+  入っていなかった（coordinatorの漏れ）。McRemote `2321.2.0`が出た後も、`api/23.3.0/`を作っていなかった。元になるwire §7.3の
+  表にも、「McRemoteのreleaseに入った後に移す」とした3つのreasonが、まだ入っていなかった
+- coordinatorがGitHubのAPIで見た：Scratchのrc1のtag `v2400.0.0rc1`（`0ae8af4`）の`mc-remote/block-reference/site/`に、
+  `2400.0.0`の一覧が無い。入口の`site/blocks.json`は`release` `2321.2.0`、`protocol` `23.2.1`、`sourceCommit` `f9e6625`の全桁
+  （88,687 bytes `40c018b78dba77acfaeacbb59e4bc32a5d90ae96b074d1843753e34abde9af1f`）。`2400.0.0`の一覧は、tagより3 commit先の
+  `agent/scratch-2400-block-reference@7a4a6db`にあり、`site/2400.0.0/blocks.json`は上の「返却の照合（2026-11-20）」で見たものと
+  同じbytes（`759573b6…`）で、`sourceCommit`は`0ae8af4`の全桁。その枝でも、入口は`2321.2.0`のまま。`site/2321.2.0/`もある
+  （Scratchの`2321.2.0`は出していない）
+- human ownerの判断（2026-11-26「1〜3、それで進めてください」）
+  1. Scratchの最後の候補（`2400.0.0`）のcommitに、`site/2400.0.0/`と、`2400.0.0`にした入口を入れてもらう（候補の票の
+     「最後の候補のブロック一覧（2026-11-26に足した）」）
+  2. 12月1日に、`api/scratch/2400.0.0/`と入口を取り込む。`2321.2.0/`は取り込まない。rc1の間、入口は`2321.1.0`のまま
+  3. API一覧の`api/23.3.0/`を今作り、`api/24.0.0/`は12月1日に入れる
+- 3でしたこと
+  - wire §7.3の表へ、`out_of_bounds`、`build_range_exceeded`、`block_count_limit_exceeded`を移した（導入は`23.3.0`）。
+    `build_denied`の行は残し、McRemoteが`2321.2.0`から返さないことを書いた。`protocol_mismatch`と`expected_hello`のcodeの
+    移行を、済んだ形に直した。§5の`build_denied`（看板のwrite、落雷、`world.getNearbyEntities`、`world.playSound`の順序）と、
+    §7.3の`unloaded_chunk`の説明に、`23.3.0`からのreasonを書き足した。§10のb1の到達点は当時の記録なので変えていない
+  - `23.3.0`は版の先頭が`2321`のまま（`2026-11-15-03`②）で、「版が`2321`で始まる公開releaseはこのAPI」と言えない。
+    `tools/build-api-reference.py`に、metadataの`applies_to`（当たるreleaseを文で書く）を足した。足したtest 2つが、直す前に
+    `artifact_prefix`のKeyErrorで落ちることを見た。直した後、test 10件が通り、`--check`もOK。HEADのwireとmetadataから作り直した
+    `api/23.2.1/`の2 fileは、今のfileと同じbytes
+  - `10-protocol/api-reference-metadata.json`を`23.3.0`にし、`api/23.3.0/`を作った（32 method、40 reason）。入口の`api/`は
+    `23.3.0`へ送る
+  - 版の台帳（`00-hub/release-train-notes_ja.md`）の`2321.2`を「公開（McRemote）」、2026-11-26にした
+- 残り：「出した後」のうち、Protocol Inventory、F1のcase（tooling）、Scratch以外のclientの表示の依頼
+
 ### Scratchの搬送票：操作のエラーの知らせ方（2026-11-20）
 
 - 搬送票：`handoff-materials/2026-11-20-scratch-notifications/materials/HANDOFF_ja.md`（5,511 bytes、

@@ -3,9 +3,8 @@
   "schema_version": 2,
   "note": "API一覧（2026-09-30-05）の生成用metadata。契約の中身（params、result、reason）は書かず、wire-format-design_ja.mdの表から読む。ここに置くのは、載せるprotocolの版、分類、一行の用途だけ。",
   "protocol": {
-    "version": "23.2.1",
-    "artifact_prefix": "2321",
-    "since": "rc1"
+    "version": "23.3.0",
+    "applies_to": "McRemote `2321.2.0`（LTS）から、このAPIで応えます。Unity箱庭の`2321.2.0`も同じです。版の先頭は`2321`のままで、`2321.0`と`2321.1`はprotocol 23.2.1です。protocol 23.2.1のPythonとScratch（`2321.1.0`）もつながります。"
   },
   "categories": [
     {

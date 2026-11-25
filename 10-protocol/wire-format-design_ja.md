@@ -474,7 +474,8 @@ click event等、それ以外のstyleは受理しない。
 
 readのreasonは`invalid_params`／`not_a_sign`だけとし、waxedでも読み取れる。writeのreasonは
 `invalid_params`／`not_a_sign`／`sign_waxed`／`invalid_property_value`／`sign_update_failed`／
-`permission_denied`／`build_denied`／`backpressure`／`work_limit_exceeded`とする。
+`permission_denied`／`build_denied`／`backpressure`／`work_limit_exceeded`とする。protocol `23.3.0`からは、`build_denied`に替えて
+`out_of_bounds`（世界の外）と`build_range_exceeded`（建築範囲の外）を返す（§7.3）。
 
 writeは全入力とavailabilityを検証してから、sign state全体に対する一つのmutationだけを行う。stale snapshotなら
 書込み前に拒否し、部分変更を残さず`sign_update_failed`を返す。「書いてから元へ戻す」rollbackをcontractにしない。
@@ -542,7 +543,7 @@ LightningStrike、UUID、handle、影響entity／block一覧は返さない。
 認可は§6.2のpermission snapshotを持つplayer-boundな認証済みsessionを要求する。未束縛は`auth_required`。
 `world.strikeLightning`だけの個別permissionは持たず、旧`mcr.lightning`をconfig、PermissionProvider、実行gate、
 fixtureから除外する。build rangeはsession snapshotを使いtargetのX／Zを両端込みで検査し、Yはrange判定から除外する。
-違反は`build_denied`で、副次効果がrange外へ及ばないことまでは保証しない。
+違反は`build_denied`（protocol `23.3.0`からは`build_range_exceeded`）で、副次効果がrange外へ及ばないことまでは保証しない。
 
 副作用前の順序を、params shape／finite／absolute overflow→bound session admission→snapshot build range→専用rate
 admission→WorkAdmission→chunk→Paper full strike、と固定する。
@@ -730,7 +731,7 @@ shared fixture接続を対象とし、Scratch learner blockは別trackの非bloc
 `world.getNearbyEntities`は必須の`[x, y, z, radius, max_entities]`をとる。座標はstream origin相対の有限数値、
 `radius`は有限数値で0〜64、`max_entities`は整数で1〜64とし、64／64を配布時のruntime policy既定値にする。
 64はprotocolの上限で、runtime policyはこれより下げられるが上げられない。policyを超える値は切り詰めず`invalid_params`とする。結果は`[{handle, type, pos}, ...]`、0件は`[]`。build rangeは
-探索するX/Z bounding square全体で判定し、超過は`build_denied`。chunk indexへ変換できない座標は`invalid_params`、
+探索するX/Z bounding square全体で判定し、超過は`build_denied`（protocol `23.3.0`からは`build_range_exceeded`）。chunk indexへ変換できない座標は`invalid_params`、
 work costの整数overflowは`work_limit_exceeded`とする。半径64ではchunk columnは最大81、`max_entities=64`の
 work costは最大145である。
 
@@ -780,7 +781,7 @@ B8でdata型に対応しないparticleに、objectでdataを指定して要求�
 2. `sound_id`の解決（`unknown_sound`）
 3. receiverが`self`なら、束縛（`auth_required`）とonline（`player_offline`）
 4. permission（`permission_denied`）
-5. build range（`build_denied`）
+5. build range（`build_denied`。protocol `23.3.0`からは`build_range_exceeded`）
 6. 1 tickあたりの上限（`backpressure`）
 7. WorkAdmission（`backpressure`／`work_limit_exceeded`）
 8. 鳴らす（失敗は`internal_error`）
@@ -1043,7 +1044,7 @@ protocol 21の文字列`block_state_ref`、`getBlock`文字列result、文字列
 
 > 却下＝カテゴリ別に `catalog.getBlocks`/`getEntities`/`getParticles` を分ける案：往復が増えるだけで、3カテゴリを束ねるコストは低い。却下＝チャンク配送を先に設計する案：未実測のサイズ問題を先回りして複雑化する。却下＝`catalogHash` を素の version 文字列にする案：同一 MC バージョンで mod 構成が異なる場合を区別できない。却下＝world_constants の全表を catalog.get へ折り込む案：mod 非依存の静的 domain fact を毎接続で運ぶ理由がなく、既存 hello 拡張の枠組みと二重管理になる。
 
-### 7.3 エラー設計（確定 `2026-06-27-03`、`2026-07-01-08` で改訂、`2026-07-07-02` で b2 player reason を追加、`2026-08-02-01` で credential reason を追加、`2026-08-02-02` で `data.ref` 規則を改訂、`2026-08-26-05`でsign reason、`2026-09-01-01`でb7 reason、`2026-09-30-01`／`2026-09-30-02`でb8 reasonを追加、`2026-11-10-01`で`protocol_mismatch`の形を追加、`2026-11-12-03`で`expected_hello`を追加）
+### 7.3 エラー設計（確定 `2026-06-27-03`、`2026-07-01-08` で改訂、`2026-07-07-02` で b2 player reason を追加、`2026-08-02-01` で credential reason を追加、`2026-08-02-02` で `data.ref` 規則を改訂、`2026-08-26-05`でsign reason、`2026-09-01-01`でb7 reason、`2026-09-30-01`／`2026-09-30-02`でb8 reasonを追加、`2026-11-10-01`で`protocol_mismatch`の形を追加、`2026-11-12-03`で`expected_hello`を追加、`2026-11-14-02`／`2026-11-14-05`の3つのreasonをprotocol `23.3.0`で表へ移す）
 
 §7③ の b1 部分を画定。**JSON-RPC 標準 error オブジェクトに一本化**（独自封筒を作らない＝`2026-06-26-01` の標準枠原則に忠実）。`code` は JSON-RPC 標準に従い、**意味は `data.reason`（安定 enum）が運ぶ二層**。UI/AI/test は `reason` を分岐 key にし family（code）を意識しなくてよい。
 
@@ -1070,7 +1071,10 @@ string`"3"`は別型とする。BlockValue出力はregistryの正準型を使い
 | params 検証 | `-32602`（Invalid params） | `invalid_params` | JSON-RPC params の形・型・座標値が不正 | b2 |
 | | | `zero_direction` | directionの3成分がsigned zeroだけで向きを定義できない | b7 |
 | | | `unknown_dimension` | 指定DimensionKeyがloaded dimensionとして解決できない | b5／protocol 22 |
-| world-state | `-32000`番台（実装定義域） | `build_denied` | build policy / 範囲 / 認可により操作拒否。返せる場合は `data.bounds` / `data.violating` 等で理由を補足 | ○ |
+| world-state | `-32000`番台（実装定義域） | `build_denied` | build policy / 範囲 / 認可により操作拒否。返せる場合は `data.bounds` / `data.violating` 等で理由を補足。McRemoteは`2321.2.0`（protocol `23.3.0`）から返さず、`build_range_exceeded`と`block_count_limit_exceeded`に分けた。前のclientのために名前を残す | ○（`23.3.0`から返さない） |
+| | | `out_of_bounds` | 世界の外（ブロックを置ける高さ`y_min`〜`y_max`の外と、水平方向の世界の端の外）。権限やbuild policyの範囲より先に判定し、`world.setBlocks`は一部でも外れたら何も置かない。`data.bounds`（`y_min`、`y_max`、`world_border`）と`data.violating`（最初に外と判定した点の絶対座標）を返す（§7.3の「世界の外は`out_of_bounds`」） | `23.3.0` |
+| | | `build_range_exceeded` | 建築範囲（helloの`permissions.buildRange`）の外。`data.bounds`（`center`、`build_range`）と`data.violating`（外れた点の絶対座標）を返す（§7.3の「建築範囲の外と、1回に置ける数の上限は、別のreasonにする」） | `23.3.0` |
+| | | `block_count_limit_exceeded` | playerごとの1回に置けるblock数の上限（`mcr.build.blocks`）を越えた。`data.limit`に上限、`data.requested`に置こうとした数を返す。上限が0のときも同じ | `23.3.0` |
 | player-state | `-32000`番台（実装定義域） | `permission_denied` | LuckPerms 等の認可により操作拒否。token は温存 | b2 |
 | | | `player_offline` | token は有効だが paired player がオンラインでない | b2 |
 | | | `teleport_failed` | `player.setPose`、`entity.setPose`等のteleport自体が`permission_denied`／`player_offline`／`unknown_dimension`／`invalid_params`以外の要因で失敗 | b5／protocol 22、`entity.setPose`はb8 |
@@ -1099,14 +1103,14 @@ string`"3"`は別型とする。BlockValue出力はregistryの正準型を使い
 | params 検証 | `-32602`（Invalid params） | `credential_not_found` | `auth.revoke` で指定した `credential_id` が要求元 UUID の active credential に無い（他 player の ID と存在しない ID を同値へ畳んで存在を隠す）。**caller の token は温存**し、`ref` に `credential_id` を返す | bN |
 | credential-state | `-32000`番台（実装定義域） | `credential_limit_reached` | UUID ごとの active long-lived credential 上限に到達。`data.type` / `data.limit` / `data.active` を返す。古い credential を自動失効させず、ユーザーが list / revoke する | bN |
 | auth-service | `-32000`番台（実装定義域） | `credential_store_unavailable` | server が credential 状態を現在検証できない、または credential 管理操作の durable な結果を確定できない。`data.operation`（`resolve`/`issue`/`list`/`revoke`/`touch`）を返す。**単独では token を invalid と分類せず、client は token を削除せず自動再ペアリングもしない**（token 温存・再試行） | bN |
-| negotiation | `-32000`番台（実装定義域） | `protocol_mismatch` | helloで、serverのprotocolがclientの申告を満たさない（versioning §8.2）。`data.server`（serverのprotocol）と`data.client_requires`（clientがhelloで申告したprotocol）を返す。clientはreasonで判定し、codeでは分けない。McRemote `2321.1.0`まではcode `-32600`で、`-32000`番台へ移す（`2026-11-10-01`） | ○ |
-| | | `expected_hello` | helloが成功する前に、`hello`と`auth.*`（§6.5、§6.6）以外のmethodが来た。serverはerrorを返して接続を閉じる。McRemote `2321.1.0`まではcode `-32600`で、`-32000`番台へ移す（`2026-11-12-03`） | ○ |
+| negotiation | `-32000`番台（実装定義域） | `protocol_mismatch` | helloで、serverのprotocolがclientの申告を満たさない（versioning §8.2）。`data.server`（serverのprotocol）と`data.client_requires`（clientがhelloで申告したprotocol）を返す。clientはreasonで判定し、codeでは分けない。McRemote `2321.1.0`まではcode `-32600`で、`2321.2.0`（protocol `23.3.0`）から`-32000`番台（`2026-11-10-01`） | ○ |
+| | | `expected_hello` | helloが成功する前に、`hello`と`auth.*`（§6.5、§6.6）以外のmethodが来た。serverはerrorを返して接続を閉じる。McRemote `2321.1.0`まではcode `-32600`で、`2321.2.0`（protocol `23.3.0`）から`-32000`番台（`2026-11-12-03`） | ○ |
 
 - **`missing_namespace` は廃止**（無印は有効＝`2026-06-27-02`、`minecraft:` 補完される）。
 - **`credential_not_found` と `token_not_found` は別物**（`2026-08-02-01`）：`token_not_found` は hello で提示した bearer token 自体が無効＝`2026-07-04-03` 項3 の**破棄・再ペアリング**側。`credential_not_found` は `auth.revoke` で指定した管理対象 ID が見つからないだけで、**caller の token は有効なまま**。`credential_store_unavailable` も温存側で、サーバー側の一時的な store 障害で全 client が有効な credential を捨てて再ペアリングへ雪崩れ込むことを防ぐ。プラグイン内部の線形化（authority commit の前後で何を返すか）は wire に出さず `11-plugin/platform-design_ja.md` が持つ。
 - **reason 分割の理由**：生徒のミスが別物（付け忘れ/構文破壊/prop 無い/値不正）で、ライブ画面が別メッセージを出せると切り分け教育になる。`allowed` を返せるのは `invalid_property_value` だけ＝非対称が綺麗に出る。
-- **`unloaded_chunk` は b1 reason から廃止**（DECISIONS `2026-07-01-08`）。未生成 chunk に対してロード/生成せず有意味な block 操作や query を行う実体はなく、許可された操作ならロード/生成して処理する。禁止すべき操作は chunk ロード状態ではなく build policy / 範囲 / 認可の問題なので、ユーザーに返す安定 reason は `build_denied` とする。chunk generation policy が必要になった場合は bN で別 reason として設計する。
-- **後送り（名前予約のみ）**：`catalog_cache_stale`・`unknown_namespace`・`out_of_bounds`(world-state/y 範囲外・即判定で混乱しないため後送り)。`out_of_bounds`は、世界の外の意味で使う（次の箇条）。
+- **`unloaded_chunk` は b1 reason から廃止**（DECISIONS `2026-07-01-08`）。未生成 chunk に対してロード/生成せず有意味な block 操作や query を行う実体はなく、許可された操作ならロード/生成して処理する。禁止すべき操作は chunk ロード状態ではなく build policy / 範囲 / 認可の問題なので、ユーザーに返す安定 reason は `build_denied` とする（protocol `23.3.0`からは、建築範囲の外は`build_range_exceeded`）。chunk generation policy が必要になった場合は bN で別 reason として設計する。
+- **後送り（名前予約のみ）**：`catalog_cache_stale`・`unknown_namespace`。`out_of_bounds`もここで名前だけ予約していた（world-state/y 範囲外・即判定で混乱しないため後送り）が、世界の外の意味でprotocol `23.3.0`から使う（次の箇条）。
 - **世界の外は`out_of_bounds`**（`2026-11-14-02`、`2026-11-14-04`）：ブロックを置ける高さ（`y_min`〜`y_max`）の外と、水平方向の世界の端（Minecraftではworld border、Unity箱庭では400×400の外周）の外への`world.setBlock`／`world.setBlocks`／`world.getBlock`／`world.getBlocks`／`world.setSign`／`world.updateSignLine`は、`out_of_bounds`（code `-32000`）で拒む。`world.getHeight`は、水平方向の端の外だけを拒む。`setBlocks`は一部でも外れたら何も置かない。権限やbuild policyの範囲より先に判定する。`data`は次の形（値は説明用）。
 
   ```json
@@ -1121,11 +1125,11 @@ string`"3"`は別型とする。BlockValue出力はregistryの正準型を使い
   }
   ```
 
-  `y_min`と`y_max`は置ける高さで、両端を含む（`00-hub/world-constants-facts_ja.md`のkeyと同じ名前と意味）。`world_border`はそのときの中心と大きさで、内外の判定はMinecraftのworld borderに従う。Unity箱庭の外周（x、zが-200〜199）は、中心`(0, 0)`、大きさ`400`で表す。`violating`は、最初に外と判定した点の世界の絶対座標で、原点からの相対ではない。`setBlocks`と`getBlocks`では、箱の対角の2点のどちらか。McRemoteのreleaseに入った後に、上の表へ移す。
+  `y_min`と`y_max`は置ける高さで、両端を含む（`00-hub/world-constants-facts_ja.md`のkeyと同じ名前と意味）。`world_border`はそのときの中心と大きさで、内外の判定はMinecraftのworld borderに従う。Unity箱庭の外周（x、zが-200〜199）は、中心`(0, 0)`、大きさ`400`で表す。`violating`は、最初に外と判定した点の世界の絶対座標で、原点からの相対ではない。`setBlocks`と`getBlocks`では、箱の対角の2点のどちらか。McRemote `2321.2.0`（protocol `23.3.0`）に入ったので、上の表へ移した。
 - **建築範囲の外と、1回に置ける数の上限は、別のreasonにする**（`2026-11-14-05`）：上の表の`build_denied`を、原因ごとに分ける。codeはどちらも`-32000`。
   - `build_range_exceeded`：建築範囲（helloの`permissions.buildRange`）の外。`world.setBlock`／`world.setBlocks`／`world.getBlock`／`world.getBlocks`／`world.setSign`／`world.updateSignLine`／`world.strikeLightning`／`world.spawnParticle`／`world.getHeight`／`world.spawnEntity`／`world.getNearbyEntities`／`entity.setPose`／`world.playSound`／`world.playBlockSound`。`data.bounds`は`{ "center": { "x", "z" }, "build_range" }`（centerは建築の原点の絶対座標。x、zの差がどちらも`build_range`以下なら内）、`data.violating`は外れた点の絶対座標。判定に使った点を数のまま返す（`2026-11-15-02`）。entity、粒子、音、落雷などは実数のまま、blockのmethodでも`251.0`のように実数で書かれることがある。建築範囲はx、zだけで判定するので、`world.getBlocks`と`world.getHeight`の`violating.y`は建築の原点のy、`world.getNearbyEntities`では探す中心のyになる
   - `block_count_limit_exceeded`：playerごとの1回に置けるblock数の上限（`mcr.build.blocks`）を越えた。`world.setBlock`／`world.setBlocks`。`data.limit`に上限、`data.requested`に置こうとした数（`world.setBlock`は1）。`violating`は無い。上限が0のときも同じreason（`2026-11-15-02`）
-  - McRemoteは`build_denied`を返さなくなる。McRemoteのreleaseに入った後に、2つのreasonを上の表へ移し、`build_denied`の行は消さずに、返さなくなった版を書く（前のclientのために名前を残す）。このファイルのほかの`build_denied`も、そのときに直す
+  - McRemoteは`2321.2.0`（protocol `23.3.0`）から`build_denied`を返さない。2つのreasonを上の表へ移し、`build_denied`の行は消さずに、返さなくなった版を書いた（前のclientのために名前を残す）。このファイルのほかの`build_denied`も直した。§10のb1の到達点は当時の記録なので、そのままにした
 - **適用範囲**：b1 では getBlock に加え、chat.post/setBlock/setBlocks も **id 付き同期 request** として result/error を取れる形を基準にする（`2026-07-01-08`）。notification は JSON-RPC 上は可能だが result/error を返さないため、send-only 既定化は b1 の疎通確認対象から外す。server pushは採らず、eventは§5.4のpollへ進める（`2026-08-16-05`）。
 - **送信モードの体験タクソノミー**はprotocol 22／b5でDEBUG／TRACE／FASTへ具体化した（`2026-08-20-03`）。wire上の実体はnotification（応答なし）、id付きrequest（同期result/error）、`connection.flush` barrierであり、mode名やdelayはwireへ送らない。TRACEはclient側pacing、FASTはsend-onlyで、batch／jobは引き続き高水準API・後続protocolの話である。
 

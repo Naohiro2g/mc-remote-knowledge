@@ -89,7 +89,12 @@ def build_data(commands: dict[str, dict[str, str]], errors: list[dict[str, str]]
     excluded = {e["method"] for e in meta.get("excluded", [])}
     problems: list[str] = []
     protocol = meta["protocol"]
-    if protocol["artifact_prefix"] != fold(protocol["version"]):
+    # 版の先頭でreleaseを言えない版（23.3.0は2321のまま、2026-11-15-03）は、artifact_prefixの代わりにapplies_toで書く
+    if "applies_to" in protocol:
+        pass
+    elif "artifact_prefix" not in protocol:
+        problems.append("protocolにartifact_prefixもapplies_toも無い")
+    elif protocol["artifact_prefix"] != fold(protocol["version"]):
         problems.append(f"artifact_prefix {protocol['artifact_prefix']}がprotocol {protocol['version']}をたたんだ{fold(protocol['version'])}と違う")
     for method in commands:
         if method not in listed and method not in excluded:
@@ -169,6 +174,11 @@ def render_html(data: dict) -> str:
     )
     title = f"API一覧（protocol {protocol['version']}）"
     note = f"\n\t\t\t<p class=\"api-note\">{inline(protocol['note'])}</p>" if protocol.get("note") else ""
+    if "applies_to" in protocol:
+        applies = f"{inline(protocol['applies_to'])}\n\t\t\t\t"
+    else:
+        applies = (f"版が<code>{html.escape(protocol['artifact_prefix'])}</code>で始まる公開release（{html.escape(protocol['since'])}から）は、\n"
+                   "\t\t\t\tこのAPIを使います。")
     return f"""<!DOCTYPE html>
 <html lang="ja">
 
@@ -216,8 +226,7 @@ def render_html(data: dict) -> str:
 	<main class="api-page">
 		<div class="container">
 			<h1>{html.escape(title)}</h1>
-			<p>protocol {html.escape(protocol['version'])}のProtocol APIの一覧です。版が<code>{html.escape(protocol['artifact_prefix'])}</code>で始まる公開release（{html.escape(protocol['since'])}から）は、
-				このAPIを使います。対応するMinecraftの版は<a href="{MCREMOTE_RELEASES_URL}" target="_blank" rel="noopener">McRemoteのリリース</a>を、
+			<p>protocol {html.escape(protocol['version'])}のProtocol APIの一覧です。{applies}対応するMinecraftの版は<a href="{MCREMOTE_RELEASES_URL}" target="_blank" rel="noopener">McRemoteのリリース</a>を、
 				各言語のClient Libraryでの書き方は、それぞれのリポジトリを見てください。</p>{note}
 			<p class="api-note">このページは、仕様の正本<a href="{WIRE_URL}" target="_blank" rel="noopener">wire-format-design</a>の§4コマンド表と§7.3 error表から
 				自動生成しています。正確な条件、検証の順序、上限は正本を見てください。<a href="api.json">機械可読版（api.json）</a></p>

@@ -140,6 +140,22 @@ Scratchの確定搬送票で、知らせ方を決めた（`2026-11-20-02`）。1
 「2026-11-19 `2400`横断release gate」の「返却の照合（2026-11-20）」）。6のtestで、読み替えを外すと落ちることを見てもらう
 （候補のcodeは変えない）。「Unity」の絞り込みは、Unity箱庭の積み直した`2400`の候補と照合する
 
+### 最後の候補のブロック一覧（2026-11-26に足した）
+
+rc1のtag `v2400.0.0rc1`（`0ae8af418d095bac734f37bfca35804810ec1cae`）の`mc-remote/block-reference/site/`には、`2400.0.0`の一覧が
+入っていない。入口の`site/blocks.json`は`release` `2321.2.0`、`protocol` `23.2.1`のまま。`2400.0.0`の一覧は、tagより3 commit先の
+`agent/scratch-2400-block-reference@7a4a6db`にある（`site/2400.0.0/blocks.json` 88,687 bytes
+`759573b6c8d8657c812428dccc3f4397644db4ea944c2723c9934ea07ab93dcb`、`release` `2400.0.0`、`protocol` `24.0.0`、`sourceCommit`
+`0ae8af4`の全桁、53 block）。ホームページの`/api/scratch/`は、tagの`site/`と同じbytesのfileだけを取り込む（Stackの取り込みの条件）
+ので、このままでは12月1日に取り込めない（human owner 2026-11-26「1〜3、それで進めてください」）。
+
+- 最後の候補（`2400.0.0`、11/28〜29）のcommitに、`7a4a6db`の`site/2400.0.0/`を入れる。入口の`site/blocks.json`、`index.html`
+  なども`2400.0.0`にする。rc1の後にブロックの定義が変わっていなければ、`sourceCommit`は`0ae8af4`のままでよい
+- `site/2321.2.0/`は、ホームページへは取り込まない（Scratchの`2321.2.0`は出していない）。repoに残すかは任せる
+
+返却に足すもの：最後の候補のcommitの`site/`のうち、`2400.0.0/blocks.json`と入口の`blocks.json`のbytes、SHA-256、`release`、
+`protocol`、`sourceCommit`。`sourceCommit`から最後の候補までに、ブロックの定義が変わっていないこと
+
 ## minecraft-remote-tooling
 
 - base：`agent/tooling-23212-candidate-20261117@37a4e79f7536b4b4a5cc9eeb7a2470b1d622a726`（PR #13）
