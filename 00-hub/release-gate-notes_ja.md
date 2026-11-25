@@ -99,7 +99,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   接続とpairingの上限が無いと分かった上で、2026-11-20に今の候補を動かし、docker側の対策と見張りを用意して開ける。数日のうちに、
   上限の対策を入れた版へ替える。2026-11-24：対策版が返り、照合した（下の「Unity箱庭の上限の対策版の照合（2026-11-24）」）。
   2026-11-26：LTSの`candidate-1594805`は、Unity Webが真っ黒になる。作り直す（下の「Stackの返却の照合（2026-11-26）」）。
-  同じ日に作り直した`candidate-1594805-2`を照合し、凍結のLTSを替えた
+  同じ日に作り直した`candidate-1594805-2`を照合し、凍結のLTSを替えた。Stackが`unity-sb-lts`をこれに替えた（下の「Stackの
+  `unity-sb-lts`の差し替えの照合（2026-11-26）」）
 - GAMEsの引っ越し（2026-11-21、`2026-11-21-01`）: `sb-retro`は、30日借りる2つ目の有料GAMEs（実験サーバー、2026-11-21にhuman ownerが契約した）へすぐ移す。11/25に、
   これまでの`sb`をworldごと今のGAMEsへ移してMcRemote `2321.2.0`（LTS）にし、`sb`と`sb-lts`がそこを指す。同じ日に、公開VPSの
   `sb-beta`をrc1にする。12/1に、`sb`は公開VPSの`2400.0.0`を指す。GAMEsの作業はhuman owner。LTSは3月と9月に出し、2つまで
@@ -652,6 +653,33 @@ feedbackの入口）が入っている
   - pushの前の2段の確かめは、次から毎回通す。12月1日の`2400.0.0`の最後のimageも（human owner 2026-11-26「pushの前の2段の確かめ
     追加。」）。候補の票に足し、repoの手順にすることはhub NOTESの行
 - 次：Stackが`unity-sb-lts`を替え、human ownerが人間の試験の25で開く
+
+### Stackの`unity-sb-lts`の差し替えの照合（2026-11-26）
+
+- 票：Stackの票の「12月1日の一覧の表示名と、LTSのUnity箱庭（2026-11-26に足した）」
+- 返却：Stackの`handoff-materials/2026-11-26-unity-lts-rebuild-swap/`。`materials/RETURN_ja.md` 5,837 bytes
+  `b5254e153121c7ad75e24201989b726de0fef9663ef1ab738c3093751573625e`、`materials/result.json` 2,759 bytes
+  `d417ff0003c0d53dd7ebd393c1e661f836f79bf98f95e8f485b05669065ac526`。`SHA256SUMS`の3つは合う。読んだknowledgeは`ab004a7`
+- 替え方（返却）：オンラインが0人なのを見てから、`sandboxes.toml`の`lts`だけを替えた。planの差分は`unity-sandbox-lts`の`image`と
+  lockのlabelだけで、`scratch.json`と`scratch-lts.json`は変わらない。lockは`sha256:442dec691bee39f8d5af87fd00609dc29236dd6bb2101943f7bab30ec8edcd00`
+  （前の返却のlockと同じ）から`sha256:e5b6c504047e9f78c61ff18b177d9017325034bf081397a653aa30aa2e5bfc61`へ
+- 動かしたdigest（返却）：`unity-sb-lts`（`25585`）は
+  `ghcr.io/naohiro2g/mc-remote-unity-sandbox@sha256:0737c28a1753847d8d1c4218a26561af083886def4457c2e3cd64d84f3c76828`で、票と同じ。
+  再起動とOOMは無い。`unity-sb`（`25586`）は`sha256:e39109f0e3ff6bbc9ef2a0f4fb6048735817fa250a5226b404430ace52101097`のまま
+- 外からのhello（返却）：認証の前は`auth_required`。ペアリングした後のhelloは、`protocol` `23.3.0`、`server`
+  `mc-remote-unity-sandbox` `2321.2.0`
+- coordinatorが外から取り直した：`https://unity-sb-lts.mc-remote.com/Build/WebGL.data` 14,208,678 bytes
+  `1040cd821ec5a6afc5ca518bbaefe0030e18749e64a372da52fae812ac39fc84`で、票の値と、layerから取り出した値と同じ。`WebGL.wasm`、
+  `WebGL.framework.js`、`WebGL.loader.js`、`/`のbytesとSHA-256も返却と同じ。`/healthz`は`2321.2.0`、`23.3.0`。`unity-sb`の
+  `/healthz`は`2400.0.0rc1`、`24.0.0`のまま
+- doctor（返却）：10行ともOK。lockの行は替えた後の`e5b6c504…`
+- 変えていないもの（返却）：Webの接続先の表示名は11月30日まで今のまま。前のUnity箱庭のimageは6つとも残っている（戻すときの
+  `candidate-1594805`と`candidate-f7d0f9a`を含む）。公開VPSのMcRemoteの`session-only`は`0700`と`0600`のまま
+- browserで開いた結果（返却の§5）：ロゴの後に場面とHUDが出て、自動同期（`v2321.2.0`、`接続中 (stream-1)`、地域135件の
+  snapshotを受信）が動いた。実施票の25は通った、とある
+- 人間の試験の25：human ownerが開き、ペアリングと建築ができた（human owner 2026-11-26「開いて、ペアリング、建築を確認しました」。
+  画面は`v2321.2.0`、`接続中 (stream-1)`、置いたブロックの列が見える）。25は済み
+- 次：検証機での通し（11/28〜29）も、このimageで行う
 
 ### Scratchの搬送票：操作のエラーの知らせ方（2026-11-20）
 

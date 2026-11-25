@@ -208,6 +208,7 @@ warning。ViaVersionのconfigの差分と、起動のlogで警告が消えたこ
 
   返却に足すもの：動かしたdigest、外からのhello（`protocol`と`server.version`）、`https://unity-sb-lts.mc-remote.com/`の`WebGL.data`の
   bytesとSHA-256（`14,208,678` bytes、`1040cd821ec5a6afc5ca518bbaefe0030e18749e64a372da52fae812ac39fc84`になるはず）、doctor
+- 2026-11-26：返り、coordinatorが照合した（gate notesの「Stackの`unity-sb-lts`の差し替えの照合（2026-11-26）」）
 
 ## coordinatorがすること
 
