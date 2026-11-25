@@ -75,7 +75,7 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 
 - gate coordinator: knowledge担当session（Claude Code）。人間による明示handoffなしに他担当へ移さない
 - human release owner: プロジェクトオーナー
-- current phase: 候補（`2400.0.0rc1`）を頼む（2026-11-19に開いた）
+- current phase: 予行演習（2026-11-19に開いた。2026-11-25に`2400-set-1`を凍結した。下の「凍結するexact set（2026-11-25、`2400-set-1`）」）
 - 位置づけ: protocolのmajorを`24`へ進める区切り（`2026-11-05-01`）。中身は`2321.2`のために作ったもので、版を付け直す
   （`2026-11-19-01`）。同じ時に、`2321`の系列をLTSの名前で出す（`2026-11-19-02`、上の`2321.2`の節）
 - 日付: 12月1日0時（JST）。デプロイとホームページの改訂まで3時間以内。延期するかは11月27日に決め、延期なら12月5日
@@ -443,6 +443,61 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - 次：11月25日に、Stackが公開VPSで替える（human owner 2026-11-24「上限の対策版は明日で良いです。」。Stackの票の「上限の対策版へ
   替える（2026-11-24に足した）」）。人間の試験（担当の案）は、替えた後。
   案に足すこと：Scratchで、ペアリングを始める前に30秒より長く待ったときの動き
+
+### 凍結するexact set（2026-11-25、`2400-set-1`）
+
+human ownerが承認した（2026-11-25「凍結、2400-set-1。」）。coordinatorがまとめた。2026-11-25に、候補のbranchの先頭が下のcommitのままであること、CIの
+artifactが残っていること、GHCRのtagが下のdigestを指すことを、GitHubのAPIとloginしないRegistry APIで確かめた。配布物のbytesと
+SHA-256は、coordinatorが取り直して計ったもの（上の「返却の照合（2026-11-20）」と「Unity箱庭の上限の対策版の照合（2026-11-24）」）。
+protocolは`24.0.0`。同じ時に、LTSのUnity箱庭`2321.2.0`を凍結する。LTSのMcRemote `2321.2.0`は`2321.2-set-1`のまま
+
+- McRemote：`release/2400.0.0rc1@d93f5212d189650cd1c7c7fb2aa14c8a73934fc1`（PR #22、`main`へ、open）。CI `44524127846`、artifact
+  `14529373048`（`sha256:ba190fb2f0ec9be9d0e3d2d7590ee6dd086e93081b27511bf36b83e42ef5dc1d`、期限2027-02-17）。
+  `mc-remote-2400.0.0rc1.jar` 349,793 bytes `9583b7e9db16e3062cfb8ea5be1c7b5330e1df92eaeea1dd7b2fdb77a75d457a`、`minecraft-targets.json`
+  （`1.21.11`と`26.3`）`8e830732decd6bcde13f91eb6c071d062ba6993342a7edb52e6ea543b9e0c361`
+- Python：`agent/python-2400-rc1@d0aae0092ee44400b44b56087ec7f9eb49ef8dac`（draft PR #17）。CI `44486884399`、artifact `14510823109`
+  （`sha256:5625636a3055b213446a14b8e8853cec3ef53f2701549e0b370311384388678f`、期限2027-02-17）。wheel
+  `minecraft_remote_api-2400.0.0rc1-py3-none-any.whl` 196,455 bytes `1e54fa253a397ffd4cfef6ba623260386b2414d3543dcbbc1246e1061bf71dc2`、
+  sdist `minecraft_remote_api-2400.0.0rc1.tar.gz` 190,594 bytes `1ab6f8c5e43bf1eb50d172572462156141ee0f79877f1b0e921c2e838955e426`、
+  `manifest.json` 674 bytes `4a2c86b5d798ac507044b8a14b249cdff12618f7506e13abb28c3c5f8a37804f`
+- Scratch：`agent/scratch-2400-rc1@0ae8af418d095bac734f37bfca35804810ec1cae`（draft PR #40、`develop`へ）。run `44650257207`、artifact
+  `14590773440`（`sha256:76ff9210e5c2ef099ad2e7e594af087114dca5c4fe758284dcf6de579ed0edb5`、期限2027-02-18）
+  - LANのZIP：Windows 264,584,655 bytes `d49e1bac359d43caa1d2cbd8e31e47dc54cede0923ec7dee25d24821a30f12ea`、macOS 268,936,322 bytes
+    `8b1f272835f0e5297fa14e048e8c80f1d60c1267ba1af44d3e5ace227a592834`、Linux 274,192,377 bytes
+    `35a576583fc0c61729ec044336d4167f8d448b56339db2031417a0e1baad130b`
+  - Scratch OCI index `sha256:a24be219c79d8fa5273bc0a82df0ec94fcc3da3a2114e5577cde5a3f5d7780a9`（`scratch.oci.tar` 330,516,480 bytes
+    `cf4b693005d284616fc00a6b37d4d977662b5635e8f231f37ac13bd5c9676172`）、`scratch-gui.tar.gz` 141,185,544 bytes
+    `04879de729e04ce13d4ef90d139c49b67ffc14977c35dc60f096739ecd867529`、`contracts.tar.gz` 2,641 bytes
+    `ea16b791383b510de93cce8f43c072b5a9c856df7d23217f825af5cda392eb25`（`2321.2-set-1`と同じbytes）
+  - candidate manifest 2,676 bytes `94a0e2bed7fa8c5a52632c3ba9e5dc8ca6d6ef834b8edb9d2484db1710adc7c3`。ブロック一覧の`blocks.json`
+    88,687 bytes `759573b6c8d8657c812428dccc3f4397644db4ea944c2723c9934ea07ab93dcb`
+- tooling：`agent/tooling-2400-rc1@541e7b3bd3a5653d4a5d2c48f464805782bad9fb`（draft PR #14）。CI `44621700308`、artifact `14578100932`
+  （`sha256:c85de11b1fde25378dce4f6dfa055348f5e1749ba4fe5c3be72e4452ca523eaf`、期限2027-02-17）。Bridgeのindex
+  `sha256:d8b7024475c5d1f6a855e1d8be84c2fec7136d6e992cb8464091ebc63a548aa9`（Scratchのartifactの`bridge.oci.tar` 114,625,024 bytes
+  `dcc7360e9362859a9f0a42a6ef2d1e66f021c1ffef04958f65e01d16d64e7161`）、WireScope ZIP 85,269 bytes
+  `09a62fc044ccd933614dc6a2cdf5c53b368202d450abd3d66680468b06268a1c`（`2321.2-set-1`と同じbytes）、manifest 2,339 bytes
+  `6a2de3d3f4cf9024ffd6d1316347c07a2471eef822262da931ae2314b8709603`
+- Unity箱庭（rc1）：`ghcr.io/naohiro2g/mc-remote-unity-sandbox@sha256:e39109f0e3ff6bbc9ef2a0f4fb6048735817fa250a5226b404430ace52101097`
+  （tag `candidate-6ce475e`、`release/2400.0.0rc1@6ce475ef64155268037c8e13f063b7151aac6134`、draft PR #5）。linux/amd64のmanifest
+  `sha256:9d0016120bd2d6cbd934fbda2f2fa1051f68954f2da1a91a4e4aed1981e89490`、config
+  `sha256:14c745017a472f3f8b0f5f88aae3d2e7697dbdbe661665820c68a94778d56327`
+- Unity箱庭（LTS `2321.2.0`）：`ghcr.io/naohiro2g/mc-remote-unity-sandbox@sha256:9bd2ec444d5cea362729bacbea4d1b8ccd6905b169a467aaa57cdb4b4d05e24a`
+  （tag `candidate-1594805`、`feat/ui-polish-monospace-i18n@1594805a047f6023f7e8724b4d1724fdaa009bdb`、PR #4、`main`へ、open）。
+  linux/amd64のmanifest `sha256:dc11448df2c8ee9654a7dc07cddc5286aa8829481f7d1d9bd2329f97708d7104`、config
+  `sha256:ee8f5d54262bef5cb6cd2a093234308313fdbaf2e6b6739fae2faeacf3e63bf9`。公開のときは、同じdigestに`v2321.2.0`のtagを足す
+  （`2026-11-17-02`）。`2321.2-set-1`の`candidate-be17313`に替わる
+- 範囲の外（12月1日の公開を止める条件にしない）：Java `1300c4e753d7878115862663227a0eb13105b78c`、TypeScript
+  `7b0e94ec565e92c73957769c08fef1144c03f33a`、C# `870c2ae2e872cb288dff7fee0020e444601f4208`（上の「返却の照合（2026-11-21、Java、
+  TypeScript、C#）」）
+- Paper：McRemoteの自動の確認は、1.21.11 #132と26.3 #244で通った。`sb-beta`には、rc1を置くときの最新版を入れる（human owner
+  2026-11-21）
+- Scratchの6（前の版の設定の読み替え）：2026-11-21に返っていた。担当が候補から取り出した写しで、読み替えだけを外すと、
+  そのtestが「settings.jsonを読み取れません: 接続先一覧と既定の接続先を指定してください。」で落ちた（終了コード1）。外さない写しでは
+  通った。返却`RETURN_ja.md`は書き足されて10,451 bytes、`616eed0b2d2ed7388663a3a58cf766d275bb42adddac2544d13508ddc4b696d3`。比較の
+  log `LEGACY_SETTINGS_ITEM6.log`（2,123 bytes、`8343f5fe10190eaf84cc32c42b527aa2e4c5735ce506b5122968effe88eee7c5`）と、一時の差分
+  `LEGACY_SETTINGS_ITEM6.patch`（489 bytes、`97995c110fc9b481dc8c1c864f6b0d04542ff4d31df1c839ee7de533e979f3e6`）。候補のcodeは
+  変わっていない
+- 次：公開の手順の票（rc1のpre-releaseと、11月25日のMcRemote `2321.2.0`）。人間の試験の票を、rc1と`-beta`の名前で改める
 
 ### Scratchの搬送票：操作のエラーの知らせ方（2026-11-20）
 
