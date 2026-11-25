@@ -501,7 +501,7 @@ protocolは`24.0.0`。同じ時に、LTSのUnity箱庭`2321.2.0`を凍結する�
 - 公開の依頼：`00-hub/2400-gate-rc1-release-instructions_ja.md`（2026-11-25）。human ownerが決めた（2026-11-25）：11月25日〜30日の
   McRemoteのLatestは`v2321.2.0`（McRemoteの担当の案）。rcの間は既定のbranchを動かさず、tagだけを打つ。Release本文は、rc1は
   出した後にcoordinatorが見て、`v2321.2.0`は案を先に返してhuman ownerが見る
-- 次：人間の試験の票を、rc1と`-beta`の名前で改める
+- 人間の試験の票：`00-hub/2400-gate-live-test-instructions_ja.md`（2026-11-25）。`-beta`の組で、11/26〜27に行う
 
 ### Scratchの搬送票：操作のエラーの知らせ方（2026-11-20）
 
