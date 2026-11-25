@@ -605,6 +605,27 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
     一覧は、AdvancedPortals 2.8.1、Geyser-Spigot 2.12.1-SNAPSHOT、LuckPerms 5.5.91、McRemote 2321.2.0、ServerBackup 2.10.0、
     ViaVersion／ViaBackwards 5.12.3-SNAPSHOT、WorldEdit 7.4.6、floodgate 2.2.5-SNAPSHOT（b141）の9つ（Paper 26.3-257）。
     統合版はつながった（上の「GAMEsの引っ越し」）。4（統合版の日本語と英語の画面）の報告はまだ
+  - 2026-11-24：4ができた（統合版、Geyser経由。human ownerの画面）。日本語では、ペアリング成功の文（「ペアリング成功。リモコン側の
+    接続が続行されます。」）、`/mcr hud status`、BossBarの方位が日本語だけで出る。英語では、ペアリング成功の文（「Paired. The remote
+    client will continue connecting.」）、HUD status、方位（`N`）が英語だけで出る。HUD statusの`toggle-on-swap: on`は、どちらの言語でも
+    英語のまま。設定の名前で、Java版でも同じなので、合否には入れない
+  - 2026-11-24〜25：同じUbuntuの端末で、統合版のaccountでペアリングした後にJava版のaccountへ替えると、Pythonは
+    `[permission_denied] permission_denied`、Scratch LANパッケージ`2321.2.0`（候補`05f7326`）は「エラー」で止まった。pair codeも出ず、
+    tokenの期限（約2時間）が切れるまでつながらなかった。human ownerが渡したserverのlogを、coordinatorが読んで確かめた（読んだ後に消した）
+    - tokenは統合版のaccountに結びついていた。そのaccountがゲームにいない間のhelloは、毎回
+      `Hello rejected: permission_denied ... state=offline`だった（11/24の21:38〜23:18に17回、11/25の1:19〜1:25に7回）。統合版の
+      accountのgroupは`mcr.offline`を持たない（Java版のaccountのgroupは持つ）。Java版のaccountでゲームにいても、tokenの持ち主では
+      ないので関係しない。`2026-09-01-02`のとおり
+    - clientは`permission_denied`ではtokenを捨てないので（`2026-08-30-03`）、ペアリングし直しに進まない。期限が切れて`token_expired`を
+      受けた後、ペアリングし直してつながった。Scratchのプロセスを止めても直らなかったのは、tokenがプロセスの外に残るためと読む
+    - 途中でLuckPermsのmetaを足すと、helloのpermissionの`blocks`は0から32768に変わった。拒否の理由はゲームにいないことなので、
+      metaでは直らない
+    - 11/24 21:20の`Hello rejected: auth_required (enforcement ON, no token)`は、ペアリングの前のhelloで、失敗ではない
+    - 版の退行ではない。2026-11-09の`2321.1`の試験（LuckPermsなし）では、同じ替え方で、前のplayerとしてつながった。今回は前の
+      playerに`mcr.offline`が無いので、helloで拒否された。NOTESの「同じ端末でプレイヤーを替えると」の行に足した
+    - setBlockを多く送ったときの`Over 1000 commands were queued - deferring 241 to next tick`は、次のtickに回しただけで、上限での
+      拒否は無い（`Connection limits`の`rejected={}`）
+  - 残り：8〜11
 
 ### Unity箱庭の候補の照合（2026-11-17）
 
