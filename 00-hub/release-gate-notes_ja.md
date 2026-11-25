@@ -503,6 +503,37 @@ protocolは`24.0.0`。同じ時に、LTSのUnity箱庭`2321.2.0`を凍結する�
   出した後にcoordinatorが見て、`v2321.2.0`は案を先に返してhuman ownerが見る
 - 人間の試験の票：`00-hub/2400-gate-live-test-instructions_ja.md`（2026-11-25）。`-beta`の組で、11/26〜27に行う
 
+### pre-releaseの照合（2026-11-25）
+
+`00-hub/2400-gate-rc1-release-instructions_ja.md`による。5つとも、knowledge `cb1441f`を読んだ。coordinatorがGitHubのAPIと、loginしない
+Registry APIで照合した。5つとも、annotated tag `v2400.0.0rc1`が凍結したcommitを指し、`prerelease=true`、`draft=false`で、Latestは
+動いていない。既定のbranchは動かず、PRは開いたまま。assetのbytesとSHA-256（GitHubのdigestと、取り直して計った値）とOCIのindex
+digestは、`2400-set-1`と全桁同じ。本文には、票の共通の項目（最新版候補、protocol `24.0.0`、`23.x`とつながらないこと、`-beta`、
+feedbackの入口）が入っている
+
+- McRemote：tag object `68d7c3c95e70de0e44e53b6fcd2802611a3fa4d7`。tagのCI `45600673395`（7 job）、`release.yml`のdry run
+  `45607332882`と公開`45607855766`は成功。assetは5つ（JAR、`minecraft-targets.json`、検証の記録2つ、`manifest.json`）。
+  `manifest.json`（schema v2）1,761 bytes `fa168391b4d38814b9f21240ee6a22f763497f32e85449c2f132ca319f7819b4`は、`release_tag`、
+  `source_commit`、JARのbytesとSHA-256、1.21.11 #132と26.3 #244のPASSを持つ。Latestは`v2321.1.0`のまま（`v2321.2.0`はまだ）。
+  返却`handoff-materials/2026-11-25-2400-rc1-release/materials/RETURN_ja.md`（4,099 bytes）
+- Python：tag object `cc67fa907cf69a846a1820d78435c180e3bef2fe`。run `45606692264`。`manifest.json` 684 bytes
+  `6f8b9e748fbc8704ac8d9d4fb330f388a0a4772e9f98dd1de16f19e7f68c2a63`は、候補のものと`release_tag`だけが違う。TestPyPIの2つの
+  fileは同じbytesで、yankなし。human ownerがPyPI.orgのjobを承認し、
+  [2400.0.0rc1](https://pypi.org/project/minecraft-remote-api/2400.0.0rc1/)のwheelとsdistが同じbytesで、yankなし。版を指定しない
+  取得は`2321.1.0`のまま。返却`handoff-materials/2026-11-25-python-2400-rc1-release/materials/release-result_ja.md`（4,868 bytes）
+- tooling：tag object `dacd860be79884db9de5d93eb19175555858001a`。assetは3つ。GHCRの`mc-remote-bridge:v2400.0.0rc1`は
+  `sha256:d8b7024475c5d1f6a855e1d8be84c2fec7136d6e992cb8464091ebc63a548aa9`
+- Scratch：tag object `f859adf147386e58969317e9ea2aa7c86f8702db`。assetは8つ。GHCRの`mc-remote-scratch:v2400.0.0rc1`は
+  `sha256:a24be219c79d8fa5273bc0a82df0ec94fcc3da3a2114e5577cde5a3f5d7780a9`。image workflowは公開の間だけ止め、作り直しのrunは
+  無い（返却。今は`active`）。`manifest.json`（schema v2）2,105 bytes
+  `6a5cb5956768a00162e786c8a0670547cbf57cb77a1e906a8d4841d912fa497a`は、`source_commit`、OCI 2つのdigest、ほかのfileのbytesと
+  SHA-256を持つ。`scratch-gui.tar.gz`はassetにあり、manifestには無い（`v2321.1.0`と同じ形）。返却
+  `handoff-materials/2026-11-25-scratch-tooling-2400-rc1-release/materials/RETURN_ja.md`（5,552 bytes）
+- Unity箱庭：tag object `74111498b630a7fc7e7d5f28bd0852792f433a0b`。assetは無い（票のとおり）。GHCRの`v2400.0.0rc1`は
+  `candidate-6ce475e`と同じ`sha256:e39109f0e3ff6bbc9ef2a0f4fb6048735817fa250a5226b404430ace52101097`。`candidate-1594805`は
+  変わっていない。Releaseの題を、ほかに合わせて「mc-remote-unity-sandbox 2400.0.0rc1」にする（human owner 2026-11-25）
+- 次：Stackが`-beta`の組をrc1にする（Stackの票の「11月25日のrc1の値（2026-11-25に足した）」）
+
 ### Scratchの搬送票：操作のエラーの知らせ方（2026-11-20）
 
 - 搬送票：`handoff-materials/2026-11-20-scratch-notifications/materials/HANDOFF_ja.md`（5,511 bytes、

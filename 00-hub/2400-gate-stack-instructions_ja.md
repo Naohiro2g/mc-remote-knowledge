@@ -167,6 +167,23 @@ Bridgeの接続先の設定（中のport）
 SHA-256と、取ったページ（ViaVersion／ViaBackwardsは、Hangarの版の名前も）。注意書きで気づいたことと、起動のlogのerrorと
 warning。ViaVersionのconfigの差分と、起動のlogで警告が消えたこと。配布の既定の案
 
+## 11月25日のrc1の値（2026-11-25に足した）
+
+`2400-set-1`を凍結し、pre-releaseが出て、coordinatorが照合した（`00-hub/release-gate-notes_ja.md`の「pre-releaseの照合（2026-11-25）」）。
+`-beta`の組には、次のものを入れる。作り直さない
+
+| もの | 取り先 | 照合する値 |
+| --- | --- | --- |
+| McRemote（`sb-beta`） | <https://github.com/Naohiro2g/McRemote/releases/tag/v2400.0.0rc1>の`mc-remote-2400.0.0rc1.jar` | 349,793 bytes `9583b7e9db16e3062cfb8ea5be1c7b5330e1df92eaeea1dd7b2fdb77a75d457a` |
+| Scratch（`scratch-beta`） | `ghcr.io/naohiro2g/mc-remote-scratch:v2400.0.0rc1` | `sha256:a24be219c79d8fa5273bc0a82df0ec94fcc3da3a2114e5577cde5a3f5d7780a9` |
+| Bridge（`scratch-beta`） | `ghcr.io/naohiro2g/mc-remote-bridge:v2400.0.0rc1` | `sha256:d8b7024475c5d1f6a855e1d8be84c2fec7136d6e992cb8464091ebc63a548aa9` |
+| WireScope（`wirescope-beta`） | <https://github.com/Naohiro2g/minecraft-remote-tooling/releases/tag/v2400.0.0rc1>の`wirescope-app.zip`と`wirescope-app.manifest.json` | 85,269 bytes `09a62fc044ccd933614dc6a2cdf5c53b368202d450abd3d66680468b06268a1c`、2,339 bytes `6a2de3d3f4cf9024ffd6d1316347c07a2471eef822262da931ae2314b8709603` |
+| Unity箱庭（`unity-sb`） | 上の「上限の対策版へ替える（2026-11-24に足した）」のまま。`v2400.0.0rc1`のtagも同じdigestを指す | `sha256:e39109f0e3ff6bbc9ef2a0f4fb6048735817fa250a5226b404430ace52101097` |
+
+- Bridgeが`sb`へつなぐ先をGAMEsへ替えるのは、human ownerが`sb`のworldをGAMEsへ移した後
+- 返却に足すもの：Webの接続先の一覧の表示名（`scratch`と`scratch-beta`の組）。ホームページの呼び方（マイクラ箱庭サーバー、
+  Unity箱庭。`2026-11-25-01`）と比べるため。今は変えない
+
 ## coordinatorがすること
 
 - PRをGitHubのAPIで照合する。候補のdigestと、`-beta`と検証機で動かしたdigestを突き合わせる
