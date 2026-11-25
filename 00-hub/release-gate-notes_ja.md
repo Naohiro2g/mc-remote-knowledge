@@ -774,7 +774,16 @@ feedbackの入口）が入っている
       playerに`mcr.offline`が無いので、helloで拒否された。NOTESの「同じ端末でプレイヤーを替えると」の行に足した
     - setBlockを多く送ったときの`Over 1000 commands were queued - deferring 241 to next tick`は、次のtickに回しただけで、上限での
       拒否は無い（`Connection limits`の`rejected={}`）
-  - 残り：8〜11
+  - 2026-11-26：8〜11ができた（`sb-lts`。human ownerの報告で、ScratchとPythonのそれぞれのWireScopeのlogと、Pythonの例外）
+    - 8：`/worldborder set 400`にして、200には置け、400は`out_of_bounds`。Pythonの例外の`bounds`は、world border（size 400）と
+      高さ（−64〜319）、`violating`は外れた座標
+    - 9：(0,0,0)〜(31,31,31)の32,768個は置け、(32,32,32)までの35,937個は`block_count_limit_exceeded`で、1つも置かれなかった。
+      errorの`data`は`reason`だけで、数は入っていない
+    - 10：world borderを戻し、1000には置け、1001は`build_range_exceeded`。`bounds`は中心と`build_range` 1000
+    - 11：ペアリング、チャット、setBlock、getBlock、HUDが、`2321.1.0`と同じにできた
+    - Scratchは、errorの後も同じ接続で次の命令が通った。Pythonは例外でscriptが終わり、次に動かしたscriptは通った
+    - 実施票の0〜11が、すべて済んだ。McRemote `2321.2.0`の公開は、human ownerがMcRemote担当へ知らせてから
+      （`00-hub/2400-gate-rc1-release-instructions_ja.md`）
 
 ### Unity箱庭の候補の照合（2026-11-17）
 
