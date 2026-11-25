@@ -540,8 +540,10 @@ feedbackの入口）が入っている
 
 - 返却：`mc-remote-stack`の`handoff-materials/2026-11-25-beta-rc1-and-unity-limits/`。読んだknowledgeは`776c796`。coordinatorが
   サイズとSHA-256を計り、`SHA256SUMS`と全桁同じだった
-  - `materials/RETURN_ja.md`：16,549 bytes、`75078b35cc9ade37691d52c1834bc26c439f820881f3c78eeda3101283ef2b6c`
-  - `materials/result.json`：7,276 bytes、`238137f5d8837bd693de4592164fdd1f5f5492629505697feed1100100005b20`
+  - `materials/RETURN_ja.md`：16,859 bytes、`f00494b430feb1db7ae6fa91d95a57d0f6fd135a95298cf04bc50fa4060acc61`
+  - `materials/result.json`：7,844 bytes、`a1162f0b73c75f7fed1cdab5ef5e4ea1d745b4d5129b23e4e8af6f51a0f45c8f`
+  - 2026-11-26に、1,100本の試験、見張りのscript、`sb-lts`のmodeを足して作り直された。前の版（16,549 bytes、
+    `75078b35cc9ade37691d52c1834bc26c439f820881f3c78eeda3101283ef2b6c`）からの差は、この3つ
 - PR #95：coordinatorがGitHubのAPIで見た。open、head `6c84f1ec3d6fdaf83ad9417578227bcbce85d82f`、base
   `d3bf22ade00a09d5bba12b15468c2568baa44392`。`public-web-paper@19`で、`-beta`の組をrc1にする。CIは無く、testは担当の手元で736件
 - `-beta`の組：動かしたものの7つ（McRemoteのJAR、Scratch、Bridge、WireScopeの2つ、Unity箱庭の2つ）は、Stackの票の
@@ -555,17 +557,18 @@ feedbackの入口）が入っている
   `5.12.4-SNAPSHOT+1136`、ViaBackwardsは`5.12.3-SNAPSHOT+675`で、番号は1つずれるが組として動く（返却）。`block-versions`の警告は0
 - McRemoteのcredentialのfileのmode（`sb-beta`、`2026-11-11-03`）：directoryは`700`、fileは`600`
 - Unity箱庭の上限の対策版：外からのhelloは、`unity-sb-lts`が`2321.2.0`と`23.3.0`、`unity-sb`が`2400.0.0rc1`と`24.0.0`。
-  2026-11-24の5つの自己攻撃のうち、4つをもう一度行った（送り先は`unity-sb`の`25586`と`/ws/sync`だけ）
+  2026-11-24の5つの自己攻撃を、もう一度行った（送り先は`unity-sb`の`25586`と`/ws/sync`だけ）
 
   | 試験 | 2026-11-24（対策の前） | 2026-11-26（対策版） |
   | --- | --- | --- |
   | 1つの送り元から40本つなぐ | 32本までつながり、残りはhostのfirewallで捨てた | 同じ |
-  | firewallを一時的に開け、1,100本つなぐ | containerが1回起動し直した | 行っていない（`sudo`のpasswordが要る。human ownerが行う） |
+  | firewallを一時的に開け、1,100本つなぐ | containerが1回起動し直した | 32本だけつながり、残りの1,068本はserverがすぐに閉じた。containerは起動し直さず、memoryは67 MiB |
   | `auth.pairBegin`を続けて送る | 5,000回とも受け付けた | 60秒で20回まで。その後は応答なしで切れた |
   | 改行の無い行をTCPで送り続ける | 65.0MiBで切られた | 80 KiBを送ったところで切られた |
   | `/ws/sync`へ巨大なframe | 64MiBまで受け取った | 64 KiBまで受け取り、1 byte越えると`1009`で閉じた |
 
   - どの試験でも、ほかの7つのcontainerは起動し直さず、memoryで落とされなかった
+  - 見張りのscript（`unity-sandbox-watch`）は、新しいprojectへ向けて入れ、動いている
 - Webの接続先の一覧の表示名：今は、`scratch`の組が「安定版」（`sb`）と「Unity箱庭（LTS）」（`unity-sb-lts`）、`scratch-beta`の組が
   「公開ベータ」（`sb-beta`）と「Unity箱庭（最新版）」（`unity-sb`）。12月1日から、`scratch`と`scratch-beta`の組を「マイクラ箱庭
   サーバー」と「Unity箱庭サーバー」、`scratch-lts`の組を「マイクラ箱庭サーバー（LTS）」と「Unity箱庭サーバー（LTS）」にする
@@ -580,8 +583,14 @@ feedbackの入口）が入っている
   - Unity担当が、版を`2321.2.0`のまま作り直す。期限は11月27日（human owner 2026-11-26）。候補の票の「LTSの作り直し
     （2026-11-26に足した）」。返ったら照合し、`2400-set-1`のLTSのUnity箱庭だけを、human ownerの承認で替える。人間の試験の票に
     25を足した
-- 確かめられなかったこと（返却の§5）：1,100本の試験、`unity-sandbox-watch`を新しいprojectへ向けること（`sudo install`が要る）、
-  `sb-lts`のcredentialのfileのmode。どれもhuman ownerが行う。実際のブラウザでのScratchとWireScopeは、人間の試験で見る
+- `sb-lts`のcredentialのfileのmode（`2026-11-11-03`）：確かめられない。有料GAMEsにはSFTPが無く、管理パネルのfile managerにも
+  `session-only/`が出ない（返却の§5、human owner）。`sb-beta`のMcRemoteは同じcodeで（版、protocol、helloの`server`だけが違う）、
+  `700`と`600`を測った。GAMEsのfile systemで同じかは、直には分からない。McRemoteは、fileを`0600`にできないか読み戻しが合わない
+  ときは認証を止め（`2026-11-11-03`⑤）、POSIXのmodeが使えない環境ではINFOを一度出す（⑥）。`sb-lts`では、11月25日の引っ越しの
+  後にペアリングが通った。起動のlog（McRemote `v2321.2.0`）に⑥のINFOは無く、credentialのbackendは`sqlite-wal-full`、healthは
+  `HEALTHY`だった（human owner 2026-11-26）。McRemoteがfileを`0600`にして読み戻せたことになる。directoryの`0700`は、作るときに
+  指定している（①）が、直には見ていない
+- 実際のブラウザでのScratchとWireScopeは、人間の試験で見る
 - 次：Unity担当がLTSを作り直す。Stackは、検証機での通し（11/28〜29）と、12月1日の手順
 
 ### Scratchの搬送票：操作のエラーの知らせ方（2026-11-20）
