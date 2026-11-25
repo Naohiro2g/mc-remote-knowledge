@@ -98,7 +98,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   12月1日までは`25585`にLTSの`2321.2.0`、`25586`にrc1を置く。imageはcoordinatorがGHCRのdigestを照合してから動かす。serverに
   接続とpairingの上限が無いと分かった上で、2026-11-20に今の候補を動かし、docker側の対策と見張りを用意して開ける。数日のうちに、
   上限の対策を入れた版へ替える。2026-11-24：対策版が返り、照合した（下の「Unity箱庭の上限の対策版の照合（2026-11-24）」）。
-  2026-11-26：LTSの`candidate-1594805`は、Unity Webが真っ黒になる。作り直す（下の「Stackの返却の照合（2026-11-26）」）
+  2026-11-26：LTSの`candidate-1594805`は、Unity Webが真っ黒になる。作り直す（下の「Stackの返却の照合（2026-11-26）」）。
+  同じ日に作り直した`candidate-1594805-2`を照合し、凍結のLTSを替えた
 - GAMEsの引っ越し（2026-11-21、`2026-11-21-01`）: `sb-retro`は、30日借りる2つ目の有料GAMEs（実験サーバー、2026-11-21にhuman ownerが契約した）へすぐ移す。11/25に、
   これまでの`sb`をworldごと今のGAMEsへ移してMcRemote `2321.2.0`（LTS）にし、`sb`と`sb-lts`がそこを指す。同じ日に、公開VPSの
   `sb-beta`をrc1にする。12/1に、`sb`は公開VPSの`2400.0.0`を指す。GAMEsの作業はhuman owner。LTSは3月と9月に出し、2つまで
@@ -489,6 +490,12 @@ protocolは`24.0.0`。同じ時に、LTSのUnity箱庭`2321.2.0`を凍結する�
   `sha256:ee8f5d54262bef5cb6cd2a093234308313fdbaf2e6b6739fae2faeacf3e63bf9`。公開のときは、同じdigestに`v2321.2.0`のtagを足す
   （`2026-11-17-02`）。`2321.2-set-1`の`candidate-be17313`に替わる。2026-11-26：Unity Webが真っ黒になる。作り直したimageへ、
   human ownerの承認で替える（下の「Stackの返却の照合（2026-11-26）」）
+  - 2026-11-26に替えた（human owner 2026-11-26「2400-set-1のLTSのUnity箱庭を、candidate-1594805からcandidate-1594805-2…へ
+    替えてよい」）：`ghcr.io/naohiro2g/mc-remote-unity-sandbox@sha256:0737c28a1753847d8d1c4218a26561af083886def4457c2e3cd64d84f3c76828`
+    （tag `candidate-1594805-2`、同じcommit `1594805a047f6023f7e8724b4d1724fdaa009bdb`）。linux/amd64のmanifest
+    `sha256:a47041c28ddb32b20b57e2e4ad453b0eff41c8073dfcfc19d1786b2fa77a5b47`、config
+    `sha256:a45ff5582a8d345f4be014c44903561f1fb27b557226287bd19268cdcc4c5e17`。12月1日には、このdigestに`v2321.2.0`のtagを足す。
+    照合は下の「McRemote `2321.2.0`と、LTSのUnity箱庭の作り直しの照合（2026-11-26）」
 - 範囲の外（12月1日の公開を止める条件にしない）：Java `1300c4e753d7878115862663227a0eb13105b78c`、TypeScript
   `7b0e94ec565e92c73957769c08fef1144c03f33a`、C# `870c2ae2e872cb288dff7fee0020e444601f4208`（上の「返却の照合（2026-11-21、Java、
   TypeScript、C#）」）
@@ -592,6 +599,59 @@ feedbackの入口）が入っている
   指定している（①）が、直には見ていない
 - 実際のブラウザでのScratchとWireScopeは、人間の試験で見る
 - 次：Unity担当がLTSを作り直す。Stackは、検証機での通し（11/28〜29）と、12月1日の手順
+
+### McRemote `2321.2.0`と、LTSのUnity箱庭の作り直しの照合（2026-11-26）
+
+- McRemote `v2321.2.0`（`00-hub/2400-gate-rc1-release-instructions_ja.md`の「`v2321.2.0`（LTS）」。人間の試験の8〜11の後に、
+  human ownerが知らせた）
+  - 返却：McRemoteの`handoff-materials/2026-11-26-23212-lts-release/`。`materials/RETURN_ja.md` 4,253 bytes
+    `8268f44cb10a87cd534f3b241b93a9f697fc0b2e46179f8b82d2c4b8c0db5a37`、`materials/public-assets-verification.json` 2,654 bytes
+    `38ee0faa85cd5ec9d5fc946d20b1a25725ccff49bfe93083a3bda92f18248eb4`。読んだknowledgeは、票が`cb1441f`、試験の済みが`31c5ed9`
+  - coordinatorがGitHubのAPIで照合した：annotated tag（object `8dad5fb62acbfc070bb3cfd79afba1ad6c447bad`）は
+    `2ccf0b1aba6008c314abe6df4d19b6fffb60ff58`を指す。Release「McRemote 2321.2.0 (Minecraft 1.21.11, 26.3)」は、prerelease
+    でもdraftでもなく、2026-11-25T21:05:45Z（JSTは11/26 6:05）に出た。Latestは`v2321.2.0`。`main`は`5fca9f2`のまま
+  - 経路：tagのCI（run `45699684849`、7 jobとも成功）のJARが凍結値と全桁同じだったので、`release.yml`で出した（dry runは
+    `45700536115`、公開は`45701142549`、どちらも成功）
+  - assetの5つは、coordinatorが取り直して計り、凍結値と全桁同じ：`mc-remote-2321.2.0.jar` 348,720 bytes
+    `16e927a79ea9b9ae9f1aa544cd5101eb3a6c39228ef9c0da7175853d100703f8`、`minecraft-targets.json` 126 bytes
+    `8e830732decd6bcde13f91eb6c071d062ba6993342a7edb52e6ea543b9e0c361`、`mc-remote-verification-1.21.11.json` 62,489 bytes
+    `0bdb54863290c01245d1e26e79917d73e637c0f327cf2efa8748484446bb2923`、`mc-remote-verification-26.3.json` 62,468 bytes
+    `2cde971c76fb6a850082a4715499d2be06ec0207d3ba397d2a20cbeac7c321da`。`manifest.json` 1,755 bytes
+    `8fde706918d8d638f6674eabe36d7e5797759a265b2ed61aeded2384e4e24977`は、`release_tag`、`source_commit`、JARのbytesとSHA-256、
+    2つの検証の記録を持つ
+  - 本文：LTS（`2321`の系列、protocol `23.3.0`）であること、`2321.1.0`からの変更の6つ、feedbackの入口。時期で変わる言い方は
+    無い。human ownerが見た（human owner 2026-11-26「McRemoteのRelease本文　見ました。オッケーです。」）。票は「案を先に返し、
+    見てから出す」だったが、見たのは出した後
+- LTSのUnity箱庭の作り直し（候補の票の「LTSの作り直し（2026-11-26に足した）」）
+  - 返却：Unity箱庭の`handoff-materials/2026-11-26-unity-lts-rebuild/`。`materials/RETURN_ja.md` 17,046 bytes
+    `f1f453dc9129f29a95da436b654bf5276589a9ac30a42d381db0f8ab121576d6`、`materials/prepush_verify_webgl.md` 10,033 bytes
+    `9fcf5f6563a34dce22658ee7ace7aaada2ba5e6340577fd83fe4648a86997d32`。読んだknowledgeは`e70a3ae`
+  - 原因（返却）：branchを替えた直後のbatchmodeのbuildで、`unity/Library/`の古いcacheが残り、`WebGL.data`の中から
+    `LocalSandboxDemo`のscriptが落ちた。buildは成功で終わった。当時の確かめは`/healthz`、HTTPの200、版までで、browserで開いて
+    いなかった
+  - 作り直し：新しいcommitは無く、姿勢の直しも入れていない。`unity/Builds/WebGL`と、`unity/Library/`の中（`PackageCache`の
+    ほか）を消してから作った
+  - coordinatorがloginせずにGHCRで照合し、返却と一致した：index
+    `sha256:0737c28a1753847d8d1c4218a26561af083886def4457c2e3cd64d84f3c76828`、linux/amd64のmanifest
+    `sha256:a47041c28ddb32b20b57e2e4ad453b0eff41c8073dfcfc19d1786b2fa77a5b47`、attestation
+    `sha256:8cbcbfe77dc036146fb4516fc6a02052d416d4671353c820c04d342bd8231923`、config
+    `sha256:a45ff5582a8d345f4be014c44903561f1fb27b557226287bd19268cdcc4c5e17`。configの`User`は`1654`。labelの`revision`は
+    `1594805`の全桁、`version`は`2321.2.0`、`licenses`は`MIT`。前のtag（`candidate-1594805`、`candidate-6ce475e`、`v2400.0.0rc1`、
+    `candidate-f7d0f9a`、`candidate-1dc3cbd`、`candidate-be17313`）は、どれも前と同じdigestを指している
+  - coordinatorがlayerから取り出して計った`/app/wwwroot/Build/`：`WebGL.data` 14,208,678 bytes
+    `1040cd821ec5a6afc5ca518bbaefe0030e18749e64a372da52fae812ac39fc84`、`WebGL.wasm` 17,257,995 bytes
+    `2e2dbe830e8e52b1d7785423e9070315c65d64a87c287ed9de4da9628e35a0f8`（`f7d0f9a`と同じ）。返却と同じ。返却によると、
+    `WebGL.data`の中の6つのfileは、`f7d0f9a`と全バイト同じ
+  - 担当の確かめ（返却）：.NETのtest 37件、`/healthz`とhello（`2321.2.0`、`23.3.0`）、上限（64 KiBを1 byte越える行とframe、
+    21回目の`auth.pairBegin`）。pushの前の2段の確かめ（(a) `WebGL.data`の中に場面のscriptがそろっているか、(b) 通常の窓と
+    シークレットウィンドウで開き、描画とペアリングを見る）は、古い`candidate-1594805`で落ち、`candidate-1594805-2`と、作り
+    直していない`candidate-6ce475e`で通った
+  - 凍結：`2400-set-1`のLTSのUnity箱庭を`candidate-1594805-2`へ替えた（human owner 2026-11-26。上の「凍結するexact set
+    （2026-11-25、`2400-set-1`）」）。公開VPSの`unity-sb-lts`は、Stackが替える（Stackの票の「12月1日の一覧の表示名と、LTSの
+    Unity箱庭（2026-11-26に足した）」）
+  - pushの前の2段の確かめは、次から毎回通す。12月1日の`2400.0.0`の最後のimageも（human owner 2026-11-26「pushの前の2段の確かめ
+    追加。」）。候補の票に足し、repoの手順にすることはhub NOTESの行
+- 次：Stackが`unity-sb-lts`を替え、human ownerが人間の試験の25で開く
 
 ### Scratchの搬送票：操作のエラーの知らせ方（2026-11-20）
 
@@ -778,7 +838,10 @@ feedbackの入口）が入っている
     - 8：`/worldborder set 400`にして、200には置け、400は`out_of_bounds`。Pythonの例外の`bounds`は、world border（size 400）と
       高さ（−64〜319）、`violating`は外れた座標
     - 9：(0,0,0)〜(31,31,31)の32,768個は置け、(32,32,32)までの35,937個は`block_count_limit_exceeded`で、1つも置かれなかった。
-      errorの`data`は`reason`だけで、数は入っていない
+      WireScopeのlogの`data`は`reason`だけで、Pythonの例外にも数は出なかった。McRemoteの自動の確かめの記録（`v2321.2.0`のasset
+      `mc-remote-verification-26.3.json`）では、同じJARが`data`に`limit` 32768と`requested`を返している。同じWireScopeのlogは、
+      8の`out_of_bounds`でも`data`が`reason`だけで、Pythonの例外には`bounds`が出た。WireScopeが`data`を省いて見せている（上の
+      「気づいたこと」の前のWireScopeと同じ）。2026-11-26にcoordinatorが一度「数は入っていない」と書き、同じ日に直した
     - 10：world borderを戻し、1000には置け、1001は`build_range_exceeded`。`bounds`は中心と`build_range` 1000
     - 11：ペアリング、チャット、setBlock、getBlock、HUDが、`2321.1.0`と同じにできた
     - Scratchは、errorの後も同じ接続で次の命令が通った。Pythonは例外でscriptが終わり、次に動かしたscriptは通った

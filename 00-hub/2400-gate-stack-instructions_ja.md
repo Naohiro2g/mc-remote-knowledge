@@ -199,6 +199,15 @@ warning。ViaVersionのconfigの差分と、起動のlogで警告が消えたこ
 - `unity-sb-lts`：`candidate-1594805`は、Unity Webが真っ黒になる（返却の§2-3）。戻さずに置いておく（human owner 2026-11-26）。
   Unity担当が`2321.2.0`のまま作り直す（期限は11月27日）。coordinatorが照合してから替える。digestは、照合の後にこの節へ足す。
   検証機での通し（11/28〜29）も、作り直したimageで行う。間に合わなければ、coordinatorへ言う
+- 2026-11-26：作り直したimageが返り、coordinatorが照合した（gate notesの「McRemote `2321.2.0`と、LTSのUnity箱庭の作り直しの照合
+  （2026-11-26）」）。`unity-sb-lts`を次へ替える。`candidate-1594805`と`candidate-f7d0f9a`は、戻すときのため12月1日まで消さない
+
+  | port | tag | 版 | indexのdigest |
+  | --- | --- | --- | --- |
+  | `25585` | `candidate-1594805-2` | `2321.2.0` | `sha256:0737c28a1753847d8d1c4218a26561af083886def4457c2e3cd64d84f3c76828` |
+
+  返却に足すもの：動かしたdigest、外からのhello（`protocol`と`server.version`）、`https://unity-sb-lts.mc-remote.com/`の`WebGL.data`の
+  bytesとSHA-256（`14,208,678` bytes、`1040cd821ec5a6afc5ca518bbaefe0030e18749e64a372da52fae812ac39fc84`になるはず）、doctor
 
 ## coordinatorがすること
 

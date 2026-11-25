@@ -265,6 +265,20 @@ imageの中の`/app/wwwroot/Build/`では、`WebGL.data`だけが違う（Stack�
 返却に足すもの：原因、作り直したcommitとtag、indexとlinux/amd64のmanifestとconfigのdigest（全桁）、labelの`revision`と`version`、
 `/healthz`とhelloの版とprotocol（`2321.2.0`、`23.3.0`）、上限のtestがそのまま通ること、上の1〜3の結果
 
+2026-11-26に返り、照合した。`2400-set-1`のLTSを`candidate-1594805-2`へ替えた（`00-hub/release-gate-notes_ja.md`の「McRemote
+`2321.2.0`と、LTSのUnity箱庭の作り直しの照合（2026-11-26）」）
+
+### pushの前の2段の確かめ（2026-11-26に足した）
+
+LTSの作り直しの返却で、担当が作った確かめ（`handoff-materials/2026-11-26-unity-lts-rebuild/materials/prepush_verify_webgl.md`）を、
+次から毎回通す。12月1日の`2400.0.0`の最後のimageも（human owner 2026-11-26）
+
+- (a) WebGLのbuildの直後：`WebGL.data`の中に、場面が使うscriptがそろっているか
+- (b) imageを作った後、pushの前：imageから取り出した`/app/wwwroot`で(a)をもう一度行い、通常の窓とシークレットウィンドウで
+  開いて、描画とペアリングを見る
+
+返却に足すもの：(a)と(b)の結果
+
 ## Java、TypeScript、C#（Client Library）
 
 - `2400`に揃える（`2026-11-19-01`①）。sourceとtestを、申告する`protocol` `24.0.0`、helloの互換の判定（major 24）、版`2400.0.0`に

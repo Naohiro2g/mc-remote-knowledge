@@ -18,7 +18,7 @@
 | | 最新版候補（`2400.0.0rc1`、protocol `24.0.0`） | LTS（protocol `23.3.0`。境の項目だけ） |
 | --- | --- | --- |
 | Minecraft | `sb-beta`：McRemote `2400.0.0rc1`（公開VPS、新しいworld） | `sb-lts`：McRemote `2321.2.0`（有料GAMEs） |
-| Unity箱庭 | `unity-sb`：`candidate-6ce475e`（公開VPS、外のport `25586`） | `unity-sb-lts`：`candidate-1594805`（外のport `25585`）。Unity Webが真っ黒になるので、作り直して替える（25） |
+| Unity箱庭 | `unity-sb`：`candidate-6ce475e`（公開VPS、外のport `25586`） | `unity-sb-lts`：`candidate-1594805-2`（外のport `25585`。真っ黒になった`candidate-1594805`を作り直したもの。25） |
 | Web | `scratch-beta`、`wirescope-beta` | `scratch`（`2321.1.0`） |
 
 - Scratch LANパッケージ：Scratchのpre-release `v2400.0.0rc1`のページから取る。入れる前にSHA-256を計って比べる（Windowsは
@@ -72,8 +72,7 @@ miniの文は、Scratchの返却の対応表（`handoff-materials/2026-11-20-scr
 
 8. **世界の外（高さ）**：`sb-beta`でDEBUGにし、`y=320`へ1つ置く。「指定した高さ{y}は世界の外です。使える高さは{min}〜{max}です。」が
    出るか。強調が消えても詳細が残るか。低いwindowで「エラーの詳細」をスクロールしてコピーできるか。その後も普通に置けるか
-9. **1回に置ける数**：1回の`setBlocks`で`0,0,0`〜`32,32,32`（35,937個）を指す。指定と上限の数が読めるか（McRemoteのerrorの
-   `data`は`reason`だけで、数は入っていない。2026-11-26の`2321.2`の試験の9）
+9. **1回に置ける数**：1回の`setBlocks`で`0,0,0`〜`32,32,32`（35,937個）を指す。指定と上限の数が読めるか
 10. **建築範囲**：`sb-beta`で、建築範囲の外へ置く。試せなければ、理由を書く
 11. **世界の外（水平）**：`unity-sb`で`x=205`へ置く。世界の外と分かるか。世界の外周が補足に出るか
 12. **使えない操作**：`unity-sb`でエンティティとパーティクルを出す。接続先の名前と、使えない操作の名前が出るか
@@ -114,8 +113,8 @@ miniの文は、Scratchの返却の対応表（`handoff-materials/2026-11-20-scr
 
 ## LTSのUnity箱庭（imageを替えた後）
 
-25. **LTSのUnity箱庭**：`unity-sb-lts`を開いて、ロゴの後に世界が見えるか（替える前の`candidate-1594805`は真っ黒になった。
-    hub gate notesの「Stackの返却の照合（2026-11-26）」）
+25. **LTSのUnity箱庭**：Stackが`unity-sb-lts`を`candidate-1594805-2`へ替えた後に開いて、ロゴの後に世界が見えるか（替える前の
+    `candidate-1594805`は真っ黒になった。hub gate notesの「Stackの返却の照合（2026-11-26）」）
 
 ## 範囲の外
 

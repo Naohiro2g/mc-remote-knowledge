@@ -108,7 +108,8 @@
 - source：`release/2400.0.0rc1@6ce475ef64155268037c8e13f063b7151aac6134`（draft PR #5）。tag `v2400.0.0rc1`を`6ce475e`へ
 - GHCR：`candidate-6ce475e`と同じdigest`sha256:e39109f0e3ff6bbc9ef2a0f4fb6048735817fa250a5226b404430ace52101097`に、`v2400.0.0rc1`の
   tagを足す。作り直さない。配布物はimageだけで、Releaseにassetは付けない（返却の案）
-- LTSの`2321.2.0`（`candidate-1594805`）は、12月1日に出す（`2026-11-21-01`）。今日は出さない
+- LTSの`2321.2.0`（`candidate-1594805`。2026-11-26に、作り直した`candidate-1594805-2`へ替えた）は、12月1日に出す
+  （`2026-11-21-01`）。今日は出さない
 - Release本文：上の共通の項目に加え、imageの置き場所とdigest
 
 ## 公開の後（coordinator、human owner、Stack）
