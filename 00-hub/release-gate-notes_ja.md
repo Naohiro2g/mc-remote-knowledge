@@ -92,7 +92,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   | Java、TypeScript、C# | sourceとtestを`24.0.0`と`2400.0.0`に揃え、GitHubのtagまで。package registryには出さない。12月1日の公開を止める条件にしない |
 - 範囲の外: サウンドの拡張（完成度を上げてから。今の仕様の作例を先に増やす）、helloの`world_constants`のkey（`2401`以降）、
   McRemoteのBANで拒む経路の直しとkeepalive、Unity箱庭のブロックの追加（12月12日）、long-lived credential（1月）
-- 票: 候補は`00-hub/2400-gate-candidate-instructions_ja.md`、Stackは`00-hub/2400-gate-stack-instructions_ja.md`
+- 票: 候補は`00-hub/2400-gate-candidate-instructions_ja.md`、Stackは`00-hub/2400-gate-stack-instructions_ja.md`、rc1のpre-releaseと
+  McRemote `2321.2.0`の公開は`00-hub/2400-gate-rc1-release-instructions_ja.md`
 - 公開VPSのUnity箱庭（2026-11-20、`2026-11-20-03`、`2026-11-20-04`）: TCPを外へ開ける。`unity-sb-lts`は`25585`、`unity-sb`は`25586`。
   12月1日までは`25585`にLTSの`2321.2.0`、`25586`にrc1を置く。imageはcoordinatorがGHCRのdigestを照合してから動かす。serverに
   接続とpairingの上限が無いと分かった上で、2026-11-20に今の候補を動かし、docker側の対策と見張りを用意して開ける。数日のうちに、
@@ -497,7 +498,10 @@ protocolは`24.0.0`。同じ時に、LTSのUnity箱庭`2321.2.0`を凍結する�
   log `LEGACY_SETTINGS_ITEM6.log`（2,123 bytes、`8343f5fe10190eaf84cc32c42b527aa2e4c5735ce506b5122968effe88eee7c5`）と、一時の差分
   `LEGACY_SETTINGS_ITEM6.patch`（489 bytes、`97995c110fc9b481dc8c1c864f6b0d04542ff4d31df1c839ee7de533e979f3e6`）。候補のcodeは
   変わっていない
-- 次：公開の手順の票（rc1のpre-releaseと、11月25日のMcRemote `2321.2.0`）。人間の試験の票を、rc1と`-beta`の名前で改める
+- 公開の依頼：`00-hub/2400-gate-rc1-release-instructions_ja.md`（2026-11-25）。human ownerが決めた（2026-11-25）：11月25日〜30日の
+  McRemoteのLatestは`v2321.2.0`（McRemoteの担当の案）。rcの間は既定のbranchを動かさず、tagだけを打つ。Release本文は、rc1は
+  出した後にcoordinatorが見て、`v2321.2.0`は案を先に返してhuman ownerが見る
+- 次：人間の試験の票を、rc1と`-beta`の名前で改める
 
 ### Scratchの搬送票：操作のエラーの知らせ方（2026-11-20）
 
