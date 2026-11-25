@@ -18,7 +18,7 @@
 | | 最新版候補（`2400.0.0rc1`、protocol `24.0.0`） | LTS（protocol `23.3.0`。境の項目だけ） |
 | --- | --- | --- |
 | Minecraft | `sb-beta`：McRemote `2400.0.0rc1`（公開VPS、新しいworld） | `sb-lts`：McRemote `2321.2.0`（有料GAMEs） |
-| Unity箱庭 | `unity-sb`：`candidate-6ce475e`（公開VPS、外のport `25586`） | `unity-sb-lts`：`candidate-1594805`（外のport `25585`） |
+| Unity箱庭 | `unity-sb`：`candidate-6ce475e`（公開VPS、外のport `25586`） | `unity-sb-lts`：`candidate-1594805`（外のport `25585`）。Unity Webが真っ黒になるので、作り直して替える（25） |
 | Web | `scratch-beta`、`wirescope-beta` | `scratch`（`2321.1.0`） |
 
 - Scratch LANパッケージ：Scratchのpre-release `v2400.0.0rc1`のページから取る。入れる前にSHA-256を計って比べる（Windowsは
@@ -87,7 +87,8 @@ miniの文は、Scratchの返却の対応表（`handoff-materials/2026-11-20-scr
 15. **最初のカメラ**：開いた直後に北を向くか（HUDの方位が「北」か「N」。区画8のラベルが正立）
 16. **見え方**：Scratchで原点の東（`x`が大きい側）に赤、北（`z`が小さい側）に青を置く。北を向いたとき、青が正面、赤が右に見えるか。
     東、南、西を向いても、右がそれぞれ南、西、北か（Minecraftと同じ）
-17. **chatと建築**：Unity WebのchatでIMEの日本語を送れるか。置いたブロックがすぐ出るか。Scratchのchatのhatが動くか
+17. **chatと建築**：Unity WebのchatでIMEの日本語を送れるか。置いたブロックがすぐ出るか。Scratchのchatのhatが動くか。
+    Unity Webで歩いても、Scratchのプレイヤーの位置と向きのレポーターは変わらない（知っている不具合で、`2401`で直す。hub NOTESの行）
 
 ## Pythonと、版の境
 
@@ -109,6 +110,11 @@ miniの文は、Scratchの返却の対応表（`handoff-materials/2026-11-20-scr
 
 23. **接続先の一覧**：`scratch-beta`の一覧が`sb-beta`と`unity-sb`か。`scratch`（`2321.1.0`）の一覧が`sb`と`unity-sb-lts`か
 24. **wirescope-beta**：開いて、Scratchの操作が見えるか
+
+## LTSのUnity箱庭（imageを替えた後）
+
+25. **LTSのUnity箱庭**：`unity-sb-lts`を開いて、ロゴの後に世界が見えるか（替える前の`candidate-1594805`は真っ黒になった。
+    hub gate notesの「Stackの返却の照合（2026-11-26）」）
 
 ## 範囲の外
 

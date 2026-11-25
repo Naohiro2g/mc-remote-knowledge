@@ -184,6 +184,22 @@ warning。ViaVersionのconfigの差分と、起動のlogで警告が消えたこ
 - 返却に足すもの：Webの接続先の一覧の表示名（`scratch`と`scratch-beta`の組）。ホームページの呼び方（マイクラ箱庭サーバー、
   Unity箱庭。`2026-11-25-01`）と比べるため。今は変えない
 
+## 12月1日の一覧の表示名と、LTSのUnity箱庭（2026-11-26に足した）
+
+返却（`2026-11-25-beta-rc1-and-unity-limits`）の照合は、`00-hub/release-gate-notes_ja.md`の「Stackの返却の照合（2026-11-26）」。
+
+- 接続先の一覧の表示名：12月1日から次にする（`2026-11-25-01`①、human owner 2026-11-26）。11月30日までは今のまま
+
+  | 組 | 表示名 |
+  | --- | --- |
+  | `scratch` | 「マイクラ箱庭サーバー」（`sb`）、「Unity箱庭サーバー」（`unity-sb`） |
+  | `scratch-lts` | 「マイクラ箱庭サーバー（LTS）」（`sb-lts`）、「Unity箱庭サーバー（LTS）」（`unity-sb-lts`） |
+  | `scratch-beta` | `scratch`と同じ |
+
+- `unity-sb-lts`：`candidate-1594805`は、Unity Webが真っ黒になる（返却の§2-3）。戻さずに置いておく（human owner 2026-11-26）。
+  Unity担当が`2321.2.0`のまま作り直す（期限は11月27日）。coordinatorが照合してから替える。digestは、照合の後にこの節へ足す。
+  検証機での通し（11/28〜29）も、作り直したimageで行う。間に合わなければ、coordinatorへ言う
+
 ## coordinatorがすること
 
 - PRをGitHubのAPIで照合する。候補のdigestと、`-beta`と検証機で動かしたdigestを突き合わせる

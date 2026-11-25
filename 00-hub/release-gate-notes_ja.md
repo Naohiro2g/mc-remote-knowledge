@@ -97,7 +97,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - 公開VPSのUnity箱庭（2026-11-20、`2026-11-20-03`、`2026-11-20-04`）: TCPを外へ開ける。`unity-sb-lts`は`25585`、`unity-sb`は`25586`。
   12月1日までは`25585`にLTSの`2321.2.0`、`25586`にrc1を置く。imageはcoordinatorがGHCRのdigestを照合してから動かす。serverに
   接続とpairingの上限が無いと分かった上で、2026-11-20に今の候補を動かし、docker側の対策と見張りを用意して開ける。数日のうちに、
-  上限の対策を入れた版へ替える。2026-11-24：対策版が返り、照合した（下の「Unity箱庭の上限の対策版の照合（2026-11-24）」）
+  上限の対策を入れた版へ替える。2026-11-24：対策版が返り、照合した（下の「Unity箱庭の上限の対策版の照合（2026-11-24）」）。
+  2026-11-26：LTSの`candidate-1594805`は、Unity Webが真っ黒になる。作り直す（下の「Stackの返却の照合（2026-11-26）」）
 - GAMEsの引っ越し（2026-11-21、`2026-11-21-01`）: `sb-retro`は、30日借りる2つ目の有料GAMEs（実験サーバー、2026-11-21にhuman ownerが契約した）へすぐ移す。11/25に、
   これまでの`sb`をworldごと今のGAMEsへ移してMcRemote `2321.2.0`（LTS）にし、`sb`と`sb-lts`がそこを指す。同じ日に、公開VPSの
   `sb-beta`をrc1にする。12/1に、`sb`は公開VPSの`2400.0.0`を指す。GAMEsの作業はhuman owner。LTSは3月と9月に出し、2つまで
@@ -486,7 +487,8 @@ protocolは`24.0.0`。同じ時に、LTSのUnity箱庭`2321.2.0`を凍結する�
   （tag `candidate-1594805`、`feat/ui-polish-monospace-i18n@1594805a047f6023f7e8724b4d1724fdaa009bdb`、PR #4、`main`へ、open）。
   linux/amd64のmanifest `sha256:dc11448df2c8ee9654a7dc07cddc5286aa8829481f7d1d9bd2329f97708d7104`、config
   `sha256:ee8f5d54262bef5cb6cd2a093234308313fdbaf2e6b6739fae2faeacf3e63bf9`。公開のときは、同じdigestに`v2321.2.0`のtagを足す
-  （`2026-11-17-02`）。`2321.2-set-1`の`candidate-be17313`に替わる
+  （`2026-11-17-02`）。`2321.2-set-1`の`candidate-be17313`に替わる。2026-11-26：Unity Webが真っ黒になる。作り直したimageへ、
+  human ownerの承認で替える（下の「Stackの返却の照合（2026-11-26）」）
 - 範囲の外（12月1日の公開を止める条件にしない）：Java `1300c4e753d7878115862663227a0eb13105b78c`、TypeScript
   `7b0e94ec565e92c73957769c08fef1144c03f33a`、C# `870c2ae2e872cb288dff7fee0020e444601f4208`（上の「返却の照合（2026-11-21、Java、
   TypeScript、C#）」）
@@ -533,6 +535,54 @@ feedbackの入口）が入っている
   `candidate-6ce475e`と同じ`sha256:e39109f0e3ff6bbc9ef2a0f4fb6048735817fa250a5226b404430ace52101097`。`candidate-1594805`は
   変わっていない。Releaseの題を、ほかに合わせて「mc-remote-unity-sandbox 2400.0.0rc1」にする（human owner 2026-11-25）
 - 次：Stackが`-beta`の組をrc1にする（Stackの票の「11月25日のrc1の値（2026-11-25に足した）」）
+
+### Stackの返却の照合（2026-11-26）
+
+- 返却：`mc-remote-stack`の`handoff-materials/2026-11-25-beta-rc1-and-unity-limits/`。読んだknowledgeは`776c796`。coordinatorが
+  サイズとSHA-256を計り、`SHA256SUMS`と全桁同じだった
+  - `materials/RETURN_ja.md`：16,549 bytes、`75078b35cc9ade37691d52c1834bc26c439f820881f3c78eeda3101283ef2b6c`
+  - `materials/result.json`：7,276 bytes、`238137f5d8837bd693de4592164fdd1f5f5492629505697feed1100100005b20`
+- PR #95：coordinatorがGitHubのAPIで見た。open、head `6c84f1ec3d6fdaf83ad9417578227bcbce85d82f`、base
+  `d3bf22ade00a09d5bba12b15468c2568baa44392`。`public-web-paper@19`で、`-beta`の組をrc1にする。CIは無く、testは担当の手元で736件
+- `-beta`の組：動かしたものの7つ（McRemoteのJAR、Scratch、Bridge、WireScopeの2つ、Unity箱庭の2つ）は、Stackの票の
+  「11月25日のrc1の値（2026-11-25に足した）」と「上限の対策版へ替える（2026-11-24に足した）」の値と全桁同じ。`sb-beta`は新しい
+  world。前のworldのvolumeは、戻すときのため残している
+- `sb`：DNSでGAMEsへ切り替えた。公開VPSでは、Minecraftのcontainerの名前から`sb`を外し、`bridge-lts`が外へ出られるようにした。
+  外からのhelloは、`sb`と`sb-lts`が`23.3.0`で`auth_required`。`sb-beta`は`24.0.0`で`auth_required`、`23.3.0`で`protocol_mismatch`
+- doctor：`public-beta-2400-20261125`で、替えた直後と自己攻撃の後のどちらも、10行すべてPASS
+- Paperとplugin：Paper 26.3 #262と9つのpluginを、票の取り先から入れた（版、SHA-256、取ったページは返却の§4）。起動のlogの
+  errorは0。warningは、新しいworldでのMcRemoteのcredentialの初期化、版の宣言の差、確かめの通信だけ。ViaVersionは
+  `5.12.4-SNAPSHOT+1136`、ViaBackwardsは`5.12.3-SNAPSHOT+675`で、番号は1つずれるが組として動く（返却）。`block-versions`の警告は0
+- McRemoteのcredentialのfileのmode（`sb-beta`、`2026-11-11-03`）：directoryは`700`、fileは`600`
+- Unity箱庭の上限の対策版：外からのhelloは、`unity-sb-lts`が`2321.2.0`と`23.3.0`、`unity-sb`が`2400.0.0rc1`と`24.0.0`。
+  2026-11-24の5つの自己攻撃のうち、4つをもう一度行った（送り先は`unity-sb`の`25586`と`/ws/sync`だけ）
+
+  | 試験 | 2026-11-24（対策の前） | 2026-11-26（対策版） |
+  | --- | --- | --- |
+  | 1つの送り元から40本つなぐ | 32本までつながり、残りはhostのfirewallで捨てた | 同じ |
+  | firewallを一時的に開け、1,100本つなぐ | containerが1回起動し直した | 行っていない（`sudo`のpasswordが要る。human ownerが行う） |
+  | `auth.pairBegin`を続けて送る | 5,000回とも受け付けた | 60秒で20回まで。その後は応答なしで切れた |
+  | 改行の無い行をTCPで送り続ける | 65.0MiBで切られた | 80 KiBを送ったところで切られた |
+  | `/ws/sync`へ巨大なframe | 64MiBまで受け取った | 64 KiBまで受け取り、1 byte越えると`1009`で閉じた |
+
+  - どの試験でも、ほかの7つのcontainerは起動し直さず、memoryで落とされなかった
+- Webの接続先の一覧の表示名：今は、`scratch`の組が「安定版」（`sb`）と「Unity箱庭（LTS）」（`unity-sb-lts`）、`scratch-beta`の組が
+  「公開ベータ」（`sb-beta`）と「Unity箱庭（最新版）」（`unity-sb`）。12月1日から、`scratch`と`scratch-beta`の組を「マイクラ箱庭
+  サーバー」と「Unity箱庭サーバー」、`scratch-lts`の組を「マイクラ箱庭サーバー（LTS）」と「Unity箱庭サーバー（LTS）」にする
+  （human owner 2026-11-26）。一覧は接続先を選ぶところなので、`2026-11-25-01`①に合わせて「サーバー」を付ける。11月30日までは
+  変えない。Stackの票に足した
+- **LTSのUnity箱庭の画面が真っ黒になる**（返却の§2-3）：`unity-sb-lts`（`candidate-1594805`）のUnity Webが、ロゴの後で真っ黒に
+  なる。imageの中の`WebGL.data`だけが、`candidate-f7d0f9a`より1,666 bytes小さい。`unity-sb`（`candidate-6ce475e`）は見える。
+  coordinatorはdigestとlabelを照合しただけで、このimageのUnity Webを開いて確かめた者はいなかった
+  - ペアリングはUnity Webのchatで承認するので、今の`unity-sb-lts`には新しくペアリングできない。`candidate-f7d0f9a`へは戻さない
+    （human owner 2026-11-26）。公開は12月1日で、まだ案内していない。戻すと上限の対策も外れる。rc1の人間の試験で`unity-sb-lts`を
+    使うのは20だけで、TCPで断られることを見るので、画面は要らない
+  - Unity担当が、版を`2321.2.0`のまま作り直す。期限は11月27日（human owner 2026-11-26）。候補の票の「LTSの作り直し
+    （2026-11-26に足した）」。返ったら照合し、`2400-set-1`のLTSのUnity箱庭だけを、human ownerの承認で替える。人間の試験の票に
+    25を足した
+- 確かめられなかったこと（返却の§5）：1,100本の試験、`unity-sandbox-watch`を新しいprojectへ向けること（`sudo install`が要る）、
+  `sb-lts`のcredentialのfileのmode。どれもhuman ownerが行う。実際のブラウザでのScratchとWireScopeは、人間の試験で見る
+- 次：Unity担当がLTSを作り直す。Stackは、検証機での通し（11/28〜29）と、12月1日の手順
 
 ### Scratchの搬送票：操作のエラーの知らせ方（2026-11-20）
 

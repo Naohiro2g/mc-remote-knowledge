@@ -228,6 +228,43 @@ TCPで直接つないで、pairingを始められる。
 返却に足すもの：足した上限とその値、それぞれを外すと落ちるtest、2つのcommitとGHCRのtagとdigest（全桁）。版の文字列とhelloは、
 今回の返却と同じ形で確かめる
 
+### LTSの作り直し（2026-11-26に足した）
+
+Stackが公開VPSで、LTSの`candidate-1594805`（`sha256:9bd2ec444d5cea362729bacbea4d1b8ccd6905b169a467aaa57cdb4b4d05e24a`）のUnity Webが、
+ロゴの後で真っ黒になるのを見つけた（`mc-remote-stack`の`handoff-materials/2026-11-25-beta-rc1-and-unity-limits/materials/RETURN_ja.md`
+の§2-3）。通常の窓でもシークレットウィンドウでも同じで、browserのConsoleに次の2行が出る。
+
+- `The referenced script (Unknown) on this Behaviour is missing!`
+- `The referenced script on this Behaviour (Game Object 'Local Sandbox Demo') is missing!`
+
+imageの中の`/app/wwwroot/Build/`では、`WebGL.data`だけが違う（Stackが計った。公開VPSが返すfileも同じ）。`index.html`、
+`WebGL.loader.js`、`WebGL.framework.js`、`WebGL.wasm`は、`1594805`と`f7d0f9a`で全バイト同じ。`1594805`は`unity/`を変えていない
+（coordinatorの2026-11-24の照合）
+
+| image | Unity Web | `WebGL.data` | `WebGL.wasm`のSHA-256 |
+| --- | --- | --- | --- |
+| `candidate-f7d0f9a` | 見える | 14,208,678 bytes `beb2edb6cfb901bab38cbb74091a27463134d17f90b60a6af966cfebd63abe90` | `2e2dbe830e8e52b1d7785423e9070315c65d64a87c287ed9de4da9628e35a0f8` |
+| `candidate-1594805` | 真っ黒 | 14,207,012 bytes `54625694b8cb6fed8de56ba85d023c5a0cc124ef74eb7396a715c013658f23e5` | `2e2dbe830e8e52b1d7785423e9070315c65d64a87c287ed9de4da9628e35a0f8` |
+| `candidate-6ce475e` | 見える | 14,208,716 bytes `8ba1065f3a7d1762b9cac9591aa7246411bfd6b89e27926ed898864533b130f1` | `655775cd95b027d10b1ffc4e215a3d29894c16a131762bf1110afd7518cf9a35` |
+
+- 版は`2321.2.0`のまま、`1594805`のsourceから作り直す。期限は11月27日（human owner 2026-11-26。延期を決める日で、Stackが
+  11/28〜29に検証機で12月1日の手順を通す）
+- 姿勢の直し（hub NOTESの「Unity Webで歩いても、Scratchのプレイヤーの位置と向きが変わらない」）は入れない（human owner 2026-11-26）
+- 直すのに新しいcommitが要るなら、`1594805`の上に積み、何を変えたかを返す
+- 今の`candidate-1594805`のtagは動かさない（Stackが戻すときの記録に使っている）。同じcommitから作るなら、tagは
+  `candidate-1594805-2`にする
+- 公開VPSの`unity-sb-lts`は、coordinatorが照合してから、Stackが替える。rc1の`candidate-6ce475e`は替えない
+
+確かめてほしいこと：
+
+1. 新しいimageを手元で動かし、browserの通常の窓とシークレットウィンドウでUnity Webを開く。ロゴの後に世界が見え、chatで
+   ペアリングできるか
+2. `/app/wwwroot/Build/`の各fileのbytesとSHA-256を、`f7d0f9a`と`6ce475e`のものと比べる
+3. 次に同じことが起きたとき、imageを出す前に気づける確かめ方の案。今の`1594805`で落ちることを見せる
+
+返却に足すもの：原因、作り直したcommitとtag、indexとlinux/amd64のmanifestとconfigのdigest（全桁）、labelの`revision`と`version`、
+`/healthz`とhelloの版とprotocol（`2321.2.0`、`23.3.0`）、上限のtestがそのまま通ること、上の1〜3の結果
+
 ## Java、TypeScript、C#（Client Library）
 
 - `2400`に揃える（`2026-11-19-01`①）。sourceとtestを、申告する`protocol` `24.0.0`、helloの互換の判定（major 24）、版`2400.0.0`に
