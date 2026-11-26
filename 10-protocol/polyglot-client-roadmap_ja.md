@@ -220,7 +220,8 @@ C# Client Library       bootstrapまで
 
 Phase EのE1（[Protocol Inventory](protocol-inventory_ja.md)）の途中。Python、Java、共有fixtureの列が返り、McRemoteと
 Scratchの列が残る（依頼は`00-hub/polyglot-e1-instructions_ja.md`）。human owner 2026-11-10：「クライアントの多言語化を
-最優先とする。その先のUnity版マイクラリモコンを急ぐため」。
+最優先とする。その先のUnity版マイクラリモコンを急ぐため」。この優先は、2026-11-24の「polyglot／言語増加は緊急課題では
+ない。」で変わり、`2026-11-26-03`で、新しい言語の作業はScratch、Python、Rustの線を先にすると決めた。
 
 起案の時点（2026-08-29）：
 
@@ -287,8 +288,9 @@ Phase E／Fの進め方は`2026-10-23-01`で決めた（`10-protocol/polyglot-ph
 Javaの追従と同じ票で出し、Phase DはE1へ入れる。C#／Unityは、共通contractに依存しないUnity内部の準備を並行して進める。
 
 `2026-11-26-01`で、Rustのrepo（`Naohiro2g/minecraft-remote-rust`）を作り、担当sessionを呼べる入口まで置いた（`21-rust-client/`）。
-Rustの優先度はJava、TypeScript、C#より高い（human owner 2026-11-25）。この節の順番への書き直しは、hub NOTESの
-「Scratch、Python、Rustの線」の行で行う。
+`2026-11-26-03`で、新しい言語の作業はScratch、Python、Rustの線を先にすると決めた。RustはJava、TypeScript、C#より
+先に進め、Java、TypeScript、C#はprotocol `24.0.0`への追従を続ける。Rustの最初の縦sliceは、TypeScriptとC#と同じ形で、
+protocol `24.0.0`を基準にする（`2026-11-26-02`）。
 
 ---
 
