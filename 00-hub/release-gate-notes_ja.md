@@ -711,6 +711,9 @@ feedbackの入口）が入っている
     `23.3.0`へ送る
   - 版の台帳（`00-hub/release-train-notes_ja.md`）の`2321.2`を「公開（McRemote）」、2026-11-26にした
 - 残り：「出した後」のうち、Protocol Inventory、F1のcase（tooling）、Scratch以外のclientの表示の依頼
+- ホームページの同期（2026-11-26）：11月25〜26日の分（`fd7368e`）と`api/23.3.0/`（`fdfafaf`）を、human ownerが同期した。
+  coordinatorが`https://mc-remote.com/`から取り直した`/`、`/releases/`、`/api/`、`/api/23.3.0/`、`/api/23.3.0/api.json`、
+  `/api/23.2.1/`は、どれもHTTP 200で、repoと同じbytes
 
 ### Scratchの搬送票：操作のエラーの知らせ方（2026-11-20）
 
