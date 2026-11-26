@@ -108,7 +108,7 @@ public 正本世代の入口です。ここに載る path は、このリポ内�
 | `20-教材/ai-learning-design_ja.md` | 学習支援の哲学、AI 委譲境界、Scratch / Python の並列ビークル論 |
 | `20-教材/client-sample-learning-ux_ja.md` | Client repoのREADME隣接examplesと`mc_remote_samples`のconcept-first多言語比較面のowner・学習UX |
 | `20-教材/environment-guide_ja.md` | 教材・OSS の想定実行環境、uv 統一、deployment profile とケータリング型の区別 |
-| `20-教材/curriculum-design_ja.md` | カリキュラム：決まった道筋を方便として作る位置づけ、①2進数からドットマトリクスフォントと時計、②モンテカルロ法、③マイクラ課題の順番、言語と出力先、これまでの教材の場所 |
+| `20-教材/curriculum-design_ja.md` | カリキュラム：決まった道筋を方便として作る位置づけ、①2進数からドットマトリクスフォントと時計、②モンテカルロ法、③マイクラ課題の順番、言語と出力先、これまでの教材の場所、これまでの記録とのつながり、置き場所の候補 |
 | `20-教材/xyz-space-learning-design_ja.md` | 最初のコマの教材：XYZ軸を足場にブロックを置く、並行動作を試して分かる、マイクラ課題とPythonへのつなぎ |
 | `20-教材/jupyter-notes_ja.md` | デモ .ipynb の autoreload / CWD / 実行順序依存の注意点 |
 | `token-hygiene-guide_ja.md` | 情報を失わず context token を減らす運用 |
