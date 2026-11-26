@@ -48,6 +48,9 @@ URLを開けば、Minecraftを買わず入れずに、Scratchから建てられ�
   を指す
 - 経路：Scratch → Bridge → Unity箱庭のserver → 表示同期 → Unity Web。Unity箱庭のserverは、McRemoteと同じ改行区切りの
   JSON-RPCをTCPで受ける。ほかのclientも同じserverへつながる。serverの形は、設計メモの第一案（描画しない.NETのprocess）
+- 表示同期（`/ws/sync`）：契約の正本はこのrepoの`docs/unity-sandbox-display-sync_ja.md`で、knowledgeへ上げない。Unity Webの
+  ほかに、手元の実験としてBevy Web（`22-bevy/`）が同じserverへつなぎ、固定したcommitで読んで追う。Unity箱庭の作業と公開に
+  新しい義務は足さない（`2026-11-27-01`）
 - pairing：Scratchに出たcodeを、Unity Webのchatで`/mcremote pair NNN-NNN`と打って承認する。Minecraftでの操作と同じにする
 - 世界のモデル：Minecraft 1.21.11に準拠する。高さは-64〜319、地面も置き換えられ（リセットで戻す）、blockはIDとstateで持つ
   （`minecraft:gold_block`など）。どこまで沿わせるか（blockのふるまいなど）は段ごとに決める
@@ -161,6 +164,7 @@ server側の範囲と学習の登山道は、下の「やりたいことと未�
 - 版と配る形: `2026-11-15-04`、`2026-11-15-05`、`2026-11-16-03`、`2026-11-16-04`
 - Unity内部の準備を並行して進めること: `2026-10-23-01`
 - 旧for Unityの扱い: `2026-10-22-08`
+- `/ws/sync`を使う2つ目の表示（Bevy Web）: `2026-11-27-01`、`22-bevy/`
 - 実装、build、Unityに閉じる判断: `Naohiro2g/mc-remote-unity-sandbox`
 
 ## bootstrapの手順

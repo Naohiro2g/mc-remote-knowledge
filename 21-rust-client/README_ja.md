@@ -24,6 +24,8 @@ hub NOTESの「Scratch、Python、Rustの線」（2026-11-25）から。
   `20-教材/curriculum-design_ja.md`）
 - Bevyとpyxelは、まずマイクラリモコンの外で試す（human owner 2026-11-26）。repoは`Naohiro2g/bevy-sandbox`と
   `Naohiro2g/pyxel-samples`
+- Bevy箱庭は、Unity箱庭のserverへ`/ws/sync`でつなぐ表示のBevy Webから始める（`2026-11-27-01`、`22-bevy/`）。Bevy Webは
+  このclient libraryを使わない
 
 ## 決めたこと（`2026-11-26-02`）
 

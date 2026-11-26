@@ -92,6 +92,7 @@ public 正本世代の入口です。ここに載る path は、このリポ内�
 | `18-csharp-client/README_ja.md` | C# Client Libraryのrepository、根のnamespace、target、Unityとの関係、bootstrapの手順と範囲 |
 | `19-unity/README_ja.md` | Unityの世界と箱庭のrepository（`mc-remote-unity-sandbox`）、置くもの、Unityの版、旧for Unityと二つの世界、bootstrapの手順 |
 | `21-rust-client/README_ja.md` | Rust Client Libraryのrepository、位置づけ（Pythonから使う形とピュアRust、Bevy）、決めたこと（crate名、edition、toolchain、最初の縦slice）、開発環境、bootstrapの手順と範囲 |
+| `22-bevy/README_ja.md` | Bevyの世界と箱庭のrepository（`mc-remote-bevy-sandbox`）、Unity箱庭のserverへつなぐBevy Web、`/ws/sync`の追い方、`bevy-sandbox`との境目、決まっていないこと、bootstrapの手順 |
 
 ## WireScope
 
