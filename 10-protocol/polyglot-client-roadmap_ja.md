@@ -286,6 +286,10 @@ Phase J  多言語Client Libraryの通常運用
 Phase E／Fの進め方は`2026-10-23-01`で決めた（`10-protocol/polyglot-phase-ef-plan_ja.md`）。E1の確認票は初回stableの後に
 Javaの追従と同じ票で出し、Phase DはE1へ入れる。C#／Unityは、共通contractに依存しないUnity内部の準備を並行して進める。
 
+`2026-11-26-01`で、Rustのrepo（`Naohiro2g/minecraft-remote-rust`）を作り、担当sessionを呼べる入口まで置いた（`21-rust-client/`）。
+Rustの優先度はJava、TypeScript、C#より高い（human owner 2026-11-25）。この節の順番への書き直しは、hub NOTESの
+「Scratch、Python、Rustの線」の行で行う。
+
 ---
 
 ## 6. Java bootstrap baseline
