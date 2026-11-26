@@ -20,6 +20,8 @@ hub NOTESの「Scratch、Python、Rustの線」（2026-11-25）から。
 - 2つの使い方を並べる：Pythonから速くしたい部分をRustで書く使い方（pyxelの中のRustと同じ）と、ピュアRust
 - Rustに慣れたらBevyへ進み、Bevyのアプリから箱庭へつなぐ。そのためにRustのclient libraryが要る
 - `2026-11-26-03`：新しい言語の作業は、Scratch、Python、Rustの線を先にする。RustはJava、TypeScript、C#より先に進める
+- 12月の中に、カリキュラムの②モンテカルロ法と、最初の縦sliceで③マイクラ課題をRustで書く（human owner 2026-11-26、
+  `20-教材/curriculum-design_ja.md`）
 - Bevyとpyxelは、まずマイクラリモコンの外で試す（human owner 2026-11-26）。repoは`Naohiro2g/bevy-sandbox`と
   `Naohiro2g/pyxel-samples`
 
