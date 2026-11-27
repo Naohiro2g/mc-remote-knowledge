@@ -6,8 +6,9 @@ Bevy Webアプリの設計スポーク。.NET箱庭のserverへつなぐ2つ目�
 ## 現在地
 
 - 2026-11-27：Bevy Webから始めると決めた（`2026-11-27-01`）。hub NOTESの「Bevy（＋Blender）の箱庭」（2026-11-24）を昇格した
-- 2026-11-28：Bevy WebアプリとRust箱庭（検討中）と呼ぶことにし（`2026-11-28-01`）、repoを`mc-remote-bevy-app`へ改名すると
-  決めた（`2026-11-28-03`①。GitHubでの改名はhuman owner）
+- 2026-11-28：Bevy WebアプリとRust箱庭（検討中）と呼ぶことにし（`2026-11-28-01`）、repoを`mc-remote-bevy-app`へ改名した
+  （`2026-11-28-03`①）。GitHubでの改名はhuman owner。coordinatorが`README.md`と`AGENTS.md`の名前を直し
+  （`240c55664c19ad0c8bc776a70f16a4351b7f5f8e`）、手元のcloneのremoteを替え、`AGENTS.md`のbootstrap commandが通ることを確かめた
 - repository: `Naohiro2g/mc-remote-bevy-app`（human ownerが2026-11-27に`mc-remote-bevy-sandbox`として作った。public、LICENSEはMIT、
   default branchは`main`。初期commit `4f08a2b077c3adb1cfc96356126eee3a973e1b3b`）
 - 入口（2026-11-27、coordinator）: dev-repo protocolの雛形の`AGENTS.md`と、`.gitignore`へoperator-localのfile（`CLAUDE.md`、
@@ -76,7 +77,7 @@ Bevy Webアプリの設計スポーク。.NET箱庭のserverへつなぐ2つ目�
    2026-11-27に済んだ
 4. 担当sessionに相談の票を出す（codeは書かない）。2026-11-27に出した（`00-hub/bevy-sandbox-consultation-instructions_ja.md`）
 5. human ownerがGitHubでrepoを`mc-remote-bevy-app`へ改名する。knowledgeが`README.md`と`AGENTS.md`の名前を直し、手元のcloneの
-   remoteを替える（`2026-11-28-03`①）
+   remoteを替える（`2026-11-28-03`①）。2026-11-28に済んだ
 6. 返ってきた案を見て、最初のsliceの票を出す。最初のsliceもUnity Webアプリを追うので、agentに多く任せる
 
 ## AGENTS.mdの「このrepository固有の指示」
