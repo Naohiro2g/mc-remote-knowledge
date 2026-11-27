@@ -47,6 +47,7 @@ public 正本世代の入口です。ここに載る path は、このリポ内�
 | `00-hub/b8-gate-work-instructions_ja.md` | b8横断release gateの確認票の返却を受けて出す着手依頼（blockerと非blocker、依存順、日程の確認点） |
 | `00-hub/b8-gate-live-test-sheet_ja.md` | b8横断release gateの凍結後、devの通常環境で行う統一実施票（環境準備、live-auto、Python、Scratch、live-human） |
 | `00-hub/terms-glossary_ja.md` | 横断語彙 |
+| `00-hub/sandbox-layers-guide_ja.md` | 考え方の正本「マイクラリモコンの「箱庭」とは何か」の日本語の部分。箱庭、参加アプリ、クライアントの3層（`2026-11-28-01`） |
 | `00-hub/external-facts_ja.md` | 決定が `F-<topic>` で参照する外部事実の生きた台帳（調査日・状態・次回確認を更新する） |
 | `00-hub/domain-knowledge-modules-design_ja.md` | 起案。領域知識を domain knowledge module として分離する方式（`2026-07-02-01` の起案正本） |
 | `00-hub/world-constants-facts_ja.md` | 旧世代 archive から carry。次元×世代別の世界定数実値表（`y_ground`/`y_sea`/`y_lava`/`y_cloud`/`steve_min_y`/`steve_max_y`）。domain knowledge の最初の実体候補 |
@@ -90,9 +91,9 @@ public 正本世代の入口です。ここに載る path は、このリポ内�
 | `16-java-client/README_ja.md` | 現行Java Client Libraryのrepository、group／root package、build境界、Java bootstrap baseline、次の縦slice |
 | `17-typescript-client/README_ja.md` | 一般用途TypeScript Client Libraryのrepository、`@mc-remote/protocol`との関係、bootstrapの手順と範囲 |
 | `18-csharp-client/README_ja.md` | C# Client Libraryのrepository、根のnamespace、target、Unityとの関係、bootstrapの手順と範囲 |
-| `19-unity/README_ja.md` | Unityの世界と箱庭のrepository（`mc-remote-unity-sandbox`）、置くもの、Unityの版、旧for Unityと二つの世界、bootstrapの手順 |
+| `19-unity/README_ja.md` | .NET箱庭とUnity Webアプリのrepository（`mc-remote-unity-sandbox`に同居）、置くもの、Unityの版、公開の名前、旧for Unityと二つの世界、repoを分けるとき、bootstrapの手順 |
 | `21-rust-client/README_ja.md` | Rust Client Libraryのrepository、位置づけ（Pythonから使う形とピュアRust、Bevy）、決めたこと（crate名、edition、toolchain、最初の縦slice）、開発環境、bootstrapの手順と範囲 |
-| `22-bevy/README_ja.md` | Bevyの世界と箱庭のrepository（`mc-remote-bevy-sandbox`）、Unity箱庭のserverへつなぐBevy Web、`/ws/sync`の追い方、`bevy-sandbox`との境目、決まっていないこと、bootstrapの手順 |
+| `22-bevy/README_ja.md` | Bevy Webアプリのrepository（`mc-remote-bevy-app`）、.NET箱庭のserverへつなぐBevy Webアプリ、`/ws/sync`の追い方、`bevy-sandbox`との境目、決まっていないこと、bootstrapの手順 |
 
 ## WireScope
 

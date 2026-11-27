@@ -16,9 +16,11 @@
   | --- | --- | --- |
   | Minecraft | `sb`：McRemote `2400.0.0`（公開VPS） | `sb-lts`：McRemote `2321.2.0`（有料GAMEs） |
   | Web | `scratch`、`wirescope`：Scratch `2400.0.0`、Bridge `2400.0.0`、runtime config `schema_version: 2` | `scratch-lts`、`wirescope-lts`：Scratch `v2321.1.0`、Bridge `v2321.0.0` |
-  | Unity箱庭 | `unity-sb`：`2400.0.0`、外のport `25586` | `unity-sb-lts`：`2321.2.0`（IMEと座標の見え方を直したもの）、外のport `25585` |
+  | .NET箱庭とUnity Webアプリ（前の名前はUnity箱庭） | `dotnet-sb`と`unity-app`：`2400.0.0`、外のport `25586` | `dotnet-sb-lts`と`unity-app-lts`：`2321.2.0`（IMEと座標の見え方を直したもの）、外のport `25585` |
 
-- 接続先の一覧は、組ごとに同じ系列だけにする。`scratch`の組は`sb`と`unity-sb`、`scratch-lts`の組は`sb-lts`と`unity-sb-lts`
+  名前は2026-11-28に替えた。旧名の`unity-sb`と`unity-sb-lts`も残す（下の「12月1日の名前の替え（2026-11-28に足した）」）
+
+- 接続先の一覧は、組ごとに同じ系列だけにする。`scratch`の組は`sb`と`dotnet-sb`、`scratch-lts`の組は`sb-lts`と`dotnet-sb-lts`
   （`2026-11-19-02`③。前の票の「どちらの組も両方を選べる」を改める）。majorが違うとhelloで断られる
 - Unity箱庭は、`unity-sb`と`unity-sb-lts`を別のcontainerにする。外へTCPを開け、`unity-sb-lts`は`25585`、`unity-sb`は`25586`
   （`2026-11-20-03`。下の「公開VPSのUnity箱庭のport（2026-11-20に足した）」）
@@ -188,7 +190,8 @@ warning。ViaVersionのconfigの差分と、起動のlogで警告が消えたこ
 
 返却（`2026-11-25-beta-rc1-and-unity-limits`）の照合は、`00-hub/release-gate-notes_ja.md`の「Stackの返却の照合（2026-11-26）」。
 
-- 接続先の一覧の表示名：12月1日から次にする（`2026-11-25-01`①、human owner 2026-11-26）。11月30日までは今のまま
+- 接続先の一覧の表示名：12月1日から次にする（`2026-11-25-01`①、human owner 2026-11-26）。11月30日までは今のまま。
+  2026-11-28に、下の「12月1日の名前の替え（2026-11-28に足した）」の表へ替えた
 
   | 組 | 表示名 |
   | --- | --- |
@@ -209,6 +212,41 @@ warning。ViaVersionのconfigの差分と、起動のlogで警告が消えたこ
   返却に足すもの：動かしたdigest、外からのhello（`protocol`と`server.version`）、`https://unity-sb-lts.mc-remote.com/`の`WebGL.data`の
   bytesとSHA-256（`14,208,678` bytes、`1040cd821ec5a6afc5ca518bbaefe0030e18749e64a372da52fae812ac39fc84`になるはず）、doctor
 - 2026-11-26：返り、coordinatorが照合した（gate notesの「Stackの`unity-sb-lts`の差し替えの照合（2026-11-26）」）
+
+## 12月1日の名前の替え（2026-11-28に足した）
+
+`2026-11-28-01`、`2026-11-28-02`。「Unity箱庭」を、.NET箱庭（server）とUnity Webアプリ（ブラウザで開いて見るもの）に分けて呼び、
+その名前で公開デビューする。human owner 2026-11-28「12月1日を目指し、延期なら12月5日。これは既定路線。」「ポイントは、
+「Unity箱庭」はまだデビューすらしていないこと。」。portとcontainerとimageは変えない。判断の期限（11月27日）の後の変更なので、
+返却は11月29日中にほしい。延期するかは、この返却とUnity担当の返事を見て、human ownerが決める。
+
+| 今の名前 | 新しい名前 | 中身 |
+| --- | --- | --- |
+| `unity-sb` | .NET箱庭は`dotnet-sb`（外のport `25586`）、Unity Webアプリは`https://unity-app.mc-remote.com/` | 最新版の`2400` |
+| `unity-sb-lts` | .NET箱庭は`dotnet-sb-lts`（外のport `25585`）、Unity Webアプリは`https://unity-app-lts.mc-remote.com/` | LTSの`2321.2.0` |
+
+- DNS：新しい4つの名前を作り、旧名の`unity-sb`と`unity-sb-lts`はCNAMEで新しい名前へ向ける。変えるのはhuman owner（backstage）。
+  Stackは、要るレコードを返却に書く
+- Caddy：新しい名前と旧名の両方で、同じcontainerのUnity Webアプリと`/ws/sync`を出す。新しい名前の証明書も取る。`dotnet-sb`と
+  `dotnet-sb-lts`をブラウザで開いたときの扱いはまだ決めていない（hub NOTESの行。Unity Webアプリへ転送するのはclaude.aiの案）。
+  案を返す
+- 接続先の一覧：`scratch`、`scratch-lts`、`scratch-beta`の組で、Unity箱庭の接続先の名前と表示名を替える。組ごとの一覧と既定の
+  接続先は変えない。一覧の接続先のIDを替えると、ブラウザに残った選択が既定へ戻るかもしれない（`2400`の人間の試験で、設定ページの
+  「既定」より前に選んだIDが先に使われた）。IDを替えるかは案を返す。表示名は、12月1日から次にする
+
+  | 組 | 表示名 |
+  | --- | --- |
+  | `scratch` | 「マイクラ箱庭サーバー」（`sb`）、「.NET箱庭サーバー」（`dotnet-sb`） |
+  | `scratch-lts` | 「マイクラ箱庭サーバー（LTS）」（`sb-lts`）、「.NET箱庭サーバー（LTS）」（`dotnet-sb-lts`） |
+  | `scratch-beta` | `scratch`と同じ |
+
+- いつ：一覧の名前と表示名は、12月1日0時からの手順に入れる。DNS、Caddy、証明書は前もって用意してよい。検証機での通し（11/28〜29）に
+  新しい名前を入れる
+- doctor：新しい名前と旧名の両方で、Unity Webアプリが開くこと、`/ws/sync`がつながること、外からのhello（`25585`と`25586`）
+- ペアリング：旧名から新しい名前へ移った人は、ペアリングし直す。許容する（`2026-11-28-02`③）
+
+返却に足すもの：DNSのレコードの一覧（human ownerに頼むもの）、Caddyの設定の差、新しい名前の証明書、一覧の名前と表示名とID、
+doctorの結果、12月1日の手順で増える時間。確かめられなかったことと、その理由
 
 ## coordinatorがすること
 

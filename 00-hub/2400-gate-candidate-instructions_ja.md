@@ -317,6 +317,51 @@ LTSの作り直しの返却で、担当が作った確かめ（`handoff-material
 - `sb-beta`のrc1へつないだ結果
 - 一緒に入れたものの結果
 
+## 名前の替えの確認（2026-11-28に足した。Unity、Scratch、Python）
+
+`2026-11-28-01`、`2026-11-28-02`。「Unity箱庭」を、.NET箱庭（server）とUnity Webアプリ（ブラウザで開いて見るもの）に分けて呼び、
+公開の名前を`dotnet-sb`（最新版、`25586`）、`dotnet-sb-lts`（LTS、`25585`）、`https://unity-app.mc-remote.com/`、
+`https://unity-app-lts.mc-remote.com/`にする。旧名の`unity-sb`と`unity-sb-lts`はCNAMEで残す。portとcontainerは変えず、名前の替えの
+ためにimageを作り直さない。考え方の正本は`00-hub/sandbox-layers-guide_ja.md`。
+
+判断の期限（11月27日）の後の変更なので、返事は11月29日中にほしい。12月1日に出すか、延期して12月5日にするかは、human ownerが
+この返事を見て決める。確かめるだけで、まだ何も変えない。
+
+### Unity
+
+公開VPSで動いている2つのimageについて答える。LTSは`candidate-1594805-2`
+（`sha256:0737c28a1753847d8d1c4218a26561af083886def4457c2e3cd64d84f3c76828`）、最新版のrc1は`candidate-6ce475e`
+（`sha256:e39109f0e3ff6bbc9ef2a0f4fb6048735817fa250a5226b404430ace52101097`）。
+
+1. Unity Webアプリは、既定で、開いたhostの`/ws/sync`へつなぐか（`unity-app`で開けば`unity-app`へ）。固定したhost名が入っていないか。
+   serverの側で、`/ws/sync`のOriginやHostを見ていないか（見ているなら、許している名前）
+2. 利用者に見える旧名の文字（「Unity箱庭」、`unity-sb`、「Unity Sandbox」など）の一覧と、それぞれがどこで作られるか（server、
+   WebGL、`index.html`）。分かっているもの：productName「Minecraft Remote Unity Sandbox」（2026-11-27の人間の試験で、タブの題は
+   「Unity Web Player | Minecraft…」と出た）、chatの歓迎文「ようこそ Unity箱庭！」（claude.aiが`d3539c3`のsourceで読んだ。
+   動いている版では見ていない）
+3. 2の文字を替えるとしたら、何が要るか。最新版の`2400.0.0`は、最後の候補で、もともとWebGLとimageを作り直す（上の「Unity箱庭」の
+   節）。その中で替えるときと、LTSの`2321.2.0`を作り直して替えるときの、それぞれの手間と時間と、確かめ直すこと。替える文字は
+   human ownerが決める
+4. LANのセットのREADMEと起動の文で、旧名が出るところ
+
+返却に足すもの：1〜4の答え。見たcommitとimageのdigest
+
+### Scratch
+
+1. rc1の`v2400.0.0rc1`と、LTSの`v2321.1.0`で、「Unity箱庭」や`unity-sb`が固定で入っているところ（ブロック、メッセージ、miniの
+   表示、設定ページ、LANパッケージの`はじめに.html`とREADME）。接続先の一覧の名前と表示名は、全部runtime configから来るか
+2. 一覧の接続先の名前やIDが替わったとき、ブラウザに残った選択はどうなるか（既定に戻るか、無い接続先を指したままか）
+3. 最後の候補（`2400.0.0`）で、1の文字を替えるとしたら、何が要るか
+
+返却に足すもの：1〜3の答え。見たcommit
+
+### Python
+
+1. `2400.0.0rc1`と最後の候補で、README、starter、例外の文に、`unity-sb`や「Unity箱庭」が出るところ。旧名はCNAMEで残るので、
+   12月1日を止める条件にしない
+
+返却に足すもの：1の答え。見たcommit
+
 ## coordinatorがすること
 
 - 返却をGitHubのAPIで照合し、配布物を取り直して計る。Unity箱庭はloginなしでGHCRから取る

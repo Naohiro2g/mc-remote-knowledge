@@ -18,14 +18,14 @@ hub NOTESの「Scratch、Python、Rustの線」（2026-11-25）から。
 
 - human owner 2026-11-25：Java、TypeScript、C#よりも優先度は高い。Scratch、Python、Rustの線を強める
 - 2つの使い方を並べる：Pythonから速くしたい部分をRustで書く使い方（pyxelの中のRustと同じ）と、ピュアRust
-- Rustに慣れたらBevyへ進み、Bevyのアプリから箱庭へつなぐ。そのためにRustのclient libraryが要る
+- Rustに慣れたらBevyへ進み、Bevyで作ったゲームから箱庭へつなぐ。そのためにRustのclient libraryが要る
 - `2026-11-26-03`：新しい言語の作業は、Scratch、Python、Rustの線を先にする。RustはJava、TypeScript、C#より先に進める
 - 12月の中に、カリキュラムの②モンテカルロ法と、最初の縦sliceで③マイクラ課題をRustで書く（human owner 2026-11-26、
   `20-教材/curriculum-design_ja.md`）
 - Bevyとpyxelは、まずマイクラリモコンの外で試す（human owner 2026-11-26）。repoは`Naohiro2g/bevy-sandbox`と
   `Naohiro2g/pyxel-samples`
-- Bevy箱庭は、Unity箱庭のserverへ`/ws/sync`でつなぐ表示のBevy Webから始める（`2026-11-27-01`、`22-bevy/`）。Bevy Webは
-  このclient libraryを使わない
+- Bevyでは、.NET箱庭のserverへ`/ws/sync`でつなぐ参加アプリのBevy Webアプリから始める（`2026-11-27-01`、`2026-11-28-01`、
+  `22-bevy/`）。Bevy Webアプリはこのclient libraryを使わない
 
 ## 決めたこと（`2026-11-26-02`）
 

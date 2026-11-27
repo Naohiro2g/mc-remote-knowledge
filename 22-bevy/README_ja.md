@@ -1,13 +1,15 @@
-# Minecraft Remote Bevy Sandbox
+# Minecraft Remote Bevy App
 
-Bevyの世界と箱庭の設計スポーク。最初は、Unity箱庭のserverへつなぐ2つ目の表示「Bevy Web」として、手元で実験する
-（`2026-11-27-01`）。
+Bevy Webアプリの設計スポーク。.NET箱庭のserverへつなぐ2つ目の参加アプリとして、手元で実験する（`2026-11-27-01`。
+呼び方は`2026-11-28-01`）。前の記録の「Bevy箱庭」と「Bevy Web」はBevy Webアプリを、「Unity箱庭のserver」は.NET箱庭のserverを指す。
 
 ## 現在地
 
 - 2026-11-27：Bevy Webから始めると決めた（`2026-11-27-01`）。hub NOTESの「Bevy（＋Blender）の箱庭」（2026-11-24）を昇格した
-- repository: `Naohiro2g/mc-remote-bevy-sandbox`（human ownerが2026-11-27に作った。public、LICENSEはMIT、default branchは`main`。
-  初期commit `4f08a2b077c3adb1cfc96356126eee3a973e1b3b`）
+- 2026-11-28：Bevy WebアプリとRust箱庭（検討中）と呼ぶことにし（`2026-11-28-01`）、repoを`mc-remote-bevy-app`へ改名すると
+  決めた（`2026-11-28-03`①。GitHubでの改名はhuman owner）
+- repository: `Naohiro2g/mc-remote-bevy-app`（human ownerが2026-11-27に`mc-remote-bevy-sandbox`として作った。public、LICENSEはMIT、
+  default branchは`main`。初期commit `4f08a2b077c3adb1cfc96356126eee3a973e1b3b`）
 - 入口（2026-11-27、coordinator）: dev-repo protocolの雛形の`AGENTS.md`と、`.gitignore`へoperator-localのfile（`CLAUDE.md`、
   `NOTES_ja.md`、`handoff-materials/`、`.env`）を足した（`8bfc86003c13c2bb3a0e651af9e676c3ed1b95fe`）。手元のcloneに`CLAUDE.md`（`@AGENTS.md`の1行）を置き、
   `AGENTS.md`のbootstrap commandが通り、runtime blockのmarkerが1組だけあることを確かめた
@@ -20,48 +22,49 @@ Bevyの世界と箱庭の設計スポーク。最初は、Unity箱庭のserver�
 
 ## 形
 
-- Unity箱庭のserver（.NET）は1つのまま。Bevy Webは`/ws/sync`で同じserverにつなぎ、同じ世界を表示する。Unity Webと並ぶ
-  2つ目の表示になる
-- Unity箱庭は、世界のモデル（UnityEngineに依存しないC#）、server（.NET）、Unity Webの3つに分かれていて、Unityなのは表示だけ
-  （Unity箱庭の`d3539c3`の`docs/unity-sandbox-display-sync_ja.md` §1）。server、世界のモデル、守りの部分（pairing、token、
-  上限`2026-11-24-01`）、配る仕組みは、Unity箱庭のものを使う
-- Bevy WebはUnity Webを追いかける。Unity箱庭の作業と公開を止めず、新しい義務を足さない
+- .NET箱庭のserverは1つのまま。Bevy Webアプリは`/ws/sync`で同じserverにつなぎ、同じ世界を表示する。Unity Webアプリと並ぶ
+  2つ目の参加アプリになる
+- `mc-remote-unity-sandbox`は、世界のモデル（UnityEngineに依存しないC#）、server（.NET）、Unity Webアプリの3つに分かれていて、
+  Unityなのは表示だけ（`d3539c3`の`docs/unity-sandbox-display-sync_ja.md` §1）。server、世界のモデル、守りの部分（pairing、token、
+  上限`2026-11-24-01`）、配る仕組みは、.NET箱庭のものを使う
+- Bevy WebアプリはUnity Webアプリを追いかける。.NET箱庭とUnity Webアプリの作業と公開を止めず、新しい義務を足さない
 - 最初は公開せず、手元で実験する。12月末のトライアル公開の形は、最初のsliceを見て決める
-- Unity箱庭は、12月から1月にかけて、blockの種類、太陽と月の運行、世界の拡張、世界の保存を順に出す（human owner 2026-11-27、
-  hub NOTESの「お楽しみ要素を計画して出す」）。Bevy Webは、その間に変わる`/ws/sync`とUnity Webを追う
-- 表示のBevy Webは、`/ws/sync`でserverにつなぎ、JSON-RPCのclientではない。Bevyのアプリからblockを送る使い方
-  （`21-rust-client/`の「位置づけ」）は別で、そちらはRustのclient libraryを使う
+- .NET箱庭とUnity Webアプリは、12月から1月にかけて、blockの種類、太陽と月の運行、世界の拡張、世界の保存を順に出す（human owner
+  2026-11-27、hub NOTESの「お楽しみ要素を計画して出す」）。Bevy Webアプリは、その間に変わる`/ws/sync`とUnity Webアプリを追う
+- Bevy Webアプリは、`/ws/sync`でserverにつなぎ、JSON-RPCのclientではない。Bevyで作ったゲームからblockを送る使い方
+  （`21-rust-client/`の「位置づけ」）はクライアントの側で、Rustのclient libraryを使う
 
 ## `/ws/sync`の契約
 
-- 正本はUnity箱庭のrepoの`docs/unity-sandbox-display-sync_ja.md`。knowledgeへ上げず、しばらくUnity箱庭で育てる
+- 正本は`mc-remote-unity-sandbox`の`docs/unity-sandbox-display-sync_ja.md`。knowledgeへ上げず、しばらくそのrepoで育てる
   （human owner 2026-11-27。今toolingをScratchが持っているのと同じ）
-- Bevy Webは、それを固定したcommitで読んで追う。読んだcommitを返却に書く
+- Bevy Webアプリは、それを固定したcommitで読んで追う。読んだcommitを返却に書く
 
 ## repoの境目
 
-- `mc-remote-bevy-sandbox`：マイクラリモコンに組み込むコード。最初からここで書き、`bevy-sandbox`から移さない
+- `mc-remote-bevy-app`（前の名前は`mc-remote-bevy-sandbox`）：マイクラリモコンに組み込むコード。最初からここで書き、
+  `bevy-sandbox`から移さない
 - `bevy-sandbox`：マイクラリモコンの外の実験場。改名しない
 - 境目は、マイクラリモコンの言葉（wire、`/ws/sync`、blockのID、地形）を使うかどうか（言い方はclaude.aiの案）
 
 ## 決まっていないこと
 
-- serverと世界のモデルもRustにするか。Bevy Webが成り立ってから決める
-- 公開の箱庭の名前、port、gate、Stack（12月末のトライアル公開で、どこまで要るか）
+- Rust箱庭（serverと世界のモデルもRustにするか。`2026-11-28-01`③）。Bevy Webアプリが成り立ってから決める
+- 公開の名前、port、gate、Stack（12月末のトライアル公開で、どこまで要るか）
 - Blenderの扱い（human owner 2026-11-24「Unity箱庭に続いてBevy（＋Blender)箱庭。」）
 - 確かめていないこと（claude.aiの票、2026-11-27）：wasmの大きさ、性能、日本語の入力、CIでbuildできるか。Bevyの現状
   （0.20は2026-10-08、右手系Y-up、公式のeditorはまだ）はwebの記述。右手系Y-upなら、Minecraftの座標
   （`00-hub/world-coordinates-facts_ja.md` §2）を符号を変えずに写せる
 - `/ws/sync`は、つなぐ側のOriginを見ていない（claude.aiが`d3539c3`のserverのsourceを読んだ範囲。動かしてはいない）。
-  別のoriginから開いたBevy Webがつながるかは、相談の票で確かめる
+  別のoriginから開いたBevy Webアプリがつながるかは、相談の票で確かめる
 
 ## 正本境界
 
-- 始め方、repo、境目: `2026-11-27-01`
+- 始め方、境目: `2026-11-27-01`。呼び方: `2026-11-28-01`。repo名: `2026-11-28-03`①
 - `/ws/sync`の契約、server、世界のモデル: `Naohiro2g/mc-remote-unity-sandbox`（`19-unity/`）
 - wire、versioning、authentication等のProtocol contract: `10-protocol`
 - Rust Client Library: `21-rust-client/`
-- 実装、build、Bevyに閉じる判断: `Naohiro2g/mc-remote-bevy-sandbox`
+- 実装、build、Bevyに閉じる判断: `Naohiro2g/mc-remote-bevy-app`
 
 ## bootstrapの手順
 
@@ -72,7 +75,9 @@ Bevyの世界と箱庭の設計スポーク。最初は、Unity箱庭のserver�
 3. knowledgeが手元のcloneに`CLAUDE.md`（`@AGENTS.md`の1行）を置き、`AGENTS.md`のbootstrap commandが通ることを確かめる。
    2026-11-27に済んだ
 4. 担当sessionに相談の票を出す（codeは書かない）。2026-11-27に出した（`00-hub/bevy-sandbox-consultation-instructions_ja.md`）
-5. 返ってきた案を見て、最初のsliceの票を出す。最初のsliceもUnity Webを追うので、agentに多く任せる
+5. human ownerがGitHubでrepoを`mc-remote-bevy-app`へ改名する。knowledgeが`README.md`と`AGENTS.md`の名前を直し、手元のcloneの
+   remoteを替える（`2026-11-28-03`①）
+6. 返ってきた案を見て、最初のsliceの票を出す。最初のsliceもUnity Webアプリを追うので、agentに多く任せる
 
 ## AGENTS.mdの「このrepository固有の指示」
 
@@ -81,7 +86,7 @@ Bevyの世界と箱庭の設計スポーク。最初は、Unity箱庭のserver�
 - BevyとRustの版は、`22-bevy`の「現在地」に従う。使った版を記録する
 - `/ws/sync`の正本は`Naohiro2g/mc-remote-unity-sandbox`の`docs/unity-sandbox-display-sync_ja.md`。読んだcommitを記録する。
   Bevyの側で契約を広げない。足りないものは、unity-sandboxへの提案としてknowledgeへ返す
-- Unity箱庭のserverとUnity Webのsourceを、このrepoへ複製しない。手元では、公開のimageか、unity-sandboxのserverを起動して使う
+- .NET箱庭のserverとUnity Webアプリのsourceを、このrepoへ複製しない。手元では、公開のimageか、unity-sandboxのserverを起動して使う
 - Minecraft（Mojang）のtexture、model、音などの素材をcommitしない。自作か、licenseが明確で再配布できるものだけを使い、
   出どころを記録する
 - `target/`、webのbuildの成果物など、生成されるものをcommitしない

@@ -7,6 +7,10 @@
 > 12月の見通し（human owner 2026-11-27）：手元で最初のsliceを進め、12月末に何らかのトライアル公開をする。Unity箱庭は、
 > 12月から1月にかけて、blockの種類、太陽と月の運行、世界の拡張、世界の保存を順に出す。Bevy Webは、その間に変わる
 > `/ws/sync`とUnity Webを追う。
+>
+> 2026-11-28の注記：repoを`mc-remote-bevy-app`へ改名すると決めた（`2026-11-28-03`①）。この票の「Bevy箱庭」と「Bevy Web」は
+> Bevy Webアプリ、「Unity箱庭のserver」は.NET箱庭のserver、「Unity Web」はUnity Webアプリと読む（`2026-11-28-01`）。本文は
+> 出したときのまま変えない。
 
 ## 読むもの
 

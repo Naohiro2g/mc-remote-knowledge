@@ -868,11 +868,12 @@ protocol 23の現行helloはprotocol 22で確定したJSON-RPC／auth／catalog�
 - **`permissions.buildRange` の意味論**（確定 `2026-08-06-01`、解決時点を`2026-09-01-02`で改訂）：hello が返す整数値と server の実際の build guard は、paired UUID に対する同じ `PermissionProvider` の値解決経路でhello時に一度解決した同じsnapshotを使う。LuckPerms 使用時は、既存 `QueryOptions` における User の effective meta を正本とし、McRemote が primary group だけを直接読んだり、user node・継承・context・weight・meta stacking の優先順位を再実装したりしない。meta key、context、meta 欠落または整数 parse 失敗時の `0`、LuckPerms 不在時の fallback は既存どおり。これは既存 field の値解決修正であり、wire field 名・shape・protocol `21.0.0` を変更しない。負値の意味論は別判断とする。
 - **`catalogHash`**（確定 `2026-06-26-03`・§7.2）：ブロック等カタログのキャッシュ識別子＝`mc_version`/`supported_mc_versions` 広告に**紐づくレジストリ指紋**（重複フィールドにしない）。クライアントは `catalogHash` が実値で、その hash に一致する cache を持たない場合にだけ本体を取得する。`catalogHash` が null なら本体を取得しない（b1 は無認証ゆえ常に null）。**クライアント別の非同梱・利用規則は §7.2 に従う**（`2026-08-02-05` / `2026-08-02-07` で「同梱既定版 fallback」は Python・Scratch とも廃止済み）。
 - **`world_constants`**（確定 `2026-07-02-02`）：world/profile 依存の情報定数を束ねる object。b1 では object と `y_sea` key の存在だけを確認対象にする。wire key は `y_sea`、値は `number | null`。Python 生成定数名として `Y_SEA` を使うのは可。`y_sea` は座標式には使わず、完全な意味論、superflat 判定、full `world_constants.json` 配送、multi-version switching は bN / domain knowledge 側へ送る。**値は `world.getSeaLevel() - 1`（最上段の水ブロックの標高）**とする（`2026-07-30-01`）。`getSeaLevel()` 自体は `00-hub/world-constants-facts_ja.md` の `y_ground`（水面直上・地表の配置基準）に当たり、`y_sea` とは1ブロック異なる。
-- **Minecraftでないserver**（`2026-11-14-01`）：Unity箱庭のserverは、`mc_version`と`supported_mc_versions`に、世界のモデルが従う
-  Minecraftの版（`1.21.11`）を入れ、Unity箱庭であることを`server`で名乗る（次の箇条）。
-  Unity箱庭のserverが応える範囲は`19-unity/README_ja.md`の「Unity箱庭のserverが応えるもの」
-- **`server`**（`2026-11-14-03`）：serverの名前と版を`{ "name", "version" }`で返す（requestの`client`と同じ形）。Unity箱庭の
-  serverは最初から返し、`name`は`mc-remote-unity-sandbox`。McRemoteは`2400`から返し、`name`は`McRemote`、`version`はpluginの版。
+- **Minecraftでないserver**（`2026-11-14-01`）：.NET箱庭のserverは、`mc_version`と`supported_mc_versions`に、世界のモデルが従う
+  Minecraftの版（`1.21.11`）を入れ、.NET箱庭であることを`server`で名乗る（次の箇条）。
+  .NET箱庭のserverが応える範囲は`19-unity/README_ja.md`の「Unity箱庭のserverが応えるもの」（前の記録の「Unity箱庭」は、
+  .NET箱庭とUnity Webアプリの組。`2026-11-28-01`④）
+- **`server`**（`2026-11-14-03`）：serverの名前と版を`{ "name", "version" }`で返す（requestの`client`と同じ形）。.NET箱庭の
+  serverは最初から返し、`name`は`mc-remote-unity-sandbox`（.NET箱庭とUnity Webアプリが同居するrepoの名前。`2026-11-28-01`④）。McRemoteは`2400`から返し、`name`は`McRemote`、`version`はpluginの版。
   Minecraftの版は`mc_version`が持つ。`2400`より前のMcRemoteは`server`を返さないので、clientは`server`が無くても接続を止めない。
   `protocol_mismatch`の`data.server`（serverのprotocolの版、§7.3）とは別の欄
 
@@ -1111,7 +1112,7 @@ string`"3"`は別型とする。BlockValue出力はregistryの正準型を使い
 - **reason 分割の理由**：生徒のミスが別物（付け忘れ/構文破壊/prop 無い/値不正）で、ライブ画面が別メッセージを出せると切り分け教育になる。`allowed` を返せるのは `invalid_property_value` だけ＝非対称が綺麗に出る。
 - **`unloaded_chunk` は b1 reason から廃止**（DECISIONS `2026-07-01-08`）。未生成 chunk に対してロード/生成せず有意味な block 操作や query を行う実体はなく、許可された操作ならロード/生成して処理する。禁止すべき操作は chunk ロード状態ではなく build policy / 範囲 / 認可の問題なので、ユーザーに返す安定 reason は `build_denied` とする（protocol `23.3.0`からは、建築範囲の外は`build_range_exceeded`）。chunk generation policy が必要になった場合は bN で別 reason として設計する。
 - **後送り（名前予約のみ）**：`catalog_cache_stale`・`unknown_namespace`。`out_of_bounds`もここで名前だけ予約していた（world-state/y 範囲外・即判定で混乱しないため後送り）が、世界の外の意味でprotocol `23.3.0`から使う（次の箇条）。
-- **世界の外は`out_of_bounds`**（`2026-11-14-02`、`2026-11-14-04`）：ブロックを置ける高さ（`y_min`〜`y_max`）の外と、水平方向の世界の端（Minecraftではworld border、Unity箱庭では400×400の外周）の外への`world.setBlock`／`world.setBlocks`／`world.getBlock`／`world.getBlocks`／`world.setSign`／`world.updateSignLine`は、`out_of_bounds`（code `-32000`）で拒む。`world.getHeight`は、水平方向の端の外だけを拒む。`setBlocks`は一部でも外れたら何も置かない。権限やbuild policyの範囲より先に判定する。`data`は次の形（値は説明用）。
+- **世界の外は`out_of_bounds`**（`2026-11-14-02`、`2026-11-14-04`）：ブロックを置ける高さ（`y_min`〜`y_max`）の外と、水平方向の世界の端（Minecraftではworld border、.NET箱庭では400×400の外周）の外への`world.setBlock`／`world.setBlocks`／`world.getBlock`／`world.getBlocks`／`world.setSign`／`world.updateSignLine`は、`out_of_bounds`（code `-32000`）で拒む。`world.getHeight`は、水平方向の端の外だけを拒む。`setBlocks`は一部でも外れたら何も置かない。権限やbuild policyの範囲より先に判定する。`data`は次の形（値は説明用）。
 
   ```json
   {
@@ -1125,7 +1126,7 @@ string`"3"`は別型とする。BlockValue出力はregistryの正準型を使い
   }
   ```
 
-  `y_min`と`y_max`は置ける高さで、両端を含む（`00-hub/world-constants-facts_ja.md`のkeyと同じ名前と意味）。`world_border`はそのときの中心と大きさで、内外の判定はMinecraftのworld borderに従う。Unity箱庭の外周（x、zが-200〜199）は、中心`(0, 0)`、大きさ`400`で表す。`violating`は、最初に外と判定した点の世界の絶対座標で、原点からの相対ではない。`setBlocks`と`getBlocks`では、箱の対角の2点のどちらか。McRemote `2321.2.0`（protocol `23.3.0`）に入ったので、上の表へ移した。
+  `y_min`と`y_max`は置ける高さで、両端を含む（`00-hub/world-constants-facts_ja.md`のkeyと同じ名前と意味）。`world_border`はそのときの中心と大きさで、内外の判定はMinecraftのworld borderに従う。.NET箱庭の外周（x、zが-200〜199）は、中心`(0, 0)`、大きさ`400`で表す。`violating`は、最初に外と判定した点の世界の絶対座標で、原点からの相対ではない。`setBlocks`と`getBlocks`では、箱の対角の2点のどちらか。McRemote `2321.2.0`（protocol `23.3.0`）に入ったので、上の表へ移した。
 - **建築範囲の外と、1回に置ける数の上限は、別のreasonにする**（`2026-11-14-05`）：上の表の`build_denied`を、原因ごとに分ける。codeはどちらも`-32000`。
   - `build_range_exceeded`：建築範囲（helloの`permissions.buildRange`）の外。`world.setBlock`／`world.setBlocks`／`world.getBlock`／`world.getBlocks`／`world.setSign`／`world.updateSignLine`／`world.strikeLightning`／`world.spawnParticle`／`world.getHeight`／`world.spawnEntity`／`world.getNearbyEntities`／`entity.setPose`／`world.playSound`／`world.playBlockSound`。`data.bounds`は`{ "center": { "x", "z" }, "build_range" }`（centerは建築の原点の絶対座標。x、zの差がどちらも`build_range`以下なら内）、`data.violating`は外れた点の絶対座標。判定に使った点を数のまま返す（`2026-11-15-02`）。entity、粒子、音、落雷などは実数のまま、blockのmethodでも`251.0`のように実数で書かれることがある。建築範囲はx、zだけで判定するので、`world.getBlocks`と`world.getHeight`の`violating.y`は建築の原点のy、`world.getNearbyEntities`では探す中心のyになる
   - `block_count_limit_exceeded`：playerごとの1回に置けるblock数の上限（`mcr.build.blocks`）を越えた。`world.setBlock`／`world.setBlocks`。`data.limit`に上限、`data.requested`に置こうとした数（`world.setBlock`は1）。`violating`は無い。上限が0のときも同じreason（`2026-11-15-02`）

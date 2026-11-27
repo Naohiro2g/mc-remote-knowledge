@@ -43,10 +43,10 @@
 16-java-client/    Java Client Library の設計・bootstrap 状態
 17-typescript-client/ TypeScript Client Library の設計・bootstrap 状態
 18-csharp-client/  C# Client Library の設計・bootstrap 状態
-19-unity/          Unity の世界と箱庭の設計・bootstrap 状態
+19-unity/          .NET箱庭と Unity Webアプリの設計・bootstrap 状態
 20-教材/           学習支援・教材設計
 21-rust-client/    Rust Client Library の設計・bootstrap 状態
-22-bevy/           Bevy の世界と箱庭の設計・bootstrap 状態
+22-bevy/           Bevy Webアプリの設計・bootstrap 状態
 30-広告宣伝/        公開戦略
 ```
 
