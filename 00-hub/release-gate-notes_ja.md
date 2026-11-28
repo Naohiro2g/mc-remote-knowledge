@@ -820,6 +820,38 @@ feedbackの入口）が入っている
   - 公開の手順の案：凍結の後、候補に`v2400.0.0`のannotated tagを打ち、Releaseを下書き（pre-releaseにしない）で作る。
     12月1日0時に、Latestとして公開し、`pypi`のenvironmentを承認して、PyPIのfileのSHA-256を確かめる
   - 名前の替え：`2026-11-28-04`のとおり、替えたものは無い
+- Unity：候補`release/2400.0.0rc1@b28bb5ae7fff03adf8987310b7db1a1b8b32cfba`、draft PR #5。返却は会話に貼られた確定搬送票（2026-11-28、
+  Antigravity CLI、knowledge `3455f6d`を読んだ。fileは無い）
+  - coordinatorがGitHubのAPIで照合した：rc1の`6ce475e`の上の1 commitで、変えたのは7 file。版（`2400.0.0rc1`を`2400.0.0`に。
+    `Dockerfile`、`VERSION`、`WorldConstants.cs`、serverのtest、`LocalSandboxDemo.cs`、`ProjectSettings.asset`の`bundleVersion`）と、
+    `2026-11-28-04`①の文字（`ProjectSettings.asset`のproductName、`DemoLocalization.cs`の日英の歓迎文）だけ
+  - coordinatorがloginなしでGHCRに聞いた：`candidate-b28bb5a`のindexは
+    `sha256:a34a1b3ff435f6d15ffdda89be3f8ce0022395258e7fabb218b07db1e4500465`、linux/amd64のmanifestは
+    `sha256:262918798fe4f73d57905475868831017e9bb4f581dbbd46b954b8b6a8177a17`、configは
+    `sha256:37740cbbca3526689f8cbd926ce49f31bb711723aae2a1d8cb32060a9051e5a7`。labelの`revision`は候補の全桁、`version`は`2400.0.0`、
+    `licenses`は`MIT`。configの`User`は`1654`。`candidate-6ce475e`と`candidate-1594805-2`は、凍結したdigestを指したまま
+  - coordinatorがimageの`/app/wwwroot`の層を取って見た：`index.html`の`<title>`は「Unity Web Player | Minecraft Remote Unity Web App」で、
+    「Unity Sandbox」は無い。`WebGL.data`には「ようこそ、.NET箱庭へ！」と「Welcome to the .NET Sandbox!」が1つずつあり、旧名の歓迎文と
+    `unity-sb`は無い
+
+    | file | bytes | SHA-256 |
+    | --- | ---: | --- |
+    | `index.html` | 6,895 | `0779c1bcfa783e26866f33991185e73f4b123e774ade94e00c270be9752c3223` |
+    | `Build/WebGL.data` | 14,208,683 | `42bc2371effd9680d969bdce77fa74728f09a6c41ceafbf414e41fd316596da5` |
+    | `Build/WebGL.framework.js` | 304,123 | `1571e31206005f6fff58b3d611601e08e1c3cf598da02cd2c4c56eab65a1b090` |
+    | `Build/WebGL.loader.js` | 27,914 | `a5c2afe2e132e564ee8e8d0fc7a90f4378562a2cfc7fbdce0df35cda970bdff4` |
+    | `Build/WebGL.wasm` | 17,257,995 | `ae272e54ea5cc5c1b2085054fa9b8f4d06e55cbb0d5e58bea2d32e42e77d9d54` |
+
+  - 担当の検証：`dotnet test` 37/37。pushの前の2段の確かめ（(a)はbuildの直後とimageから取り出した後、(b)は通常の窓とシークレット
+    ウィンドウ、日本語と英語の4通り）が通り、タブの題と歓迎文を目で見た。非rootで、`/healthz`、hello（`24.0.0`、`2400.0.0`、
+    `server.name`は`mc-remote-unity-sandbox`のまま）、`23.3.0`を断ること、上限、loginなしのpull
+  - productNameを替えて変わったもの（票の確かめてほしいことの2）：Unityがbrowserに置くcacheの名前
+    （`UnityCache_Code2Create_Minecraft Remote Unity Web App`）と、WebGLでは使わないPlayerPrefsの場所。buildのfileの名前と
+    `localStorage`のkeyは変わらない。票は「変わるなら、pushの前に知らせる」としていたが、担当はpushの後の返却で知らせた。
+    coordinatorの見立て：cacheはoriginごとなので、新しい名前（`unity-app`）では元から空。旧名の`unity-sb`で開いた人が、1回だけ
+    buildを取り直す（古いcacheはbrowserに残る）。受け入れてよい。human ownerが受け入れた（2026-11-28「キャッシュの件はオッケー。
+    そのimageで。」）
+  - Stackの検証機での通し（11/28〜29）には、このdigestを使える
 
 ### Scratchの搬送票：操作のエラーの知らせ方（2026-11-20）
 
