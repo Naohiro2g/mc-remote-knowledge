@@ -795,6 +795,32 @@ feedbackの入口）が入っている
 - 判断（human owner 2026-11-28「６，７オッケー」）：`2400`のPythonは、何も替えずに出す
 - 残り：Stackの返事（名前の替え）。12月1日か12月5日かは、それを見て決める
 
+### 最後の候補の照合（2026-11-28〜）
+
+- Python：候補`agent/python-2400-final@4548ecb7d3fb15401417e07b031909c1d35c8da1`、draft PR #18（差分を見るためのもの）。返却
+  `handoff-materials/2026-11-28-python-2400-final/materials/result_ja.md`（5,157 bytes、
+  `890b2d22d4fca1714acadf333c968d1d1c5e3807c28cb6c0c837c438cb5ae581`。knowledge `3455f6d`を読んだ）
+  - coordinatorがGitHubのAPIで照合した：候補は`v2400.0.0rc1`（tag object `cc67fa907cf69a846a1820d78435c180e3bef2fe`、
+    `d0aae00`を指す）の上の1 commitで、変えたのは7 fileの版の表記だけ（`2400.0.0rc1`を`2400.0.0`に。`README.md`、
+    `docs/python-api-reference_ja.md`、`pyproject.toml`、`starter/README_ja.md`、`tests/test_b8.py`、`tests/test_b9.py`、`uv.lock`）。
+    CI `46100915686`（`workflow_dispatch`、Python 3.10〜3.13のtestとbuild-candidateの5 jobとも成功、runnerは`ubuntu-24.04`、
+    head_shaは候補）、artifact `15244524705`（383,937 bytes、
+    `sha256:78aadedb25438804fc02fd3c2fc33a06f1061f82fb26dbe7d2c89a08e74bc6b0`、期限2027-02-26）。artifactを取り直して計り、返却と
+    一致した
+
+    | file | bytes | SHA-256 |
+    | --- | ---: | --- |
+    | `minecraft_remote_api-2400.0.0-py3-none-any.whl` | 196,387 | `37be1235c606be6c779b480ff28e9e4bca91eb37e1cdfc326774b1a472680ee1` |
+    | `minecraft_remote_api-2400.0.0.tar.gz` | 190,582 | `c86f0285220409c77edd820f4936c8b4bf4fdb861ab6d480b6ab57fab75ef1c9` |
+    | `manifest.json` | 668 | `c2d782b79161f56f8a9647aa82c29f2e6753bdb9460ba6befc7e8bf4fb6052ef` |
+
+  - 取り直したものの中：wheelの`METADATA`とsdistの`PKG-INFO`は`Version: 2400.0.0`、`mc_remote/minecraft.py`の`PROTOCOL`は
+    `24.0.0`。`manifest.json`の`source_commit`は候補、`release_tag`は`null`、同梱のWireScopeは`6447f6e`（tooling `v2321.0.0`）
+  - 担当の検証：788 passed。`23.x`の相手を断るtestは、断る処理を外すと落ちることを見た
+  - 公開の手順の案：凍結の後、候補に`v2400.0.0`のannotated tagを打ち、Releaseを下書き（pre-releaseにしない）で作る。
+    12月1日0時に、Latestとして公開し、`pypi`のenvironmentを承認して、PyPIのfileのSHA-256を確かめる
+  - 名前の替え：`2026-11-28-04`のとおり、替えたものは無い
+
 ### Scratchの搬送票：操作のエラーの知らせ方（2026-11-20）
 
 - 搬送票：`handoff-materials/2026-11-20-scratch-notifications/materials/HANDOFF_ja.md`（5,511 bytes、
