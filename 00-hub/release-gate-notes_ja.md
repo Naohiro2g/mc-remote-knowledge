@@ -755,6 +755,38 @@ feedbackの入口）が入っている
   出すか、作り直すか、延期するかを、human ownerが決める
 - ホームページ：はじめる（1）と（2）、LTSの説明、版の表の文を、新しい名前で書いて見せる。API一覧の`api/23.3.0/`の「Unity箱庭の
   `2321.2.0`も同じです」（`10-protocol/api-reference-metadata.json`）は、12月1日に`api/24.0.0/`と一緒に直す
+- Unityの返却（2026-11-28。Antigravity CLI。knowledge `72f003c`を読んだ。会話に貼られた返却で、fileは無い）：見たのは公開VPSの
+  2つのimage。coordinatorがloginなしでGHCRに聞き、`candidate-1594805-2`が
+  `sha256:0737c28a1753847d8d1c4218a26561af083886def4457c2e3cd64d84f3c76828`を、`candidate-6ce475e`が
+  `sha256:e39109f0e3ff6bbc9ef2a0f4fb6048735817fa250a5226b404430ace52101097`を指したままであることを確かめた。2つのcommitの差は、
+  版とhelloの`protocol`だけ
+  - 1：Unity Webアプリは、`?ws=`が無ければ、開いたhostの`/ws/sync`へつなぐ。serverは`/ws/sync`のOriginもHostも見ていない。
+    新しい名前は、Caddyで通すだけで動く
+  - 2：画面に出る旧名は、タブの題「Unity Web Player | Minecraft Remote Unity Sandbox」（productNameから`index.html`に入る）と、
+    chatの歓迎文「ようこそ、Unity箱庭へ！ (v…)」「Welcome to Unity Sandbox! (v…)」（WebGLの中）の2か所だけ。`unity-sb`の文字は
+    無い。画面に出ないもの：helloの`server.name`、imageのlabel、`index.html`の隠れたfooter
+  - 3：最新版の最後の候補で替えるなら、増える手間は5〜10分。LTSを作り直すなら、Unityだけで30〜60分と、照合のし直しとStackの
+    差し替え
+  - 4：UnityのLANのセットはまだ無い（`2401`以降）
+  - 画面に出ない名前の棚卸しと案は、hub NOTESの「参加アプリと箱庭の内部の名前」へ置いた
+- 判断（human owner 2026-11-28「1，2，3　オススメでオッケー。」）：`2026-11-28-04`。最新版は最後の候補で2か所を替え、LTSは
+  作り直さない。Unityの側に延期の理由は無い。12月1日か12月5日かは、Stack、Scratch、Pythonの返事がそろってから決める。
+  Unityへの票は`00-hub/2400-gate-candidate-instructions_ja.md`の「最後の候補で替える旧名の文字（2026-11-28に足した）」
+- Scratchの返却（2026-11-28。knowledge `72f003c`を読んだ。会話に貼られた返却で、fileは無い）：見たのはrc1の`v2400.0.0rc1`
+  （`0ae8af418d095bac734f37bfca35804810ec1cae`）とLTSの`v2321.1.0`（`57fb7691bb5d9a5895785b200ae78734240ebfa6`）。どちらも、前の照合
+  （rc1は`2400`、LTSは`2321.1`）で記録したcommitと同じ
+  - 1：`unity-sb`の文字は、どちらの版にも無い。接続先の一覧の名前と表示名は、全部runtime configから来る（LANのセットだけは、
+    設定を保存する前の初めの一覧をランチャーが作る）。LTSには「Unity箱庭」も無い。rc1で固定で入っているのは、エラーの文に出す
+    serverの名前（helloの`server.name`が`mc-remote-unity-sandbox`かで選ぶ）、LANのセット（設定ページ、初めの一覧の表示名、
+    はじめに.htmlとZIPの中の`README_ja.md`）、ブロック一覧（最後の候補で入れる`7a4a6db`の`site/2400.0.0/`にも）
+  - 2：表示名だけを替えれば、選択もペアリングのtokenもそのまま。一覧の`id`（形式v2）か`sandbox`（形式v1）を替えると、選択は
+    既定の接続先へ戻り、tokenは引き継がれない。Stackの票の「12月1日の名前の替え（2026-11-28に足した）」に足した
+  - 3：替えるなら、GUIとLANのセットとブロック一覧を直し、candidateのworkflowを回し直す。OCIとLANのZIP 3つは、最後の候補で
+    もともと作り直す
+- 判断（human owner 2026-11-28「4,5 オススメでオッケー」）：`2026-11-28-04`③④。Scratchも最後の候補で替え、3つのOSでの人間の
+  試験はやり直さない。11/30の最後のgoの前に、human ownerがLinuxで最後のLANのZIPを1回開き、設定ページとはじめに.htmlの文字を
+  見る。Scratchへの票は、同じ節の「Scratch」
+- 残り：Stack（名前の替え）とPythonの返事
 
 ### Scratchの搬送票：操作のエラーの知らせ方（2026-11-20）
 

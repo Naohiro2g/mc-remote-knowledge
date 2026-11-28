@@ -56,8 +56,10 @@ Bevy Webアプリの設計スポーク。.NET箱庭のserverへつなぐ2つ目�
 - 確かめていないこと（claude.aiの票、2026-11-27）：wasmの大きさ、性能、日本語の入力、CIでbuildできるか。Bevyの現状
   （0.20は2026-10-08、右手系Y-up、公式のeditorはまだ）はwebの記述。右手系Y-upなら、Minecraftの座標
   （`00-hub/world-coordinates-facts_ja.md` §2）を符号を変えずに写せる
-- `/ws/sync`は、つなぐ側のOriginを見ていない（claude.aiが`d3539c3`のserverのsourceを読んだ範囲。動かしてはいない）。
-  別のoriginから開いたBevy Webアプリがつながるかは、相談の票で確かめる
+- `/ws/sync`は、つなぐ側のOriginもHostも見ていない（Unity担当が、公開VPSで動いている`1594805`と`6ce475e`のsourceで確かめた。
+  2026-11-28）。別のoriginから開いたBevy Webアプリが実際につながるかは、相談の票で確かめる
+- 保存のkey、URLのquery（`?ws=`、`?lang=`）、環境変数の名前を、Unity Webアプリと揃えるか（hub NOTESの「参加アプリと箱庭の
+  内部の名前」）。最初のsliceの票を出すときに決める
 
 ## 正本境界
 

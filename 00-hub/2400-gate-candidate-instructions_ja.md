@@ -346,6 +346,8 @@ LTSの作り直しの返却で、担当が作った確かめ（`handoff-material
 
 返却に足すもの：1〜4の答え。見たcommitとimageのdigest
 
+2026-11-28に返り、human ownerが決めた（`2026-11-28-04`①②。下の「最後の候補で替える旧名の文字（2026-11-28に足した）」）
+
 ### Scratch
 
 1. rc1の`v2400.0.0rc1`と、LTSの`v2321.1.0`で、「Unity箱庭」や`unity-sb`が固定で入っているところ（ブロック、メッセージ、miniの
@@ -355,12 +357,65 @@ LTSの作り直しの返却で、担当が作った確かめ（`handoff-material
 
 返却に足すもの：1〜3の答え。見たcommit
 
+2026-11-28に返り、human ownerが決めた（`2026-11-28-04`③④。下の「最後の候補で替える旧名の文字（2026-11-28に足した）」）
+
 ### Python
 
 1. `2400.0.0rc1`と最後の候補で、README、starter、例外の文に、`unity-sb`や「Unity箱庭」が出るところ。旧名はCNAMEで残るので、
    12月1日を止める条件にしない
 
 返却に足すもの：1の答え。見たcommit
+
+## 最後の候補で替える旧名の文字（2026-11-28に足した）
+
+`2026-11-28-04`。最新版の`2400.0.0`の最後の候補で、画面に出る旧名の文字を替える。上の「全componentで共通」の「最後の候補は、
+最後のrcと同じsourceで、版だけを変えて作る」の例外にする。
+
+### Unity
+
+| 画面 | rc1（`6ce475e`） | 最後の候補 |
+| --- | --- | --- |
+| タブの題（productNameから作られる） | `Unity Web Player \| Minecraft Remote Unity Sandbox` | `Unity Web Player \| Minecraft Remote Unity Web App` |
+| chatの歓迎文（日本語） | `ようこそ、Unity箱庭へ！ (v2400.0.0rc1)` | `ようこそ、.NET箱庭へ！ (v2400.0.0)` |
+| chatの歓迎文（英語） | `Welcome to Unity Sandbox! (v2400.0.0rc1)` | `Welcome to the .NET Sandbox! (v2400.0.0)` |
+
+- productNameだけを替える。前に付く「Unity Web Player | 」は残す。`index.html`の隠れたfooterとJSのconfigも、productNameから
+  作られるので一緒に替わる
+- 替えないもの：helloの`server.name`、imageのlabel、保存のkey、環境変数、namespace（hub NOTESの「参加アプリと箱庭の内部の名前」）
+- LTSの`2321.2.0`（`candidate-1594805-2`）は作り直さない
+
+確かめてほしいこと：
+
+1. 最後の候補のいつもの確かめ（上の「pushの前の2段の確かめ」を含む）で、通常の窓とシークレットウィンドウの両方で、タブの題と、
+   日本語と英語（`?lang=en`）の歓迎文を目で見る
+2. productNameを替えて、ほかに変わるもの（buildのfileの名前、ブラウザに保存する場所など）が無いか。変わるなら、pushの前に知らせる
+3. rc1の`6ce475e`から最後の候補までの差が、版と、この2か所の文字だけであること
+
+返却に足すもの：上の1〜3の結果と、変えたfileの一覧
+
+### Scratch
+
+| 画面 | rc1（`0ae8af4`） | 最後の候補 |
+| --- | --- | --- |
+| エラーの文に出すserverの名前（`gui.mcremote.server.unity`） | `Unity箱庭`、ひらがなの表示は`Unityはこにわ`、英語は`Unity sandbox` | `.NET箱庭`、`.NETはこにわ`、`.NET sandbox` |
+| LANのセットの初めの一覧の表示名 | `Unity箱庭` | `.NET箱庭サーバー` |
+| LANの設定ページ、はじめに.html、ZIPの中の`README_ja.md` | 「Unity箱庭」 | 「.NET箱庭」 |
+| ブロック一覧（`site/2400.0.0/`と入口） | 「Unity箱庭で使える」など | 「.NET箱庭で使える」など |
+
+- 替えないもの：helloの`server.name`が`mc-remote-unity-sandbox`かを見る判定（serverの名乗りは12月1日には替えない）と、LANの
+  一覧の`id: 'unity'`（保存した設定とtokenをそのまま使うため）
+- ブロック一覧の検索の語には、旧名の「Unity箱庭」「Unity」「ユニティ」を残し、「.NET箱庭」を足す
+- repoの中のREADME、提案の文書、testの文字は、合わせて直してよい
+- LTSの`v2321.1.0`は替えない（旧名が無い）
+
+確かめてほしいこと：
+
+1. GUIのunit testと、LANのセットの`local:test`と`local:lint`が通ること（文字を確かめているtestは、新しい文字にする）
+2. rc1の`0ae8af4`から最後の候補までの差が、版と、この文字と、ブロック一覧の`site/2400.0.0/`だけであること
+3. 最後のLANのZIP 3つのbytesとSHA-256。3つのOSでの人間の試験はやり直さない（`2026-11-28-04`④）。human ownerがLinuxで1回
+   開いて、設定ページとはじめに.htmlの文字を見る
+
+返却に足すもの：上の1〜3の結果と、変えたfileの一覧
 
 ## coordinatorがすること
 

@@ -41,7 +41,8 @@
   `6ce475e`。照合は`00-hub/release-gate-notes_ja.md`の「Unity箱庭の上限の対策版の照合（2026-11-24）」）
 - 2026-11-28：「Unity箱庭」を、.NET箱庭とUnity Webアプリに分けて呼ぶ（`2026-11-28-01`）。公開の名前を、.NET箱庭は`dotnet-sb`と
   `dotnet-sb-lts`、Unity Webアプリは`unity-app`と`unity-app-lts`にし、旧名の`unity-sb`と`unity-sb-lts`はCNAMEで残す
-  （`2026-11-28-02`）。repoは当面このまま同居させる。分けるときの形は下の「repoを分けるとき」（`2026-11-28-03`②）
+  （`2026-11-28-02`）。repoは当面このまま同居させる。分けるときの形は下の「repoを分けるとき」（`2026-11-28-03`②）。画面に出る
+  旧名の文字（タブの題とchatの歓迎文）は、最新版の`2400.0.0`の最後の候補で替え、LTSの`2321.2.0`は旧名のまま出す（`2026-11-28-04`）
 
 ## 公開Unity箱庭
 
@@ -183,10 +184,12 @@ server側の範囲と学習の登山道は、下の「やりたいことと未�
 
 分けるときに見るもの（claude.aiの案）：
 
-- helloの`server.name`（今は`mc-remote-unity-sandbox`、`WorldConstants.DefaultServerName`）と、それを見て絞り込むclient
+- helloの`server.name`（今は`mc-remote-unity-sandbox`、`WorldConstants.DefaultServerName`）と、それを見て絞り込むclient（Scratchの
+  GUIが、未対応の操作のエラーに出すserverの名前を選ぶのに使っている。2026-11-28のScratch担当の返却）
+- 保存のkey、URLのquery、環境変数（hub NOTESの「参加アプリと箱庭の内部の名前」）
 - namespaceの`Code2Create.UnitySandbox.*`
 - image `ghcr.io/naohiro2g/mc-remote-unity-sandbox`（digestを固定して参照しているので消さない）
-- productNameとchatの文
+- productNameとchatの文（最新版は`2400.0.0`で新しい語にする。`2026-11-28-04`）
 - LANのセットの置き場所
 - Bevy Webアプリの`AGENTS.md`の`/ws/sync`の参照先
 - Stack、台帳のcomponent（`2026-11-15-04`）、このスポーク
