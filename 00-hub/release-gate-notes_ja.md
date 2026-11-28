@@ -166,7 +166,9 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   Java、TypeScript、C#は、`2400.0.0`のMcRemoteへつないで確かめてから、tag `v2400.0.0`を打つ（C#は作例の文を直した後。下の
   「最後の候補の照合（2026-11-28〜）」）
 - 公開のときに確かめること: Chromeが、GitHubのActionsのartifactのZIPのダウンロードを止めた（上の`2321.2`の節の「ScratchとUnity
-  箱庭の人間の試験（2026-11-18〜19）」）。Releaseの下書きで、配布物のダウンロードを確かめる
+  箱庭の人間の試験（2026-11-18〜19）」）。Releaseの下書きで、配布物のダウンロードを確かめる。Unity Webアプリは、12月1日に
+  最後の候補へ入れ替えた後、human ownerが`unity-app`と`unity-app-lts`をブラウザで1回開く（下の「名前の替え（2026-11-28）」の
+  Stackの第3報）
 
 ### 返却の照合（2026-11-20）
 
@@ -861,6 +863,40 @@ feedbackの入口）が入っている
   先に入れ、公開VPSでdoctorを通す。接続先の一覧は12月1日0時からの手順で替える。検証機での通しは手順と時間の確かめとして受け入れ、
   最後の組を凍結したら、11/30の最後のgoの前に、その組で短くもう一度通す。Stackへの票は`00-hub/2400-gate-stack-instructions_ja.md`の
   「第2報（2026-11-28）で決めたこと」
+- Stackの第3報（2026-11-28。会話に貼られた返却で、fileは無い。最初の版はknowledge `3455f6d`を、同じ日に出し直した「前半」の版は
+  `82dac3b`を読んだ）：公開VPSの`public-beta-2400-20261125`を、`mcrctl deployment update plan`と`apply`で`vps-server@21`から`@22`
+  （`compose@24`、`unity-sandboxes@3`）へ替えた。Stackの`main`は`aefd489`。human ownerの指示で、第2報で決めたことが届く前に入れた
+  - 新しい名前は、最新版（`25586`）が`unity-app`、LTS（`25585`）が`unity-app-lts`。旧名の`unity-sb`と`unity-sb-lts`は同じcontainerへ
+    通し、`dotnet-sb`と`dotnet-sb-lts`は302で転送する。preset（`public-web-paper@19`）、接続先の一覧（`targets.toml`）、containerの名前、
+    外のport、imageのdigestは替えていない
+  - 更新の計画は`sha256:8b2ad051c4e375e454cdd21f68fcd05ff7949c915e898e62954e55f9e5b24ab3`、lockは
+    `sha256:e5b6c504047e9f78c61ff18b177d9017325034bf081397a653aa30aa2e5bfc61`から
+    `sha256:1772ead880d99c40850793ba08c68950bf140318f5d1e995c6123a61d0146373`へ。`apply`は49.88秒
+  - 止めて起動し直したもの（出し直した版）：`apply`は、止める、新しい設定を置く、起動して待つ、の順に進むので、8つのcontainer
+    （Caddy、Minecraftの`sb-beta`、Scratchの2つ、Bridgeの2つ、.NET箱庭の2つ）をすべて一度止めて起動し直した。止まっていたのは
+    49.88秒の間で、volumeはそのまま。image、外のport、containerの名前は替えていない。.NET箱庭のworldはserverのmemoryにあるので、
+    はじめからになった（coordinatorが見た`/healthz`の`seq`は両方とも`0`）
+  - 作り直した設定のfile：Scratchの2つの一覧とBridgeの接続先は差が無い（表示名とお知らせは12月1日まで今のまま）。Caddyの設定は、
+    新しい名前と旧名の通し方と302だけが増えた。`compose.yaml`は、.NET箱庭の2つのcontainerのaliasとlabelだけが変わった
+  - doctor（VPSの上）：全項目OK。.NET箱庭の項目は、新しい名前と旧名の4つの`/healthz`、`GET /`、`/ws/sync`、2つの302、TCPの`25585`と
+    `25586`を見る（出し直した版）
+  - coordinatorが外から確かめた（返却と同じ）：新しい4つの名前の証明書はLet's Encryptで、2026-11-28に出て2027-02-26まで。旧名の
+    2つは2026-11-17に出たもののまま。`unity-app`と`unity-sb`は`/healthz`が`2400.0.0rc1`と`24.0.0`、`unity-app-lts`と`unity-sb-lts`は
+    `2321.2.0`と`23.3.0`で、4つとも`GET /`が200、`/ws/sync`が101。`dotnet-sb`と`dotnet-sb-lts`は、pathとqueryを付けたまま
+    `unity-app`と`unity-app-lts`へ302。LTSの`WebGL.data`は、両方の名前で14,208,678 bytes
+    `1040cd821ec5a6afc5ca518bbaefe0030e18749e64a372da52fae812ac39fc84`。6つの名前は同じ1つのアドレスに引ける。外からのhelloは、
+    返却では4つとも`auth_required`（coordinatorは試していない）
+  - ずれ：12月1日に替える表示名を、どちらの版も「.NET箱庭（最新版）」「.NET箱庭（LTS）」と書いている。票の表は「.NET箱庭サーバー」と
+    「.NET箱庭サーバー（LTS）」（第2報の検証機では票のとおり）
+  - 見張り（`unity-sandbox-watch`）：最初の版で、Stackが見た古いlogの最後は2026-11-21 04:45（JST）。配備の場所を替えた後の記録は、
+    まだ見ていない。出し直した版には書かれていない。見張りは、旧名の`unity-sb`と`unity-sb-lts`の`/healthz`を見ている
+  - 確かめられなかったこと：最後の候補のpresetと、12月1日の一覧の替え（12月1日の手順）。`sb-lts`のcredentialのmode。実際の
+    ブラウザでの操作
+- 判断（human owner 2026-11-28「１８−２０　オッケー」）：先に入れたことを受け入れる（新しい名前はまだ案内していない）。Stackは、
+  止めて起動し直したcontainerを返す（出し直した版で、8つすべてと49.88秒が返った。上の「止めて起動し直したもの」）。見張りが今も記録しているかを、11/30の最後のgoの前に確かめ、止まっていたら12月1日の
+  前に戻す。Unity Webアプリは、12月1日に最後の候補へ入れ替えた後、human ownerがブラウザで1回開く（上の「公開のときに確かめる
+  こと」）。表示名は票の表に合わせる。Stackへの票は`00-hub/2400-gate-stack-instructions_ja.md`の「第3報（2026-11-28）で
+  決めたこと」
 
 ### 最後の候補の照合（2026-11-28〜）
 
