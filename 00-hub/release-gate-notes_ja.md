@@ -78,7 +78,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - current phase: 予行演習（2026-11-19に開いた。2026-11-25に`2400-set-1`を凍結した。下の「凍結するexact set（2026-11-25、`2400-set-1`）」）。
   2026-11-27に人間の試験を終え、human ownerが12月1日の公開を維持すると決めた（下の「人間の試験（2026-11-26〜27）」）。
   2026-11-28に、「Unity箱庭」を.NET箱庭とUnity Webアプリに分けて呼び、新しい名前で出すと決めた。12月1日のままか、延期して
-  12月5日かは、11月29日中の返事を見てhuman ownerが決める（下の「名前の替え（2026-11-28）」）
+  12月5日かは、11/30の最後のgoでhuman ownerが決める（下の「名前の替え（2026-11-28）」）。最後の候補は、下の「最後の候補の照合
+  （2026-11-28〜）」
 - 位置づけ: protocolのmajorを`24`へ進める区切り（`2026-11-05-01`）。中身は`2321.2`のために作ったもので、版を付け直す
   （`2026-11-19-01`）。同じ時に、`2321`の系列をLTSの名前で出す（`2026-11-19-02`、上の`2321.2`の節）
 - 日付: 12月1日0時（JST）。デプロイとホームページの改訂まで3時間以内。延期するかは11月27日に決め、延期なら12月5日
@@ -161,7 +162,9 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   | 12/1 0:00〜3:00 | 公開と、最新版とLTSの名前 |
 - 出した後: Unity担当が、PR #4（LTS）と#5（rc1）の中身を`main`へ入れる（Bevy担当の相談の返却、2026-11-28。`main`の`d3539c3`
   には、上限の対策、座標の直し、IMEの直しが入っていない）。Stackがcredentialのfileのmodeを`sb`と`sb-lts`で確かめる。coordinatorが、wire §7.3の表、Protocol Inventory、
-  API一覧（`api/23.3.0/`と`api/24.0.0/`）、ホームページ、`/api/scratch/`を直す。F1のcase（tooling）と、Scratch以外のclientの表示を頼む
+  API一覧（`api/23.3.0/`と`api/24.0.0/`）、ホームページ、`/api/scratch/`を直す。F1のcase（tooling）と、Scratch以外のclientの表示を頼む。
+  Java、TypeScript、C#は、`2400.0.0`のMcRemoteへつないで確かめてから、tag `v2400.0.0`を打つ（C#は作例の文を直した後。下の
+  「最後の候補の照合（2026-11-28〜）」）
 - 公開のときに確かめること: Chromeが、GitHubのActionsのartifactのZIPのダウンロードを止めた（上の`2321.2`の節の「ScratchとUnity
   箱庭の人間の試験（2026-11-18〜19）」）。Releaseの下書きで、配布物のダウンロードを確かめる
 
@@ -346,6 +349,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
 - 気づいたこと：Javaは、JARの`Implementation-Version`が無いときの版を、`ClientIdentity`に`2400.0.0`と書いている。版を上げる
   ときは、`build.gradle.kts`と合わせて2か所を変える
 - 残り：11/25に、coordinatorが3つの担当へ`sb-beta`の接続先を渡し、pairingを承認する人と試験の場所をhuman ownerと決める
+  - 2026-11-28：coordinatorが行っていなかった。12月1日の後に、`2400.0.0`のMcRemoteへつないで確かめると改めた（下の「最後の
+    候補の照合（2026-11-28〜）」）
 
 ### Stackの返却の照合（2026-11-21〜24）
 
@@ -815,6 +820,47 @@ feedbackの入口）が入っている
   （hub NOTES）。今は延期しない。12月1日か12月5日かは、11/30の最後のgoで、Stackの第2報を見て決める。Stackへの票は
   `00-hub/2400-gate-stack-instructions_ja.md`の「第1報（2026-11-28）で決めたこと」
 - 名前の替えの確認は、Stack、Unity、Scratch、Pythonの返事がそろった。残りはStackの第2報
+- Stackの第2報（2026-11-28。knowledge `3455f6d`を読んだ。会話に貼られた返却で、fileは無い）：Stackの`main`は`aefd489`のまま
+  （coordinatorがGitHubのAPIで見た）。手順の場所は第1報と同じ
+  - 検証機での通し（`live-auto`）：`vps-server@22`、`compose@24`、`public-web-paper@19`（最新版は`2400.0.0rc1`）と、LTSの
+    `public-web-paper@18`、新しい名前の`unity-sandboxes@3`、外のGAMEsの`sb-lts`。lockは
+    `sha256:8b6e41b9449fe7ca35c80501da3c59a67b34e0ecc4802a62618194ea03bd9ec0`。8つのcontainerは本番と同じ形で、検証機の別のserviceと
+    ぶつかるMinecraftのportだけを変えた（公開VPSでは要らない）。公開の証明書は取れないので、Caddyの設定を`caddy validate`で
+    確かめ、`tls internal`を足した短い間のCaddyを通してHTTPSとWSSを確かめた。通した後、一時のcontainerとvolumeは消した
+
+    | 工程 | 時間 |
+    | --- | ---: |
+    | `mcrctl resolve` | 0.93秒 |
+    | `mcrctl validate` | 1.12秒 |
+    | `mcrctl artifact fetch` | 6.40秒 |
+    | `mcrctl render` | 1.50秒 |
+    | `docker compose pull`（8つ） | 15.44秒 |
+    | `docker compose up --detach --wait` | 31.13秒 |
+    | 合計 | 56.52秒 |
+
+  - 動かしたimage：coordinatorが照合した。7つはknowledgeの値と全桁同じ（Scratch `a24be219…`とBridge `d8b70244…`は`2400-set-1`、
+    `scratch-lts`の`f3bcf6a6…`は`v2321.1.0`、`bridge-lts`の`305d6e38…`は`v2321.0.0`、LTSの.NET箱庭の`0737c28a…`は
+    `candidate-1594805-2`、最新版の.NET箱庭の`e39109f0…`はrc1の`candidate-6ce475e`、Minecraftのruntimeの`69b73187…`）。Caddyの
+    `caddy:2.11.4-alpine@sha256:98eb57d882ccd5213d1688764db10c1ca2c58a1ca3a6717a3411ad798f7a423a`は、knowledgeに値が無い。Paperは
+    26.3 #262（`sb-beta`と同じ）
+  - doctor：6つの名前でPASS。`unity-app`と`unity-sb`は`/healthz`の版が`2400.0.0rc1`、`unity-app-lts`と`unity-sb-lts`は`2321.2.0`で、
+    どれも`GET /`が200、`/ws/sync`が101。`dotnet-sb`と`dotnet-sb-lts`は、`unity-app`と`unity-app-lts`へ302。LTSの`WebGL.data`は
+    14,208,678 bytes `1040cd821ec5a6afc5ca518bbaefe0030e18749e64a372da52fae812ac39fc84`（期待した値）。Bridgeから、両方の系列の
+    .NET箱庭とMinecraft（`sb-lts`はGAMEs）へのhelloは、どれも`auth_required`
+  - 生成された接続先の一覧：`scratch`は形式v2で、`stable`（「マイクラ箱庭サーバー」）と`dotnet-sb`（「.NET箱庭サーバー」）。
+    `scratch-lts`は形式v1で、「マイクラ箱庭サーバー（LTS）」と「.NET箱庭サーバー（LTS）」。表示名とIDは票のとおり
+  - McRemoteのcredentialのfileのmodeは`700`と`600`。起動のlogにERRORは無い
+  - 12月1日：前もって用意すれば、自動の配備は約1分。名前の替えで増えるのは約5分
+  - 確かめられなかったこと：公開VPSでの新しい名前の証明書と、公開VPSでのdoctor（`vps-server@22`をまだ入れていないため）。
+    最後の候補での通し（rc1で通した）。`sb-lts`のcredentialのmode（上の「Stackの返却の照合（2026-11-26）」と同じく、直には
+    見られない）。実際のブラウザでの操作
+  - ずれ：読んだのは`3455f6d`で、「第1報（2026-11-28）で決めたこと」（`aeac334`）より前。作ったものは決めたことと合っている。
+    「照合した最後の候補で通す」は読んでいないので、.NET箱庭はrc1のimageで通し、照合済みの`candidate-b28bb5a`は使っていない
+  - 第2報にあった、VPSのhostと検証機の名前は書かない
+- 判断（human owner 2026-11-28「オッケーです」）：公開VPSへ、新しい名前の部分（`sandboxes.toml`、Caddy、証明書、302の転送）だけを
+  先に入れ、公開VPSでdoctorを通す。接続先の一覧は12月1日0時からの手順で替える。検証機での通しは手順と時間の確かめとして受け入れ、
+  最後の組を凍結したら、11/30の最後のgoの前に、その組で短くもう一度通す。Stackへの票は`00-hub/2400-gate-stack-instructions_ja.md`の
+  「第2報（2026-11-28）で決めたこと」
 
 ### 最後の候補の照合（2026-11-28〜）
 
@@ -873,6 +919,33 @@ feedbackの入口）が入っている
     buildを取り直す（古いcacheはbrowserに残る）。受け入れてよい。human ownerが受け入れた（2026-11-28「キャッシュの件はオッケー。
     そのimageで。」）
   - Stackの検証機での通し（11/28〜29）には、このdigestを使える
+- Java、TypeScript、C#（範囲の外。2026-11-28の確認票。3つとも、knowledge `aeac334`を読んだ。会話に貼られた返却で、fileは無い）
+  - coordinatorがGitHubのAPIで照合した：3つとも、PR #6はhuman ownerが2026-11-24に`main`へmergeした。merge commitの1つ目の親は
+    11/21の照合のbase、2つ目の親は照合した候補で、treeは候補と全桁同じ。`main`のpush CIは`ubuntu-24.04`で成功。tagもReleaseも0件
+
+    | component | `main`（merge commit） | tree | 候補 | CI |
+    | --- | --- | --- | --- | --- |
+    | Java | `0a9ec3fff96220c9984f302353a9bf1271b9b4f8`（04:28:32Z） | `efcd7bfde404c060cdb9b630fd741101c2ea791b` | `1300c4e` | push `45326648158`（JDK 21と25） |
+    | TypeScript | `a886515784e504184e3e7c562249dcb038fd9b7e`（04:35:12Z） | `132f3e78677f730edee68ac2b5860d5ed10d305d` | `7b0e94e` | push `45327419589` |
+    | C# | `7ce6bb25838fdce78abc1c31ea2b972558ac98b7`（04:31:43Z） | `13cfefabac7724ee25f7f8ff540fc0296ae88d9c` | `870c2ae` | push `45327017146` |
+
+  - 担当の検証：手元で、TypeScriptは93件（91がpass、2つのtodoはF1-OP-06とF1-OP-11）、C#は99件が通った。Javaは、旧名
+    （`unity-sb`、「Unity箱庭」、「Unity Sandbox」）が無いことを見た。C#は、`examples/FirstBlock/README_ja.md`に「McRemoteまたは
+    Unity箱庭」が2か所あると返した
+  - `sb-beta`のrc1へつなぐ確かめは、まだ。上の「返却の照合（2026-11-21、Java、TypeScript、C#）」の「残り」を、coordinatorが
+    行っていなかった
+  - 判断（human owner 2026-11-28「オッケーです」）：tagは`main`のmerge commitに打つ（C#は作例を直したcommit）。実機の確かめは
+    12月1日の後に`2400.0.0`のMcRemoteで行い、通ってからtagを打つ。C#は作例の2か所を「.NET箱庭」にし、TypeScriptは旧名を
+    探して返す。C#の手元の`handoff-materials/`は、gateを閉じるときに分類する。票は`00-hub/2400-gate-candidate-instructions_ja.md`の
+    「tagと実機の確かめ（2026-11-28に足した）」
+- McRemote（2026-11-28の確認票。knowledge `aeac334`を読んだ。会話に貼られた返却で、fileは無い）：最後の候補はまだ無い
+  - coordinatorがGitHubのAPIで見た：`v2400.0.0rc1`（tag object `68d7c3c95e70de0e44e53b6fcd2802611a3fa4d7`）は`d93f521`を、
+    `v2321.2.0`（`8dad5fb62acbfc070bb3cfd79afba1ad6c447bad`）は`2ccf0b1`を指す。PR #22はopen。`main`は`5fca9f2`で、Latestは
+    `v2321.2.0`。`v2400.0.0`のtagも、`2400.0.0`のbranchも無い
+  - 返却によると、担当の手元の`main`は`082df43`（PR #20のmerge）で、commitしていない変更がある
+  - 判断（human owner 2026-11-28「オッケーです」）：すぐに作る。`d93f521`の上に、版だけを変える1 commitを`release/2400.0.0`に
+    置く。手元の`main`の変更は入れず、消さない。票は`00-hub/2400-gate-candidate-instructions_ja.md`の「最後の候補（2026-11-28に
+    足した）」
 
 ### Scratchの搬送票：操作のエラーの知らせ方（2026-11-20）
 

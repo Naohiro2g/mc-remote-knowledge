@@ -269,6 +269,24 @@ doctorの結果、12月1日の手順で増える時間。確かめられなか�
 12月1日の手順の通しと時間。検証機での通しには、照合が済んだ最後の候補を使う（`00-hub/release-gate-notes_ja.md`の「最後の候補の
 照合（2026-11-28〜）」。まだのcomponentは、そろったものから）
 
+### 第2報（2026-11-28）で決めたこと
+
+第2報（knowledge `3455f6d`を読んだ。検証機では`2400.0.0rc1`の組で通した）を照合し、human ownerが決めた（2026-11-28
+「オッケーです」）。照合は`00-hub/release-gate-notes_ja.md`の「名前の替え（2026-11-28）」。上の「第1報（2026-11-28）で決めたこと」は
+`aeac334`で足したもので、第2報はその前のcommitを読んでいた。
+
+- 公開VPSへ、新しい名前の部分（`sandboxes.toml`、Caddy、新しい4つの名前の証明書、`dotnet-sb`と`dotnet-sb-lts`の302の転送）だけを
+  先に入れる。接続先の一覧（`targets.toml`）は、12月1日0時からの手順で替える
+- 入れる前に、Caddyのほかに起動し直すcontainerがあれば、coordinatorへ知らせる。11/30までは、`unity-app`を開くとrc1の画面が出るが、
+  まだ案内していないので構わない
+- 入れた後、公開VPSでdoctorを通す（新しい名前と旧名で、Unity Webアプリ、`/ws/sync`、302の転送、外からのhello）
+- 検証機での通し（第2報）は、手順と時間の確かめとして受け入れる。McRemote、Scratch、toolingの最後の候補を照合して最後の組を
+  凍結したら、11/30の最後のgoの前に、その組で短くもう一度通す（presetを替え、`mcrctl resolve`から`docker compose up --wait`と
+  doctorまで）。組の値は、凍結のときにこの票へ足す
+
+返却（第3報）：公開VPSで起動し直したcontainer、新しい名前の証明書、公開VPSのdoctorの結果。最後の組での通しの結果と、動かした
+digest
+
 ## coordinatorがすること
 
 - PRをGitHubのAPIで照合する。候補のdigestと、`-beta`と検証機で動かしたdigestを突き合わせる

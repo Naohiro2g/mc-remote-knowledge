@@ -66,6 +66,23 @@ ownerが返却の案を採った
 
 返却に足すもの：11月25日と12月1日に分けた公開の手順の案
 
+### 最後の候補（2026-11-28に足した）
+
+上の「全componentで共通」のとおり、最後のrcと同じsourceで、版だけを変えて作る。coordinatorが照合し、最後の組を凍結してから、
+Stackが検証機で通す。11/30の最後のgoの前にそろえたい。
+
+- base：`v2400.0.0rc1`（`release/2400.0.0rc1@d93f5212d189650cd1c7c7fb2aa14c8a73934fc1`、`2400-set-1`）。その上に、版の表記
+  （`2400.0.0rc1`を`2400.0.0`に）だけを変える1 commitを置く。branchは`release/2400.0.0`（`release/2321.2.0`と同じ形）。rc1の
+  branchとtagは動かさない
+- 手元の`main`にあるcommitしていない変更は、候補に入れず、消さない。別のworktreeか、きれいなcheckoutで作る
+- Paperの自動の確認は、rc1と同じ1.21.11 #132と26.3 #244で
+- 旧名（`unity-sb`、「Unity箱庭」、「Unity Sandbox」）は替えない（`2026-11-28-04`で替えるのは、UnityとScratchの画面の文字だけ）。
+  JAR、README、Releaseの文の案にあれば、場所を返す
+- tag `v2400.0.0`とReleaseの下書きは、照合と凍結の後に作る。Releaseはpre-releaseにせず、12月1日0時にLatestとして公開する
+
+返却に足すもの：手元の`main`のcommitしていない変更のfileの名前、旧名があった場所、`v2400.0.0`のtag、Releaseの下書き、
+`manifest.json`、Latestの手順の案（凍結の後と12月1日0時にすること）
+
 ## Python（`minecraft-remote-api`）
 
 - base：tag `v2321.1.0`。`2321.2`の範囲には入っていなかった
@@ -316,6 +333,26 @@ LTSの作り直しの返却で、担当が作った確かめ（`handoff-material
 - 申告する版と互換の判定を確かめたtestと、`23.x`のserverを断ることを見たtest（断る処理を外すと落ちるか）
 - `sb-beta`のrc1へつないだ結果
 - 一緒に入れたものの結果
+
+### tagと実機の確かめ（2026-11-28に足した）
+
+11/28の確認票（3つとも、knowledge `aeac334`を読んだ）を照合し、human ownerが決めた（2026-11-28「オッケーです」）。照合は
+`00-hub/release-gate-notes_ja.md`の「最後の候補の照合（2026-11-28〜）」。上の「11月25日から、`sb-beta`で…確かめる」と、返却の
+「`sb-beta`のrc1へつないだ結果」を、次へ改める。
+
+- tagを打つcommit：`main`のmerge commit。Javaは`0a9ec3fff96220c9984f302353a9bf1271b9b4f8`、TypeScriptは
+  `a886515784e504184e3e7c562249dcb038fd9b7e`（treeは、照合した候補と同じ）。C#は、下の作例の文を直したcommit。全桁のSHAを
+  指定して、annotated tag `v2400.0.0`を打つ。`main`が先へ進んでいても、指定したcommitに打つ
+- 実機の確かめ：`sb-beta`のrc1では行わない。12月1日の後に、`2400.0.0`のMcRemoteへつなぎ（hello、pairing、`setBlock`、
+  `getBlock`）、通ってからtagを打つ。接続先と試験の座標は、そのときにcoordinatorが渡す。pairingはhuman ownerが承認する
+- C#：`examples/FirstBlock/README_ja.md`の「McRemoteまたはUnity箱庭」の2か所を、「McRemoteまたは.NET箱庭」にする
+  （`2026-11-28-01`）。文書だけの1 commitを`main`へ入れ、差分を返す。coordinatorが差分を見てから、そのcommitにtagを打つ。tagの
+  前ならいつでもよい
+- TypeScript：旧名（`unity-sb`、「Unity箱庭」、「Unity Sandbox」）が、sourceと文書にあるかを返す。あれば、場所と、C#と同じ形の
+  直し方を返す
+- C#の手元の`handoff-materials/`：`2400`のgateを閉じるときに分類する（`00-hub/dev-repo-protocol_ja.md`）
+
+返却：実機の確かめの結果、打ったtag（tag objectと指すcommit）、C#の作例の差分、TypeScriptの旧名の有無
 
 ## 名前の替えの確認（2026-11-28に足した。Unity、Scratch、Python）
 
