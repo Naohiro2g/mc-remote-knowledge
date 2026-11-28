@@ -398,12 +398,16 @@ LTSの作り直しの返却で、担当が作った確かめ（`handoff-material
 | 画面 | rc1（`0ae8af4`） | 最後の候補 |
 | --- | --- | --- |
 | エラーの文に出すserverの名前（`gui.mcremote.server.unity`） | `Unity箱庭`、ひらがなの表示は`Unityはこにわ`、英語は`Unity sandbox` | `.NET箱庭`、`.NETはこにわ`、`.NET sandbox` |
-| LANのセットの初めの一覧の表示名 | `Unity箱庭` | `.NET箱庭サーバー` |
-| LANの設定ページ、はじめに.html、ZIPの中の`README_ja.md` | 「Unity箱庭」 | 「.NET箱庭」 |
+| LANのセットの初めの一覧の表示名 | `Unity箱庭` | 同じ一覧のMinecraftの接続先と同じ形（下の箇条） |
+| LANの設定ページ、はじめに.html、ZIPの中の`README_ja.md` | 「Unity箱庭」、「Unity箱庭サーバー」 | Minecraftの側の書き方と同じ形（下の箇条） |
 | ブロック一覧（`site/2400.0.0/`と入口） | 「Unity箱庭で使える」など | 「.NET箱庭で使える」など |
 
 - 替えないもの：helloの`server.name`が`mc-remote-unity-sandbox`かを見る判定（serverの名乗りは12月1日には替えない）と、LANの
   一覧の`id: 'unity'`（保存した設定とtokenをそのまま使うため）
+- LANのセットの文字は、同じ一覧、同じ文のMinecraftの側とそろえる（`2026-11-28-05`）。初めの一覧のMinecraftの表示名が
+  「マイクラ箱庭サーバー」の形なら「.NET箱庭サーバー」、「Minecraft」の形なら「.NET箱庭」にする。意味の上では、接続先やport
+  （serverのマシン）を指すところは「.NET箱庭サーバー」、箱庭そのものを指すところは「.NET箱庭」だが、Minecraftの側とそろわない
+  ときは、そろえる方を採る。迷うところは、作る前に案を返す
 - ブロック一覧の検索の語には、旧名の「Unity箱庭」「Unity」「ユニティ」を残し、「.NET箱庭」を足す
 - repoの中のREADME、提案の文書、testの文字は、合わせて直してよい
 - LTSの`v2321.1.0`は替えない（旧名が無い）
@@ -415,7 +419,7 @@ LTSの作り直しの返却で、担当が作った確かめ（`handoff-material
 3. 最後のLANのZIP 3つのbytesとSHA-256。3つのOSでの人間の試験はやり直さない（`2026-11-28-04`④）。human ownerがLinuxで1回
    開いて、設定ページとはじめに.htmlの文字を見る
 
-返却に足すもの：上の1〜3の結果と、変えたfileの一覧
+返却に足すもの：上の1〜3の結果と、変えたfileの一覧。LANのセットで選んだ文字と、並べたMinecraftの側の文字
 
 ## coordinatorがすること
 
