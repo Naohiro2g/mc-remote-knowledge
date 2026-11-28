@@ -793,7 +793,28 @@ feedbackの入口）が入っている
   - 今後も残るもの（3層の呼び方とずれる文、昔の名前と互換の名前）は、hub NOTESのPythonの`2401`の行と、「Pythonの古い名前と、
     互換のために残している名前」の行へ置いた
 - 判断（human owner 2026-11-28「６，７オッケー」）：`2400`のPythonは、何も替えずに出す
-- 残り：Stackの返事（名前の替え）。12月1日か12月5日かは、それを見て決める
+- Stackの第1報（2026-11-28。knowledge `3455f6d`を読んだ。会話に貼られた返却で、fileは無い）：PR #96（`e62896a`、merge
+  `63a6817c69a2bb5f3082bd7d65ec5fc3c41b0546`）と#95（`6c84f1e`、merge `aefd4890e268a80108b8686b5176266578241a3f`）。coordinatorが
+  GitHubのAPIで、どちらもmergeされ、Stackの`main`が`aefd489`であることを確かめた。手順は`docs/dual-line-and-external-targets-guide_ja.md`
+  と`docs/unity-sandbox-deployment-guide_ja.md`
+  - DNS：human ownerが2026-11-28に作った。新しい4つの名前はVPSのhostへのCNAME、旧名の`unity-sb`と`unity-sb-lts`は`unity-app`と
+    `unity-app-lts`へのCNAME。coordinatorも、6つの名前が同じアドレスに引けることを確かめた
+  - Caddy：`unity-app`と旧名の`unity-sb`（LTSも同じ）は同じcontainerへ。`dotnet-sb`と`dotnet-sb-lts`は、ブラウザで開くと
+    `unity-app`と`unity-app-lts`へ302で転送する（301にしないのは、ブラウザが覚えて、後でserverとアプリを分けるときの邪魔になる
+    から）。containerの名前、公開のport、image、資源の上限は変えない。Stackは、この案を決まる前にStackの`main`へmergeした
+    （公開VPSにはまだ入れていない）
+  - 接続先の一覧：`scratch`と`scratch-beta`は形式v2（IDがkey）、`scratch-lts`は形式v1（hostがkey）。案は、IDも`dotnet-sb`と
+    `dotnet-sb-lts`へ替える
+  - doctor：Unity Webアプリ、`/ws/sync`、302の転送を見る3つを足した。testは全部通った。外からのhelloは、`dotnet-sb`と`unity-sb`の
+    `25586`、`dotnet-sb-lts`と`unity-sb-lts`の`25585`のどれも`auth_required`で断られた（serverまで届いている）
+  - 12月1日の手順で増える時間：約5分（DNS、Caddy、証明書を前もって用意するとき）
+  - まだのもの（第2報、11月29日中）：新しい名前の証明書、公開VPSでのdoctor、検証機での12月1日の手順の通し
+  - 12月1日の後へ送りたいもの：mcrctlとVPSの道具に残る`unity-sandbox`の名前
+- 判断（human owner 2026-11-28「8〜11、オススメでオッケー」）：302の転送を認める。接続先の一覧のIDも`dotnet-sb`と`dotnet-sb-lts`へ
+  替える（12月1日は、どの組もペアリングし直しになるので、利用者の手間は増えない）。Stackの中に残る旧名は12月1日の後に回す
+  （hub NOTES）。今は延期しない。12月1日か12月5日かは、11/30の最後のgoで、Stackの第2報を見て決める。Stackへの票は
+  `00-hub/2400-gate-stack-instructions_ja.md`の「第1報（2026-11-28）で決めたこと」
+- 名前の替えの確認は、Stack、Unity、Scratch、Pythonの返事がそろった。残りはStackの第2報
 
 ### 最後の候補の照合（2026-11-28〜）
 

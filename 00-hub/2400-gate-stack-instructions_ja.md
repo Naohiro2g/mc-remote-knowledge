@@ -252,6 +252,23 @@ warning。ViaVersionのconfigの差分と、起動のlogで警告が消えたこ
 返却に足すもの：DNSのレコードの一覧（human ownerに頼むもの）、Caddyの設定の差、新しい名前の証明書、一覧の名前と表示名とID、
 doctorの結果、12月1日の手順で増える時間。確かめられなかったことと、その理由
 
+### 第1報（2026-11-28）で決めたこと
+
+第1報（knowledge `3455f6d`を読んだ。PR #96と#95、Stackの`main`は`aefd489`）を照合し、human ownerが決めた（2026-11-28「8〜11、
+オススメでオッケー」）。照合は`00-hub/release-gate-notes_ja.md`の「名前の替え（2026-11-28）」。
+
+- `dotnet-sb`と`dotnet-sb-lts`をブラウザで開いたら、`unity-app`と`unity-app-lts`へ302で転送する（第1報の案のとおり）
+- 接続先の一覧のIDも、`dotnet-sb`と`dotnet-sb-lts`へ替える。表示名は上の表のとおり。12月1日は、どの組もペアリングし直しになる
+  （`scratch`は一覧の形式とprotocolのmajorが替わり、`scratch-beta`はcontainerの入れ替えでserverのtokenが消え、`scratch-lts`は新しい
+  origin）ので、IDを替えても利用者の手間は増えない
+- mcrctlとVPSの道具に残る`unity-sandbox`の名前（roleの名前、containerの名前、label、doctorの出力、見張りの道具）は、12月1日の
+  後に回す（hub NOTESの「Stackの中に残る旧名（`unity-sandbox`）」）
+- 12月1日か12月5日かは、11/30の最後のgoで、第2報を見て決める
+
+第2報（11月29日中）に足すもの：新しい名前の証明書、公開VPSでのdoctor（Unity Webアプリ、`/ws/sync`、302の転送）、検証機での
+12月1日の手順の通しと時間。検証機での通しには、照合が済んだ最後の候補を使う（`00-hub/release-gate-notes_ja.md`の「最後の候補の
+照合（2026-11-28〜）」。まだのcomponentは、そろったものから）
+
 ## coordinatorがすること
 
 - PRをGitHubのAPIで照合する。候補のdigestと、`-beta`と検証機で動かしたdigestを突き合わせる
