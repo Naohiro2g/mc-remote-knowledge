@@ -183,6 +183,30 @@ rc1のtag `v2400.0.0rc1`（`0ae8af418d095bac734f37bfca35804810ec1cae`）の`mc-r
 
 2026-11-20：Scratchの返却に入っていたものを照合した。この候補（`541e7b3`）を凍結に回す（上のScratchの節と同じ記録）
 
+### 最後の候補（2026-11-28に足した）
+
+Scratch担当の知らせ（2026-11-28、会話に貼られた）を照合し、human ownerが決めた（2026-11-28「２１−２３　オッケー」）。照合は
+`00-hub/release-gate-notes_ja.md`の「最後の候補の照合（2026-11-28〜）」。上の「全componentで共通」のとおり、最後のrcと同じ
+sourceで、版だけを変えて作る。
+
+- base：`v2400.0.0rc1`（`agent/tooling-2400-rc1@541e7b3bd3a5653d4a5d2c48f464805782bad9fb`、`2400-set-1`）。その上に、版の表記
+  （`2400.0.0-rc.1`を`2400.0.0`に）だけを変える1 commitを置く。branchは`agent/tooling-2400-final`。Bridge OCIのversionのlabelは
+  `v2400.0.0`にする。rc1のbranchとtagは動かさない
+- 作り直す理由：rc1のBridgeのimageは、versionのlabelが`v2400.0.0rc1`（coordinatorがGHCRで見た）。`2321.0.0`ではlabelが`sha-…`の
+  形で`rc`の文字が無く、rc1の生成物をそのまま使った（`00-hub/stable-gate-release-instructions_ja.md`）。今回は、そのままでは
+  `2400.0.0`のBridgeに`rc1`の文字が残る
+- 順番：toolingが先に作る。candidate CIが`ubuntu-24.04`で通ったら、Scratchがその値（commit、run、artifactのIDとdigest、Bridgeの
+  digest、fileのbytesとSHA-256）で`mc-remote/tooling-lock.json`を替え、Scratchの最後の候補を作る（下の「最後の候補で替える旧名の
+  文字」のScratch）。返却は2つ一緒でよい
+- 旧名（`unity-sb`、「Unity箱庭」、「Unity Sandbox」）は替えない（`2026-11-28-04`で替えるのは、UnityとScratchの画面の文字だけ）。
+  WireScope、Bridge、READMEにあれば、場所と、人の目に入るかを返す
+- tag `v2400.0.0`とReleaseの下書きは、照合と凍結の後に作る。Releaseはpre-releaseにせず、12月1日0時にLatestとして公開する。
+  GHCRの`mc-remote-bridge`には、凍結したindexに`v2400.0.0`のtagを付ける
+
+返却に足すもの：candidateのcommit、CIのrun、artifactのIDとdigest、Bridge OCIのindexのdigestとlabel（version、revision）、
+WireScopeのZIPとmanifestのbytesとSHA-256（全桁）、`541e7b3`から変えたfileの一覧、testの結果。生成物（fileの名前、manifest、OCIの
+tagとlabel、provenance）に`rc`の文字が残るところ。旧名があった場所。公開の手順の案（凍結の後と12月1日0時にすること）
+
 ## Unity箱庭
 
 同じsourceから、2つのimageを作る。
@@ -452,7 +476,9 @@ LTSの作り直しの返却で、担当が作った確かめ（`handoff-material
 確かめてほしいこと：
 
 1. GUIのunit testと、LANのセットの`local:test`と`local:lint`が通ること（文字を確かめているtestは、新しい文字にする）
-2. rc1の`0ae8af4`から最後の候補までの差が、版と、この文字と、ブロック一覧の`site/2400.0.0/`だけであること
+2. rc1の`0ae8af4`から最後の候補までの差が、版と、この文字と、ブロック一覧の`site/2400.0.0/`だけであること。2026-11-28に、
+   toolingの最後の候補へ替えた`mc-remote/tooling-lock.json`を足した（上の「minecraft-remote-tooling」の「最後の候補（2026-11-28に
+   足した）」）
 3. 最後のLANのZIP 3つのbytesとSHA-256。3つのOSでの人間の試験はやり直さない（`2026-11-28-04`④）。human ownerがLinuxで1回
    開いて、設定ページとはじめに.htmlの文字を見る
 

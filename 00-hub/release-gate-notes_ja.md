@@ -982,6 +982,18 @@ feedbackの入口）が入っている
   - 判断（human owner 2026-11-28「オッケーです」）：すぐに作る。`d93f521`の上に、版だけを変える1 commitを`release/2400.0.0`に
     置く。手元の`main`の変更は入れず、消さない。票は`00-hub/2400-gate-candidate-instructions_ja.md`の「最後の候補（2026-11-28に
     足した）」
+- tooling（2026-11-28、Scratch担当の知らせ。会話に貼られた。fileは無い）：最後の候補はまだ無い。票のtoolingの節に、最後の候補を
+  足していなかった（coordinatorの漏れ）
+  - coordinatorがGitHubのAPIで見た：`v2400.0.0rc1`は`541e7b3`を指す。rc1の差分は、`packages/live/package.json`と
+    `package-lock.json`の版（`2400.0.0-rc.1`）の2行だけ。PR #14はdraftでopen、`main`は`62f95f4`（11/17）。`2400.0.0`のbranchと
+    tagは無い
+  - coordinatorがloginなしでGHCRに聞いた：`mc-remote-bridge:v2400.0.0rc1`のlabelは、`version`が`v2400.0.0rc1`、`revision`が
+    `541e7b3`の全桁。`v2321.0.0`では、`version`が`sha-6447f6e8cbfbeeb9d229990b5c4f6e82a5875666`で、`rc`の文字が無かった
+  - Scratchの`agent/scratch-2400-final@db0fcc4`（rc1の上の2 commit、11/28）は、`tooling-lock.json`を変えていない。toolingは
+    `541e7b3`のまま
+  - 判断（human owner 2026-11-28「２１−２３　オッケー」）：toolingも、`541e7b3`の上に版だけを変える1 commitで最後の候補を作る。
+    toolingが先に作り、Scratchがその値で`tooling-lock.json`を替えて、最後の候補を作る。返却は2つ一緒でよい。旧名は替えず、
+    場所を返す。票は`00-hub/2400-gate-candidate-instructions_ja.md`のtoolingの「最後の候補（2026-11-28に足した）」
 
 ### Scratchの搬送票：操作のエラーの知らせ方（2026-11-20）
 
