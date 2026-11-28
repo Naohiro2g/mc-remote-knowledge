@@ -15,7 +15,18 @@ Bevy Webアプリの設計スポーク。.NET箱庭のserverへつなぐ2つ目�
   `NOTES_ja.md`、`handoff-materials/`、`.env`）を足した（`8bfc86003c13c2bb3a0e651af9e676c3ed1b95fe`）。手元のcloneに`CLAUDE.md`（`@AGENTS.md`の1行）を置き、
   `AGENTS.md`のbootstrap commandが通り、runtime blockのmarkerが1組だけあることを確かめた
 - 相談の票（2026-11-27）: `00-hub/bevy-sandbox-consultation-instructions_ja.md`。codeは書かない
-- BevyとRustの版：まだ決めていない（相談の票の1）。`bevy-sandbox`のhello worldはBevy 0.20.1
+- 相談の返却（2026-11-28）: Bevyのrepoの`handoff-materials/2026-11-27-bevy-web-consultation/materials/consultation-response_ja.md`
+  （37,842 bytes、`6441a65eb1621e3e813d05e34cc9ca9f8fdd9138b3ad7cf1af07ff679c1d6576`。knowledge `72f003c`を読んだ）。human ownerが、版、
+  repoの形、`/ws/sync`を読むcommit、最初のsliceの着手を認めた（human owner 2026-11-28「６，７オッケー」）
+- 最初のsliceの票（2026-11-28）: `00-hub/bevy-app-first-slice-instructions_ja.md`。Slice 0（骨格とCI）とSlice 1（`snapshot`と
+  `blockDelta`を受けて描く）
+- BevyとRustの版：Bevy `0.20.1`、Rust `1.100.0`。`rust-toolchain.toml`と、commitした`Cargo.lock`で固定する（相談の返却の1）
+- repoの形：Cargo workspace。`crates/sync-core`（Bevyに依存しない。`/ws/sync`のmessage、座標の換算、地形と箱の差分）と
+  `crates/bevy-app`（相談の返却の2）
+- `/ws/sync`を読むcommit：`mc-remote-unity-sandbox`の`6ce475e`（`2400.0.0rc1`）。`2400.0.0`との差は版と画面の文字だけで、
+  契約は同じ。12月から1月の版で契約が変わったら、読み直す
+- 名前：ブラウザのviewerの保存のkeyは`mc_remote_bevy_viewer_id_v1`（参加アプリごとに分ける）、nativeの接続先の環境変数は
+  `MC_REMOTE_APP_WS_URL`（hub NOTESの「参加アプリと箱庭の内部の名前」。最初のsliceの票で決めた）
 - 12月：手元で最初のsliceを進め、12月末に何らかのトライアル公開をする（human owner 2026-11-27「平行して、Bevy箱庭の
   ファーストスライスを手元で進める。12末で何らかのトライアル公開。」）。12月末までの教材の整理の優先は変わらない
 - 実験場: `Naohiro2g/bevy-sandbox`。human ownerが2026-11-26に作り、coordinatorがhello world（回る立方体、Bevy 0.20.1）を置いた
@@ -32,6 +43,8 @@ Bevy Webアプリの設計スポーク。.NET箱庭のserverへつなぐ2つ目�
 - 最初は公開せず、手元で実験する。12月末のトライアル公開の形は、最初のsliceを見て決める
 - .NET箱庭とUnity Webアプリは、12月から1月にかけて、blockの種類、太陽と月の運行、世界の拡張、世界の保存を順に出す（human owner
   2026-11-27、hub NOTESの「お楽しみ要素を計画して出す」）。Bevy Webアプリは、その間に変わる`/ws/sync`とUnity Webアプリを追う
+- Unity Webアプリとの関係：外から見える体験は揃え、中の作りは、寄せるか分けるかを協議する（human owner 2026-11-28「これは
+  私が言ったことだが、Unityとの関係性の一般論だね。ルールにしなくてオッケー。」）。分けたところは、理由を記録する
 - Bevy Webアプリは、`/ws/sync`でserverにつなぎ、JSON-RPCのclientではない。Bevyで作ったゲームからblockを送る使い方
   （`21-rust-client/`の「位置づけ」）はクライアントの側で、Rustのclient libraryを使う
 
@@ -50,7 +63,8 @@ Bevy Webアプリの設計スポーク。.NET箱庭のserverへつなぐ2つ目�
 
 ## 決まっていないこと
 
-- Rust箱庭（serverと世界のモデルもRustにするか。`2026-11-28-01`③）。Bevy Webアプリが成り立ってから決める
+- Rust箱庭（serverと世界のモデルもRustにするか。`2026-11-28-01`③）。Bevy Webアプリが成り立ってから決める。Bevy担当の案
+  （相談の返却の2）は、作るなら別のrepoにし、`/ws/sync`でつなぐ。workspaceの形は、どちらに決まっても困らない
 - 公開の名前、port、gate、Stack（12月末のトライアル公開で、どこまで要るか）
 - Blenderの扱い（human owner 2026-11-24「Unity箱庭に続いてBevy（＋Blender)箱庭。」）
 - 確かめていないこと（claude.aiの票、2026-11-27）：wasmの大きさ、性能、日本語の入力、CIでbuildできるか。Bevyの現状
@@ -58,8 +72,8 @@ Bevy Webアプリの設計スポーク。.NET箱庭のserverへつなぐ2つ目�
   （`00-hub/world-coordinates-facts_ja.md` §2）を符号を変えずに写せる
 - `/ws/sync`は、つなぐ側のOriginもHostも見ていない（Unity担当が、公開VPSで動いている`1594805`と`6ce475e`のsourceで確かめた。
   2026-11-28）。別のoriginから開いたBevy Webアプリが実際につながるかは、相談の票で確かめる
-- 保存のkey、URLのquery（`?ws=`、`?lang=`）、環境変数の名前を、Unity Webアプリと揃えるか（hub NOTESの「参加アプリと箱庭の
-  内部の名前」）。最初のsliceの票を出すときに決める
+- 日本語のfont：Bevy担当の案は、Noto Sans CJK JPをJIS第1水準ほどに絞る。ほかの人のchatで、入っていない漢字が豆腐になる
+  ことがある。Slice 3の前に確かめる
 
 ## 正本境界
 
@@ -80,7 +94,8 @@ Bevy Webアプリの設計スポーク。.NET箱庭のserverへつなぐ2つ目�
 4. 担当sessionに相談の票を出す（codeは書かない）。2026-11-27に出した（`00-hub/bevy-sandbox-consultation-instructions_ja.md`）
 5. human ownerがGitHubでrepoを`mc-remote-bevy-app`へ改名する。knowledgeが`README.md`と`AGENTS.md`の名前を直し、手元のcloneの
    remoteを替える（`2026-11-28-03`①）。2026-11-28に済んだ
-6. 返ってきた案を見て、最初のsliceの票を出す。最初のsliceもUnity Webアプリを追うので、agentに多く任せる
+6. 返ってきた案を見て、最初のsliceの票を出す。最初のsliceもUnity Webアプリを追うので、agentに多く任せる。2026-11-28に出した
+   （`00-hub/bevy-app-first-slice-instructions_ja.md`）
 
 ## AGENTS.mdの「このrepository固有の指示」
 

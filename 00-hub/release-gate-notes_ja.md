@@ -159,7 +159,8 @@ repo担当は自repoの事実と根拠を返し、他repoの着手、shared環�
   | 11/28〜29 | 最後の候補、検証機での通し、Releaseの下書き、ホームページのPR |
   | 11/30 | 最終のgo |
   | 12/1 0:00〜3:00 | 公開と、最新版とLTSの名前 |
-- 出した後: Stackがcredentialのfileのmodeを`sb`と`sb-lts`で確かめる。coordinatorが、wire §7.3の表、Protocol Inventory、
+- 出した後: Unity担当が、PR #4（LTS）と#5（rc1）の中身を`main`へ入れる（Bevy担当の相談の返却、2026-11-28。`main`の`d3539c3`
+  には、上限の対策、座標の直し、IMEの直しが入っていない）。Stackがcredentialのfileのmodeを`sb`と`sb-lts`で確かめる。coordinatorが、wire §7.3の表、Protocol Inventory、
   API一覧（`api/23.3.0/`と`api/24.0.0/`）、ホームページ、`/api/scratch/`を直す。F1のcase（tooling）と、Scratch以外のclientの表示を頼む
 - 公開のときに確かめること: Chromeが、GitHubのActionsのartifactのZIPのダウンロードを止めた（上の`2321.2`の節の「ScratchとUnity
   箱庭の人間の試験（2026-11-18〜19）」）。Releaseの下書きで、配布物のダウンロードを確かめる
@@ -786,7 +787,13 @@ feedbackの入口）が入っている
 - 判断（human owner 2026-11-28「4,5 オススメでオッケー」）：`2026-11-28-04`③④。Scratchも最後の候補で替え、3つのOSでの人間の
   試験はやり直さない。11/30の最後のgoの前に、human ownerがLinuxで最後のLANのZIPを1回開き、設定ページとはじめに.htmlの文字を
   見る。Scratchへの票は、同じ節の「Scratch」
-- 残り：Stack（名前の替え）とPythonの返事
+- Pythonの返却（2026-11-28。knowledge `72f003c`を読んだ。会話に貼られた返却で、fileは無い）：見たのはrc1の`d0aae00`（前の照合で
+  記録したcommitと同じ）と`main`の`70be741`。最後の候補はまだ無く、rc1と同じsourceで版だけを変えて作る
+  - 1：README、starter、例外の文、同梱のWireScopeを含めて、`unity-sb`、「Unity箱庭」、`25585`、`25586`は無い
+  - 今後も残るもの（3層の呼び方とずれる文、昔の名前と互換の名前）は、hub NOTESのPythonの`2401`の行と、「Pythonの古い名前と、
+    互換のために残している名前」の行へ置いた
+- 判断（human owner 2026-11-28「６，７オッケー」）：`2400`のPythonは、何も替えずに出す
+- 残り：Stackの返事（名前の替え）。12月1日か12月5日かは、それを見て決める
 
 ### Scratchの搬送票：操作のエラーの知らせ方（2026-11-20）
 
